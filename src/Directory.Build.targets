@@ -1,0 +1,6 @@
+﻿<Project>
+  <Target Name="TransformMvc" BeforeTargets="BeforeBuild" Condition="$(SergenTransform) == 'mvc'">
+    <Exec Command="dotnet tool restore" ContinueOnError="true" />
+    <Exec Command="$(DotNetSergen) mvc" ContinueOnError="true" />
+  </Target>
+</Project>

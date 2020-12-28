@@ -1,9 +1,10 @@
-﻿<Project>
+<Project>
   <PropertyGroup>
     <TargetFrameworks>net5.0</TargetFrameworks>
-    <VersionPrefix>5.0.12</VersionPrefix>
-    <VersionSuffix></VersionSuffix>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Version>5.0.13.1</Version>
+    <Company>Serenity Software</Company>
+    <Copyright>Copyright © Serenity Software, Volkan Ceylan</Copyright>
+    <Product>Serenity Platform - Common Features</Product>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Authors>Volkan Ceylan</Authors>
     <Copyright>Copyright (c) Volkan Ceylan</Copyright>
@@ -26,21 +27,19 @@
     <NewtonsoftJsonVersion>12.0.3</NewtonsoftJsonVersion>
     <FrameworkPackageVersion>5.0.0</FrameworkPackageVersion>
     <AspNetCorePackageVersion>5.0.0</AspNetCorePackageVersion>
+    <SerenityVersion>5.0.13</SerenityVersion>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
   <ItemGroup>
-	  <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Serenity.Net.Web" Version="5.0.12" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Serenity.Net.Web" Version="$(SerenityVersion)" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup Condition="Exists('$(SerenityWebProj)')">
     <ProjectReference Include="$(SerenityWebProj)" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>
     <None Include="$(SerenityDir)build\assets\package-icon.png" Pack="true" PackagePath="">
       <Link>Properties\package-icon.png</Link>
     </None>

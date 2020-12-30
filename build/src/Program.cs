@@ -15,6 +15,7 @@ namespace Build
         static string PackageOutDir => Path.Combine(Root, "build", ".nupkg");
         const string NugetOrgReadSource = "https://api.nuget.org/v3/index.json";
         const string NugetOrgPushSource = "https://www.nuget.org/api/v2/package";
+        static string NugetExePath => Path.Combine(Root, "..", "Serenity", "build", "tools", "NuGet", "NuGet.exe");
         static string SolutionFile => Path.Combine(Src, "common-features.sln");
         static string DirectoryBuildProps => Path.Combine(Src, "Directory.Build.props");
         static readonly string[] LocalFeedNames = new string[]
@@ -22,23 +23,8 @@ namespace Build
             "MyPackages",
         };
         static string SerenityVersion { get; set; }
-        static readonly UTF8Encoding UTF8Bom = new UTF8Encoding(true);
 
         const string SerenityNetWebPackage = "Serenity.Net.Web";
-
-        static IEnumerable<string> SerenityPackagesToUpdate
-        {
-            get
-            {
-                yield return "Serenity.Assets";
-                yield return "Serenity.Scripts";
-                yield return "Serenity.Net.Core";
-                yield return "Serenity.Net.Data";
-                yield return "Serenity.Net.Entity";
-                yield return "Serenity.Net.Services";
-                yield return SerenityNetWebPackage;
-            }
-        }
 
         static void Main(string[] args)
         {

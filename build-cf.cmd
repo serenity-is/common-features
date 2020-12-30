@@ -1,6 +1,6 @@
 @echo off
 ECHO *** RUNNING BUILD ***
-dotnet run -p build\build.csproj %*
+dotnet run -p build\build-cf.csproj %*
 if %ERRORLEVEL% GEQ 1 GOTO :end
 :end
 pause

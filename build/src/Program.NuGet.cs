@@ -71,9 +71,11 @@ namespace Build
                     " --source " + localFeed.Name, Src) != 0)
                     Console.Error.WriteLine("Error while pushing " + Path.GetFileName(nupkg) + 
                         " to local feed");
-                else if (!File.Exists(metadata))
+                else if (!File.Exists(metadata) && 
+                    File.Exists(NugetExePath) &&
+                    Environment.OSVersion.Platform == PlatformID.Win32NT)
                 {
-                    if (StartProcess("nuget", "init . .", localFeed.Source) != 0)
+                    if (StartProcess(NugetExePath, "init . .", localFeed.Source) != 0)
                         Console.Error.WriteLine("Error while initializing " + localFeed.Source);
                     else if (File.Exists(metadata))
                         File.Delete(Path.Combine(localFeed.Source, Path.GetFileName(nupkg)));

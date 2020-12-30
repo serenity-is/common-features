@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <TargetFrameworks>net5.0</TargetFrameworks>
-    <Version>5.0.17</Version>
+    <Version>5.0.19.1</Version>
     <Company>Serenity Software</Company>
     <Copyright>Copyright © Serenity Software, Volkan Ceylan</Copyright>
     <Product>Serenity Platform - Common Features</Product>
@@ -27,7 +27,7 @@
     <NewtonsoftJsonVersion>12.0.3</NewtonsoftJsonVersion>
     <FrameworkPackageVersion>5.0.0</FrameworkPackageVersion>
     <AspNetCorePackageVersion>5.0.0</AspNetCorePackageVersion>
-    <SerenityVersion>5.0.17</SerenityVersion>
+    <SerenityVersion>5.0.19</SerenityVersion>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>

@@ -1,40 +1,27 @@
 <Project>
+  <Import Project="$(MSBuildThisFileDirectory)..\build\package-cf.props" Condition="Exists('$(MSBuildThisFileDirectory)..\build\package-cf.props')" />
   <PropertyGroup>
-    <TargetFrameworks>net5.0</TargetFrameworks>
-    <Version>5.0.19.1</Version>
-    <Company>Serenity Software</Company>
-    <Copyright>Copyright © Serenity Software, Volkan Ceylan</Copyright>
-    <Product>Serenity Platform - Common Features</Product>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <Authors>Volkan Ceylan</Authors>
-    <Copyright>Copyright (c) Volkan Ceylan</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>http://github.com/volkanceylan/Serenity</PackageProjectUrl>
-    <PackageTags>Serenity</PackageTags>
-    <ImportProjectExtensionProps>false</ImportProjectExtensionProps>
+    <TargetFramework>net5.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-    <SerenityDir Condition="Exists('$(SolutionDir)Serenity\')">$(SolutionDir)Serenity\</SerenityDir>
-    <SerenityDir Condition="Exists('$(MSBuildThisFileDirectory)..\Serenity\')">$(MSBuildThisFileDirectory)..\Serenity\</SerenityDir>
-    <SerenityDir Condition="Exists('$(MSBuildThisFileDirectory)..\..\Serenity\')">$(MSBuildThisFileDirectory)..\..\Serenity\</SerenityDir>
-    <SerenitySrc>$(SerenityDir)src\</SerenitySrc>
-    <SerenityWebProj>$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.csproj</SerenityWebProj>
+    <SerenityDir Condition="'$(SerenityDir)' == '' And Exists('$(SolutionDir)Serenity\')">$(SolutionDir)Serenity\</SerenityDir>
+    <SerenityDir Condition="'$(SerenityDir)' == '' And Exists('$(MSBuildThisFileDirectory)..\Serenity\')">$(MSBuildThisFileDirectory)..\Serenity\</SerenityDir>
+    <SerenityDir Condition="'$(SerenityDir)' == '' And Exists('$(MSBuildThisFileDirectory)..\..\Serenity\')">$(MSBuildThisFileDirectory)..\..\Serenity\</SerenityDir>
+    <SerenitySrc Condition="'$(SerenitySrc)' == ''">$(SerenityDir)src\</SerenitySrc>
+    <SerenityWebProj Condition="'$(SerenityWebProj)' == ''">$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.csproj</SerenityWebProj>
     <DotNetSergenExe>$(SerenitySrc)Serenity.Net.CodeGenerator\bin\Debug\net5.0\sergen.exe</DotNetSergenExe>
-    <DotNetSergen>dotnet sergen</DotNetSergen>
-    <DotNetSergen Condition="Exists('$(DotNetSergenExe)')">$(DotNetSergenExe)</DotNetSergen>
-    <PackageIcon>package-icon.png</PackageIcon>
+    <DotNetSergen Condition="'$(DotNetSergen)' == '' And Exists('$(DotNetSergenExe)')">$(DotNetSergenExe)</DotNetSergen>
+    <DotNetSergen Condition="'$(DotNetSergen)' == ''">dotnet sergen</DotNetSergen>
   </PropertyGroup>
   <PropertyGroup>
-    <NewtonsoftJsonVersion>12.0.3</NewtonsoftJsonVersion>
-    <FrameworkPackageVersion>5.0.0</FrameworkPackageVersion>
-    <AspNetCorePackageVersion>5.0.0</AspNetCorePackageVersion>
-    <SerenityVersion>5.0.19</SerenityVersion>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <NewtonsoftJsonVersion Condition="'$(NewtonsoftJsonVersion)' == ''">12.0.3</NewtonsoftJsonVersion>
+    <FrameworkPackageVersion Condition="'$(FrameworkPackageVersion)' == ''">5.0.0</FrameworkPackageVersion>
+    <AspNetCorePackageVersion Condition="'$(AspNetCorePackageVersion)' == ''">5.0.0</AspNetCorePackageVersion>
+    <SerenityVersion Condition="'$(SerenityVersion)' == ''">5.0.19</SerenityVersion>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" Condition="'$(UsingMicrosoftNETSdkWeb)' != 'true'" />
     <PackageReference Include="Serenity.Net.Web" Version="$(SerenityVersion)" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup Condition="Exists('$(SerenityWebProj)')">
     <ProjectReference Include="$(SerenityWebProj)" />

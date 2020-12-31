@@ -1,0 +1,22 @@
+<Project>
+  <PropertyGroup>
+    <Version>5.0.19.1</Version>
+    <Company>Serenity Software</Company>
+    <Copyright>Copyright © Serenity Software, Volkan Ceylan</Copyright>
+    <Product>Serenity Platform - Common Features</Product>
+    <Authors>Volkan Ceylan</Authors>
+    <Copyright>Copyright (c) Volkan Ceylan</Copyright>
+    <PackageIcon>package-icon.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>http://github.com/serenity-is/common-features</PackageProjectUrl>
+    <PackageTags>Serenity</PackageTags>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <None Include="$(SerenityDir)build\assets\package-icon.png" Pack="true" PackagePath="">
+      <Link>Properties\package-icon.png</Link>
+    </None>
+  </ItemGroup>
+</Project>

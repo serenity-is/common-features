@@ -1,4 +1,8 @@
 ﻿<Project>
+  <Target Name="TransformInitTools" BeforeTargets="BeforeBuild" Condition="'$(SolutionDir)' != '' And !Exists('$(SolutionDir).config\dotnet-tools.json')">
+    <Exec Command="dotnet new tool-manifest" ContinueOnError="true" WorkingDirectory="$(SolutionDir)" />
+    <Exec Command="dotnet tool install sergen" ContinueOnError="true" WorkingDirectory="$(SolutionDir)" />
+  </Target>
   <Target Name="TransformMvc" BeforeTargets="BeforeBuild" Condition="$(SergenTransform) == 'mvc'">
     <Exec Command="dotnet tool restore" ContinueOnError="true" />
     <Exec Command="$(DotNetSergen) mvc" ContinueOnError="true" />

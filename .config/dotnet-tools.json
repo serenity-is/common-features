@@ -9,7 +9,7 @@
       ]
     },
     "sergen": {
-      "version": "5.0.12",
+      "version": "5.0.20",
       "commands": [
         "sergen"
       ]

@@ -16,7 +16,7 @@ namespace Build
             if (SerenityVersion == null)
                 return;
 
-            var xe = XElement.Parse(File.ReadAllText(DirectoryBuildProps));
+            var xe = XElement.Parse(File.ReadAllText(PackageBuildProps));
             
             var xeSerenityVer = xe.Descendants("SerenityVersion").FirstOrDefault();
             var changed = false;
@@ -60,7 +60,7 @@ namespace Build
             }
 
             if (changed)
-                File.WriteAllText(DirectoryBuildProps, xe.ToString(SaveOptions.OmitDuplicateNamespaces));
+                File.WriteAllText(PackageBuildProps, xe.ToString(SaveOptions.OmitDuplicateNamespaces));
         }
     }
 }

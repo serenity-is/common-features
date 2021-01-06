@@ -1,4 +1,4 @@
-﻿
+
 namespace Serenity.Demo.ThemeSamples.MVC
 {
     public static class Views

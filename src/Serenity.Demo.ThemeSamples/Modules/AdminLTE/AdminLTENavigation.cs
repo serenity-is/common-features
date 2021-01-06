@@ -1,4 +1,4 @@
-﻿using Serenity.Navigation;
+using Serenity.Navigation;
 
 [assembly: NavigationMenu(8000, "Theme Samples", icon: "fa-diamond")]
 

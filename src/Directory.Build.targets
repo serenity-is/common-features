@@ -9,8 +9,8 @@
     <Exec Command="dotnet new tool-manifest" ContinueOnError="true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
     <Exec Command="dotnet tool install sergen" ContinueOnError="true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
   </Target>
-  <Target Name="TransformToolRestore" AfterTargets="Restore"
-          Condition="'$(SergenTransform)' != '' OR Exists('tsconfig.json')">
+  <Target Name="TransformToolRestore" AfterTargets="BeforeBuild"
+          Condition="'$(DotNetSergen)' == 'dotnet sergen' And ('$(SergenTransform)' != '' OR Exists('tsconfig.json'))">
     <Exec Command="dotnet tool restore" ContinueOnError="true" />
   </Target>
   <Target Name="TransformSergenRestore" BeforeTargets="BeforeBuild"

@@ -39,6 +39,7 @@
       <CopyToOutputDirectory>false</CopyToOutputDirectory>
       <Pack>false</Pack>
     </Content>
-    <None Include="wwwroot\index.d.ts" Pack="true" PackagePath="typings\$(ProjectName.ToLowerInvariant())\index.d.ts" />
+    <None Include="wwwroot\index.d.ts" Pack="true" PackagePath="typings\$(ProjectName.ToLowerInvariant())\index.d.ts" 
+          Condition="Exists('tsconfig.json') OR Exists('wwwroot\index.d.ts')" />
   </ItemGroup>
 </Project>

@@ -18,6 +18,7 @@ namespace Build
         static string NugetExePath => Path.Combine(Root, "..", "Serenity", "build", "tools", "NuGet", "NuGet.exe");
         static string SolutionFile => Path.Combine(Src, "common-features.sln");
         static string PackageBuildProps => Path.Combine(Root, "build", "Package.Build.props");
+        static string DirectoryBuildProps => Path.Combine(Src, "Directory.Build.props");
         static readonly string[] LocalFeedNames = new string[]
         {
             "MyPackages",

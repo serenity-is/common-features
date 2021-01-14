@@ -7,7 +7,8 @@ namespace Build
     {
         static void Pack()
         {
-            UpdateSerenityPackages();
+            PatchPackageBuildProps();
+            PatchDirectoryBuildProps();
 
             CleanDirectory(PackageOutDir, true);
 

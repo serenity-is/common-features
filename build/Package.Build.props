@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <Version>5.0.28.3</Version>
+    <Version>5.0.28.4</Version>
     <Company>Serenity Software</Company>
     <Copyright>Copyright © Serenity Software, Volkan Ceylan</Copyright>
     <Product>Serenity Platform - Common Features</Product>

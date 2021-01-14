@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -8,7 +6,7 @@ namespace Build
 {
     partial class Program
     {
-        static void UpdateSerenityPackages()
+        static void PatchPackageBuildProps()
         {
             var serVersion = GetLatestVersionOf(SerenityNetWebPackage);
 
@@ -61,6 +59,22 @@ namespace Build
 
             if (changed)
                 File.WriteAllText(PackageBuildProps, xe.ToString(SaveOptions.OmitDuplicateNamespaces));
+        }
+
+        static void PatchDirectoryBuildProps()
+        {
+            var xe = XElement.Parse(File.ReadAllText(DirectoryBuildProps));
+
+            var xeSerenityVer = xe.Descendants("SerenityVersion").FirstOrDefault();
+            var changed = false;
+            if (xeSerenityVer != null && xeSerenityVer.Value != SerenityVersion.ToString())
+            {
+                xeSerenityVer.SetValue(SerenityVersion.ToString());
+                changed = true;
+            }
+
+            if (changed)
+                File.WriteAllText(DirectoryBuildProps, xe.ToString(SaveOptions.OmitDuplicateNamespaces));
         }
     }
 }

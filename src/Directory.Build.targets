@@ -42,11 +42,9 @@
     <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
     <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
-  <Target Name="ReAddTypingToPackage" AfterTargets="_RemoveWebRootContentFromPackaging">
+  <Target Name="IncludeTypingsToPackage" AfterTargets="_RemoveWebRootContentFromPackaging">
     <ItemGroup>
-      <None Include="wwwroot\index.d.ts"
-            Pack="true" PackagePath="typings\$(ProjectName.ToLowerInvariant())\index.d.ts"
-            Condition="Exists('tsconfig.json') OR Exists('wwwroot\index.d.ts')" />
+      <None Include="@(TypingsToPackage)" Pack="true" PackagePath="%(TypingsToPackage.PackagePath)" />
     </ItemGroup>
   </Target>
 </Project>

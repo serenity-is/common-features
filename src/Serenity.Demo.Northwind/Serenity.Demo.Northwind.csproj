@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <ItemGroup>
+    <None Remove="Migrations\*.sql" />
+    <EmbeddedResource Include="Migrations\*.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentMigrator" Version="3.2.9" />
+    <PackageReference Include="Serenity.Extensions" Condition="!Exists('..\Serenity.Extensions\Serenity.Extensions.csproj')" />
+    <ProjectReference Include="..\Serenity.Extensions\Serenity.Extensions.csproj" />
+  </ItemGroup>
+</Project>

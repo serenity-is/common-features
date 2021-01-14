@@ -1,10 +1,50 @@
 ﻿<Project>
-  <Target Name="TransformInitTools" BeforeTargets="BeforeBuild" Condition="'$(SolutionDir)' != '' And !Exists('$(SolutionDir).config\dotnet-tools.json')">
-    <Exec Command="dotnet new tool-manifest" ContinueOnError="true" WorkingDirectory="$(SolutionDir)" />
-    <Exec Command="dotnet tool install sergen" ContinueOnError="true" WorkingDirectory="$(SolutionDir)" />
+  <Target Name="NpmInstallParent" BeforeTargets="BeforeBuild" Condition="Exists('..\package.json') AND !Exists('..\node_modules\@types\jquery\index.d.ts')">
+    <Exec Command="npm install" ContinueOnError="true" WorkingDirectory="..\" />
   </Target>
-  <Target Name="TransformMvc" BeforeTargets="BeforeBuild" Condition="$(SergenTransform) == 'mvc'">
+  <Target Name="NpmInstallSelf" BeforeTargets="BeforeBuild" Condition="Exists('package.json') AND !Exists('node_modules\@types\jquery\index.d.ts')">
+    <Exec Command="npm install" ContinueOnError="true" />
+  </Target>
+  <Target Name="TransformInitTools" BeforeTargets="BeforeBuild" Condition="!Exists('$(MSBuildThisFileDirectory).config\dotnet-tools.json')">
+    <Exec Command="dotnet new tool-manifest" ContinueOnError="true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+    <Exec Command="dotnet tool install sergen" ContinueOnError="true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+  </Target>
+  <Target Name="TransformToolRestore" AfterTargets="Restore"
+          Condition="'$(SergenTransform)' != '' OR Exists('tsconfig.json')">
     <Exec Command="dotnet tool restore" ContinueOnError="true" />
+  </Target>
+  <Target Name="TransformSergenRestore" BeforeTargets="BeforeBuild"
+          Condition="Exists('tsconfig.json')">
+    <Exec Command="$(DotNetSergen) restore" ContinueOnError="true" />
+  </Target>
+  <Target Name="TransformMvc" BeforeTargets="BeforeBuild" 
+          Condition="'$(SergenTransform)' == 'mvc'">
     <Exec Command="$(DotNetSergen) mvc" ContinueOnError="true" />
+  </Target>
+  <Target Name="TransformMvct" BeforeTargets="BeforeBuild"
+          Condition="'$(SergenTransform)' == 'mvct' OR '$(SergenTransform)' == 'all'">
+    <Exec Command="$(DotNetSergen) mvct" ContinueOnError="true" />
+  </Target>
+  <Target Name="TransformServerTypings" AfterTargets="AfterBuild" 
+          Condition="'$(SergenTransform)' == 'servertypings' OR '$(SergenTransform)' == 'all'">
+    <Exec Command="$(DotNetSergen) servertypings" ContinueOnError="true" />
+  </Target>
+  <Target Name="CalculateProjectTSConfigInputs" AfterTargets="AfterBuild">
+    <ItemGroup>
+      <ProjectTSConfigInputs Include="@(TypeScriptCompile)"
+          Condition="'%(TypeScriptCompile.Identity)' != 'wwwroot\index.d.ts'" />
+      <ProjectTSConfigInputs Include="tsconfig.json" Condition="Exists('tsconfig.json')" />
+      <ProjectTSConfigInputs Include="..\tsconfig.base.json" Condition="Exists('tsconfig.json')" />
+    </ItemGroup>
+  </Target>
+  <Target Name="CompileProjectTSConfig" AfterTargets="CalculateProjectTSConfigInputs" Condition="Exists('tsconfig.json')"
+    Inputs="@(ProjectTSConfigInputs)" Outputs="wwwroot\index.js;wwwroot\index.d.ts">
+    <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
+    <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" ContinueOnError="true" />
+  </Target>
+  <Target Name="ReAddTypingToPackage" AfterTargets="_RemoveWebRootContentFromPackaging">
+    <ItemGroup>
+      <None Include="wwwroot\index.d.ts" Pack="true" PackagePath="typings\$(ProjectName.ToLowerInvariant())\index.d.ts" />
+    </ItemGroup>
   </Target>
 </Project>

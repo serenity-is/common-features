@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <SergenTransform>mvc</SergenTransform>
-    <StaticWebAssetBasePath>/Serenity.Demo.ThemeSamples</StaticWebAssetBasePath>
   </PropertyGroup>
 </Project>

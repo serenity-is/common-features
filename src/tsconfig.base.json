@@ -1,0 +1,19 @@
+﻿{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "preserveConstEnums": true,
+    "experimentalDecorators": true,
+    "declaration": true,
+    "emitBOM": true,
+    "jsx": "react",
+    "noEmitHelpers": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "target": "es5",
+    "typeRoots": [
+      "./node_modules/@types/"
+    ]
+  }
+}

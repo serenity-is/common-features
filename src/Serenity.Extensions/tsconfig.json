@@ -1,0 +1,14 @@
+﻿{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "outFile": "./wwwroot/index.js",
+    "typeRoots": [
+      "../node_modules/@types/",
+      "./typings/"
+    ]
+  },
+  "include": [
+    "./Imports/**/*",
+    "./Serenity.*/**/*"
+  ]
+}

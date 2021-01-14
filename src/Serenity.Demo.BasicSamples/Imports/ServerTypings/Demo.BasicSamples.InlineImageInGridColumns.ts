@@ -1,0 +1,2 @@
+﻿namespace Serenity.Demo.BasicSamples {
+}

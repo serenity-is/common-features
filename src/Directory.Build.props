@@ -1,5 +1,5 @@
 <Project>
-  <Import Project="$(MSBuildThisFileDirectory)..\build\package-cf.props" Condition="Exists('$(MSBuildThisFileDirectory)..\build\package-cf.props')" />
+  <Import Project="$(MSBuildThisFileDirectory)..\build\Package.Build.props" Condition="Exists('$(MSBuildThisFileDirectory)..\build\Package.Build.props')" />
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
@@ -8,11 +8,14 @@
     <SerenityDir Condition="'$(SerenityDir)' == '' And Exists('$(MSBuildThisFileDirectory)..\..\Serenity\')">$(MSBuildThisFileDirectory)..\..\Serenity\</SerenityDir>
     <SerenitySrc Condition="'$(SerenitySrc)' == ''">$(SerenityDir)src\</SerenitySrc>
     <SerenityWebProj Condition="'$(SerenityWebProj)' == ''">$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.csproj</SerenityWebProj>
+    <SerenityScriptsProj Condition="'$(SerenityScriptsProj)' == ''">$(SerenitySrc)Serenity.Scripts\Serenity.Scripts.csproj</SerenityScriptsProj>
     <DotNetSergenExe>$(SerenitySrc)Serenity.Net.CodeGenerator\bin\Debug\net5.0\sergen.exe</DotNetSergenExe>
     <DotNetSergen Condition="'$(DotNetSergen)' == '' And Exists('$(DotNetSergenExe)')">$(DotNetSergenExe)</DotNetSergen>
     <DotNetSergen Condition="'$(DotNetSergen)' == ''">dotnet sergen</DotNetSergen>
-  </PropertyGroup>
-  <PropertyGroup>
+    <SergenTransform>all</SergenTransform>
+    <StaticWebAssetBasePath>/$(MSBuildProjectName)</StaticWebAssetBasePath>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <DefaultItemExcludes>$(DefaultItemExcludes);package*.json;sergen.json;tsconfig.json;wwwroot\index.d.ts;wwwroot\**\*.less</DefaultItemExcludes>
     <NewtonsoftJsonVersion Condition="'$(NewtonsoftJsonVersion)' == ''">12.0.3</NewtonsoftJsonVersion>
     <FrameworkPackageVersion Condition="'$(FrameworkPackageVersion)' == ''">5.0.0</FrameworkPackageVersion>
     <AspNetCorePackageVersion Condition="'$(AspNetCorePackageVersion)' == ''">5.0.0</AspNetCorePackageVersion>
@@ -21,9 +24,21 @@
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" Condition="'$(UsingMicrosoftNETSdkWeb)' != 'true'" />
-    <PackageReference Include="Serenity.Net.Web" Version="$(SerenityVersion)" />
+    <PackageReference Include="Serenity.Net.Web" Condition="!Exists('$(SerenityWebProj)')" />
+    <ProjectReference Include="$(SerenityWebProj)" Condition="Exists('$(SerenityWebProj)')" />
+    <PackageReference Include="Serenity.Scripts" Condition="!Exists('$(SerenityScriptsProj)')" />
+    <ProjectReference Include="$(SerenityScriptsProj)" Condition="Exists('$(SerenityScriptsProj)')" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.1.2" Condition="Exists('tsconfig.json')">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
-  <ItemGroup Condition="Exists('$(SerenityWebProj)')">
-    <ProjectReference Include="$(SerenityWebProj)" />
+  <ItemGroup>
+    <None Remove="*.json"></None>
+    <Content Include="*.json">
+      <CopyToOutputDirectory>false</CopyToOutputDirectory>
+      <Pack>false</Pack>
+    </Content>
+    <None Include="wwwroot\index.d.ts" Pack="true" PackagePath="typings\$(ProjectName.ToLowerInvariant())\index.d.ts" />
   </ItemGroup>
 </Project>

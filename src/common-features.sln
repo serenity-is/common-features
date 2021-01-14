@@ -5,6 +5,19 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serenity.Demo.ThemeSamples", "Serenity.Demo.ThemeSamples\Serenity.Demo.ThemeSamples.csproj", "{5980D166-6454-4658-A636-DF7C4BFEE3E4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serenity.Demo.Northwind", "Serenity.Demo.Northwind\Serenity.Demo.Northwind.csproj", "{65D17462-2F08-490E-A008-0AFFFF5DB377}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serenity.Extensions", "Serenity.Extensions\Serenity.Extensions.csproj", "{44BF22A6-44E4-471E-ADA6-8D748CA295B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{D85F847E-DFC3-48D5-9A96-FAE129038CF5}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		..\build\Package.Build.props = ..\build\Package.Build.props
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serenity.Demo.BasicSamples", "Serenity.Demo.BasicSamples\Serenity.Demo.BasicSamples.csproj", "{A648D7BD-7D8E-48DA-B0C6-F14A6EA01224}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +28,18 @@ Global
 		{5980D166-6454-4658-A636-DF7C4BFEE3E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5980D166-6454-4658-A636-DF7C4BFEE3E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5980D166-6454-4658-A636-DF7C4BFEE3E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65D17462-2F08-490E-A008-0AFFFF5DB377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65D17462-2F08-490E-A008-0AFFFF5DB377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65D17462-2F08-490E-A008-0AFFFF5DB377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65D17462-2F08-490E-A008-0AFFFF5DB377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44BF22A6-44E4-471E-ADA6-8D748CA295B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44BF22A6-44E4-471E-ADA6-8D748CA295B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44BF22A6-44E4-471E-ADA6-8D748CA295B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44BF22A6-44E4-471E-ADA6-8D748CA295B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A648D7BD-7D8E-48DA-B0C6-F14A6EA01224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A648D7BD-7D8E-48DA-B0C6-F14A6EA01224}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A648D7BD-7D8E-48DA-B0C6-F14A6EA01224}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A648D7BD-7D8E-48DA-B0C6-F14A6EA01224}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

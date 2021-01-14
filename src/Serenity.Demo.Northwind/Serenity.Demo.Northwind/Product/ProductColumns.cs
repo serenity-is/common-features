@@ -1,0 +1,32 @@
+﻿using Serenity.ComponentModel;
+using System;
+using System.ComponentModel;
+
+namespace Serenity.Demo.Northwind.Columns
+{
+    [ColumnsScript("Northwind.Product")]
+    [BasedOnRow(typeof(Entities.ProductRow), CheckNames = true)]
+    public class ProductColumns
+    {
+        [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
+        public string ProductID { get; set; }
+        [EditLink, Width(250)]
+        public string ProductName { get; set; }
+        [QuickFilter]
+        public bool Discontinued { get; set; }
+        [EditLink(ItemType = "Northwind.Supplier"), QuickFilter]
+        public string SupplierCompanyName { get; set; }
+        [EditLink(ItemType = "Northwind.Category"), Width(150), QuickFilter, QuickFilterOption("multiple", true)]
+        public string CategoryName { get; set; }
+        [Width(130)]
+        public string QuantityPerUnit { get; set; }
+        [Width(80), AlignRight]
+        public decimal UnitPrice { get; set; }
+        [Width(80), AlignRight]
+        public short UnitsInStock { get; set; }
+        [Width(80), AlignRight]
+        public short UnitsOnOrder { get; set; }
+        [Width(80), AlignRight]
+        public short ReorderLevel { get; set; }
+    }
+}

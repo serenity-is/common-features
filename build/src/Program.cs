@@ -17,7 +17,7 @@ namespace Build
         const string NugetOrgPushSource = "https://www.nuget.org/api/v2/package";
         static string NugetExePath => Path.Combine(Root, "..", "Serenity", "build", "tools", "NuGet", "NuGet.exe");
         static string SolutionFile => Path.Combine(Src, "common-features.sln");
-        static string PackageBuildProps => Path.Combine(Root, "build", "package-cf.props");
+        static string PackageBuildProps => Path.Combine(Root, "build", "Package.Build.props");
         static readonly string[] LocalFeedNames = new string[]
         {
             "MyPackages",

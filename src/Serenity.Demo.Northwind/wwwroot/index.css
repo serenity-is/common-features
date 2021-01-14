@@ -1,0 +1,408 @@
+.s-Northwind-ProductDialog > .size {
+  width: 650px;
+}
+.s-Northwind-ProductDialog .caption {
+  width: 180px;
+}
+.s-Northwind-ProductDialog .s-PropertyGrid .categories {
+  height: 500px;
+}
+.s-Northwind-CategoryDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-Northwind-CategoryDialog .tab-pane {
+  height: auto;
+}
+.s-Northwind-CategoryDialog .caption {
+  width: 150px;
+}
+.s-Northwind-CategoryDialog .editor {
+  width: 400px;
+}
+.s-Northwind-CategoryDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-Northwind-CategoryDialog .s-Form .editor.dateQ {
+  width: 376px;
+}
+.s-Northwind-CategoryDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-Northwind-CategoryDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 281px;
+}
+.s-Northwind-CategoryDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 64px;
+  margin-left: 4px;
+}
+.s-Northwind-CategoryDialog .s-Form .editor.has-inplace-button {
+  width: 374px;
+}
+.s-Northwind-CategoryDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-Northwind-CategoryDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+.s-Northwind-CustomerDialog > .size {
+  min-width: 850px;
+  width: 850px;
+  min-height: 580px;
+  height: 580px;
+}
+.s-Northwind-CustomerDialog .ui-dialog-content {
+  overflow: hidden;
+}
+.s-Northwind-CustomerDialog .caption {
+  width: 130px;
+}
+.s-Northwind-CustomerDialog .categories {
+  height: 380px;
+}
+.s-Northwind-CustomerDialog .s-NotesEditor {
+  margin: 6px;
+  width: initial !important;
+  min-width: 100%;
+}
+.s-Northwind-CustomerDialog.s-Panel {
+  min-height: 750px;
+}
+.s-Northwind-CustomerDialog.s-Panel .categories {
+  height: auto;
+}
+.s-Northwind-OrderDialog > .size,
+.s-Northwind-CustomerOrderDialog > .size {
+  width: 850px;
+}
+.s-Northwind-OrderDialog .caption,
+.s-Northwind-CustomerOrderDialog .caption {
+  width: 130px;
+}
+.s-Northwind-OrderDialog .s-PropertyGrid .categories,
+.s-Northwind-CustomerOrderDialog .s-PropertyGrid .categories {
+  height: 450px;
+}
+.s-Northwind-OrderDialog.s-Panel,
+.s-Northwind-CustomerOrderDialog.s-Panel {
+  min-height: 750px;
+}
+.s-Northwind-OrderDialog.s-Panel .categories,
+.s-Northwind-CustomerOrderDialog.s-Panel .categories {
+  height: auto;
+}
+.s-Northwind-OrderDialog.s-Panel .grid-container,
+.s-Northwind-CustomerOrderDialog.s-Panel .grid-container {
+  min-height: 300px;
+}
+.s-Northwind-OrderDetailDialog > .size {
+  min-width: 450px;
+  width: 450px;
+}
+.s-Northwind-OrderDetailDialog .tab-pane {
+  height: auto;
+}
+.s-Northwind-OrderDetailDialog .caption {
+  width: 80px;
+}
+.s-Northwind-OrderDetailDialog .editor {
+  width: 310px;
+}
+.s-Northwind-OrderDetailDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-Northwind-OrderDetailDialog .s-Form .editor.dateQ {
+  width: 286px;
+}
+.s-Northwind-OrderDetailDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-Northwind-OrderDetailDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 191px;
+}
+.s-Northwind-OrderDetailDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 64px;
+  margin-left: 4px;
+}
+.s-Northwind-OrderDetailDialog .s-Form .editor.has-inplace-button {
+  width: 284px;
+}
+.s-Northwind-OrderDetailDialog .s-Form .emaildomain {
+  width: 125px;
+}
+@media (max-width: 445px) {
+  .s-Northwind-OrderDetailDialog > .size {
+    min-width: 320px;
+    width: 320px;
+  }
+  .s-Northwind-OrderDetailDialog .tab-pane {
+    height: auto;
+  }
+  .s-Northwind-OrderDetailDialog .caption {
+    width: 80px;
+  }
+  .s-Northwind-OrderDetailDialog .editor {
+    width: 180px;
+  }
+  .s-Northwind-OrderDetailDialog input.editor[type=checkbox] {
+    width: auto;
+  }
+  .s-Northwind-OrderDetailDialog .s-Form .editor.dateQ {
+    width: 156px;
+  }
+  .s-Northwind-OrderDetailDialog .s-Form .editor.emailuser {
+    width: 170px;
+  }
+  .s-Northwind-OrderDetailDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+    width: 61px;
+  }
+  .s-Northwind-OrderDetailDialog .s-Form .editor.s-DateTimeEditor.time {
+    width: 64px;
+    margin-left: 4px;
+  }
+  .s-Northwind-OrderDetailDialog .s-Form .editor.has-inplace-button {
+    width: 154px;
+  }
+  .s-Northwind-OrderDetailDialog .s-Form .emaildomain {
+    width: -5px;
+  }
+}
+.s-Northwind-OrderGrid .s-CustomerEditor {
+  min-width: 250px;
+  width: 250px;
+}
+.s-Northwind-ProductGrid .slick-cell input[type=text] {
+  text-align: right;
+  border-radius: 0;
+  width: 100%;
+  padding: 0 2px;
+  border: 1px solid #e7e7e7;
+}
+.s-Northwind-ProductGrid .slick-cell .dirty {
+  background-color: #ffe0e0;
+}
+.s-Northwind-RegionDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-Northwind-RegionDialog .tab-pane {
+  height: auto;
+}
+.s-Northwind-RegionDialog .caption {
+  width: 150px;
+}
+.s-Northwind-RegionDialog .editor {
+  width: 400px;
+}
+.s-Northwind-RegionDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-Northwind-RegionDialog .s-Form .editor.dateQ {
+  width: 376px;
+}
+.s-Northwind-RegionDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-Northwind-RegionDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 281px;
+}
+.s-Northwind-RegionDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 64px;
+  margin-left: 4px;
+}
+.s-Northwind-RegionDialog .s-Form .editor.has-inplace-button {
+  width: 374px;
+}
+.s-Northwind-RegionDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-Northwind-RegionDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+.s-Northwind-ShipperDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-Northwind-ShipperDialog .tab-pane {
+  height: auto;
+}
+.s-Northwind-ShipperDialog .caption {
+  width: 150px;
+}
+.s-Northwind-ShipperDialog .editor {
+  width: 400px;
+}
+.s-Northwind-ShipperDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-Northwind-ShipperDialog .s-Form .editor.dateQ {
+  width: 376px;
+}
+.s-Northwind-ShipperDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-Northwind-ShipperDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 281px;
+}
+.s-Northwind-ShipperDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 64px;
+  margin-left: 4px;
+}
+.s-Northwind-ShipperDialog .s-Form .editor.has-inplace-button {
+  width: 374px;
+}
+.s-Northwind-ShipperDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-Northwind-ShipperDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+.s-Northwind-SupplierDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-Northwind-SupplierDialog .tab-pane {
+  height: auto;
+}
+.s-Northwind-SupplierDialog .caption {
+  width: 150px;
+}
+.s-Northwind-SupplierDialog .editor {
+  width: 400px;
+}
+.s-Northwind-SupplierDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-Northwind-SupplierDialog .s-Form .editor.dateQ {
+  width: 376px;
+}
+.s-Northwind-SupplierDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-Northwind-SupplierDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 281px;
+}
+.s-Northwind-SupplierDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 64px;
+  margin-left: 4px;
+}
+.s-Northwind-SupplierDialog .s-Form .editor.has-inplace-button {
+  width: 374px;
+}
+.s-Northwind-SupplierDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-Northwind-SupplierDialog .s-PropertyGrid .categories {
+  height: 460px;
+}
+.s-Northwind-TerritoryDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-Northwind-TerritoryDialog .tab-pane {
+  height: auto;
+}
+.s-Northwind-TerritoryDialog .caption {
+  width: 150px;
+}
+.s-Northwind-TerritoryDialog .editor {
+  width: 400px;
+}
+.s-Northwind-TerritoryDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-Northwind-TerritoryDialog .s-Form .editor.dateQ {
+  width: 376px;
+}
+.s-Northwind-TerritoryDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-Northwind-TerritoryDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 281px;
+}
+.s-Northwind-TerritoryDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 64px;
+  margin-left: 4px;
+}
+.s-Northwind-TerritoryDialog .s-Form .editor.has-inplace-button {
+  width: 374px;
+}
+.s-Northwind-TerritoryDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-Northwind-TerritoryDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+.employee-symbol {
+  padding: 2px 0px 2px 20px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOvwAADr8BOAVTJAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC42/Ixj3wAAAd9JREFUOE9joDmQYmDgAuIkIJ4HxSA2F1SaeCDJwJDupK19riI9/VtRYuI3KxWVcyAxqDTxQJyBYXO4m9vP9LCw//F+fv99LC1/gsSg0sQDMQaGK6eWNfz/dmYmGIPYIDGoNHFghjdTozwf3/tfVxb+/3p6BhiD2CAxkBxUGWEwzYepudKW/QjIgI9HJoIxiA0SA8lBlREHJnoyzXu8ue7bq90d/0EYxAaJQaWJB32uDG4bi02vPN7cADSk4T+IDRKDSpMAorYItjozHNtQ6/UfhEFskBhUlkgQu8uEKWFfVXeW17MH66r/gzCIDRIDyUFV4QHh25SZYndlM8Xt6J155sf/rsV7/7890AvGnYv3/J9x+sd/kBxIDUgtVBcaiNpoJ5W9a4Fn/4UTEw5/BGuqWvvg/6pVq8AYxJ5x+vv//kMf/3v1XzwBUgvSA9WNAEzhKyaXrb7/tX7T0/9tO9+ADSpdcfv/nz9/wLhk+S2wQa07Xv8HqSlf++ArSA9UOwIw+83cWL3uwf+6jU/gBuUvuvr/xYsXf0E4b+EVuEEgNTXrH/4H6YFqRwBmj554IN7D7DVpG6PfjHUMAfOXMoQsnaerq5sKwgxBS+czBCxYBpIDqQGrBeqBah90gIEBAPJoJowtMqatAAAAAElFTkSuQmCC) no-repeat;
+}
+.employee-symbol.female {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOvwAADr8BOAVTJAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC42/Ixj3wAAAfxJREFUOE+1k0FIFHEYxd/ByEohTxGBgYcKcw/lKV00OkRpJCvkMq7iumAH7RILXdxCg6IVOmyiFYQiZNQQ20IRtXWo8OYcLSMTxF1kkxIVFnZz4uv/Zv9tdIhRqAc/+Pjeex/DDIP/roHDKLvlRXi4AUnCmTttb17XahEeb62cf9t/Kp+8dCI/embPF+60vTnVAfvDh5BMXDiWf9RzVO6eq5L4xQbhjp6Oues4EAjuhRU7u0+eR07L8uuopJ4NCnf0dMxdJ0sQa9kFaz7eL9npOw7fZyaEO3o65i7fdsRbSmHxwNpUzIEzd/R0zF1GGd61l6snenwlv/zqhhDO3NHTMXeFdsMiI621C6mnA0I4/9rrmLuul+PA/R3wDzZiLnG5SQhn7ujpmLtSQGMauD3ZXrO0oF44mTRqlrijp2N/13ug+hNwdQ4w7aEh+XjekG9vbjpwtqNRoccMs7r2p6aBppmKihfp+vrZXCQiG+rQot8vpmk6LLa1yYY6RC/t9c4yy46u/5b6FOZXw8itd3dLtq/POfTZ5xPbth0481C2t1fWQyFZ6ejIsaPrRe18CEytBgKy1tVVPPShuVkymcwPwrl4KBiU1c5OYYfdwomCjoTUfzoKWPcUDxQJxUuFx+PpIZyfaG9MwSw77BZOFLRNUaU4uEXYYfdfCfgJeO8lYCagTZ8AAAAASUVORK5CYII=);
+}
+.shipper-symbol {
+  padding: 2px 0px 2px 20px;
+  background: url(../Content/serenity/images/wheel.png) no-repeat center left;
+}
+.shipper-symbol.shipper-UnitedPackage {
+  background-image: url(../Content/serenity/images/box.png);
+}
+.shipper-symbol.shipper-SpeedyExpress {
+  background-image: url(../Content/serenity/images/clock.png);
+}
+.freight-symbol {
+  padding: 2px 20px 2px 0px;
+  background: url(../Content/serenity/images/balance.png) no-repeat center right;
+}
+.s-NotesEditor {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.s-NotesEditor ul {
+  padding: 0;
+  min-height: 110px;
+  overflow-y: auto;
+  list-style: none;
+}
+.s-NotesEditor li {
+  margin: 10px;
+  border-radius: 4px;
+  border: 1px solid #C3C2C2;
+  background-color: #F5E7DC;
+  padding: 8px;
+  position: relative;
+}
+.s-NotesEditor .note-text {
+  padding-right: 24px;
+  display: block;
+}
+.s-NotesEditor .note-delete {
+  background-image: url('../Content/serenity/images/delete2.png');
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 6px;
+  top: 6px;
+  opacity: 0.4;
+}
+.s-NotesEditor .note-delete:hover {
+  opacity: 1;
+}
+.s-NotesEditor .note-date {
+  margin-top: 6px;
+  display: block;
+  text-align: right;
+  color: #2a4084;
+  font-style: italic;
+}
+.s-NotesEditor .s-Toolbar {
+  background-color: #eee;
+  padding: 4px;
+}
+.s-NoteDialog > .size {
+  width: 465px;
+}
+.s-NoteDialog .ui-dialog-content {
+  padding-bottom: 10px;
+}

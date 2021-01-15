@@ -9,9 +9,5 @@
         protected getService() { return RegionService.baseUrl; }
 
         protected form = new RegionForm(this.idPrefix);
-
-        protected getLanguages() {
-            return Extensions.LanguageList.getValue();
-        }
     }
 }

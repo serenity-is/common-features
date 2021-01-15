@@ -5,7 +5,7 @@ using Serenity.Services;
 using Serenity.Web;
 using System;
 
-namespace Serenity.Demo.Northwind.Pages
+namespace Serenity.Demo.Northwind
 {
     [PageAuthorize(PermissionKeys.General)]
     public class ReportsController : Controller

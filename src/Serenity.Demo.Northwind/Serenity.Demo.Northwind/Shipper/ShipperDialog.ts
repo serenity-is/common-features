@@ -9,9 +9,5 @@
         protected getService() { return ShipperService.baseUrl; }
 
         protected form = new ShipperForm(this.idPrefix);
-
-        protected getLanguages() {
-            return Extensions.LanguageList.getValue();
-        }
     }
 }

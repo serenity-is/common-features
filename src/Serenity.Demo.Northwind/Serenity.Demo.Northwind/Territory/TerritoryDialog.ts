@@ -9,9 +9,5 @@
         protected getService() { return TerritoryService.baseUrl; }
 
         protected form = new TerritoryForm(this.idPrefix);
-
-        protected getLanguages() {
-            return Extensions.LanguageList.getValue();
-        }
     }
 }

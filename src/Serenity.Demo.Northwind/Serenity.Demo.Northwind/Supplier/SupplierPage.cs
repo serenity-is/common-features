@@ -1,7 +1,7 @@
 ﻿using Serenity.Web;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Serenity.Demo.Northwind.Pages
+namespace Serenity.Demo.Northwind
 {
     [PageAuthorize(typeof(Entities.SupplierRow))]
     public class SupplierController : Controller

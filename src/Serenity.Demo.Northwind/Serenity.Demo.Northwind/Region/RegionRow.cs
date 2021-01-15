@@ -20,7 +20,7 @@ namespace Serenity.Demo.Northwind.Entities
             set => fields.RegionID[this] = value;
         }
 
-        [DisplayName("Region Description"), Size(50), NotNull, QuickSearch, NameProperty]
+        [DisplayName("Region Description"), Size(50), NotNull, QuickSearch, NameProperty, Localizable(true)]
         public string RegionDescription
         {
             get => fields.RegionDescription[this];

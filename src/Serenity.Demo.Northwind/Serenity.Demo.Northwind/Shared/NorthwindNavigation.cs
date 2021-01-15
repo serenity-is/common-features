@@ -1,5 +1,5 @@
 ﻿using Serenity.Navigation;
-using Northwind = Serenity.Demo.Northwind.Pages;
+using Northwind = Serenity.Demo.Northwind;
 
 [assembly: NavigationMenu(7000, "Northwind", icon: "fa-anchor")]
 [assembly: NavigationLink(7100, "Northwind/Customers", typeof(Northwind.CustomerController), icon: "fa-credit-card")]

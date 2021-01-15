@@ -2,7 +2,7 @@
 
     @Serenity.Decorators.registerEditor('Serenity.Demo.Northwind.OrderDetailsEditor')
     export class OrderDetailsEditor extends Extensions.GridEditorBase<OrderDetailRow> {
-        protected getColumnsKey() { return "Northwind.OrderDetail"; }
+        protected getColumnsKey() { return OrderDetailColumns.columnsKey; }
         protected getDialogType() { return OrderDetailDialog; }
         protected getLocalTextPrefix() { return OrderDetailRow.localTextPrefix; }
 

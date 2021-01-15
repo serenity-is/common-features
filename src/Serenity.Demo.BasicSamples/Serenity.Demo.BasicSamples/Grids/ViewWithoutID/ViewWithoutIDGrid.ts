@@ -1,7 +1,7 @@
 ﻿namespace Serenity.Demo.BasicSamples {
     @Serenity.Decorators.registerClass()
     export class ViewWithoutIDGrid extends Serenity.EntityGrid<Northwind.SalesByCategoryRow, any> {
-        protected getColumnsKey() { return "Northwind.SalesByCategory"; }
+        protected getColumnsKey() { return Northwind.SalesByCategoryColumns.columnsKey; }
         protected getIdProperty() { return "__id"; }
         protected getNameProperty() { return Northwind.SalesByCategoryRow.nameProperty; }
         protected getLocalTextPrefix() { return Northwind.SalesByCategoryRow.localTextPrefix; }

@@ -4,7 +4,7 @@ namespace Serenity.Demo.BasicSamples {
     @Serenity.Decorators.registerClass()
     export class InlineImageInGrid extends Serenity.EntityGrid<Northwind.ProductRow, any> {
 
-        protected getColumnsKey() { return "BasicSamples.InlineImageInGrid"; }
+        protected getColumnsKey() { return BasicSamples.InlineImageInGridColumns.columnsKey; }
         protected getDialogType() { return <any>Northwind.ProductDialog; }
         protected getIdProperty() { return Northwind.ProductRow.idProperty; }
         protected getLocalTextPrefix() { return Northwind.ProductRow.localTextPrefix; }

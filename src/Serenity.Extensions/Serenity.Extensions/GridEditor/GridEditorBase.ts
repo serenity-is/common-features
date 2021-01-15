@@ -3,15 +3,15 @@
     @Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue])
     @Serenity.Decorators.editor()
     @Serenity.Decorators.element("<div/>")
-    export class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any>
+    export class GridEditorBase<TEntity, TOptions = any> extends Serenity.EntityGrid<TEntity, TOptions>
         implements Serenity.IGetEditValue, Serenity.ISetEditValue {
 
         protected getIdProperty() { return "__id"; }
 
         protected nextId = 1;
 
-        constructor(container: JQuery) {
-            super(container);
+        constructor(container: JQuery, opt?: TOptions) {
+            super(container, opt);
         }
 
         protected id(entity: TEntity) {

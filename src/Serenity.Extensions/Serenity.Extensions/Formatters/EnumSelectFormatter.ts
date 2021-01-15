@@ -1,6 +1,6 @@
 ﻿namespace Serenity.Extensions {
 
-    @Serenity.Decorators.registerFormatter()
+    @Serenity.Decorators.registerFormatter('Serenity.Extensions.EnumSelectFormatter')
     export class EnumSelectFormatter implements Slick.Formatter {
         constructor() {
             this.allowClear = true;

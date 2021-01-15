@@ -1,7 +1,7 @@
 ﻿
 namespace Serenity.Extensions {
     
-    @Decorators.registerFormatter('Serenity.SingleLineTextFormatter')
+    @Decorators.registerFormatter('Serenity.Extensions.SingleLineTextFormatter')
     export class SingleLineTextFormatter implements Slick.Formatter {
         format(ctx: Slick.FormatterContext) {
             return SingleLineTextFormatter.formatValue(ctx.value);

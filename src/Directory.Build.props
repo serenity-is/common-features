@@ -9,7 +9,7 @@
     <SerenitySrc Condition="'$(SerenitySrc)' == ''">$(SerenityDir)src\</SerenitySrc>
     <SerenityWebProj Condition="'$(SerenityWebProj)' == ''">$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.csproj</SerenityWebProj>
     <SerenityScriptsProj Condition="'$(SerenityScriptsProj)' == ''">$(SerenitySrc)Serenity.Scripts\Serenity.Scripts.csproj</SerenityScriptsProj>
-    <DotNetSergenExe>$(SerenitySrc)Serenity.Net.CodeGenerator\bin\Debug\net5.0\sergen.exe</DotNetSergenExe>
+    <DotNetSergenExe>$(SerenitySrc)Serenity.Net.CodeGenerator\bin\sergen.exe</DotNetSergenExe>
     <DotNetSergen Condition="'$(DotNetSergen)' == '' And Exists('$(DotNetSergenExe)')">$(DotNetSergenExe)</DotNetSergen>
     <DotNetSergen Condition="'$(DotNetSergen)' == ''">dotnet sergen</DotNetSergen>
     <SergenTransform>all</SergenTransform>

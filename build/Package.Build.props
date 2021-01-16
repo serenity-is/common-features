@@ -5,7 +5,6 @@
     <Copyright>Copyright © Serenity Software, Volkan Ceylan</Copyright>
     <Product>Serenity Platform - Common Features</Product>
     <Authors>Volkan Ceylan</Authors>
-    <Copyright>Copyright (c) Volkan Ceylan</Copyright>
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>http://github.com/serenity-is/common-features</PackageProjectUrl>

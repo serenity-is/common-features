@@ -11,6 +11,7 @@ using Serenity.Web;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 
 namespace Serenity.Extensions.Pages
@@ -125,12 +126,36 @@ namespace Serenity.Extensions.Pages
             return File(renderedBytes, KnownMimeTypes.Get(fileDownloadName));
         }
 
+        static string GetWKHtmlToPdfPath(string contentRootPath)
+        {
+            var assemblyPath = System.IO.Path.GetDirectoryName(typeof(ReportController).Assembly.Location);
+
+            string[] wkhtmlFileNames = Environment.OSVersion.Platform == PlatformID.Win32NT ?
+                            new[] { "wkhtmltopdf.exe", "wkhtmltopdf.cmd", "wkhtmltopdf.bat" } :
+                            new[] { "wkhtmltopdf", "wkhtmltopdf.sh" };
+
+            IEnumerable<string> paths = new[] { assemblyPath };
+            if (!string.IsNullOrEmpty(contentRootPath))
+                paths = paths.Concat(new[] {
+                    System.IO.Path.Combine(contentRootPath),
+                    System.IO.Path.Combine(contentRootPath, "App_Data", "Reporting"),
+                    System.IO.Path.Combine(contentRootPath, "App_Data", "reporting"),
+                    System.IO.Path.Combine(contentRootPath, "bin")
+                });
+
+            paths = paths.Concat((Environment.GetEnvironmentVariable("PATH") ?? "").Split(';'));
+
+            return paths.SelectMany(path =>
+                wkhtmlFileNames.Select(f => System.IO.Path.Combine(path, f)))
+                .FirstOrDefault(System.IO.File.Exists);
+        }
+
         private byte[] RenderAsPdf(IReport report, string key, string opt)
         {
             var externalUrl = EnvironmentSettings?.SiteExternalUrl ??
                 Request.GetBaseUri().ToString();
 
-            var renderUrl = UriHelper.Combine(externalUrl, "Report/Render?" +
+            var renderUrl = UriHelper.Combine(externalUrl, "Serenity.Extensions/Report/Render?" +
                 "key=" + Uri.EscapeDataString(key));
 
             if (!string.IsNullOrEmpty(opt))
@@ -140,18 +165,14 @@ namespace Serenity.Extensions.Pages
 
             var converter = new HtmlToPdfConverter();
 
-            var assemblyPath = System.IO.Path.GetDirectoryName(typeof(ReportController).Assembly.Location);
-
-            var wkhtmlPath = System.IO.Path.Combine(assemblyPath, "wkhtmltopdf.exe");
-            if (!System.IO.File.Exists(wkhtmlPath)) // linux?
-                wkhtmlPath = System.IO.Path.Combine(assemblyPath, "wkhtmltopdf");
-
-            if (System.IO.File.Exists(wkhtmlPath))
+            var wkhtmlPath = GetWKHtmlToPdfPath(HostEnvironment?.ContentRootPath);
+            if (!string.IsNullOrEmpty(wkhtmlPath))
                 converter.UtilityExePath = wkhtmlPath;
             else
                 throw new ValidationError("Can't locate wkhtmltopdf.exe (or wkhtmltopdf in Linux) " +
-                    "that is required for report generation at folder " + assemblyPath +
-                    ". Please download the version suitable for your system from " +
+                    "that is required for report generation in PATH or folder " +
+                    System.IO.Path.GetDirectoryName(typeof(ReportController).Assembly.Location) + 
+                    ". Please download and install the version suitable for your system from " +
                     "https://wkhtmltopdf.org/downloads.html");
             
             converter.Url = renderUrl;

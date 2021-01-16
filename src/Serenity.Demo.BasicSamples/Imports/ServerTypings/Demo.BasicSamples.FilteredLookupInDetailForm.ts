@@ -1,6 +1,6 @@
 ﻿namespace Serenity.Demo.BasicSamples {
     export interface FilteredLookupInDetailForm {
-        CustomerID: StringEditor;
+        CustomerID: Demo.Northwind.CustomerEditor;
         OrderDate: DateEditor;
         CategoryID: LookupEditor;
         DetailList: FilteredLookupDetailEditor;
@@ -17,7 +17,7 @@
                 FilteredLookupInDetailForm.init = true;
 
                 var s = Serenity;
-                var w0 = StringEditor;
+                var w0 = Demo.Northwind.CustomerEditor;
                 var w1 = DateEditor;
                 var w2 = LookupEditor;
                 var w3 = FilteredLookupDetailEditor;

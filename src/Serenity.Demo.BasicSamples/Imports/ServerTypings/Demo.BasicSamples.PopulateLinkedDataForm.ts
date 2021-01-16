@@ -1,6 +1,6 @@
 ﻿namespace Serenity.Demo.BasicSamples {
     export interface PopulateLinkedDataForm {
-        CustomerID: StringEditor;
+        CustomerID: Demo.Northwind.CustomerEditor;
         CustomerContactName: StringEditor;
         CustomerContactTitle: StringEditor;
         CustomerCity: StringEditor;
@@ -10,7 +10,7 @@
         CustomerFax: StringEditor;
         OrderDate: DateEditor;
         RequiredDate: DateEditor;
-        EmployeeID: IntegerEditor;
+        EmployeeID: LookupEditor;
         DetailList: Demo.Northwind.OrderDetailsEditor;
     }
 
@@ -25,24 +25,25 @@
                 PopulateLinkedDataForm.init = true;
 
                 var s = Serenity;
-                var w0 = StringEditor;
-                var w1 = DateEditor;
-                var w2 = IntegerEditor;
-                var w3 = Demo.Northwind.OrderDetailsEditor;
+                var w0 = Demo.Northwind.CustomerEditor;
+                var w1 = StringEditor;
+                var w2 = DateEditor;
+                var w3 = LookupEditor;
+                var w4 = Demo.Northwind.OrderDetailsEditor;
 
                 Q.initFormType(PopulateLinkedDataForm, [
                     'CustomerID', w0,
-                    'CustomerContactName', w0,
-                    'CustomerContactTitle', w0,
-                    'CustomerCity', w0,
-                    'CustomerRegion', w0,
-                    'CustomerCountry', w0,
-                    'CustomerPhone', w0,
-                    'CustomerFax', w0,
-                    'OrderDate', w1,
-                    'RequiredDate', w1,
-                    'EmployeeID', w2,
-                    'DetailList', w3
+                    'CustomerContactName', w1,
+                    'CustomerContactTitle', w1,
+                    'CustomerCity', w1,
+                    'CustomerRegion', w1,
+                    'CustomerCountry', w1,
+                    'CustomerPhone', w1,
+                    'CustomerFax', w1,
+                    'OrderDate', w2,
+                    'RequiredDate', w2,
+                    'EmployeeID', w3,
+                    'DetailList', w4
                 ]);
             }
         }

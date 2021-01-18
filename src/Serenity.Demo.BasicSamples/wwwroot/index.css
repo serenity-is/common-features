@@ -87,12 +87,6 @@
 .s-Demo-BasicSamples-ReadOnlyDialog .caption {
   width: 150px;
 }
-.s-Demo-BasicSamples-ProductExcelImportDialog {
-  overflow: hidden;
-}
-.s-Demo-BasicSamples-ProductExcelImportDialog .size {
-  height: 350px;
-}
 .s-Demo-BasicSamples-VSGalleryQAGrid .wrap-text {
   white-space: normal;
 }

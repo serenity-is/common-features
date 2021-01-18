@@ -46,7 +46,7 @@ namespace Serenity.Demo.Northwind.Entities
         }
 
         [DisplayName("Supplier"), ForeignKey(typeof(SupplierRow)), LeftJoin("sup")]
-        [LookupEditor(typeof(SupplierRow), InplaceAdd = true)]
+        [LookupEditor(typeof(SupplierRow), InplaceAdd = true, DialogType = "Demo.Northwind.SupplierDialog")]
         public int? SupplierID
         {
             get => fields.SupplierID[this];
@@ -54,7 +54,7 @@ namespace Serenity.Demo.Northwind.Entities
         }
 
         [DisplayName("Category"), ForeignKey(typeof(CategoryRow)), LeftJoin("cat"), LookupInclude]
-        [LookupEditor(typeof(CategoryRow), InplaceAdd = true)]
+        [LookupEditor(typeof(CategoryRow), InplaceAdd = true, DialogType = "Demo.Northwind.CategoryDialog")]
         public int? CategoryID
         {
             get => fields.CategoryID[this];

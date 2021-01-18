@@ -260,7 +260,7 @@
                 var key = keys[current];
                 var entity = Q.deepClone(self.pendingChanges[key]);
                 entity.ProductID = key;
-                Q.serviceRequest('Northwind/Product/Update', {
+                Q.serviceRequest(ProductService.Methods.Update, {
                     EntityId: key,
                     Entity: entity
                 }, (response) => {

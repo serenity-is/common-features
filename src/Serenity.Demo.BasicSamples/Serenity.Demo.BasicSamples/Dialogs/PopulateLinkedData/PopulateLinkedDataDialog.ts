@@ -55,7 +55,7 @@
          * This has no effect other than looks on populate linked data demonstration
          */
         protected getCssClass() {
-            return super.getCssClass() + " s-OrderDialog s-Northwind-OrderDialog";
+            return super.getCssClass() + " s-OrderDialog s-Demo-Northwind-OrderDialog";
         }
 
 

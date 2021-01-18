@@ -59,27 +59,11 @@ namespace Serenity.Demo.Northwind.Repositories
 
         private class MyDeleteHandler : DeleteRequestHandler<MyRow>
         {
-            public MyDeleteHandler(IRequestContext context,
-                ISqlExceptionHumanizer sqlExceptionHumanizer = null)
+            public MyDeleteHandler(IRequestContext context)
                  : base(context)
             {
-                SqlExceptionHumanizer = sqlExceptionHumanizer;
             }
 
-            protected ISqlExceptionHumanizer SqlExceptionHumanizer { get; }
-
-            protected override void ExecuteDelete()
-            {
-                try
-                {
-                    base.ExecuteDelete();
-                }
-                catch (Exception e)
-                {
-                    SqlExceptionHumanizer?.Humanize(e, Row);
-                    throw;
-                }
-            }
         }
 
         private class MyUndeleteHandler : UndeleteRequestHandler<MyRow>

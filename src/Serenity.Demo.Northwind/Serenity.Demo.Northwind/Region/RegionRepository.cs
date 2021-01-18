@@ -1,6 +1,5 @@
 ﻿using Serenity.Data;
 using Serenity.Services;
-using System;
 using System.Data;
 using MyRow = Serenity.Demo.Northwind.Entities.RegionRow;
 
@@ -8,14 +7,10 @@ namespace Serenity.Demo.Northwind.Repositories
 {
     public class RegionRepository : BaseRepository
     {
-        public RegionRepository(IRequestContext context, 
-            ISqlExceptionHumanizer sqlExceptionHumanizer = null)
+        public RegionRepository(IRequestContext context)
              : base(context)
         {
-            SqlExceptionHumanizer = sqlExceptionHumanizer;
         }
-
-        protected ISqlExceptionHumanizer SqlExceptionHumanizer { get; }
 
         public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
@@ -49,51 +44,17 @@ namespace Serenity.Demo.Northwind.Repositories
 
         private class MySaveHandler : SaveRequestHandler<MyRow>
         {
-            public MySaveHandler(IRequestContext context, 
-                ISqlExceptionHumanizer sqlExceptionHumanizer = null)
+            public MySaveHandler(IRequestContext context)
                  : base(context)
             {
-                SqlExceptionHumanizer = sqlExceptionHumanizer;
-            }
-
-            protected ISqlExceptionHumanizer SqlExceptionHumanizer { get; }
-
-            protected override void ExecuteSave()
-            {
-                try
-                {
-                    base.ExecuteSave();
-                }
-                catch (Exception e)
-                {
-                    SqlExceptionHumanizer?.Humanize(e, Row);
-                    throw;
-                }
             }
         }
 
         private class MyDeleteHandler : DeleteRequestHandler<MyRow>
         {
-            public MyDeleteHandler(IRequestContext context,
-                ISqlExceptionHumanizer sqlExceptionHumanizer = null)
+            public MyDeleteHandler(IRequestContext context)
                  : base(context)
             {
-                SqlExceptionHumanizer = sqlExceptionHumanizer;
-            }
-
-            protected ISqlExceptionHumanizer SqlExceptionHumanizer { get; }
-
-            protected override void ExecuteDelete()
-            {
-                try
-                {
-                    base.ExecuteDelete();
-                }
-                catch (Exception e)
-                {
-                    SqlExceptionHumanizer?.Humanize(e, Row);
-                    throw;
-                }
             }
         }
 

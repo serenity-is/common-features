@@ -11,16 +11,13 @@ namespace Serenity.Demo.Northwind.Endpoints
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class RegionController : ServiceEndpoint
     {
-        protected ISqlExceptionHumanizer SqlExceptionHumanizer { get; }
-
-        public RegionController(ISqlExceptionHumanizer sqlExceptionHumanizer = null)
+        public RegionController()
         {
-            SqlExceptionHumanizer = sqlExceptionHumanizer;
         }
 
         protected MyRepository NewRepository()
         {
-            return new MyRepository(Context, SqlExceptionHumanizer);
+            return new MyRepository(Context);
         }
 
         [HttpPost, AuthorizeCreate(typeof(MyRow))]

@@ -20,7 +20,7 @@ namespace Serenity.Demo.Northwind.Entities
             set => fields.ShipperID[this] = value;
         }
 
-        [DisplayName("Company Name"), Size(40), NotNull, QuickSearch, NameProperty, Localizable(true)]
+        [DisplayName("Company Name"), Size(40), NotNull, QuickSearch, NameProperty]
         public string CompanyName
         {
             get => fields.CompanyName[this];

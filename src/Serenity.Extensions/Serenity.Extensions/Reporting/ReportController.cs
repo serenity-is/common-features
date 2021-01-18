@@ -22,20 +22,20 @@ namespace Serenity.Extensions.Pages
         protected EnvironmentSettings EnvironmentSettings { get; }
         protected IReportRegistry ReportRegistry { get; }
         protected IRequestContext Context { get; }
+        protected IDataReportExcelRenderer ExcelRenderer { get; }
         protected IWebHostEnvironment HostEnvironment { get; }
 
-        public ReportController(IReportRegistry reportRegistry, IRequestContext context, 
+        public ReportController(IReportRegistry reportRegistry, IRequestContext context, IDataReportExcelRenderer excelRenderer,
             IWebHostEnvironment hostEnvironment, IOptions<EnvironmentSettings> environmentSettings = null)
         {
             ReportRegistry = reportRegistry ??
                 throw new ArgumentNullException(nameof(reportRegistry));
-            
             Context = context ??
                 throw new ArgumentNullException(nameof(context));
-
+            ExcelRenderer = excelRenderer ??
+                throw new ArgumentNullException(nameof(excelRenderer));
             HostEnvironment = hostEnvironment ??
                 throw new ArgumentNullException(nameof(hostEnvironment));
-
             EnvironmentSettings = environmentSettings?.Value;
         }
 
@@ -71,7 +71,7 @@ namespace Serenity.Extensions.Pages
             if (report is IDataOnlyReport dataOnlyReport)
             {
                 ext = "xlsx";
-                renderedBytes = Repositories.ReportRepository.Render(dataOnlyReport);
+                renderedBytes = ExcelRenderer.Render(dataOnlyReport);
             }
             else if (report is IExternalReport)
             {

@@ -32,10 +32,10 @@
                         request.Sort = sortBy;
                     }
 
-                    request.IncludeColumns = [];
+                    request.ExportColumns = [];
                     let columns = grid.getGrid().getColumns();
                     for (let column of columns) {
-                        request.IncludeColumns.push(column.id || column.field);
+                        request.ExportColumns.push(column.id || column.field);
                     }
                     Q.postToService({ service: options.service, request: request, target: '_blank' });
                 },

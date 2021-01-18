@@ -1,146 +1,114 @@
-.s-BasicSamples-ChartInDialog svg {
+.s-Demo-BasicSamples-ChartInDialog svg {
   width: 100%;
   height: 90%;
 }
-.s-BasicSamples-ChartInDialog .ui-dialog-content {
+.s-Demo-BasicSamples-ChartInDialog .ui-dialog-content {
   overflow: hidden;
 }
-.s-BasicSamples-ChartInDialog > .size {
+.s-Demo-BasicSamples-ChartInDialog > .size {
   min-width: 700px;
   width: 700px;
   min-height: 400px;
   height: 400px;
 }
-.s-BasicSamples-CloneableEntityDialog > .size {
+.s-Demo-BasicSamples-CloneableEntityDialog > .size {
   width: 850px;
   height: 500px;
 }
-.s-BasicSamples-CloneableEntityDialog .caption {
+.s-Demo-BasicSamples-CloneableEntityDialog .caption {
   width: 150px;
 }
-.s-BasicSamples-LookupFilterByMultipleDialog > .size {
+.s-Demo-BasicSamples-LookupFilterByMultipleDialog > .size {
   width: 850px;
   height: 650px;
 }
-.s-BasicSamples-LookupFilterByMultipleDialog .caption {
+.s-Demo-BasicSamples-LookupFilterByMultipleDialog .caption {
   width: 150px;
 }
-.s-BasicSamples-FilteredLookupInDetailDialog > .size {
+.s-Demo-BasicSamples-FilteredLookupInDetailDialog > .size {
   width: 850px;
   height: 550px;
 }
-.s-BasicSamples-FilteredLookupInDetailDialog .caption {
+.s-Demo-BasicSamples-FilteredLookupInDetailDialog .caption {
   width: 150px;
 }
-.s-BasicSamples-FilteredLookupInDetailDialog .s-PropertyGrid .categories {
+.s-Demo-BasicSamples-FilteredLookupInDetailDialog .s-PropertyGrid .categories {
   overflow-y: auto;
 }
-.s-BasicSamples-FilteredLookupOrderDetailDialog > .size {
+.s-Demo-BasicSamples-FilteredLookupOrderDetailDialog > .size {
   min-width: 450px;
   width: 450px;
 }
-.s-BasicSamples-FilteredLookupOrderDetailDialog .tab-pane {
+.s-Demo-BasicSamples-FilteredLookupOrderDetailDialog .tab-pane {
   height: auto;
 }
-.s-BasicSamples-FilteredLookupOrderDetailDialog .caption {
+.s-Demo-BasicSamples-FilteredLookupOrderDetailDialog .caption {
   width: 80px;
 }
-.s-BasicSamples-FilteredLookupOrderDetailDialog .editor {
+.s-Demo-BasicSamples-FilteredLookupOrderDetailDialog .editor {
   width: 310px;
 }
-.s-BasicSamples-FilteredLookupOrderDetailDialog input.editor[type=checkbox] {
+.s-Demo-BasicSamples-FilteredLookupOrderDetailDialog input.editor[type=checkbox] {
   width: auto;
 }
-.s-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .editor.dateQ {
+.s-Demo-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .editor.dateQ {
   width: 286px;
 }
-.s-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .editor.emailuser {
+.s-Demo-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .editor.emailuser {
   width: 170px;
 }
-.s-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+.s-Demo-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .editor.dateQ.s-DateTimeEditor {
   width: 191px;
 }
-.s-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .editor.s-DateTimeEditor.time {
+.s-Demo-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
   margin-left: 4px;
 }
-.s-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .editor.has-inplace-button {
+.s-Demo-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .editor.has-inplace-button {
   width: 284px;
 }
-.s-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .emaildomain {
+.s-Demo-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .emaildomain {
   width: 125px;
 }
-.s-BasicSamples-GroupingAndSummariesInGrid .slick-cell input[type=text] {
+.s-Demo-BasicSamples-GroupingAndSummariesInGrid .slick-cell input[type=text] {
   text-align: right;
   border-radius: 0;
   width: 100%;
   padding: 0 2px;
   border: 1px solid #e7e7e7;
 }
-.s-BasicSamples-GroupingAndSummariesInGrid .slick-cell input.dirty {
+.s-Demo-BasicSamples-GroupingAndSummariesInGrid .slick-cell input.dirty {
   background-color: #ffe0e0;
 }
-.s-BasicSamples-ConditionalFormattingGrid .discontinued .slick-cell,
-.s-BasicSamples-ConditionalFormattingGrid .discontinued .slick-cell a {
-  color: lightgray;
-}
-.s-BasicSamples-ConditionalFormattingGrid .out-of-stock .slick-cell,
-.s-BasicSamples-ConditionalFormattingGrid .out-of-stock .slick-cell a {
-  background-color: #ffaaaa;
-  color: red;
-}
-.s-BasicSamples-ConditionalFormattingGrid .critical-stock {
-  background-color: #ffd5c0;
-}
-.s-BasicSamples-ConditionalFormattingGrid .critical-stock .slick-cell,
-.s-BasicSamples-ConditionalFormattingGrid .critical-stock .slick-cell a {
-  color: black;
-}
-.s-BasicSamples-ConditionalFormattingGrid .much-stock .slick-cell,
-.s-BasicSamples-ConditionalFormattingGrid .much-stock .slick-cell a {
-  font-style: italic;
-}
-.s-BasicSamples-ConditionalFormattingGrid .high-price .col-unit-price {
-  background-color: darkorchid;
-  color: #fff;
-}
-.s-BasicSamples-ConditionalFormattingGrid .medium-price .col-unit-price {
-  background-color: yellow;
-  color: #000;
-}
-.s-BasicSamples-ConditionalFormattingGrid .low-price .col-unit-price {
-  background-color: green;
-  color: #fff;
-}
-.s-BasicSamples-ReadOnlyDialog > .size {
+.s-Demo-BasicSamples-ReadOnlyDialog > .size {
   width: 650px;
   height: 550px;
 }
-.s-BasicSamples-ReadOnlyDialog .caption {
+.s-Demo-BasicSamples-ReadOnlyDialog .caption {
   width: 150px;
 }
-.s-BasicSamples-ProductExcelImportDialog {
+.s-Demo-BasicSamples-ProductExcelImportDialog {
   overflow: hidden;
 }
-.s-BasicSamples-ProductExcelImportDialog .size {
+.s-Demo-BasicSamples-ProductExcelImportDialog .size {
   height: 350px;
 }
-.s-BasicSamples-VSGalleryQAGrid .wrap-text {
+.s-Demo-BasicSamples-VSGalleryQAGrid .wrap-text {
   white-space: normal;
 }
-.s-BasicSamples-VSGalleryQAGrid ul.posts {
+.s-Demo-BasicSamples-VSGalleryQAGrid ul.posts {
   height: 100%;
   overflow-y: auto;
   margin: 0;
   padding: 0;
 }
-.s-BasicSamples-VSGalleryQAGrid ul.posts pre {
+.s-Demo-BasicSamples-VSGalleryQAGrid ul.posts pre {
   white-space: pre-wrap;
   font-size: 12px;
   border: none;
   background-color: transparent;
 }
-.s-BasicSamples-VSGalleryQAGrid ul.posts li {
+.s-Demo-BasicSamples-VSGalleryQAGrid ul.posts li {
   list-style: none;
   margin: 6px;
   border-radius: 8px;
@@ -148,36 +116,36 @@
   border: 1px solid #ccc;
   background-color: #f8d699;
 }
-.s-BasicSamples-VSGalleryQAGrid ul.posts li.odd {
+.s-Demo-BasicSamples-VSGalleryQAGrid ul.posts li.odd {
   background-color: #d6f899;
 }
-.s-BasicSamples-VSGalleryQAGrid ul.posts h4 {
+.s-Demo-BasicSamples-VSGalleryQAGrid ul.posts h4 {
   font-size: 13px;
   text-align: right;
   font-weight: bold;
   font-style: italic;
 }
-.s-BasicSamples-StaticTextBlockDialog .caption {
+.s-Demo-BasicSamples-StaticTextBlockDialog .caption {
   width: 130px;
 }
-.s-BasicSamples-StaticTextBlockDialog .s-PropertyGrid {
+.s-Demo-BasicSamples-StaticTextBlockDialog .s-PropertyGrid {
   display: block;
 }
 .s-StaticTextBlock {
   padding-top: 4px;
 }
-.s-BasicSamples-OtherFormInTabDialog > .size {
+.s-Demo-BasicSamples-OtherFormInTabDialog > .size {
   width: 750px;
   height: 550px;
 }
-.s-BasicSamples-OtherFormInTabDialog .caption {
+.s-Demo-BasicSamples-OtherFormInTabDialog .caption {
   width: 120px;
 }
-.s-BasicSamples-OtherFormInTabOneBarDialog > .size {
+.s-Demo-BasicSamples-OtherFormInTabOneBarDialog > .size {
   width: 750px;
   height: 550px;
 }
-.s-BasicSamples-OtherFormInTabOneBarDialog .caption {
+.s-Demo-BasicSamples-OtherFormInTabOneBarDialog .caption {
   width: 120px;
 }
 .inline-action.view-details {
@@ -186,21 +154,21 @@
 .inline-action.new-order {
   background-image: url(../Content/serenity/images/store.png);
 }
-.s-BasicSamples-EntityDialogAsPanel {
+.s-Demo-BasicSamples-EntityDialogAsPanel {
   background-color: #fff;
   padding: 10px;
   border-radius: 6px;
 }
-.s-BasicSamples-EntityDialogAsPanel .caption {
+.s-Demo-BasicSamples-EntityDialogAsPanel .caption {
   width: 120px;
 }
-.s-BasicSamples-EntityDialogAsPanel .s-PropertyGrid .categories {
+.s-Demo-BasicSamples-EntityDialogAsPanel .s-PropertyGrid .categories {
   height: auto;
 }
-.s-BasicSamples-DragDropSampleDialog > .size {
+.s-Demo-BasicSamples-DragDropSampleDialog > .size {
   width: 650px;
 }
-.s-BasicSamples-DragDropSampleDialog .caption {
+.s-Demo-BasicSamples-DragDropSampleDialog .caption {
   width: 150px;
 }
 .drag-helper {
@@ -220,11 +188,11 @@
 .drag-helper.reject {
   background-image: url(../Content/serenity/images/slash.png);
 }
-.s-BasicSamples-WrappedHeadersGrid .slick-header-columns {
+.s-Demo-BasicSamples-WrappedHeadersGrid .slick-header-columns {
   white-space: normal;
   height: 45px;
   border-bottom: 2px solid #ccc;
 }
-.s-BasicSamples-WrappedHeadersGrid .slick-header-column.ui-state-default {
+.s-Demo-BasicSamples-WrappedHeadersGrid .slick-header-column.ui-state-default {
   height: 100%;
 }

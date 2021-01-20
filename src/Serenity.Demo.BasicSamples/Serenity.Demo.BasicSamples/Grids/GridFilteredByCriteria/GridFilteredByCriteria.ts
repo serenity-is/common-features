@@ -2,7 +2,13 @@
 namespace Serenity.Demo.BasicSamples {
 
     @Serenity.Decorators.registerClass()
-    export class GridFilteredByCriteria extends Northwind.ProductGrid {
+    export class GridFilteredByCriteria extends Serenity.EntityGrid<Northwind.ProductRow, any> {
+
+        protected getColumnsKey() { return Northwind.ProductColumns.columnsKey; }
+        protected getDialogType() { return Northwind.ProductDialog; }
+        protected getIdProperty() { return Northwind.ProductRow.idProperty; }
+        protected getLocalTextPrefix() { return Northwind.ProductRow.localTextPrefix; }
+        protected getService() { return Northwind.ProductService.baseUrl; }
 
         constructor(container: JQuery) {
             super(container);

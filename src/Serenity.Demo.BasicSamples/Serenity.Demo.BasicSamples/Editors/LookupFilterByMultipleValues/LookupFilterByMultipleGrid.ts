@@ -5,9 +5,13 @@ namespace Serenity.Demo.BasicSamples {
      * Subclass of ProductGrid to override dialog type to CloneableEntityDialog
      */
     @Serenity.Decorators.registerClass()
-    export class LookupFilterByMultipleGrid extends Northwind.ProductGrid {
+    export class LookupFilterByMultipleGrid extends Serenity.EntityGrid<Northwind.ProductRow, any> {
 
+        protected getColumnsKey() { return Northwind.ProductColumns.columnsKey; }
         protected getDialogType() { return LookupFilterByMultipleDialog; }
+        protected getIdProperty() { return Northwind.ProductRow.idProperty; }
+        protected getLocalTextPrefix() { return Northwind.ProductRow.localTextPrefix; }
+        protected getService() { return Northwind.ProductService.baseUrl; }
 
         constructor(container: JQuery) {
             super(container);

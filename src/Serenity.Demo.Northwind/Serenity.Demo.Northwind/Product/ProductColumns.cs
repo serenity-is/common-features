@@ -14,9 +14,9 @@ namespace Serenity.Demo.Northwind.Columns
         public string ProductName { get; set; }
         [QuickFilter]
         public bool Discontinued { get; set; }
-        [EditLink(ItemType = "Northwind.Supplier"), QuickFilter]
+        [EditLink(ItemType = "Demo.Northwind.Supplier"), QuickFilter]
         public string SupplierCompanyName { get; set; }
-        [EditLink(ItemType = "Northwind.Category"), Width(150), QuickFilter, QuickFilterOption("multiple", true)]
+        [EditLink(ItemType = "Demo.Northwind.Category"), Width(150), QuickFilter, QuickFilterOption("multiple", true)]
         public string CategoryName { get; set; }
         [Width(130)]
         public string QuantityPerUnit { get; set; }

@@ -38,7 +38,7 @@ namespace Serenity.Demo.Northwind.Entities
             set => fields.ProductImage[this] = value;
         }
 
-        [DisplayName("Discontinued"), NotNull]
+        [DisplayName("Discontinued"), NotNull, DefaultValue(false)]
         public bool? Discontinued
         {
             get => fields.Discontinued[this];

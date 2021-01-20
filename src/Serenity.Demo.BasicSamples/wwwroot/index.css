@@ -18,6 +18,9 @@
 .s-Demo-BasicSamples-CloneableEntityDialog .caption {
   width: 150px;
 }
+.s-Demo-BasicSamples-CloneableEntityGrid .slick-cell .dirty {
+  background-color: #ffe0e0;
+}
 .s-Demo-BasicSamples-LookupFilterByMultipleDialog > .size {
   width: 850px;
   height: 650px;
@@ -69,6 +72,9 @@
 }
 .s-Demo-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .emaildomain {
   width: 125px;
+}
+.s-Demo-BasicSamples-LookupFilterByMultipleGrid .slick-cell .dirty {
+  background-color: #ffe0e0;
 }
 .s-Demo-BasicSamples-GroupingAndSummariesInGrid .slick-cell input[type=text] {
   text-align: right;
@@ -172,4 +178,7 @@
 }
 .s-Demo-BasicSamples-WrappedHeadersGrid .slick-header-column.ui-state-default {
   height: 100%;
+}
+.s-Demo-BasicSamples-GridFilteredByCriteria .slick-cell .dirty {
+  background-color: #ffe0e0;
 }

@@ -219,7 +219,7 @@ namespace Serenity.Extensions.Pages
             return null;
         }
 
-        [HttpPost, JsonFilter]
+        [HttpPost, JsonRequestAttribute]
         public ActionResult Retrieve(ReportRetrieveRequest request,
             [FromServices] IPropertyItemProvider propertyItemProvider)
         {

@@ -9,7 +9,7 @@ namespace Serenity.Demo.Northwind
     [PageAuthorize(typeof(Entities.ShipperRow))]
     public class ShipperController : Controller
     {
-        [Route("Serenity.Demo.Northwind/Shipper")]
+        [Route("Northwind/Shipper")]
         public ActionResult Index()
         {
             return View(MVC.Views.Shipper.ShipperIndex);

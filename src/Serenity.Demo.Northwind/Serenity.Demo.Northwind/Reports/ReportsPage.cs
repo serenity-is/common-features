@@ -22,7 +22,7 @@ namespace Serenity.Demo.Northwind
                 throw new ArgumentNullException(nameof(context));
         }
 
-        [Route("Serenity.Demo.Northwind/Reports")]
+        [Route("Northwind/Reports")]
         public ActionResult Index()
         {
             return View(Extensions.MVC.Views.Reporting.ReportPage, 

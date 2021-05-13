@@ -6,7 +6,7 @@ namespace Serenity.Demo.Northwind
     [PageAuthorize(typeof(Entities.SupplierRow))]
     public class SupplierController : Controller
     {
-        [Route("Serenity.Demo.Northwind/Supplier")]
+        [Route("Northwind/Supplier")]
         public ActionResult Index()
         {
             return View(MVC.Views.Supplier.SupplierIndex);

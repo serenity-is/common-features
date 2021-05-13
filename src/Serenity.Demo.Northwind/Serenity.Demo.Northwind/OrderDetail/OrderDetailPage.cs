@@ -6,7 +6,7 @@ namespace Serenity.Demo.Northwind
     [PageAuthorize(typeof(Entities.OrderDetailRow))]
     public class OrderDetailController : Controller
     {
-        [Route("Serenity.Demo.Northwind/OrderDetail")]
+        [Route("Northwind/OrderDetail")]
         public ActionResult Index()
         {
             return View(MVC.Views.OrderDetail.OrderDetailIndex);

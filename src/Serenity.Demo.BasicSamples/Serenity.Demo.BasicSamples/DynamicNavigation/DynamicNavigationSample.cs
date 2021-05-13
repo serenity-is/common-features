@@ -31,7 +31,7 @@ namespace Serenity.Demo.BasicSamples
                     items.Add(new NavigationLinkAttribute(7970,
                         path: "Basic Samples/Dynamic Navigation/" + 
                             category.CategoryName.Replace("/", "//", StringComparison.Ordinal),
-                        url: "~/Serenity.Demo.Northwind/Product?cat=" + category.CategoryID,
+                        url: "~/Northwind/Product?cat=" + category.CategoryID,
                         permission: Northwind.PermissionKeys.General,
                         icon: "icon-folder-alt"));
             }

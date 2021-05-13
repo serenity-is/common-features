@@ -6,7 +6,7 @@ namespace Serenity.Demo.Northwind
     [PageAuthorize(typeof(Entities.CategoryRow))]
     public class CategoryController : Controller
     {
-        [Route("Serenity.Demo.Northwind/Category")]
+        [Route("Northwind/Category")]
         public ActionResult Index()
         {
             return View(MVC.Views.Category.CategoryIndex);

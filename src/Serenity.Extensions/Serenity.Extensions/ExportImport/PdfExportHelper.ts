@@ -181,7 +181,6 @@ namespace Serenity.Extensions {
                     };
 
                     autoOptions.head = [columns];
-                    debugger;
                     autoOptions.body = data;
 
                     doc.autoTable(autoOptions);

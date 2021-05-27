@@ -236,7 +236,7 @@ namespace Serenity.Extensions {
             $("<script/>")
                 .attr("type", "text/javascript")
                 .attr("id", "jsPDFScript")
-                .attr("src", Q.resolveUrl("~/Serenity.Assets/Scripts/jspdf.js"))
+                .attr("src", Q.resolveUrl("~/Serenity.Assets/Scripts/jspdf.min.js"))
                 .appendTo(document.head);
 
             if (typeof jsPDF === "undefined" && typeof jspdf !== "undefined") {
@@ -260,7 +260,7 @@ namespace Serenity.Extensions {
             $("<script/>")
                 .attr("type", "text/javascript")
                 .attr("id", "jsPDFAutoTableScript")
-                .attr("src", Q.resolveUrl("~/Serenity.Assets/Scripts/jspdf.plugin.autotable.js"))
+                .attr("src", Q.resolveUrl("~/Serenity.Assets/Scripts/jspdf.plugin.autotable.min.js"))
                 .appendTo(document.head);
         }
     }

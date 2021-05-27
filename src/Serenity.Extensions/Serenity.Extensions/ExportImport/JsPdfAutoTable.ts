@@ -25,8 +25,26 @@ declare namespace jsPDF {
             [dataKey: string]: AutoTableStyles;
         };
         margin?: AutoTableMargin;
-        beforePageContent?: (data: any[]) => void;
-        afterPageContent?: (data: any[]) => void;
+        didDrawCell?: (data: CellHookData) => void;
+        didDrawPage?: (data: HookData) => void;
+        head?: [AutoTableColumn[]],
+        body?: {}[]
+    }
+
+    interface HookData {
+        table?: any,
+        pageNumber?: number,
+        pageCount?: number,
+        settings?: {},
+        doc?: any,
+        cursor?: { x?: number, y?: number }
+    }
+
+    interface CellHookData extends HookData {
+        cell?: { x?: number, y?: number },
+        row?: any,
+        column?: AutoTableColumn,
+        section?: 'head' | 'body' | 'foot';
     }
 
     interface AutoTableMargin {

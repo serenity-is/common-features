@@ -1,4 +1,6 @@
-﻿namespace Serenity.Extensions {
+﻿declare var jspdf: any;
+
+namespace Serenity.Extensions {
     export interface PdfExportOptions {
         grid: Serenity.DataGrid<any, any>;
         onViewSubmit: () => boolean;
@@ -46,12 +48,10 @@
             let el = document.createElement('span');
             let row = 0;
             return entities.map(item => {
-                let dst = {};
+                let dst = [];
                 for (let cell = 0; cell < srcColumns.length; cell++) {
                     let src = srcColumns[cell];
                     let fld = src.field || '';
-                    let key = keys[cell];
-                    let txt;
                     let html: string;
                     if (src.formatter) {
                         html = src.formatter(row, cell, item[fld], src, item);
@@ -60,24 +60,24 @@
                         html = src.format({ row: row, cell: cell, item: item, value: item[fld] });
                     }
                     else {
-                        dst[key] = item[fld];
+                        dst.push(item[fld]);
                         continue;
                     }
 
                     if (!html || (html.indexOf('<') < 0 && html.indexOf('&') < 0))
-                        dst[key] = html;
+                        dst.push(html);
                     else {
                         el.innerHTML = html;
                         if (el.children.length == 1 &&
                             $(el.children[0]).is(":input")) {
-                            dst[key] = $(el.children[0]).val();
+                            dst.push($(el.children[0]).val());
                         }
                         else if (el.children.length == 1 &&
                             $(el.children).is('.check-box')) {
-                            dst[key] = $(el.children).hasClass("checked") ? "X" : ""
+                            dst.push($(el.children).hasClass("checked") ? "X" : "")
                         }
                         else
-                            dst[key] = el.textContent || '';
+                            dst.push(el.textContent || '');
                     }
                 }
                 row++;
@@ -123,7 +123,7 @@
                     let data = toAutoTableData(entities, keys, srcColumns);
 
                     doc.setFontSize(options.titleFontSize || 10);
-                    doc.setFontStyle('bold');
+                    doc.setFont('helvetica', 'bold');
                     let reportTitle = options.reportTitle || g.getTitle() || "Report";
 
                     doc.autoTableText(reportTitle, doc.internal.pageSize.width / 2,
@@ -144,8 +144,10 @@
                         columnStyles: columnStyles
                     }, options.tableOptions);
 
+                    var footer: (data: any) => void;
+                    var header: (data: any) => void;
                     if (pageNumbers) {
-                        var footer = function (data) {
+                        footer = function (data) {
                             var str = data.pageCount;
                             // Total page number plugin only available in jspdf v1.0+
                             if (typeof doc.putTotalPages === 'function') {
@@ -156,13 +158,12 @@
                                     halign: 'center'
                                 });
                         };
-                        autoOptions.afterPageContent = footer;
                     }
                     
                     // Print header of page
                     if (options.printDateTimeHeader == null || options.printDateTimeHeader) {
-                        var beforePage = function (data) {
-                            doc.setFontStyle('normal');
+                        header = function (data) {
+                            doc.setFont('helvetica', 'normal');
                             doc.setFontSize(8);
 
                             // Date and time of the report
@@ -172,10 +173,17 @@
                                     halign: 'right'
                                 });
                         };
-                        autoOptions.beforePageContent = beforePage;
                     }
 
-                    doc.autoTable(columns, data, autoOptions);
+                    autoOptions.didDrawPage = (data) => {
+                        if (!!header) header(data);
+                        if (!!footer) footer(data);
+                    };
+
+                    autoOptions.head = [columns];
+                    autoOptions.body = data;
+
+                    doc.autoTable(autoOptions);
 
                     if (typeof doc.putTotalPages === 'function') {
                         doc.putTotalPages(totalPagesExp);
@@ -229,6 +237,10 @@
                 .attr("id", "jsPDFScript")
                 .attr("src", Q.resolveUrl("~/Serenity.Assets/Scripts/jspdf.min.js"))
                 .appendTo(document.head);
+
+            if (typeof jsPDF === "undefined" && typeof jspdf !== "undefined") {
+                window.jsPDF = jspdf.jsPDF;
+            }
         }
 
         function includeAutoTable() {

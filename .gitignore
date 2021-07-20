@@ -10,3 +10,4 @@ node_modules/
 /src/*/wwwroot/index.d.ts
 /src/*/wwwroot/index.js.map
 /src/*/typings/*/index.d.ts
+*.csproj.user

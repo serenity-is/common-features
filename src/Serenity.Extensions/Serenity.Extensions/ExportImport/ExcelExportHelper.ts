@@ -4,6 +4,7 @@
         grid: Serenity.DataGrid<any, any>;
         service: string;
         onViewSubmit: () => boolean;
+        editRequest?: (request: Serenity.ListRequest) => Serenity.ListRequest;
         title?: string;
         hint?: string;
         separator?: boolean;
@@ -37,6 +38,10 @@
                     for (let column of columns) {
                         request.ExportColumns.push(column.id || column.field);
                     }
+
+                    if (options.editRequest)
+                        request = options.editRequest(request);
+
                     Q.postToService({ service: options.service, request: request, target: '_blank' });
                 },
                 separator: options.separator

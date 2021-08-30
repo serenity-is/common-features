@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Serenity.Extensions;
 using Serenity.Data;
+using Serenity.Extensions;
 using Serenity.Reporting;
 using Serenity.Services;
 using Serenity.Web;
 using System;
 using System.Data;
 using System.Globalization;
-using MyRepository = Serenity.Demo.Northwind.Repositories.CustomerRepository;
 using MyRow = Serenity.Demo.Northwind.Entities.CustomerRow;
 
 namespace Serenity.Demo.Northwind.Endpoints
@@ -17,42 +16,49 @@ namespace Serenity.Demo.Northwind.Endpoints
     public class CustomerController : ServiceEndpoint
     {
         [HttpPost, AuthorizeCreate(typeof(MyRow))]
-        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request,
+            [FromServices] ICustomerSaveHandler handler)
         {
-            return new MyRepository(Context).Create(uow, request);
+            return handler.Create(uow, request);
         }
 
         [HttpPost, AuthorizeUpdate(typeof(MyRow))]
-        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request,
+            [FromServices] ICustomerSaveHandler handler)
         {
-            return new MyRepository(Context).Update(uow, request);
+            return handler.Update(uow, request);
         }
 
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
-        public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
+        public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request,
+            [FromServices] ICustomerDeleteHandler handler)
         {
-            return new MyRepository(Context).Delete(uow, request);
+            return handler.Delete(uow, request);
         }
 
-        public GetNextNumberResponse GetNextNumber(IDbConnection connection, GetNextNumberRequest request)
+        public GetNextNumberResponse GetNextNumber(IDbConnection connection, GetNextNumberRequest request,
+            [FromServices] ICustomerGetNextNumberHandler handler)
         {
-            return new MyRepository(Context).GetNextNumber(connection, request);
+            return handler.GetNextNumber(connection, request);
         }
 
-        public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)
+        public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request,
+            [FromServices] ICustomerRetrieveHandler handler)
         {
-            return new MyRepository(Context).Retrieve(connection, request);
+            return handler.Retrieve(connection, request);
         }
 
-        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request,
+            [FromServices] ICustomerListHandler handler)
         {
-            return new MyRepository(Context).List(connection, request);
+            return handler.List(connection, request);
         }
 
         public FileContentResult ListExcel(IDbConnection connection, ListRequest request,
+            [FromServices] ICustomerListHandler handler,
             [FromServices] IExcelExporter exporter)
         {
-            var data = List(connection, request).Entities;
+            var data = List(connection, request, handler).Entities;
             var bytes = exporter.Export(data, typeof(Columns.CustomerColumns), request.ExportColumns);
             return ExcelContentResult.Create(bytes, "CustomerList_" +
                 DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture) + ".xlsx");

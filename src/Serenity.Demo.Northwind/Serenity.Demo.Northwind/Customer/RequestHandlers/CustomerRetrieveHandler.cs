@@ -5,9 +5,7 @@ using MyRow = Serenity.Demo.Northwind.Entities.CustomerRow;
 
 namespace Serenity.Demo.Northwind
 {
-    public interface ICustomerRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse>
-    {
-    }
+    public interface ICustomerRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse> {}
 
     public class CustomerRetrieveHandler : RetrieveRequestHandler<MyRow, MyRequest, MyResponse>, ICustomerRetrieveHandler
     {

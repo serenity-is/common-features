@@ -6,7 +6,7 @@ using System.ComponentModel;
 namespace Serenity.Demo.Northwind.Forms
 {
     [FormScript("Northwind.Customer")]
-    [BasedOnRow(typeof(Entities.CustomerRow), CheckNames = true)]
+    [BasedOnRow(typeof(CustomerRow), CheckNames = true)]
     public class CustomerForm
     {
         [Category("General")]

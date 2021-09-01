@@ -11,7 +11,7 @@ namespace Serenity.Demo.BasicSamples.Forms
     /// A custom order form that contains read-only details about customer
     /// </summary>
     [FormScript("BasicSamples.PopulateLinkedData")]
-    [BasedOnRow(typeof(Northwind.Entities.OrderRow), CheckNames = true)]
+    [BasedOnRow(typeof(OrderRow), CheckNames = true)]
     public class PopulateLinkedDataForm
     {
         [Category("Order")]
@@ -39,6 +39,6 @@ namespace Serenity.Demo.BasicSamples.Forms
         public DateTime RequiredDate { get; set; }
         public Int32? EmployeeID { get; set; }
         [OrderDetailsEditor]
-        public List<Northwind.Entities.OrderDetailRow> DetailList { get; set; } 
+        public List<Northwind.OrderDetailRow> DetailList { get; set; } 
     }
 }

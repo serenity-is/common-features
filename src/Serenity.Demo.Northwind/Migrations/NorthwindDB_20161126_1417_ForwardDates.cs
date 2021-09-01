@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 using Serenity.Data;
-using Serenity.Demo.Northwind.Entities;
+using Serenity.Demo.Northwind;
 using System;
 
 namespace Serenity.Demo.Northwind.Migrations

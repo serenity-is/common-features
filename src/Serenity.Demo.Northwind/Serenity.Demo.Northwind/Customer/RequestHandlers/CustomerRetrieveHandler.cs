@@ -1,7 +1,7 @@
 ﻿using Serenity.Services;
 using MyRequest = Serenity.Services.RetrieveRequest;
-using MyResponse = Serenity.Services.RetrieveResponse<Serenity.Demo.Northwind.Entities.CustomerRow>;
-using MyRow = Serenity.Demo.Northwind.Entities.CustomerRow;
+using MyResponse = Serenity.Services.RetrieveResponse<Serenity.Demo.Northwind.CustomerRow>;
+using MyRow = Serenity.Demo.Northwind.CustomerRow;
 
 namespace Serenity.Demo.Northwind
 {

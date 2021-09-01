@@ -1,9 +1,8 @@
-﻿using Serenity.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using Serenity.Data;
 using Serenity.Services;
 using System.Data;
-using Microsoft.AspNetCore.Mvc;
-using MyRepository = Serenity.Demo.Northwind.Repositories.OrderDetailRepository;
-using MyRow = Serenity.Demo.Northwind.Entities.OrderDetailRow;
+using MyRow = Serenity.Demo.Northwind.OrderDetailRow;
 
 namespace Serenity.Demo.Northwind.Endpoints
 {
@@ -11,14 +10,16 @@ namespace Serenity.Demo.Northwind.Endpoints
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class OrderDetailController : ServiceEndpoint
     {
-        public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)
+        public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request,
+            [FromServices] IOrderDetailRetrieveHandler handler)
         {
-            return new MyRepository(Context).Retrieve(connection, request);
+            return handler.Retrieve(connection, request);
         }
 
-        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request,
+            [FromServices] IOrderDetailListHandler handler)
         {
-            return new MyRepository(Context).List(connection, request);
+            return handler.List(connection, request);
         }
     }
 }

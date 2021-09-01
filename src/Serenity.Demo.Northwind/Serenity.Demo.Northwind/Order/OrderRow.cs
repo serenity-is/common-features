@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Serenity.Demo.Northwind.Entities
+namespace Serenity.Demo.Northwind
 {
     [ConnectionKey("Northwind"), Module("Northwind"), TableName("Orders")]
     [DisplayName("Orders"), InstanceName("Order")]

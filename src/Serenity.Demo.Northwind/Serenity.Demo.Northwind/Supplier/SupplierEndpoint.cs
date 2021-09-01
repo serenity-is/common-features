@@ -1,9 +1,8 @@
-﻿using Serenity.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using Serenity.Data;
 using Serenity.Services;
 using System.Data;
-using Microsoft.AspNetCore.Mvc;
-using MyRepository = Serenity.Demo.Northwind.Repositories.SupplierRepository;
-using MyRow = Serenity.Demo.Northwind.Entities.SupplierRow;
+using MyRow = Serenity.Demo.Northwind.SupplierRow;
 
 namespace Serenity.Demo.Northwind.Endpoints
 {
@@ -12,31 +11,36 @@ namespace Serenity.Demo.Northwind.Endpoints
     public class SupplierController : ServiceEndpoint
     {
         [HttpPost, AuthorizeCreate(typeof(MyRow))]
-        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request,
+            [FromServices] ISupplierSaveHandler handler)
         {
-            return new MyRepository(Context).Create(uow, request);
+            return handler.Create(uow, request);
         }
 
         [HttpPost, AuthorizeUpdate(typeof(MyRow))]
-        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request,
+            [FromServices] ISupplierSaveHandler handler)
         {
-            return new MyRepository(Context).Update(uow, request);
+            return handler.Update(uow, request);
         }
 
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
-        public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
+        public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request,
+            [FromServices] ISupplierDeleteHandler handler)
         {
-            return new MyRepository(Context).Delete(uow, request);
+            return handler.Delete(uow, request);
         }
 
-        public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)
+        public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request,
+            [FromServices] ISupplierRetrieveHandler handler)
         {
-            return new MyRepository(Context).Retrieve(connection, request);
+            return handler.Retrieve(connection, request);
         }
 
-        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request,
+            [FromServices] ISupplierListHandler handler)
         {
-            return new MyRepository(Context).List(connection, request);
+            return handler.List(connection, request);
         }
     }
 }

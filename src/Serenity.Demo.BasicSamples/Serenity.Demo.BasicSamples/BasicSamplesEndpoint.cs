@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Serenity.Data;
-using Serenity.Demo.Northwind.Entities;
+using Serenity.Demo.Northwind;
 using Serenity.Services;
 using System;
 using System.Collections.Generic;

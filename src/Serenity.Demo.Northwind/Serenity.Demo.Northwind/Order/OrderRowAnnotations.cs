@@ -1,6 +1,4 @@
 ﻿using Serenity.ComponentModel;
-using Serenity.Demo.Northwind.Entities;
-using System;
 
 namespace Serenity.Demo.Northwind.Annotations
 {

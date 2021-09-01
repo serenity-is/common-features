@@ -4,7 +4,7 @@ using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
 
-namespace Serenity.Demo.Northwind.Entities
+namespace Serenity.Demo.Northwind
 {
     [ConnectionKey("Northwind"), Module("Northwind"), TableName("ProductLog")]
     public sealed class ProductLogRow : Row<ProductLogRow.RowFields>, ICaptureLogRow

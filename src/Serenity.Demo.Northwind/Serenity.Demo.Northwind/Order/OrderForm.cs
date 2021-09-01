@@ -6,7 +6,7 @@ using System.ComponentModel;
 namespace Serenity.Demo.Northwind.Forms
 {
     [FormScript("Northwind.Order")]
-    [BasedOnRow(typeof(Entities.OrderRow), CheckNames = true)]
+    [BasedOnRow(typeof(OrderRow), CheckNames = true)]
     public class OrderForm
     {
         [Tab("General")]
@@ -19,7 +19,7 @@ namespace Serenity.Demo.Northwind.Forms
 
         [Category("Order Details")]
         [OrderDetailsEditor]
-        public List<Entities.OrderDetailRow> DetailList { get; set; }
+        public List<OrderDetailRow> DetailList { get; set; }
 
         [Tab("Shipping")]
         [Category("Info")]

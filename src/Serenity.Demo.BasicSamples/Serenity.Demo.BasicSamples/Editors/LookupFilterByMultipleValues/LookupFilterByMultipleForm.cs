@@ -5,7 +5,7 @@ using System.ComponentModel;
 namespace Serenity.Demo.BasicSamples.Forms
 {
     [FormScript("BasicSamples.LookupFilterByMultiple")]
-    [BasedOnRow(typeof(Northwind.Entities.ProductRow), CheckNames = true)]
+    [BasedOnRow(typeof(Northwind.ProductRow), CheckNames = true)]
     public class LookupFilterByMultipleForm
     {
         [Category("General")]

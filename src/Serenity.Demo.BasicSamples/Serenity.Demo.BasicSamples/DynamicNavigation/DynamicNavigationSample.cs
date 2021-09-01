@@ -1,4 +1,4 @@
-﻿using Serenity.Demo.Northwind.Entities;
+﻿using Serenity.Demo.Northwind;
 using Serenity.Data;
 using Serenity.Navigation;
 using System.Collections.Generic;

@@ -6,7 +6,7 @@ using System.ComponentModel;
 namespace Serenity.Demo.BasicSamples.Columns
 {
     [ColumnsScript("BasicSamples.InlineImageInGrid")]
-    [BasedOnRow(typeof(Northwind.Entities.ProductRow), CheckNames = true)]
+    [BasedOnRow(typeof(Northwind.ProductRow), CheckNames = true)]
     public class InlineImageInGridColumns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]

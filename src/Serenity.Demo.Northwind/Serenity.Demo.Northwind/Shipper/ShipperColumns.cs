@@ -5,7 +5,7 @@ using System.ComponentModel;
 namespace Serenity.Demo.Northwind.Forms
 {
     [ColumnsScript("Northwind.Shipper")]
-    [BasedOnRow(typeof(Entities.ShipperRow), CheckNames = true)]
+    [BasedOnRow(typeof(ShipperRow), CheckNames = true)]
     public class ShipperColumns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]

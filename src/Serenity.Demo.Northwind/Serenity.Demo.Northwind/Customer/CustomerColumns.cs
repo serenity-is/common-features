@@ -6,7 +6,7 @@ using System.ComponentModel;
 namespace Serenity.Demo.Northwind.Columns
 {
     [ColumnsScript("Northwind.Customer")]
-    [BasedOnRow(typeof(Entities.CustomerRow), CheckNames = true)]
+    [BasedOnRow(typeof(CustomerRow), CheckNames = true)]
     public class CustomerColumns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), Width(100)]

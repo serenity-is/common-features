@@ -5,7 +5,7 @@ using Serenity.Web;
 namespace Serenity.Demo.Northwind.Lookups
 {
     [LookupScript, Module("Northwind")]
-    public class CustomerCountryLookup : RowLookupScript<Entities.CustomerRow>
+    public class CustomerCountryLookup : RowLookupScript<CustomerRow>
     {
         public CustomerCountryLookup(ISqlConnections sqlConnections)
             : base(sqlConnections)
@@ -15,7 +15,7 @@ namespace Serenity.Demo.Northwind.Lookups
 
         protected override void PrepareQuery(SqlQuery query)
         {
-            var fld = Entities.CustomerRow.Fields;
+            var fld = CustomerRow.Fields;
             query.Distinct(true)
                 .Select(fld.Country)
                 .Where(

@@ -1,5 +1,5 @@
 ﻿
-namespace Serenity.Demo.Northwind.Entities
+namespace Serenity.Demo.Northwind
 {
     public enum Gender
     {

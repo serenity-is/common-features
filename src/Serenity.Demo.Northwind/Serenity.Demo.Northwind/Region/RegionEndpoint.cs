@@ -2,8 +2,7 @@
 using Serenity.Data;
 using Serenity.Services;
 using System.Data;
-using MyRepository = Serenity.Demo.Northwind.Repositories.RegionRepository;
-using MyRow = Serenity.Demo.Northwind.Entities.RegionRow;
+using MyRow = Serenity.Demo.Northwind.RegionRow;
 
 namespace Serenity.Demo.Northwind.Endpoints
 {
@@ -11,41 +10,37 @@ namespace Serenity.Demo.Northwind.Endpoints
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class RegionController : ServiceEndpoint
     {
-        public RegionController()
-        {
-        }
-
-        protected MyRepository NewRepository()
-        {
-            return new MyRepository(Context);
-        }
-
         [HttpPost, AuthorizeCreate(typeof(MyRow))]
-        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request,
+            [FromServices] IRegionSaveHandler handler)
         {
-            return NewRepository().Create(uow, request);
+            return handler.Create(uow, request);
         }
 
         [HttpPost, AuthorizeUpdate(typeof(MyRow))]
-        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request,
+            [FromServices] IRegionSaveHandler handler)
         {
-            return NewRepository().Update(uow, request);
+            return handler.Update(uow, request);
         }
 
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
-        public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
+        public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request,
+            [FromServices] IRegionDeleteHandler handler)
         {
-            return NewRepository().Delete(uow, request);
+            return handler.Delete(uow, request);
         }
 
-        public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)
+        public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request,
+            [FromServices] IRegionRetrieveHandler handler)
         {
-            return NewRepository().Retrieve(connection, request);
+            return handler.Retrieve(connection, request);
         }
 
-        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request,
+            [FromServices] IRegionListHandler handler)
         {
-            return NewRepository().List(connection, request);
+            return handler.List(connection, request);
         }
     }
 }

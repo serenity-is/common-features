@@ -31,7 +31,7 @@ namespace Serenity.Demo.Northwind
 
         public object GetData()
         {
-            using (var connection = SqlConnections.NewFor<Entities.SalesByCategoryRow>())
+            using (var connection = SqlConnections.NewFor<SalesByCategoryRow>())
             {
                 return connection.Query<Item>("CustomerGrossSales",
                     param: new
@@ -48,7 +48,7 @@ namespace Serenity.Demo.Northwind
             return ReportColumnConverter.ObjectTypeToList(typeof(Item), ServiceProvider, Localizer);
         }
 
-        [BasedOnRow(typeof(Entities.CustomerGrossSalesRow), CheckNames = true)]
+        [BasedOnRow(typeof(CustomerGrossSalesRow), CheckNames = true)]
         public class Item
         {
             public string CustomerId { get; set; }

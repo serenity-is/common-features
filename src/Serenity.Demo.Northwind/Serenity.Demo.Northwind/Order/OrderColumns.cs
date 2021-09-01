@@ -4,7 +4,7 @@ using System;
 namespace Serenity.Demo.Northwind.Columns
 {
     [ColumnsScript("Northwind.Order")]
-    [BasedOnRow(typeof(Entities.OrderRow), CheckNames = true)]
+    [BasedOnRow(typeof(OrderRow), CheckNames = true)]
     public class OrderColumns
     {
         [EditLink, AlignRight, SortOrder(1, descending: true), Width(70)]

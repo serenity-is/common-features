@@ -1,13 +1,12 @@
-﻿using Serenity.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using Serenity.Data;
 using Serenity.Reporting;
 using Serenity.Services;
 using Serenity.Web;
 using System;
 using System.Data;
-using Microsoft.AspNetCore.Mvc;
-using MyRepository = Serenity.Demo.Northwind.Repositories.OrderRepository;
-using MyRow = Serenity.Demo.Northwind.Entities.OrderRow;
 using System.Globalization;
+using MyRow = Serenity.Demo.Northwind.OrderRow;
 
 namespace Serenity.Demo.Northwind.Endpoints
 {
@@ -16,37 +15,43 @@ namespace Serenity.Demo.Northwind.Endpoints
     public class OrderController : ServiceEndpoint
     {
         [HttpPost, AuthorizeCreate(typeof(MyRow))]
-        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request,
+            [FromServices] IOrderSaveHandler handler)
         {
-            return new MyRepository(Context).Create(uow, request);
+            return handler.Create(uow, request);
         }
 
         [HttpPost, AuthorizeUpdate(typeof(MyRow))]
-        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request,
+            [FromServices] IOrderSaveHandler handler)
         {
-            return new MyRepository(Context).Update(uow, request);
+            return handler.Update(uow, request);
         }
 
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
-        public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
+        public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request,
+            [FromServices] IOrderDeleteHandler handler)
         {
-            return new MyRepository(Context).Delete(uow, request);
+            return handler.Delete(uow, request);
         }
 
-        public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)
+        public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request,
+            [FromServices] IOrderRetrieveHandler handler)
         {
-            return new MyRepository(Context).Retrieve(connection, request);
+            return handler.Retrieve(connection, request);
         }
 
-        public ListResponse<MyRow> List(IDbConnection connection, OrderListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, OrderListRequest request,
+            [FromServices] IOrderListHandler handler)
         {
-            return new MyRepository(Context).List(connection, request);
+            return handler.List(connection, request);
         }
 
         public FileContentResult ListExcel(IDbConnection connection, OrderListRequest request,
-            [FromServices] IExcelExporter exporter)
+            [FromServices] IExcelExporter exporter,
+            [FromServices] IOrderListHandler handler)
         {
-            var data = List(connection, request).Entities;
+            var data = List(connection, request, handler).Entities;
             var bytes = exporter.Export(data, typeof(Columns.OrderColumns), request.ExportColumns);
             return ExcelContentResult.Create(bytes, "OrderList_" +
                 DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture) + ".xlsx");

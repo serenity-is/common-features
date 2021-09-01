@@ -1,10 +1,9 @@
 ﻿using Serenity.ComponentModel;
-using System;
 
 namespace Serenity.Demo.Northwind.Forms
 {
     [FormScript("Northwind.Category")]
-    [BasedOnRow(typeof(Entities.CategoryRow), CheckNames = true)]
+    [BasedOnRow(typeof(CategoryRow), CheckNames = true)]
     public class CategoryForm
     {
         public string CategoryName { get; set; }

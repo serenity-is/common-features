@@ -4,7 +4,7 @@ using System;
 namespace Serenity.Demo.BasicSamples.Forms
 {
     [FormScript("BasicSamples.ChangingLookupText")]
-    [BasedOnRow(typeof(Northwind.Entities.OrderDetailRow), CheckNames = true)]
+    [BasedOnRow(typeof(Northwind.OrderDetailRow), CheckNames = true)]
     public class ChangingLookupTextForm
     {
         [ChangingLookupTextEditor]

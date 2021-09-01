@@ -4,7 +4,7 @@ using Serenity.Data.Mapping;
 using System;
 using System.ComponentModel;
 
-namespace Serenity.Demo.Northwind.Entities
+namespace Serenity.Demo.Northwind
 {
     [ConnectionKey("Northwind"), Module("Northwind"), TableName("[dbo].[GrossSales]")]
     [DisplayName("Customer Gross Sales")]

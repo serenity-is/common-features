@@ -4,7 +4,7 @@ using System;
 namespace Serenity.Demo.Northwind.Forms
 {
     [ColumnsScript("Northwind.OrderDetail")]
-    [BasedOnRow(typeof(Entities.OrderDetailRow), CheckNames = true)]
+    [BasedOnRow(typeof(OrderDetailRow), CheckNames = true)]
     public class OrderDetailColumns
     {
         [EditLink, Width(200)]

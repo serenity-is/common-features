@@ -4,7 +4,7 @@ using System;
 namespace Serenity.Demo.Northwind.Columns
 {
     [ColumnsScript("Northwind.SalesByCategory")]
-    [BasedOnRow(typeof(Entities.SalesByCategoryRow), CheckNames = true)]
+    [BasedOnRow(typeof(SalesByCategoryRow), CheckNames = true)]
     public class SalesByCategoryColumns
     {
         [Width(150), SortOrder(1)]

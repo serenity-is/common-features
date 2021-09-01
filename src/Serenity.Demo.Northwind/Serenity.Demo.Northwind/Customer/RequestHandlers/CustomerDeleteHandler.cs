@@ -1,7 +1,7 @@
 ﻿using Serenity.Services;
 using MyRequest = Serenity.Services.DeleteRequest;
 using MyResponse = Serenity.Services.DeleteResponse;
-using MyRow = Serenity.Demo.Northwind.Entities.CustomerRow;
+using MyRow = Serenity.Demo.Northwind.CustomerRow;
 
 namespace Serenity.Demo.Northwind
 {

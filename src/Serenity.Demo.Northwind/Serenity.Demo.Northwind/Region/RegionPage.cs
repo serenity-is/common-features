@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Serenity.Demo.Northwind
 {
-    [PageAuthorize(typeof(Entities.RegionRow))]
+    [PageAuthorize(typeof(RegionRow))]
     public class RegionController : Controller
     {
         [Route("Northwind/Region")]

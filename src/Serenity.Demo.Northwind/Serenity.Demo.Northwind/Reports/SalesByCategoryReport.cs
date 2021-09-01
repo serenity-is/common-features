@@ -2,7 +2,7 @@
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Reporting;
-using Serenity.Demo.Northwind.Entities;
+using Serenity.Demo.Northwind;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +26,7 @@ namespace Serenity.Demo.Northwind
 
         public object GetData()
         {
-            using var connection = SqlConnections.NewFor<Entities.SalesByCategoryRow>();
+            using var connection = SqlConnections.NewFor<SalesByCategoryRow>();
             var s = SalesByCategoryRow.Fields;
 
             return connection.List<SalesByCategoryRow>();

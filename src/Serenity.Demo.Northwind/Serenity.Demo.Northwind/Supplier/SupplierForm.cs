@@ -4,7 +4,7 @@ using System;
 namespace Serenity.Demo.Northwind.Forms
 {
     [FormScript("Northwind.Supplier")]
-    [BasedOnRow(typeof(Entities.SupplierRow), CheckNames = true)]
+    [BasedOnRow(typeof(SupplierRow), CheckNames = true)]
     public class SupplierForm
     {
         public string CompanyName { get; set; }

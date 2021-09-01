@@ -4,7 +4,7 @@ using System;
 namespace Serenity.Demo.Northwind.Forms
 {
     [FormScript("Northwind.OrderDetail")]
-    [BasedOnRow(typeof(Entities.OrderDetailRow), CheckNames = true)]
+    [BasedOnRow(typeof(OrderDetailRow), CheckNames = true)]
     public class OrderDetailForm
     {
         public int ProductID { get; set; }

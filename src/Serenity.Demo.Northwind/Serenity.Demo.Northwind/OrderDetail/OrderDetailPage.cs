@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Serenity.Demo.Northwind
 {
-    [PageAuthorize(typeof(Entities.OrderDetailRow))]
+    [PageAuthorize(typeof(OrderDetailRow))]
     public class OrderDetailController : Controller
     {
         [Route("Northwind/OrderDetail")]

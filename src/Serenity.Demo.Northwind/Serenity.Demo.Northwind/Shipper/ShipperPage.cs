@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Serenity.Demo.Northwind
 {
-    [PageAuthorize(typeof(Entities.ShipperRow))]
+    [PageAuthorize(typeof(ShipperRow))]
     public class ShipperController : Controller
     {
         [Route("Northwind/Shipper")]

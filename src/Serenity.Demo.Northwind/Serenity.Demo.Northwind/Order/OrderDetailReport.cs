@@ -1,7 +1,7 @@
 ﻿using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Reporting;
-using Serenity.Demo.Northwind.Entities;
+using Serenity.Demo.Northwind;
 using System;
 using System.Collections.Generic;
 

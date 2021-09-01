@@ -1,7 +1,7 @@
 ﻿using Serenity.Extensions;
 using Serenity.Services;
 using System.Data;
-using MyRow = Serenity.Demo.Northwind.Entities.CustomerRow;
+using MyRow = Serenity.Demo.Northwind.CustomerRow;
 
 namespace Serenity.Demo.Northwind
 {

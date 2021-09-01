@@ -1,4 +1,4 @@
-﻿using Serenity.Demo.Northwind.Entities;
+﻿using Serenity.Demo.Northwind;
 using Serenity.ComponentModel;
 using Serenity.Data.Mapping;
 using System;
@@ -11,7 +11,7 @@ namespace Serenity.Demo.BasicSamples.Forms
     /// This is a basic Order form for FilteredLookupInDetailDialog sample.
     /// </summary>
     [FormScript("BasicSamples.FilteredLookupInDetail")]
-    [BasedOnRow(typeof(Northwind.Entities.OrderRow), CheckNames = true)]
+    [BasedOnRow(typeof(OrderRow), CheckNames = true)]
     public class FilteredLookupInDetailForm
     {
         public String CustomerID { get; set; }

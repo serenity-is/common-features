@@ -1,8 +1,6 @@
 ﻿using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;
-using Serenity.Demo.Northwind.Entities;
-using Serenity.Demo.Northwind.Repositories;
 using Serenity.Services;
 using System;
 using System.Collections.Generic;
@@ -14,17 +12,19 @@ namespace Serenity.Demo.Northwind
     public class NotesBehavior : BaseSaveDeleteBehavior, IImplicitBehavior, IRetrieveBehavior, IFieldBehavior
     {
         public Field Target { get; set; }
-        
-        protected IRequestContext Context { get; }
-        protected ISqlConnections SqlConnections { get; }
-        protected IUserRetrieveService UserRetriever { get; }
 
-        public NotesBehavior(IRequestContext context, ISqlConnections sqlConnections,
-            IUserRetrieveService userRetriever)
+        private readonly IUserRetrieveService userRetriever;
+        private readonly INoteListHandler listHandler;
+        private readonly INoteSaveHandler saveHandler;
+        private readonly INoteDeleteHandler deleteHandler;
+
+        public NotesBehavior(IUserRetrieveService userRetriever,
+            INoteListHandler listHandler, INoteSaveHandler saveHandler, INoteDeleteHandler deleteHandler)
         {
-            Context = context ?? throw new ArgumentNullException(nameof(context));
-            SqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
-            UserRetriever = userRetriever ?? throw new ArgumentNullException(nameof(userRetriever));
+            this.userRetriever = userRetriever ?? throw new ArgumentNullException(nameof(userRetriever));
+            this.listHandler = listHandler ?? throw new ArgumentNullException(nameof(listHandler));
+            this.saveHandler = saveHandler ?? throw new ArgumentNullException(nameof(saveHandler));
+            this.deleteHandler = deleteHandler ?? throw new ArgumentNullException(nameof(deleteHandler));
         }
 
         public bool ActivateFor(IRow row)
@@ -72,7 +72,7 @@ namespace Serenity.Demo.Northwind
                 }
             };
 
-            var notes = new NoteRepository(Context).List(handler.Connection, listRequest).Entities;
+            var notes = listHandler.List(handler.Connection, listRequest).Entities;
 
             var userIdList = notes.Where(x => x.InsertUserId != null)
                 .Select(x => x.InsertUserId.Value).Distinct();
@@ -80,7 +80,7 @@ namespace Serenity.Demo.Northwind
             if (userIdList.Any())
             {
                 var userDisplayNames = userIdList.ToDictionary(x => x,
-                    x => UserRetriever.ById(x.ToString(
+                    x => userRetriever.ById(x.ToString(
                         CultureInfo.InvariantCulture))?.DisplayName);
 
                 foreach (var x in notes)
@@ -105,14 +105,14 @@ namespace Serenity.Demo.Northwind
             var saveRequest = new SaveRequest<NoteRow> { Entity = note };
 
             if (noteId == null)
-                new NoteRepository(Context).Create(uow, saveRequest);
+                saveHandler.Create(uow, saveRequest);
             else
-                new NoteRepository(Context).Update(uow, saveRequest);
+                saveHandler.Update(uow, saveRequest);
         }
 
         private void DeleteNote(IUnitOfWork uow, long noteId)
         {
-            new NoteRepository(Context).Delete(uow, new DeleteRequest { EntityId = noteId });
+            deleteHandler.Delete(uow, new DeleteRequest { EntityId = noteId });
         }
 
         private void NoteListSave(IUnitOfWork uow, string entityType, long entityId, 
@@ -226,8 +226,8 @@ namespace Serenity.Demo.Northwind
                     { fld.EntityId.PropertyName, entityId }
                 }
             };
-
-            var oldList = new NoteRepository(Context).List(handler.Connection, listRequest).Entities;
+            
+            var oldList = listHandler.List(handler.Connection, listRequest).Entities;
             NoteListSave(handler.UnitOfWork, handler.Row.Table, entityId, oldList, newList);
         }
 

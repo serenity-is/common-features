@@ -7,7 +7,7 @@ using Serenity.Web;
 using System;
 using System.Data;
 using System.Globalization;
-using MyRow = Serenity.Demo.Northwind.Entities.CustomerRow;
+using MyRow = Serenity.Demo.Northwind.CustomerRow;
 
 namespace Serenity.Demo.Northwind.Endpoints
 {

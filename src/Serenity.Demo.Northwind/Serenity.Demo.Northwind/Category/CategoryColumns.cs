@@ -5,7 +5,7 @@ using System.ComponentModel;
 namespace Serenity.Demo.Northwind.Forms
 {
     [ColumnsScript("Northwind.Category")]
-    [BasedOnRow(typeof(Entities.CategoryRow), CheckNames = true)]
+    [BasedOnRow(typeof(CategoryRow), CheckNames = true)]
     public class CategoryColumns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]

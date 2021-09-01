@@ -1,9 +1,8 @@
-﻿using Serenity.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using Serenity.Data;
 using Serenity.Services;
 using System.Data;
-using Microsoft.AspNetCore.Mvc;
-using MyRepository = Serenity.Demo.Northwind.Repositories.SalesByCategoryRepository;
-using MyRow = Serenity.Demo.Northwind.Entities.SalesByCategoryRow;
+using MyRow = Serenity.Demo.Northwind.SalesByCategoryRow;
 
 namespace Serenity.Demo.Northwind.Endpoints
 {
@@ -11,9 +10,10 @@ namespace Serenity.Demo.Northwind.Endpoints
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class SalesByCategoryController : ServiceEndpoint
     {
-        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request,
+            [FromServices] ISalesByCategoryListHandler handler)
         {
-            return new MyRepository(Context).List(connection, request);
+            return handler.List(connection, request);
         }
     }
 }

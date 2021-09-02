@@ -19,8 +19,7 @@
     <NewtonsoftJsonVersion Condition="'$(NewtonsoftJsonVersion)' == ''">12.0.3</NewtonsoftJsonVersion>
     <FrameworkPackageVersion Condition="'$(FrameworkPackageVersion)' == ''">5.0.0</FrameworkPackageVersion>
     <AspNetCorePackageVersion Condition="'$(AspNetCorePackageVersion)' == ''">5.0.0</AspNetCorePackageVersion>
-    <SerenityVersion Condition="'$(SerenityVersion)' == ''">5.0.43</SerenityVersion>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <SerenityVersion Condition="'$(SerenityVersion)' == ''">5.0.49</SerenityVersion>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" Condition="'$(UsingMicrosoftNETSdkWeb)' != 'true'" />

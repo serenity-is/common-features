@@ -16,7 +16,7 @@ namespace Build
                 ExitWithError("Error while restoring " + SolutionFile);
 
             if (StartProcess("dotnet", "pack -v minimal " +
-                $"-c Release -o \"{PackageOutDir}\"", Src) != 0)
+                $"-c Release -p:ContinuousIntegrationBuild=true -o \"{PackageOutDir}\"", Src) != 0)
                 ExitWithError("Error while building solution!");
 
             try

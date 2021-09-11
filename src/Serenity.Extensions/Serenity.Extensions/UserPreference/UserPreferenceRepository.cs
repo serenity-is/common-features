@@ -58,7 +58,7 @@ namespace Serenity.Extensions.Repositories
         public UserPreferenceRetrieveResponse Retrieve(IDbConnection connection, UserPreferenceRetrieveRequest request)
         {
             if (request is null)
-                throw new ArgumentNullException("request");
+                throw new ArgumentNullException(nameof(request));
             if (request.Name is null)
                 throw new ArgumentNullException("name");
             if (request.PreferenceType is null)

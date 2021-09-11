@@ -1,7 +1,6 @@
-﻿using Serenity;
-
-namespace Serenity.Demo.Northwind
+﻿namespace Serenity.Demo.Northwind
 {
+#pragma warning disable CA2211 // Non-constant fields should not be visible
     public static partial class Texts
     {
         public static partial class Validation
@@ -11,4 +10,5 @@ namespace Serenity.Demo.Northwind
                 "Multiple numbers can be separated with comma.";
         }
     }
+#pragma warning restore CA2211 // Non-constant fields should not be visible
 }

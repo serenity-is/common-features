@@ -202,7 +202,7 @@ namespace Serenity.Extensions.Pages
                     report.GetType().FullName));
 
             var data = report.GetData();
-            var viewData = download ? new ViewDataDictionary(this.ViewData) { Model = data } : ViewData;
+            var viewData = download ? new ViewDataDictionary(ViewData) { Model = data } : ViewData;
 
             if (report is not IReportWithAdditionalData iadditional)
                 viewData["AdditionalData"] = new Dictionary<string, object>();
@@ -219,7 +219,7 @@ namespace Serenity.Extensions.Pages
             return null;
         }
 
-        [HttpPost, JsonRequestAttribute]
+        [HttpPost, JsonRequest]
         public ActionResult Retrieve(ReportRetrieveRequest request,
             [FromServices] IPropertyItemProvider propertyItemProvider)
         {

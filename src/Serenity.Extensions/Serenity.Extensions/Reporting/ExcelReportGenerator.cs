@@ -56,10 +56,10 @@ namespace Serenity.Reporting
             string tableName = "Table1", TableStyles tableStyle = TableStyles.Medium2)
         {
             if (columns == null)
-                throw new ArgumentNullException("columns");
+                throw new ArgumentNullException(nameof(columns));
 
             if (rows == null)
-                throw new ArgumentNullException("rows");
+                throw new ArgumentNullException(nameof(rows));
 
             Field[] fields = null;
             TypeAccessor accessor = null;

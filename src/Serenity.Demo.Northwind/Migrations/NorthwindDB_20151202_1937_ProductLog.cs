@@ -10,7 +10,7 @@ namespace Serenity.Demo.Northwind.Migrations
     {
         public override void Up()
         {
-            Action<ICreateTableWithColumnSyntax> addCols = expr => expr
+            static void addCols(ICreateTableWithColumnSyntax expr) => expr
                 .WithColumn("OperationType").AsInt16().NotNullable()
                 .WithColumn("ChangingUserId").AsInt32().Nullable()
                 .WithColumn("ValidFrom").AsDateTime().NotNullable()

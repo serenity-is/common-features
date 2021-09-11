@@ -21,11 +21,11 @@ namespace Serenity.Extensions
                     field <= prefix.PadRight(request.Length, '9')))
                 .FirstOrDefault();
 
-            var response = new GetNextNumberResponse();
-
-            long l;
-            response.Number = max == null ||
-                !long.TryParse(max.Substring(prefix.Length), out l) ? 1 : l + 1;
+            var response = new GetNextNumberResponse
+            {
+                Number = max == null ||
+                !long.TryParse(max[prefix.Length..], out long l) ? 1 : l + 1
+            };
 
             response.Serial = prefix + response.Number.ToString(CultureInfo.InvariantCulture)
                 .PadLeft(request.Length - prefix.Length, '0');

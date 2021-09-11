@@ -25,25 +25,23 @@ namespace Serenity.Extensions
             MigrationBase migration, string table, string idField,
             Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema, int size, bool checkExists = false)
         {
-            Func<ICreateTableColumnAsTypeSyntax, ICreateTableColumnOptionOrWithColumnSyntax> addAsType =
-                col =>
-                {
-                    if (size == 64)
-                        return col.AsInt64();
-                    else if (size == 16)
-                        return col.AsInt16();
-                    else
-                        return col.AsInt32();
-                };
+            ICreateTableColumnOptionOrWithColumnSyntax addAsType(ICreateTableColumnAsTypeSyntax col)
+            {
+                if (size == 64)
+                    return col.AsInt64();
+                else if (size == 16)
+                    return col.AsInt16();
+                else
+                    return col.AsInt32();
+            }
 
-            Func<ICreateTableWithColumnOrSchemaOrDescriptionSyntax, ICreateTableWithColumnSyntax> addSchema =
-                syntax =>
-                {
-                    if (schema != null)
-                        return syntax.InSchema(schema);
-                    else
-                        return syntax;
-                };
+            ICreateTableWithColumnSyntax addSchema(ICreateTableWithColumnOrSchemaOrDescriptionSyntax syntax)
+            {
+                if (schema != null)
+                    return syntax.InSchema(schema);
+                else
+                    return syntax;
+            }
 
             if (checkExists)
             {
@@ -71,7 +69,7 @@ namespace Serenity.Extensions
             AddOracleIdentity(migration, table, idField);
         }
 
-        public static string[] AllExceptOracle =
+        public static readonly string[] AllExceptOracle =
         {
             "SqlServer",
             "SqlServer2000",
@@ -96,7 +94,7 @@ namespace Serenity.Extensions
             var seq = table.Replace(" ", "_", StringComparison.Ordinal)
                 .Replace("\"", "", StringComparison.Ordinal);
             seq = seq.Substring(0, Math.Min(20, seq.Length));
-            seq = seq + "_SEQ";
+            seq += "_SEQ";
 
             migration.IfDatabase("Oracle")
                 .Execute.Sql("CREATE SEQUENCE " + seq);

@@ -31,6 +31,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <Compile Include="$(MSBuildThisFileDirectory)GlobalSuppressions.cs" Condition="Exists('$(MSBuildThisFileDirectory)GlobalSuppressions.cs')">
+        <Link>Properties\GlobalSuppressions.cs</Link>
+    </Compile>   
   </ItemGroup>
   <ItemGroup>
     <None Remove="*.json"></None>

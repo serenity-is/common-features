@@ -31,16 +31,14 @@ namespace Serenity.Demo.Northwind
 
         public object GetData()
         {
-            using (var connection = SqlConnections.NewFor<SalesByCategoryRow>())
-            {
-                return connection.Query<Item>("CustomerGrossSales",
-                    param: new
-                    {
-                        startDate = StartDate,
-                        endDate = EndDate
-                    },
-                    commandType: System.Data.CommandType.StoredProcedure);
-            }
+            using var connection = SqlConnections.NewFor<SalesByCategoryRow>();
+            return connection.Query<Item>("CustomerGrossSales",
+                param: new
+                {
+                    startDate = StartDate,
+                    endDate = EndDate
+                },
+                commandType: System.Data.CommandType.StoredProcedure);
         }
 
         public List<ReportColumn> GetColumnList()

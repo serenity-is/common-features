@@ -14,7 +14,9 @@ namespace Serenity.Demo.BasicSamples.Endpoints
     [ConnectionKey(typeof(OrderRow))]
     public class BasicSamplesController : ServiceEndpoint
     {
+#pragma warning disable IDE0060 // Remove unused parameter
         public OrdersByShipperResponse OrdersByShipper(IDbConnection connection, OrdersByShipperRequest request)
+#pragma warning restore IDE0060 // Remove unused parameter
         {
             var fld = OrderRow.Fields;
             var year = DateTime.Today.Year;
@@ -45,16 +47,17 @@ namespace Serenity.Demo.BasicSamples.Endpoints
 
             response.Values = new List<Dictionary<string, object>>();
             var month = startingFrom.Month;
-            int mc;
             for (var i = 0; i < 12; i++)
             {
-                var d = new Dictionary<string, object>();
-                d["Month"] = new DateTime(1999, month, 1)
-                    .ToString("MMM", CultureInfo.CurrentCulture);
+                var d = new Dictionary<string, object>
+                {
+                    ["Month"] = new DateTime(1999, month, 1)
+                    .ToString("MMM", CultureInfo.CurrentCulture)
+                };
 
                 foreach (var p in shippers)
                     d["s" + p.ShipperID] = byMonth.TryGetValue(
-                        new Tuple<int, int>(month, p.ShipperID.Value), out mc) ? mc : 0;
+                        new Tuple<int, int>(month, p.ShipperID.Value), out int mc) ? mc : 0;
 
                 response.Values.Add(d);
 

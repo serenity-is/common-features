@@ -10,7 +10,7 @@ namespace Serenity.Demo.Northwind.Migrations
     {
         public override void Up()
         {
-            Action<ICreateTableWithColumnSyntax> addCols = expr => expr
+            static void addCols(ICreateTableWithColumnSyntax expr) => expr
                 .WithColumn("EntityType").AsString(100).NotNullable()
                 .WithColumn("EntityID").AsInt64().NotNullable()
                 .WithColumn("Text").AsString(int.MaxValue).NotNullable()

@@ -39,6 +39,6 @@ namespace Serenity.Demo.BasicSamples.Forms
         public DateTime RequiredDate { get; set; }
         public Int32? EmployeeID { get; set; }
         [OrderDetailsEditor]
-        public List<Northwind.OrderDetailRow> DetailList { get; set; } 
+        public List<OrderDetailRow> DetailList { get; set; } 
     }
 }

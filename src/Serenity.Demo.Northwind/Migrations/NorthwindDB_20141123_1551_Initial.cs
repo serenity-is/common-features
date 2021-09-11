@@ -9,7 +9,7 @@ namespace Serenity.Demo.Northwind.Migrations
     {
         private string GetScript(string name)
         {
-            using var sr = new StreamReader(this.GetType().Assembly.GetManifestResourceStream(name));
+            using var sr = new StreamReader(GetType().Assembly.GetManifestResourceStream(name));
             return sr.ReadToEnd();
         }
 

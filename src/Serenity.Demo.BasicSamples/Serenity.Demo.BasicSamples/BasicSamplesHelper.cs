@@ -17,7 +17,7 @@ namespace Serenity.Demo.BasicSamples
 
             if (file.StartsWith("/"))
             {
-                path = file.Substring(1);
+                path = file[1..];
             }
             else
             {
@@ -28,10 +28,10 @@ namespace Serenity.Demo.BasicSamples
                 if (question >= 0)
                 {
                     relative = new Uri("x:" + absolutePath + relative.Substring(0, question))
-                        .AbsolutePath.Substring(2) + relative.Substring(question);
+                        .AbsolutePath[2..] + relative[question..];
                 }
                 else
-                    relative = new Uri("x:" + absolutePath + relative).AbsolutePath.Substring(2);
+                    relative = new Uri("x:" + absolutePath + relative).AbsolutePath[2..];
 
                 path = "Serenity.Demo.BasicSamples" + relative;
             }

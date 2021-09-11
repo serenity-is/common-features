@@ -200,8 +200,7 @@ namespace Serenity.Demo.Northwind
 
         public override void OnAfterSave(ISaveRequestHandler handler)
         {
-            var newList = Target.AsObject(handler.Row) as List<NoteRow>;
-            if (newList == null)
+            if (Target.AsObject(handler.Row) is not List<NoteRow> newList)
                 return;
 
             var idField = (handler.Row as IIdRow).IdField;

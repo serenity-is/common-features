@@ -29,7 +29,7 @@ namespace Serenity.Demo.Northwind
             {
                 var o = OrderRow.Fields;
 
-                data.Order = connection.TryById<OrderRow>(this.OrderID, q => q
+                data.Order = connection.TryById<OrderRow>(OrderID, q => q
                      .SelectTableFields()
                      .Select(o.EmployeeFullName)
                      .Select(o.ShipViaCompanyName)) ?? new OrderRow();
@@ -39,7 +39,7 @@ namespace Serenity.Demo.Northwind
                     .SelectTableFields()
                     .Select(od.ProductName)
                     .Select(od.LineTotal)
-                    .Where(od.OrderID == this.OrderID));
+                    .Where(od.OrderID == OrderID));
 
                 var c = CustomerRow.Fields;
                 data.Customer = connection.TryFirst<CustomerRow>(c.CustomerID == data.Order.CustomerID)

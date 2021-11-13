@@ -45,7 +45,7 @@
                 },
                 {
                     text: Q.text("Dialogs.CancelButton"),
-                    click: () => this.dialogClose
+                    click: () => this.dialogClose()
                 }
             ];
         }

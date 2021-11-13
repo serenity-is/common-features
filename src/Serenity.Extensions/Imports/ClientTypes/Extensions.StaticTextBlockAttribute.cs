@@ -16,27 +16,27 @@ namespace Serenity.Extensions
         {
         }
 
-        public Boolean HideLabel
+        public bool HideLabel
         {
-            get { return GetOption<Boolean>("hideLabel"); }
+            get { return GetOption<bool>("hideLabel"); }
             set { SetOption("hideLabel", value); }
         }
 
-        public Boolean IsHtml
+        public bool IsHtml
         {
-            get { return GetOption<Boolean>("isHtml"); }
+            get { return GetOption<bool>("isHtml"); }
             set { SetOption("isHtml", value); }
         }
 
-        public Boolean IsLocalText
+        public bool IsLocalText
         {
-            get { return GetOption<Boolean>("isLocalText"); }
+            get { return GetOption<bool>("isLocalText"); }
             set { SetOption("isLocalText", value); }
         }
 
-        public String Text
+        public string Text
         {
-            get { return GetOption<String>("text"); }
+            get { return GetOption<string>("text"); }
             set { SetOption("text", value); }
         }
     }

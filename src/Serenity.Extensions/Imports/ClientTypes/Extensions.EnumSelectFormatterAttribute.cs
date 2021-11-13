@@ -16,21 +16,21 @@ namespace Serenity.Extensions
         {
         }
 
-        public Boolean AllowClear
+        public bool AllowClear
         {
-            get { return GetOption<Boolean>("allowClear"); }
+            get { return GetOption<bool>("allowClear"); }
             set { SetOption("allowClear", value); }
         }
 
-        public String EmptyItemText
+        public string EmptyItemText
         {
-            get { return GetOption<String>("emptyItemText"); }
+            get { return GetOption<string>("emptyItemText"); }
             set { SetOption("emptyItemText", value); }
         }
 
-        public String EnumKey
+        public string EnumKey
         {
-            get { return GetOption<String>("enumKey"); }
+            get { return GetOption<string>("enumKey"); }
             set { SetOption("enumKey", value); }
         }
     }

@@ -16,15 +16,15 @@ namespace Serenity.Demo.BasicSamples
         {
         }
 
-        public String FileProperty
+        public string FileProperty
         {
-            get { return GetOption<String>("fileProperty"); }
+            get { return GetOption<string>("fileProperty"); }
             set { SetOption("fileProperty", value); }
         }
 
-        public Boolean Thumb
+        public bool Thumb
         {
-            get { return GetOption<Boolean>("thumb"); }
+            get { return GetOption<bool>("thumb"); }
             set { SetOption("thumb", value); }
         }
     }

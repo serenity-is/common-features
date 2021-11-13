@@ -16,9 +16,9 @@ namespace Serenity.Demo.Northwind
         {
         }
 
-        public Boolean Multiple
+        public bool Multiple
         {
-            get { return GetOption<Boolean>("multiple"); }
+            get { return GetOption<bool>("multiple"); }
             set { SetOption("multiple", value); }
         }
     }

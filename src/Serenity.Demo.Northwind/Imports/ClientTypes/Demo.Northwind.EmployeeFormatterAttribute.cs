@@ -16,9 +16,9 @@ namespace Serenity.Demo.Northwind
         {
         }
 
-        public String GenderProperty
+        public string GenderProperty
         {
-            get { return GetOption<String>("genderProperty"); }
+            get { return GetOption<string>("genderProperty"); }
             set { SetOption("genderProperty", value); }
         }
     }

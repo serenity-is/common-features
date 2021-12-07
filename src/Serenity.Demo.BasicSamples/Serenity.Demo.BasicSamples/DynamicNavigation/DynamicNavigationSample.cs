@@ -20,7 +20,7 @@ namespace Serenity.Demo.BasicSamples
         {
             var items = new List<NavigationItemAttribute>
             {
-                new NavigationMenuAttribute(7970, "Basic Samples/Dynamic Navigation", "icon-paper-plane")
+                new NavigationMenuAttribute(7970, "Basic Samples/Dynamic Navigation")
             };
 
             // Add product categories as dynamic navigation items for demo purpose

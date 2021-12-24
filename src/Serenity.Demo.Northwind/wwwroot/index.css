@@ -173,10 +173,7 @@
 }
 .s-Demo-Northwind-ProductGrid .slick-cell input[type=text] {
   text-align: right;
-  border-radius: 0;
   width: 100%;
-  padding: 0 2px;
-  border: 1px solid #e7e7e7;
 }
 .s-Demo-Northwind-ProductGrid .slick-cell .dirty {
   background-color: #ffe0e0;

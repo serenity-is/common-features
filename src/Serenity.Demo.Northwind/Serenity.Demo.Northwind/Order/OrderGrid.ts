@@ -68,11 +68,12 @@
                 id: 'Print Invoice',
                 field: null,
                 name: '',
+                cssClass: 'align-center',
                 format: ctx => '<a class="inline-action print-invoice" title="invoice">' +
                     '<i class="fa fa-file-pdf-o text-red"></i></a>',
-                width: 24,
-                minWidth: 24,
-                maxWidth: 24
+                width: 36,
+                minWidth: 36,
+                maxWidth: 36
             });
 
             return columns;

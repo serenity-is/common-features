@@ -357,6 +357,7 @@
 .s-NotesEditor {
   border: 1px solid #ccc;
   border-radius: 4px;
+  padding: 10px;
 }
 .s-NotesEditor ul {
   padding: 0;
@@ -365,7 +366,7 @@
   list-style: none;
 }
 .s-NotesEditor li {
-  margin: 10px;
+  margin: 10px 0;
   border-radius: 4px;
   border: 1px solid #C3C2C2;
   background-color: #F5E7DC;
@@ -396,10 +397,7 @@
   color: #2a4084;
   font-style: italic;
 }
-.s-NotesEditor .s-Toolbar {
-  background-color: #eee;
-  padding: 4px;
-}
+
 .s-NoteDialog > .size {
   width: 465px;
 }

@@ -36,7 +36,7 @@ namespace Serenity.Demo.BasicSamples
                 path = "Serenity.Demo.BasicSamples" + relative;
             }
 
-            return new HtmlString("<a target=\"blank\" style=\"font-weight: bold; color: #ffc\" href=\"" +
+            return new HtmlString("<a target=\"blank\" style=\"font-weight: bold;\" href=\"" +
                 helper.Encode("https://github.com/serenity-is/common-features/" +
                     "blob/master/src/" + path) +
                 "\">" + helper.Encode(Path.GetFileName(file)) + "</a>");

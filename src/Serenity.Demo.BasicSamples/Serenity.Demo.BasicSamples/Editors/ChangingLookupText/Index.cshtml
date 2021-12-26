@@ -6,8 +6,8 @@
     <h1>@ViewData["Title"]<small></small></h1>
 }
 
-<div class="alert alert-info alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+<div class="alert alert-info alert-dismissable alert-dismissible fade show">
+    <button type="button" class="close btn-close" data-dismiss="alert" data-bs-dismiss="alert" aria-hidden="true">&times;</button>
     <p>Lookups by default shows name field of your row as text. You might want to override this text to something custom.</p>
     <p>There are several options to change this text, including setting name field to something else, declaring an expression field etc.</p>
     <p>But in some cases, such solutions might not be enough. For this, you might define a new editor type deriving from LookupEditor and override its getItemText() method.</p>

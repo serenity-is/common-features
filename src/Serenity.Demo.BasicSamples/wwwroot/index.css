@@ -173,3 +173,7 @@
 .s-Demo-BasicSamples-WrappedHeadersGrid .slick-header-column.ui-state-default {
   height: 100%;
 }
+
+:root.pro .alert-dismissible button.close.btn-close {
+    color: transparent;
+}

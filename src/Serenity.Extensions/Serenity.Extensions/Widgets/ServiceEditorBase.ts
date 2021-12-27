@@ -78,7 +78,7 @@ namespace Serenity.Extensions {
         }
 
         public getTypeDelay(): number {
-            return 500;
+            return 200;
         }
 
         private lastRequest: JQueryXHR;

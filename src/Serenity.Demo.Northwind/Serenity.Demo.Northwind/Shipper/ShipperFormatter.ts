@@ -3,9 +3,14 @@
     @Serenity.Decorators.registerFormatter()
     export class ShipperFormatter implements Slick.Formatter {
         format(ctx: Slick.FormatterContext) {
-            return "<span class='shipper-symbol shipper-" +
-                Q.replaceAll((ctx.value || '').toString(), ' ', '') +
-                "'>" + Q.htmlEncode(ctx.value) + '</span>';
+
+            if (!ctx.value)
+                return Q.htmlEncode(ctx.value);
+
+            return '<i class="text-info fa fa-' +
+                (ctx.value == "Speedy Express" ? "plane"
+                    : (ctx.value == "Federal Shipping" ? "ship"
+                        : "truck")) + ' text-opacity-75"></i> ' + Q.htmlEncode(ctx.value);
         }
     }
 }

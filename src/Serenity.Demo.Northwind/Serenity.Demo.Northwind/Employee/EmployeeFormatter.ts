@@ -5,14 +5,13 @@
         format(ctx: Slick.FormatterContext) {
             var text = Q.htmlEncode(ctx.value);
 
-            if (!this.genderProperty) {
+            if (!this.genderProperty || Q.isTrimmedEmpty(ctx.value)) {
                 return text;
             }
 
             var gender = ctx.item[this.genderProperty];
-            return "<span class='" + ((gender === Gender.Female) ?
-                'employee-symbol female' : 'employee-symbol male') +
-                "'>" + text + '</span>';
+            return '<i class="fa fa-' + ((gender === Gender.Female) ?
+                'female text-danger' : 'male text-primary') + ' text-opacity-75"></i>' + text;
         }
 
         @Serenity.Decorators.option()

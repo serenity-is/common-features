@@ -1,6 +1,5 @@
 ﻿using FluentMigrator;
 using Serenity.Data;
-using Serenity.Demo.Northwind;
 using System;
 
 namespace Serenity.Demo.Northwind.Migrations
@@ -12,12 +11,14 @@ namespace Serenity.Demo.Northwind.Migrations
         {
             var o = OrderRow.Fields;
 
+            var dateAdd = "dateadd(day, datediff(day, (select max(orderdate) from Orders), getdate()), ";
+
             IfDatabase("SqlServer", "SqlServer2000", "SqlServerCe")
                 .Execute.Sql(
                     new SqlUpdate(o.TableName)
-                        .SetTo(o.OrderDate, "DATEADD(MONTH, 6, DATEADD(YEAR, 18, " + o.OrderDate.Name + "))")
-                        .SetTo(o.RequiredDate, "DATEADD(MONTH, 6, DATEADD(YEAR, 18, " + o.RequiredDate.Name + "))")
-                        .SetTo(o.ShippedDate, "DATEADD(MONTH, 6, DATEADD(YEAR, 18, " + o.ShippedDate.Name + "))")
+                        .SetTo(o.OrderDate, dateAdd + o.OrderDate.Name + ")")
+                        .SetTo(o.RequiredDate, dateAdd + o.RequiredDate.Name + ")")
+                        .SetTo(o.ShippedDate, dateAdd + o.ShippedDate.Name + ")")
                         .Where(o.OrderDate <= new DateTime(1999, 7, 1))
                         .DebugText);
         }

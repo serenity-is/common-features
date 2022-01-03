@@ -15,7 +15,7 @@
         NoteList: NotesEditor;
         LastContactDate: DateEditor;
         LastContactedBy: LookupEditor;
-        Email: EmailEditor;
+        Email: EmailAddressEditor;
         SendBulletin: BooleanEditor;
     }
 
@@ -34,7 +34,7 @@
                 var w1 = LookupEditor;
                 var w2 = NotesEditor;
                 var w3 = DateEditor;
-                var w4 = EmailEditor;
+                var w4 = EmailAddressEditor;
                 var w5 = BooleanEditor;
 
                 Q.initFormType(CustomerForm, [

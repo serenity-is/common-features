@@ -115,7 +115,7 @@ namespace Serenity.Demo.Northwind
             set => fields.LastContactedBy[this] = value;
         }
 
-        [Origin("cd"), EmailEditor]
+        [Origin("cd"), EmailAddressEditor]
         public string Email
         {
             get => fields.Email[this];

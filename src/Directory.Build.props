@@ -9,8 +9,9 @@
     <SerenitySrc Condition="'$(SerenitySrc)' == ''">$(SerenityDir)src\</SerenitySrc>
     <SerenityWebProj Condition="'$(SerenityWebProj)' == ''">$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.csproj</SerenityWebProj>
     <SerenityScriptsProj Condition="'$(SerenityScriptsProj)' == ''">$(SerenitySrc)Serenity.Scripts\Serenity.Scripts.csproj</SerenityScriptsProj>
-    <DotNetSergenExe>$(SerenitySrc)Serenity.Net.CodeGenerator\bin\sergen.exe</DotNetSergenExe>
-    <DotNetSergen Condition="'$(DotNetSergen)' == '' And Exists('$(DotNetSergenExe)')">$(DotNetSergenExe)</DotNetSergen>
+    <DotNetSergenDir>$(SerenitySrc)Serenity.Net.CodeGenerator\bin\</DotNetSergenDir>
+    <DotNetSergen Condition="'$(DotNetSergen)' == '' And Exists('$(DotNetSergenDir)sergen')">$(DotNetSergenDir)sergen</DotNetSergen>
+    <DotNetSergen Condition="'$(DotNetSergen)' == '' And Exists('$(DotNetSergenDir)sergen.exe')">$(DotNetSergenDir)sergen.exe</DotNetSergen>
     <DotNetSergen Condition="'$(DotNetSergen)' == ''">dotnet sergen</DotNetSergen>
     <SergenTransform>all</SergenTransform>
     <StaticWebAssetBasePath>/$(MSBuildProjectName)</StaticWebAssetBasePath>

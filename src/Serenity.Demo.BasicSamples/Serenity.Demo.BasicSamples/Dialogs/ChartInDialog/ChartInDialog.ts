@@ -1,6 +1,7 @@
-﻿declare var Morris: any;
+﻿namespace Serenity.Demo.BasicSamples {
 
-namespace Serenity.Demo.BasicSamples {
+    const chartColors = ['#4E79A7', '#A0CBE8', '#F28E2B', '#FFBE7D', '#59A14F', '#8CD17D', '#B6992D', '#F1CE63', '#499894', '#86BCB6',
+        '#E15759', '#FF9D9A', '#79706E', '#BAB0AC', '#D37295', '#FABFD2', '#B07AA1', '#D4A6C8', '#9D7660', '#D7B5A6'];
 
     @Serenity.Decorators.registerClass()
     @Serenity.Decorators.resizable()
@@ -19,25 +20,26 @@ namespace Serenity.Demo.BasicSamples {
 
         protected onDialogOpen() {
             super.onDialogOpen();
+
             BasicSamplesService.OrdersByShipper({}, response => {
-                this.areaChart = new Morris.Area({
-                    element: this.idPrefix + 'Chart',
-                    resize: true, parseTime: false,
-                    data: response.Values,
-                    xkey: 'Month',
-                    ykeys: response.ShipperKeys, labels: response.ShipperLabels, hideHover: 'auto'
-                });
+                this.areaChart = new Chart(document.getElementById(
+                    this.idPrefix + 'Chart') as HTMLCanvasElement, {
+                        type: "bar",
+                        data: {
+                            labels: response.Values.map(x => x.Month),
+                            datasets: response.ShipperKeys.map((shipperKey, shipperIdx) => ({
+                                label: response.ShipperLabels[shipperIdx],
+                                fill: true,
+                                backgroundColor: chartColors[shipperIdx % chartColors.length],
+                                data: response.Values.map((x, ix) => response.Values[ix][shipperKey])
+                            }))
+                        }
+                    });
             });
         }
 
-        protected arrange() {
-            super.arrange();
-            this.areaChart && this.areaChart.redraw();
-        }
-
         protected getTemplate() {
-            // you could also put this in a ChartInDialog.Template.html file. it's here for simplicity.
-            return "<div id='~_Chart'></div>";
+            return "<canvas id='~_Chart'></div>";
         }
 
         protected getDialogOptions() {

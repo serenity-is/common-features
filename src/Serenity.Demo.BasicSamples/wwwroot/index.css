@@ -142,12 +142,6 @@
 .s-Demo-BasicSamples-OtherFormInTabOneBarDialog .caption {
   width: 120px;
 }
-.inline-action.view-details {
-  background-image: url(../Content/serenity/images/magnifier-left.png);
-}
-.inline-action.new-order {
-  background-image: url(../Content/serenity/images/store.png);
-}
 .s-Demo-BasicSamples-EntityDialogAsPanel {
   background-color: #fff;
   padding: 10px;

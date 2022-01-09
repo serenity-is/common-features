@@ -24,7 +24,8 @@ namespace Serenity.Demo.BasicSamples {
             columns.splice(1, 0, {
                 field: 'View Details',
                 name: '',
-                format: ctx => '<a class="inline-action view-details" title="view details"></a>',
+                format: ctx => `<a class="inline-action view-details" title="view details">
+                    <i class="fa fa-search"></i></a>`,
                 width: 24,
                 minWidth: 24,
                 maxWidth: 24 
@@ -33,7 +34,8 @@ namespace Serenity.Demo.BasicSamples {
             columns.splice(2, 0, {
                 field: 'New Order',
                 name: '',
-                format: ctx => '<a class="inline-action new-order" title="new order"></a>',
+                format: ctx => `<a class="inline-action new-order text-purple" title="new order">
+                    <i class="fa fa-cart-plus"></i></a>`,
                 width: 24,
                 minWidth: 24,
                 maxWidth: 24

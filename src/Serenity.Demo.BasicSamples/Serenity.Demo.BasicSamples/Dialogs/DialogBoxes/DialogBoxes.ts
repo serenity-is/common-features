@@ -4,6 +4,7 @@
         confirmDialogButtons();
         confirmWithCustomTitle();
         information();
+        success();
         warning();
         alert();
         alertWithHtmlContent();
@@ -53,6 +54,17 @@
                 "What a nice day",
                 () => {
                     Q.notifySuccess("No problem!");
+                });
+        });
+    }
+
+    function success() {
+
+        $('#Success').click(() => {
+            Q.success(
+                "Operation complete",
+                () => {
+                    Q.notifySuccess("Well done!");
                 });
         });
     }

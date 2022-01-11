@@ -1,9 +1,17 @@
 ﻿<Project>
-  <Target Name="NpmInstallParent" BeforeTargets="BeforeBuild" Condition="Exists('..\package.json') AND !Exists('..\node_modules\@types\jquery\index.d.ts')">
-    <Exec Command="npm install" ContinueOnError="true" WorkingDirectory="..\" />
+  <Target Name="ComputeNpmPackageMetadata">
+    <ItemGroup>
+      <NpmPackageFile>
+        <StampFile>$([System.IO.Path]::Combine('%(RootDir)%(Directory)', 'node_modules', '.install-stamp'))</StampFile>
+        <WorkingDirectory>%(RootDir)%(Directory)</WorkingDirectory>
+        <Command Condition="$(RestorePackagesWithLockFile) != 'true'">npm install</Command>
+        <Command Condition="$(RestorePackagesWithLockFile) == 'true'">npm ci</Command>
+      </NpmPackageFile>
+    </ItemGroup>
   </Target>
-  <Target Name="NpmInstallSelf" BeforeTargets="BeforeBuild" Condition="Exists('package.json') AND !Exists('node_modules\@types\jquery\index.d.ts')">
-    <Exec Command="npm install" ContinueOnError="true" />
+  <Target Name="NpmInstall" BeforeTargets="BeforeBuild" DependsOnTargets="ComputeNpmPackageMetadata" Inputs="@(NpmPackageFile)" Outputs="%(NpmPackageFile.StampFile)">
+    <Exec Command="@(NpmPackageFile->'%(Command)')" WorkingDirectory="%(WorkingDirectory)" />
+    <Touch Files="@(NpmPackageFile->'%(StampFile)')" AlwaysCreate="true" />
   </Target>
   <Target Name="TransformInitTools" BeforeTargets="BeforeBuild" Condition="!Exists('$(MSBuildThisFileDirectory).config\dotnet-tools.json')">
     <Exec Command="dotnet new tool-manifest" ContinueOnError="true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
@@ -37,8 +45,9 @@
       <ProjectTSConfigInputs Include="..\tsconfig.base.json" Condition="Exists('tsconfig.json')" />
     </ItemGroup>
   </Target>
-  <Target Name="CompileProjectTSConfig" AfterTargets="CalculateProjectTSConfigInputs" Condition="Exists('tsconfig.json')"
+  <Target Name="CompileProjectTSConfig" DependsOnTargets="NpmInstall" AfterTargets="CalculateProjectTSConfigInputs" Condition="Exists('tsconfig.json')"
     Inputs="@(ProjectTSConfigInputs)" Outputs="wwwroot\index.js;wwwroot\index.d.ts">
+    <Message Text="$(NpmPackageDir)" Importance="high"></Message>
     <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
     <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" ContinueOnError="true" />
   </Target>

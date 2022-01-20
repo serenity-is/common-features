@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace Serenity.Demo.Northwind
 {
-    [ConnectionKey("Northwind"), Module("Northwind"), TableName("[dbo].[GrossSales]")]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("GrossSales")]
     [DisplayName("Customer Gross Sales")]
     [ReadPermission("Northwind:General")]
     [ModifyPermission("Northwind:General")]

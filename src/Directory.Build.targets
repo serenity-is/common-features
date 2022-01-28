@@ -13,19 +13,20 @@
     <Touch Files="@(NpmPackageFile->'%(StampFile)')" AlwaysCreate="true" />
     <Exec Command="@(NpmPackageFile->'%(Command)')" WorkingDirectory="%(WorkingDirectory)" ContinueOnError="true" />
   </Target>
-  <Target Name="TransformInitTools" BeforeTargets="BeforeBuild" Condition="!Exists('$(MSBuildThisFileDirectory).config\dotnet-tools.json')">
+  <Target Name="TransformInitTools" BeforeTargets="BeforeBuild" Condition="!Exists('$(DotnetToolManifestFile)')">
     <Exec Command="dotnet new tool-manifest" ContinueOnError="true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
     <Exec Command="dotnet tool install sergen" ContinueOnError="true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
   </Target>
-  <Target Name="TransformToolRestore" AfterTargets="BeforeBuild"
+  <Target Name="TransformToolRestore" AfterTargets="BeforeBuild" Inputs="$(DotnetToolManifestFile)" Outputs="$(DotnetToolRestoreStamp)"
           Condition="'$(DotNetSergen)' == 'dotnet sergen' And ('$(SergenTransform)' != '' OR Exists('tsconfig.json'))">
     <Exec Command="dotnet tool restore" ContinueOnError="true" />
+	<Touch Files="$(DotnetToolRestoreStamp)" AlwaysCreate="true" />
   </Target>
   <Target Name="TransformSergenRestore" BeforeTargets="BeforeBuild"
           Condition="Exists('tsconfig.json')">
     <Exec Command="$(DotNetSergen) restore" ContinueOnError="true" />
   </Target>
-  <Target Name="TransformMvc" BeforeTargets="BeforeBuild" 
+  <Target Name="TransformMvc" BeforeTargets="BeforeBuild"
           Condition="'$(SergenTransform)' == 'mvc'">
     <Exec Command="$(DotNetSergen) mvc" ContinueOnError="true" />
   </Target>

@@ -165,6 +165,14 @@ namespace Serenity.Demo.Northwind
             foreach (var item in newList)
             {
                 var id = rowIdField.AsObject(item);
+                if (id == null || !oldById.ContainsKey(Convert.ToInt64(id,
+                    CultureInfo.InvariantCulture)))
+                    SaveNote(uow, item, entityType, entityId, null);
+            }
+
+            foreach (var item in newList)
+            {
+                var id = rowIdField.AsObject(item);
 
                 if (id == null || !oldById.TryGetValue(Convert.ToInt64(id, 
                     CultureInfo.InvariantCulture), out NoteRow old))
@@ -187,14 +195,6 @@ namespace Serenity.Demo.Northwind
 
                 SaveNote(uow, item, entityType, entityId, Convert.ToInt64(id, 
                     CultureInfo.InvariantCulture));
-            }
-
-            foreach (var item in newList)
-            {
-                var id = rowIdField.AsObject(item);
-                if (id == null || !oldById.ContainsKey(Convert.ToInt64(id, 
-                    CultureInfo.InvariantCulture)))
-                    SaveNote(uow, item, entityType, entityId, null);
             }
         }
 

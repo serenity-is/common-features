@@ -14,17 +14,19 @@ namespace Serenity.Demo.Northwind
         public Field Target { get; set; }
 
         private readonly IUserRetrieveService userRetriever;
-        private readonly INoteListHandler listHandler;
-        private readonly INoteSaveHandler saveHandler;
-        private readonly INoteDeleteHandler deleteHandler;
+        private readonly IServiceResolver<INoteListHandler> listHandlerResolver;
+        private readonly IServiceResolver<INoteSaveHandler> saveHandlerResolver;
+        private readonly IServiceResolver<INoteDeleteHandler> deleteHandlerResolver;
 
         public NotesBehavior(IUserRetrieveService userRetriever,
-            INoteListHandler listHandler, INoteSaveHandler saveHandler, INoteDeleteHandler deleteHandler)
+            IServiceResolver<INoteListHandler> listHandlerResolver, 
+            IServiceResolver<INoteSaveHandler> saveHandlerResolver, 
+            IServiceResolver<INoteDeleteHandler> deleteHandlerResolver)
         {
             this.userRetriever = userRetriever ?? throw new ArgumentNullException(nameof(userRetriever));
-            this.listHandler = listHandler ?? throw new ArgumentNullException(nameof(listHandler));
-            this.saveHandler = saveHandler ?? throw new ArgumentNullException(nameof(saveHandler));
-            this.deleteHandler = deleteHandler ?? throw new ArgumentNullException(nameof(deleteHandler));
+            this.listHandlerResolver = listHandlerResolver ?? throw new ArgumentNullException(nameof(listHandlerResolver));
+            this.saveHandlerResolver = saveHandlerResolver ?? throw new ArgumentNullException(nameof(saveHandlerResolver));
+            this.deleteHandlerResolver = deleteHandlerResolver ?? throw new ArgumentNullException(nameof(deleteHandlerResolver));
         }
 
         public bool ActivateFor(IRow row)
@@ -72,7 +74,7 @@ namespace Serenity.Demo.Northwind
                 }
             };
 
-            var notes = listHandler.List(handler.Connection, listRequest).Entities;
+            var notes = listHandlerResolver.Resolve().List(handler.Connection, listRequest).Entities;
 
             var userIdList = notes.Where(x => x.InsertUserId != null)
                 .Select(x => x.InsertUserId.Value).Distinct();
@@ -105,14 +107,14 @@ namespace Serenity.Demo.Northwind
             var saveRequest = new SaveRequest<NoteRow> { Entity = note };
 
             if (noteId == null)
-                saveHandler.Create(uow, saveRequest);
+                saveHandlerResolver.Resolve().Create(uow, saveRequest);
             else
-                saveHandler.Update(uow, saveRequest);
+                saveHandlerResolver.Resolve().Update(uow, saveRequest);
         }
 
         private void DeleteNote(IUnitOfWork uow, long noteId)
         {
-            deleteHandler.Delete(uow, new DeleteRequest { EntityId = noteId });
+            deleteHandlerResolver.Resolve().Delete(uow, new DeleteRequest { EntityId = noteId });
         }
 
         private void NoteListSave(IUnitOfWork uow, string entityType, long entityId, 
@@ -226,7 +228,7 @@ namespace Serenity.Demo.Northwind
                 }
             };
             
-            var oldList = listHandler.List(handler.Connection, listRequest).Entities;
+            var oldList = listHandlerResolver.Resolve().List(handler.Connection, listRequest).Entities;
             NoteListSave(handler.UnitOfWork, handler.Row.Table, entityId, oldList, newList);
         }
 

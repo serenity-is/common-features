@@ -22,9 +22,38 @@
     <Exec Command="dotnet tool restore" ContinueOnError="true" />
 	<Touch Files="$(DotnetToolRestoreStamp)" AlwaysCreate="true" />
   </Target>
-  <Target Name="TransformSergenRestore" BeforeTargets="BeforeBuild"
-          Condition="Exists('tsconfig.json')">
-    <Exec Command="$(DotNetSergen) restore" ContinueOnError="true" />
+  <Target Name="RestoreStaticWebAssetTypings" AfterTargets="GenerateStaticWebAssetsManifest" Condition="Exists('tsconfig.json')">
+    <ItemGroup>
+      <_StaticWebAssetTyping
+        Include="%(_ExternalStaticWebAsset.RootDir)%(_ExternalStaticWebAsset.Directory)%(_ExternalStaticWebAsset.Filename).d.ts"
+        Condition="'%(_ExternalStaticWebAsset.Filename)' != 'Serenity.CoreLib'  
+          And Exists('%(_ExternalStaticWebAsset.RootDir)%(_ExternalStaticWebAsset.Directory)..\wwwroot\%(_ExternalStaticWebAsset.Filename)%(_ExternalStaticWebAsset.Extension)')
+          And '%(_ExternalStaticWebAsset.Extension)' == '.js' And Exists('%(_ExternalStaticWebAsset.RootDir)%(_ExternalStaticWebAsset.Directory)%(_ExternalStaticWebAsset.Filename).d.ts')">
+        <TargetFile>%(_ExternalStaticWebAsset.BasePath)</TargetFile>
+      </_StaticWebAssetTyping>
+      <_StaticWebAssetTyping
+        Include="%(_ExternalStaticWebAsset.RootDir)%(_ExternalStaticWebAsset.Directory)%(_ExternalStaticWebAsset.Filename).d.ts"
+        Condition="'%(_ExternalStaticWebAsset.Filename)' == 'Serenity.CoreLib'
+          And Exists('%(_ExternalStaticWebAsset.RootDir)%(_ExternalStaticWebAsset.Directory)..\wwwroot\%(_ExternalStaticWebAsset.Filename)%(_ExternalStaticWebAsset.Extension)')
+          And '%(_ExternalStaticWebAsset.Extension)' == '.js' And Exists('%(_ExternalStaticWebAsset.RootDir)%(_ExternalStaticWebAsset.Directory)%(_ExternalStaticWebAsset.Filename).d.ts')">
+        <TargetFile>/serenity.corelib</TargetFile>
+      </_StaticWebAssetTyping>
+      <_StaticWebAssetTyping
+        Include="%(_ExternalStaticWebAsset.RootDir)%(_ExternalStaticWebAsset.Directory)..\typings\*\index.d.ts"
+        Condition="'%(_ExternalStaticWebAsset.Filename)' != 'Serenity.CoreLib' 
+          And Exists('%(_ExternalStaticWebAsset.RootDir)%(_ExternalStaticWebAsset.Directory)..\.nupkg.metadata')
+          And '%(_ExternalStaticWebAsset.Extension)' == '.js'">
+        <TargetFile>%(_ExternalStaticWebAsset.BasePath)</TargetFile>
+      </_StaticWebAssetTyping>
+      <_StaticWebAssetTyping
+        Include="%(_ExternalStaticWebAsset.RootDir)%(_ExternalStaticWebAsset.Directory)..\typings\serenity.corelib\index.d.ts"
+        Condition="'%(_ExternalStaticWebAsset.Filename)' == 'Serenity.CoreLib' 
+          And Exists('%(_ExternalStaticWebAsset.RootDir)%(_ExternalStaticWebAsset.Directory)..\.nupkg.metadata')
+          And '%(_ExternalStaticWebAsset.Extension)' == '.js'">
+        <TargetFile>/serenity.corelib</TargetFile>
+      </_StaticWebAssetTyping>
+    </ItemGroup>
+    <Copy SourceFiles="@(_StaticWebAssetTyping)" DestinationFiles="@(_StaticWebAssetTyping->'typings%(TargetFile)\index.d.ts'->ToLowerInvariant())" SkipUnchangedFiles="true" />
   </Target>
   <Target Name="TransformMvc" BeforeTargets="BeforeBuild"
           Condition="'$(SergenTransform)' == 'mvc'">

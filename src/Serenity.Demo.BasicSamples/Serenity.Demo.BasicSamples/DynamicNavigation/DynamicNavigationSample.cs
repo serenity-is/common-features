@@ -32,7 +32,7 @@ namespace Serenity.Demo.BasicSamples
                         path: "Basic Samples/Dynamic Navigation/" + 
                             category.CategoryName.Replace("/", "//", StringComparison.Ordinal),
                         url: "~/Northwind/Product?cat=" + category.CategoryID,
-                        permission: Northwind.PermissionKeys.General,
+                        permission: PermissionKeys.General,
                         icon: "icon-folder-alt"));
             }
 

@@ -1,8 +1,8 @@
 <Project>
   <Import Project="$(MSBuildThisFileDirectory)..\build\Package.Build.props" Condition="Exists('$(MSBuildThisFileDirectory)..\build\Package.Build.props')" />
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <TargetFramework>net6.0</TargetFramework>
+    <SerenityVersion Condition="'$(SerenityVersion)' == ''">6.0.0</SerenityVersion>
     <SerenityDir Condition="'$(SerenityDir)' == '' And Exists('$(SolutionDir)Serenity\')">$(SolutionDir)Serenity\</SerenityDir>
     <SerenityDir Condition="'$(SerenityDir)' == '' And Exists('$(MSBuildThisFileDirectory)..\Serenity\')">$(MSBuildThisFileDirectory)..\Serenity\</SerenityDir>
     <SerenityDir Condition="'$(SerenityDir)' == '' And Exists('$(MSBuildThisFileDirectory)..\..\Serenity\')">$(MSBuildThisFileDirectory)..\..\Serenity\</SerenityDir>
@@ -18,11 +18,8 @@
     <SergenTransform>all</SergenTransform>
     <StaticWebAssetBasePath>/$(MSBuildProjectName)</StaticWebAssetBasePath>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <DefaultItemExcludes>$(DefaultItemExcludes);package*.json;sergen.json;tsconfig.json;wwwroot\index.d.ts;wwwroot\**\*.less</DefaultItemExcludes>
-    <NewtonsoftJsonVersion Condition="'$(NewtonsoftJsonVersion)' == ''">12.0.3</NewtonsoftJsonVersion>
-    <FrameworkPackageVersion Condition="'$(FrameworkPackageVersion)' == ''">5.0.0</FrameworkPackageVersion>
-    <AspNetCorePackageVersion Condition="'$(AspNetCorePackageVersion)' == ''">5.0.0</AspNetCorePackageVersion>
-    <SerenityVersion Condition="'$(SerenityVersion)' == ''">5.2.2</SerenityVersion>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" Condition="'$(UsingMicrosoftNETSdkWeb)' != 'true'" />
@@ -30,7 +27,7 @@
     <ProjectReference Include="$(SerenityWebProj)" Condition="Exists('$(SerenityWebProj)')" />
     <PackageReference Include="Serenity.Scripts" Version="$(SerenityVersion)" Condition="!Exists('$(SerenityScriptsProj)')" />
     <ProjectReference Include="$(SerenityScriptsProj)" Condition="Exists('$(SerenityScriptsProj)')" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.1.2" Condition="Exists('tsconfig.json')">
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.6.2" Condition="Exists('tsconfig.json')">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

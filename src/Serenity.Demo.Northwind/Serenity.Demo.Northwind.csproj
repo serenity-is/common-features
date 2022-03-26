@@ -4,7 +4,6 @@
     <EmbeddedResource Include="Migrations\*.sql" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FluentMigrator" Version="3.2.9" />
     <PackageReference Include="Serenity.Extensions" Version="$(Version)" Condition="!Exists('..\Serenity.Extensions\Serenity.Extensions.csproj')" />
     <ProjectReference Include="..\Serenity.Extensions\Serenity.Extensions.csproj" Condition="Exists('..\Serenity.Extensions\Serenity.Extensions.csproj')" />
   </ItemGroup>

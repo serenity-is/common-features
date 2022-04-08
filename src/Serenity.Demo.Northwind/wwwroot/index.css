@@ -69,7 +69,7 @@
 }
 
 .s-NotesEditor .note-delete:after {
-  font-family: var(--s-icon-font);
+  font-family: var(--s-icon-font, "FontAwesome");
   font-weight: var(--s-icon-solid);
   color: var(--bs-danger);
   content: "\f00d";

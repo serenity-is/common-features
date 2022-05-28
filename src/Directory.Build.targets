@@ -60,7 +60,7 @@
     <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
     <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
-  <Target Name="IncludeTypingsToPackage" AfterTargets="_RemoveWebRootContentFromPackaging">
+  <Target Name="IncludeTypingsToPackage" BeforeTargets="_GetPackageFiles">
     <ItemGroup>
       <None Include="@(TypingsToPackage)" Pack="true" PackagePath="%(TypingsToPackage.PackagePath)" />
     </ItemGroup>

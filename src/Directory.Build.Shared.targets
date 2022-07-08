@@ -9,7 +9,7 @@
     <Exec Command="dotnet tool restore" ContinueOnError="true" />
     <Touch Files="$(DotnetToolRestoreStamp)" AlwaysCreate="true" />
   </Target>
-  <Target Name="RestoreStaticWebAssetTypings" AfterTargets="ResolveProjectStaticWebAssets" DependsOnTargets="ResolveReferencedProjectsStaticWebAssets" Condition="Exists('tsconfig.json')">
+  <Target Name="RestoreStaticWebAssetTypings" BeforeTargets="GenerateMSBuildEditorConfigFileShouldRun" DependsOnTargets="$(ResolveStaticWebAssetsInputsDependsOn)" Condition="Exists('tsconfig.json')">
     <ItemGroup>
       <_StaticWebAssetTyping Include="%(StaticWebAsset.RootDir)%(Directory)%(Filename).d.ts" Condition="'%(StaticWebAsset.SourceType)' == 'Project' And '%(Extension)' == '.js' And Exists('%(RootDir)%(Directory)%(Filename).d.ts') And $([System.String]::Copy('%(Directory)').Replace('\','/').EndsWith('wwwroot/'))">
         <TargetFolder Condition="'%(StaticWebAsset.Filename)' != 'Serenity.CoreLib'">%(StaticWebAsset.SourceId)</TargetFolder>

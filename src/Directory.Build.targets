@@ -1,40 +1,5 @@
 ﻿<Project>
-  <Target Name="ComputeNpmPackageMetadata">
-    <ItemGroup>
-      <NpmPackageFile>
-        <StampFile>$([System.IO.Path]::Combine('%(RootDir)%(Directory)', 'node_modules', '.install-stamp'))</StampFile>
-        <WorkingDirectory>%(RootDir)%(Directory)</WorkingDirectory>
-        <Command Condition="$(RestorePackagesWithLockFile) != 'true'">npm install</Command>
-        <Command Condition="$(RestorePackagesWithLockFile) == 'true'">npm ci</Command>
-      </NpmPackageFile>
-    </ItemGroup>
-  </Target>
-  <Target Name="NpmInstall" BeforeTargets="BeforeBuild" DependsOnTargets="ComputeNpmPackageMetadata" Inputs="@(NpmPackageFile)" Outputs="%(NpmPackageFile.StampFile)">
-    <Touch Files="@(NpmPackageFile->'%(StampFile)')" AlwaysCreate="true" />
-    <Exec Command="@(NpmPackageFile->'%(Command)')" WorkingDirectory="%(WorkingDirectory)" ContinueOnError="true" />
-  </Target>
-  <Target Name="TransformInitTools" BeforeTargets="BeforeBuild" Condition="!Exists('$(DotnetToolManifestFile)')">
-    <Exec Command="dotnet new tool-manifest" ContinueOnError="true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
-    <Exec Command="dotnet tool install sergen" ContinueOnError="true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
-  </Target>
-  <Target Name="TransformToolRestore" AfterTargets="BeforeBuild" Inputs="$(DotnetToolManifestFile)" Outputs="$(DotnetToolRestoreStamp)"
-          Condition="'$(DotNetSergen)' == 'dotnet sergen' And ('$(SergenTransform)' != '' OR Exists('tsconfig.json'))">
-    <Exec Command="dotnet tool restore" ContinueOnError="true" />
-    <Touch Files="$(DotnetToolRestoreStamp)" AlwaysCreate="true" />
-  </Target>
-  <Target Name="RestoreStaticWebAssetTypings" AfterTargets="GenerateStaticWebAssetsManifest" Condition="Exists('tsconfig.json')">
-    <ItemGroup>
-      <_StaticWebAssetTyping Include="%(_ExternalStaticWebAsset.RootDir)%(Directory)%(Filename).d.ts" Condition="'%(Extension)' == '.js' And Exists('%(RootDir)%(Directory)%(Filename).d.ts') And $([System.String]::Copy('%(Directory)').Replace('\','/').EndsWith('wwwroot/'))">
-        <TargetFolder Condition="'%(_ExternalStaticWebAsset.Filename)' != 'Serenity.CoreLib'">%(_ExternalStaticWebAsset.SourceId)</TargetFolder>
-        <TargetFolder Condition="'%(_ExternalStaticWebAsset.Filename)' == 'Serenity.CoreLib'">serenity.corelib</TargetFolder>
-      </_StaticWebAssetTyping>
-      <_StaticWebAssetTyping Include="%(_ExternalStaticWebAsset.RootDir)%(Directory)..\typings\**\index.d.ts" Condition="'%(Extension)' == '.js' And $([System.String]::Copy('%(Directory)').Replace('\','/').EndsWith('staticwebassets/'))">
-        <TargetFolder Condition="'%(_ExternalStaticWebAsset.Filename)' != 'Serenity.CoreLib'">%(_ExternalStaticWebAsset.SourceId)</TargetFolder>
-        <TargetFolder Condition="'%(_ExternalStaticWebAsset.Filename)' == 'Serenity.CoreLib'">serenity.corelib</TargetFolder>
-      </_StaticWebAssetTyping>
-    </ItemGroup>
-    <Copy SourceFiles="@(_StaticWebAssetTyping)" DestinationFiles="@(_StaticWebAssetTyping->'typings\%(TargetFolder)\index.d.ts'->ToLowerInvariant())" SkipUnchangedFiles="true" />
-  </Target>
+  <Import Project="$(MSBuildThisFileDirectory)Directory.Build.Shared.targets" />
   <Target Name="TransformMvc" BeforeTargets="BeforeBuild"
           Condition="'$(SergenTransform)' == 'mvc'">
     <Exec Command="$(DotNetSergen) mvc" ContinueOnError="true" />
@@ -46,23 +11,5 @@
   <Target Name="TransformServerTypings" AfterTargets="AfterBuild" 
           Condition="'$(SergenTransform)' == 'servertypings' OR '$(SergenTransform)' == 'all'">
     <Exec Command="$(DotNetSergen) servertypings" ContinueOnError="true" />
-  </Target>
-  <Target Name="CalculateProjectTSConfigInputs" AfterTargets="AfterBuild">
-    <ItemGroup>
-      <ProjectTSConfigInputs Include="@(TypeScriptCompile)"
-          Condition="'%(TypeScriptCompile.Identity)' != 'wwwroot\index.d.ts'" />
-      <ProjectTSConfigInputs Include="tsconfig.json" Condition="Exists('tsconfig.json')" />
-      <ProjectTSConfigInputs Include="..\tsconfig.base.json" Condition="Exists('tsconfig.json')" />
-    </ItemGroup>
-  </Target>
-  <Target Name="CompileProjectTSConfig" DependsOnTargets="NpmInstall" AfterTargets="CalculateProjectTSConfigInputs" Condition="Exists('tsconfig.json')"
-    Inputs="@(ProjectTSConfigInputs)" Outputs="wwwroot\index.js;wwwroot\index.d.ts">
-    <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
-    <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" ContinueOnError="true" />
-  </Target>
-  <Target Name="IncludeTypingsToPackage" BeforeTargets="_GetPackageFiles">
-    <ItemGroup>
-      <None Include="@(TypingsToPackage)" Pack="true" PackagePath="%(TypingsToPackage.PackagePath)" />
-    </ItemGroup>
   </Target>
 </Project>

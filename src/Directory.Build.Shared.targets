@@ -22,7 +22,7 @@
     </ItemGroup>
     <Copy SourceFiles="@(_StaticWebAssetTyping)" DestinationFiles="@(_StaticWebAssetTyping->'typings\%(TargetFolder)\index.d.ts'->ToLowerInvariant())" SkipUnchangedFiles="true" />
   </Target>
-  <Target Name="CalculateProjectTSConfigInputs" AfterTargets="AfterBuild">
+  <Target Name="CalculateProjectTSConfigInputs">
     <ItemGroup>
       <ProjectTSConfigInputs Include="@(TypeScriptCompile)"
           Condition="'%(TypeScriptCompile.Identity)' != 'wwwroot\index.d.ts'" />
@@ -30,7 +30,7 @@
       <ProjectTSConfigInputs Include="..\tsconfig.base.json" Condition="Exists('tsconfig.json')" />
     </ItemGroup>
   </Target>
-  <Target Name="CompileProjectTSConfig" DependsOnTargets="NpmInstall" AfterTargets="CalculateProjectTSConfigInputs" Condition="Exists('tsconfig.json')"
+  <Target Name="CompileProjectTSConfig" DependsOnTargets="NpmInstall;CalculateProjectTSConfigInputs" AfterTargets="AfterBuild" Condition="Exists('tsconfig.json')"
     Inputs="@(ProjectTSConfigInputs)" Outputs="wwwroot\index.js;wwwroot\index.d.ts">
     <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
     <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" ContinueOnError="true" />

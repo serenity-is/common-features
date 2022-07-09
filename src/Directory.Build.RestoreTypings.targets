@@ -20,4 +20,11 @@
     </ItemGroup>
     <Copy SourceFiles="@(_StaticWebAssetTyping)" DestinationFiles="@(_StaticWebAssetTyping->'typings\%(TargetFolder)\index.d.ts'->ToLowerInvariant())" SkipUnchangedFiles="true" />
   </Target>
+  <PropertyGroup>
+    <CompileTypeScriptDependsOn>
+      RestoreTypings;
+      NpmInstall;
+      $(CompileTypeScriptDependsOn)
+    </CompileTypeScriptDependsOn>
+  </PropertyGroup>
 </Project>

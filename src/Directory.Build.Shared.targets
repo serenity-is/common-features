@@ -1,4 +1,5 @@
 <Project>
+  <Import Project="$(MSBuildThisFileDirectory)\Directory.Build.RestoreTypings.targets" />
   <Import Project="$(SerenitySrc)RestoreNpmPackages.targets" />
   <Target Name="TransformInitTools" BeforeTargets="BeforeBuild" Condition="!Exists('$(DotnetToolManifestFile)')">
     <Exec Command="dotnet new tool-manifest" ContinueOnError="true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
@@ -9,7 +10,6 @@
     <Exec Command="dotnet tool restore" ContinueOnError="true" />
     <Touch Files="$(DotnetToolRestoreStamp)" AlwaysCreate="true" />
   </Target>
-  <Import Project="$(MSBuildThisFileDirectory)\Directory.Build.RestoreTypings.targets" />
   <Target Name="CalculateProjectTSConfigInputs">
     <ItemGroup>
       <ProjectTSConfigInputs Include="@(TypeScriptCompile)"
@@ -18,7 +18,7 @@
       <ProjectTSConfigInputs Include="..\tsconfig.base.json" Condition="Exists('tsconfig.json')" />
     </ItemGroup>
   </Target>
-  <Target Name="CompileProjectTSConfig" DependsOnTargets="NpmInstall;CalculateProjectTSConfigInputs" AfterTargets="AfterBuild" Condition="Exists('tsconfig.json')"
+  <Target Name="CompileProjectTSConfig" DependsOnTargets="RestoreTypings;NpmInstall;CalculateProjectTSConfigInputs;" AfterTargets="AfterBuild" Condition="Exists('tsconfig.json')"
     Inputs="@(ProjectTSConfigInputs)" Outputs="wwwroot\index.js;wwwroot\index.d.ts">
     <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
     <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" ContinueOnError="true" />

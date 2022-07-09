@@ -9,27 +9,7 @@
     <Exec Command="dotnet tool restore" ContinueOnError="true" />
     <Touch Files="$(DotnetToolRestoreStamp)" AlwaysCreate="true" />
   </Target>
-  <Target Name="RestoreStaticWebAssetTypings" BeforeTargets="GenerateMSBuildEditorConfigFileShouldRun" DependsOnTargets="$(ResolveStaticWebAssetsInputsDependsOn);IncludeTransitiveProjectReferences" Condition="Exists('tsconfig.json')">
-    <ItemGroup>
-      <_StaticWebAssetTyping Include="%(ProjectReference.RootDir)%(ProjectReference.Directory)wwwroot\Serenity.CoreLib.d.ts"
-        Condition="Exists('%(ProjectReference.RootDir)%(ProjectReference.Directory)wwwroot\Serenity.CoreLib.d.ts')">
-        <TargetFolder>serenity.corelib</TargetFolder>
-      </_StaticWebAssetTyping>
-      <_StaticWebAssetTyping Include="%(ProjectReference.RootDir)%(ProjectReference.Directory)wwwroot\index.d.ts"
-        Condition="Exists('%(ProjectReference.RootDir)%(ProjectReference.Directory)wwwroot\index.d.ts')">
-        <TargetFolder>%(ProjectReference.Filename)</TargetFolder>
-      </_StaticWebAssetTyping>
-      <_StaticWebAssetTyping Include="%(StaticWebAsset.RootDir)%(Directory)%(Filename).d.ts" Condition="'%(StaticWebAsset.SourceType)' == 'Project' And '%(Extension)' == '.js' And Exists('%(RootDir)%(Directory)%(Filename).d.ts') And $([System.String]::Copy('%(Directory)').Replace('\','/').EndsWith('wwwroot/'))">
-        <TargetFolder Condition="'%(StaticWebAsset.Filename)' != 'Serenity.CoreLib'">%(StaticWebAsset.SourceId)</TargetFolder>
-        <TargetFolder Condition="'%(StaticWebAsset.Filename)' == 'Serenity.CoreLib'">serenity.corelib</TargetFolder>
-      </_StaticWebAssetTyping>
-      <_StaticWebAssetTyping Include="%(StaticWebAsset.RootDir)%(Directory)..\typings\**\index.d.ts" Condition="'%(StaticWebAsset.SourceType)' == 'Project' And '%(Extension)' == '.js' And $([System.String]::Copy('%(Directory)').Replace('\','/').EndsWith('staticwebassets/'))">
-        <TargetFolder Condition="'%(StaticWebAsset.Filename)' != 'Serenity.CoreLib'">%(StaticWebAsset.SourceId)</TargetFolder>
-        <TargetFolder Condition="'%(StaticWebAsset.Filename)' == 'Serenity.CoreLib'">serenity.corelib</TargetFolder>
-      </_StaticWebAssetTyping>
-    </ItemGroup>
-    <Copy SourceFiles="@(_StaticWebAssetTyping)" DestinationFiles="@(_StaticWebAssetTyping->'typings\%(TargetFolder)\index.d.ts'->ToLowerInvariant())" SkipUnchangedFiles="true" />
-  </Target>
+  <Import Project="$(MSBuildThisFileDirectory)\Directory.Build.RestoreTypings.targets" />
   <Target Name="CalculateProjectTSConfigInputs">
     <ItemGroup>
       <ProjectTSConfigInputs Include="@(TypeScriptCompile)"

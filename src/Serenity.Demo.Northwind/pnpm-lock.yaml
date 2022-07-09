@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@types/chart.js': 2.9.35
   '@types/jquery': 2.0.48
   '@types/jquery.blockui': 0.0.27
   '@types/jquery.validation': ^1.13.32
@@ -10,7 +9,6 @@ specifiers:
   '@types/toastr': ^2.1.33
 
 dependencies:
-  '@types/chart.js': 2.9.35
   '@types/jquery': 2.0.48
   '@types/jquery.blockui': 0.0.27
   '@types/jquery.validation': 1.16.7
@@ -19,12 +17,6 @@ dependencies:
   '@types/toastr': 2.1.39
 
 packages:
-
-  /@types/chart.js/2.9.35:
-    resolution: {integrity: sha512-MWx/zZlh4wHBbM4Tm4YsZyYGb1/LkTiFLFwX/FXb0EJCvXX2xWTRHwlJ2RAAEXWxLrOdaAWP8vFtJXny+4CpEw==}
-    dependencies:
-      moment: 2.29.4
-    dev: false
 
   /@types/jquery.blockui/0.0.27:
     resolution: {integrity: sha512-pOd83GV+O43sX+bEnS8yCdjxnfxfARovYM/xZ4eFVN90vqDTL8dYMxcOF1OZoKPDz59HOJIFHgMYPeLrZaBHlw==}
@@ -72,8 +64,4 @@ packages:
 
   /csstype/3.1.0:
     resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==}
-    dev: false
-
-  /moment/2.29.4:
-    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
     dev: false

@@ -22,6 +22,7 @@
             super.onDialogOpen();
 
             BasicSamplesService.OrdersByShipper({}, response => {
+                //@ts-ignore
                 this.areaChart = new Chart(document.getElementById(
                     this.idPrefix + 'Chart') as HTMLCanvasElement, {
                         type: "bar",

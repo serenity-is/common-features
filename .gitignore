@@ -5,6 +5,7 @@ obj/
 .vs/
 /build/.nupkg/
 node_modules/
+/src/*/package.lock.json
 /src/*/wwwroot/index.js
 /src/*/wwwroot/index.min.js
 /src/*/wwwroot/index.d.ts

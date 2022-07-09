@@ -34,7 +34,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)GlobalSuppressions.cs" Condition="Exists('$(MSBuildThisFileDirectory)GlobalSuppressions.cs')">
       <Link>Properties\GlobalSuppressions.cs</Link>
     </Compile>
-    <NpmPackageFile Include="$(MSBuildThisFileDirectory)package.json" Condition="Exists('$(MSBuildThisFileDirectory)package.json')" />
     <NpmPackageFile Include="$(ProjectDir)package.json" Condition="Exists('$(ProjectDir)package.json')" />
   </ItemGroup>
   <ItemGroup>

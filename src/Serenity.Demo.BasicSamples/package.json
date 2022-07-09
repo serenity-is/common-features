@@ -1,7 +1,7 @@
 {
-  "name": "serenity.common-features",
+  "name": "common-features",
   "version": "1.0.0",
-  "description": "Serenity Common Features",
+  "description": "common-features",
   "main": "index.js",
   "repository": {
     "type": "git",

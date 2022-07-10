@@ -9,79 +9,51 @@
         "index.d.ts",
         "LICENSE"
       ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "@types/jquery.blockui@0.0.29",
+      "destination": "types/jquery.blockui/",
+      "files": [
+        "index.d.ts",
+        "LICENSE"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "@types/jquery.validation@1.16.7",
+      "destination": "types/jquery.validation/",
+      "files": [
+        "LICENSE",
+        "index.d.ts"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "@types/jqueryui@1.12.16",
+      "destination": "types/jqueryui/",
+      "files": [
+        "index.d.ts",
+        "LICENSE"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "@types/react@16.1.0",
+      "destination": "types/react/",
+      "files": [
+        "index.d.ts",
+        "LICENSE"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "@types/react-dom@16.0.11",
+      "destination": "types/react-dom/",
+      "files": [
+        "index.d.ts",
+        "LICENSE"
+      ]
     }
-  ,
-{
-  "provider": "unpkg",
-  "library": "@types/jquery.blockui@0.0.29",
-  "destination": "types/jquery.blockui/",
-  "files": [
-    "index.d.ts",
-    "LICENSE"
   ]
-}
-,
-{
-  "provider": "unpkg",
-  "library": "@types/jquery.validation@1.16.7",
-  "destination": "types/jquery.validation/",
-  "files": [
-    "LICENSE",
-    "index.d.ts"
-  ]
-}
-,
-{
-  "provider": "unpkg",
-  "library": "@types/jqueryui@1.12.16",
-  "destination": "types/jqueryui/",
-  "files": [
-    "index.d.ts",
-    "LICENSE"
-  ]
-}
-,
-{
-  "provider": "unpkg",
-  "library": "@types/react@18.0.15",
-  "destination": "types/react/",
-  "files": [
-    "global.d.ts",
-    "index.d.ts",
-    "jsx-runtime.d.ts",
-    "jsx-dev-runtime.d.ts",
-    "LICENSE"
-  ]
-}
-,
-{
-  "provider": "unpkg",
-  "library": "csstype@3.1.0",
-  "destination": "types/csstype/",
-  "files": [
-    "index.d.ts",
-    "LICENSE"
-  ]
-}
-,
-{
-  "provider": "unpkg",
-  "library": "@types/prop-types@15.5.2",
-  "destination": "types/prop-types/",
-  "files": [
-    "index.d.ts",
-    "LICENSE"
-  ]
-}
-,
-{
-  "provider": "unpkg",
-  "library": "@types/react-dom@16.0.5",
-  "destination": "types/react-dom/",
-  "files": [
-    "index.d.ts",
-    "LICENSE"
-  ]
-}
-]
 }

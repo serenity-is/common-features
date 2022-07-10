@@ -6,16 +6,16 @@
         <TargetFolder>serenity.corelib</TargetFolder>
       </_StaticWebAssetTyping>
       <_StaticWebAssetTyping Include="%(ProjectReference.RootDir)%(ProjectReference.Directory)wwwroot\index.d.ts"
-        Condition="Exists('%(ProjectReference.RootDir)%(ProjectReference.Directory)wwwroot\index.d.ts')">
+        Condition="'%(ProjectReference.Filename)' != '' And '%(ProjectReference.Filename)' != '$(ProjectName)' And Exists('%(ProjectReference.RootDir)%(ProjectReference.Directory)wwwroot\index.d.ts')">
         <TargetFolder>%(ProjectReference.Filename)</TargetFolder>
       </_StaticWebAssetTyping>
       <_StaticWebAssetTyping Include="%(StaticWebAsset.RootDir)%(Directory)%(Filename).d.ts" Condition="'%(StaticWebAsset.SourceType)' == 'Project' And '%(Extension)' == '.js' And Exists('%(RootDir)%(Directory)%(Filename).d.ts') And $([System.String]::Copy('%(Directory)').Replace('\','/').EndsWith('wwwroot/'))">
-        <TargetFolder Condition="'%(StaticWebAsset.Filename)' != 'Serenity.CoreLib'">%(StaticWebAsset.SourceId)</TargetFolder>
-        <TargetFolder Condition="'%(StaticWebAsset.Filename)' == 'Serenity.CoreLib'">serenity.corelib</TargetFolder>
+        <TargetFolder Condition="'%(StaticWebAsset.SourceId)' != 'Serenity.Scripts'">%(StaticWebAsset.SourceId)</TargetFolder>
+        <TargetFolder Condition="'%(StaticWebAsset.SourceId)' == 'Serenity.Scripts'">serenity.corelib</TargetFolder>
       </_StaticWebAssetTyping>
-      <_StaticWebAssetTyping Include="%(StaticWebAsset.RootDir)%(Directory)..\typings\**\index.d.ts" Condition="'%(StaticWebAsset.SourceType)' == 'Project' And '%(Extension)' == '.js' And $([System.String]::Copy('%(Directory)').Replace('\','/').EndsWith('staticwebassets/'))">
-        <TargetFolder Condition="'%(StaticWebAsset.Filename)' != 'Serenity.CoreLib'">%(StaticWebAsset.SourceId)</TargetFolder>
-        <TargetFolder Condition="'%(StaticWebAsset.Filename)' == 'Serenity.CoreLib'">serenity.corelib</TargetFolder>
+      <_StaticWebAssetTyping Include="%(StaticWebAsset.RootDir)%(Directory)..\typings\**\index.d.ts" Condition="'%(StaticWebAsset.SourceType)' == 'Package' And '%(Extension)' == '.js' And $([System.String]::Copy('%(Directory)').Replace('\','/').EndsWith('staticwebassets/'))">
+        <TargetFolder Condition="'%(StaticWebAsset.SourceId)' != 'Serenity.Scripts'">%(StaticWebAsset.SourceId)</TargetFolder>
+        <TargetFolder Condition="'%(StaticWebAsset.SourceId)' == 'Serenity.Scripts'">serenity.corelib</TargetFolder>
       </_StaticWebAssetTyping>
     </ItemGroup>
     <Copy SourceFiles="@(_StaticWebAssetTyping)" DestinationFiles="@(_StaticWebAssetTyping->'typings\%(TargetFolder)\index.d.ts'->ToLowerInvariant())" SkipUnchangedFiles="true" />

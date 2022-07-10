@@ -3,6 +3,7 @@
   "defaultProvider": "unpkg",
   "libraries": [
     {
+      "provider": "unpkg",
       "library": "@types/jquery@2.0.48",
       "destination": "types/jquery/",
       "files": [

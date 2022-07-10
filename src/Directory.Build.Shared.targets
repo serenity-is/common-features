@@ -18,7 +18,7 @@
       <ProjectTSConfigInputs Include="..\tsconfig.base.json" Condition="Exists('tsconfig.json')" />
     </ItemGroup>
   </Target>
-  <Target Name="CompileProjectTSConfig" DependsOnTargets="RestoreTypings;NpmInstall;CalculateProjectTSConfigInputs;" AfterTargets="AfterBuild" Condition="Exists('tsconfig.json')"
+  <Target Name="CompileProjectTSConfig" DependsOnTargets="RestoreTypings;CalculateProjectTSConfigInputs;" AfterTargets="AfterBuild" Condition="Exists('tsconfig.json')"
     Inputs="@(ProjectTSConfigInputs)" Outputs="wwwroot\index.js;wwwroot\index.d.ts">
     <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
     <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" ContinueOnError="true" />

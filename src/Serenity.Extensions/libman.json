@@ -12,15 +12,6 @@
     },
     {
       "provider": "unpkg",
-      "library": "@types/jquery.blockui@0.0.29",
-      "destination": "types/jquery.blockui/",
-      "files": [
-        "index.d.ts",
-        "LICENSE"
-      ]
-    },
-    {
-      "provider": "unpkg",
       "library": "@types/jquery.validation@1.16.7",
       "destination": "types/jquery.validation/",
       "files": [

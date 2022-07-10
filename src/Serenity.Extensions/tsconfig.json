@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outFile": "./wwwroot/index.js",
     "typeRoots": [
-      "./node_modules/@types/",
+      "./types/",
       "./typings/"
     ]
   },

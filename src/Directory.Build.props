@@ -19,7 +19,7 @@
     <StaticWebAssetBasePath>/$(MSBuildProjectName)</StaticWebAssetBasePath>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-    <DefaultItemExcludes>$(DefaultItemExcludes);package*.json;sergen.json;tsconfig.json;wwwroot\index.d.ts;wwwroot\**\*.less</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);package*.json;sergen.json;tsconfig.json;libman.json;wwwroot\index.d.ts;wwwroot\**\*.less</DefaultItemExcludes>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" Condition="'$(UsingMicrosoftNETSdkWeb)' != 'true'" />

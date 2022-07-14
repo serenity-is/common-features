@@ -37,9 +37,9 @@
     <NpmPackageFile Include="$(MSBuildProjectDirectory)\package.json" Condition="Exists('$(ProjectDir)package.json')" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="*.json"></None>
-    <Content Include="*.json">
-      <CopyToOutputDirectory>false</CopyToOutputDirectory>
+    <Content Update="$(MSBuildProjectDirectory)\*.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Pack>false</Pack>
     </Content>
     <TypingsToPackage Include="wwwroot\index.d.ts" PackagePath="typings\$(ProjectName.ToLowerInvariant())\index.d.ts" Condition="Exists('wwwroot\index.d.ts') OR Exists('tsconfig.json')" />

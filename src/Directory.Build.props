@@ -37,7 +37,8 @@
     <NpmPackageFile Include="$(MSBuildProjectDirectory)\package.json" Condition="Exists('$(ProjectDir)package.json')" />
   </ItemGroup>
   <ItemGroup>
-    <Content Update="$(MSBuildProjectDirectory)\*.json">
+    <None Remove="$(MSBuildProjectDirectory)\*.json" />
+    <Content Include="$(MSBuildProjectDirectory)\*.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Pack>false</Pack>

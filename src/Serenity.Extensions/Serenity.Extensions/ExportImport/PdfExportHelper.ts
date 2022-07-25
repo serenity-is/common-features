@@ -54,7 +54,8 @@ namespace Serenity.Extensions {
                     let fld = src.field || '';
                     let html: string;
                     if (src.formatter) {
-                        html = src.formatter(row, cell, item[fld], src, item);
+                        var result = src.formatter(row, cell, item[fld], src, item);
+                        html = typeof result == "string" ? result : result?.text;
                     }
                     else if (src.format) {
                         html = src.format({ row: row, cell: cell, item: item, value: item[fld] });

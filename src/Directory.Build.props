@@ -44,5 +44,11 @@
       <Pack>false</Pack>
     </Content>
     <TypingsToPackage Include="wwwroot\index.d.ts" PackagePath="typings\$(ProjectName.ToLowerInvariant())\index.d.ts" Condition="Exists('wwwroot\index.d.ts') OR Exists('tsconfig.json')" />
+    <None Include="$(MSBuildProjectDirectory)\dist\**">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <Pack>true</Pack>
+      <PackagePath>dist\</PackagePath>
+    </None>
   </ItemGroup>
 </Project>

@@ -50,21 +50,9 @@ namespace Serenity.Extensions {
             return entities.map(item => {
                 let dst = [];
                 for (let cell = 0; cell < srcColumns.length; cell++) {
-                    let src = srcColumns[cell];
-                    let fld = src.field || '';
-                    let html: string;
-                    if (src.formatter) {
-                        var result = src.formatter(row, cell, item[fld], src, item);
-                        html = typeof result == "string" ? result : result?.text;
-                    }
-                    else if (src.format) {
-                        html = src.format({ row: row, cell: cell, item: item, value: item[fld] });
-                    }
-                    else {
-                        dst.push(item[fld]);
-                        continue;
-                    }
-
+                    var format = this.slickGrid.getFormatter(row, srcColumns[cell]);
+                    var ctx = this.slickGrid.getFormatterContext(row, cell);
+                    let html: string = format ? format(ctx) : '';
                     if (!html || (html.indexOf('<') < 0 && html.indexOf('&') < 0))
                         dst.push(html);
                     else {

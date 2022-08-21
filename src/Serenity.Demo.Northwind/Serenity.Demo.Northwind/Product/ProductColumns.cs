@@ -12,7 +12,7 @@ namespace Serenity.Demo.Northwind.Columns
         public string ProductID { get; set; }
         [EditLink, Width(250)]
         public string ProductName { get; set; }
-        [QuickFilter]
+        [QuickFilter, AlignCenter, HeaderCssClass("align-center")]
         public bool Discontinued { get; set; }
         [EditLink(ItemType = "Demo.Northwind.Supplier"), QuickFilter]
         public string SupplierCompanyName { get; set; }

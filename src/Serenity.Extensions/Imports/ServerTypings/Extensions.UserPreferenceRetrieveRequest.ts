@@ -1,5 +1,5 @@
 ﻿namespace Serenity.Extensions {
-    export interface UserPreferenceRetrieveRequest extends Serenity.ServiceRequest {
+    export interface UserPreferenceRetrieveRequest extends ServiceRequest {
         PreferenceType?: string;
         Name?: string;
     }

@@ -1,9 +1,9 @@
 ﻿namespace Serenity.Reporting {
-    export interface ReportRetrieveResult extends Serenity.ServiceResponse {
+    export interface ReportRetrieveResult extends ServiceResponse {
         IsExternalReport?: boolean;
         ReportKey?: string;
         Title?: string;
-        Properties?: Serenity.PropertyItem[];
+        Properties?: PropertyItem[];
         InitialSettings?: any;
         IsDataOnlyReport?: boolean;
     }

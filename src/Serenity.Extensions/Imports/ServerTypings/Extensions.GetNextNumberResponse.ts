@@ -1,5 +1,5 @@
 ﻿namespace Serenity.Extensions {
-    export interface GetNextNumberResponse extends Serenity.ServiceResponse {
+    export interface GetNextNumberResponse extends ServiceResponse {
         Number?: number;
         Serial?: string;
     }

@@ -152,7 +152,7 @@ namespace Serenity.Extensions.Pages
 
         private byte[] RenderAsPdf(IReport report, string key, string opt)
         {
-            var externalUrl = EnvironmentSettings?.SiteExternalUrl ??
+            var externalUrl = EnvironmentSettings?.SiteExternalUrl.TrimToNull() ??
                 Request.GetBaseUri().ToString();
 
             var renderUrl = UriHelper.Combine(externalUrl, "Serenity.Extensions/Report/Render?" +

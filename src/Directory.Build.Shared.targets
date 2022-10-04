@@ -31,4 +31,11 @@
       <None Include="@(TypingsToPackage)" Pack="true" PackagePath="%(TypingsToPackage.PackagePath)" />
     </ItemGroup>
   </Target>
+  <Target Name="AddJsonLocalTextAssetsAttribute" BeforeTargets="CoreGenerateAssemblyInfo" Condition="Exists('wwwroot\texts')">
+    <ItemGroup>
+      <AssemblyAttribute Include="Serenity.ComponentModel.JsonLocalTextAssets">
+        <_Parameter1>$(StaticWebAssetBasePath)/texts</_Parameter1>
+      </AssemblyAttribute>
+    </ItemGroup>
+  </Target>
 </Project>

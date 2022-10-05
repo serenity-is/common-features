@@ -7,6 +7,9 @@ namespace Build
     {
         static void Pack()
         {
+            if (StartProcess("dotnet", "tool update sergen", Src) != 0)
+                ExitWithError("Error while updating sergen " + SolutionFile);
+
             PatchPackageBuildProps();
             PatchDirectoryBuildProps();
 

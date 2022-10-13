@@ -2,7 +2,7 @@
   <ItemGroup>
     <TypeScriptCompile Remove="node_modules\**"></TypeScriptCompile>
   </ItemGroup>
-  <Import Project="$(MSBuildThisFileDirectory)\Directory.Build.RestoreTypings.targets" />
+  <Import Project="$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.targets" />
   <Import Project="$(SerenitySrc)RestoreNpmPackages.targets" />
   <Target Name="TransformInitTools" BeforeTargets="BeforeBuild" Condition="!Exists('$(DotnetToolManifestFile)')">
     <Exec Command="dotnet new tool-manifest" ContinueOnError="true" WorkingDirectory="$(MSBuildThisFileDirectory)" />

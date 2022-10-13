@@ -2,7 +2,7 @@
   <Import Project="$(MSBuildThisFileDirectory)..\build\Package.Build.props" Condition="Exists('$(MSBuildThisFileDirectory)..\build\Package.Build.props')" />
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <SerenityVersion Condition="'$(SerenityVersion)' == ''">6.2.3</SerenityVersion>
+    <SerenityVersion Condition="'$(SerenityVersion)' == ''">6.2.4</SerenityVersion>
     <SerenityDir Condition="'$(SerenityDir)' == '' And Exists('$(SolutionDir)Serenity\')">$(SolutionDir)Serenity\</SerenityDir>
     <SerenityDir Condition="'$(SerenityDir)' == '' And Exists('$(MSBuildThisFileDirectory)..\Serenity\')">$(MSBuildThisFileDirectory)..\Serenity\</SerenityDir>
     <SerenityDir Condition="'$(SerenityDir)' == '' And Exists('$(MSBuildThisFileDirectory)..\..\Serenity\')">$(MSBuildThisFileDirectory)..\..\Serenity\</SerenityDir>

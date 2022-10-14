@@ -44,14 +44,15 @@ namespace Serenity.Extensions {
             });
         }
 
-        function toAutoTableData(entities: any[], keys: string[], srcColumns: Slick.Column[] ) {
+        function toAutoTableData(slickGrid: Slick.Grid, entities: any[], keys: string[], srcColumns: Slick.Column[]) {
             let el = document.createElement('span');
             let row = 0;
             return entities.map(item => {
                 let dst = [];
                 for (let cell = 0; cell < srcColumns.length; cell++) {
-                    var format = this.slickGrid.getFormatter(row, srcColumns[cell]);
-                    var ctx = this.slickGrid.getFormatterContext(row, cell);
+                    var format = slickGrid.getFormatter(row, srcColumns[cell]);
+                    var ctx = slickGrid.getFormatterContext(row, cell);
+                    ctx.item = item;
                     let html: string = format ? format(ctx) : '';
                     if (!html || (html.indexOf('<') < 0 && html.indexOf('&') < 0))
                         dst.push(html);
@@ -109,7 +110,7 @@ namespace Serenity.Extensions {
                     let columns = toAutoTableColumns(srcColumns, columnStyles, options.columnTitles);
                     var keys = columns.map(x => x.dataKey);
                     let entities = (<Serenity.ListResponse<any>>response).Entities || [];
-                    let data = toAutoTableData(entities, keys, srcColumns);
+                    let data = toAutoTableData(g.slickGrid, entities, keys, srcColumns);
 
                     doc.setFontSize(options.titleFontSize || 10);
                     doc.setFont('helvetica', 'bold');

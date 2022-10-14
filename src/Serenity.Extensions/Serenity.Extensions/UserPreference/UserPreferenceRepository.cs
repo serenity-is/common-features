@@ -44,12 +44,28 @@ namespace Serenity.Extensions.Repositories
                     .Where(criteria)
                     .Execute(uow.Connection, ExpectedRows.ZeroOrOne) == 0)
             {
-                new SqlInsert(fld.TableName)
-                    .Set(fld.UserId, userId)
-                    .Set(fld.PreferenceType, request.PreferenceType)
-                    .Set(fld.Name, request.Name)
-                    .Set(fld.Value, request.Value)
-                    .Execute(uow.Connection);
+                try
+                {
+                    new SqlInsert(fld.TableName)
+                        .Set(fld.UserId, userId)
+                        .Set(fld.PreferenceType, request.PreferenceType)
+                        .Set(fld.Name, request.Name)
+                        .Set(fld.Value, request.Value)
+                        .Execute(uow.Connection);
+                }
+                catch
+                {
+                    // retry update in case a race condition resulted in
+                    // unique index violation during insert
+                    if (new SqlUpdate(fld.TableName)
+                        .Set(fld.Value, request.Value)
+                        .Where(criteria)
+                        .Execute(uow.Connection, ExpectedRows.ZeroOrOne) == 0)
+                    {
+                        // re-throw if the issue was not actually that
+                        throw;
+                    }
+                }
             }
 
             return new SaveResponse();

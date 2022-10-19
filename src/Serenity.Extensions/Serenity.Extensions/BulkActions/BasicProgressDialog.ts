@@ -5,33 +5,27 @@
         constructor() {
             super();
 
-            this.byId('ProgressBar').progressbar({
-                max: 100,
-                value: 0,
-                change: (e, v) => {
-                    this.byId('ProgressLabel').text(this.value + ' / ' + this.max);
-                }
-            });
-
             this.dialogTitle = Q.text('Site.BasicProgressDialog.PleaseWait');
         }
 
         public cancelled: boolean;
 
         public get max(): number {
-            return this.byId('ProgressBar').progressbar().progressbar('option', 'max');
+            return parseInt(this.byId('ProgressBar').attr('aria-valuemax'), 10);
         }
 
         public set max(value: number) {
-            this.byId('ProgressBar').progressbar().progressbar('option', 'max', value);
+            this.byId('ProgressBar').attr('aria-valuemax', (value || 100).toString());
         }
 
         public get value(): number {
-            return this.byId('ProgressBar').progressbar('value');
+            return parseInt(this.byId('ProgressBar').attr('aria-valuenow'), 10);
         }
 
         public set value(value: number) {
-            this.byId('ProgressBar').progressbar().progressbar('value', value);
+            this.byId('ProgressBar').attr('aria-valuenow', (value || 0).toString())
+                .css('width', (((value || 0) / (this.max || 100)) * 100) + '%')
+                .text(value + ' / ' + this.max);
         }
 
         public get title(): string {
@@ -47,6 +41,7 @@
         getDialogButtons() {
             return [{
                 text: Q.text('Dialogs.CancelButton'),
+                class: 'btn btn-danger',
                 click: () => {
                     this.cancelled = true;
                     this.element.closest('.ui-dialog')
@@ -75,8 +70,8 @@
             return (
                 "<div class='s-DialogContent s-BasicProgressDialogContent'>" +
                     "<div id='~_StatusText' class='status-text' ></div>" +
-                    "<div id='~_ProgressBar' class='progress-bar'>" +
-                        "<div id='~_ProgressLabel' class='progress-label' ></div>" +
+                    "<div id='~_Progress' class='progress' style='height: 1.5rem'>" +
+                        "<div id='~_ProgressBar' class='progress-bar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'></div>" +
                     "</div>" +
                 "</div>");
         }

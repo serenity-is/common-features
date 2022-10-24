@@ -40,11 +40,11 @@
                 tableOptions: {
                     columnStyles: {
                         ProductID: {
-                            columnWidth: 25,
+                            cellWidth: 25,
                             halign: 'right'
                         },
                         Discountinued: {
-                            columnWidth: 25
+                            cellWidth: 25
                         }
                     }
                 }

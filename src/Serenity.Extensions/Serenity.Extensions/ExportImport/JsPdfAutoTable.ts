@@ -70,6 +70,7 @@ declare namespace jsPDF {
         fillStyle?: 'S' | 'F' | 'DF';
         rowHeight?: number;
         columnWidth?: 'auto' | 'wrap' | number;
+        cellWidth?: 'auto' | 'wrap' | number;
         overflow?: 'linebreak';
     }
 }

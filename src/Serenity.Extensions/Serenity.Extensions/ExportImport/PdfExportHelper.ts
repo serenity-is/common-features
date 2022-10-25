@@ -59,6 +59,10 @@ namespace Serenity.Extensions {
                     else {
                         el.innerHTML = html;
                         if (el.children.length == 1 &&
+                            $(el.children[0]).is("select")) {
+                            dst.push($(el.children[0]).children("[selected]").text());
+                        }
+                        else if (el.children.length == 1 &&
                             $(el.children[0]).is(":input")) {
                             dst.push($(el.children[0]).val());
                         }

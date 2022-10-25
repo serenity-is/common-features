@@ -19,8 +19,7 @@
             this.slickContainer.on('change', '.edit:input', (e) => this.inputsChange(e));
         }
 
-        protected getButtons()
-        {
+        protected getButtons() {
             var buttons = super.getButtons();
 
             buttons.push(Extensions.ExcelExportHelper.createToolButton({
@@ -92,8 +91,8 @@
 
             var value = this.getEffectiveValue(item, ctx.column.field) as number;
 
-            return "<input type='text' class='" + klass + 
-                "' data-field='" + ctx.column.field + 
+            return "<input type='text' class='" + klass +
+                "' data-field='" + ctx.column.field +
                 "' value='" + Q.formatNumber(value, '0.##') + "'/>";
         }
 
@@ -114,8 +113,29 @@
 
             return "<input type='text' class='" + klass +
                 "' data-field='" + column.field +
-                "' value='" + Q.attrEncode(value) + 
+                "' value='" + Q.attrEncode(value) +
                 "' maxlength='" + column.sourceItem.maxLength + "'/>";
+        }
+
+        private booleanInputFormatter(ctx) {
+            if ((ctx.item as Slick.NonDataRow).__nonDataRow)
+                return Q.htmlEncode(ctx.value);
+
+            var klass = 'edit boolean';
+            var item = ctx.item as ProductRow;
+            var pending = this.pendingChanges[item.ProductID];
+            var column = ctx.column as Slick.Column;
+
+            if (pending && pending[column.field] !== undefined) {
+                klass += ' dirty';
+            }
+
+            var value = this.getEffectiveValue(item, column.field) as boolean;
+            
+            return "<input type='checkbox' class='" + klass +
+                "' data-field='" + column.field +
+                "' value='" + Q.attrEncode(value) + "' " +
+                (value ? "checked" : "") + " />";
         }
 
         /**
@@ -136,7 +156,7 @@
 
             var value = this.getEffectiveValue(item, idField);
             var markup = "<select class='" + klass +
-                "' data-field='" + idField + 
+                "' data-field='" + idField +
                 "' style='width: 100%; max-width: 100%'>";
             for (var c of lookup.items) {
                 let id = c[lookup.idField];
@@ -162,6 +182,7 @@
             var columns = super.getColumns();
             var num = ctx => this.numericInputFormatter(ctx);
             var str = ctx => this.stringInputFormatter(ctx);
+            var bool = ctx => this.booleanInputFormatter(ctx);
 
             Q.first(columns, x => x.field === 'QuantityPerUnit').format = str;
 
@@ -173,6 +194,7 @@
             supplier.referencedFields = [fld.SupplierID];
             supplier.format = ctx => this.selectFormatter(ctx, fld.SupplierID, SupplierRow.getLookup());
 
+            Q.first(columns, x => x.field === fld.Discontinued).format = bool;
             Q.first(columns, x => x.field === fld.UnitPrice).format = num;
             Q.first(columns, x => x.field === fld.UnitsInStock).format = num;
             Q.first(columns, x => x.field === fld.UnitsOnOrder).format = num;
@@ -216,6 +238,9 @@
                 }
                 value = i;
             }
+            else if (input.hasClass("boolean")) {
+                value = input.prop("checked");
+            }
             else
                 value = text;
 
@@ -231,7 +256,7 @@
                 value = Q.formatNumber(value, '0.##');
 
             input.val(value).addClass('dirty');
-
+            
             this.setSaveButtonState();
         }
 

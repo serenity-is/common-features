@@ -137,7 +137,8 @@
             var value = this.getEffectiveValue(item, idField);
             var markup = "<select class='" + klass +
                 "' data-field='" + idField + 
-                "' style='width: 100%; max-width: 100%'>";
+                "' style='width: 100%; max-width: 100%'>" + 
+                "<option value=''>--</option>";
             for (var c of lookup.items) {
                 let id = c[lookup.idField];
                 markup += "<option value='" + Q.attrEncode(id) + "'"
@@ -186,7 +187,7 @@
             var item = this.itemAt(cell.row);
             var input = $(e.target);
             var field = input.data('field');
-            var text = Q.coalesce(Q.trimToNull(input.val()), '0');
+            var text = Q.trimToNull(input.val());
             var pending = this.pendingChanges[item.ProductID];
 
             var effective = this.getEffectiveValue(item, field);
@@ -198,7 +199,7 @@
 
             var value;
             if (field === 'UnitPrice') {
-                value = Q.parseDecimal(text);
+                value = Q.parseDecimal(text ?? '');
                 if (value == null || isNaN(value)) {
                     Q.notifyError(Q.text('Validation.Decimal'), '', null);
                     input.val(oldText);
@@ -207,7 +208,7 @@
                 }
             }
             else if (input.hasClass("numeric")) {
-                var i = Q.parseInteger(text);
+                var i = Q.parseInteger(text ?? '');
                 if (isNaN(i) || i > 32767 || i < 0) {
                     Q.notifyError(Q.text('Validation.Integer'), '', null);
                     input.val(oldText);
@@ -216,6 +217,8 @@
                 }
                 value = i;
             }
+            else if (input.is('select'))
+                value = Q.toId(input.val());
             else
                 value = text;
 

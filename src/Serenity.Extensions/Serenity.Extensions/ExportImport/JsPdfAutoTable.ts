@@ -1,76 +1,82 @@
-declare var jsPDF: any;
+export { }
 
-declare interface jsPDF {
-    autoTableEndPosY?: number;
-    autoTableHtmlToJson(table: HTMLElement);
-    autoTable(columns: string[] | jsPDF.AutoTableColumn[], data: any[], options: jsPDF.AutoTableOptions);
-    autoTableText(text: string, x: number, y: number, styles: jsPDF.AutoTableStyles);
-}
+declare global {
 
-declare namespace jsPDF {
+    var jspdf: any;
+    var jsPDF: any;
 
-    interface AutoTableColumn {
-        title?: string;
-        dataKey?: string;
+    interface jsPDF {
+        autoTableEndPosY?: number;
+        autoTableHtmlToJson(table: HTMLElement);
+        autoTable(columns: string[] | jsPDF.AutoTableColumn[], data: any[], options: jsPDF.AutoTableOptions);
+        autoTableText(text: string, x: number, y: number, styles: jsPDF.AutoTableStyles);
     }
 
-    interface AutoTableOptions {
-        tableWidth?: 'wrap';
-        theme?: 'striped' | 'grid' | 'plain';
-        startY?: number;
-        styles?: AutoTableStyles;
-        headerStyles?: AutoTableStyles;
-        bodyStyles?: AutoTableStyles;
-        columnStyles?: {
-            [dataKey: string]: AutoTableStyles;
-        };
-        margin?: AutoTableMargin;
-        didDrawCell?: (data: CellHookData) => void;
-        didDrawPage?: (data: HookData) => void;
-        head?: [AutoTableColumn[]],
-        body?: {}[]
-    }
+    namespace jsPDF {
 
-    interface HookData {
-        table?: any,
-        pageNumber?: number,
-        pageCount?: number,
-        settings?: {},
-        doc?: any,
-        cursor?: { x?: number, y?: number }
-    }
+        interface AutoTableColumn {
+            title?: string;
+            dataKey?: string;
+        }
 
-    interface CellHookData extends HookData {
-        cell?: { x?: number, y?: number },
-        row?: any,
-        column?: AutoTableColumn,
-        section?: 'head' | 'body' | 'foot';
-    }
+        interface AutoTableOptions {
+            tableWidth?: 'wrap';
+            theme?: 'striped' | 'grid' | 'plain';
+            startY?: number;
+            styles?: AutoTableStyles;
+            headerStyles?: AutoTableStyles;
+            bodyStyles?: AutoTableStyles;
+            columnStyles?: {
+                [dataKey: string]: AutoTableStyles;
+            };
+            margin?: AutoTableMargin;
+            didDrawCell?: (data: CellHookData) => void;
+            didDrawPage?: (data: HookData) => void;
+            head?: [AutoTableColumn[]],
+            body?: {}[]
+        }
 
-    interface AutoTableMargin {
-        horizontal?: number;
-        top?: number;
-        left?: number;
-        right?: number;
-        bottom?: number;
-    }
+        interface HookData {
+            table?: any,
+            pageNumber?: number,
+            pageCount?: number,
+            settings?: {},
+            doc?: any,
+            cursor?: { x?: number, y?: number }
+        }
 
-    interface AutoTableStyles {
-        cellPadding?: number;
-        fontSize?: number;
-        font?: string;
-        lineColor?: number | number[];
-        lineWidth?: number;
-        lineHeight?: number;
-        fontStyle?: string;
-        fillColor?: number | number[];
-        textColor?: number | number[];
-        halign?: 'left' | 'center' | 'right';
-        valign?: 'top' | 'middle' | 'bottom';
-        fillStyle?: 'S' | 'F' | 'DF';
-        rowHeight?: number;
-        columnWidth?: 'auto' | 'wrap' | number;
-        cellWidth?: 'auto' | 'wrap' | number;
-        overflow?: 'linebreak';
+        interface CellHookData extends HookData {
+            cell?: { x?: number, y?: number },
+            row?: any,
+            column?: AutoTableColumn,
+            section?: 'head' | 'body' | 'foot';
+        }
+
+        interface AutoTableMargin {
+            horizontal?: number;
+            top?: number;
+            left?: number;
+            right?: number;
+            bottom?: number;
+        }
+
+        interface AutoTableStyles {
+            cellPadding?: number;
+            fontSize?: number;
+            font?: string;
+            lineColor?: number | number[];
+            lineWidth?: number;
+            lineHeight?: number;
+            fontStyle?: string;
+            fillColor?: number | number[];
+            textColor?: number | number[];
+            halign?: 'left' | 'center' | 'right';
+            valign?: 'top' | 'middle' | 'bottom';
+            fillStyle?: 'S' | 'F' | 'DF';
+            rowHeight?: number;
+            columnWidth?: 'auto' | 'wrap' | number;
+            cellWidth?: 'auto' | 'wrap' | number;
+            overflow?: 'linebreak';
+        }
     }
 }

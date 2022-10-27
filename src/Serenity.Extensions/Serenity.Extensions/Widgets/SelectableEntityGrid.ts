@@ -1,21 +1,21 @@
-﻿namespace Serenity.Extensions {
+import { Decorators, EntityGrid } from "@serenity-is/corelib";
+import { RowSelectionModel } from "@serenity-is/corelib/slick";
+import { Grid, GridOptions } from "@serenity-is/sleekgrid";
 
-    @Serenity.Decorators.registerClass()
-    export class SelectableEntityGrid<TItem, TOptions> extends Serenity.EntityGrid<TItem, TOptions> {
+@Decorators.registerClass()
+export class SelectableEntityGrid<TItem, TOptions> extends EntityGrid<TItem, TOptions> {
 
-        protected getSlickOptions(): Slick.GridOptions {
-            var opt = super.getSlickOptions();
-            opt.enableTextSelectionOnCells = true;
-            opt.selectedCellCssClass = "slick-row-selected";
-            opt.enableCellNavigation = true;
-            return opt;
-        }
-
-        protected createSlickGrid(): Slick.Grid {
-            var grid = super.createSlickGrid();
-            grid.setSelectionModel(new Slick.RowSelectionModel());
-            return grid;
-        }
+    protected getSlickOptions(): GridOptions {
+        var opt = super.getSlickOptions();
+        opt.enableTextSelectionOnCells = true;
+        opt.selectedCellCssClass = "slick-row-selected";
+        opt.enableCellNavigation = true;
+        return opt;
     }
 
+    protected createSlickGrid(): Grid {
+        var grid = super.createSlickGrid();
+        grid.setSelectionModel(new RowSelectionModel());
+        return grid;
+    }
 }

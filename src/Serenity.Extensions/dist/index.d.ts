@@ -216,7 +216,7 @@ declare global {
             overflow?: 'linebreak';
         }
     }
-    declare var jspdf: any;
+    var jspdf: any;
 }
 
 interface PdfExportOptions {

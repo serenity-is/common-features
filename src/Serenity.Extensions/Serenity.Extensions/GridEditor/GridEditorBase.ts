@@ -1,151 +1,152 @@
-﻿namespace Serenity.Extensions {
+import { Decorators, EntityGrid, IGetEditValue, ISetEditValue, ToolButton } from "@serenity-is/corelib";
+import { deepClone, indexOf, SaveRequest, ServiceOptions, ServiceResponse, tryFirst } from "@serenity-is/corelib/q";
+import { GridEditorDialog } from "./GridEditorDialog";
 
-    @Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue])
-    @Serenity.Decorators.editor()
-    @Serenity.Decorators.element("<div/>")
-    export class GridEditorBase<TEntity, TOptions = any> extends Serenity.EntityGrid<TEntity, TOptions>
-        implements Serenity.IGetEditValue, Serenity.ISetEditValue {
+@Decorators.registerClass([IGetEditValue, ISetEditValue])
+@Decorators.editor()
+@Decorators.element("<div/>")
+export class GridEditorBase<TEntity, TOptions = any> extends EntityGrid<TEntity, TOptions>
+    implements IGetEditValue, ISetEditValue {
 
-        protected getIdProperty() { return "__id"; }
+    protected getIdProperty() { return "__id"; }
 
-        protected nextId = 1;
+    protected nextId = 1;
 
-        constructor(container: JQuery, opt?: TOptions) {
-            super(container, opt);
+    constructor(container: JQuery, opt?: TOptions) {
+        super(container, opt);
+    }
+
+    protected id(entity: TEntity) {
+        return (entity as any)[this.getIdProperty()];
+    }
+
+    protected getNextId() {
+        return "`" + this.nextId++;
+    }
+
+    protected setNewId(entity: TEntity) {
+        entity[this.getIdProperty()] = this.getNextId();
+    }
+
+    protected save(opt: ServiceOptions<any>, callback: (r: ServiceResponse) => void) {
+        var request = opt.request as SaveRequest<TEntity>;
+        var row = deepClone(request.Entity);
+
+        var id = this.id(row);
+        if (id == null) {
+            (row as any)[this.getIdProperty()] = this.getNextId();
         }
 
-        protected id(entity: TEntity) {
-            return (entity as any)[this.getIdProperty()];
+        if (!this.validateEntity(row, id)) {
+            return;
         }
 
-        protected getNextId() {
-            return "`" + this.nextId++;
+        var items = this.view.getItems().slice();
+        if (id == null) {
+            items.push(row);
+        }
+        else {
+            var index = indexOf(items, x => this.id(x) === id);
+            items[index] = deepClone({} as TEntity, items[index], row);
         }
 
-        protected setNewId(entity: TEntity) {
-            entity[this.getIdProperty()] = this.getNextId();
-        }
+        this.setEntities(items);
+        callback({});
+    }
 
-        protected save(opt: Serenity.ServiceOptions<any>, callback: (r: Serenity.ServiceResponse) => void) {
-            var request = opt.request as Serenity.SaveRequest<TEntity>;
-            var row = Q.deepClone(request.Entity);
+    protected deleteEntity(id: number) {
+        this.view.deleteItem(id);
+        return true;
+    }
 
-            var id = this.id(row);
-            if (id == null) {
-                (row as any)[this.getIdProperty()] = this.getNextId();
+    protected validateEntity(row: TEntity, id: number) {
+        return true;
+    }
+
+    protected setEntities(items: TEntity[]) {
+        this.view.setItems(items, true);
+    }
+
+    protected getNewEntity(): TEntity {
+        return {} as TEntity;
+    }
+
+    protected getButtons(): ToolButton[] {
+        var buttons = super.getButtons();
+        var addButton = tryFirst(buttons, x => x.cssClass == 'add-button');
+        if (addButton != null) {
+            addButton.onClick = () => {
+                this.createEntityDialog(this.getItemType(), dlg => {
+                    var dialog = dlg as GridEditorDialog<TEntity>;
+                    dialog.onSave = (opt, callback) => this.save(opt, callback);
+                    this.transferDialogReadOnly(dialog);
+                    dialog.loadEntityAndOpenDialog(this.getNewEntity());
+                });
             }
-
-            if (!this.validateEntity(row, id)) {
-                return;
-            }
-
-            var items = this.view.getItems().slice();
-            if (id == null) {
-                items.push(row);
-            }
-            else {
-                var index = Q.indexOf(items, x => this.id(x) === id);
-                items[index] = Q.deepClone({} as TEntity, items[index], row);
-            }
-
-            this.setEntities(items);
-            callback({});
         }
 
-        protected deleteEntity(id: number) {
-            this.view.deleteItem(id);
-            return true;
-        }
+        return buttons.filter(x => x.cssClass != "refresh-button");
+    }
 
-        protected validateEntity(row: TEntity, id: number) {
-            return true;
-        }
+    protected editItem(entityOrId: any): void {
 
-        protected setEntities(items: TEntity[]) {
-            this.view.setItems(items, true);
-        }
-
-        protected getNewEntity(): TEntity {
-            return {} as TEntity;
-        }
-
-        protected getButtons(): Serenity.ToolButton[] {
-            var buttons = super.getButtons();
-            var addButton = Q.tryFirst(buttons, x => x.cssClass == 'add-button');
-            if (addButton != null) {
-                addButton.onClick = () => {
-                    this.createEntityDialog(this.getItemType(), dlg => {
-                        var dialog = dlg as GridEditorDialog<TEntity>;
-                        dialog.onSave = (opt, callback) => this.save(opt, callback);
-                        this.transferDialogReadOnly(dialog);
-                        dialog.loadEntityAndOpenDialog(this.getNewEntity());
-                    });
+        var id = entityOrId;
+        var item = this.view.getItemById(id);
+        this.createEntityDialog(this.getItemType(), dlg => {
+            var dialog = dlg as GridEditorDialog<TEntity>;
+            dialog.onDelete = (opt, callback) => {
+                if (!this.deleteEntity(id)) {
+                    return;
                 }
-            }
+                callback({});
+            };
+            this.transferDialogReadOnly(dialog);
+            dialog.onSave = (opt, callback) => this.save(opt, callback);
+            dialog.loadEntityAndOpenDialog(item);
+        });;
+    }
 
-            return buttons.filter(x => x.cssClass != "refresh-button");
-        }
+    public getEditValue(property, target) {
+        target[property.name] = this.value;
+    }
 
-        protected editItem(entityOrId: any): void {
+    public setEditValue(source, property) {
+        this.value = source[property.name];
+    }
 
-            var id = entityOrId;
-            var item = this.view.getItemById(id);
-            this.createEntityDialog(this.getItemType(), dlg => {
-                var dialog = dlg as GridEditorDialog<TEntity>;
-                dialog.onDelete = (opt, callback) => {
-                    if (!this.deleteEntity(id)) {
-                        return;
-                    }
-                    callback({});
-                };
-                this.transferDialogReadOnly(dialog);
-                dialog.onSave = (opt, callback) => this.save(opt, callback);
-                dialog.loadEntityAndOpenDialog(item);
-            });;
-        }
+    public get value(): TEntity[] {
+        var p = this.getIdProperty();
+        return this.view.getItems().map(x => {
+            var y = deepClone(x);
+            var id = y[p];
+            if (id && id.toString().charAt(0) == '`')
+                delete y[p];
+            return y;
+        });
+    }
 
-        public getEditValue(property, target) {
-            target[property.name] = this.value;
-        }
+    public set value(value: TEntity[]) {
+        var p = this.getIdProperty();
+        this.view.setItems((value || []).map(x => {
+            var y = deepClone(x);
+            if ((y as any)[p] == null)
+                (y as any)[p] = "`" + this.getNextId();
+            return y;
+        }), true);
+    }
 
-        public setEditValue(source, property) {
-            this.value = source[property.name];
-        }
+    protected getGridCanLoad() {
+        return false;
+    }
 
-        public get value(): TEntity[] {
-            var p = this.getIdProperty();
-            return this.view.getItems().map(x => {
-                var y = Q.deepClone(x);
-                var id = y[p];
-                if (id && id.toString().charAt(0) == '`')
-                    delete y[p];
-                return y;
-            });
-        }
+    protected usePager() {
+        return false;
+    }
 
-        public set value(value: TEntity[]) {
-            var p = this.getIdProperty();
-            this.view.setItems((value || []).map(x => {
-                var y = Q.deepClone(x);
-                if ((y as any)[p] == null)
-                    (y as any)[p] = "`" + this.getNextId();
-                return y;
-            }), true);
-        }
+    protected getInitialTitle() {
+        return null;
+    }
 
-        protected getGridCanLoad() {
-            return false;
-        }
-
-        protected usePager() {
-            return false;
-        }
-
-        protected getInitialTitle() {
-            return null;
-        }
-
-        protected createQuickSearchInput() {
-        }
+    protected createQuickSearchInput() {
     }
 }

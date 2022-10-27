@@ -28,24 +28,6 @@
         "index.d.ts",
         "LICENSE"
       ]
-    },
-    {
-      "provider": "unpkg",
-      "library": "@types/react@16.1.0",
-      "destination": "types/react/",
-      "files": [
-        "index.d.ts",
-        "LICENSE"
-      ]
-    },
-    {
-      "provider": "unpkg",
-      "library": "@types/react-dom@16.0.11",
-      "destination": "types/react-dom/",
-      "files": [
-        "index.d.ts",
-        "LICENSE"
-      ]
     }
   ]
 }

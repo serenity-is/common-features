@@ -1,14 +1,19 @@
-﻿{
+{
   "extends": "../tsconfig.base.json",
+  "compileOnSave": false,
   "compilerOptions": {
-    "outFile": "./wwwroot/index.js",
+    "isolatedModules": true,
+    "module": "ESNext",
+    "outDir": "./out",
+    "emitDeclarationOnly": true,
     "typeRoots": [
-      "./types/",
-      "./typings/"
-    ]
+      "./node_modules/@types"
+    ],
+    "paths": {
+      "@/*": [ "Serenity.Extensions/*" ]
+    }
   },
   "include": [
-    "./Imports/**/*",
     "./Serenity.*/**/*"
   ]
 }

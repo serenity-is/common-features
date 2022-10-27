@@ -1,16 +1,30 @@
 ﻿{
   "compileOnSave": true,
   "compilerOptions": {
-    "preserveConstEnums": true,
-    "experimentalDecorators": true,
+    "allowJs": false,
+    "baseUrl": ".",
     "declaration": true,
     "emitBOM": true,
-    "jsx": "react",
-    "noEmitHelpers": true,
-    "sourceMap": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
     "inlineSources": true,
-    "skipLibCheck": true,
+    "jsx": "react",
+    "moduleResolution": "Node",
+    "noEmit": false,
+    "noEmitHelpers": true,
+    "noEmitOnError": false,
+    "outDir": "./wwwroot",
+    "paths": {
+      "@serenity-is/*": [ "node_modules/@serenity-is/*/dist/index" ]
+    },
+    "preserveConstEnums": true,
     "skipDefaultLibCheck": true,
-    "target": "es5"
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "target": "es6"
+  },
+  "typeAcquisition": {
+    "enable": false
   }
 }

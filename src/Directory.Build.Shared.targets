@@ -1,6 +1,6 @@
 <Project>
   <ItemGroup>
-    <TypeScriptCompile Remove="node_modules\**"></TypeScriptCompile>
+    <TypeScriptCompile Remove="node_modules\**;out\**;dist\**"></TypeScriptCompile>
   </ItemGroup>
   <Import Project="$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.targets" />
   <Import Project="$(SerenitySrc)RestoreNpmPackages.targets" />
@@ -22,9 +22,10 @@
     </ItemGroup>
   </Target>
   <Target Name="CompileProjectTSConfig" DependsOnTargets="RestoreTypings;CalculateProjectTSConfigInputs;" AfterTargets="AfterBuild" Condition="Exists('tsconfig.json')"
-    Inputs="@(ProjectTSConfigInputs)" Outputs="wwwroot\index.js;wwwroot\index.d.ts">
+    Inputs="@(ProjectTSConfigInputs)" Outputs="wwwroot\index.js;wwwroot\index.d.ts;dist\**\*.js;dist\**\*.d.ts">
     <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
-    <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" ContinueOnError="true" />
+    <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" Condition="!Exists('tsbuild.js')" ContinueOnError="true" />
+    <Exec Command="node tsbuild" Condition="Exists('tsbuild.js')" ContinueOnError="true" />
   </Target>
   <Target Name="IncludeTypingsToPackage" BeforeTargets="_GetPackageFiles">
     <ItemGroup>

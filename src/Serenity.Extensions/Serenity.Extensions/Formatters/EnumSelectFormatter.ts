@@ -1,43 +1,45 @@
-﻿namespace Serenity.Extensions {
+import { Decorators, EnumTypeRegistry } from "@serenity-is/corelib";
+import { attrEncode, htmlEncode, text, tryGetText } from "@serenity-is/corelib/q";
+import { Formatter } from "@serenity-is/corelib/slick";
+import { FormatterContext } from "@serenity-is/sleekgrid";
 
-    @Serenity.Decorators.registerFormatter('Serenity.Extensions.EnumSelectFormatter')
-    export class EnumSelectFormatter implements Slick.Formatter {
-        constructor() {
-            this.allowClear = true;
-        }
-
-        format(ctx: Slick.FormatterContext) {
-            var enumType = Serenity.EnumTypeRegistry.get(this.enumKey);
-
-            var sb = "<select>";
-            if (this.allowClear) {
-                sb += '<option value="">';
-                sb += Q.htmlEncode(this.emptyItemText || Q.text("Controls.SelectEditor.EmptyItemText"));
-                sb += '</option>';
-            }
-
-            for (var x of Object.keys(enumType).filter(v => !isNaN(parseInt(v, 10)))) {
-                sb += '<option value="' + Q.attrEncode(x) + '"';
-                if (x == ctx.value)
-                    sb += " selected";
-                var name = enumType[x];
-                sb += ">";
-                sb += Q.htmlEncode(Q.tryGetText("Enums." + this.enumKey + "." + name) || name);
-                sb += "</option>";
-            }
-
-            sb += "</select>";
-
-            return sb;
-        }
-
-        @Serenity.Decorators.option()
-        public enumKey: string;
-
-        @Serenity.Decorators.option()
-        public allowClear: boolean;
-
-        @Serenity.Decorators.option()
-        public emptyItemText: string;
+Decorators.registerFormatter('Serenity.Extensions.EnumSelectFormatter')
+export class EnumSelectFormatter implements Formatter {
+    constructor() {
+        this.allowClear = true;
     }
+
+    format(ctx: FormatterContext) {
+        var enumType = EnumTypeRegistry.get(this.enumKey);
+
+        var sb = "<select>";
+        if (this.allowClear) {
+            sb += '<option value="">';
+            sb += htmlEncode(this.emptyItemText || text("Controls.SelectEditor.EmptyItemText"));
+            sb += '</option>';
+        }
+
+        for (var x of Object.keys(enumType).filter(v => !isNaN(parseInt(v, 10)))) {
+            sb += '<option value="' + attrEncode(x) + '"';
+            if (x == ctx.value)
+                sb += " selected";
+            var name = enumType[x];
+            sb += ">";
+            sb += htmlEncode(tryGetText("Enums." + this.enumKey + "." + name) || name);
+            sb += "</option>";
+        }
+
+        sb += "</select>";
+
+        return sb;
+    }
+
+    @Decorators.option()
+    public enumKey: string;
+
+    @Decorators.option()
+    public allowClear: boolean;
+
+    @Decorators.option()
+    public emptyItemText: string;
 }

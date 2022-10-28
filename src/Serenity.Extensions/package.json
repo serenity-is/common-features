@@ -1,15 +1,13 @@
 {
   "name": "@serenity-is/extensions",
   "dependencies": {
-    "@serenity-is/corelib": "file:../../../Serenity/src/Serenity.Scripts/corelib",
-    "@serenity-is/sleekgrid": "1.3.9",
-    "@types/jquery": "2.0.48"
+    "@serenity-is/corelib": "6.2.9",
+    "@serenity-is/sleekgrid": "1.3.9"
   },
   "devDependencies": {
     "@serenity-is/tsbuild": "6.2.8"
   },
   "scripts": {
-    "prepare": "npm run build && npx -yes dts-bundle-generator -o dist/index.d.ts Serenity.Extensions/index.ts --project=./src/tsconfig.json --external-types=jquery,serenity.corelib --no-banner",
     "build": "node ./tsbuild.js",
     "tsbuild:watch": "node ./tsbuild.js --watch"
   },

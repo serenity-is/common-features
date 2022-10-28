@@ -1,4 +1,4 @@
-﻿{
+{
   "compileOnSave": true,
   "compilerOptions": {
     "allowJs": false,
@@ -20,7 +20,6 @@
     },
     "preserveConstEnums": true,
     "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
     "sourceMap": true,
     "target": "es6"
   },

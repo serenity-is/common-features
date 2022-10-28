@@ -18,14 +18,16 @@
       <ProjectTSConfigInputs Include="@(TypeScriptCompile)"
           Condition="'%(TypeScriptCompile.Identity)' != 'wwwroot\index.d.ts'" />
       <ProjectTSConfigInputs Include="tsconfig.json" Condition="Exists('tsconfig.json')" />
-      <ProjectTSConfigInputs Include="..\tsconfig.base.json" Condition="Exists('tsconfig.json')" />
+      <ProjectTSConfigInputs Include="..\tsconfig.base.json" Condition="Exists('..\tsconfig.base.json')" />
+      <ProjectTSConfigOutputs Include="wwwroot\index.js;wwwroot\index.d.ts" />
+      <ProjectTSConfigOutputs Include="dist\index.js;dist\index.d.ts" Condition="Exists('tsbuild.js')" />
     </ItemGroup>
   </Target>
-  <Target Name="CompileProjectTSConfig" DependsOnTargets="RestoreTypings;CalculateProjectTSConfigInputs;" AfterTargets="AfterBuild" Condition="Exists('tsconfig.json')"
-    Inputs="@(ProjectTSConfigInputs)" Outputs="wwwroot\index.js;wwwroot\index.d.ts;dist\**\*.js;dist\**\*.d.ts">
+  <Target Name="CompileProjectTSConfig" DependsOnTargets="NpmInstall;RestoreTypings;CalculateProjectTSConfigInputs;" AfterTargets="AfterBuild" Condition="Exists('tsconfig.json')"
+    Inputs="@(ProjectTSConfigInputs)" Outputs="@(ProjectTSConfigOutputs)">
     <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
     <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" Condition="!Exists('tsbuild.js')" ContinueOnError="true" />
-    <Exec Command="node tsbuild" Condition="Exists('tsbuild.js')" ContinueOnError="true" />
+    <Exec Command="npm run build" Condition="Exists('tsbuild.js')" ContinueOnError="true" />
   </Target>
   <Target Name="IncludeTypingsToPackage" BeforeTargets="_GetPackageFiles">
     <ItemGroup>

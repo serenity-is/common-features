@@ -1,5 +1,5 @@
-import { Decorators, ISetEditValue, Widget } from "@serenity-is/corelib";
-import { coalesce, PropertyItem, text } from "@serenity-is/corelib/q";
+import { Decorators, ISetEditValue, PropertyItem, Widget } from "@serenity-is/corelib";
+import { coalesce, text } from "@serenity-is/corelib/q";
 
 /**
     * This is an editor widget but it only displays a text, not edits it.

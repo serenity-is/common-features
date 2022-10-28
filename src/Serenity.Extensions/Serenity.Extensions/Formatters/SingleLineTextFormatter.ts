@@ -1,6 +1,5 @@
-import { Decorators } from "@serenity-is/corelib";
+import { Decorators, Formatter } from "@serenity-is/corelib";
 import { toSingleLine } from "@serenity-is/corelib/q";
-import { Formatter } from "@serenity-is/corelib/slick";
 import { FormatterContext } from "@serenity-is/sleekgrid";
 
 @Decorators.registerFormatter('Serenity.Extensions.SingleLineTextFormatter')

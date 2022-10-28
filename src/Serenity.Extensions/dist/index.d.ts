@@ -1,10 +1,10 @@
-﻿/// <reference types="jquery" />
+/// <reference types="jquery" />
 /// <reference types="jqueryui" />
 /// <reference types="jquery.validation" />
-import { DeleteResponse, Dictionary, ListRequest, ListResponse, PropertyItem, RetrieveResponse, SaveResponse, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse } from "@serenity-is/corelib/q"
-import { DataGrid, EntityDialog, EntityGrid, IGetEditValue, ISetEditValue, PropertyDialog, Select2AjaxEditor, SettingStorage, TemplatedDialog, ToolButton, Widget } from "@serenity-is/corelib"
-import { Formatter, Grid, GridOptions } from "@serenity-is/sleekgrid"
-import { FormatterContext } from "@serenity-is/corelib/slick"
+import { DataGrid, EntityDialog, EntityGrid, IGetEditValue, ISetEditValue, PropertyDialog, Select2AjaxEditor, SettingStorage, TemplatedDialog, ToolButton, Widget } from "@serenity-is/corelib";
+import { DeleteResponse, Dictionary, ListRequest, ListResponse, PropertyItem, RetrieveResponse, SaveResponse, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse } from "@serenity-is/corelib/q";
+import { FormatterContext } from "@serenity-is/corelib/slick";
+import { Formatter, Grid, GridOptions } from "@serenity-is/sleekgrid";
 
 interface ExcelImportRequest extends ServiceRequest {
     FileName?: string;

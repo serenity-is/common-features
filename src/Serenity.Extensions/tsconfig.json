@@ -1,6 +1,5 @@
 {
   "extends": "../tsconfig.base.json",
-  "compileOnSave": false,
   "compilerOptions": {
     "isolatedModules": true,
     "module": "ESNext",

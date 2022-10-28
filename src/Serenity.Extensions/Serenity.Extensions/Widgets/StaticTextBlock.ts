@@ -6,7 +6,7 @@ import { coalesce, PropertyItem, text } from "@serenity-is/corelib/q";
     *  
     */
 @Decorators.element("<div/>")
-@Decorators.registerEditor([ISetEditValue])
+@Decorators.registerEditor('Serenity.Extensions.StaticTextBlock', [ISetEditValue])
 export class StaticTextBlock extends Widget<StaticTextBlockOptions>
     implements ISetEditValue {
 

@@ -9,6 +9,8 @@
     "@serenity-is/tsbuild": "6.2.8"
   },
   "scripts": {
+    "prepare": "npm run build && npx -yes dts-bundle-generator -o dist/index.d.ts Serenity.Extensions/index.ts --project=./src/tsconfig.json --external-types=jquery,serenity.corelib --no-banner",
+    "build": "node ./tsbuild.js",
     "tsbuild:watch": "node ./tsbuild.js --watch"
   },
   "private": true,

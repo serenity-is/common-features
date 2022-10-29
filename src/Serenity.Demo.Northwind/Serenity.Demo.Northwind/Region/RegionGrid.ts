@@ -1,15 +1,12 @@
-﻿namespace Serenity.Demo.Northwind {
+import { Decorators, EntityGrid } from "@serenity-is/corelib";
+import { RegionColumns, RegionRow, RegionService } from "../ServerTypes/Demo";
+import { RegionDialog } from "./RegionDialog";
 
-    @Serenity.Decorators.registerClass()
-    export class RegionGrid extends Serenity.EntityGrid<RegionRow, any> {
-        protected getColumnsKey() { return RegionColumns.columnsKey; }
-        protected getDialogType() { return <any>RegionDialog; }
-        protected getIdProperty() { return RegionRow.idProperty; }
-        protected getLocalTextPrefix() { return RegionRow.localTextPrefix; }
-        protected getService() { return RegionService.baseUrl; }
-
-        constructor(container: JQuery) {
-            super(container);
-        }
-    }
+@Decorators.registerClass('Serenity.Demo.Northwind.RegionGrid')
+export class RegionGrid extends EntityGrid<RegionRow, any> {
+    protected getColumnsKey() { return RegionColumns.columnsKey; }
+    protected getDialogType() { return <any>RegionDialog; }
+    protected getIdProperty() { return RegionRow.idProperty; }
+    protected getLocalTextPrefix() { return RegionRow.localTextPrefix; }
+    protected getService() { return RegionService.baseUrl; }
 }

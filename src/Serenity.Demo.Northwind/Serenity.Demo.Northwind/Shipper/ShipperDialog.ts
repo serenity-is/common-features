@@ -1,13 +1,13 @@
-﻿namespace Serenity.Demo.Northwind {
+import { Decorators, EntityDialog } from "@serenity-is/corelib";
+import { ShipperForm, ShipperRow, ShipperService } from "../ServerTypes/Demo";
 
-    @Serenity.Decorators.registerClass()
-    export class ShipperDialog extends Serenity.EntityDialog<ShipperRow, any> {
-        protected getFormKey() { return ShipperForm.formKey; }
-        protected getIdProperty() { return ShipperRow.idProperty; }
-        protected getLocalTextPrefix() { return ShipperRow.localTextPrefix; }
-        protected getNameProperty() { return ShipperRow.nameProperty; }
-        protected getService() { return ShipperService.baseUrl; }
+@Decorators.registerClass()
+export class ShipperDialog extends EntityDialog<ShipperRow, any> {
+    protected getFormKey() { return ShipperForm.formKey; }
+    protected getIdProperty() { return ShipperRow.idProperty; }
+    protected getLocalTextPrefix() { return ShipperRow.localTextPrefix; }
+    protected getNameProperty() { return ShipperRow.nameProperty; }
+    protected getService() { return ShipperService.baseUrl; }
 
-        protected form = new ShipperForm(this.idPrefix);
-    }
+    protected form = new ShipperForm(this.idPrefix);
 }

@@ -1,291 +1,294 @@
-﻿namespace Serenity.Demo.Northwind {
+import { Decorators, EntityGrid, LookupEditor } from "@serenity-is/corelib";
+import { attrEncode, deepClone, Dictionary, first, formatNumber, htmlEncode, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, text, toId, trimToNull, tryFirst } from "@serenity-is/corelib/q";
+import { ExcelExportHelper, PdfExportHelper } from "@serenity-is/extensions";
+import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
+import { CategoryRow, ProductColumns, ProductRow, ProductService, SupplierRow } from "../ServerTypes/Demo";
+import { ProductDialog } from "./ProductDialog";
 
-    import fld = ProductRow.Fields;
+const fld = ProductRow.Fields;
 
-    @Serenity.Decorators.registerClass()
-    @Serenity.Decorators.filterable()
-    export class ProductGrid extends Serenity.EntityGrid<ProductRow, any> {
-        protected getColumnsKey() { return ProductColumns.columnsKey; }
-        protected getDialogType() { return <any>ProductDialog; }
-        protected getIdProperty() { return ProductRow.idProperty; }
-        protected getLocalTextPrefix() { return ProductRow.localTextPrefix; }
-        protected getService() { return ProductService.baseUrl; }
+@Decorators.registerClass()
+@Decorators.filterable()
+export class ProductGrid extends EntityGrid<ProductRow, any> {
+    protected getColumnsKey() { return ProductColumns.columnsKey; }
+    protected getDialogType() { return <any>ProductDialog; }
+    protected getIdProperty() { return ProductRow.idProperty; }
+    protected getLocalTextPrefix() { return ProductRow.localTextPrefix; }
+    protected getService() { return ProductService.baseUrl; }
 
-        private pendingChanges: Q.Dictionary<any> = {};
+    private pendingChanges: Dictionary<any> = {};
 
-        constructor(container: JQuery) {
-            super(container);
+    constructor(container: JQuery) {
+        super(container);
 
-            this.slickContainer.on('change', '.edit:input', (e) => this.inputsChange(e));
-        }
+        this.slickContainer.on('change', '.edit:input', (e) => this.inputsChange(e));
+    }
 
-        protected getButtons()
-        {
-            var buttons = super.getButtons();
+    protected getButtons() {
+        var buttons = super.getButtons();
 
-            buttons.push(Extensions.ExcelExportHelper.createToolButton({
-                grid: this,
-                service: ProductService.baseUrl + '/ListExcel',
-                onViewSubmit: () => this.onViewSubmit(),
-                separator: true
-            }));
+        buttons.push(ExcelExportHelper.createToolButton({
+            grid: this,
+            service: ProductService.baseUrl + '/ListExcel',
+            onViewSubmit: () => this.onViewSubmit(),
+            separator: true
+        }));
 
-            buttons.push(Extensions.PdfExportHelper.createToolButton({
-                grid: this,
-                onViewSubmit: () => this.onViewSubmit(),
-                reportTitle: 'Product List',
-                columnTitles: {
-                    'Discontinued': 'Dis.',
-                },
-                tableOptions: {
-                    columnStyles: {
-                        ProductID: {
-                            cellWidth: 25,
-                            halign: 'right'
-                        },
-                        Discountinued: {
-                            cellWidth: 25
-                        }
+        buttons.push(PdfExportHelper.createToolButton({
+            grid: this,
+            onViewSubmit: () => this.onViewSubmit(),
+            reportTitle: 'Product List',
+            columnTitles: {
+                'Discontinued': 'Dis.',
+            },
+            tableOptions: {
+                columnStyles: {
+                    ProductID: {
+                        cellWidth: 25,
+                        halign: 'right'
+                    },
+                    Discountinued: {
+                        cellWidth: 25
                     }
                 }
-            }));
-
-            buttons.push({
-                title: 'Save Changes',
-                cssClass: 'apply-changes-button disabled',
-                onClick: e => this.saveClick(),
-                separator: true
-            });
-
-            return buttons;
-        }
-
-        protected onViewProcessData(response) {
-            this.pendingChanges = {};
-            this.setSaveButtonState();
-            return super.onViewProcessData(response);
-        }
-
-        // PLEASE NOTE! Inline editing in grids is not something Serenity supports nor recommends.
-        // SlickGrid has some set of limitations, UI is very hard to use on some devices like mobile, 
-        // custom widgets and validations are not possible, and as a bonus the code can become a mess.
-        // 
-        // This was just a sample how-to after much requests, and is not supported. 
-        // This is all we can offer, please don't ask us to Guide you...
-
-        /**
-         * It would be nice if we could use autonumeric, Serenity editors etc. here, to control input validation,
-         * but it's not supported by SlickGrid as we are only allowed to return a string, and should attach
-         * no event handlers to rendered cell contents
-         */
-        private numericInputFormatter(ctx) {
-            if ((ctx.item as Slick.NonDataRow).__nonDataRow)
-                return Q.htmlEncode(Q.formatNumber(ctx.value, '#0.##'));
-
-            var klass = 'edit numeric';
-            var item = ctx.item as ProductRow;
-            var pending = this.pendingChanges[item.ProductID];
-
-            if (pending && pending[ctx.column.field] !== undefined) {
-                klass += ' dirty';
             }
+        }));
 
-            var value = this.getEffectiveValue(item, ctx.column.field) as number;
+        buttons.push({
+            title: 'Save Changes',
+            cssClass: 'apply-changes-button disabled',
+            onClick: e => this.saveClick(),
+            separator: true
+        });
 
-            return "<input type='text' class='" + klass + 
-                "' data-field='" + ctx.column.field + 
-                "' value='" + Q.formatNumber(value, '0.##') + "'/>";
+        return buttons;
+    }
+
+    protected onViewProcessData(response) {
+        this.pendingChanges = {};
+        this.setSaveButtonState();
+        return super.onViewProcessData(response);
+    }
+
+    // PLEASE NOTE! Inline editing in grids is not something Serenity supports nor recommends.
+    // SlickGrid has some set of limitations, UI is very hard to use on some devices like mobile, 
+    // custom widgets and validations are not possible, and as a bonus the code can become a mess.
+    // 
+    // This was just a sample how-to after much requests, and is not supported. 
+    // This is all we can offer, please don't ask us to Guide you...
+
+    /**
+     * It would be nice if we could use autonumeric, Serenity editors etc. here, to control input validation,
+     * but it's not supported by SlickGrid as we are only allowed to return a string, and should attach
+     * no event handlers to rendered cell contents
+     */
+    private numericInputFormatter(ctx) {
+        if ((ctx.item as NonDataRow).__nonDataRow)
+            return htmlEncode(formatNumber(ctx.value, '#0.##'));
+
+        var klass = 'edit numeric';
+        var item = ctx.item as ProductRow;
+        var pending = this.pendingChanges[item.ProductID];
+
+        if (pending && pending[ctx.column.field] !== undefined) {
+            klass += ' dirty';
         }
 
-        private stringInputFormatter(ctx) {
-            if ((ctx.item as Slick.NonDataRow).__nonDataRow)
-                return Q.htmlEncode(ctx.value);
+        var value = this.getEffectiveValue(item, ctx.column.field) as number;
 
-            var klass = 'edit string';
-            var item = ctx.item as ProductRow;
-            var pending = this.pendingChanges[item.ProductID];
-            var column = ctx.column as Slick.Column;
+        return "<input type='text' class='" + klass +
+            "' data-field='" + ctx.column.field +
+            "' value='" + formatNumber(value, '0.##') + "'/>";
+    }
 
-            if (pending && pending[column.field] !== undefined) {
-                klass += ' dirty';
-            }
+    private stringInputFormatter(ctx) {
+        if ((ctx.item as NonDataRow).__nonDataRow)
+            return htmlEncode(ctx.value);
 
-            var value = this.getEffectiveValue(item, column.field) as string;
+        var klass = 'edit string';
+        var item = ctx.item as ProductRow;
+        var pending = this.pendingChanges[item.ProductID];
+        var column = ctx.column as Column;
 
-            return "<input type='text' class='" + klass +
-                "' data-field='" + column.field +
-                "' value='" + Q.attrEncode(value) + 
-                "' maxlength='" + column.sourceItem.maxLength + "'/>";
+        if (pending && pending[column.field] !== undefined) {
+            klass += ' dirty';
         }
 
-        /**
-         * Sorry but you cannot use LookupEditor, e.g. Select2 here, only possible is a SELECT element
-         */
-        private selectFormatter(ctx: Slick.FormatterContext, idField: string, lookup: Q.Lookup<any>) {
-            if ((ctx.item as Slick.NonDataRow).__nonDataRow)
-                return Q.htmlEncode(ctx.value);
+        var value = this.getEffectiveValue(item, column.field) as string;
 
-            var klass = 'edit';
-            var item = ctx.item as ProductRow;
-            var pending = this.pendingChanges[item.ProductID];
-            var column = ctx.column as Slick.Column;
+        return "<input type='text' class='" + klass +
+            "' data-field='" + column.field +
+            "' value='" + attrEncode(value) +
+            "' maxlength='" + column.sourceItem.maxLength + "'/>";
+    }
 
-            if (pending && pending[idField] !== undefined) {
-                klass += ' dirty';
-            }
+    /**
+     * Sorry but you cannot use LookupEditor, e.g. Select2 here, only possible is a SELECT element
+     */
+    private selectFormatter(ctx: FormatterContext, idField: string, lookup: Q.Lookup<any>) {
+        if ((ctx.item as NonDataRow).__nonDataRow)
+            return htmlEncode(ctx.value);
 
-            var value = this.getEffectiveValue(item, idField);
-            var markup = "<select class='" + klass +
-                "' data-field='" + idField + 
-                "' style='width: 100%; max-width: 100%'>" + 
-                "<option value=''>--</option>";
-            for (var c of lookup.items) {
-                let id = c[lookup.idField];
-                markup += "<option value='" + Q.attrEncode(id) + "'"
-                if (id == value) {
-                    markup += " selected";
-                }
-                markup += ">" + Q.htmlEncode(c[lookup.textField]) + "</option>";
-            }
-            return markup + "</select>";
+        var klass = 'edit';
+        var item = ctx.item as ProductRow;
+        var pending = this.pendingChanges[item.ProductID];
+        var column = ctx.column as Column;
+
+        if (pending && pending[idField] !== undefined) {
+            klass += ' dirty';
         }
 
-        private getEffectiveValue(item, field): any {
-            var pending = this.pendingChanges[item.ProductID];
-            if (pending && pending[field] !== undefined) {
-                return pending[field];
+        var value = this.getEffectiveValue(item, idField);
+        var markup = "<select class='" + klass +
+            "' data-field='" + idField +
+            "' style='width: 100%; max-width: 100%'>" +
+            "<option value=''>--</option>";
+        for (var c of lookup.items) {
+            let id = c[lookup.idField];
+            markup += "<option value='" + attrEncode(id) + "'"
+            if (id == value) {
+                markup += " selected";
             }
+            markup += ">" + htmlEncode(c[lookup.textField]) + "</option>";
+        }
+        return markup + "</select>";
+    }
 
-            return item[field];
+    private getEffectiveValue(item, field): any {
+        var pending = this.pendingChanges[item.ProductID];
+        if (pending && pending[field] !== undefined) {
+            return pending[field];
         }
 
-        protected getColumns() {
-            var columns = super.getColumns();
-            var num = ctx => this.numericInputFormatter(ctx);
-            var str = ctx => this.stringInputFormatter(ctx);
+        return item[field];
+    }
 
-            Q.first(columns, x => x.field === 'QuantityPerUnit').format = str;
+    protected getColumns() {
+        var columns = super.getColumns();
+        var num = ctx => this.numericInputFormatter(ctx);
+        var str = ctx => this.stringInputFormatter(ctx);
 
-            var category = Q.first(columns, x => x.field === fld.CategoryName);
-            category.referencedFields = [fld.CategoryID];
-            category.format = ctx => this.selectFormatter(ctx, fld.CategoryID, CategoryRow.getLookup());
+        first(columns, x => x.field === 'QuantityPerUnit').format = str;
 
-            var supplier = Q.first(columns, x => x.field === fld.SupplierCompanyName);
-            supplier.referencedFields = [fld.SupplierID];
-            supplier.format = ctx => this.selectFormatter(ctx, fld.SupplierID, SupplierRow.getLookup());
+        var category = first(columns, x => x.field === fld.CategoryName);
+        category.referencedFields = [fld.CategoryID];
+        category.format = ctx => this.selectFormatter(ctx, fld.CategoryID, CategoryRow.getLookup());
 
-            Q.first(columns, x => x.field === fld.UnitPrice).format = num;
-            Q.first(columns, x => x.field === fld.UnitsInStock).format = num;
-            Q.first(columns, x => x.field === fld.UnitsOnOrder).format = num;
-            Q.first(columns, x => x.field === fld.ReorderLevel).format = num;
+        var supplier = first(columns, x => x.field === fld.SupplierCompanyName);
+        supplier.referencedFields = [fld.SupplierID];
+        supplier.format = ctx => this.selectFormatter(ctx, fld.SupplierID, SupplierRow.getLookup());
 
-            return columns;
+        first(columns, x => x.field === fld.UnitPrice).format = num;
+        first(columns, x => x.field === fld.UnitsInStock).format = num;
+        first(columns, x => x.field === fld.UnitsOnOrder).format = num;
+        first(columns, x => x.field === fld.ReorderLevel).format = num;
+
+        return columns;
+    }
+
+    private inputsChange(e: JQueryEventObject) {
+        var cell = this.slickGrid.getCellFromEvent(e);
+        var item = this.itemAt(cell.row);
+        var input = $(e.target);
+        var field = input.data('field');
+        var txt = trimToNull(input.val());
+        var pending = this.pendingChanges[item.ProductID];
+
+        var effective = this.getEffectiveValue(item, field);
+        var oldText: string;
+        if (input.hasClass("numeric"))
+            oldText = formatNumber(effective, '0.##');
+        else
+            oldText = effective as string;
+
+        var value;
+        if (field === 'UnitPrice') {
+            value = parseDecimal(txt ?? '');
+            if (value == null || isNaN(value)) {
+                notifyError(text('Validation.Decimal'), '', null);
+                input.val(oldText);
+                input.focus();
+                return;
+            }
+        }
+        else if (input.hasClass("numeric")) {
+            var i = parseInteger(txt ?? '');
+            if (isNaN(i) || i > 32767 || i < 0) {
+                notifyError(text('Validation.Integer'), '', null);
+                input.val(oldText);
+                input.focus();
+                return;
+            }
+            value = i;
+        }
+        else if (input.is('select'))
+            value = toId(input.val());
+        else
+            value = txt;
+
+        if (!pending) {
+            this.pendingChanges[item.ProductID] = pending = {};
         }
 
-        private inputsChange(e: JQueryEventObject) {
-            var cell = this.slickGrid.getCellFromEvent(e);
-            var item = this.itemAt(cell.row);
-            var input = $(e.target);
-            var field = input.data('field');
-            var text = Q.trimToNull(input.val());
-            var pending = this.pendingChanges[item.ProductID];
+        pending[field] = value;
+        item[field] = value;
+        this.view.refresh();
 
-            var effective = this.getEffectiveValue(item, field);
-            var oldText: string;
-            if (input.hasClass("numeric"))
-                oldText = Q.formatNumber(effective, '0.##');
-            else
-                oldText = effective as string;
+        if (input.hasClass("numeric"))
+            value = formatNumber(value, '0.##');
 
-            var value;
-            if (field === 'UnitPrice') {
-                value = Q.parseDecimal(text ?? '');
-                if (value == null || isNaN(value)) {
-                    Q.notifyError(Q.text('Validation.Decimal'), '', null);
-                    input.val(oldText);
-                    input.focus();
-                    return;
-                }
-            }
-            else if (input.hasClass("numeric")) {
-                var i = Q.parseInteger(text ?? '');
-                if (isNaN(i) || i > 32767 || i < 0) {
-                    Q.notifyError(Q.text('Validation.Integer'), '', null);
-                    input.val(oldText);
-                    input.focus();
-                    return;
-                }
-                value = i;
-            }
-            else if (input.is('select'))
-                value = Q.toId(input.val());
-            else
-                value = text;
+        input.val(value).addClass('dirty');
 
-            if (!pending) {
-                this.pendingChanges[item.ProductID] = pending = {};
-            }
+        this.setSaveButtonState();
+    }
 
-            pending[field] = value;
-            item[field] = value;
-            this.view.refresh();
+    private setSaveButtonState() {
+        this.toolbar.findButton('apply-changes-button').toggleClass('disabled',
+            Object.keys(this.pendingChanges).length === 0);
+    }
 
-            if (input.hasClass("numeric"))
-                value = Q.formatNumber(value, '0.##');
-
-            input.val(value).addClass('dirty');
-
-            this.setSaveButtonState();
+    private saveClick() {
+        if (Object.keys(this.pendingChanges).length === 0) {
+            return;
         }
 
-        private setSaveButtonState() {
-            this.toolbar.findButton('apply-changes-button').toggleClass('disabled',
-                Object.keys(this.pendingChanges).length === 0);
-        }
+        // this calls save service for all modified rows, one by one
+        // you could write a batch update service
+        var keys = Object.keys(this.pendingChanges);
+        var current = -1;
+        var self = this;
 
-        private saveClick() {
-            if (Object.keys(this.pendingChanges).length === 0) {
+        (function saveNext() {
+            if (++current >= keys.length) {
+                self.refresh();
                 return;
             }
 
-            // this calls save service for all modified rows, one by one
-            // you could write a batch update service
-            var keys = Object.keys(this.pendingChanges);
-            var current = -1;
-            var self = this;
-
-            (function saveNext() {
-                if (++current >= keys.length) {
-                    self.refresh();
-                    return;
-                }
-
-                var key = keys[current];
-                var entity = Q.deepClone(self.pendingChanges[key]);
-                entity.ProductID = key;
-                Q.serviceRequest(ProductService.Methods.Update, {
-                    EntityId: key,
-                    Entity: entity
-                }, (response) => {
-                    delete self.pendingChanges[key];
-                    saveNext();
-                });
-            })();
-        }
-
-        protected getQuickFilters() {
-            var flt = super.getQuickFilters();
-
-            var q = Q.parseQueryString();
-            if (q["cat"]) {
-                var category = Q.tryFirst(flt, x => x.field == "CategoryID");
-                category.init = e => {
-                    e.element.getWidget(Serenity.LookupEditor).value = q["cat"];
-                };
-            }
-
-            return flt;
-        }
-
+            var key = keys[current];
+            var entity = deepClone(self.pendingChanges[key]);
+            entity.ProductID = key;
+            serviceRequest(ProductService.Methods.Update, {
+                EntityId: key,
+                Entity: entity
+            }, (response) => {
+                delete self.pendingChanges[key];
+                saveNext();
+            });
+        })();
     }
+
+    protected getQuickFilters() {
+        var flt = super.getQuickFilters();
+
+        var q = parseQueryString();
+        if (q["cat"]) {
+            var category = tryFirst(flt, x => x.field == "CategoryID");
+            category.init = e => {
+                e.element.getWidget(LookupEditor).value = q["cat"];
+            };
+        }
+
+        return flt;
+    }
+
 }

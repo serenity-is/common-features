@@ -19,8 +19,9 @@
           Condition="'%(TypeScriptCompile.Identity)' != 'wwwroot\index.d.ts'" />
       <ProjectTSConfigInputs Include="tsconfig.json" Condition="Exists('tsconfig.json')" />
       <ProjectTSConfigInputs Include="..\tsconfig.base.json" Condition="Exists('..\tsconfig.base.json')" />
-      <ProjectTSConfigOutputs Include="wwwroot\index.js;wwwroot\index.d.ts" />
-      <ProjectTSConfigOutputs Include="dist\index.js;dist\index.d.ts" Condition="Exists('tsbuild.js')" />
+      <ProjectTSConfigOutputs Include="wwwroot\index.js" />
+      <ProjectTSConfigOutputs Include="wwwroot\index.d.ts" Condition="!Exists('tsbuild.js')" />
+      <ProjectTSConfigOutputs Include="dist\index.js" Condition="Exists('tsbuild.js')" />
     </ItemGroup>
   </Target>
   <Target Name="CompileProjectTSConfig" DependsOnTargets="NpmInstall;RestoreTypings;CalculateProjectTSConfigInputs;" AfterTargets="AfterBuild" Condition="Exists('tsconfig.json')"

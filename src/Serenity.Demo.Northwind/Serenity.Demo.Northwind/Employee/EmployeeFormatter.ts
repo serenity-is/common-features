@@ -1,26 +1,28 @@
-﻿namespace Serenity.Demo.Northwind {
+import { Decorators, Formatter, IInitializeColumn, ISlickFormatter } from "@serenity-is/corelib";
+import { htmlEncode, isTrimmedEmpty } from "@serenity-is/corelib/q";
+import { Column, FormatterContext } from "@serenity-is/sleekgrid";
+import { Gender } from "../ServerTypes/Demo";
 
-    @Serenity.Decorators.registerFormatter([Serenity.ISlickFormatter, Serenity.IInitializeColumn])
-    export class EmployeeFormatter implements Slick.Formatter {
-        format(ctx: Slick.FormatterContext) {
-            var text = Q.htmlEncode(ctx.value);
+@Decorators.registerFormatter('Serenity.Demo.Northwind.EmployeeFormatter', [ISlickFormatter, IInitializeColumn])
+export class EmployeeFormatter implements Formatter {
+    format(ctx: FormatterContext) {
+        var text = htmlEncode(ctx.value);
 
-            if (!this.genderProperty || Q.isTrimmedEmpty(ctx.value)) {
-                return text;
-            }
-
-            var gender = ctx.item[this.genderProperty];
-            return '<i class="fa fa-' + ((gender === Gender.Female) ?
-                'female text-danger' : 'male text-primary') + ' text-opacity-75"></i>' + text;
+        if (!this.genderProperty || isTrimmedEmpty(ctx.value)) {
+            return text;
         }
 
-        @Serenity.Decorators.option()
-        public genderProperty: string;
+        var gender = ctx.item[this.genderProperty];
+        return '<i class="fa fa-' + ((gender === Gender.Female) ?
+            'female text-danger' : 'male text-primary') + ' text-opacity-75"></i>' + text;
+    }
 
-        public initializeColumn(column: Slick.Column) {
-            column.referencedFields = column.referencedFields || [];
-            if (this.genderProperty)
-                column.referencedFields.push(this.genderProperty);
-        }
+    @Decorators.option()
+    public genderProperty: string;
+
+    public initializeColumn(column: Column) {
+        column.referencedFields = column.referencedFields || [];
+        if (this.genderProperty)
+            column.referencedFields.push(this.genderProperty);
     }
 }

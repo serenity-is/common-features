@@ -1,16 +1,17 @@
-﻿namespace Serenity.Demo.Northwind {
+import { Decorators, Formatter } from "@serenity-is/corelib";
+import { htmlEncode } from "@serenity-is/corelib/q";
+import { FormatterContext } from "@serenity-is/sleekgrid";
 
-    @Serenity.Decorators.registerFormatter()
-    export class ShipperFormatter implements Slick.Formatter {
-        format(ctx: Slick.FormatterContext) {
+@Decorators.registerFormatter('Serenity.Demo.Northwind.ShipperFormatter')
+export class ShipperFormatter implements Formatter {
+    format(ctx: FormatterContext) {
 
-            if (!ctx.value)
-                return Q.htmlEncode(ctx.value);
+        if (!ctx.value)
+            return htmlEncode(ctx.value);
 
-            return '<i class="text-info fa fa-' +
-                (ctx.value == "Speedy Express" ? "plane"
-                    : (ctx.value == "Federal Shipping" ? "ship"
-                        : "truck")) + ' text-opacity-75"></i> ' + Q.htmlEncode(ctx.value);
-        }
+        return '<i class="text-info fa fa-' +
+            (ctx.value == "Speedy Express" ? "plane"
+                : (ctx.value == "Federal Shipping" ? "ship"
+                    : "truck")) + ' text-opacity-75"></i> ' + htmlEncode(ctx.value);
     }
 }

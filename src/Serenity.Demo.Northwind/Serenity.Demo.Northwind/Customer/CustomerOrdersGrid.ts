@@ -1,50 +1,52 @@
-﻿/// <reference path="../Order/OrderGrid.ts" />
 
-namespace Serenity.Demo.Northwind {
+import { Decorators, SubDialogHelper } from "@serenity-is/corelib";
+import { Column } from "@serenity-is/sleekgrid";
+import { OrderGrid } from "../Order/OrderGrid";
+import { OrderRow } from "../ServerTypes/Demo";
+import { CustomerOrderDialog } from "./CustomerOrderDialog";
 
-    import fld = OrderRow.Fields;
+const fld = OrderRow.Fields;
 
-    @Serenity.Decorators.registerClass()
-    export class CustomerOrdersGrid extends OrderGrid {
-        protected getDialogType() { return CustomerOrderDialog; }
+@Decorators.registerClass()
+export class CustomerOrdersGrid extends OrderGrid {
+    protected getDialogType() { return CustomerOrderDialog; }
 
-        constructor(container: JQuery) {
-            super(container);
-        }
+    constructor(container: JQuery) {
+        super(container);
+    }
 
-        protected getColumns(): Slick.Column[] {
-            return super.getColumns().filter(x => x.field !== fld.CustomerCompanyName);
-        }
+    protected getColumns(): Column[] {
+        return super.getColumns().filter(x => x.field !== fld.CustomerCompanyName);
+    }
 
-        protected initEntityDialog(itemType, dialog) {
-            super.initEntityDialog(itemType, dialog);
-            Serenity.SubDialogHelper.cascade(dialog, this.element.closest('.ui-dialog'));
-        }
+    protected initEntityDialog(itemType, dialog) {
+        super.initEntityDialog(itemType, dialog);
+        SubDialogHelper.cascade(dialog, this.element.closest('.ui-dialog'));
+    }
 
-        protected addButtonClick() {
-            this.editItem({ CustomerID: this.customerID });
-        }
+    protected addButtonClick() {
+        this.editItem({ CustomerID: this.customerID });
+    }
 
-        protected getInitialTitle() {
-            return null;
-        }
+    protected getInitialTitle() {
+        return null;
+    }
 
-        protected getGridCanLoad() {
-            return super.getGridCanLoad() && !!this.customerID;
-        }
+    protected getGridCanLoad() {
+        return super.getGridCanLoad() && !!this.customerID;
+    }
 
-        private _customerID: string;
+    private _customerID: string;
 
-        get customerID() {
-            return this._customerID;
-        }
+    get customerID() {
+        return this._customerID;
+    }
 
-        set customerID(value: string) {
-            if (this._customerID !== value) {
-                this._customerID = value;
-                this.setEquality('CustomerID', value);
-                this.refresh();
-            }
+    set customerID(value: string) {
+        if (this._customerID !== value) {
+            this._customerID = value;
+            this.setEquality('CustomerID', value);
+            this.refresh();
         }
     }
 }

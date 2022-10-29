@@ -1,15 +1,12 @@
-﻿namespace Serenity.Demo.Northwind {
+import { Decorators, EntityGrid } from "@serenity-is/corelib";
+import { TerritoryColumns, TerritoryRow, TerritoryService } from "../ServerTypes/Demo";
+import { TerritoryDialog } from "./TerritoryDialog";
 
-    @Serenity.Decorators.registerClass()
-    export class TerritoryGrid extends Serenity.EntityGrid<TerritoryRow, any> {
-        protected getColumnsKey() { return TerritoryColumns.columnsKey; }
-        protected getDialogType() { return <any>TerritoryDialog; }
-        protected getIdProperty() { return TerritoryRow.idProperty; }
-        protected getLocalTextPrefix() { return TerritoryRow.localTextPrefix; }
-        protected getService() { return TerritoryService.baseUrl; }
-
-        constructor(container: JQuery) {
-            super(container);
-        }
-    }
+@Decorators.registerClass('Serenity.Demo.Northwind.TerritoryGrid')
+export class TerritoryGrid extends EntityGrid<TerritoryRow, any> {
+    protected getColumnsKey() { return TerritoryColumns.columnsKey; }
+    protected getDialogType() { return <any>TerritoryDialog; }
+    protected getIdProperty() { return TerritoryRow.idProperty; }
+    protected getLocalTextPrefix() { return TerritoryRow.localTextPrefix; }
+    protected getService() { return TerritoryService.baseUrl; }
 }

@@ -1,14 +1,20 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "outFile": "./wwwroot/index.js",
+    "isolatedModules": true,
+    "module": "ESNext",
+    "baseUrl": ".",
+    "outDir": "./obj/tscout",
+    "emitDeclarationOnly": true,
+    "preserveSymlinks": true,
     "typeRoots": [
-      "../../../Serenity/src/Serenity.Scripts/corelib/node_modules/@types",
-      "./typings/"
-    ]
+      "../../../Serenity/src/Serenity.Scripts/corelib/node_modules/@types"
+    ],
+    "paths": {
+      "@/*": [ "Serenity.Demo.Northwind/*" ]
+    }
   },
   "include": [
-    "./Imports/**/*",
-    "./Serenity.*/**/*"
+    "./Serenity.Demo.Northwind/**/*"
   ]
 }

@@ -1,120 +1,122 @@
-﻿namespace Serenity.Demo.Northwind {
+import { Decorators, EntityGrid, EnumEditor, LookupEditor, ToolButton } from "@serenity-is/corelib";
+import { toId } from "@serenity-is/corelib/q";
+import { ExcelExportHelper, PdfExportHelper, ReportHelper } from "@serenity-is/extensions";
+import { OrderColumns, OrderListRequest, OrderRow, OrderService, ProductRow } from "../ServerTypes/Demo";
+import { OrderDialog } from "./OrderDialog";
 
-    import fld = OrderRow.Fields;
+const fld = OrderRow.Fields;
 
-    @Serenity.Decorators.registerClass()
-    @Serenity.Decorators.filterable()
-    export class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
-        protected getColumnsKey() { return OrderColumns.columnsKey; }
-        protected getDialogType() { return <any>OrderDialog; }
-        protected getIdProperty() { return OrderRow.idProperty; }
-        protected getLocalTextPrefix() { return OrderRow.localTextPrefix; }
-        protected getService() { return OrderService.baseUrl; }
+@Decorators.registerClass('Serenity.Demo.Northwind.OrderGrid')
+@Decorators.filterable()
+export class OrderGrid extends EntityGrid<OrderRow, any> {
+    protected getColumnsKey() { return OrderColumns.columnsKey; }
+    protected getDialogType() { return <any>OrderDialog; }
+    protected getIdProperty() { return OrderRow.idProperty; }
+    protected getLocalTextPrefix() { return OrderRow.localTextPrefix; }
+    protected getService() { return OrderService.baseUrl; }
 
-        protected shippingStateFilter: Serenity.EnumEditor;
+    protected shippingStateFilter: EnumEditor;
 
-        constructor(container: JQuery) {
-            super(container);
-        }
+    constructor(container: JQuery) {
+        super(container);
+    }
 
-        protected getQuickFilters() {
-            var filters = super.getQuickFilters();
+    protected getQuickFilters() {
+        var filters = super.getQuickFilters();
 
-            filters.push({
-                type: Serenity.LookupEditor,
-                options: {
-                    lookupKey: ProductRow.lookupKey
-                },
-                field: 'ProductID',
-                title: 'Contains Product in Details',
-                handler: w => {
-                    (this.view.params as OrderListRequest).ProductID = Q.toId(w.value);
-                },
-                cssClass: 'hidden-xs'
-            });
+        filters.push({
+            type: LookupEditor,
+            options: {
+                lookupKey: ProductRow.lookupKey
+            },
+            field: 'ProductID',
+            title: 'Contains Product in Details',
+            handler: w => {
+                (this.view.params as OrderListRequest).ProductID = toId(w.value);
+            },
+            cssClass: 'hidden-xs'
+        });
 
-            return filters;
-        }
+        return filters;
+    }
 
-        protected createQuickFilters() {
-            super.createQuickFilters();
+    protected createQuickFilters() {
+        super.createQuickFilters();
 
-            this.shippingStateFilter = this.findQuickFilter(Serenity.EnumEditor, fld.ShippingState);
-        }
+        this.shippingStateFilter = this.findQuickFilter(EnumEditor, fld.ShippingState);
+    }
 
-        protected getButtons()
-        {
-            var buttons = super.getButtons();
+    protected getButtons(): ToolButton[] {
+        var buttons = super.getButtons();
 
-            buttons.push(Extensions.ExcelExportHelper.createToolButton({
-                grid: this,
-                service: OrderService.baseUrl + '/ListExcel',
-                onViewSubmit: () => this.onViewSubmit(),
-                separator: true
-            }));
+        buttons.push(ExcelExportHelper.createToolButton({
+            grid: this,
+            service: OrderService.baseUrl + '/ListExcel',
+            onViewSubmit: () => this.onViewSubmit(),
+            separator: true
+        }));
 
-            buttons.push(Extensions.PdfExportHelper.createToolButton({
-                grid: this,
-                onViewSubmit: () => this.onViewSubmit()
-            }));
+        buttons.push(PdfExportHelper.createToolButton({
+            grid: this,
+            onViewSubmit: () => this.onViewSubmit()
+        }));
 
-            return buttons;
-        }
+        return buttons;
+    }
 
-        protected getColumns() {
-            var columns = super.getColumns();
+    protected getColumns() {
+        var columns = super.getColumns();
 
-            columns.splice(1, 0, {
-                id: 'Print Invoice',
-                field: null,
-                name: '',
-                cssClass: 'align-center',
-                format: ctx => '<a class="inline-action print-invoice" title="invoice">' +
-                    '<i class="fa fa-file-pdf-o text-red"></i></a>',
-                width: 36,
-                minWidth: 36,
-                maxWidth: 36
-            });
+        columns.splice(1, 0, {
+            id: 'Print Invoice',
+            field: null,
+            name: '',
+            cssClass: 'align-center',
+            format: ctx => '<a class="inline-action print-invoice" title="invoice">' +
+                '<i class="fa fa-file-pdf-o text-red"></i></a>',
+            width: 36,
+            minWidth: 36,
+            maxWidth: 36
+        });
 
-            return columns;
-        }
+        return columns;
+    }
 
-        protected onClick(e: JQueryEventObject, row: number, cell: number) {
-            super.onClick(e, row, cell);
+    protected onClick(e: JQueryEventObject, row: number, cell: number) {
+        super.onClick(e, row, cell);
 
-            if (e.isDefaultPrevented())
-                return;
+        if (e.isDefaultPrevented())
+            return;
 
-            var item = this.itemAt(row);
-            var target = $(e.target);
+        var item = this.itemAt(row);
+        var target = $(e.target);
 
-            // if user clicks "i" element, e.g. icon
-            if (target.parent().hasClass('inline-action'))
-                target = target.parent();
+        // if user clicks "i" element, e.g. icon
+        if (target.parent().hasClass('inline-action'))
+            target = target.parent();
 
-            if (target.hasClass('inline-action')) {
-                e.preventDefault();
+        if (target.hasClass('inline-action')) {
+            e.preventDefault();
 
-                if (target.hasClass('print-invoice')) {
-                    Extensions.ReportHelper.execute({
-                        reportKey: 'Northwind.OrderDetail',
-                        params: {
-                            OrderID: item.OrderID
-                        }
-                    });
-                }
+            if (target.hasClass('print-invoice')) {
+                ReportHelper.execute({
+                    reportKey: 'Northwind.OrderDetail',
+                    params: {
+                        OrderID: item.OrderID
+                    }
+                });
             }
         }
+    }
 
-        public set_shippingState(value: number): void {
-            this.shippingStateFilter.value = value == null ? '' : value.toString();
-        }
+    public set_shippingState(value: number): void {
+        this.shippingStateFilter.value = value == null ? '' : value.toString();
+    }
 
-        protected addButtonClick() {
-            var eq = this.view.params.EqualityFilter;
-            this.editItem(<OrderRow>{
-                CustomerID: eq ? eq.CustomerID : null
-            });
-        }
+    protected addButtonClick() {
+        var eq = this.view.params.EqualityFilter;
+        this.editItem(<OrderRow>{
+            CustomerID: eq ? eq.CustomerID : null
+        });
     }
 }

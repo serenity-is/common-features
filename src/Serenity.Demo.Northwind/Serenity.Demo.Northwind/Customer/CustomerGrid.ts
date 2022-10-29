@@ -1,16 +1,13 @@
-﻿namespace Serenity.Demo.Northwind {
+import { Decorators, EntityGrid } from "@serenity-is/corelib";
+import { CustomerColumns, CustomerRow, CustomerService } from "../ServerTypes/Demo";
+import { CustomerDialog } from "./CustomerDialog";
 
-    @Serenity.Decorators.registerClass()
-    @Serenity.Decorators.filterable()
-    export class CustomerGrid extends Serenity.EntityGrid<CustomerRow, any> {
-        protected getColumnsKey() { return CustomerColumns.columnsKey; }
-        protected getDialogType() { return <any>CustomerDialog; }
-        protected getIdProperty() { return CustomerRow.idProperty; }
-        protected getLocalTextPrefix() { return CustomerRow.localTextPrefix; }
-        protected getService() { return CustomerService.baseUrl; }
-
-        constructor(container: JQuery) {
-            super(container);
-        }
-    }
+@Decorators.registerClass('Serenity.Demo.Norhtwind.CustomerGrid')
+@Decorators.filterable()
+export class CustomerGrid extends EntityGrid<CustomerRow, any> {
+    protected getColumnsKey() { return CustomerColumns.columnsKey; }
+    protected getDialogType() { return <any>CustomerDialog; }
+    protected getIdProperty() { return CustomerRow.idProperty; }
+    protected getLocalTextPrefix() { return CustomerRow.localTextPrefix; }
+    protected getService() { return CustomerService.baseUrl; }
 }

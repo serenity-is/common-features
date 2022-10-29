@@ -1,16 +1,19 @@
 {
   "name": "@serenity-is/extensions",
   "dependencies": {
-    "@serenity-is/corelib": "../../../Serenity/src/Serenity.Scripts/corelib"
+    "@serenity-is/corelib": "../../../Serenity/src/Serenity.Scripts/corelib",
+    "@serenity-is/sleekgrid": "1.3.9"
   },
   "devDependencies": {
     "@serenity-is/tsbuild": "6.2.9"
   },
   "scripts": {
-    "build": "npm run dts && node ./tsbuild.js",
+    "build": "node ./tsbuild.js",
     "dts": "npx -yes dts-bundle-generator Serenity.Extensions/index.ts -o dist/index.d.ts --no-banner --disable-symlinks-following --inline-declare-global --external-types jquery --external-types jqueryui --external-types jquery.validation",
     "tsbuild:watch": "node ./tsbuild.js --watch"
   },
+  "main": "dist/index.js",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "types": "dist/index.d.ts"
 }

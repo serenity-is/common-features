@@ -10,7 +10,7 @@ export namespace UserPreferenceService {
     export declare function Update(request: UserPreferenceUpdateRequest, onSuccess?: (response: ServiceResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function Retrieve(request: UserPreferenceRetrieveRequest, onSuccess?: (response: UserPreferenceRetrieveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare const enum Methods {
+    export declare enum Methods {
         Update = "Extensions/UserPreference/Update",
         Retrieve = "Extensions/UserPreference/Retrieve"
     }

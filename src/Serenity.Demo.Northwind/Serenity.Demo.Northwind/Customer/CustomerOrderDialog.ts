@@ -1,18 +1,12 @@
-﻿/// <reference path="../Order/OrderDialog.ts" />
+import { Decorators, EditorUtils } from "@serenity-is/corelib";
+import { OrderDialog } from "../Order/OrderDialog";
 
-namespace Serenity.Demo.Northwind {
+@Decorators.registerClass('Serenity.Demo.Northwind.CustomerOrderDialog')
+export class CustomerOrderDialog extends OrderDialog {
 
-    @Serenity.Decorators.registerClass()
-    export class CustomerOrderDialog extends OrderDialog {
+    updateInterface() {
+        super.updateInterface();
 
-        constructor() {
-            super();
-        }
-
-        updateInterface() {
-            super.updateInterface();
-
-            Serenity.EditorUtils.setReadOnly(this.form.CustomerID, true);
-        }
+        EditorUtils.setReadOnly(this.form.CustomerID, true);
     }
 }

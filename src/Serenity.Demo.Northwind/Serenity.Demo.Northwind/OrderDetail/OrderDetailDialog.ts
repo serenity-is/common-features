@@ -1,33 +1,35 @@
-﻿namespace Serenity.Demo.Northwind {
+import { Decorators } from "@serenity-is/corelib";
+import { toId } from "@serenity-is/corelib/q";
+import { GridEditorDialog } from "@serenity-is/extensions";
+import { OrderDetailForm, OrderDetailRow, ProductRow } from "../ServerTypes/Demo";
 
-    @Serenity.Decorators.registerClass()
-    export class OrderDetailDialog extends Serenity.Extensions.GridEditorDialog<OrderDetailRow> {
-        protected getFormKey() { return OrderDetailForm.formKey; }
-        protected getLocalTextPrefix() { return OrderDetailRow.localTextPrefix; }
+@Decorators.registerClass()
+export class OrderDetailDialog extends GridEditorDialog<OrderDetailRow> {
+    protected getFormKey() { return OrderDetailForm.formKey; }
+    protected getLocalTextPrefix() { return OrderDetailRow.localTextPrefix; }
 
-        protected form: OrderDetailForm;
+    protected form: OrderDetailForm;
 
-        constructor() {
-            super();
+    constructor() {
+        super();
 
-            this.form = new OrderDetailForm(this.idPrefix);
+        this.form = new OrderDetailForm(this.idPrefix);
 
-            this.form.ProductID.changeSelect2(e => {
-                var productID = Q.toId(this.form.ProductID.value);
-                if (productID != null) {
-                    this.form.UnitPrice.value = ProductRow.getLookup().itemById[productID].UnitPrice;
-                }
-            });
+        this.form.ProductID.changeSelect2(e => {
+            var productID = toId(this.form.ProductID.value);
+            if (productID != null) {
+                this.form.UnitPrice.value = ProductRow.getLookup().itemById[productID].UnitPrice;
+            }
+        });
 
-            this.form.Discount.addValidationRule(this.uniqueName, e => {
-                var price = this.form.UnitPrice.value;
-                var quantity = this.form.Quantity.value;
-                var discount = this.form.Discount.value;
-                if (price != null && quantity != null && discount != null &&
-                    discount > 0 && discount >= price * quantity) {
-                    return "Discount can't be higher than total price!";
-                }
-            });
-        }
+        this.form.Discount.addValidationRule(this.uniqueName, e => {
+            var price = this.form.UnitPrice.value;
+            var quantity = this.form.Quantity.value;
+            var discount = this.form.Discount.value;
+            if (price != null && quantity != null && discount != null &&
+                discount > 0 && discount >= price * quantity) {
+                return "Discount can't be higher than total price!";
+            }
+        });
     }
 }

@@ -1,18 +1,18 @@
-﻿namespace Serenity.Demo.Northwind {
+import { Decorators, LookupEditorBase, LookupEditorOptions } from "@serenity-is/corelib";
+import { CustomerRow } from "../ServerTypes/Demo";
 
-    @Serenity.Decorators.registerEditor()
-    export class CustomerEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, CustomerRow> {
+@Decorators.registerEditor('Serenity.Demo.Northwind.CustomerEditor')
+export class CustomerEditor extends LookupEditorBase<LookupEditorOptions, CustomerRow> {
 
-        constructor(hidden: JQuery, options: Serenity.LookupEditorOptions) {
-            super(hidden, options);
-        }
+    constructor(hidden: JQuery, options: LookupEditorOptions) {
+        super(hidden, options);
+    }
 
-        protected getLookupKey() {
-            return 'Northwind.Customer';
-        }
+    protected getLookupKey() {
+        return 'Northwind.Customer';
+    }
 
-        protected getItemText(item, lookup) {
-            return super.getItemText(item, lookup) + ' [' + item.CustomerID + ']';
-        }
+    protected getItemText(item, lookup) {
+        return super.getItemText(item, lookup) + ' [' + item.CustomerID + ']';
     }
 }

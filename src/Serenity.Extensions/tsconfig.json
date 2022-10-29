@@ -6,7 +6,7 @@
     "outDir": "./obj/tscout",
     "emitDeclarationOnly": true,
     "typeRoots": [
-      "./node_modules/@types"
+      "../../../Serenity/src/Serenity.Scripts/corelib/node_modules/@types"
     ],
     "paths": {
       "@/*": [ "Serenity.Extensions/*" ]

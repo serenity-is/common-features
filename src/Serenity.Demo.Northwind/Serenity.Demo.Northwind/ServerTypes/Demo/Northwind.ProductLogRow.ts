@@ -1,4 +1,4 @@
-﻿import { CaptureOperationType } from "../CaptureOperationType";
+﻿import { CaptureOperationType } from "@serenity-is/corelib";
 import { fieldsProxy } from "@serenity-is/corelib/q";
 
 export interface ProductLogRow {

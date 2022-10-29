@@ -1,6 +1,6 @@
 ﻿import { StringEditor, ImageUploadEditor, BooleanEditor, LookupEditor, DecimalEditor, IntegerEditor, PrefixedContext } from "@serenity-is/corelib";
-import { SupplierDialog } from "@/../Serenity.Demo.Northwind/Supplier/SupplierDialog";
-import { CategoryDialog } from "@/../Serenity.Demo.Northwind/";
+import { SupplierDialog } from "@/Supplier/SupplierDialog";
+import { CategoryDialog } from "@/Category/CategoryDialog";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface ProductForm {

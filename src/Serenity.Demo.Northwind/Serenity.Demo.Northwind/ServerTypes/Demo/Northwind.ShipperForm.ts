@@ -1,5 +1,5 @@
 ﻿import { StringEditor, PrefixedContext } from "@serenity-is/corelib";
-import { PhoneEditor } from "@/../Serenity.Demo.Northwind/Shared/PhoneEditor";
+import { PhoneEditor } from "@/Shared/PhoneEditor";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface ShipperForm {

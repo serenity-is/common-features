@@ -1,6 +1,6 @@
-﻿import { CustomerEditor } from "@/../Serenity.Demo.Northwind/Customer/CustomerEditor";
+﻿import { CustomerEditor } from "@/Customer/CustomerEditor";
 import { DateEditor, LookupEditor, DecimalEditor, StringEditor, PrefixedContext } from "@serenity-is/corelib";
-import { OrderDetailsEditor } from "@/../Serenity.Demo.Northwind/OrderDetail/OrderDetailsEditor";
+import { OrderDetailsEditor } from "@/OrderDetail/OrderDetailsEditor";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface OrderForm {

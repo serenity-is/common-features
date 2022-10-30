@@ -1,11 +1,10 @@
-import { build } from "@serenity-is/tsbuild";
+import { build, cleanPlugin } from "@serenity-is/tsbuild";
 
 const buildOpt = {
-    entryPoints: ['./Serenity.Demo.Northwind/index.ts'],
-    outbase: './Serenity.Demo.Northwind/',
+    entryPoints: ['./Modules/index.ts'],
+    outbase: './Modules/',
     splitting: false,
-    clean: false,
-    minify:false
+    clean: false
 }
 
 await build(Object.assign({}, buildOpt, {

@@ -16,12 +16,18 @@
     "noEmitOnError": false,
     "outDir": "./wwwroot",
     "paths": {
+      "@/*": [ "Modules/*" ],
       "@serenity-is/*": [ "node_modules/@serenity-is/*/dist/index" ]
     },
     "preserveConstEnums": true,
+    "preserveSymlinks": true,
     "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
     "sourceMap": true,
-    "target": "es6"
+    "target": "es6",
+    "typeRoots": [
+      "../../Serenity/src/Serenity.Scripts/types"
+    ]
   },
   "typeAcquisition": {
     "enable": false

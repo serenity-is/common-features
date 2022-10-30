@@ -1,18 +1,13 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
+    "baseUrl": ".",
+    "emitDeclarationOnly": true,
     "isolatedModules": true,
     "module": "ESNext",
-    "outDir": "./obj/tscout",
-    "emitDeclarationOnly": true,
-    "typeRoots": [
-      "../../../Serenity/src/Serenity.Scripts/corelib/node_modules/@types"
-    ],
-    "paths": {
-      "@/*": [ "Serenity.Extensions/*" ]
-    }
+    "outDir": "./obj/tscout"
   },
   "include": [
-    "./Serenity.*/**/*"
+    "./Modules/*/**/*"
   ]
 }

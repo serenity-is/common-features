@@ -1,8 +1,8 @@
 import { build } from "@serenity-is/tsbuild";
 
 const buildOpt = {
-    entryPoints: ['./Serenity.Extensions/index.ts'],
-    outbase: './Serenity.Extensions/',
+    entryPoints: ['./Modules/index.ts'],
+    outbase: './Modules/',
     splitting: false,
     clean: false
 }

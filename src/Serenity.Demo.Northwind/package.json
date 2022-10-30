@@ -10,7 +10,7 @@
   },
   "scripts": {
     "build": "node ./tsbuild.js",
-    "dts": "npx -yes dts-bundle-generator Serenity.Demo.Northwind/index.ts -o dist/index.d.ts --no-banner --disable-symlinks-following --inline-declare-global --external-types jquery --external-types jqueryui --external-types jquery.validation",
+    "dts": "npx -yes dts-bundle-generator Modules/index.ts -o dist/index.d.ts --no-banner --disable-symlinks-following --inline-declare-global --external-types jquery --external-types jqueryui --external-types jquery.validation",
     "tsbuild:watch": "node ./tsbuild.js --watch"
   },
   "private": true,

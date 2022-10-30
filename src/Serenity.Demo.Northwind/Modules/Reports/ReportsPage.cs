@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Serenity.Extensions.Repositories;
 using Serenity.Reporting;
 using Serenity.Services;

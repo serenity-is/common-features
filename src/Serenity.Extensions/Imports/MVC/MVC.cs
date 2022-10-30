@@ -5,7 +5,7 @@ namespace Serenity.Extensions.MVC
     {
         public static class Reporting
         {
-            public const string ReportPage = "~/Serenity.Extensions/Reporting/ReportPage.cshtml";
+            public const string ReportPage = "~/Areas/Serenity.Extensions/Reporting/ReportPage.cshtml";
         }
 
     }

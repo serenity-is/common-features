@@ -55,7 +55,7 @@ export declare namespace UserPreferenceService {
 	const baseUrl = "Extensions/UserPreference";
 	function Update(request: UserPreferenceUpdateRequest, onSuccess?: (response: ServiceResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function Retrieve(request: UserPreferenceRetrieveRequest, onSuccess?: (response: UserPreferenceRetrieveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
-	const enum Methods {
+	enum Methods {
 		Update = "Extensions/UserPreference/Update",
 		Retrieve = "Extensions/UserPreference/Retrieve"
 	}

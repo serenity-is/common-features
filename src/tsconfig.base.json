@@ -5,16 +5,19 @@
     "baseUrl": ".",
     "declaration": true,
     "emitBOM": true,
+    "emitDeclarationOnly": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "inlineSources": true,
+    "isolatedModules": true,
     "jsx": "react",
+    "module": "ESNext",
     "moduleResolution": "Node",
     "noEmit": false,
     "noEmitHelpers": true,
     "noEmitOnError": false,
-    "outDir": "./wwwroot",
+    "outDir": "./obj/tscout",
     "paths": {
       "@/*": [ "Modules/*" ],
       "@serenity-is/*": [ "node_modules/@serenity-is/*/dist/index" ]
@@ -29,6 +32,9 @@
       "../../Serenity/src/Serenity.Scripts/types"
     ]
   },
+  "include": [
+    "./Modules/*/**/*"
+  ],
   "typeAcquisition": {
     "enable": false
   }

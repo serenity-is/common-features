@@ -1,13 +1,6 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "emitDeclarationOnly": true,
-    "isolatedModules": true,
-    "module": "ESNext",
-    "outDir": "./obj/tscout"
-  },
-  "include": [
-    "./Modules/*/**/*"
-  ]
+    "baseUrl": "."
+  }
 }

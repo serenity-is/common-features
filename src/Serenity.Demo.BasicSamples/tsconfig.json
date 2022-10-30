@@ -1,9 +1,9 @@
-﻿{
+{
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "outFile": "./wwwroot/index.js",
     "typeRoots": [
-      "../Serenity.Extensions/types/",
+      "../../../Serenity/src/Serenity.Scripts/corelib/node_modules/@types",
       "./typings/"
     ]
   },

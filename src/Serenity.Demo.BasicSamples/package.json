@@ -1,7 +1,8 @@
 {
-  "name": "@serenity-is/demo.northwind",
+  "name": "@serenity-is/demo.basicsamples",
   "dependencies": {
     "@serenity-is/corelib": "../../../Serenity/src/Serenity.Scripts/corelib",
+    "@serenity-is/demo.northwind": "../Serenity.Demo.Northwind",
     "@serenity-is/extensions": "../Serenity.Extensions",
     "@serenity-is/sleekgrid": "1.3.9"
   },

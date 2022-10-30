@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
   <ItemGroup>
     <PackageReference Include="Serenity.Demo.Northwind" Version="$(Version)" Condition="!Exists('..\Serenity.Demo.Northwind\Serenity.Demo.Northwind.csproj')" />
     <ProjectReference Include="..\Serenity.Demo.Northwind\Serenity.Demo.Northwind.csproj" Condition="Exists('..\Serenity.Demo.Northwind\Serenity.Demo.Northwind.csproj')" />

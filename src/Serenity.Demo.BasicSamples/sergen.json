@@ -1,4 +1,5 @@
 {
+  "EndOfLine": "LF",
   "Restore": {
     "Exclude": [ "/wwwroot/" ]
   }

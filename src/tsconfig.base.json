@@ -17,7 +17,6 @@
     "noEmit": false,
     "noEmitHelpers": true,
     "noEmitOnError": false,
-    "outDir": "./obj/tscout",
     "paths": {
       "@/*": [ "Modules/*" ],
       "@serenity-is/*": [ "node_modules/@serenity-is/*/dist/index" ]
@@ -32,9 +31,6 @@
       "../../Serenity/src/Serenity.Scripts/types"
     ]
   },
-  "include": [
-    "./Modules/*/**/*"
-  ],
   "typeAcquisition": {
     "enable": false
   }

@@ -49,4 +49,4 @@ export class ProductForm extends PrefixedContext {
     }
 }
 
-[SupplierDialog, CategoryDialog]; // inplace add dialog types
+[SupplierDialog, CategoryDialog]; // referenced types

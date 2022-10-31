@@ -4,4 +4,4 @@ export class CustomerColumns {
     static columnsKey = 'Northwind.Customer';
 }
 
-[EmployeeListFormatter]; // formatter types
+[EmployeeListFormatter]; // referenced types

@@ -18,8 +18,7 @@
     "noEmitHelpers": true,
     "noEmitOnError": false,
     "paths": {
-      "@/*": [ "Modules/*" ],
-      "@serenity-is/*": [ "node_modules/@serenity-is/*/dist/index" ]
+      "@/*": [ "Modules/*" ]
     },
     "preserveConstEnums": true,
     "preserveSymlinks": true,

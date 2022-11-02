@@ -40,7 +40,7 @@ export declare class DefaultValuesInNewGrid extends OrderGrid {
 	 * This is a good place to fill in default values for New Item button.
 	 */
 	protected addButtonClick(): void;
-	protected getButtons(): import("@serenity-is/corelib/dist/serenity").ToolButton[];
+	protected getButtons(): import("@serenity-is/corelib").ToolButton[];
 }
 export declare function initializePage(): void;
 /**

@@ -5,6 +5,9 @@
     "outDir": "./obj/tscout"
   },
   "include": [
-    "Modules/*/**/*"
+    "Modules/"
+  ],
+  "exclude": [
+    "Modules/index.ts"
   ]
 }

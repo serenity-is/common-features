@@ -984,7 +984,7 @@ export declare class OrderDialog extends EntityDialog<OrderRow, any> {
 	protected getService(): string;
 	protected form: OrderForm;
 	constructor();
-	getToolbarButtons(): import("@serenity-is/corelib/dist/serenity").ToolButton[];
+	getToolbarButtons(): import("@serenity-is/corelib").ToolButton[];
 	protected updateInterface(): void;
 }
 export declare class CustomerOrderDialog extends OrderDialog {
@@ -998,7 +998,7 @@ export declare class OrderGrid extends EntityGrid<OrderRow, any> {
 	protected getService(): string;
 	protected shippingStateFilter: EnumEditor;
 	constructor(container: JQuery);
-	protected getQuickFilters(): import("@serenity-is/corelib/dist/serenity").QuickFilter<import("@serenity-is/corelib/dist/serenity").Widget<any>, any>[];
+	protected getQuickFilters(): import("@serenity-is/corelib").QuickFilter<import("@serenity-is/corelib").Widget<any>, any>[];
 	protected createQuickFilters(): void;
 	protected getButtons(): ToolButton[];
 	protected getColumns(): import("@serenity-is/sleekgrid").Column<any>[];
@@ -1057,7 +1057,7 @@ export declare class ProductGrid extends EntityGrid<ProductRow, any> {
 	protected getService(): string;
 	private pendingChanges;
 	constructor(container: JQuery);
-	protected getButtons(): import("@serenity-is/corelib/dist/serenity").ToolButton[];
+	protected getButtons(): import("@serenity-is/corelib").ToolButton[];
 	protected onViewProcessData(response: any): import("@serenity-is/corelib/q").ListResponse<ProductRow>;
 	/**
 	 * It would be nice if we could use autonumeric, Serenity editors etc. here, to control input validation,
@@ -1075,7 +1075,7 @@ export declare class ProductGrid extends EntityGrid<ProductRow, any> {
 	private inputsChange;
 	private setSaveButtonState;
 	private saveClick;
-	protected getQuickFilters(): import("@serenity-is/corelib/dist/serenity").QuickFilter<import("@serenity-is/corelib/dist/serenity").Widget<any>, any>[];
+	protected getQuickFilters(): import("@serenity-is/corelib").QuickFilter<import("@serenity-is/corelib").Widget<any>, any>[];
 }
 export declare class RegionDialog extends EntityDialog<RegionRow, any> {
 	protected getFormKey(): string;

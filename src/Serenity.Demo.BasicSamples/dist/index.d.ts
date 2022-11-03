@@ -42,7 +42,9 @@ export declare class DefaultValuesInNewGrid extends OrderGrid {
 	protected addButtonClick(): void;
 	protected getButtons(): import("@serenity-is/corelib").ToolButton[];
 }
-export declare function initializePage(): void;
+export declare namespace DialogBoxes {
+	function initializePage(): void;
+}
 /**
  * A version of order dialog converted to a panel by adding Serenity.@Decorators.panel decorator.
  */
@@ -123,9 +125,9 @@ export interface OrdersByShipperResponse extends ServiceResponse {
 export declare namespace BasicSamplesService {
 	const baseUrl = "Serenity.Demo.BasicSamples";
 	function OrdersByShipper(request: OrdersByShipperRequest, onSuccess?: (response: OrdersByShipperResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
-	enum Methods {
-		OrdersByShipper = "Serenity.Demo.BasicSamples/OrdersByShipper"
-	}
+	const Methods: {
+		readonly OrdersByShipper: "Serenity.Demo.BasicSamples/OrdersByShipper";
+	};
 }
 /**
  * Our custom product editor type

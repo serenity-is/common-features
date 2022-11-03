@@ -7,9 +7,9 @@ export namespace SalesByCategoryService {
 
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<SalesByCategoryRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare enum Methods {
-        List = "Serenity.Demo.Northwind/SalesByCategory/List"
-    }
+    export const Methods = {
+        List: "Serenity.Demo.Northwind/SalesByCategory/List"
+    } as const;
 
     [
         'List'

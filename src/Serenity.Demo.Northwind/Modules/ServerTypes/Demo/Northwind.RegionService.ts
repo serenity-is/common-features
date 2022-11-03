@@ -11,13 +11,13 @@ export namespace RegionService {
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<RegionRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<RegionRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare enum Methods {
-        Create = "Serenity.Demo.Northwind/Region/Create",
-        Update = "Serenity.Demo.Northwind/Region/Update",
-        Delete = "Serenity.Demo.Northwind/Region/Delete",
-        Retrieve = "Serenity.Demo.Northwind/Region/Retrieve",
-        List = "Serenity.Demo.Northwind/Region/List"
-    }
+    export const Methods = {
+        Create: "Serenity.Demo.Northwind/Region/Create",
+        Update: "Serenity.Demo.Northwind/Region/Update",
+        Delete: "Serenity.Demo.Northwind/Region/Delete",
+        Retrieve: "Serenity.Demo.Northwind/Region/Retrieve",
+        List: "Serenity.Demo.Northwind/Region/List"
+    } as const;
 
     [
         'Create', 

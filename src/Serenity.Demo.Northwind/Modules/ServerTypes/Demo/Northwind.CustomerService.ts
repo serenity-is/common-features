@@ -13,14 +13,14 @@ export namespace CustomerService {
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<CustomerRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<CustomerRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare enum Methods {
-        Create = "Serenity.Demo.Northwind/Customer/Create",
-        Update = "Serenity.Demo.Northwind/Customer/Update",
-        Delete = "Serenity.Demo.Northwind/Customer/Delete",
-        GetNextNumber = "Serenity.Demo.Northwind/Customer/GetNextNumber",
-        Retrieve = "Serenity.Demo.Northwind/Customer/Retrieve",
-        List = "Serenity.Demo.Northwind/Customer/List"
-    }
+    export const Methods = {
+        Create: "Serenity.Demo.Northwind/Customer/Create",
+        Update: "Serenity.Demo.Northwind/Customer/Update",
+        Delete: "Serenity.Demo.Northwind/Customer/Delete",
+        GetNextNumber: "Serenity.Demo.Northwind/Customer/GetNextNumber",
+        Retrieve: "Serenity.Demo.Northwind/Customer/Retrieve",
+        List: "Serenity.Demo.Northwind/Customer/List"
+    } as const;
 
     [
         'Create', 

@@ -7,9 +7,9 @@ export namespace BasicSamplesService {
 
     export declare function OrdersByShipper(request: OrdersByShipperRequest, onSuccess?: (response: OrdersByShipperResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare enum Methods {
-        OrdersByShipper = "Serenity.Demo.BasicSamples/OrdersByShipper"
-    }
+    export const Methods = {
+        OrdersByShipper: "Serenity.Demo.BasicSamples/OrdersByShipper"
+    } as const;
 
     [
         'OrdersByShipper'

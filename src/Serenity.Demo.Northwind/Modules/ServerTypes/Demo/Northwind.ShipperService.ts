@@ -11,13 +11,13 @@ export namespace ShipperService {
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<ShipperRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<ShipperRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare enum Methods {
-        Create = "Serenity.Demo.Northwind/Shipper/Create",
-        Update = "Serenity.Demo.Northwind/Shipper/Update",
-        Delete = "Serenity.Demo.Northwind/Shipper/Delete",
-        Retrieve = "Serenity.Demo.Northwind/Shipper/Retrieve",
-        List = "Serenity.Demo.Northwind/Shipper/List"
-    }
+    export const Methods = {
+        Create: "Serenity.Demo.Northwind/Shipper/Create",
+        Update: "Serenity.Demo.Northwind/Shipper/Update",
+        Delete: "Serenity.Demo.Northwind/Shipper/Delete",
+        Retrieve: "Serenity.Demo.Northwind/Shipper/Retrieve",
+        List: "Serenity.Demo.Northwind/Shipper/List"
+    } as const;
 
     [
         'Create', 

@@ -11,13 +11,13 @@ export namespace TerritoryService {
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<TerritoryRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<TerritoryRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare enum Methods {
-        Create = "Serenity.Demo.Northwind/Territory/Create",
-        Update = "Serenity.Demo.Northwind/Territory/Update",
-        Delete = "Serenity.Demo.Northwind/Territory/Delete",
-        Retrieve = "Serenity.Demo.Northwind/Territory/Retrieve",
-        List = "Serenity.Demo.Northwind/Territory/List"
-    }
+    export const Methods = {
+        Create: "Serenity.Demo.Northwind/Territory/Create",
+        Update: "Serenity.Demo.Northwind/Territory/Update",
+        Delete: "Serenity.Demo.Northwind/Territory/Delete",
+        Retrieve: "Serenity.Demo.Northwind/Territory/Retrieve",
+        List: "Serenity.Demo.Northwind/Territory/List"
+    } as const;
 
     [
         'Create', 

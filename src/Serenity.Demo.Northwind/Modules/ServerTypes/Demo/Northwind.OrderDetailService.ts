@@ -8,10 +8,10 @@ export namespace OrderDetailService {
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<OrderDetailRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<OrderDetailRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare enum Methods {
-        Retrieve = "Serenity.Demo.Northwind/OrderDetail/Retrieve",
-        List = "Serenity.Demo.Northwind/OrderDetail/List"
-    }
+    export const Methods = {
+        Retrieve: "Serenity.Demo.Northwind/OrderDetail/Retrieve",
+        List: "Serenity.Demo.Northwind/OrderDetail/List"
+    } as const;
 
     [
         'Retrieve', 

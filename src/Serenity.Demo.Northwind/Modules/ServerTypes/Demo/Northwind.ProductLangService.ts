@@ -11,13 +11,13 @@ export namespace ProductLangService {
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<ProductLangRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<ProductLangRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
-    export declare enum Methods {
-        Create = "Serenity.Demo.Northwind/ProductLang/Create",
-        Update = "Serenity.Demo.Northwind/ProductLang/Update",
-        Delete = "Serenity.Demo.Northwind/ProductLang/Delete",
-        Retrieve = "Serenity.Demo.Northwind/ProductLang/Retrieve",
-        List = "Serenity.Demo.Northwind/ProductLang/List"
-    }
+    export const Methods = {
+        Create: "Serenity.Demo.Northwind/ProductLang/Create",
+        Update: "Serenity.Demo.Northwind/ProductLang/Update",
+        Delete: "Serenity.Demo.Northwind/ProductLang/Delete",
+        Retrieve: "Serenity.Demo.Northwind/ProductLang/Retrieve",
+        List: "Serenity.Demo.Northwind/ProductLang/List"
+    } as const;
 
     [
         'Create', 

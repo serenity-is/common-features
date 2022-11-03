@@ -6,14 +6,14 @@ out/
 .vs/
 /build/.nupkg/
 node_modules/
-/src/*/package.lock.json
 /src/*/dist/index.js
 /src/*/dist/index.min.js
 /src/*/dist/index.js.map
+/src/*/package.lock.json
+/src/*/typings/*/index.d.ts
 /src/*/wwwroot/index.js
 /src/*/wwwroot/index.min.js
 /src/*/wwwroot/index.d.ts
 /src/*/wwwroot/index.js.map
-/src/*/typings/*/index.d.ts
 *.csproj.user
 .restore-stamp

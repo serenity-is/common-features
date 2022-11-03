@@ -12,7 +12,6 @@ node_modules/
 /src/*/typings/*/index.d.ts
 /src/*/wwwroot/index.js
 /src/*/wwwroot/index.min.js
-/src/*/wwwroot/index.d.ts
 /src/*/wwwroot/index.js.map
 *.csproj.user
 .restore-stamp

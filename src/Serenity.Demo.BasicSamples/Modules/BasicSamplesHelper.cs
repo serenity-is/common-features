@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Razor;
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using HtmlHelper = Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper;
 
 namespace Serenity.Demo.BasicSamples
@@ -32,6 +33,9 @@ namespace Serenity.Demo.BasicSamples
                 }
                 else
                     relative = new Uri("x:" + absolutePath + relative).AbsolutePath[2..];
+
+                if (!file.EndsWith(".cshtml", StringComparison.OrdinalIgnoreCase))
+                    relative = relative.Replace("Areas/Serenity.Demo.BasicSamples", "Modules");
 
                 path = "Serenity.Demo.BasicSamples" + relative;
             }

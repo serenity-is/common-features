@@ -4,10 +4,10 @@
     "@serenity-is/corelib": "../../../Serenity/src/Serenity.Scripts/corelib",
     "@serenity-is/demo.northwind": "../Serenity.Demo.Northwind",
     "@serenity-is/extensions": "../Serenity.Extensions",
-    "@serenity-is/sleekgrid": "1.3.9"
+    "@serenity-is/sleekgrid": "latest"
   },
   "devDependencies": {
-    "@serenity-is/tsbuild": "6.2.9"
+    "@serenity-is/tsbuild": "latest"
   },
   "scripts": {
     "build": "node ./tsbuild.js",

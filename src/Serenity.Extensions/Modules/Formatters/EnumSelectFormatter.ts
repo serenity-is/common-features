@@ -2,7 +2,7 @@ import { Decorators, EnumTypeRegistry, Formatter } from "@serenity-is/corelib";
 import { attrEncode, htmlEncode, text, tryGetText } from "@serenity-is/corelib/q";
 import { FormatterContext } from "@serenity-is/sleekgrid";
 
-Decorators.registerFormatter('Serenity.Extensions.EnumSelectFormatter')
+@Decorators.registerFormatter('Serenity.Extensions.EnumSelectFormatter')
 export class EnumSelectFormatter implements Formatter {
     constructor() {
         this.allowClear = true;

@@ -1,8 +1,8 @@
-﻿import { Decorators, Formatter, IInitializeColumn } from "@serenity-is/corelib";
+import { Decorators, Formatter, IInitializeColumn } from "@serenity-is/corelib";
 import { resolveUrl } from "@serenity-is/corelib/q";
 import { Column, FormatterContext } from "@serenity-is/sleekgrid";
 
-@Decorators.registerFormatter()
+@Decorators.registerFormatter("Serenity.Demo.BasicSamples.InlineImageFormatter")
 export class InlineImageFormatter
     implements Formatter, IInitializeColumn {
 

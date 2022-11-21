@@ -30,7 +30,7 @@ export class ReportDialog extends TemplatedDialog<ReportDialogOptions> {
 
     protected loadReport(reportKey: string) {
         serviceCall({
-            url: resolveUrl('~/Extensions/Report/Retrieve'),
+            url: resolveUrl('~/Serenity.Extensions/Report/Retrieve'),
             request: {
                 ReportKey: reportKey
             },

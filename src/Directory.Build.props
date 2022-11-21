@@ -20,6 +20,7 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <DefaultItemExcludes>$(DefaultItemExcludes);package*.json;sergen.json;tsconfig.json;libman.json;tsbuild.js;wwwroot\index.d.ts;wwwroot\**\*.less</DefaultItemExcludes>
+    <RestoreNodeTypes>false</RestoreNodeTypes>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" Condition="'$(UsingMicrosoftNETSdkWeb)' != 'true'" />

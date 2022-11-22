@@ -15,3 +15,4 @@ node_modules/
 /src/*/wwwroot/index.js.map
 *.csproj.user
 .restore-stamp
+package-lock.json

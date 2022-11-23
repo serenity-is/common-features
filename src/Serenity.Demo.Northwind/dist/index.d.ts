@@ -43,13 +43,13 @@ export declare namespace CategoryLangService {
 	function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<CategoryLangRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function List(request: ListRequest, onSuccess?: (response: ListResponse<CategoryLangRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
-	enum Methods {
-		Create = "Serenity.Demo.Northwind/CategoryLang/Create",
-		Update = "Serenity.Demo.Northwind/CategoryLang/Update",
-		Delete = "Serenity.Demo.Northwind/CategoryLang/Delete",
-		Retrieve = "Serenity.Demo.Northwind/CategoryLang/Retrieve",
-		List = "Serenity.Demo.Northwind/CategoryLang/List"
-	}
+	const Methods: {
+		readonly Create: "Serenity.Demo.Northwind/CategoryLang/Create";
+		readonly Update: "Serenity.Demo.Northwind/CategoryLang/Update";
+		readonly Delete: "Serenity.Demo.Northwind/CategoryLang/Delete";
+		readonly Retrieve: "Serenity.Demo.Northwind/CategoryLang/Retrieve";
+		readonly List: "Serenity.Demo.Northwind/CategoryLang/List";
+	};
 }
 export interface CategoryRow {
 	CategoryID?: number;
@@ -78,13 +78,13 @@ export declare namespace CategoryService {
 	function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<CategoryRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function List(request: ListRequest, onSuccess?: (response: ListResponse<CategoryRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
-	enum Methods {
-		Create = "Serenity.Demo.Northwind/Category/Create",
-		Update = "Serenity.Demo.Northwind/Category/Update",
-		Delete = "Serenity.Demo.Northwind/Category/Delete",
-		Retrieve = "Serenity.Demo.Northwind/Category/Retrieve",
-		List = "Serenity.Demo.Northwind/Category/List"
-	}
+	const Methods: {
+		readonly Create: "Serenity.Demo.Northwind/Category/Create";
+		readonly Update: "Serenity.Demo.Northwind/Category/Update";
+		readonly Delete: "Serenity.Demo.Northwind/Category/Delete";
+		readonly Retrieve: "Serenity.Demo.Northwind/Category/Retrieve";
+		readonly List: "Serenity.Demo.Northwind/Category/List";
+	};
 }
 export declare class CustomerColumns {
 	static columnsKey: string;
@@ -296,14 +296,14 @@ export declare namespace CustomerService {
 	function GetNextNumber(request: GetNextNumberRequest, onSuccess?: (response: GetNextNumberResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<CustomerRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function List(request: ListRequest, onSuccess?: (response: ListResponse<CustomerRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
-	enum Methods {
-		Create = "Serenity.Demo.Northwind/Customer/Create",
-		Update = "Serenity.Demo.Northwind/Customer/Update",
-		Delete = "Serenity.Demo.Northwind/Customer/Delete",
-		GetNextNumber = "Serenity.Demo.Northwind/Customer/GetNextNumber",
-		Retrieve = "Serenity.Demo.Northwind/Customer/Retrieve",
-		List = "Serenity.Demo.Northwind/Customer/List"
-	}
+	const Methods: {
+		readonly Create: "Serenity.Demo.Northwind/Customer/Create";
+		readonly Update: "Serenity.Demo.Northwind/Customer/Update";
+		readonly Delete: "Serenity.Demo.Northwind/Customer/Delete";
+		readonly GetNextNumber: "Serenity.Demo.Northwind/Customer/GetNextNumber";
+		readonly Retrieve: "Serenity.Demo.Northwind/Customer/Retrieve";
+		readonly List: "Serenity.Demo.Northwind/Customer/List";
+	};
 }
 export declare enum Gender {
 	Male = 1,
@@ -447,10 +447,10 @@ export declare namespace OrderDetailService {
 	const baseUrl = "Serenity.Demo.Northwind/OrderDetail";
 	function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<OrderDetailRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function List(request: ListRequest, onSuccess?: (response: ListResponse<OrderDetailRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
-	enum Methods {
-		Retrieve = "Serenity.Demo.Northwind/OrderDetail/Retrieve",
-		List = "Serenity.Demo.Northwind/OrderDetail/List"
-	}
+	const Methods: {
+		readonly Retrieve: "Serenity.Demo.Northwind/OrderDetail/Retrieve";
+		readonly List: "Serenity.Demo.Northwind/OrderDetail/List";
+	};
 }
 export declare class CustomerEditor extends LookupEditorBase<LookupEditorOptions, CustomerRow> {
 	constructor(hidden: JQuery, options: LookupEditorOptions);
@@ -546,13 +546,13 @@ export declare namespace OrderService {
 	function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<OrderRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function List(request: OrderListRequest, onSuccess?: (response: ListResponse<OrderRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
-	enum Methods {
-		Create = "Serenity.Demo.Northwind/Order/Create",
-		Update = "Serenity.Demo.Northwind/Order/Update",
-		Delete = "Serenity.Demo.Northwind/Order/Delete",
-		Retrieve = "Serenity.Demo.Northwind/Order/Retrieve",
-		List = "Serenity.Demo.Northwind/Order/List"
-	}
+	const Methods: {
+		readonly Create: "Serenity.Demo.Northwind/Order/Create";
+		readonly Update: "Serenity.Demo.Northwind/Order/Update";
+		readonly Delete: "Serenity.Demo.Northwind/Order/Delete";
+		readonly Retrieve: "Serenity.Demo.Northwind/Order/Retrieve";
+		readonly List: "Serenity.Demo.Northwind/Order/List";
+	};
 }
 export declare namespace PermissionKeys {
 	const General = "Northwind:General";
@@ -605,13 +605,13 @@ export declare namespace ProductLangService {
 	function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<ProductLangRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function List(request: ListRequest, onSuccess?: (response: ListResponse<ProductLangRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
-	enum Methods {
-		Create = "Serenity.Demo.Northwind/ProductLang/Create",
-		Update = "Serenity.Demo.Northwind/ProductLang/Update",
-		Delete = "Serenity.Demo.Northwind/ProductLang/Delete",
-		Retrieve = "Serenity.Demo.Northwind/ProductLang/Retrieve",
-		List = "Serenity.Demo.Northwind/ProductLang/List"
-	}
+	const Methods: {
+		readonly Create: "Serenity.Demo.Northwind/ProductLang/Create";
+		readonly Update: "Serenity.Demo.Northwind/ProductLang/Update";
+		readonly Delete: "Serenity.Demo.Northwind/ProductLang/Delete";
+		readonly Retrieve: "Serenity.Demo.Northwind/ProductLang/Retrieve";
+		readonly List: "Serenity.Demo.Northwind/ProductLang/List";
+	};
 }
 export interface ProductLogRow {
 	ProductLogID?: number;
@@ -688,13 +688,13 @@ export declare namespace ProductService {
 	function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<ProductRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function List(request: ListRequest, onSuccess?: (response: ListResponse<ProductRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
-	enum Methods {
-		Create = "Serenity.Demo.Northwind/Product/Create",
-		Update = "Serenity.Demo.Northwind/Product/Update",
-		Delete = "Serenity.Demo.Northwind/Product/Delete",
-		Retrieve = "Serenity.Demo.Northwind/Product/Retrieve",
-		List = "Serenity.Demo.Northwind/Product/List"
-	}
+	const Methods: {
+		readonly Create: "Serenity.Demo.Northwind/Product/Create";
+		readonly Update: "Serenity.Demo.Northwind/Product/Update";
+		readonly Delete: "Serenity.Demo.Northwind/Product/Delete";
+		readonly Retrieve: "Serenity.Demo.Northwind/Product/Retrieve";
+		readonly List: "Serenity.Demo.Northwind/Product/List";
+	};
 }
 export declare class RegionColumns {
 	static columnsKey: string;
@@ -733,13 +733,13 @@ export declare namespace RegionService {
 	function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<RegionRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function List(request: ListRequest, onSuccess?: (response: ListResponse<RegionRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
-	enum Methods {
-		Create = "Serenity.Demo.Northwind/Region/Create",
-		Update = "Serenity.Demo.Northwind/Region/Update",
-		Delete = "Serenity.Demo.Northwind/Region/Delete",
-		Retrieve = "Serenity.Demo.Northwind/Region/Retrieve",
-		List = "Serenity.Demo.Northwind/Region/List"
-	}
+	const Methods: {
+		readonly Create: "Serenity.Demo.Northwind/Region/Create";
+		readonly Update: "Serenity.Demo.Northwind/Region/Update";
+		readonly Delete: "Serenity.Demo.Northwind/Region/Delete";
+		readonly Retrieve: "Serenity.Demo.Northwind/Region/Retrieve";
+		readonly List: "Serenity.Demo.Northwind/Region/List";
+	};
 }
 export declare class SalesByCategoryColumns {
 	static columnsKey: string;
@@ -762,9 +762,9 @@ export declare abstract class SalesByCategoryRow {
 export declare namespace SalesByCategoryService {
 	const baseUrl = "Serenity.Demo.Northwind/SalesByCategory";
 	function List(request: ListRequest, onSuccess?: (response: ListResponse<SalesByCategoryRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
-	enum Methods {
-		List = "Serenity.Demo.Northwind/SalesByCategory/List"
-	}
+	const Methods: {
+		readonly List: "Serenity.Demo.Northwind/SalesByCategory/List";
+	};
 }
 export declare class ShipperColumns {
 	static columnsKey: string;
@@ -817,13 +817,13 @@ export declare namespace ShipperService {
 	function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<ShipperRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function List(request: ListRequest, onSuccess?: (response: ListResponse<ShipperRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
-	enum Methods {
-		Create = "Serenity.Demo.Northwind/Shipper/Create",
-		Update = "Serenity.Demo.Northwind/Shipper/Update",
-		Delete = "Serenity.Demo.Northwind/Shipper/Delete",
-		Retrieve = "Serenity.Demo.Northwind/Shipper/Retrieve",
-		List = "Serenity.Demo.Northwind/Shipper/List"
-	}
+	const Methods: {
+		readonly Create: "Serenity.Demo.Northwind/Shipper/Create";
+		readonly Update: "Serenity.Demo.Northwind/Shipper/Update";
+		readonly Delete: "Serenity.Demo.Northwind/Shipper/Delete";
+		readonly Retrieve: "Serenity.Demo.Northwind/Shipper/Retrieve";
+		readonly List: "Serenity.Demo.Northwind/Shipper/List";
+	};
 }
 export declare class SupplierColumns {
 	static columnsKey: string;
@@ -881,13 +881,13 @@ export declare namespace SupplierService {
 	function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<SupplierRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function List(request: ListRequest, onSuccess?: (response: ListResponse<SupplierRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
-	enum Methods {
-		Create = "Serenity.Demo.Northwind/Supplier/Create",
-		Update = "Serenity.Demo.Northwind/Supplier/Update",
-		Delete = "Serenity.Demo.Northwind/Supplier/Delete",
-		Retrieve = "Serenity.Demo.Northwind/Supplier/Retrieve",
-		List = "Serenity.Demo.Northwind/Supplier/List"
-	}
+	const Methods: {
+		readonly Create: "Serenity.Demo.Northwind/Supplier/Create";
+		readonly Update: "Serenity.Demo.Northwind/Supplier/Update";
+		readonly Delete: "Serenity.Demo.Northwind/Supplier/Delete";
+		readonly Retrieve: "Serenity.Demo.Northwind/Supplier/Retrieve";
+		readonly List: "Serenity.Demo.Northwind/Supplier/List";
+	};
 }
 export declare class TerritoryColumns {
 	static columnsKey: string;
@@ -930,13 +930,13 @@ export declare namespace TerritoryService {
 	function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<TerritoryRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function List(request: ListRequest, onSuccess?: (response: ListResponse<TerritoryRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
-	enum Methods {
-		Create = "Serenity.Demo.Northwind/Territory/Create",
-		Update = "Serenity.Demo.Northwind/Territory/Update",
-		Delete = "Serenity.Demo.Northwind/Territory/Delete",
-		Retrieve = "Serenity.Demo.Northwind/Territory/Retrieve",
-		List = "Serenity.Demo.Northwind/Territory/List"
-	}
+	const Methods: {
+		readonly Create: "Serenity.Demo.Northwind/Territory/Create";
+		readonly Update: "Serenity.Demo.Northwind/Territory/Update";
+		readonly Delete: "Serenity.Demo.Northwind/Territory/Delete";
+		readonly Retrieve: "Serenity.Demo.Northwind/Territory/Retrieve";
+		readonly List: "Serenity.Demo.Northwind/Territory/List";
+	};
 }
 export declare class CategoryDialog extends EntityDialog<CategoryRow, any> {
 	protected getFormKey(): string;

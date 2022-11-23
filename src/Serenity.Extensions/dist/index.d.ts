@@ -55,10 +55,10 @@ export declare namespace UserPreferenceService {
 	const baseUrl = "Extensions/UserPreference";
 	function Update(request: UserPreferenceUpdateRequest, onSuccess?: (response: ServiceResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	function Retrieve(request: UserPreferenceRetrieveRequest, onSuccess?: (response: UserPreferenceRetrieveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
-	enum Methods {
-		Update = "Extensions/UserPreference/Update",
-		Retrieve = "Extensions/UserPreference/Retrieve"
-	}
+	const Methods: {
+		readonly Update: "Extensions/UserPreference/Update";
+		readonly Retrieve: "Extensions/UserPreference/Retrieve";
+	};
 }
 export interface ReportRetrieveResult extends ServiceResponse {
 	IsExternalReport?: boolean;

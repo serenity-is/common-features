@@ -11,7 +11,7 @@ dependencies:
   '@serenity-is/corelib': link:../../../Serenity/src/Serenity.Scripts/corelib
   '@serenity-is/demo.northwind': link:../Serenity.Demo.Northwind
   '@serenity-is/extensions': link:../Serenity.Extensions
-  '@serenity-is/sleekgrid': 1.4.1
+  '@serenity-is/sleekgrid': 1.4.3
 
 devDependencies:
   '@serenity-is/tsbuild': 6.2.9
@@ -36,8 +36,8 @@ packages:
     dev: true
     optional: true
 
-  /@serenity-is/sleekgrid/1.4.1:
-    resolution: {integrity: sha512-Hv2TPQqSqGDr9DmqIuxQ/eykG8UTXhncW0WMoQmphP4qdoeYAgXTBSRZTPsyHg5jIg79pbMAt0DKh4osH3V03w==}
+  /@serenity-is/sleekgrid/1.4.3:
+    resolution: {integrity: sha512-PxcR5KJY18GTzxWh+KdN4En8B3UdqgLJ/5Qb1OQBU6wUDX5+EG2MF6B451RrfLfP+FGtYAOPxh27JdzomzO9YA==}
     dev: false
 
   /@serenity-is/tsbuild/6.2.9:

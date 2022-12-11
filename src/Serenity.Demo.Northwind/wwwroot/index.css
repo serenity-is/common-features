@@ -84,7 +84,7 @@
   margin-top: 6px;
   display: block;
   text-align: right;
-  color: var(--s-link-color, #2a4084);
+  color: var(--bs-link-color, #2a4084);
   text-decoration: none;
   font-style: italic;
 }

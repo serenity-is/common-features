@@ -1,8 +1,8 @@
 import { Decorators, EntityDialog } from "@serenity-is/corelib";
 import { ServiceOptions, SaveResponse, DeleteResponse } from "@serenity-is/corelib/q";
 
-@Decorators.registerClass()
-export class GridEditorDialog<TEntity> extends EntityDialog<TEntity, any> {
+@Decorators.registerClass("Serenity.Extensions.GridEditorDialog")
+export abstract class GridEditorDialog<TEntity> extends EntityDialog<TEntity, any> {
     protected getIdProperty() { return "__id"; }
 
     public onSave: (options: ServiceOptions<SaveResponse>,

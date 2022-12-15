@@ -1,7 +1,8 @@
-import { QuickSearchInput, Widget } from "@serenity-is/corelib";
+import { Decorators, QuickSearchInput, Widget } from "@serenity-is/corelib";
 import { coalesce, trimToNull } from "@serenity-is/corelib/q";
 import { ReportDialog } from "./ReportDialog";
 
+@Decorators.registerClass("Serenity.Extensions.ReportPage")
 export class ReportPage extends Widget<any> {
 
     constructor(element: JQuery) {

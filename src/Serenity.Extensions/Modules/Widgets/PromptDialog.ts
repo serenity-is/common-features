@@ -13,7 +13,7 @@ export interface PromptDialogOptions {
     validateValue: (v: any) => boolean;
 }
 
-@Decorators.registerClass()
+@Decorators.registerClass("Serenity.Extensions.PromptDialog")
 export class PromptDialog extends PropertyDialog<any, PromptDialogOptions> {
 
     constructor(opt: PromptDialogOptions) {

@@ -2,10 +2,10 @@ import { Decorators, EntityGrid, IGetEditValue, ISetEditValue, ServiceResponse, 
 import { deepClone, indexOf, SaveRequest, ServiceOptions, tryFirst } from "@serenity-is/corelib/q";
 import { GridEditorDialog } from "./GridEditorDialog";
 
-@Decorators.registerClass([IGetEditValue, ISetEditValue])
+@Decorators.registerClass("Serenity.Extensions.GridEditorBase", [IGetEditValue, ISetEditValue])
 @Decorators.editor()
 @Decorators.element("<div/>")
-export class GridEditorBase<TEntity, TOptions = any> extends EntityGrid<TEntity, TOptions>
+export abstract class GridEditorBase<TEntity, TOptions = any> extends EntityGrid<TEntity, TOptions>
     implements IGetEditValue, ISetEditValue {
 
     protected getIdProperty() { return "__id"; }

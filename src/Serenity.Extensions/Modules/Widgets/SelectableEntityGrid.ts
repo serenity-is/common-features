@@ -1,7 +1,7 @@
 import { Decorators, EntityGrid } from "@serenity-is/corelib";
 import { Grid, GridOptions } from "@serenity-is/sleekgrid";
 
-@Decorators.registerClass()
+@Decorators.registerClass("Serenity.Extensions.SelectableEntityGrid")
 export class SelectableEntityGrid<TItem, TOptions> extends EntityGrid<TItem, TOptions> {
 
     protected getSlickOptions(): GridOptions {

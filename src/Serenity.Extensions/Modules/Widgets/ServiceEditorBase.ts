@@ -7,7 +7,7 @@ export interface ServiceEditorOptions {
     cascadeValue?: any;
 }
 
-@Decorators.registerClass()
+@Decorators.registerClass("Serenity.Extensions.ServiceEditorBase")
 export class ServiceEditorBase<TOptions extends ServiceEditorOptions, TRow>
     extends Select2AjaxEditor<TOptions, TRow> {
     private cascadeLink: CascadedWidgetLink<Widget<any>>;

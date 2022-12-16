@@ -1,5 +1,4 @@
-﻿using Serenity.Demo.Northwind;
-using Serenity.ComponentModel;
+﻿using Serenity.ComponentModel;
 using Serenity.Web;
 using Serenity.Data;
 

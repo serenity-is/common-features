@@ -1,6 +1,4 @@
-﻿using Serenity.Demo.Northwind;
-using Serenity;
-using Serenity.Data;
+﻿using Serenity.Data;
 using Serenity.Reporting;
 using System;
 using System.Collections.Generic;

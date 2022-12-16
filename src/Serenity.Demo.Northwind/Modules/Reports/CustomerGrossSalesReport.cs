@@ -1,5 +1,4 @@
-﻿using Serenity;
-using Serenity.ComponentModel;
+﻿using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Reporting;
 using System;

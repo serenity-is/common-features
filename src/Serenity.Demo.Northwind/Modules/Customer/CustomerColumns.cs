@@ -1,6 +1,5 @@
 ﻿using Serenity.ComponentModel;
 using Serenity.Reporting;
-using System;
 using System.ComponentModel;
 
 namespace Serenity.Demo.Northwind.Columns

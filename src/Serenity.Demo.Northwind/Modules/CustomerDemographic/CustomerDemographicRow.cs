@@ -1,7 +1,6 @@
 ﻿using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
-using System;
 using System.ComponentModel;
 
 namespace Serenity.Demo.Northwind

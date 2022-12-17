@@ -2,7 +2,7 @@ import { Decorators } from "@serenity-is/corelib";
 import { endsWith } from "@serenity-is/corelib/q";
 import { ProductDialog } from "@serenity-is/demo.northwind"
 
-@Decorators.registerClass('Serenity.Demo.BasicSamples.ProductDialog')
+@Decorators.registerClass('Serenity.Demo.BasicSamples.CloneableEntityDialog')
 @Decorators.maximizable()
 export class CloneableEntityDialog extends ProductDialog {
     protected updateInterface() {

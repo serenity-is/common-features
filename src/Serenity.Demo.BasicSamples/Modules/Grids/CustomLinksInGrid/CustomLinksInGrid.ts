@@ -24,7 +24,7 @@ export class CustomLinksInGrid extends OrderGrid {
             ctx => `<a href="javascript:;" class="customer-link">${ctx.escape()}</a>`;
 
         first(columns, x => x.field == fld.OrderDate).format =
-            ctx => `<a href="javascript:;" class="date-link">${ctx.escape()}</a>`;
+            ctx => `<a href="javascript:;" class="date-link">${ctx.escape(formatDate(ctx.value))}</a>`;
 
         first(columns, x => x.field == fld.EmployeeFullName).format =
             ctx => `<a href="javascript:;" class="employee-link">${ctx.escape()}</a>`;

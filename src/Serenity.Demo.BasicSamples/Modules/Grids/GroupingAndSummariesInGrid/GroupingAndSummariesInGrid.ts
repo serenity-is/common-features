@@ -1,8 +1,9 @@
-﻿import { LookupFilterByMultipleDialog } from "@/Editors/LookupFilterByMultipleValues/LookupFilterByMultipleDialog";
+import { LookupFilterByMultipleDialog } from "@/Editors/LookupFilterByMultipleValues/LookupFilterByMultipleDialog";
 import { Decorators, EntityGrid } from "@serenity-is/corelib";
 import { coalesce, first, formatNumber } from "@serenity-is/corelib/q";
 import { ProductRow, ProductColumns, ProductService } from "@serenity-is/demo.northwind";
 import { Aggregators } from "@serenity-is/corelib/slick";
+import { GroupItemMetadataProvider } from "@serenity-is/sleekgrid";
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.GroupingAndSummariesInGrid')
 export class GroupingAndSummariesInGrid extends EntityGrid<ProductRow, any> {
@@ -21,7 +22,7 @@ export class GroupingAndSummariesInGrid extends EntityGrid<ProductRow, any> {
         var grid = super.createSlickGrid();
 
         // need to register this plugin for grouping or you'll have errors
-        grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+        grid.registerPlugin(new GroupItemMetadataProvider());
 
         this.view.setSummaryOptions({
             aggregators: [

@@ -1,6 +1,6 @@
-﻿import { Decorators, LookupEditor } from "@serenity-is/corelib";
-import { confirm, formatDate, format, notifyInfo, notifySuccess, htmlEncode, first, count, toId } from "@serenity-is/corelib/q";
-import { OrderRow, OrderGrid, CustomerRow, CustomerDialog, OrderDialog } from "@serenity-is/demo.northwind";
+import { Decorators, LookupEditor } from "@serenity-is/corelib";
+import { confirm, count, first, format, formatDate, htmlEncode, notifyInfo, notifySuccess, toId } from "@serenity-is/corelib/q";
+import { CustomerDialog, CustomerRow, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 import { Column } from "@serenity-is/sleekgrid";
 
 const fld = OrderRow.Fields;
@@ -21,16 +21,16 @@ export class CustomLinksInGrid extends OrderGrid {
 
 
         first(columns, x => x.field == fld.CustomerCompanyName).format =
-            ctx => `<a href="javascript:;" class="customer-link">${htmlEncode(ctx.value)}</a>`;
+            ctx => `<a href="javascript:;" class="customer-link">${ctx.escape()}</a>`;
 
         first(columns, x => x.field == fld.OrderDate).format =
-            ctx => `<a href="javascript:;" class="date-link">${formatDate(ctx.value)}</a>`;
+            ctx => `<a href="javascript:;" class="date-link">${ctx.escape()}</a>`;
 
         first(columns, x => x.field == fld.EmployeeFullName).format =
-            ctx => `<a href="javascript:;" class="employee-link">${htmlEncode(ctx.value)}</a>`;
+            ctx => `<a href="javascript:;" class="employee-link">${ctx.escape()}</a>`;
 
         first(columns, x => x.field == fld.ShipCountry).format =
-            ctx => `<a href="javascript:;" class="ship-country-link">${htmlEncode(ctx.value)}</a>`;
+            ctx => `<a href="javascript:;" class="ship-country-link">${ctx.escape()}</a>`;
 
         return columns;
     }

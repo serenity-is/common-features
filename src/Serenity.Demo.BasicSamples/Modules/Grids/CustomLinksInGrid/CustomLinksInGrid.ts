@@ -1,5 +1,5 @@
 import { Decorators, LookupEditor } from "@serenity-is/corelib";
-import { confirm, count, first, format, formatDate, htmlEncode, notifyInfo, notifySuccess, toId } from "@serenity-is/corelib/q";
+import { confirmDialog, count, first, format, formatDate, htmlEncode, notifyInfo, notifySuccess, toId } from "@serenity-is/corelib/q";
 import { CustomerDialog, CustomerRow, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 import { Column } from "@serenity-is/sleekgrid";
 
@@ -60,7 +60,7 @@ export class CustomLinksInGrid extends OrderGrid {
                 "<p>If you click No, i'll open Order dialog.</p>",
                 htmlEncode(item.CustomerCompanyName));
 
-            confirm(message, () => {
+            confirmDialog(message, () => {
                 // CustomerDialog doesn't use CustomerID but ID (identity)
                 // so need to find customer to get its actual ID
                 var customer = first(CustomerRow.getLookup().items,
@@ -126,7 +126,7 @@ export class CustomLinksInGrid extends OrderGrid {
             var date = formatDate(item.OrderDate);
 
             // ask for confirmation
-            confirm(format("You clicked edit link for order with ID: {0} and Date: {1}. Should i open that order?",
+            confirmDialog(format("You clicked edit link for order with ID: {0} and Date: {1}. Should i open that order?",
                 item.OrderID, date), () => {
                     new OrderDialog().loadByIdAndOpenDialog(item.OrderID);
                 });

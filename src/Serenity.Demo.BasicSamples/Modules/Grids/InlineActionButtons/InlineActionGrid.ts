@@ -1,5 +1,5 @@
 ﻿import { Decorators } from "@serenity-is/corelib";
-import { confirm } from "@serenity-is/corelib/q";
+import { confirmDialog } from "@serenity-is/corelib/q";
 import { CustomerGrid, CustomerService, OrderDialog, OrderRow } from "@serenity-is/demo.northwind";
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.InlineActionGrid')
@@ -62,7 +62,7 @@ export class InlineActionGrid extends CustomerGrid {
             e.preventDefault();
 
             if (target.hasClass('delete-row')) {
-                confirm('Delete record?', () => {
+                confirmDialog('Delete record?', () => {
                     CustomerService.Delete({
                         EntityId: item.ID,
                     }, response => {

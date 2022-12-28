@@ -1,4 +1,4 @@
-﻿import { confirm, Dictionary, format, notifyError, notifySuccess, notifyWarning, ServiceError, text } from "@serenity-is/corelib/q";
+﻿import { confirmDialog, Dictionary, format, notifyError, notifySuccess, notifyWarning, ServiceError, text } from "@serenity-is/corelib/q";
 import { BasicProgressDialog } from "./BasicProgressDialog";
 
 export class BulkServiceAction {
@@ -30,7 +30,7 @@ export class BulkServiceAction {
     }
 
     protected confirm(targetCount, action) {
-        confirm(this.getConfirmationMessage(targetCount), action);
+        confirmDialog(this.getConfirmationMessage(targetCount), action);
     }
 
     protected getNothingToProcessMessage() {

@@ -1,5 +1,5 @@
 import { Decorators } from "@serenity-is/corelib";
-import { alert, toId, tryFirst } from "@serenity-is/corelib/q";
+import { alertDialog, toId, tryFirst } from "@serenity-is/corelib/q";
 import { GridEditorBase } from "@serenity-is/extensions";
 import { OrderDetailColumns, OrderDetailRow, ProductRow } from "../ServerTypes/Demo";
 import { OrderDetailDialog } from "./OrderDetailDialog";
@@ -19,7 +19,7 @@ export class OrderDetailsEditor extends GridEditorBase<OrderDetailRow> {
 
         var sameProduct = tryFirst(this.view.getItems(), x => x.ProductID === row.ProductID);
         if (sameProduct && this.id(sameProduct) !== id) {
-            alert('This product is already in order details!');
+            alertDialog('This product is already in order details!');
             return false;
         }
 

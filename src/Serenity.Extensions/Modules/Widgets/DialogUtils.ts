@@ -1,5 +1,5 @@
 import { TemplatedDialog, WX } from "@serenity-is/corelib";
-import { confirm, text } from "@serenity-is/corelib/q";
+import { confirmDialog, text } from "@serenity-is/corelib/q";
 
 export namespace DialogUtils {
     export function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean) {
@@ -9,7 +9,7 @@ export namespace DialogUtils {
             }
 
             e.preventDefault();
-            confirm(text('Site.Dialogs.PendingChangesConfirmation'),
+            confirmDialog(text('Site.Dialogs.PendingChangesConfirmation'),
                 () => element.find('div.save-and-close-button').click(),
                 {
                     onNo: function () {

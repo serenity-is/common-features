@@ -9,7 +9,7 @@ specifiers:
 dependencies:
   '@serenity-is/corelib': link:../../../Serenity/src/Serenity.Scripts/corelib
   '@serenity-is/extensions': link:../Serenity.Extensions
-  '@serenity-is/sleekgrid': 1.4.8
+  '@serenity-is/sleekgrid': 1.5.0
 
 devDependencies:
   '@serenity-is/tsbuild': 6.2.9
@@ -34,8 +34,8 @@ packages:
     dev: true
     optional: true
 
-  /@serenity-is/sleekgrid/1.4.8:
-    resolution: {integrity: sha512-KQyfSZ6md2nQsbWj+Gv8wXOcZJYlX2pLIo8rg1rQRZQISKuQXAOOetuchWSwjdffsIf7yaJ5vchd5cIF6ZhSuw==}
+  /@serenity-is/sleekgrid/1.5.0:
+    resolution: {integrity: sha512-j7Paqn0ElB7MLo00mmYOy6JxrMOnS9KWdzsMiuh99nhUwM0XUoCZqNdSo1UVXWrgI15/2M5F6Y4EcPX7dfsmJQ==}
     dev: false
 
   /@serenity-is/tsbuild/6.2.9:

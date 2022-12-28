@@ -1,5 +1,5 @@
 import { Decorators, IGetEditValue, ISetEditValue, PropertyItem, TemplatedWidget, Toolbar } from "@serenity-is/corelib";
-import { Authorization, coalesce, confirm, formatDate, formatISODateTimeUTC, insert, trimToNull } from "@serenity-is/corelib/q";
+import { Authorization, coalesce, confirmDialog, formatDate, formatISODateTimeUTC, insert, trimToNull } from "@serenity-is/corelib/q";
 import { NoteRow } from "../ServerTypes/Demo";
 import { NoteDialog } from "./NoteDialog";
 
@@ -104,7 +104,7 @@ export class NotesEditor extends TemplatedWidget<any>
     public deleteClick(e) {
         e.preventDefault();
         var index = $(e.target).data('index');
-        confirm('Delete this note?', () => {
+        confirmDialog('Delete this note?', () => {
             this.items.splice(index, 1);
             this.updateContent();
             this.set_isDirty(true);

@@ -1,13 +1,13 @@
-import { alert, confirm, information, notifySuccess, notifyInfo, notifyError, success, warning } from "@serenity-is/corelib/q";
+import { alertDialog, confirmDialog, informationDialog, notifySuccess, notifyInfo, notifyError, successDialog, warningDialog } from "@serenity-is/corelib/q";
 
 export namespace DialogBoxes {
     export function initializePage() {
         confirmDialogButtons();
         confirmWithCustomTitle();
-        informationDialog();
-        successDialog();
-        warningDialog();
-        alertDialog();
+        informationDialogSample();
+        successDialogSample();
+        warningDialogSample();
+        alertDialogSample();
         alertWithHtmlContent();
     }
 }
@@ -19,7 +19,7 @@ function confirmDialogButtons() {
     // third parameter has some additional options, that you should only use when needed
 
     $('#ConfirmDialogButtons').click(() => {
-        confirm(
+        confirmDialog(
             "Click one of buttons, or close dialog with [x] on top right, i'll tell you what you did!",
             () => {
                 notifySuccess("You clicked YES. Great!");
@@ -38,7 +38,7 @@ function confirmDialogButtons() {
 function confirmWithCustomTitle() {
 
     $('#ConfirmWithCustomTitle').click(() => {
-        confirm(
+        confirmDialog(
             "This confirmation has a custom title",
             () => {
                 notifySuccess("Allright!");
@@ -49,10 +49,10 @@ function confirmWithCustomTitle() {
     });
 }
 
-function informationDialog() {
+function informationDialogSample() {
 
     $('#Information').click(() => {
-        information(
+        informationDialog(
             "What a nice day",
             () => {
                 notifySuccess("No problem!");
@@ -60,10 +60,10 @@ function informationDialog() {
     });
 }
 
-function successDialog() {
+function successDialogSample() {
 
     $('#Success').click(() => {
-        success(
+        successDialog(
             "Operation complete",
             () => {
                 notifySuccess("Well done!");
@@ -71,23 +71,23 @@ function successDialog() {
     });
 }
 
-function warningDialog() {
+function warningDialogSample() {
 
     $('#Warning').click(() => {
-        warning("Hey, be careful!");
+        warningDialog("Hey, be careful!");
     });
 }
 
-function alertDialog() {
+function alertDialogSample() {
 
     $('#Alert').click(() => {
-        alert("Houston, we got a problem!");
+        alertDialog("Houston, we got a problem!");
     });
 }
 
 function alertWithHtmlContent() {
     $('#AlertWithHtmlContent').click(() => {
-        alert("<h4>Here is some HTML content!</h4>" +
+        alertDialog("<h4>Here is some HTML content!</h4>" +
             "<ul><li>Item 1</li><li>Item 2</li >" +
             "<li>Visit <a href='https://serenity.is/' target='_blank' style='color: #ddf'>https://serenity.is/</a>!</li></ul>", {
             htmlEncode: false

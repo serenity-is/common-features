@@ -1,0 +1,62 @@
+<Project>
+  <PropertyGroup>
+    <LangVersion>10.0</LangVersion>
+    <TargetFramework>net6.0</TargetFramework>
+    <SerenityDir Condition="'$(SerenityDir)' == '' And Exists('$(SolutionDir)Serenity\')">$(SolutionDir)Serenity\</SerenityDir>
+    <SerenityDir Condition="'$(SerenityDir)' == '' And Exists('$(MSBuildThisFileDirectory)..\Serenity\')">$(MSBuildThisFileDirectory)..\Serenity\</SerenityDir>
+    <SerenityDir Condition="'$(SerenityDir)' == '' And Exists('$(MSBuildThisFileDirectory)..\..\Serenity\')">$(MSBuildThisFileDirectory)..\..\Serenity\</SerenityDir>
+    <SerenitySrc Condition="'$(SerenitySrc)' == ''">$(SerenityDir)src\</SerenitySrc>
+    <SerenityWebProj Condition="'$(SerenityWebProj)' == ''">$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.csproj</SerenityWebProj>
+    <SerenityScriptsProj Condition="'$(SerenityScriptsProj)' == ''">$(SerenitySrc)Serenity.Scripts\Serenity.Scripts.csproj</SerenityScriptsProj>
+    <DotNetSergenDir>$(SerenitySrc)Serenity.Net.CodeGenerator\bin\</DotNetSergenDir>
+    <DotNetSergen Condition="'$(DotNetSergen)' == '' And Exists('$(DotNetSergenDir)sergen')">$(DotNetSergenDir)sergen</DotNetSergen>
+    <DotNetSergen Condition="'$(DotNetSergen)' == '' And Exists('$(DotNetSergenDir)sergen.exe')">$(DotNetSergenDir)sergen.exe</DotNetSergen>
+    <DotNetSergen Condition="'$(DotNetSergen)' == ''">dotnet sergen</DotNetSergen>
+    <DotnetToolManifestFile>$(MSBuildThisFileDirectory).config\dotnet-tools.json</DotnetToolManifestFile>
+    <DotnetToolRestoreStamp>$(MSBuildThisFileDirectory).config\.restore-stamp</DotnetToolRestoreStamp>
+    <SergenTransform>all</SergenTransform>
+    <StaticWebAssetBasePath>/$(MSBuildProjectName)</StaticWebAssetBasePath>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <DefaultItemExcludes>node_modules\**;$(DefaultItemExcludes);package*.json;sergen.json;tsconfig.json;libman.json;tsbuild.js;wwwroot\index.d.ts;wwwroot\**\*.less</DefaultItemExcludes>
+    <AddAutoRefs>true</AddAutoRefs>
+    <RestoreNodeTypes>false</RestoreNodeTypes>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" Condition="'$(UsingMicrosoftNETSdkWeb)' != 'true' and '$(AddAutoRefs)' == 'true'" />
+    <PackageReference Include="Serenity.Net.Web" Version="$(SerenityVersion)" Condition="!Exists('$(SerenityWebProj)') and '$(AddAutoRefs)' == 'true'" />
+    <ProjectReference Include="$(SerenityWebProj)" Condition="Exists('$(SerenityWebProj)') and '$(AddAutoRefs)' == 'true'" />
+    <PackageReference Include="Serenity.Scripts" Version="$(SerenityVersion)" Condition="!Exists('$(SerenityScriptsProj)') and '$(AddAutoRefs)' == 'true'" />
+    <ProjectReference Include="$(SerenityScriptsProj)" Condition="Exists('$(SerenityScriptsProj)') and '$(AddAutoRefs)' == 'true'" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.9.4" Condition="Exists('$(MSBuildProjectDirectory)\tsconfig.json')">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)GlobalSuppressions.cs" Condition="Exists('$(MSBuildThisFileDirectory)GlobalSuppressions.cs')">
+      <Link>Properties\GlobalSuppressions.cs</Link>
+    </Compile>
+    <NpmPackageFile Include="$(MSBuildProjectDirectory)\package.json" Condition="Exists('$(MSBuildProjectDirectory)\package.json')" />
+    <None Remove="$(MSBuildProjectDirectory)\*.json;$(MSBuildProjectDirectory)\tsbuild*.js" />
+    <Content Include="$(MSBuildProjectDirectory)\*.json;$(MSBuildProjectDirectory)\tsbuild*.js" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" Pack="false" />
+    <None Include="$(MSBuildProjectDirectory)\dist\**" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" Pack="true" PackagePath="dist\" />
+    <TypingsToPackage Include="wwwroot\index.d.ts" PackagePath="typings\$(ProjectName.ToLowerInvariant())\index.d.ts" Condition="Exists('wwwroot\index.d.ts') OR Exists('tsconfig.json')" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="System" />
+    <Using Include="System.Collections.Generic" />
+    <Using Include="System.ComponentModel" />
+    <Using Include="System.Globalization" />
+    <Using Include="System.Linq" />
+    <Using Include="System.Reflection" />
+    <Using Include="System.Text" />
+    <Using Include="System.Text.RegularExpressions" />
+    <Using Include="Serenity" />
+    <Using Include="Serenity.Abstractions" />
+    <Using Include="Serenity.ComponentModel" />
+    <Using Include="Serenity.Data" />
+    <Using Include="Serenity.Data.Mapping" />
+    <Using Include="Serenity.Services" />
+  </ItemGroup>
+</Project>

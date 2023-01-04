@@ -19,7 +19,7 @@
     <StaticWebAssetBasePath>/$(MSBuildProjectName)</StaticWebAssetBasePath>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-    <DefaultItemExcludes>$(DefaultItemExcludes);package*.json;sergen.json;tsconfig.json;libman.json;tsbuild.js;wwwroot\index.d.ts;wwwroot\**\*.less</DefaultItemExcludes>
+    <DefaultItemExcludes>node_modules\**;$(DefaultItemExcludes);package*.json;sergen.json;tsconfig.json;libman.json;tsbuild.js;wwwroot\index.d.ts;wwwroot\**\*.less</DefaultItemExcludes>
     <RestoreNodeTypes>false</RestoreNodeTypes>
   </PropertyGroup>
   <ItemGroup>
@@ -28,7 +28,7 @@
     <ProjectReference Include="$(SerenityWebProj)" Condition="Exists('$(SerenityWebProj)')" />
     <PackageReference Include="Serenity.Scripts" Version="$(SerenityVersion)" Condition="!Exists('$(SerenityScriptsProj)')" />
     <ProjectReference Include="$(SerenityScriptsProj)" Condition="Exists('$(SerenityScriptsProj)')" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.6.2" Condition="Exists('$(MSBuildProjectDirectory)\tsconfig.json')">
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.9.4" Condition="Exists('$(MSBuildProjectDirectory)\tsconfig.json')">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

@@ -1,9 +1,4 @@
 ﻿using Serenity.Demo.Northwind;
-using Serenity.ComponentModel;
-using Serenity.Data.Mapping;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace Serenity.Demo.BasicSamples.Forms
 {

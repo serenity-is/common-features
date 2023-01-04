@@ -1,12 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Serenity.Data;
 using Serenity.Demo.Northwind;
-using Serenity.Services;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
-using System.Linq;
 
 namespace Serenity.Demo.BasicSamples.Endpoints
 {

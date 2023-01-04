@@ -1,8 +1,4 @@
-﻿
-using Serenity.Services;
-using System.Collections.Generic;
-
-namespace Serenity.Demo.BasicSamples
+﻿namespace Serenity.Demo.BasicSamples
 {
     public class OrdersByShipperRequest : ServiceRequest
     {

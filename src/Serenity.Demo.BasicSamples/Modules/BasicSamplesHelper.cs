@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Razor;
-using System;
 using System.IO;
-using System.Text.RegularExpressions;
 using HtmlHelper = Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper;
 
 namespace Serenity.Demo.BasicSamples

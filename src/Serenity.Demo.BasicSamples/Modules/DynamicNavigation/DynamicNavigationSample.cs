@@ -1,8 +1,5 @@
 ﻿using Serenity.Demo.Northwind;
-using Serenity.Data;
 using Serenity.Navigation;
-using System.Collections.Generic;
-using System;
 
 namespace Serenity.Demo.BasicSamples
 {

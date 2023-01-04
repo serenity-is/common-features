@@ -7,14 +7,9 @@ end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 
-[*.json]
-indent_size = 2
-
-[*.csproj]
-indent_size = 2
-
-[*.css]
-indent_size = 2
+[*.{css,csproj,props,targets,json}]
+indent_style=space
+indent_size=2
 
 [*.md]
 trim_trailing_whitespace = false

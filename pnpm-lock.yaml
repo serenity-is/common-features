@@ -1,16 +1,45 @@
 lockfileVersion: 5.4
 
-specifiers:
-  '@serenity-is/corelib': ../../../Serenity/src/Serenity.Scripts/corelib
-  '@serenity-is/sleekgrid': latest
-  '@serenity-is/tsbuild': latest
+importers:
 
-dependencies:
-  '@serenity-is/corelib': link:../../../Serenity/src/Serenity.Scripts/corelib
-  '@serenity-is/sleekgrid': 1.5.0
+  src/Serenity.Demo.BasicSamples:
+    specifiers:
+      '@serenity-is/corelib': ../../../Serenity/src/Serenity.Scripts/corelib
+      '@serenity-is/demo.northwind': workspace:*
+      '@serenity-is/extensions': workspace:*
+      '@serenity-is/sleekgrid': latest
+      '@serenity-is/tsbuild': latest
+    dependencies:
+      '@serenity-is/corelib': link:../../../Serenity/src/Serenity.Scripts/corelib
+      '@serenity-is/demo.northwind': link:../Serenity.Demo.Northwind
+      '@serenity-is/extensions': link:../Serenity.Extensions
+      '@serenity-is/sleekgrid': 1.5.0
+    devDependencies:
+      '@serenity-is/tsbuild': 6.2.9
 
-devDependencies:
-  '@serenity-is/tsbuild': 6.2.9
+  src/Serenity.Demo.Northwind:
+    specifiers:
+      '@serenity-is/corelib': ../../../Serenity/src/Serenity.Scripts/corelib
+      '@serenity-is/extensions': workspace:*
+      '@serenity-is/sleekgrid': latest
+      '@serenity-is/tsbuild': latest
+    dependencies:
+      '@serenity-is/corelib': link:../../../Serenity/src/Serenity.Scripts/corelib
+      '@serenity-is/extensions': link:../Serenity.Extensions
+      '@serenity-is/sleekgrid': 1.5.0
+    devDependencies:
+      '@serenity-is/tsbuild': 6.2.9
+
+  src/Serenity.Extensions:
+    specifiers:
+      '@serenity-is/corelib': ../../../Serenity/src/Serenity.Scripts/corelib
+      '@serenity-is/sleekgrid': latest
+      '@serenity-is/tsbuild': latest
+    dependencies:
+      '@serenity-is/corelib': link:../../../Serenity/src/Serenity.Scripts/corelib
+      '@serenity-is/sleekgrid': 1.5.0
+    devDependencies:
+      '@serenity-is/tsbuild': 6.2.9
 
 packages:
 

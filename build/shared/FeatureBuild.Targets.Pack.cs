@@ -102,6 +102,9 @@ public static partial class Shared
 
         static void PatchDirectoryBuildProps()
         {
+            if (SerenityVersion == null)
+                return;
+
             var xe = XElement.Parse(File.ReadAllText(DirectoryBuildProps));
 
             var xeSerenityVer = xe.Descendants("SerenityVersion").FirstOrDefault();
@@ -110,6 +113,21 @@ public static partial class Shared
             {
                 xeSerenityVer.SetValue(SerenityVersion.ToString());
                 changed = true;
+            }
+
+            var xeCFPackageVersion = xe.Descendants("CFPackageVersion").FirstOrDefault();
+            if (xeCFPackageVersion?.Value != null)
+            {
+                var cfPackageBuildProps = Path.Combine(Root, "..", "common-features", "build", "Package.Build.props");
+                var xeCF = XElement.Parse(File.ReadAllText(cfPackageBuildProps));
+                var cfPackageVersion = xeCF.Descendants("Version").FirstOrDefault()?.Value;
+                if (cfPackageVersion != null &&
+                    xeCFPackageVersion != null &&
+                    xeCFPackageVersion.Value != cfPackageVersion)
+                {
+                    xeCFPackageVersion.SetValue(cfPackageVersion);
+                    changed = true;
+                }
             }
 
             if (changed)

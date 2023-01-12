@@ -15,7 +15,7 @@ public static partial class Shared
 {
     static readonly string[] LocalFeedNames = new string[] { "MyPackages" };
     const string NugetOrgReadSource = "https://api.nuget.org/v3/index.json";
-    const string NugetOrgPushSource = "https://www.nuget.org/api/v2/package";
+    public const string NugetOrgPushSource = "https://www.nuget.org/api/v2/package";
 
     const string SerenityIsSourceKey = "serenity.is";
     private static PackageSource serenityIsPackageSource;
@@ -66,10 +66,10 @@ public static partial class Shared
         return null;
     }
 
-    public static void PushToNugetOrg(string nupkg)
+    public static void PushToRemoteSource(string nupkg, string pushSource)
     {
         if (StartProcess("dotnet", $"nuget push \"{nupkg}\"" +
-                " --source \"" + NugetOrgPushSource + "\"", Path.GetDirectoryName(nupkg)) != 0)
+                " --source \"" + pushSource + "\"", Src) != 0)
         {
             Console.Error.WriteLine("Error while pushing " + Path.GetFileName(nupkg));
             Environment.Exit(1);

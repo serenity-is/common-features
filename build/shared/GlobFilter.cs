@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if IsFeatureBuild || IsTemplateBuild
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -406,3 +407,4 @@ public class GlobFilter
         return glob;
     }
 }
+#endif

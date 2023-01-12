@@ -39,7 +39,7 @@ public static partial class Shared
             {
                 CleanDirectory(TemplateZipFolder, ensure: true);
                 CleanDirectory(TemplateZipWebFolder, ensure: true);
-                Shared.PatchVsTemplateAndCopyFiles(ProjectFile, TemplateZipWebFolder, VSIXTemplateFolder);
+                PatchVsTemplateAndCopyFiles();
 
                 File.Copy(Path.Combine(VSIXTemplateFolder, "SerenityLogo.ico"),
                     Path.Combine(TemplateZipFolder, "SerenityLogo.ico"));

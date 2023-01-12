@@ -69,32 +69,28 @@ public static partial class Shared
         ".html"
     };
 
-    private static void ConvertToTemplateParams(string projectId, string path)
+    private static void ConvertToTemplateParams(string path)
     {
         var content = File.ReadAllText(path);
-        if (content.Contains(projectId, StringComparison.Ordinal))
+        if (content.Contains(ProjectId, StringComparison.Ordinal))
         {
-            content = content.Replace(@$"{projectId}.Web\", @"$ext_projectname$.Web\");
-            content = content.Replace(@$"\{projectId}", @"\$ext_projectname$");
-            content = content.Replace(@$"{projectId}\", @"$ext_projectname$\");
-            content = content.Replace(@$"{projectId}.Web", @"$ext_safeprojectname$.Web");
-            content = content.Replace(projectId, "$ext_safeprojectname$");
+            content = content.Replace(@$"{ProjectId}.Web\", @"$ext_projectname$.Web\");
+            content = content.Replace(@$"\{ProjectId}", @"\$ext_projectname$");
+            content = content.Replace(@$"{ProjectId}\", @"$ext_projectname$\");
+            content = content.Replace(@$"{ProjectId}.Web", @"$ext_safeprojectname$.Web");
+            content = content.Replace(ProjectId, "$ext_safeprojectname$");
             File.WriteAllText(path, content, Shared.UTF8Bom);
         }
     }
 
-    public static void PatchVsTemplateAndCopyFiles(string projectFile, string targetPath, string vsixTemplateFolder)
+    public static void PatchVsTemplateAndCopyFiles()
     {
-        string projectName = Path.GetFileName(projectFile);
-        string projectId = projectName.EndsWith(".Web", StringComparison.Ordinal) ? projectName[0..^4] : projectName;
-
         List<string> fileList;
-        var csprojXml = XElement.Parse(File.ReadAllText(projectFile));
+        var csprojXml = XElement.Parse(File.ReadAllText(ProjectFile));
 
-        var vsTemplateFile = Path.Combine(vsixTemplateFolder, projectName + ".vstemplate");
-        var rootDir = Path.GetDirectoryName(projectFile);
-        fileList = Directory.GetFiles(rootDir, "*.*", SearchOption.AllDirectories)
-            .Select(x => x[(rootDir.Length + 1)..])
+        var vsTemplateFile = Path.Combine(VSIXTemplateFolder, ProjectName + ".vstemplate");
+        fileList = Directory.GetFiles(ProjectFolder, "*.*", SearchOption.AllDirectories)
+            .Select(x => x[(ProjectFolder.Length + 1)..])
             .Where(x => !ExcludeFilesGlob.IsMatch(x))
             .OrderBy(x => x, StringComparer.InvariantCultureIgnoreCase)
             .ToList();
@@ -107,8 +103,6 @@ public static partial class Shared
         var project = vsTemplateXml.Descendants(ns + "Project").First();
         project.Elements().Remove();
         var byFolder = new Dictionary<string, XElement>();
-
-        var copySourceRoot = Path.GetDirectoryName(projectFile);
 
         foreach (var file in fileList)
         {
@@ -143,22 +137,21 @@ public static partial class Shared
 
             item.SetAttributeValue("ReplaceParameters", replaceParameters ? "true" : "false");
             item.SetAttributeValue("TargetFileName", parts[^1]
-                .Replace(projectId, "$ext_projectname$"));
+                .Replace(ProjectId, "$ext_projectname$"));
             if (file == "Welcome.htm")
                 item.SetAttributeValue("OpenInWebBrowser", "true");
             item.SetValue(parts[^1]);
             folder.Add(item);
 
-            var targetFile = Path.Combine(targetPath, file);
+            var targetFile = Path.Combine(TemplateZipWebFolder, file);
             Directory.CreateDirectory(Path.GetDirectoryName(targetFile));
 
-            string sourcePath = file;
-            sourcePath = Path.Combine(copySourceRoot, sourcePath);
-            File.Copy(sourcePath, targetFile);
+            var sourceFile = Path.Combine(ProjectFolder, file);
+            File.Copy(sourceFile, targetFile);
 
             if (replaceParameters)
             {
-                ConvertToTemplateParams(projectId, targetFile);
+                ConvertToTemplateParams(targetFile);
 
                 var text = File.ReadAllText(targetFile);
 
@@ -174,7 +167,7 @@ public static partial class Shared
         }
 
         File.WriteAllText(vsTemplateFile, vsTemplateXml.ToString(SaveOptions.OmitDuplicateNamespaces));
-        File.Copy(vsTemplateFile, Path.Combine(targetPath, Path.GetFileName(vsTemplateFile)));
+        File.Copy(vsTemplateFile, Path.Combine(TemplateZipWebFolder, Path.GetFileName(vsTemplateFile)));
 
         foreach (var z in csprojXml.Descendants("ItemGroup")
             .Concat(csprojXml.Descendants("PackageReference"))
@@ -198,14 +191,14 @@ public static partial class Shared
                 z.Remove();
         }
 
-        var targetProj = Path.Combine(targetPath, Path.GetFileName(projectFile));
+        var targetProj = Path.Combine(TemplateZipWebFolder, Path.GetFileName(ProjectFile));
         File.WriteAllText(targetProj,
             csprojXml.ToString(SaveOptions.OmitDuplicateNamespaces)
                 .Replace("http://localhost:55555/", "")
                 .Replace(
                 "<DevelopmentServerPort>55556</DevelopmentServerPort>", 
                 "<DevelopmentServerPort></DevelopmentServerPort>"));
-        ConvertToTemplateParams(projectId, targetProj);
+        ConvertToTemplateParams(targetProj);
     }
 
 }

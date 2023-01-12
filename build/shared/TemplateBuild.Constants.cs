@@ -18,7 +18,8 @@ public static partial class Shared
     public static string VSIXOutputFolder => Path.Combine(VSIXTemplateFolder, "bin");
     public static string VSIXManifestFile => Path.Combine(VSIXTemplateFolder, "source.extension.vsixmanifest");
     public static string VSIXProjectTemplates => Path.Combine(VSIXTemplateFolder, "ProjectTemplates");
-    public static string TemplatesProject => Path.Combine(VSIXTemplateFolder, $"{ProjectId}.Templates", $"{ProjectId}.Templates.csproj");
+    public static string TemplatesPackage => IsStartSharp ? "Serenity.Pro.Templates" : "Serene.Templates";
+    public static string TemplatesProject => Path.Combine(VSIXTemplateFolder, TemplatesPackage, TemplatesPackage + ".csproj");
     public static string TemporaryFilesRoot => Path.Combine(VSIXTemplateFolder, "obj");
     public static string PackagePatchFolder => Path.Combine(TemporaryFilesRoot, ProjectName);
     public static string PackageJsonCopy => Path.Combine(PackagePatchFolder, "package.json");

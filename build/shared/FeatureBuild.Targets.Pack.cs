@@ -1,11 +1,47 @@
-﻿using System.IO;
+﻿#if IsFeatureBuild
+using System;
+using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace Build
+namespace Build;
+
+public static partial class Shared
 {
-    partial class Program
+    public static partial class Targets
     {
+        public static void Pack()
+        {
+            if (StartProcess("dotnet", "tool update sergen", Src) != 0)
+                ExitWithError("Error while updating sergen " + SolutionFile);
+
+            PatchPackageBuildProps();
+            PatchDirectoryBuildProps();
+
+            CleanDirectory(PackageOutDir, true);
+
+            if (StartProcess("dotnet", "restore", Src) != 0)
+                ExitWithError("Error while restoring " + SolutionFile);
+
+            if (StartProcess("dotnet", "pack -v minimal " +
+                $"-c Release -p:ContinuousIntegrationBuild=true -o \"{PackageOutDir}\"", Src) != 0)
+                ExitWithError("Error while building solution!");
+
+            try
+            {
+                var localFeed = GetLocalNugetFeed(create: true);
+                if (localFeed != null)
+                {
+                    foreach (var nupkg in Directory.GetFiles(PackageOutDir, "*.nupkg"))
+                        PushToLocalNugetFeed(localFeed, nupkg);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+            }
+        }
+
         static void PatchPackageBuildProps()
         {
             var serVersion = GetLatestVersionOf(SerenityNetWebPackage);
@@ -14,8 +50,11 @@ namespace Build
             if (SerenityVersion == null)
                 return;
 
+            if (StartProcess("git", "restore " + PackageBuildProps, Root) != 0)
+                ExitWithError("Error while restoring " + PackageBuildProps);
+
             var xe = XElement.Parse(File.ReadAllText(PackageBuildProps));
-            
+
             var xeSerenityVer = xe.Descendants("SerenityVersion").FirstOrDefault();
             var changed = false;
             if (xeSerenityVer != null && xeSerenityVer.Value != SerenityVersion.ToString())
@@ -78,3 +117,4 @@ namespace Build
         }
     }
 }
+#endif

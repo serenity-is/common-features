@@ -20,7 +20,7 @@ public static partial class Shared
     const string SerenityIsSourceKey = "serenity.is";
     private static PackageSource serenityIsPackageSource;
 
-    private static PackageSource SerenityIsPackageSource
+    public static PackageSource SerenityIsPackageSource
     {
         get
         {

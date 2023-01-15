@@ -1,6 +1,5 @@
 ﻿using Serenity.Reporting;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace Serenity.Extensions.Repositories
 {

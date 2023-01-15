@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Serenity.Extensions.Repositories;
 using Serenity.Reporting;
-using System;
 
 namespace Serenity.Extensions.DependencyInjection
 {

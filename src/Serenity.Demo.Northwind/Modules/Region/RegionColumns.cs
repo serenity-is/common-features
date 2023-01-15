@@ -1,7 +1,4 @@
-﻿using Serenity.ComponentModel;
-using System.ComponentModel;
-
-namespace Serenity.Demo.Northwind.Forms
+﻿namespace Serenity.Demo.Northwind.Forms
 {
     [ColumnsScript("Northwind.Region")]
     [BasedOnRow(typeof(RegionRow), CheckNames = true)]

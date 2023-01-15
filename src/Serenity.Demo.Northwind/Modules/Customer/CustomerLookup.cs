@@ -1,6 +1,4 @@
-﻿using Serenity.ComponentModel;
-using Serenity.Web;
-using Serenity.Data;
+﻿using Serenity.Web;
 
 namespace Serenity.Demo.Northwind.Lookups
 {

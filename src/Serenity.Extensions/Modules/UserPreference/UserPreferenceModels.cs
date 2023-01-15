@@ -1,7 +1,4 @@
-﻿
-using Serenity.Services;
-
-namespace Serenity.Extensions
+﻿namespace Serenity.Extensions
 {
     public class UserPreferenceUpdateRequest : ServiceRequest
     {

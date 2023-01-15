@@ -1,8 +1,4 @@
-﻿
-using Serenity.ComponentModel;
-using System.ComponentModel;
-
-namespace Serenity.Demo.Northwind
+﻿namespace Serenity.Demo.Northwind
 {
     [NestedPermissionKeys]
     [DisplayName("Northwind")]

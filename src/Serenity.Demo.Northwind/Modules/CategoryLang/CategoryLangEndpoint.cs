@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Serenity.Data;
-using Serenity.Services;
 using System.Data;
 using MyRow = Serenity.Demo.Northwind.CategoryLangRow;
 

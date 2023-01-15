@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Serenity.PropertyGrid;
 using Serenity.Reporting;
-using Serenity.Services;
-using System;
-using System.Linq;
 
 namespace Serenity.Extensions.Repositories
 {

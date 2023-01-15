@@ -1,5 +1,4 @@
-﻿using Serenity.Services;
-using MyRequest = Serenity.Services.SaveRequest<Serenity.Demo.Northwind.ShipperRow>;
+﻿using MyRequest = Serenity.Services.SaveRequest<Serenity.Demo.Northwind.ShipperRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = Serenity.Demo.Northwind.ShipperRow;
 

@@ -1,8 +1,4 @@
-﻿using Serenity.ComponentModel;
-using Serenity.Data;
-using Serenity.Data.Mapping;
-using System.ComponentModel;
-using System.IO;
+﻿using System.IO;
 
 namespace Serenity.Demo.Northwind
 {

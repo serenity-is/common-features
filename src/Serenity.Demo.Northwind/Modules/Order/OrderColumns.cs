@@ -1,7 +1,4 @@
-﻿using Serenity.ComponentModel;
-using System;
-
-namespace Serenity.Demo.Northwind.Columns
+﻿namespace Serenity.Demo.Northwind.Columns
 {
     [ColumnsScript("Northwind.Order")]
     [BasedOnRow(typeof(OrderRow), CheckNames = true)]

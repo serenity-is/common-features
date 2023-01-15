@@ -1,6 +1,4 @@
-﻿using Serenity.ComponentModel;
-
-namespace Serenity.Demo.Northwind.Columns
+﻿namespace Serenity.Demo.Northwind.Columns
 {
     [ColumnsScript("Northwind.SalesByCategory")]
     [BasedOnRow(typeof(SalesByCategoryRow), CheckNames = true)]

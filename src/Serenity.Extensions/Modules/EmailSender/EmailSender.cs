@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using System;
-using System.Globalization;
 using System.IO;
 
 namespace Serenity.Extensions

@@ -1,5 +1,4 @@
-﻿using Serenity.Services;
-using MyRequest = Serenity.Services.SaveRequest<Serenity.Demo.Northwind.CategoryLangRow>;
+﻿using MyRequest = Serenity.Services.SaveRequest<Serenity.Demo.Northwind.CategoryLangRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = Serenity.Demo.Northwind.CategoryLangRow;
 

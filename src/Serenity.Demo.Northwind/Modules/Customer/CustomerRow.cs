@@ -1,11 +1,4 @@
-﻿using Serenity.ComponentModel;
-using Serenity.Data;
-using Serenity.Data.Mapping;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-
-namespace Serenity.Demo.Northwind
+﻿namespace Serenity.Demo.Northwind
 {
     [ConnectionKey("Northwind"), Module("Northwind"), TableName("Customers")]
     [DisplayName("Customers"), InstanceName("Customer")]

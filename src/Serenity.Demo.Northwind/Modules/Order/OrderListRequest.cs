@@ -1,6 +1,4 @@
-﻿using Serenity.Services;
-
-namespace Serenity.Demo.Northwind
+﻿namespace Serenity.Demo.Northwind
 {
     public class OrderListRequest : ListRequest
     {

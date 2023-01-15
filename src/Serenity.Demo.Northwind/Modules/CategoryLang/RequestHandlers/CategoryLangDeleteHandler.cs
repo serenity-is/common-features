@@ -1,5 +1,4 @@
-﻿using Serenity.Services;
-using MyRequest = Serenity.Services.DeleteRequest;
+﻿using MyRequest = Serenity.Services.DeleteRequest;
 using MyResponse = Serenity.Services.DeleteResponse;
 using MyRow = Serenity.Demo.Northwind.CategoryLangRow;
 

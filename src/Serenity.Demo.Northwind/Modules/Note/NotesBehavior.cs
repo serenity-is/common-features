@@ -1,13 +1,4 @@
-﻿using Serenity;
-using Serenity.Abstractions;
-using Serenity.Data;
-using Serenity.Services;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-
-namespace Serenity.Demo.Northwind
+﻿namespace Serenity.Demo.Northwind
 {
     public class NotesBehavior : BaseSaveDeleteBehavior, IImplicitBehavior, IRetrieveBehavior, IFieldBehavior
     {

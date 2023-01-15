@@ -1,6 +1,4 @@
-﻿using Serenity.ComponentModel;
-
-namespace Serenity.Demo.Northwind.Annotations
+﻿namespace Serenity.Demo.Northwind.Annotations
 {
     /// <summary>
     /// This is annotation sample for OrderRow. Annotation types 

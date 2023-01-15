@@ -1,5 +1,4 @@
 ﻿using MimeKit;
-using System;
 
 namespace Serenity.Extensions
 {

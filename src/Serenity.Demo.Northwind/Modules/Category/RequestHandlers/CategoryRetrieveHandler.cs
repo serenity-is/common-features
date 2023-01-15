@@ -1,5 +1,4 @@
-﻿using Serenity.Services;
-using MyRequest = Serenity.Services.RetrieveRequest;
+﻿using MyRequest = Serenity.Services.RetrieveRequest;
 using MyResponse = Serenity.Services.RetrieveResponse<Serenity.Demo.Northwind.CategoryRow>;
 using MyRow = Serenity.Demo.Northwind.CategoryRow;
 

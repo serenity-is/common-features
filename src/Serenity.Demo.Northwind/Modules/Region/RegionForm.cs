@@ -1,6 +1,4 @@
-﻿using Serenity.ComponentModel;
-
-namespace Serenity.Demo.Northwind.Forms
+﻿namespace Serenity.Demo.Northwind.Forms
 {
     [FormScript("Northwind.Region")]
     [BasedOnRow(typeof(RegionRow), CheckNames = true)]

@@ -1,6 +1,4 @@
-﻿using Serenity.Data;
-using Serenity.Services;
-using MyRequest = Serenity.Demo.Northwind.OrderListRequest;
+﻿using MyRequest = Serenity.Demo.Northwind.OrderListRequest;
 using MyResponse = Serenity.Services.ListResponse<Serenity.Demo.Northwind.OrderRow>;
 using MyRow = Serenity.Demo.Northwind.OrderRow;
 

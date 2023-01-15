@@ -1,9 +1,4 @@
-﻿using Serenity.ComponentModel;
-using Serenity.Data;
-using Serenity.Reporting;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using Serenity.Reporting;
 
 namespace Serenity.Demo.Northwind
 {

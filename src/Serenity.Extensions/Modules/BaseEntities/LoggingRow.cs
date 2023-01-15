@@ -1,9 +1,4 @@
-﻿using Serenity.ComponentModel;
-using Serenity.Data;
-using Serenity.Data.Mapping;
-using System;
-
-namespace Serenity.Extensions.Entities
+﻿namespace Serenity.Extensions.Entities
 {
     /// <summary>
     /// This is a sample base class for rows that does insert/update date and user audit logging automatically.

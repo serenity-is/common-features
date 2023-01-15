@@ -1,9 +1,4 @@
-﻿using Serenity.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-
-namespace Serenity.Demo.Northwind.Forms
+﻿namespace Serenity.Demo.Northwind.Forms
 {
     [FormScript("Northwind.Order")]
     [BasedOnRow(typeof(OrderRow), CheckNames = true)]

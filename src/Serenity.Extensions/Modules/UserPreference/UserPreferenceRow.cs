@@ -1,10 +1,4 @@
-﻿using Serenity.ComponentModel;
-using Serenity.Data;
-using Serenity.Data.Mapping;
-using System;
-using System.ComponentModel;
-
-namespace Serenity.Extensions.Entities
+﻿namespace Serenity.Extensions.Entities
 {
     [ConnectionKey("Default"), Module("Common"), TableName("UserPreferences")]
     [DisplayName("User Preferences"), InstanceName("UserPreference")]

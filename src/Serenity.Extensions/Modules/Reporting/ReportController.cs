@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,13 +6,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Serenity.PropertyGrid;
 using Serenity.Reporting;
-using Serenity.Services;
 using Serenity.Web;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
 
 namespace Serenity.Extensions.Pages
 {

@@ -1,10 +1,4 @@
-﻿using Serenity.Data;
-using Serenity.Reporting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Serenity.Abstractions;
-using System.Globalization;
+﻿using Serenity.Reporting;
 
 namespace Serenity.Demo.Northwind
 {

@@ -1,4 +1,4 @@
-﻿import { Decorators, PropertyGrid, SaveResponse, TabsExtensions } from "@serenity-is/corelib";
+import { Decorators, PropertyGrid, SaveResponse, TabsExtensions } from "@serenity-is/corelib";
 import { first, getForm, isEmptyOrNull, reloadLookup, validateOptions } from "@serenity-is/corelib/q";
 import { OrderDialog, CustomerForm, CustomerService, CustomerRow, OrderRow } from "@serenity-is/demo.northwind";
 
@@ -26,7 +26,7 @@ export class OtherFormOneBarDialog extends OrderDialog {
         });
 
         // this is just a helper to access editors if needed
-        this.customerForm = new CustomerForm((this.customerPropertyGrid as any).idPrefix);
+        this.customerForm = new CustomerForm(this.customerPropertyGrid.idPrefix);
 
         // initialize validator for customer form
         this.customerValidator = this.byId("CustomerForm").validate(validateOptions({}));

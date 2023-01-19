@@ -5,6 +5,7 @@ using NuGet.Protocol;
 using NuGet.Protocol.Core.Types;
 using NuGet.Versioning;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -136,20 +137,29 @@ public static partial class Shared
         return version;
     }
 
+    private static SourceCacheContext sourceCacheContext;
+    private static Dictionary<string, AutoCompleteResource> findPackageByIdSource = new();
+
     private static NuGetVersion GetLatestVersionOf(PackageSource packageSource,
         string sourceKey, string packageId)
     {
         ILogger logger = NullLogger.Instance;
         CancellationToken cancellationToken = CancellationToken.None;
+        sourceCacheContext ??= new SourceCacheContext();
 
-        var cache = new SourceCacheContext();
-        var repository = packageSource != null ?
-            Repository.Factory.GetCoreV3(packageSource) :
-            Repository.Factory.GetCoreV3(sourceKey);
-        var resource = repository.GetResource<FindPackageByIdResource>();
+        var sourceCacheKey = packageSource?.Source ?? sourceKey;
+        if (!findPackageByIdSource.TryGetValue(sourceCacheKey,
+            out var resource))
+        {
+            var repository = packageSource != null ?
+                Repository.Factory.GetCoreV3(packageSource) :
+                Repository.Factory.GetCoreV3(sourceKey);
+            resource = repository.GetResource<AutoCompleteResource>();
+            findPackageByIdSource[sourceCacheKey] = resource;
+        }
 
-        var versions = resource.GetAllVersionsAsync(packageId,
-            cache,
+        var versions = resource.VersionStartsWith(packageId, "", false,
+            sourceCacheContext,
             logger,
             cancellationToken).GetAwaiter().GetResult();
 

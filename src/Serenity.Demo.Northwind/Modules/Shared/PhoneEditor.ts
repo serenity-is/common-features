@@ -1,5 +1,5 @@
 import { Decorators, StringEditor, WX } from "@serenity-is/corelib";
-import { isEmptyOrNull, replaceAll, startsWith, text, trimToNull } from "@serenity-is/corelib/q";
+import { isEmptyOrNull, replaceAll, startsWith, localText, trimToNull } from "@serenity-is/corelib/q";
 
 @Decorators.registerEditor('Serenity.Demo.Northwind.PhoneEditor')
 export class PhoneEditor extends StringEditor {
@@ -57,7 +57,7 @@ export class PhoneEditor extends StringEditor {
         if (valid) {
             return null;
         }
-        return text((isMultiple ? 'Validation.NorthwindPhoneMultiple' : 'Validation.NorthwindPhone'));
+        return localText((isMultiple ? 'Validation.NorthwindPhoneMultiple' : 'Validation.NorthwindPhone'));
     }
 
     static isValidPhone(phone: string) {

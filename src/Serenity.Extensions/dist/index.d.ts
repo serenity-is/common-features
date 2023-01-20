@@ -248,7 +248,7 @@ export declare class SingleLineTextFormatter implements Formatter {
 	format(ctx: FormatterContext): string;
 	static formatValue(value: string): string;
 }
-export declare class GridEditorBase<TEntity, TOptions = any> extends EntityGrid<TEntity, TOptions> implements IGetEditValue, ISetEditValue {
+export declare abstract class GridEditorBase<TEntity, TOptions = any> extends EntityGrid<TEntity, TOptions> implements IGetEditValue, ISetEditValue {
 	protected getIdProperty(): string;
 	protected nextId: number;
 	constructor(container: JQuery, opt?: TOptions);
@@ -271,7 +271,7 @@ export declare class GridEditorBase<TEntity, TOptions = any> extends EntityGrid<
 	protected getInitialTitle(): any;
 	protected createQuickSearchInput(): void;
 }
-export declare class GridEditorDialog<TEntity> extends EntityDialog<TEntity, any> {
+export declare abstract class GridEditorDialog<TEntity> extends EntityDialog<TEntity, any> {
 	protected getIdProperty(): string;
 	onSave: (options: ServiceOptions<SaveResponse>, callback: (response: SaveResponse) => void) => void;
 	onDelete: (options: ServiceOptions<DeleteResponse>, callback: (response: DeleteResponse) => void) => void;
@@ -373,7 +373,7 @@ export interface ServiceEditorOptions {
 	cascadeField?: string;
 	cascadeValue?: any;
 }
-export declare class ServiceEditorBase<TOptions extends ServiceEditorOptions, TRow> extends Select2AjaxEditor<TOptions, TRow> {
+export declare abstract class ServiceEditorBase<TOptions extends ServiceEditorOptions, TRow> extends Select2AjaxEditor<TOptions, TRow> {
 	private cascadeLink;
 	constructor(hidden: JQuery, options: TOptions);
 	private setCascadeFrom;

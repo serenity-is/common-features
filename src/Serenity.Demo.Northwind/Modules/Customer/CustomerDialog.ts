@@ -1,5 +1,5 @@
 import { Decorators, EntityDialog, TabsExtensions } from "@serenity-is/corelib";
-import { reloadLookup, text } from "@serenity-is/corelib/q";
+import { htmlEncode, reloadLookup, localText } from "@serenity-is/corelib/q";
 import { DialogUtils } from "@serenity-is/extensions";
 import { CustomerForm, CustomerRow, CustomerService } from "../ServerTypes/Demo";
 import { CustomerOrdersGrid } from "./CustomerOrdersGrid";
@@ -61,9 +61,9 @@ export class CustomerDialog extends EntityDialog<CustomerRow, any> {
     getTemplate() {
         return `<div id="~_Tabs" class="s-DialogContent">
     <ul>
-        <li><a href="#~_TabInfo"><span>${text("Db.Northwind.Customer.EntitySingular")}</span></a></li>
-        <li><a href="#~_TabNotes"><span>${text("Db.Northwind.Note.EntityPlural")}</span></a></li>
-        <li><a href="#~_TabOrders"><span>${text("Db.Northwind.Order.EntityPlural")}</span></a></li>
+        <li><a href="#~_TabInfo"><span>${htmlEncode(localText("Db.Northwind.Customer.EntitySingular"))}</span></a></li>
+        <li><a href="#~_TabNotes"><span>${htmlEncode(localText("Db.Northwind.Note.EntityPlural"))}</span></a></li>
+        <li><a href="#~_TabOrders"><span>${htmlEncode(localText("Db.Northwind.Order.EntityPlural"))}</span></a></li>
     </ul>
     <div id="~_TabInfo" class="tab-pane s-TabInfo">
         <div id="~_Toolbar" class="s-DialogToolbar">

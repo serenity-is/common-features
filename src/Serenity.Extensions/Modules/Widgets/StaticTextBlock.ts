@@ -1,5 +1,5 @@
 import { Decorators, ISetEditValue, PropertyItem, Widget } from "@serenity-is/corelib";
-import { coalesce, text } from "@serenity-is/corelib/q";
+import { coalesce, localText } from "@serenity-is/corelib/q";
 
 /**
     * This is an editor widget but it only displays a text, not edits it.
@@ -27,7 +27,7 @@ export class StaticTextBlock extends Widget<StaticTextBlockOptions>
 
         // if isLocalText is set, text is actually a local text key
         if (this.options.isLocalText)
-            txt = text(txt);
+            txt = localText(txt);
 
         // don't html encode if isHtml option is true
         if (this.options.isHtml)

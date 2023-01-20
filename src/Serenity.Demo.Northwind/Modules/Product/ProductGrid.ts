@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid, LookupEditor } from "@serenity-is/corelib";
-import { attrEncode, deepClone, Dictionary, first, formatNumber, htmlEncode, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, text, toId, trimToNull, tryFirst } from "@serenity-is/corelib/q";
+import { deepClone, Dictionary, first, formatNumber, htmlEncode, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, localText, toId, trimToNull, tryFirst } from "@serenity-is/corelib/q";
 import { ExcelExportHelper, PdfExportHelper } from "@serenity-is/extensions";
 import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
 import { CategoryRow, ProductColumns, ProductRow, ProductService, SupplierRow } from "../ServerTypes/Demo";
@@ -118,7 +118,7 @@ export class ProductGrid extends EntityGrid<ProductRow, any> {
 
         return "<input type='text' class='" + klass +
             "' data-field='" + column.field +
-            "' value='" + attrEncode(value) +
+            "' value='" + htmlEncode(value) +
             "' maxlength='" + column.sourceItem.maxLength + "'/>";
     }
 
@@ -145,7 +145,7 @@ export class ProductGrid extends EntityGrid<ProductRow, any> {
             "<option value=''>--</option>";
         for (var c of lookup.items) {
             let id = c[lookup.idField];
-            markup += "<option value='" + attrEncode(id) + "'"
+            markup += "<option value='" + htmlEncode(id) + "'"
             if (id == value) {
                 markup += " selected";
             }
@@ -205,7 +205,7 @@ export class ProductGrid extends EntityGrid<ProductRow, any> {
         if (field === 'UnitPrice') {
             value = parseDecimal(txt ?? '');
             if (value == null || isNaN(value)) {
-                notifyError(text('Validation.Decimal'), '', null);
+                notifyError(localText('Validation.Decimal'), '', null);
                 input.val(oldText);
                 input.focus();
                 return;
@@ -214,7 +214,7 @@ export class ProductGrid extends EntityGrid<ProductRow, any> {
         else if (input.hasClass("numeric")) {
             var i = parseInteger(txt ?? '');
             if (isNaN(i) || i > 32767 || i < 0) {
-                notifyError(text('Validation.Integer'), '', null);
+                notifyError(localText('Validation.Integer'), '', null);
                 input.val(oldText);
                 input.focus();
                 return;

@@ -1,5 +1,5 @@
 import { Decorators, PropertyGrid, TabsExtensions, Toolbar } from "@serenity-is/corelib";
-import { first, getForm, isEmptyOrNull, notifySuccess, reloadLookup, text, validateOptions } from "@serenity-is/corelib/q";
+import { first, getForm, isEmptyOrNull, notifySuccess, reloadLookup, localText, validateOptions } from "@serenity-is/corelib/q";
 import { OrderDialog, CustomerForm, CustomerRow, CustomerService, OrderRow } from "@serenity-is/demo.northwind";
 
 /**
@@ -35,7 +35,7 @@ export class OtherFormInTabDialog extends OrderDialog {
         new Toolbar(this.byId("CustomerToolbar"), {
             buttons: [{
                 cssClass: "apply-changes-button",
-                title: text("Controls.EntityDialog.SaveButton"),
+                title: localText("Controls.EntityDialog.SaveButton"),
                 onClick: () => {
                     var id = this.getCustomerID();
                     if (!id)

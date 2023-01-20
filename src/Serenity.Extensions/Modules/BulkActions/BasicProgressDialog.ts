@@ -1,5 +1,5 @@
 import { Decorators, TemplatedDialog } from "@serenity-is/corelib";
-import { text, trimToNull } from "@serenity-is/corelib/q";
+import { localText, trimToNull } from "@serenity-is/corelib/q";
 
 @Decorators.registerClass("Serenity.Extensions.BasicProgressDialog")
 export class BasicProgressDialog extends TemplatedDialog<any> {
@@ -7,7 +7,7 @@ export class BasicProgressDialog extends TemplatedDialog<any> {
     constructor() {
         super();
 
-        this.dialogTitle = text('Site.BasicProgressDialog.PleaseWait');
+        this.dialogTitle = localText('Site.BasicProgressDialog.PleaseWait');
     }
 
     public cancelled: boolean;
@@ -42,7 +42,7 @@ export class BasicProgressDialog extends TemplatedDialog<any> {
 
     getDialogButtons() {
         return [{
-            text: text('Dialogs.CancelButton'),
+            text: localText('Dialogs.CancelButton'),
             class: 'btn btn-danger',
             click: () => {
                 this.cancelled = true;
@@ -52,7 +52,7 @@ export class BasicProgressDialog extends TemplatedDialog<any> {
                     .css('opacity', '0.5');
 
                 this.element.dialog('option', 'title', trimToNull(this.cancelTitle) ||
-                    text('Site.BasicProgressDialog.CancelTitle'));
+                    localText('Site.BasicProgressDialog.CancelTitle'));
             }
         }];
     }

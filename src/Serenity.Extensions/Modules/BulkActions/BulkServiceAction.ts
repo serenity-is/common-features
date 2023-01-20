@@ -1,4 +1,4 @@
-﻿import { confirmDialog, Dictionary, format, notifyError, notifySuccess, notifyWarning, ServiceError, text } from "@serenity-is/corelib/q";
+﻿import { confirmDialog, Dictionary, format, notifyError, notifySuccess, notifyWarning, ServiceError, localText } from "@serenity-is/corelib/q";
 import { BasicProgressDialog } from "./BasicProgressDialog";
 
 export class BulkServiceAction {
@@ -22,7 +22,7 @@ export class BulkServiceAction {
     }
 
     protected getConfirmationFormat() {
-        return text('Site.BulkServiceAction.ConfirmationFormat');
+        return localText('Site.BulkServiceAction.ConfirmationFormat');
     }
 
     protected getConfirmationMessage(targetCount) {
@@ -34,7 +34,7 @@ export class BulkServiceAction {
     }
 
     protected getNothingToProcessMessage() {
-        return text('Site.BulkServiceAction.NothingToProcess');
+        return localText('Site.BulkServiceAction.NothingToProcess');
     }
 
     protected nothingToProcess() {
@@ -69,12 +69,12 @@ export class BulkServiceAction {
         this.pendingRequests--;
         this.completedRequests++;
 
-        var title = text((this.progressDialog.cancelled ?
+        var title = localText((this.progressDialog.cancelled ?
             'Site.BasicProgressDialog.CancelTitle' : 'Site.BasicProgressDialog.PleaseWait'));
 
         title += ' (';
         if (this.successCount > 0) {
-            title += format(text('Site.BulkServiceAction.SuccessCount'), this.successCount);
+            title += format(localText('Site.BulkServiceAction.SuccessCount'), this.successCount);
         }
 
         if (this.errorCount > 0) {
@@ -82,7 +82,7 @@ export class BulkServiceAction {
                 title += ', ';
             }
 
-            title += format(text('Site.BulkServiceAction.ErrorCount'), this.errorCount);
+            title += format(localText('Site.BulkServiceAction.ErrorCount'), this.errorCount);
         }
 
         this.progressDialog.title = title + ')';
@@ -126,7 +126,7 @@ export class BulkServiceAction {
     }
 
     protected getAllHadErrorsFormat() {
-        return text('Site.BulkServiceAction.AllHadErrorsFormat');
+        return localText('Site.BulkServiceAction.AllHadErrorsFormat');
     }
 
     protected showAllHadErrors() {
@@ -134,7 +134,7 @@ export class BulkServiceAction {
     }
 
     protected getSomeHadErrorsFormat() {
-        return text('Site.BulkServiceAction.SomeHadErrorsFormat');
+        return localText('Site.BulkServiceAction.SomeHadErrorsFormat');
     }
 
     protected showSomeHadErrors() {
@@ -142,7 +142,7 @@ export class BulkServiceAction {
     }
 
     protected getAllSuccessFormat() {
-        return text('Site.BulkServiceAction.AllSuccessFormat');
+        return localText('Site.BulkServiceAction.AllSuccessFormat');
     }
 
     protected showAllSuccess() {

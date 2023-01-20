@@ -1,5 +1,5 @@
 import { Decorators, HtmlContentEditor, HtmlNoteContentEditor, TemplatedDialog } from "@serenity-is/corelib";
-import { text } from "@serenity-is/corelib/q";
+import { localText } from "@serenity-is/corelib/q";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.NoteDialog')
 export class NoteDialog extends TemplatedDialog<any> {
@@ -22,7 +22,7 @@ export class NoteDialog extends TemplatedDialog<any> {
     protected getDialogButtons() {
         return [
             {
-                text: text('Dialogs.OkButton'),
+                text: localText('Dialogs.OkButton'),
                 click: () => {
                     if (!this.validateForm()) {
                         return;
@@ -32,7 +32,7 @@ export class NoteDialog extends TemplatedDialog<any> {
                 }
             },
             {
-                text: text('Dialogs.CancelButton'),
+                text: localText('Dialogs.CancelButton'),
                 click: () => this.dialogClose()
             }
         ];

@@ -28,7 +28,7 @@ public static partial class Shared
             else
                 lfCount++;
 
-            startIndex = idx;
+            startIndex = idx + 1;
         }
 
         if (lfCount > crlfCount)

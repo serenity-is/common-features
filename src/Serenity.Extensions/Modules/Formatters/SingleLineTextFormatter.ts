@@ -1,5 +1,5 @@
 import { Decorators, Formatter } from "@serenity-is/corelib";
-import { toSingleLine } from "@serenity-is/corelib/q";
+import { htmlEncode, toSingleLine } from "@serenity-is/corelib/q";
 import { FormatterContext } from "@serenity-is/sleekgrid";
 
 @Decorators.registerFormatter('Serenity.Extensions.SingleLineTextFormatter')
@@ -10,6 +10,6 @@ export class SingleLineTextFormatter implements Formatter {
 
     public static formatValue(value: string) {
         var text = $('<div/>').html(value || '').text();
-        return toSingleLine(text);
+        return htmlEncode(toSingleLine(text));
     }
 }

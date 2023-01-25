@@ -1,5 +1,5 @@
 {
-  "name": "@serenity-is/workspace-pro-features",
+  "name": "@serenity-is/workspace-common-features",
   "private": true,
   "scripts": {
     "tsc": "pnpm -r --no-bail exec tsc"

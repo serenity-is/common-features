@@ -1,0 +1,8 @@
+{
+  "name": "@serenity-is/workspace-pro-features",
+  "private": true,
+  "scripts": {
+    "tsc": "pnpm -r --no-bail exec tsc"
+  },
+  "type": "module"
+}

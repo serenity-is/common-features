@@ -130,7 +130,7 @@ export abstract class GridEditorBase<TEntity, TOptions = any> extends EntityGrid
         this.view.setItems((value || []).map(x => {
             var y = deepClone(x);
             if ((y as any)[p] == null)
-                (y as any)[p] = "`" + this.getNextId();
+                (y as any)[p] = this.getNextId();
             return y;
         }), true);
     }

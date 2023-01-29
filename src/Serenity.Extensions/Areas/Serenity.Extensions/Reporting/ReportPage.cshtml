@@ -8,36 +8,36 @@
 {
     int categoryIdx = 0;
 
-    void renderItems(ReportTree.Category category)
+void renderItems(ReportTree.Category category)
+{
+if (category.Reports != null)
+{
+    foreach (var x in category.Reports)
     {
-        if (category.Reports != null)
-        {
-            foreach (var x in category.Reports)
-            {
-                <li class="report-item">
+        <li class="report-item">
                     <i class="fa fa-file"></i>
                     <a href="javascript:;" class="report-link" data-key="@x.Key">
                         @x.Title
                     </a>
                 </li>
-            }
-        }
-
-        if (category.SubCategories != null)
-        {
-            foreach (var x in category.SubCategories)
-            {
-                renderTree(x);
-            }
-        }
     }
+}
 
-    public void renderTree(ReportTree.Category category)
+if (category.SubCategories != null)
+{
+    foreach (var x in category.SubCategories)
     {
-        if (!category.SubCategories.IsEmptyOrNull() ||
-            !category.Reports.IsEmptyOrNull())
-        {
-            <li class="report-category mb-4">
+        renderTree(x);
+    }
+}
+}
+
+public void renderTree(ReportTree.Category category)
+{
+if (!category.SubCategories.IsEmptyOrNull() ||
+    !category.Reports.IsEmptyOrNull())
+{
+    <li class="report-category mb-4">
                 <button class="btn" data-bs-toggle="collapse"
                     aria-expanded="true"
                     data-bs-target="#category-@(++categoryIdx)">
@@ -47,8 +47,8 @@
                     @{renderItems(category);}
                 </ul>
             </li>
-        }
-    }
+}
+}
 }
 
 <style>

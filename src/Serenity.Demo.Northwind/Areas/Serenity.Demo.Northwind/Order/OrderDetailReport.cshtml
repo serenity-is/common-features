@@ -2,7 +2,7 @@
 
 @if ((bool?)ViewData["Printing"] == true)
 {
-    Layout = "_LayoutNoNavigation";
+Layout = "_LayoutNoNavigation";
 }
 
 <section class="invoice">
@@ -61,15 +61,15 @@
                 </thead>
                 <tbody>
                     @foreach (var d in Model.Details)
-                    {
-                        <tr>
+            {
+                <tr>
                             <td>@d.ProductName</td>
                             <td>@(d.UnitPrice.ToStringDefault("#,##0.00"))</td>
                             <td>@(d.Quantity.ToStringDefault())</td>
                             <td>@(d.Discount.ToStringDefault("#,##0.00"))</td>
                             <td>@(d.LineTotal.ToStringDefault("#,##0.00"))</td>
                         </tr>
-                    }
+            }
                 </tbody>
             </table>
         </div>
@@ -85,8 +85,8 @@
             <p class="lead">Amount Due @(Model.Order.OrderDate.Value.AddDays(10).ToShortDateString())</p>
 
             @{
-                var subTotal = Model.Details.Sum(x => x.LineTotal ?? 0);
-            }
+        var subTotal = Model.Details.Sum(x => x.LineTotal ?? 0);
+    }
 
             <div class="table-responsive">
                 <table class="table">

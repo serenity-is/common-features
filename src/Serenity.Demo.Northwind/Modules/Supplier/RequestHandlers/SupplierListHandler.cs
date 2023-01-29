@@ -2,15 +2,14 @@
 using MyResponse = Serenity.Services.ListResponse<Serenity.Demo.Northwind.SupplierRow>;
 using MyRow = Serenity.Demo.Northwind.SupplierRow;
 
-namespace Serenity.Demo.Northwind
-{
-    public interface ISupplierListHandler : IListHandler<MyRow, MyRequest, MyResponse> {}
+namespace Serenity.Demo.Northwind;
 
-    public class SupplierListHandler : ListRequestHandler<MyRow, MyRequest, MyResponse>, ISupplierListHandler
+public interface ISupplierListHandler : IListHandler<MyRow, MyRequest, MyResponse> {}
+
+public class SupplierListHandler : ListRequestHandler<MyRow, MyRequest, MyResponse>, ISupplierListHandler
+{
+    public SupplierListHandler(IRequestContext context)
+         : base(context)
     {
-        public SupplierListHandler(IRequestContext context)
-             : base(context)
-        {
-        }
     }
 }

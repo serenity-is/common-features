@@ -6,220 +6,219 @@ using Newtonsoft.Json;
 using Serenity.PropertyGrid;
 using Serenity.Reporting;
 
-namespace Serenity.Extensions.Pages
+namespace Serenity.Extensions.Pages;
+
+[Route("Serenity.Extensions/Report/[action]")]
+public class ReportController : Controller
 {
-    [Route("Serenity.Extensions/Report/[action]")]
-    public class ReportController : Controller
+    protected EnvironmentSettings EnvironmentSettings { get; }
+    protected IReportRegistry ReportRegistry { get; }
+    protected IRequestContext Context { get; }
+    protected IDataReportExcelRenderer ExcelRenderer { get; }
+    protected IWebHostEnvironment HostEnvironment { get; }
+
+    public ReportController(IReportRegistry reportRegistry, IRequestContext context, IDataReportExcelRenderer excelRenderer,
+        IWebHostEnvironment hostEnvironment, IOptions<EnvironmentSettings> environmentSettings = null)
     {
-        protected EnvironmentSettings EnvironmentSettings { get; }
-        protected IReportRegistry ReportRegistry { get; }
-        protected IRequestContext Context { get; }
-        protected IDataReportExcelRenderer ExcelRenderer { get; }
-        protected IWebHostEnvironment HostEnvironment { get; }
+        ReportRegistry = reportRegistry ??
+            throw new ArgumentNullException(nameof(reportRegistry));
+        Context = context ??
+            throw new ArgumentNullException(nameof(context));
+        ExcelRenderer = excelRenderer ??
+            throw new ArgumentNullException(nameof(excelRenderer));
+        HostEnvironment = hostEnvironment ??
+            throw new ArgumentNullException(nameof(hostEnvironment));
+        EnvironmentSettings = environmentSettings?.Value;
+    }
 
-        public ReportController(IReportRegistry reportRegistry, IRequestContext context, IDataReportExcelRenderer excelRenderer,
-            IWebHostEnvironment hostEnvironment, IOptions<EnvironmentSettings> environmentSettings = null)
+    public ActionResult Render(string key, string opt, string ext, int? print = 0)
+    {
+        return Execute(key, opt, ext, download: false, printing: print != 0);
+    }
+
+    public ActionResult Download(string key, string opt, string ext)
+    {
+        return Execute(key, opt, ext, download: true, printing: true);
+    }
+
+    private ActionResult Execute(string key, string opt, string ext, bool download, bool printing)
+    {
+        if (key.IsEmptyOrNull())
+            throw new ArgumentNullException(nameof(key));
+
+        var reportInfo = ReportRegistry.GetReport(key);
+        if (reportInfo == null)
+            throw new ArgumentOutOfRangeException(nameof(key));
+
+        if (reportInfo.Permission != null)
+            Context.Permissions.ValidatePermission(reportInfo.Permission, Context.Localizer);
+
+        var report = ActivatorUtilities.CreateInstance(HttpContext.RequestServices, reportInfo.Type) as IReport;
+        var json = opt.TrimToNull();
+        if (json != null)
+            JsonConvert.PopulateObject(json, report);
+
+        byte[] renderedBytes = null;
+
+        if (report is IDataOnlyReport dataOnlyReport)
         {
-            ReportRegistry = reportRegistry ??
-                throw new ArgumentNullException(nameof(reportRegistry));
-            Context = context ??
-                throw new ArgumentNullException(nameof(context));
-            ExcelRenderer = excelRenderer ??
-                throw new ArgumentNullException(nameof(excelRenderer));
-            HostEnvironment = hostEnvironment ??
-                throw new ArgumentNullException(nameof(hostEnvironment));
-            EnvironmentSettings = environmentSettings?.Value;
+            ext = "xlsx";
+            renderedBytes = ExcelRenderer.Render(dataOnlyReport);
         }
-
-        public ActionResult Render(string key, string opt, string ext, int? print = 0)
+        else if (report is IExternalReport)
         {
-            return Execute(key, opt, ext, download: false, printing: print != 0);
+            var url = report.GetData() as string;
+            if (string.IsNullOrEmpty(url))
+                throw new InvalidProgramException("External reports must return a URL string from GetData() method!");
+
+            return new RedirectResult(url);
         }
-
-        public ActionResult Download(string key, string opt, string ext)
+        else
         {
-            return Execute(key, opt, ext, download: true, printing: true);
-        }
+            ext = (ext ?? "html").ToLowerInvariant();
 
-        private ActionResult Execute(string key, string opt, string ext, bool download, bool printing)
-        {
-            if (key.IsEmptyOrNull())
-                throw new ArgumentNullException(nameof(key));
-
-            var reportInfo = ReportRegistry.GetReport(key);
-            if (reportInfo == null)
-                throw new ArgumentOutOfRangeException(nameof(key));
-
-            if (reportInfo.Permission != null)
-                Context.Permissions.ValidatePermission(reportInfo.Permission, Context.Localizer);
-
-            var report = ActivatorUtilities.CreateInstance(HttpContext.RequestServices, reportInfo.Type) as IReport;
-            var json = opt.TrimToNull();
-            if (json != null)
-                JsonConvert.PopulateObject(json, report);
-
-            byte[] renderedBytes = null;
-
-            if (report is IDataOnlyReport dataOnlyReport)
+            if (ext == "htm" || ext == "html")
             {
-                ext = "xlsx";
-                renderedBytes = ExcelRenderer.Render(dataOnlyReport);
+                var result = RenderAsHtml(report, download, printing, ref renderedBytes);
+                if (!download)
+                    return result;
             }
-            else if (report is IExternalReport)
+            else if (ext == "pdf")
             {
-                var url = report.GetData() as string;
-                if (string.IsNullOrEmpty(url))
-                    throw new InvalidProgramException("External reports must return a URL string from GetData() method!");
-
-                return new RedirectResult(url);
+                renderedBytes = RenderAsPdf(report, key, opt);
             }
             else
+                throw new ArgumentOutOfRangeException(nameof(ext));
+        }
+
+        return PrepareFileResult(report, ext, download, renderedBytes, reportInfo);
+    }
+
+    private ActionResult PrepareFileResult(IReport report, string ext, bool download,
+        byte[] renderedBytes, ReportRegistry.Report reportInfo)
+    {
+        string fileDownloadName;
+        if (report is ICustomFileName customFileName)
+            fileDownloadName = customFileName.GetFileName();
+        else
+            fileDownloadName = (reportInfo.Title ?? reportInfo.Key) + "_" +
+                DateTime.Now.ToString("yyyyMMdd_HHss", CultureInfo.InvariantCulture);
+
+        fileDownloadName += "." + ext;
+
+        if (download)
+        {
+            return new FileContentResult(renderedBytes, "application/octet-stream")
             {
-                ext = (ext ?? "html").ToLowerInvariant();
-
-                if (ext == "htm" || ext == "html")
-                {
-                    var result = RenderAsHtml(report, download, printing, ref renderedBytes);
-                    if (!download)
-                        return result;
-                }
-                else if (ext == "pdf")
-                {
-                    renderedBytes = RenderAsPdf(report, key, opt);
-                }
-                else
-                    throw new ArgumentOutOfRangeException(nameof(ext));
-            }
-
-            return PrepareFileResult(report, ext, download, renderedBytes, reportInfo);
+                FileDownloadName = fileDownloadName
+            };
         }
 
-        private ActionResult PrepareFileResult(IReport report, string ext, bool download,
-            byte[] renderedBytes, ReportRegistry.Report reportInfo)
-        {
-            string fileDownloadName;
-            if (report is ICustomFileName customFileName)
-                fileDownloadName = customFileName.GetFileName();
-            else
-                fileDownloadName = (reportInfo.Title ?? reportInfo.Key) + "_" +
-                    DateTime.Now.ToString("yyyyMMdd_HHss", CultureInfo.InvariantCulture);
+        Response.Headers["Content-Disposition"] = "inline;filename=" + System.Net.WebUtility.UrlEncode(fileDownloadName);
+        return File(renderedBytes, KnownMimeTypes.Get(fileDownloadName));
+    }
 
-            fileDownloadName += "." + ext;
+    static string GetWKHtmlToPdfPath(string contentRootPath)
+    {
+        var assemblyPath = System.IO.Path.GetDirectoryName(typeof(ReportController).Assembly.Location);
 
-            if (download)
-            {
-                return new FileContentResult(renderedBytes, "application/octet-stream")
-                {
-                    FileDownloadName = fileDownloadName
-                };
-            }
+        string[] wkhtmlFileNames = Environment.OSVersion.Platform == PlatformID.Win32NT ?
+                        new[] { "wkhtmltopdf.exe", "wkhtmltopdf.cmd", "wkhtmltopdf.bat" } :
+                        new[] { "wkhtmltopdf", "wkhtmltopdf.sh" };
 
-            Response.Headers["Content-Disposition"] = "inline;filename=" + System.Net.WebUtility.UrlEncode(fileDownloadName);
-            return File(renderedBytes, KnownMimeTypes.Get(fileDownloadName));
-        }
+        IEnumerable<string> paths = new[] { assemblyPath };
+        if (!string.IsNullOrEmpty(contentRootPath))
+            paths = paths.Concat(new[] {
+                System.IO.Path.Combine(contentRootPath),
+                System.IO.Path.Combine(contentRootPath, "App_Data", "Reporting"),
+                System.IO.Path.Combine(contentRootPath, "App_Data", "reporting"),
+                System.IO.Path.Combine(contentRootPath, "bin")
+            });
 
-        static string GetWKHtmlToPdfPath(string contentRootPath)
-        {
-            var assemblyPath = System.IO.Path.GetDirectoryName(typeof(ReportController).Assembly.Location);
+        paths = paths.Concat((Environment.GetEnvironmentVariable("PATH") ?? "").Split(';'));
 
-            string[] wkhtmlFileNames = Environment.OSVersion.Platform == PlatformID.Win32NT ?
-                            new[] { "wkhtmltopdf.exe", "wkhtmltopdf.cmd", "wkhtmltopdf.bat" } :
-                            new[] { "wkhtmltopdf", "wkhtmltopdf.sh" };
+        return paths.SelectMany(path =>
+            wkhtmlFileNames.Select(f => System.IO.Path.Combine(path, f)))
+            .FirstOrDefault(System.IO.File.Exists);
+    }
 
-            IEnumerable<string> paths = new[] { assemblyPath };
-            if (!string.IsNullOrEmpty(contentRootPath))
-                paths = paths.Concat(new[] {
-                    System.IO.Path.Combine(contentRootPath),
-                    System.IO.Path.Combine(contentRootPath, "App_Data", "Reporting"),
-                    System.IO.Path.Combine(contentRootPath, "App_Data", "reporting"),
-                    System.IO.Path.Combine(contentRootPath, "bin")
-                });
+    private byte[] RenderAsPdf(IReport report, string key, string opt)
+    {
+        var externalUrl = EnvironmentSettings?.SiteExternalUrl.TrimToNull() ??
+            Request.GetBaseUri().ToString();
 
-            paths = paths.Concat((Environment.GetEnvironmentVariable("PATH") ?? "").Split(';'));
+        var renderUrl = UriHelper.Combine(externalUrl, "Serenity.Extensions/Report/Render?" +
+            "key=" + Uri.EscapeDataString(key));
 
-            return paths.SelectMany(path =>
-                wkhtmlFileNames.Select(f => System.IO.Path.Combine(path, f)))
-                .FirstOrDefault(System.IO.File.Exists);
-        }
+        if (!string.IsNullOrEmpty(opt))
+            renderUrl += "&opt=" + Uri.EscapeDataString(opt);
 
-        private byte[] RenderAsPdf(IReport report, string key, string opt)
-        {
-            var externalUrl = EnvironmentSettings?.SiteExternalUrl.TrimToNull() ??
-                Request.GetBaseUri().ToString();
+        renderUrl += "&print=1";
 
-            var renderUrl = UriHelper.Combine(externalUrl, "Serenity.Extensions/Report/Render?" +
-                "key=" + Uri.EscapeDataString(key));
+        var converter = new HtmlToPdfConverter();
 
-            if (!string.IsNullOrEmpty(opt))
-                renderUrl += "&opt=" + Uri.EscapeDataString(opt);
+        var wkhtmlPath = GetWKHtmlToPdfPath(HostEnvironment?.ContentRootPath);
+        if (!string.IsNullOrEmpty(wkhtmlPath))
+            converter.UtilityExePath = wkhtmlPath;
+        else
+            throw new ValidationError("Can't locate wkhtmltopdf.exe (or wkhtmltopdf in Linux) " +
+                "that is required for report generation in PATH or folder " +
+                System.IO.Path.GetDirectoryName(typeof(ReportController).Assembly.Location) + 
+                ". Please download and install the version suitable for your system from " +
+                "https://wkhtmltopdf.org/downloads.html");
+        
+        converter.Url = renderUrl;
+        var formsCookieName = ".AspNetAuth";
+        var formsCookie = Request.Cookies[formsCookieName];
+        if (formsCookie != null)
+            converter.Cookies[formsCookieName] = formsCookie;
 
-            renderUrl += "&print=1";
+        var languageCookieName = "LanguagePreference";
+        var languageCookie = Request.Cookies[languageCookieName];
+        if (languageCookie != null)
+            converter.Cookies[languageCookieName] = languageCookie;
 
-            var converter = new HtmlToPdfConverter();
+        if (report is ICustomizeHtmlToPdf icustomize)
+            icustomize.Customize(converter);
 
-            var wkhtmlPath = GetWKHtmlToPdfPath(HostEnvironment?.ContentRootPath);
-            if (!string.IsNullOrEmpty(wkhtmlPath))
-                converter.UtilityExePath = wkhtmlPath;
-            else
-                throw new ValidationError("Can't locate wkhtmltopdf.exe (or wkhtmltopdf in Linux) " +
-                    "that is required for report generation in PATH or folder " +
-                    System.IO.Path.GetDirectoryName(typeof(ReportController).Assembly.Location) + 
-                    ". Please download and install the version suitable for your system from " +
-                    "https://wkhtmltopdf.org/downloads.html");
-            
-            converter.Url = renderUrl;
-            var formsCookieName = ".AspNetAuth";
-            var formsCookie = Request.Cookies[formsCookieName];
-            if (formsCookie != null)
-                converter.Cookies[formsCookieName] = formsCookie;
+        return converter.Execute();
+    }
 
-            var languageCookieName = "LanguagePreference";
-            var languageCookie = Request.Cookies[languageCookieName];
-            if (languageCookie != null)
-                converter.Cookies[languageCookieName] = languageCookie;
+    private ActionResult RenderAsHtml(IReport report, bool download, bool printing,
+        ref byte[] renderedBytes)
+    {
+        var designAttr = report.GetType().GetCustomAttribute<ReportDesignAttribute>();
 
-            if (report is ICustomizeHtmlToPdf icustomize)
-                icustomize.Customize(converter);
+        if (designAttr == null)
+            throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "Report design attribute for type '{0}' is not found!",
+                report.GetType().FullName));
 
-            return converter.Execute();
-        }
+        var data = report.GetData();
+        var viewData = download ? new ViewDataDictionary(ViewData) { Model = data } : ViewData;
 
-        private ActionResult RenderAsHtml(IReport report, bool download, bool printing,
-            ref byte[] renderedBytes)
-        {
-            var designAttr = report.GetType().GetCustomAttribute<ReportDesignAttribute>();
+        if (report is not IReportWithAdditionalData iadditional)
+            viewData["AdditionalData"] = new Dictionary<string, object>();
+        else
+            viewData["AdditionalData"] = iadditional.GetAdditionalData();
 
-            if (designAttr == null)
-                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "Report design attribute for type '{0}' is not found!",
-                    report.GetType().FullName));
+        viewData["Printing"] = printing;
 
-            var data = report.GetData();
-            var viewData = download ? new ViewDataDictionary(ViewData) { Model = data } : ViewData;
+        if (!download)
+            return View(viewName: designAttr.Design, model: data);
 
-            if (report is not IReportWithAdditionalData iadditional)
-                viewData["AdditionalData"] = new Dictionary<string, object>();
-            else
-                viewData["AdditionalData"] = iadditional.GetAdditionalData();
+        var html = TemplateHelper.RenderViewToString(HttpContext.RequestServices, designAttr.Design, viewData);
+        renderedBytes = System.Text.Encoding.UTF8.GetBytes(html);
+        return null;
+    }
 
-            viewData["Printing"] = printing;
+    [HttpPost, JsonRequest]
+    public ActionResult Retrieve(ReportRetrieveRequest request,
+        [FromServices] IPropertyItemProvider propertyItemProvider)
+    {
+        if (propertyItemProvider is null)
+            throw new ArgumentNullException(nameof(propertyItemProvider));
 
-            if (!download)
-                return View(viewName: designAttr.Design, model: data);
-
-            var html = TemplateHelper.RenderViewToString(HttpContext.RequestServices, designAttr.Design, viewData);
-            renderedBytes = System.Text.Encoding.UTF8.GetBytes(html);
-            return null;
-        }
-
-        [HttpPost, JsonRequest]
-        public ActionResult Retrieve(ReportRetrieveRequest request,
-            [FromServices] IPropertyItemProvider propertyItemProvider)
-        {
-            if (propertyItemProvider is null)
-                throw new ArgumentNullException(nameof(propertyItemProvider));
-
-            return this.ExecuteMethod(() => new Repositories.ReportRepository(Context, 
-                ReportRegistry).Retrieve(request, HttpContext.RequestServices, propertyItemProvider));
-        }
+        return this.ExecuteMethod(() => new Repositories.ReportRepository(Context, 
+            ReportRegistry).Retrieve(request, HttpContext.RequestServices, propertyItemProvider));
     }
 }

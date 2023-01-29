@@ -3,15 +3,14 @@
 
 
 
-namespace Serenity.Demo.Northwind
+namespace Serenity.Demo.Northwind;
+
+[PageAuthorize(typeof(ShipperRow))]
+public class ShipperController : Controller
 {
-    [PageAuthorize(typeof(ShipperRow))]
-    public class ShipperController : Controller
+    [Route("Northwind/Shipper")]
+    public ActionResult Index()
     {
-        [Route("Northwind/Shipper")]
-        public ActionResult Index()
-        {
-            return View(MVC.Views.Shipper.ShipperIndex);
-        }
+        return View(MVC.Views.Shipper.ShipperIndex);
     }
 }

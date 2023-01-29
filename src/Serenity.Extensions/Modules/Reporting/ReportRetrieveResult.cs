@@ -1,10 +1,9 @@
-﻿namespace Serenity.Reporting
+﻿namespace Serenity.Reporting;
+
+/// <summary>
+/// Extending Serenity ReportRetrieveResponse class to add extra information
+/// </summary>
+public class ReportRetrieveResult : ReportRetrieveResponse
 {
-    /// <summary>
-    /// Extending Serenity ReportRetrieveResponse class to add extra information
-    /// </summary>
-    public class ReportRetrieveResult : ReportRetrieveResponse
-    {
-        public bool IsExternalReport { get; set; }
-    }
+    public bool IsExternalReport { get; set; }
 }

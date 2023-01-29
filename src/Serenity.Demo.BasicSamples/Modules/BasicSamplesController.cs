@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Serenity.Demo.BasicSamples
+namespace Serenity.Demo.BasicSamples;
+
+[PageAuthorize, Route("BasicSamples/[action]")]
+public partial class BasicSamplesController : Controller
 {
-    [PageAuthorize, Route("BasicSamples/[action]")]
-    public partial class BasicSamplesController : Controller
-    {
-    }
 }

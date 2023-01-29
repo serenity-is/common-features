@@ -1,9 +1,8 @@
 ﻿using MimeKit;
 
-namespace Serenity.Extensions
+namespace Serenity.Extensions;
+
+public interface IEmailQueue
 {
-    public interface IEmailQueue
-    {
-        void Enqueue(MimeMessage message);
-    }
+    void Enqueue(MimeMessage message);
 }

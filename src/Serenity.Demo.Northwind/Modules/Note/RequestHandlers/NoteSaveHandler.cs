@@ -2,15 +2,14 @@
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = Serenity.Demo.Northwind.NoteRow;
 
-namespace Serenity.Demo.Northwind
-{
-    public interface INoteSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
+namespace Serenity.Demo.Northwind;
 
-    public class NoteSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>, INoteSaveHandler
+public interface INoteSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
+
+public class NoteSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>, INoteSaveHandler
+{
+    public NoteSaveHandler(IRequestContext context)
+         : base(context)
     {
-        public NoteSaveHandler(IRequestContext context)
-             : base(context)
-        {
-        }
     }
 }

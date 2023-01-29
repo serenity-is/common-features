@@ -1,7 +1,6 @@
-﻿namespace Serenity.Demo.Northwind
+﻿namespace Serenity.Demo.Northwind;
+
+public class OrderListRequest : ListRequest
 {
-    public class OrderListRequest : ListRequest
-    {
-        public int? ProductID { get; set; }
-    }
+    public int? ProductID { get; set; }
 }

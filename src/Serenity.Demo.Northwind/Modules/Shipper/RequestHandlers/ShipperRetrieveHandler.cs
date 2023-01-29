@@ -2,15 +2,14 @@
 using MyResponse = Serenity.Services.RetrieveResponse<Serenity.Demo.Northwind.ShipperRow>;
 using MyRow = Serenity.Demo.Northwind.ShipperRow;
 
-namespace Serenity.Demo.Northwind
-{
-    public interface IShipperRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse> {}
+namespace Serenity.Demo.Northwind;
 
-    public class ShipperRetrieveHandler : RetrieveRequestHandler<MyRow, MyRequest, MyResponse>, IShipperRetrieveHandler
+public interface IShipperRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse> {}
+
+public class ShipperRetrieveHandler : RetrieveRequestHandler<MyRow, MyRequest, MyResponse>, IShipperRetrieveHandler
+{
+    public ShipperRetrieveHandler(IRequestContext context)
+         : base(context)
     {
-        public ShipperRetrieveHandler(IRequestContext context)
-             : base(context)
-        {
-        }
     }
 }

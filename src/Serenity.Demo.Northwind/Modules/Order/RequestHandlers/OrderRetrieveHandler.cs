@@ -2,15 +2,14 @@
 using MyResponse = Serenity.Services.RetrieveResponse<Serenity.Demo.Northwind.OrderRow>;
 using MyRow = Serenity.Demo.Northwind.OrderRow;
 
-namespace Serenity.Demo.Northwind
-{
-    public interface IOrderRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse> {}
+namespace Serenity.Demo.Northwind;
 
-    public class OrderRetrieveHandler : RetrieveRequestHandler<MyRow, MyRequest, MyResponse>, IOrderRetrieveHandler
+public interface IOrderRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse> {}
+
+public class OrderRetrieveHandler : RetrieveRequestHandler<MyRow, MyRequest, MyResponse>, IOrderRetrieveHandler
+{
+    public OrderRetrieveHandler(IRequestContext context)
+         : base(context)
     {
-        public OrderRetrieveHandler(IRequestContext context)
-             : base(context)
-        {
-        }
     }
 }

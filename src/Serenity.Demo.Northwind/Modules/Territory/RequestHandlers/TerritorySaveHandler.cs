@@ -2,15 +2,14 @@
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = Serenity.Demo.Northwind.TerritoryRow;
 
-namespace Serenity.Demo.Northwind
-{
-    public interface ITerritorySaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
+namespace Serenity.Demo.Northwind;
 
-    public class TerritorySaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>, ITerritorySaveHandler
+public interface ITerritorySaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
+
+public class TerritorySaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>, ITerritorySaveHandler
+{
+    public TerritorySaveHandler(IRequestContext context)
+         : base(context)
     {
-        public TerritorySaveHandler(IRequestContext context)
-             : base(context)
-        {
-        }
     }
 }

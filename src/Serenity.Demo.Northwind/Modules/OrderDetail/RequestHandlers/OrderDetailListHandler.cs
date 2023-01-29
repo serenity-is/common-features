@@ -2,15 +2,14 @@
 using MyResponse = Serenity.Services.ListResponse<Serenity.Demo.Northwind.OrderDetailRow>;
 using MyRow = Serenity.Demo.Northwind.OrderDetailRow;
 
-namespace Serenity.Demo.Northwind
-{
-    public interface IOrderDetailListHandler : IListHandler<MyRow, MyRequest, MyResponse> {}
+namespace Serenity.Demo.Northwind;
 
-    public class OrderDetailListHandler : ListRequestHandler<MyRow, MyRequest, MyResponse>, IOrderDetailListHandler
+public interface IOrderDetailListHandler : IListHandler<MyRow, MyRequest, MyResponse> {}
+
+public class OrderDetailListHandler : ListRequestHandler<MyRow, MyRequest, MyResponse>, IOrderDetailListHandler
+{
+    public OrderDetailListHandler(IRequestContext context)
+         : base(context)
     {
-        public OrderDetailListHandler(IRequestContext context)
-             : base(context)
-        {
-        }
     }
 }

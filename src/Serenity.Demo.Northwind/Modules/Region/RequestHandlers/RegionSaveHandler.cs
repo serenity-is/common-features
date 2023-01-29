@@ -2,15 +2,14 @@
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = Serenity.Demo.Northwind.RegionRow;
 
-namespace Serenity.Demo.Northwind
-{
-    public interface IRegionSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
+namespace Serenity.Demo.Northwind;
 
-    public class RegionSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>, IRegionSaveHandler
+public interface IRegionSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
+
+public class RegionSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>, IRegionSaveHandler
+{
+    public RegionSaveHandler(IRequestContext context)
+         : base(context)
     {
-        public RegionSaveHandler(IRequestContext context)
-             : base(context)
-        {
-        }
     }
 }

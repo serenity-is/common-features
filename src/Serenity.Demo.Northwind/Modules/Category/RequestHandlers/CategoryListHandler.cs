@@ -2,15 +2,14 @@
 using MyResponse = Serenity.Services.ListResponse<Serenity.Demo.Northwind.CategoryRow>;
 using MyRow = Serenity.Demo.Northwind.CategoryRow;
 
-namespace Serenity.Demo.Northwind
-{
-    public interface ICategoryListHandler : IListHandler<MyRow, MyRequest, MyResponse> {}
+namespace Serenity.Demo.Northwind;
 
-    public class CategoryListHandler : ListRequestHandler<MyRow, MyRequest, MyResponse>, ICategoryListHandler
+public interface ICategoryListHandler : IListHandler<MyRow, MyRequest, MyResponse> {}
+
+public class CategoryListHandler : ListRequestHandler<MyRow, MyRequest, MyResponse>, ICategoryListHandler
+{
+    public CategoryListHandler(IRequestContext context)
+         : base(context)
     {
-        public CategoryListHandler(IRequestContext context)
-             : base(context)
-        {
-        }
     }
 }

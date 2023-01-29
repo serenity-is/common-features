@@ -2,26 +2,25 @@
 using FluentMigrator.Builders.Create.Table;
 using Serenity.Extensions;
 
-namespace Serenity.Demo.Northwind.Migrations
+namespace Serenity.Demo.Northwind.Migrations;
+
+[Migration(20161118_1954)]
+public class NorthwindDB_20161118_1954_DragDropSample : AutoReversingMigration
 {
-    [Migration(20161118_1954)]
-    public class NorthwindDB_20161118_1954_DragDropSample : AutoReversingMigration
+    public override void Up()
     {
-        public override void Up()
-        {
-            static void addColumns(ICreateTableWithColumnSyntax expr) => expr
-                .WithColumn("ParentId").AsInt32().Nullable()
-                .WithColumn("Title").AsString(100).NotNullable();
+        static void addColumns(ICreateTableWithColumnSyntax expr) => expr
+            .WithColumn("ParentId").AsInt32().Nullable()
+            .WithColumn("Title").AsString(100).NotNullable();
 
-            addColumns(IfDatabase(MigrationUtils.AllExceptOracle)
-                .Create.Table("DragDropSample")
-                .WithColumn("Id").AsInt32().Identity().PrimaryKey().NotNullable());
+        addColumns(IfDatabase(MigrationUtils.AllExceptOracle)
+            .Create.Table("DragDropSample")
+            .WithColumn("Id").AsInt32().Identity().PrimaryKey().NotNullable());
 
-            addColumns(IfDatabase("Oracle")
-                .Create.Table("DragDropSample")
-                .WithColumn("Id").AsInt32().PrimaryKey().NotNullable());
+        addColumns(IfDatabase("Oracle")
+            .Create.Table("DragDropSample")
+            .WithColumn("Id").AsInt32().PrimaryKey().NotNullable());
 
-            MigrationUtils.AddOracleIdentity(this, "DragDropSample", "Id");
-        }
+        MigrationUtils.AddOracleIdentity(this, "DragDropSample", "Id");
     }
 }

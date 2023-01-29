@@ -2,15 +2,14 @@
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = Serenity.Demo.Northwind.CategoryLangRow;
 
-namespace Serenity.Demo.Northwind
-{
-    public interface ICategoryLangSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
+namespace Serenity.Demo.Northwind;
 
-    public class CategoryLangSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>, ICategoryLangSaveHandler
+public interface ICategoryLangSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
+
+public class CategoryLangSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>, ICategoryLangSaveHandler
+{
+    public CategoryLangSaveHandler(IRequestContext context)
+         : base(context)
     {
-        public CategoryLangSaveHandler(IRequestContext context)
-             : base(context)
-        {
-        }
     }
 }

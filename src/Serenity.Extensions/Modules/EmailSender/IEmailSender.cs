@@ -1,9 +1,8 @@
 ﻿using MimeKit;
 
-namespace Serenity.Extensions
+namespace Serenity.Extensions;
+
+public interface IEmailSender
 {
-    public interface IEmailSender
-    {
-        void Send(MimeMessage message, bool skipQueue = false);
-    }
+    void Send(MimeMessage message, bool skipQueue = false);
 }

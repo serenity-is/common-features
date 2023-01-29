@@ -2,28 +2,27 @@ using Microsoft.AspNetCore.Mvc;
 using Serenity.Extensions.Repositories;
 using Serenity.Reporting;
 
-namespace Serenity.Demo.Northwind
+namespace Serenity.Demo.Northwind;
+
+[PageAuthorize(PermissionKeys.General)]
+public class ReportsController : Controller
 {
-    [PageAuthorize(PermissionKeys.General)]
-    public class ReportsController : Controller
+    protected IReportRegistry ReportRegistry { get; }
+    protected IRequestContext Context { get; }
+
+    public ReportsController(IReportRegistry reportRegistry, IRequestContext context)
     {
-        protected IReportRegistry ReportRegistry { get; }
-        protected IRequestContext Context { get; }
+        ReportRegistry = reportRegistry ??
+            throw new ArgumentNullException(nameof(reportRegistry));
 
-        public ReportsController(IReportRegistry reportRegistry, IRequestContext context)
-        {
-            ReportRegistry = reportRegistry ??
-                throw new ArgumentNullException(nameof(reportRegistry));
+        Context = context ??
+            throw new ArgumentNullException(nameof(context));
+    }
 
-            Context = context ??
-                throw new ArgumentNullException(nameof(context));
-        }
-
-        [Route("Northwind/Reports")]
-        public ActionResult Index()
-        {
-            return View(Extensions.MVC.Views.Reporting.ReportPage, 
-                new ReportRepository(Context, ReportRegistry).GetReportTree("Northwind"));
-        }
+    [Route("Northwind/Reports")]
+    public ActionResult Index()
+    {
+        return View(Extensions.MVC.Views.Reporting.ReportPage, 
+            new ReportRepository(Context, ReportRegistry).GetReportTree("Northwind"));
     }
 }

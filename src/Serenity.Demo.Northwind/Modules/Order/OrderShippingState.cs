@@ -1,11 +1,10 @@
-﻿namespace Serenity.Demo.Northwind
+﻿namespace Serenity.Demo.Northwind;
+
+[EnumKey("Northwind.OrderShippingState")]
+public enum OrderShippingState
 {
-    [EnumKey("Northwind.OrderShippingState")]
-    public enum OrderShippingState
-    {
-        [Description("Not Shipped")]
-        NotShipped = 0,
-        [Description("Shipped")]
-        Shipped = 1
-    }
+    [Description("Not Shipped")]
+    NotShipped = 0,
+    [Description("Shipped")]
+    Shipped = 1
 }

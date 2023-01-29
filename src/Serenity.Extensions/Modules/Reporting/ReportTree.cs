@@ -1,131 +1,130 @@
 ﻿using Serenity.Reporting;
 
-namespace Serenity.Extensions
+namespace Serenity.Extensions;
+
+public class ReportTree
 {
-    public class ReportTree
+    public Category Root { get; set; }
+
+    public ReportTree()
     {
-        public Category Root { get; set; }
+        Root = new Category();
+    }
 
-        public ReportTree()
+    public class Category
+    {
+        public string Key { get; set; }
+        public string Title { get; set; }
+        public List<Category> SubCategories { get; private set; }
+        public List<ReportRegistry.Report> Reports { get; private set; }
+
+        public Category()
         {
-            Root = new Category();
+            SubCategories = new List<Category>();
+            Reports = new List<ReportRegistry.Report>();
         }
+    }
 
-        public class Category
+    public static ReportTree FromList(IEnumerable<ReportRegistry.Report> reports, ITextLocalizer localizer,
+        string rootPath = null, string categoryOrder = null)
+    {
+        if (reports == null)
+            throw new ArgumentNullException(nameof(reports));
+
+        rootPath ??= "";
+        categoryOrder ??= "";
+
+        var tree = new ReportTree();
+
+        var categoryByKey = new Dictionary<string, Category>(StringComparer.CurrentCultureIgnoreCase);
+
+        foreach (var report in reports)
         {
-            public string Key { get; set; }
-            public string Title { get; set; }
-            public List<Category> SubCategories { get; private set; }
-            public List<ReportRegistry.Report> Reports { get; private set; }
-
-            public Category()
+            if (categoryByKey.TryGetValue(report.Category.Key ?? "", out Category category))
             {
-                SubCategories = new List<Category>();
-                Reports = new List<ReportRegistry.Report>();
+                category.Reports.Add(report);
+                continue;
             }
-        }
 
-        public static ReportTree FromList(IEnumerable<ReportRegistry.Report> reports, ITextLocalizer localizer,
-            string rootPath = null, string categoryOrder = null)
-        {
-            if (reports == null)
-                throw new ArgumentNullException(nameof(reports));
+            var parts = (report.Category.Key ?? "Other")
+                .Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
 
-            rootPath ??= "";
-            categoryOrder ??= "";
-
-            var tree = new ReportTree();
-
-            var categoryByKey = new Dictionary<string, Category>(StringComparer.CurrentCultureIgnoreCase);
-
-            foreach (var report in reports)
+            string current = "";
+            category = null;
+            foreach (var part in parts)
             {
-                if (categoryByKey.TryGetValue(report.Category.Key ?? "", out Category category))
-                {
-                    category.Reports.Add(report);
+                string prior = current;
+
+                if (current.Length > 0)
+                    current += "/";
+
+                current += part;
+
+                if (current.Length <= rootPath.Length)
                     continue;
-                }
 
-                var parts = (report.Category.Key ?? "Other")
-                    .Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
-
-                string current = "";
-                category = null;
-                foreach (var part in parts)
+                if (!categoryByKey.TryGetValue(current ?? "", out category))
                 {
-                    string prior = current;
-
-                    if (current.Length > 0)
-                        current += "/";
-
-                    current += part;
-
-                    if (current.Length <= rootPath.Length)
-                        continue;
-
-                    if (!categoryByKey.TryGetValue(current ?? "", out category))
+                    category = new Category
                     {
-                        category = new Category
-                        {
-                            Key = current,
-                            Title = ReportRegistry.GetReportCategoryTitle(current, localizer)
-                        };
-                        categoryByKey[current] = category;
+                        Key = current,
+                        Title = ReportRegistry.GetReportCategoryTitle(current, localizer)
+                    };
+                    categoryByKey[current] = category;
 
-                        if (!categoryByKey.ContainsKey(prior))
-                            tree.Root.SubCategories.Add(category);
-                        else
-                        {
-                            var x = categoryByKey[prior];
-                            x.SubCategories.Add(category);
-                        }
+                    if (!categoryByKey.ContainsKey(prior))
+                        tree.Root.SubCategories.Add(category);
+                    else
+                    {
+                        var x = categoryByKey[prior];
+                        x.SubCategories.Add(category);
                     }
                 }
-
-                if (category == null)
-                    tree.Root.Reports.Add(report);
-                else
-                    category.Reports.Add(report);
             }
 
-            var order = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
-            var i = 0;
-            foreach (var x in categoryOrder.Split(new char[] { ';' }))
-            {
-                var xt = x.TrimToNull();
-                if (xt != null)
-                    order[xt] = i++;
-            }
-
-            int sort(Category x, Category y)
-            {
-                var c = 0;
-
-                if (x.Key != y.Key)
-                {
-                    var c1 = order.ContainsKey(x.Key) ? (int?)order[x.Key] : null;
-                    var c2 = order.ContainsKey(y.Key) ? (int?)order[y.Key] : null;
-                    if (c1 != null && c2 != null)
-                        c = c1.Value - c2.Value;
-                    else if (c1 != null)
-                        c = -1;
-                    else if (c2 != null)
-                        c = 1;
-                }
-
-                if (c == 0)
-                    c = string.Compare(x.Title, y.Title, StringComparison.CurrentCultureIgnoreCase);
-
-                return c;
-            }
-
-            foreach (var category in categoryByKey.Values)
-                if (category.SubCategories != null)
-                    category.SubCategories.Sort(sort);
-
-            tree.Root.SubCategories.Sort(sort);
-
-            return tree;
+            if (category == null)
+                tree.Root.Reports.Add(report);
+            else
+                category.Reports.Add(report);
         }
+
+        var order = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        var i = 0;
+        foreach (var x in categoryOrder.Split(new char[] { ';' }))
+        {
+            var xt = x.TrimToNull();
+            if (xt != null)
+                order[xt] = i++;
+        }
+
+        int sort(Category x, Category y)
+        {
+            var c = 0;
+
+            if (x.Key != y.Key)
+            {
+                var c1 = order.ContainsKey(x.Key) ? (int?)order[x.Key] : null;
+                var c2 = order.ContainsKey(y.Key) ? (int?)order[y.Key] : null;
+                if (c1 != null && c2 != null)
+                    c = c1.Value - c2.Value;
+                else if (c1 != null)
+                    c = -1;
+                else if (c2 != null)
+                    c = 1;
+            }
+
+            if (c == 0)
+                c = string.Compare(x.Title, y.Title, StringComparison.CurrentCultureIgnoreCase);
+
+            return c;
+        }
+
+        foreach (var category in categoryByKey.Values)
+            if (category.SubCategories != null)
+                category.SubCategories.Sort(sort);
+
+        tree.Root.SubCategories.Sort(sort);
+
+        return tree;
     }
 }

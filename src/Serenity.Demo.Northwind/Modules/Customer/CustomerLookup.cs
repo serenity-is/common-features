@@ -1,13 +1,12 @@
-﻿namespace Serenity.Demo.Northwind.Lookups
+﻿namespace Serenity.Demo.Northwind.Lookups;
+
+[LookupScript, Module("Northwind")]
+public class CustomerLookup : RowLookupScript<CustomerRow>
 {
-    [LookupScript, Module("Northwind")]
-    public class CustomerLookup : RowLookupScript<CustomerRow>
+    public CustomerLookup(ISqlConnections sqlConnections)
+        : base(sqlConnections)
     {
-        public CustomerLookup(ISqlConnections sqlConnections)
-            : base(sqlConnections)
-        {
-            IdField = CustomerRow.Fields.CustomerID.PropertyName;
-            TextField = CustomerRow.Fields.CompanyName.PropertyName;
-        }
+        IdField = CustomerRow.Fields.CustomerID.PropertyName;
+        TextField = CustomerRow.Fields.CompanyName.PropertyName;
     }
 }

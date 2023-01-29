@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Serenity.Demo.Northwind
+namespace Serenity.Demo.Northwind;
+
+[PageAuthorize(typeof(CustomerRow))]
+public class CustomerController : Controller
 {
-    [PageAuthorize(typeof(CustomerRow))]
-    public class CustomerController : Controller
+    [Route("Northwind/Customer")]
+    public ActionResult Index()
     {
-        [Route("Northwind/Customer")]
-        public ActionResult Index()
-        {
-            return View(MVC.Views.Customer.CustomerIndex);
-        }
+        return View(MVC.Views.Customer.CustomerIndex);
     }
 }

@@ -2,15 +2,14 @@
 using MyResponse = Serenity.Services.DeleteResponse;
 using MyRow = Serenity.Demo.Northwind.CustomerRow;
 
-namespace Serenity.Demo.Northwind
-{
-    public interface ICustomerDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> {}
+namespace Serenity.Demo.Northwind;
 
-    public class CustomerDeleteHandler : DeleteRequestHandler<MyRow, MyRequest, MyResponse>, ICustomerDeleteHandler
+public interface ICustomerDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> {}
+
+public class CustomerDeleteHandler : DeleteRequestHandler<MyRow, MyRequest, MyResponse>, ICustomerDeleteHandler
+{
+    public CustomerDeleteHandler(IRequestContext context)
+         : base(context)
     {
-        public CustomerDeleteHandler(IRequestContext context)
-             : base(context)
-        {
-        }
     }
 }

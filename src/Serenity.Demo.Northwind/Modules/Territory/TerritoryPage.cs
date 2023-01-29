@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Serenity.Demo.Northwind
+namespace Serenity.Demo.Northwind;
+
+[PageAuthorize(typeof(TerritoryRow))]
+public class TerritoryController : Controller
 {
-    [PageAuthorize(typeof(TerritoryRow))]
-    public class TerritoryController : Controller
+    [Route("Northwind/Territory")]
+    public ActionResult Index()
     {
-        [Route("Northwind/Territory")]
-        public ActionResult Index()
-        {
-            return View(MVC.Views.Territory.TerritoryIndex);
-        }
+        return View(MVC.Views.Territory.TerritoryIndex);
     }
 }

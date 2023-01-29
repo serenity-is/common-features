@@ -1,14 +1,14 @@
 ﻿using FluentMigrator;
 
-namespace Serenity.Demo.Northwind.Migrations
+namespace Serenity.Demo.Northwind.Migrations;
+
+[Migration(20160908_1801)]
+public class NorthwindDB_20160908_1801_CustomerGrossSales : AutoReversingMigration
 {
-    [Migration(20160908_1801)]
-    public class NorthwindDB_20160908_1801_CustomerGrossSales : AutoReversingMigration
+    public override void Up()
     {
-        public override void Up()
-        {
-            IfDatabase("SqlServer", "SqlServer2000", "SqlServerCe")
-                .Execute.Sql(@"
+        IfDatabase("SqlServer", "SqlServer2000", "SqlServerCe")
+            .Execute.Sql(@"
 CREATE PROCEDURE [dbo].[CustomerGrossSales]
     @startDate DATE,
     @endDate DATE
@@ -35,6 +35,5 @@ BEGIN
     ORDER BY c.ContactName, Sum(d.UnitPrice* d.Quantity) DESC
 END");
 
-        }
     }
 }

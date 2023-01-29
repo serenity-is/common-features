@@ -1,6 +1,5 @@
 ﻿using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Options;
 using MimeKit;
 using System.IO;
 

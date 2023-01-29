@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Serenity.Demo.Northwind.Migrations
+﻿namespace Serenity.Demo.Northwind.Migrations
 {
     public class MigrationAttribute : FluentMigrator.MigrationAttribute
     {

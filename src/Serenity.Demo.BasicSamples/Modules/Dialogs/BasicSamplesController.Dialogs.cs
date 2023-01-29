@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Serenity.Web;
 using Views = Serenity.Demo.BasicSamples.MVC.Views.Dialogs;
 
 namespace Serenity.Demo.BasicSamples

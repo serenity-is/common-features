@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Serenity.Web;
+using Microsoft.AspNetCore.Mvc;
 using Views = Serenity.Demo.BasicSamples.MVC.Views.Grids;
 
 namespace Serenity.Demo.BasicSamples

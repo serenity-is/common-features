@@ -2,11 +2,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Serenity.PropertyGrid;
 using Serenity.Reporting;
-using Serenity.Web;
 
 namespace Serenity.Extensions.Pages
 {

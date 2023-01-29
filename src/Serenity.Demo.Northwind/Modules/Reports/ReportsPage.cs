@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Serenity.Extensions.Repositories;
 using Serenity.Reporting;
-using Serenity.Web;
 
 namespace Serenity.Demo.Northwind
 {

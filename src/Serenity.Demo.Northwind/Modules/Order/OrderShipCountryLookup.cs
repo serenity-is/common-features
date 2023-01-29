@@ -1,6 +1,4 @@
-﻿using Serenity.Web;
-
-namespace Serenity.Demo.Northwind.Lookups
+﻿namespace Serenity.Demo.Northwind.Lookups
 {
     [LookupScript, Module("Northwind")]
     public class OrderShipCountryLookup : RowLookupScript<OrderRow>

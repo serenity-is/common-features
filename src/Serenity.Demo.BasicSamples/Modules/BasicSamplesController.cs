@@ -1,5 +1,4 @@
-﻿using Serenity.Web;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Serenity.Demo.BasicSamples
 {

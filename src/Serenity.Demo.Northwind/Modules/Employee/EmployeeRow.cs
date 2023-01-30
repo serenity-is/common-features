@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 
 namespace Serenity.Demo.Northwind;
 
@@ -30,9 +30,8 @@ public sealed class EmployeeRow : Row<EmployeeRow.RowFields>, IIdRow, INameRow
         set => fields.FirstName[this] = value;
     }
 
-    [DisplayName("FullName"), QuickSearch]
-    [Expression("CONCAT(T0.[FirstName], CONCAT(' ', T0.[LastName]))")]
-    [Expression("(T0.FirstName || ' ' || T0.LastName)", Dialect = "Sqlite"), NameProperty]
+    [DisplayName("FullName"), NameProperty, QuickSearch]
+    [ConcatExpression("T0.[FirstName]", "' '", "T0.LastName")]
     public string FullName
     {
         get => fields.FullName[this];

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Serenity.Demo.Northwind;
 using System.Data;
 
@@ -22,7 +22,8 @@ public class BasicSamplesController : ServiceEndpoint
         response.ShipperKeys = shippers.Select(x => "s" + x.ShipperID.Value).ToList();
         response.ShipperLabels = shippers.Select(x => x.CompanyName).ToList();
 
-        var monthExpr = "DATEPART(MONTH, " + fld.OrderDate.Expression + ")";
+        var monthExpr = new DatePartExpressionAttribute(fld.OrderDate.Expression, DatePart.Month)
+            .ToString(connection.GetDialect());
 
         var byMonth = connection.Query(
             new SqlQuery()

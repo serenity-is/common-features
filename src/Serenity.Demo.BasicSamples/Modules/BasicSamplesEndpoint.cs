@@ -22,7 +22,7 @@ public class BasicSamplesController : ServiceEndpoint
         response.ShipperKeys = shippers.Select(x => "s" + x.ShipperID.Value).ToList();
         response.ShipperLabels = shippers.Select(x => x.CompanyName).ToList();
 
-        var monthExpr = new DatePartExpressionAttribute(fld.OrderDate.Expression, DatePart.Month)
+        var monthExpr = new DatePartAttribute(DateParts.Month, fld.OrderDate.Expression)
             .ToString(connection.GetDialect());
 
         var byMonth = connection.Query(

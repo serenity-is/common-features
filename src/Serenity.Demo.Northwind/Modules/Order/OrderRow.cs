@@ -1,4 +1,4 @@
-﻿namespace Serenity.Demo.Northwind;
+namespace Serenity.Demo.Northwind;
 
 [ConnectionKey("Northwind"), Module("Northwind"), TableName("Orders")]
 [DisplayName("Orders"), InstanceName("Order")]
@@ -78,7 +78,8 @@ public sealed class OrderRow : Row<OrderRow.RowFields>, IIdRow, INameRow
         set => fields.ShippedDate[this] = value;
     }
 
-    [DisplayName("Shipping State"), Expression("(CASE WHEN T0.[ShippedDate] IS NULL THEN 0 ELSE 1 END)")]
+    [DisplayName("Shipping State"), Case($"T0.[{nameof(ShippedDate)}] IS NULL",
+        (int)OrderShippingState.NotShipped, (int)OrderShippingState.Shipped)]
     public OrderShippingState? ShippingState
     {
         get { return (OrderShippingState?)Fields.ShippingState[this]; }

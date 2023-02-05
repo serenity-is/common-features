@@ -31,14 +31,15 @@ public sealed class EmployeeRow : Row<EmployeeRow.RowFields>, IIdRow, INameRow
     }
 
     [DisplayName("FullName"), NameProperty, QuickSearch]
-    [ConcatExpression("T0.[FirstName]", "' '", "T0.LastName")]
+    [Concat($"T0.[{nameof(FirstName)}]", "' '", $"T0.[{nameof(LastName)}")]
     public string FullName
     {
         get => fields.FullName[this];
         set => fields.FullName[this] = value;
     }
 
-    [DisplayName("Gender"), Expression("(CASE WHEN T0.[TitleOfCourtesy] LIKE '%s%' THEN 2 WHEN T0.[TitleOfCourtesy] LIKE '%Mr%' THEN 1 END)")]
+    [DisplayName("Gender"), Case($"T0.[{nameof(TitleOfCourtesy)}] LIKE '%s%'", 2,
+        $"T0.[{nameof(TitleOfCourtesy)}] LIKE '%Mr%'", 1)]
     public Gender? Gender
     {
         get { return (Gender?)Fields.Gender[this]; }
@@ -274,7 +275,8 @@ public sealed class EmployeeRow : Row<EmployeeRow.RowFields>, IIdRow, INameRow
     {
         get => fields.ReportsToPhotoPath[this];
         set => fields.ReportsToPhotoPath[this] = value;
-    }
+    }
+
     public EmployeeRow()
     {
     }

@@ -5,15 +5,6 @@ export interface CustomerCustomerDemoRow {
     CustomerID?: string;
     CustomerTypeID?: string;
     CustomerCompanyName?: string;
-    CustomerContactName?: string;
-    CustomerContactTitle?: string;
-    CustomerAddress?: string;
-    CustomerCity?: string;
-    CustomerRegion?: string;
-    CustomerPostalCode?: string;
-    CustomerCountry?: string;
-    CustomerPhone?: string;
-    CustomerFax?: string;
     CustomerTypeCustomerDesc?: string;
 }
 

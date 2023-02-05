@@ -6,23 +6,7 @@ export interface CustomerDetailsRow {
     LastContactedBy?: number;
     Email?: string;
     SendBulletin?: boolean;
-    LastContactedByLastName?: string;
-    LastContactedByFirstName?: string;
-    LastContactedByTitle?: string;
-    LastContactedByTitleOfCourtesy?: string;
-    LastContactedByBirthDate?: string;
-    LastContactedByHireDate?: string;
-    LastContactedByAddress?: string;
-    LastContactedByCity?: string;
-    LastContactedByRegion?: string;
-    LastContactedByPostalCode?: string;
-    LastContactedByCountry?: string;
-    LastContactedByHomePhone?: string;
-    LastContactedByExtension?: string;
-    LastContactedByPhoto?: number[];
-    LastContactedByNotes?: string;
-    LastContactedByReportsTo?: number;
-    LastContactedByPhotoPath?: string;
+    LastContactedByFullName?: string;
 }
 
 export abstract class CustomerDetailsRow {

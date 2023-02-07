@@ -1,4 +1,4 @@
-﻿namespace Serenity.Demo.Northwind;
+namespace Serenity.Demo.Northwind;
 
 [ConnectionKey("Northwind"), Module("Northwind"), TableName("CustomerCustomerDemo")]
 [DisplayName("CustomerCustomerDemo"), InstanceName("CustomerCustomerDemo")]
@@ -37,7 +37,7 @@ public sealed class CustomerCustomerDemoRow : Row<CustomerCustomerDemoRow.RowFie
         set => fields.CustomerCompanyName[this] = value;
     }
 
-    [DisplayName("Customer Type Desc"), Origin(jCustomer, nameof(CustomerDemographicRow.CustomerDesc))]
+    [DisplayName("Customer Type Desc"), Origin(jCustomerType, nameof(CustomerDemographicRow.CustomerDesc))]
     public string CustomerTypeCustomerDesc
     {
         get => fields.CustomerTypeCustomerDesc[this];

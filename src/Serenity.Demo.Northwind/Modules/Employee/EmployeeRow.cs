@@ -31,7 +31,7 @@ public sealed class EmployeeRow : Row<EmployeeRow.RowFields>, IIdRow, INameRow
     }
 
     [DisplayName("FullName"), NameProperty, QuickSearch]
-    [Concat($"T0.[{nameof(FirstName)}]", "' '", $"T0.[{nameof(LastName)}")]
+    [Concat($"T0.[{nameof(FirstName)}]", "' '", $"T0.[{nameof(LastName)}]")]
     public string FullName
     {
         get => fields.FullName[this];

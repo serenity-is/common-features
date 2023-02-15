@@ -11,24 +11,21 @@ namespace Serenity.Extensions.Pages;
 [Route("Serenity.Extensions/Report/[action]")]
 public class ReportController : Controller
 {
-    protected EnvironmentSettings EnvironmentSettings { get; }
-    protected IReportRegistry ReportRegistry { get; }
-    protected IRequestContext Context { get; }
-    protected IDataReportExcelRenderer ExcelRenderer { get; }
-    protected IWebHostEnvironment HostEnvironment { get; }
+    protected readonly IReportRegistry reportRegistry;
+    protected readonly IRequestContext requestContext;
+    protected readonly IDataReportExcelRenderer excelRenderer;
+    protected readonly IHtmlReportPdfRenderer htmlReportPdfRenderer;
+    protected readonly IWebHostEnvironment hostEnvironment;
 
-    public ReportController(IReportRegistry reportRegistry, IRequestContext context, IDataReportExcelRenderer excelRenderer,
-        IWebHostEnvironment hostEnvironment, IOptions<EnvironmentSettings> environmentSettings = null)
+    public ReportController(IReportRegistry reportRegistry,
+        IRequestContext requestContext,
+        IDataReportExcelRenderer excelRenderer,
+        IHtmlReportPdfRenderer htmlReportPdfRenderer)
     {
-        ReportRegistry = reportRegistry ??
-            throw new ArgumentNullException(nameof(reportRegistry));
-        Context = context ??
-            throw new ArgumentNullException(nameof(context));
-        ExcelRenderer = excelRenderer ??
-            throw new ArgumentNullException(nameof(excelRenderer));
-        HostEnvironment = hostEnvironment ??
-            throw new ArgumentNullException(nameof(hostEnvironment));
-        EnvironmentSettings = environmentSettings?.Value;
+        this.reportRegistry = reportRegistry ?? throw new ArgumentNullException(nameof(reportRegistry));
+        this.requestContext = requestContext ?? throw new ArgumentNullException(nameof(requestContext));
+        this.excelRenderer = excelRenderer ?? throw new ArgumentNullException(nameof(excelRenderer));
+        this.htmlReportPdfRenderer = htmlReportPdfRenderer ?? throw new ArgumentNullException(nameof(htmlReportPdfRenderer));
     }
 
     public ActionResult Render(string key, string opt, string ext, int? print = 0)
@@ -46,12 +43,12 @@ public class ReportController : Controller
         if (key.IsEmptyOrNull())
             throw new ArgumentNullException(nameof(key));
 
-        var reportInfo = ReportRegistry.GetReport(key);
+        var reportInfo = reportRegistry.GetReport(key);
         if (reportInfo == null)
             throw new ArgumentOutOfRangeException(nameof(key));
 
         if (reportInfo.Permission != null)
-            Context.Permissions.ValidatePermission(reportInfo.Permission, Context.Localizer);
+            requestContext.Permissions.ValidatePermission(reportInfo.Permission, requestContext.Localizer);
 
         var report = ActivatorUtilities.CreateInstance(HttpContext.RequestServices, reportInfo.Type) as IReport;
         var json = opt.TrimToNull();
@@ -63,7 +60,7 @@ public class ReportController : Controller
         if (report is IDataOnlyReport dataOnlyReport)
         {
             ext = "xlsx";
-            renderedBytes = ExcelRenderer.Render(dataOnlyReport);
+            renderedBytes = excelRenderer.Render(dataOnlyReport);
         }
         else if (report is IExternalReport)
         {
@@ -117,71 +114,10 @@ public class ReportController : Controller
         Response.Headers["Content-Disposition"] = "inline;filename=" + System.Net.WebUtility.UrlEncode(fileDownloadName);
         return File(renderedBytes, KnownMimeTypes.Get(fileDownloadName));
     }
-
-    static string GetWKHtmlToPdfPath(string contentRootPath)
-    {
-        var assemblyPath = System.IO.Path.GetDirectoryName(typeof(ReportController).Assembly.Location);
-
-        string[] wkhtmlFileNames = Environment.OSVersion.Platform == PlatformID.Win32NT ?
-                        new[] { "wkhtmltopdf.exe", "wkhtmltopdf.cmd", "wkhtmltopdf.bat" } :
-                        new[] { "wkhtmltopdf", "wkhtmltopdf.sh" };
-
-        IEnumerable<string> paths = new[] { assemblyPath };
-        if (!string.IsNullOrEmpty(contentRootPath))
-            paths = paths.Concat(new[] {
-                System.IO.Path.Combine(contentRootPath),
-                System.IO.Path.Combine(contentRootPath, "App_Data", "Reporting"),
-                System.IO.Path.Combine(contentRootPath, "App_Data", "reporting"),
-                System.IO.Path.Combine(contentRootPath, "bin")
-            });
-
-        paths = paths.Concat((Environment.GetEnvironmentVariable("PATH") ?? "").Split(';'));
-
-        return paths.SelectMany(path =>
-            wkhtmlFileNames.Select(f => System.IO.Path.Combine(path, f)))
-            .FirstOrDefault(System.IO.File.Exists);
-    }
-
+    
     private byte[] RenderAsPdf(IReport report, string key, string opt)
     {
-        var externalUrl = EnvironmentSettings?.SiteExternalUrl.TrimToNull() ??
-            Request.GetBaseUri().ToString();
-
-        var renderUrl = UriHelper.Combine(externalUrl, "Serenity.Extensions/Report/Render?" +
-            "key=" + Uri.EscapeDataString(key));
-
-        if (!string.IsNullOrEmpty(opt))
-            renderUrl += "&opt=" + Uri.EscapeDataString(opt);
-
-        renderUrl += "&print=1";
-
-        var converter = new HtmlToPdfConverter();
-
-        var wkhtmlPath = GetWKHtmlToPdfPath(HostEnvironment?.ContentRootPath);
-        if (!string.IsNullOrEmpty(wkhtmlPath))
-            converter.UtilityExePath = wkhtmlPath;
-        else
-            throw new ValidationError("Can't locate wkhtmltopdf.exe (or wkhtmltopdf in Linux) " +
-                "that is required for report generation in PATH or folder " +
-                System.IO.Path.GetDirectoryName(typeof(ReportController).Assembly.Location) + 
-                ". Please download and install the version suitable for your system from " +
-                "https://wkhtmltopdf.org/downloads.html");
-        
-        converter.Url = renderUrl;
-        var formsCookieName = ".AspNetAuth";
-        var formsCookie = Request.Cookies[formsCookieName];
-        if (formsCookie != null)
-            converter.Cookies[formsCookieName] = formsCookie;
-
-        var languageCookieName = "LanguagePreference";
-        var languageCookie = Request.Cookies[languageCookieName];
-        if (languageCookie != null)
-            converter.Cookies[languageCookieName] = languageCookie;
-
-        if (report is ICustomizeHtmlToPdf icustomize)
-            icustomize.Customize(converter);
-
-        return converter.Execute();
+        return htmlReportPdfRenderer.Render(report, key, opt);
     }
 
     private ActionResult RenderAsHtml(IReport report, bool download, bool printing,
@@ -207,7 +143,7 @@ public class ReportController : Controller
             return View(viewName: designAttr.Design, model: data);
 
         var html = TemplateHelper.RenderViewToString(HttpContext.RequestServices, designAttr.Design, viewData);
-        renderedBytes = System.Text.Encoding.UTF8.GetBytes(html);
+        renderedBytes = Encoding.UTF8.GetBytes(html);
         return null;
     }
 
@@ -218,7 +154,7 @@ public class ReportController : Controller
         if (propertyItemProvider is null)
             throw new ArgumentNullException(nameof(propertyItemProvider));
 
-        return this.ExecuteMethod(() => new Repositories.ReportRepository(Context, 
-            ReportRegistry).Retrieve(request, HttpContext.RequestServices, propertyItemProvider));
+        return this.ExecuteMethod(() => new Repositories.ReportRepository(requestContext, 
+            reportRegistry).Retrieve(request, HttpContext.RequestServices, propertyItemProvider));
     }
 }

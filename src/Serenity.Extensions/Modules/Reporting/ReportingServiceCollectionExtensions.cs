@@ -1,6 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Serenity.Extensions.Repositories;
 using Serenity.Reporting;
 
 namespace Serenity.Extensions.DependencyInjection;
@@ -21,5 +20,21 @@ public static class ReportingServiceCollectionExtensions
 
         services.TryAddSingleton<IDataReportExcelRenderer, DataReportExcelRenderer>();
         services.TryAddSingleton<IExcelExporter, ExcelExporter>();
+    }
+
+    public static void AddHtmlToPdf(this IServiceCollection services)
+    {
+        if (services == null)
+            throw new ArgumentNullException(nameof(services));
+
+        services.TryAddSingleton<IWKHtmlToPdfConverter, WKHtmlToPdfConverter>();
+        services.TryAddSingleton<IHtmlToPdfConverter, WKHtmlToPdfConverter>();
+        services.TryAddSingleton<IHtmlReportPdfRenderer, HtmlReportPdfRenderer>();
+    }
+
+    public static void AddReporting(this IServiceCollection services)
+    {
+        services.AddExcelExporter();
+        services.AddHtmlToPdf();
     }
 }

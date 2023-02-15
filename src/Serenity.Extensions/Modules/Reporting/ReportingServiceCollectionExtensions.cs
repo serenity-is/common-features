@@ -34,6 +34,7 @@ public static class ReportingServiceCollectionExtensions
 
     public static void AddReporting(this IServiceCollection services)
     {
+        services.TryAddSingleton<IReportRegistry, ReportRegistry>();
         services.AddExcelExporter();
         services.AddHtmlToPdf();
     }

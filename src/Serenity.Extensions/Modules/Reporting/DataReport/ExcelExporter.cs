@@ -1,7 +1,6 @@
-﻿using Serenity.Reporting;
 using System.Collections;
 
-namespace Serenity.Extensions.Repositories;
+namespace Serenity.Reporting;
 
 public class ExcelExporter : IExcelExporter
 {

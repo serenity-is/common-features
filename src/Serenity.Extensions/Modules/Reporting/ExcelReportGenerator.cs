@@ -1,4 +1,4 @@
-﻿using FastMember;
+using FastMember;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using OfficeOpenXml.Table;
@@ -10,20 +10,24 @@ namespace Serenity.Reporting;
 public static class ExcelReportGenerator
 {
     public static byte[] GeneratePackageBytes(List<ReportColumn> columns, IList rows,
-        string sheetName = "Page1", string tableName = "Table1", TableStyles tableStyle = TableStyles.Medium2)
+        string sheetName = "Page1", string tableName = "Table1", TableStyles tableStyle = TableStyles.Medium2,
+        int startRow = 1, int startCol = 1, int autoFitRows = 250)
     {
-        using var package = GeneratePackage(columns, rows, sheetName, tableName, tableStyle);
+        using var package = GeneratePackage(columns, rows, sheetName, tableName, tableStyle,
+            startRow, startCol, autoFitRows);
         return package.GetAsByteArray();
     }
 
     public static ExcelPackage GeneratePackage(List<ReportColumn> columns, IList rows,
-        string sheetName = "Page1", string tableName = "Table1", TableStyles tableStyle = TableStyles.Medium2)
+        string sheetName = "Page1", string tableName = "Table1", TableStyles tableStyle = TableStyles.Medium2,
+        int startRow = 1, int startCol = 1, int autoFitRows = 250)
     {
         var package = new ExcelPackage();
         var workbook = package.Workbook;
         var worksheet = workbook.Worksheets.Add(sheetName);
 
-        PopulateSheet(worksheet, columns, rows, tableName, tableStyle);
+        PopulateSheet(worksheet, columns, rows, tableName, tableStyle,
+            startRow, startCol, autoFitRows);
 
         return package;
     }
@@ -49,7 +53,8 @@ public static class ExcelReportGenerator
     }
 
     public static void PopulateSheet(ExcelWorksheet worksheet, List<ReportColumn> columns, IList rows,
-        string tableName = "Table1", TableStyles tableStyle = TableStyles.Medium2)
+        string tableName = "Table1", TableStyles tableStyle = TableStyles.Medium2,
+        int startRow = 1, int startCol = 1, int autoFitRows = 250)
     {
         if (columns == null)
             throw new ArgumentNullException(nameof(columns));
@@ -63,14 +68,14 @@ public static class ExcelReportGenerator
 
         var colCount = columns.Count;
 
-        int endCol = colCount;
-        int endRow = rows.Count + 1;
+        int endCol = startCol + colCount - 1;
+        int endRow = rows.Count + startRow;
 
-        var header = worksheet.Cells[1, 1, 1, columns.Count];
+        var header = worksheet.Cells[startRow, startCol, startRow, endCol];
         header.LoadFromArrays(new List<object[]>
-        {
+            {
             columns.Select(x => (x.Title ?? x.Name)).ToArray()
-        });
+            });
 
         var dataList = new List<object[]>();
         foreach (var obj in rows)
@@ -146,42 +151,44 @@ public static class ExcelReportGenerator
 
         if (rows.Count > 0)
         {
-            var dataRange = worksheet.Cells[2, 1, endRow, endCol];
+            var dataRange = worksheet.Cells[startRow + 1, startCol, endRow, endCol];
             dataRange.LoadFromArrays(dataList);
         }
 
-        var tableRange = worksheet.Cells[1, 1, endRow, endCol];
-        var table = worksheet.Tables.Add(tableRange, tableName);
-        table.TableStyle = tableStyle;
-
-        for (var i = 1; i <= endCol; i++)
+        if (tableName != null)
         {
-            var column = columns[i - 1];
+            var tableRange = worksheet.Cells[startRow, startCol, endRow, endCol];
+            var table = worksheet.Tables.Add(tableRange, tableName);
+            table.TableStyle = tableStyle;
+        }
+
+        for (var i = startCol; i <= endCol; i++)
+        {
+            var column = columns[i - startCol];
             if (!column.Format.IsEmptyOrNull())
                 worksheet.Column(i).Style.Numberformat.Format = FixFormatSpecifier(column.Format, column.DataType);
         }
 
         bool gdiErrors = false;
-
         try
         {
-            worksheet.Cells[1, 1, Math.Min(endRow, 250), endCol].AutoFitColumns(1, 100);
+            if (autoFitRows > 0)
+                worksheet.Cells[startRow, 1, Math.Min(endRow, startRow + autoFitRows), endCol].AutoFitColumns(1, 100);
         }
         catch (TypeInitializationException)
         {
             gdiErrors = true;
         }
 
-        for (var colNum = 1; colNum <= endCol; colNum++)
+        for (var colNum = startCol; colNum <= endCol; colNum++)
         {
-            var col = columns[colNum - 1];
+            var col = columns[colNum - startCol];
             var decorator = col.Decorator;
             if (decorator != null)
             {
-                for (var rowNum = 2; rowNum <= endRow; rowNum++)
+                for (var rowNum = startRow + 1; rowNum <= endRow; rowNum++)
                 {
-                    var obj = rows[rowNum - 2];
-
+                    var obj = rows[rowNum - startRow - 1];
                     decorator.Item = obj;
                     decorator.Name = col.Name;
                     decorator.Format = null;
@@ -211,7 +218,7 @@ public static class ExcelReportGenerator
                     }
                     else if (obj != null)
                     {
-                        if (!invalidProperty[colNum - 1])
+                        if (!invalidProperty[colNum - startCol])
                             value = accessor[obj, col.Name];
                     }
                     else

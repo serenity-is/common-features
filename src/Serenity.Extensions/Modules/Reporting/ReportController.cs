@@ -124,25 +124,28 @@ public class ReportController : Controller
         ref byte[] renderedBytes)
     {
         var designAttr = report.GetType().GetCustomAttribute<ReportDesignAttribute>();
+        if (designAttr is null)
+            throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture,
+                "Report design attribute for type '{0}' is not found!", report.GetType().FullName));
 
-        if (designAttr == null)
-            throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "Report design attribute for type '{0}' is not found!",
-                report.GetType().FullName));
+        var model = report.GetData();
 
-        var data = report.GetData();
-        var viewData = download ? new ViewDataDictionary(ViewData) { Model = data } : ViewData;
-
-        if (report is not IReportWithAdditionalData iadditional)
-            viewData["AdditionalData"] = new Dictionary<string, object>();
-        else
-            viewData["AdditionalData"] = iadditional.GetAdditionalData();
-
-        viewData["Printing"] = printing;
+        void setViewData(ViewDataDictionary viewData)
+        {
+            viewData["Printing"] = printing;
+            viewData["AdditionalData"] = (report as IReportWithAdditionalData)?.GetAdditionalData() ??
+                new Dictionary<string, object>();
+        }
 
         if (!download)
-            return View(viewName: designAttr.Design, model: data);
+        {
+            setViewData(ViewData);
+            return View(viewName: designAttr.Design, model: model);
+        }
 
-        var html = TemplateHelper.RenderViewToString(HttpContext.RequestServices, designAttr.Design, viewData);
+        var html = TemplateHelper.RenderViewToString(HttpContext.RequestServices, designAttr.Design, model: model,
+            viewContext => setViewData(viewContext.ViewData));
+
         renderedBytes = Encoding.UTF8.GetBytes(html);
         return null;
     }

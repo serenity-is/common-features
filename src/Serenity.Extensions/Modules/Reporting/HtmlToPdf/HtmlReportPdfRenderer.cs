@@ -11,105 +11,30 @@ public class HtmlReportPdfRenderer : IHtmlReportPdfRenderer
     protected readonly EnvironmentSettings environmentSettings;
     protected readonly IHttpContextAccessor httpContextAccessor;
     protected readonly IHtmlToPdfConverter htmlToPdfConverter;
+    private readonly IHtmlReportRenderUrlBuilder renderUrlBuilder;
 
     public HtmlReportPdfRenderer(
         IHtmlToPdfConverter htmlToPdfConverter,
-        IHttpContextAccessor httpContextAccessor = null,
-        IOptions<EnvironmentSettings> environmentSettings = null)
+        IHtmlReportRenderUrlBuilder renderUrlBuilder)
     {
         this.htmlToPdfConverter = htmlToPdfConverter ?? throw new ArgumentNullException(nameof(htmlToPdfConverter));
-        this.environmentSettings = environmentSettings?.Value;
-        this.httpContextAccessor = httpContextAccessor;
+        this.renderUrlBuilder = renderUrlBuilder ?? throw new ArgumentNullException(nameof(renderUrlBuilder));
     }
 
-    protected virtual string GetRenderAction(IReport report)
+    protected virtual void ForwardCookies(IReport report, string key, IHtmlToPdfOptions options)
     {
-        return "Serenity.Extensions/Report/Render";
+        foreach (var cookie in renderUrlBuilder.GetCookiesToForward())
+            options.Cookies[cookie.Name] = cookie.Value;
     }
 
-    protected virtual string GetReportKey(IReport report)
-    {
-        if (report is null)
-            throw new ArgumentNullException(nameof(report));
-
-        var attr = report.GetType().GetCustomAttribute<ReportAttribute>(false);
-        if (attr == null || attr.ReportKey.IsNullOrEmpty())
-            return report.GetType().FullName;
-
-        return attr.ReportKey;
-    }
-
-    protected virtual string GetSiteExternalUrl()
-    {
-        var externalUrl = environmentSettings?.SiteExternalUrl.TrimToNull() ??
-            httpContextAccessor?.HttpContext?.Request?.GetBaseUri().ToString();
-
-        if (string.IsNullOrEmpty(externalUrl))
-            throw new ValidationError("Can't determine the callback URL for report rendering. " +
-                "Please set EnvironmentSettings:SiteExternalUrl in appsettings.json!");
-
-        return externalUrl;
-    }
-
-    protected virtual string GetRenderUrl(IReport report, string key, string opt)
-    {
-        if (string.IsNullOrEmpty(key))
-            key = GetReportKey(report);
-
-        var renderUrl = GetSiteExternalUrl();
-        renderUrl = UriHelper.Combine(renderUrl, GetRenderAction(report) +
-            "?key=" + Uri.EscapeDataString(key));
-
-        if (!string.IsNullOrEmpty(opt))
-            renderUrl += "&opt=" + Uri.EscapeDataString(opt);
-
-        renderUrl += "&print=1";
-
-        return renderUrl;
-    }
-
-    protected virtual string GetAuthCookieName()
-    {
-        return ".AspNetAuth";
-    }
-
-    protected virtual string GetLanguageCookieName()
-    {
-        return "LanguagePreference";
-    }
-
-    protected virtual void PassCookies(IHtmlToPdfOptions options)
-    {
-        var request = httpContextAccessor?.HttpContext?.Request;
-        if (request is null)
-            return;
-
-        var authCookieName = GetAuthCookieName();
-
-        if (!string.IsNullOrEmpty(authCookieName))
-        {
-            var authCookie = request?.Cookies[authCookieName];
-            if (authCookie != null)
-                options.Cookies[authCookieName] = authCookie;
-        }
-
-        var languageCookieName = GetLanguageCookieName();
-        if (!string.IsNullOrEmpty(languageCookieName))
-        {
-            var languageCookie = request?.Cookies[languageCookieName];
-            if (languageCookie != null)
-                options.Cookies[languageCookieName] = languageCookie;
-        }
-    }
-
-    protected virtual IHtmlToPdfOptions GetConverterOptions(IReport report, string key, string opt)
+    protected virtual IHtmlToPdfOptions GetConverterOptions(IReport report, string reportKey, string reportParams)
     {
         var options = new HtmlToPdfOptions
         {
-            Url = GetRenderUrl(report, key, opt)
+            Url = renderUrlBuilder.GetRenderUrl(report, reportKey, reportParams)
         };
 
-        PassCookies(options);
+        ForwardCookies(report, reportKey, options);
 
         if (report is ICustomizeHtmlToPdf icustomize)
             icustomize.Customize(options);
@@ -117,9 +42,9 @@ public class HtmlReportPdfRenderer : IHtmlReportPdfRenderer
         return options;
     }
 
-    public virtual byte[] Render(IReport report, string key, string opt)
+    public virtual byte[] Render(IReport report, string reportKey, string reportParams)
     {
-        var options = GetConverterOptions(report, key, opt);
+        var options = GetConverterOptions(report, reportKey, reportParams);
         return htmlToPdfConverter.Convert(options);
     }
 }

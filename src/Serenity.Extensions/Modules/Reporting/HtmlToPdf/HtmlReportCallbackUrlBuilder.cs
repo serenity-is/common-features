@@ -53,7 +53,7 @@ public class HtmlReportCallbackUrlBuilder : IHtmlReportCallbackUrlBuilder
         return externalUrl;
     }
 
-    public virtual string GetRenderUrl(IReport report, string reportKey, string reportParams)
+    public virtual string GetRenderUrl(IReport report, string reportKey, string reportParams, out Action cleanup)
     {
         if (string.IsNullOrEmpty(reportKey))
             reportKey = GetReportKey(report);
@@ -67,6 +67,7 @@ public class HtmlReportCallbackUrlBuilder : IHtmlReportCallbackUrlBuilder
 
         renderUrl += "&print=1";
 
+        cleanup = null;
         return renderUrl;
     }
 

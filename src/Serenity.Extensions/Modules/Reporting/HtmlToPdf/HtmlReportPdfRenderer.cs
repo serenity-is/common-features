@@ -27,25 +27,50 @@ public class HtmlReportPdfRenderer : IHtmlReportPdfRenderer
             options.Cookies[cookie.Name] = cookie.Value;
     }
 
-    protected virtual IHtmlToPdfOptions GetConverterOptions(IReport report, string reportKey, string reportParams)
+    protected virtual IHtmlToPdfOptions GetConverterOptions(IReport report,
+        string reportKey, string reportParams, out Action cleanup)
     {
-        var options = new HtmlToPdfOptions
+        var url = renderUrlBuilder.GetRenderUrl(report, reportKey, reportParams, out cleanup);
+        try
         {
-            Url = renderUrlBuilder.GetRenderUrl(report, reportKey, reportParams)
-        };
+            var options = new HtmlToPdfOptions
+            {
+                Url = url
+            };
 
-        ForwardCookies(report, reportKey, options);
+            if (url.StartsWith("file:///", StringComparison.OrdinalIgnoreCase))
+            {
+                var tempFolder = PathHelper.ToPath(url["file:///".Length..]);
+                options.CustomArgs.Add("--disable-local-file-access");
+                options.CustomArgs.Add("--allow");
+                options.CustomArgs.Add(tempFolder);
+            }
 
-        if (report is ICustomizeHtmlToPdf icustomize)
-            icustomize.Customize(options);
+            ForwardCookies(report, reportKey, options);
 
-        return options;
+            if (report is ICustomizeHtmlToPdf icustomize)
+                icustomize.Customize(options);
+
+            return options;
+        }
+        catch
+        {
+            cleanup?.Invoke();
+            throw;
+        }
     }
 
     /// <inheritdoc/>
     public virtual byte[] Render(IReport report, string reportKey, string reportParams)
     {
-        var options = GetConverterOptions(report, reportKey, reportParams);
-        return htmlToPdfConverter.Convert(options);
+        var options = GetConverterOptions(report, reportKey, reportParams, out var cleanup);
+        try
+        {
+            return htmlToPdfConverter.Convert(options);
+        }
+        finally
+        {
+            cleanup?.Invoke();
+        }
     }
 }

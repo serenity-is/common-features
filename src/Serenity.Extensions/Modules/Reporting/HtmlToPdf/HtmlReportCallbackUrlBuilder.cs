@@ -8,7 +8,7 @@ namespace Serenity.Reporting;
 /// <summary>
 /// Default implementation for <see cref="IHtmlReportRenderUrlBuilder"/>
 /// </summary>
-public class HtmlReportCallbackUrlBuilder : IHtmlReportRenderUrlBuilder
+public class HtmlReportCallbackUrlBuilder : IHtmlReportCallbackUrlBuilder
 {
     protected readonly EnvironmentSettings environmentSettings;
     protected readonly IOptionsMonitor<CookieAuthenticationOptions> cookieOptions;

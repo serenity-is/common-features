@@ -21,7 +21,7 @@ public class HtmlReportPdfRenderer : IHtmlReportPdfRenderer
         this.renderUrlBuilder = renderUrlBuilder ?? throw new ArgumentNullException(nameof(renderUrlBuilder));
     }
 
-    protected virtual void ForwardCookies(IReport report, string key, IHtmlToPdfOptions options)
+    protected virtual void ForwardCookies(IReport report, string reportKey, IHtmlToPdfOptions options)
     {
         foreach (var cookie in renderUrlBuilder.GetCookiesToForward())
             options.Cookies[cookie.Name] = cookie.Value;
@@ -42,6 +42,7 @@ public class HtmlReportPdfRenderer : IHtmlReportPdfRenderer
         return options;
     }
 
+    /// <inheritdoc/>
     public virtual byte[] Render(IReport report, string reportKey, string reportParams)
     {
         var options = GetConverterOptions(report, reportKey, reportParams);

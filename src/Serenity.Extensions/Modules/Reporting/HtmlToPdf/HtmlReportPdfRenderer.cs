@@ -21,32 +21,37 @@ public class HtmlReportPdfRenderer : IHtmlReportPdfRenderer
         this.renderUrlBuilder = renderUrlBuilder ?? throw new ArgumentNullException(nameof(renderUrlBuilder));
     }
 
-    protected virtual void ForwardCookies(IReport report, string reportKey, IHtmlToPdfOptions options)
+    protected virtual void ForwardCookies(IReport report, string reportKey, IHtmlToPdfOptions options,
+        HtmlReportRenderUrl renderUrl)
     {
-        foreach (var cookie in renderUrlBuilder.GetCookiesToForward())
+        foreach (var cookie in renderUrl.CookiesToForward)
             options.Cookies[cookie.Name] = cookie.Value;
     }
 
     protected virtual IHtmlToPdfOptions GetConverterOptions(IReport report,
-        string reportKey, string reportParams, out Action cleanup)
+        string reportKey, string reportParams, out HtmlReportRenderUrl renderUrl)
     {
-        var url = renderUrlBuilder.GetRenderUrl(report, reportKey, reportParams, out cleanup);
+        renderUrl = renderUrlBuilder.GetRenderUrl(report, reportKey, reportParams);
         try
         {
             var options = new HtmlToPdfOptions
             {
-                Url = url
+                Url = renderUrl.Url
             };
 
-            if (url.StartsWith("file:///", StringComparison.OrdinalIgnoreCase))
+            if (renderUrl.GetTemporaryFolders().Any())
             {
-                var tempFolder = PathHelper.ToPath(url["file:///".Length..]);
-                options.CustomArgs.Add("--disable-local-file-access");
-                options.CustomArgs.Add("--allow");
-                options.CustomArgs.Add(tempFolder);
+                if (!options.CustomArgs.Contains("--disable-local-file-access"))
+                    options.CustomArgs.Add("--disable-local-file-access");
+
+                foreach (var tempFolder in renderUrl.GetTemporaryFolders())
+                {
+                    options.CustomArgs.Add("--allow");
+                    options.CustomArgs.Add(tempFolder);
+                }
             }
 
-            ForwardCookies(report, reportKey, options);
+            ForwardCookies(report, reportKey, options, renderUrl);
 
             if (report is ICustomizeHtmlToPdf icustomize)
                 icustomize.Customize(options);
@@ -55,7 +60,7 @@ public class HtmlReportPdfRenderer : IHtmlReportPdfRenderer
         }
         catch
         {
-            cleanup?.Invoke();
+            renderUrl.Dispose();
             throw;
         }
     }
@@ -63,14 +68,14 @@ public class HtmlReportPdfRenderer : IHtmlReportPdfRenderer
     /// <inheritdoc/>
     public virtual byte[] Render(IReport report, string reportKey, string reportParams)
     {
-        var options = GetConverterOptions(report, reportKey, reportParams, out var cleanup);
+        var options = GetConverterOptions(report, reportKey, reportParams, out var renderUrl);
         try
         {
             return htmlToPdfConverter.Convert(options);
         }
         finally
         {
-            cleanup?.Invoke();
+            renderUrl?.Dispose();
         }
     }
 }

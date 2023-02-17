@@ -53,22 +53,23 @@ public class HtmlReportCallbackUrlBuilder : IHtmlReportCallbackUrlBuilder
         return externalUrl;
     }
 
-    public virtual string GetRenderUrl(IReport report, string reportKey, string reportParams, out Action cleanup)
+    public virtual HtmlReportRenderUrl GetRenderUrl(IReport report, string reportKey, string reportParams)
     {
+        var response = new HtmlReportRenderUrl();
+
         if (string.IsNullOrEmpty(reportKey))
             reportKey = GetReportKey(report);
 
-        var renderUrl = GetSiteExternalUrl();
-        renderUrl = UriHelper.Combine(renderUrl, GetRenderAction(report) +
+        response.Url = GetSiteExternalUrl();
+        response.Url = UriHelper.Combine(response.Url, GetRenderAction(report) +
             "?key=" + Uri.EscapeDataString(reportKey));
 
         if (!string.IsNullOrEmpty(reportParams))
-            renderUrl += "&opt=" + Uri.EscapeDataString(reportParams);
+            response.Url += "&opt=" + Uri.EscapeDataString(reportParams);
 
-        renderUrl += "&print=1";
+        response.Url += "&print=1";
 
-        cleanup = null;
-        return renderUrl;
+        return response;
     }
 
     protected virtual string GetAuthCookieName()

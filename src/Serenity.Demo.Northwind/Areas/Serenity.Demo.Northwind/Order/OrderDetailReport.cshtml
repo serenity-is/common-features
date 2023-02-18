@@ -1,22 +1,26 @@
-﻿@model Serenity.Demo.Northwind.OrderDetailReportData
-
-@if ((bool?)ViewData["Printing"] == true)
-{
-Layout = "_LayoutNoNavigation";
+@model Serenity.Demo.Northwind.OrderDetailReportData
+@{
+    Layout = "";
 }
-
+<html lang="en">
+<head>
+    <!--
+        WKHTML does not properly work with flexbox, e.g. what Bootstrap 5 uses,
+        and reports should not depend on the site styling, or they would break
+        when the site is updated, so we are using Bootstrap 3 directly from a CDN.
+    -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" />
+</head>
+<body>
 <section class="invoice">
-    <div class="row">
-        <div class="col-xs-12 col-12">
-            <h2 class="page-header">
-                Invoice
-                <small class="pull-right">Date: @DateTime.Now.ToShortDateString()</small>
-            </h2>
-        </div>
+    <div>
+        <h2 class="page-header">
+            Invoice
+            <small class="pull-right">Date: @DateTime.Now.ToShortDateString()</small>
+        </h2>
     </div>
-    <!-- info row -->
     <div class="row invoice-info">
-        <div class="col-sm-4 invoice-col">
+        <div class="col-xs-4 invoice-col">
             From
             <address>
                 <strong>Northwind, Inc.</strong><br>
@@ -26,8 +30,7 @@ Layout = "_LayoutNoNavigation";
                 Email: info@northwind.net
             </address>
         </div>
-        <!-- /.col -->
-        <div class="col-sm-4 invoice-col">
+        <div class="col-xs-4 invoice-col">
             To
             <address>
                 <strong>@Model.Customer.CompanyName</strong><br>
@@ -36,19 +39,15 @@ Layout = "_LayoutNoNavigation";
                 Fax: @Model.Customer.Fax
             </address>
         </div>
-        <!-- /.col -->
-        <div class="col-sm-4 invoice-col">
+        <div class="col-xs-4 invoice-col">
             <b>Invoice #IX@(Model.Order.OrderID)</b><br>
             <br>
             <b>Order ID:</b> @Model.Order.OrderID<br>
             <b>Payment Due:</b> @Model.Order.OrderDate.Value.ToShortDateString()<br>
         </div>
-        <!-- /.col -->
     </div>
-    <!-- /.row -->
-    <!-- Table row -->
     <div class="row">
-        <div class="col-xs-12 col-12 table-responsive">
+        <div class="col-xs-12 table-responsive">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -73,15 +72,14 @@ Layout = "_LayoutNoNavigation";
                 </tbody>
             </table>
         </div>
-        <!-- /.col -->
     </div>
 
     <div class="row">
-        <div class="col-xs-6 col-6">
+        <div class="col-xs-6">
 
         </div>
         <!-- /.col -->
-        <div class="col-xs-6 col-6">
+        <div class="col-xs-6">
             <p class="lead">Amount Due @(Model.Order.OrderDate.Value.AddDays(10).ToShortDateString())</p>
 
             @{
@@ -111,3 +109,5 @@ Layout = "_LayoutNoNavigation";
         </div>
     </div>
 </section>
+</body>
+</html>

@@ -51,26 +51,7 @@ public class HtmlReportCallbackUrlBuilder : IHtmlReportCallbackUrlBuilder
                 "Please set EnvironmentSettings:SiteExternalUrl in appsettings.json!");
 
         return externalUrl;
-    }
-
-    public virtual HtmlReportRenderUrl GetRenderUrl(IReport report, string reportKey, string reportParams)
-    {
-        var response = new HtmlReportRenderUrl();
-
-        if (string.IsNullOrEmpty(reportKey))
-            reportKey = GetReportKey(report);
-
-        response.Url = GetSiteExternalUrl();
-        response.Url = UriHelper.Combine(response.Url, GetRenderAction(report) +
-            "?key=" + Uri.EscapeDataString(reportKey));
-
-        if (!string.IsNullOrEmpty(reportParams))
-            response.Url += "&opt=" + Uri.EscapeDataString(reportParams);
-
-        response.Url += "&print=1";
-
-        return response;
-    }
+    }  
 
     protected virtual string GetAuthCookieName()
     {
@@ -104,5 +85,27 @@ public class HtmlReportCallbackUrlBuilder : IHtmlReportCallbackUrlBuilder
             if (languageCookie != null)
                 yield return new Cookie(languageCookieName, languageCookie);
         }
+    }
+
+    public virtual HtmlReportRenderUrl GetRenderUrl(IReport report, string reportKey, string reportParams)
+    {
+        var response = new HtmlReportRenderUrl();
+
+        if (string.IsNullOrEmpty(reportKey))
+            reportKey = GetReportKey(report);
+
+        response.Url = GetSiteExternalUrl();
+        response.Url = UriHelper.Combine(response.Url, GetRenderAction(report) +
+            "?key=" + Uri.EscapeDataString(reportKey));
+
+        if (!string.IsNullOrEmpty(reportParams))
+            response.Url += "&opt=" + Uri.EscapeDataString(reportParams);
+
+        response.Url += "&print=1";
+
+        foreach (var cookie in GetCookiesToForward())
+            response.CookiesToForward.Add(cookie);
+
+        return response;
     }
 }

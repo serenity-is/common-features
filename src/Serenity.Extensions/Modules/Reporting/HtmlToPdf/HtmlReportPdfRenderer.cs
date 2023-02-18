@@ -36,20 +36,11 @@ public class HtmlReportPdfRenderer : IHtmlReportPdfRenderer
         {
             var options = new HtmlToPdfOptions
             {
-                Url = renderUrl.Url
+                Url = renderUrl.Url,
+                DisableLocalFileAccess = true
             };
 
-            if (renderUrl.GetTemporaryFolders().Any())
-            {
-                if (!options.CustomArgs.Contains("--disable-local-file-access"))
-                    options.CustomArgs.Add("--disable-local-file-access");
-
-                foreach (var tempFolder in renderUrl.GetTemporaryFolders())
-                {
-                    options.CustomArgs.Add("--allow");
-                    options.CustomArgs.Add(tempFolder);
-                }
-            }
+            options.AllowedLocalPaths.AddRange(renderUrl.GetTemporaryFolders());
 
             ForwardCookies(report, reportKey, options, renderUrl);
 

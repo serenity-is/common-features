@@ -11,14 +11,17 @@ public class HtmlReportPdfRenderer : IHtmlReportPdfRenderer
     protected readonly EnvironmentSettings environmentSettings;
     protected readonly IHttpContextAccessor httpContextAccessor;
     protected readonly IHtmlToPdfConverter htmlToPdfConverter;
-    private readonly IHtmlReportRenderUrlBuilder renderUrlBuilder;
+    protected readonly IHtmlReportRenderUrlBuilder renderUrlBuilder;
+    protected readonly IWKHtmlToPdfConverter wkHtmlToPdfConverter;
 
     public HtmlReportPdfRenderer(
         IHtmlToPdfConverter htmlToPdfConverter,
-        IHtmlReportRenderUrlBuilder renderUrlBuilder)
+        IHtmlReportRenderUrlBuilder renderUrlBuilder,
+        IWKHtmlToPdfConverter wkHtmlToPdfConverter = null)
     {
         this.htmlToPdfConverter = htmlToPdfConverter ?? throw new ArgumentNullException(nameof(htmlToPdfConverter));
         this.renderUrlBuilder = renderUrlBuilder ?? throw new ArgumentNullException(nameof(renderUrlBuilder));
+        this.wkHtmlToPdfConverter = wkHtmlToPdfConverter;
     }
 
     protected virtual void ForwardCookies(IReport report, string reportKey, IHtmlToPdfOptions options,
@@ -56,13 +59,21 @@ public class HtmlReportPdfRenderer : IHtmlReportPdfRenderer
         }
     }
 
+    protected virtual IHtmlToPdfConverter GetConverterFor(IReport report, string reportKey, string reportParams)
+    {
+        return wkHtmlToPdfConverter != null &&
+            report?.GetType().GetCustomAttribute<UseWKHtmlToPdfAttribute>()?.Value == true ?
+            wkHtmlToPdfConverter : htmlToPdfConverter;
+    }
+
     /// <inheritdoc/>
     public virtual byte[] Render(IReport report, string reportKey, string reportParams)
     {
         var options = GetConverterOptions(report, reportKey, reportParams, out var renderUrl);
         try
         {
-            return htmlToPdfConverter.Convert(options);
+            var converter = GetConverterFor(report, reportKey, reportParams);
+            return converter.Convert(options);
         }
         finally
         {

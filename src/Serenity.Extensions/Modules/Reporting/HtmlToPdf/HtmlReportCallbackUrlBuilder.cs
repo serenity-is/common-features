@@ -10,16 +10,16 @@ namespace Serenity.Reporting;
 /// </summary>
 public class HtmlReportCallbackUrlBuilder : IHtmlReportCallbackUrlBuilder
 {
-    protected readonly EnvironmentSettings environmentSettings;
     protected readonly IOptionsMonitor<CookieAuthenticationOptions> cookieOptions;
     protected readonly IHttpContextAccessor httpContextAccessor;
+    protected readonly ISiteAbsoluteUrl siteAbsoluteUrl;
 
     public HtmlReportCallbackUrlBuilder(
+        ISiteAbsoluteUrl siteAbsoluteUrl,
         IOptionsMonitor<CookieAuthenticationOptions> cookieOptions = null,
-        IHttpContextAccessor httpContextAccessor = null,
-        IOptions<EnvironmentSettings> environmentSettings = null)
+        IHttpContextAccessor httpContextAccessor = null)
     {
-        this.environmentSettings = environmentSettings?.Value;
+        this.siteAbsoluteUrl = siteAbsoluteUrl ?? throw new ArgumentNullException(nameof(siteAbsoluteUrl));
         this.cookieOptions = cookieOptions;
         this.httpContextAccessor = httpContextAccessor;
     }
@@ -41,17 +41,10 @@ public class HtmlReportCallbackUrlBuilder : IHtmlReportCallbackUrlBuilder
         return attr.ReportKey;
     }
 
-    protected virtual string GetSiteExternalUrl()
+    protected virtual string GetSiteInternalUrl()
     {
-        var externalUrl = environmentSettings?.SiteExternalUrl.TrimToNull() ??
-            httpContextAccessor?.HttpContext?.Request?.GetBaseUri().ToString();
-
-        if (string.IsNullOrEmpty(externalUrl))
-            throw new ValidationError("Can't determine the callback URL for report rendering. " +
-                "Please set EnvironmentSettings:SiteExternalUrl in appsettings.json!");
-
-        return externalUrl;
-    }  
+        return siteAbsoluteUrl.GetInternalUrl();
+    }
 
     protected virtual string GetAuthCookieName()
     {
@@ -94,7 +87,7 @@ public class HtmlReportCallbackUrlBuilder : IHtmlReportCallbackUrlBuilder
         if (string.IsNullOrEmpty(reportKey))
             reportKey = GetReportKey(report);
 
-        response.Url = GetSiteExternalUrl();
+        response.Url = GetSiteInternalUrl();
         response.Url = UriHelper.Combine(response.Url, GetRenderAction(report) +
             "?key=" + Uri.EscapeDataString(reportKey));
 

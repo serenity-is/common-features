@@ -27,6 +27,7 @@ public static class ReportingServiceCollectionExtensions
         if (services == null)
             throw new ArgumentNullException(nameof(services));
 
+        services.TryAddSingleton<ISiteAbsoluteUrl, SiteAbsoluteUrl>();
         services.TryAddSingleton<IHtmlReportCallbackUrlBuilder, HtmlReportCallbackUrlBuilder>();
         services.TryAddSingleton<IHtmlReportRenderUrlBuilder, HtmlReportCallbackUrlBuilder>();
         services.TryAddSingleton<IWKHtmlToPdfConverter, WKHtmlToPdfConverter>();

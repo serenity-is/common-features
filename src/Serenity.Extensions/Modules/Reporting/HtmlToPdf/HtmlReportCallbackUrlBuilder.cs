@@ -80,19 +80,20 @@ public class HtmlReportCallbackUrlBuilder : IHtmlReportCallbackUrlBuilder
         }
     }
 
-    public virtual HtmlReportRenderUrl GetRenderUrl(IReport report, string reportKey, string reportParams)
+    public virtual HtmlReportRenderUrl GetRenderUrl(IReport report, ReportRenderOptions options)
     {
         var response = new HtmlReportRenderUrl();
 
-        if (string.IsNullOrEmpty(reportKey))
+        string reportKey = options?.ReportKey;
+        if (string.IsNullOrEmpty(options?.ReportKey))
             reportKey = GetReportKey(report);
 
         response.Url = GetSiteInternalUrl();
         response.Url = UriHelper.Combine(response.Url, GetRenderAction(report) +
             "?key=" + Uri.EscapeDataString(reportKey));
 
-        if (!string.IsNullOrEmpty(reportParams))
-            response.Url += "&opt=" + Uri.EscapeDataString(reportParams);
+        if (!string.IsNullOrEmpty(options?.ReportParams))
+            response.Url += "&opt=" + Uri.EscapeDataString(options.ReportParams);
 
         response.Url += "&print=1";
 

@@ -1,31 +1,29 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
+using Microsoft.Net.Http.Headers;
 using Serenity.PropertyGrid;
 using Serenity.Reporting;
+using System.Net;
 
 namespace Serenity.Extensions.Pages;
 
 [Route("Serenity.Extensions/Report/[action]")]
 public class ReportController : Controller
 {
-    protected readonly IReportRegistry reportRegistry;
+    protected readonly IReportFactory reportFactory;
     protected readonly IRequestContext requestContext;
+    private readonly IReportRenderer reportRenderer;
     protected readonly IDataReportExcelRenderer excelRenderer;
     protected readonly IHtmlReportPdfRenderer htmlReportPdfRenderer;
     protected readonly IWebHostEnvironment hostEnvironment;
 
-    public ReportController(IReportRegistry reportRegistry,
+    public ReportController(IReportFactory reportFactory,
         IRequestContext requestContext,
-        IDataReportExcelRenderer excelRenderer,
-        IHtmlReportPdfRenderer htmlReportPdfRenderer)
+        IReportRenderer reportRenderer)
     {
-        this.reportRegistry = reportRegistry ?? throw new ArgumentNullException(nameof(reportRegistry));
+        this.reportFactory = reportFactory ?? throw new ArgumentNullException(nameof(reportFactory));
         this.requestContext = requestContext ?? throw new ArgumentNullException(nameof(requestContext));
-        this.excelRenderer = excelRenderer ?? throw new ArgumentNullException(nameof(excelRenderer));
-        this.htmlReportPdfRenderer = htmlReportPdfRenderer ?? throw new ArgumentNullException(nameof(htmlReportPdfRenderer));
+        this.reportRenderer = reportRenderer ?? throw new ArgumentNullException(nameof(reportRenderer));
     }
 
     public ActionResult Render(string key, string opt, string ext, int? print = 0)
@@ -40,120 +38,59 @@ public class ReportController : Controller
 
     private ActionResult Execute(string key, string opt, string ext, bool download, bool printing)
     {
-        if (key.IsEmptyOrNull())
-            throw new ArgumentNullException(nameof(key));
-
-        var reportInfo = reportRegistry.GetReport(key);
-        if (reportInfo == null)
-            throw new ArgumentOutOfRangeException(nameof(key));
-
-        if (reportInfo.Permission != null)
-            requestContext.Permissions.ValidatePermission(reportInfo.Permission, requestContext.Localizer);
-
-        var report = ActivatorUtilities.CreateInstance(HttpContext.RequestServices, reportInfo.Type) as IReport;
-        var json = opt.TrimToNull();
-        if (json != null)
-            JsonConvert.PopulateObject(json, report);
-
-        byte[] renderedBytes = null;
-
-        if (report is IDataOnlyReport dataOnlyReport)
+        var report = reportFactory.Create(key, opt, validatePermission: true);
+        var result = reportRenderer.Render(report, new ReportRenderOptions
         {
-            ext = "xlsx";
-            renderedBytes = excelRenderer.Render(dataOnlyReport);
-        }
-        else if (report is IExternalReport)
+            ExportFormat = ext,
+            PreviewMode = !download && !printing,
+            ReportKey = key,
+            ReportParams = opt,
+        });
+
+        if (!string.IsNullOrEmpty(result.RedirectUri))
+            return Redirect(result.RedirectUri);
+
+        if (!string.IsNullOrEmpty(result.ViewName))
         {
-            var url = report.GetData() as string;
-            if (string.IsNullOrEmpty(url))
-                throw new InvalidProgramException("External reports must return a URL string from GetData() method!");
-
-            return new RedirectResult(url);
+            foreach (var pair in result.ViewData)
+                ViewData[pair.Key] = pair.Value;
+            return View(viewName: result.ViewName, model: result.Model);
         }
-        else
-        {
-            ext = (ext ?? "html").ToLowerInvariant();
-
-            if (ext == "htm" || ext == "html")
-            {
-                var result = RenderAsHtml(report, download, printing, ref renderedBytes);
-                if (!download)
-                    return result;
-            }
-            else if (ext == "pdf")
-            {
-                renderedBytes = RenderAsPdf(report, key, opt);
-            }
-            else
-                throw new ArgumentOutOfRangeException(nameof(ext));
-        }
-
-        return PrepareFileResult(report, ext, download, renderedBytes, reportInfo);
-    }
-
-    private ActionResult PrepareFileResult(IReport report, string ext, bool download,
-        byte[] renderedBytes, ReportRegistry.Report reportInfo)
-    {
-        string fileDownloadName;
-        if (report is ICustomFileName customFileName)
-            fileDownloadName = customFileName.GetFileName();
-        else
-            fileDownloadName = (reportInfo.Title ?? reportInfo.Key) + "_" +
-                DateTime.Now.ToString("yyyyMMdd_HHss", CultureInfo.InvariantCulture);
-
-        fileDownloadName += "." + ext;
 
         if (download)
         {
-            return new FileContentResult(renderedBytes, "application/octet-stream")
-            {
-                FileDownloadName = fileDownloadName
-            };
+            var downloadName = GetDownloadNameFor(report, result.FileExtension);
+            Response.Headers[HeaderNames.ContentDisposition] = "inline;filename=" +
+                WebUtility.UrlEncode(downloadName);
         }
 
-        Response.Headers["Content-Disposition"] = "inline;filename=" + System.Net.WebUtility.UrlEncode(fileDownloadName);
-        return File(renderedBytes, KnownMimeTypes.Get(fileDownloadName));
-    }
-    
-    private byte[] RenderAsPdf(IReport report, string key, string opt)
-    {
-        return htmlReportPdfRenderer.Render(report, key, opt);
+        return File(result.ContentBytes, result.MimeType ??
+            KnownMimeTypes.Get("_" + result.FileExtension));
     }
 
-    private ActionResult RenderAsHtml(IReport report, bool download, bool printing,
-        ref byte[] renderedBytes)
+    protected string GetDownloadNameFor(IReport report, string extension)
     {
-        var designAttr = report.GetType().GetCustomAttribute<ReportDesignAttribute>();
-        if (designAttr is null)
-            throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture,
-                "Report design attribute for type '{0}' is not found!", report.GetType().FullName));
-
-        var model = report.GetData();
-
-        void setViewData(ViewDataDictionary viewData)
+        if (report is ICustomFileName customFileName)
+            return customFileName.GetFileName() + extension;
+        else
         {
-            viewData["Printing"] = printing;
-            viewData["AdditionalData"] = (report as IReportWithAdditionalData)?.GetAdditionalData() ??
-                new Dictionary<string, object>();
+            var filePrefix = report.GetType().GetAttribute<DisplayNameAttribute>()?.DisplayName ??
+                report.GetType().GetAttribute<ReportAttribute>()?.ReportKey ??
+                report.GetType().Name;
+
+            return filePrefix + "_" +
+                DateTime.Now.ToString("yyyyMMdd_HHss", CultureInfo.InvariantCulture) + extension;
         }
-
-        if (!download)
-        {
-            setViewData(ViewData);
-            return View(viewName: designAttr.Design, model: model);
-        }
-
-        var html = TemplateHelper.RenderViewToString(HttpContext.RequestServices, designAttr.Design, model: model,
-            viewContext => setViewData(viewContext.ViewData));
-
-        renderedBytes = Encoding.UTF8.GetBytes(html);
-        return null;
     }
 
     [HttpPost, JsonRequest]
     public ActionResult Retrieve(ReportRetrieveRequest request,
+        [FromServices] IReportRegistry reportRegistry,
         [FromServices] IPropertyItemProvider propertyItemProvider)
     {
+        if (reportRegistry is null)
+            throw new ArgumentNullException(nameof(reportRegistry));
+
         if (propertyItemProvider is null)
             throw new ArgumentNullException(nameof(propertyItemProvider));
 

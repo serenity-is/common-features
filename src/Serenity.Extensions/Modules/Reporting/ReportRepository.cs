@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Serenity.PropertyGrid;
 using Serenity.Reporting;
 
@@ -33,12 +33,9 @@ public class ReportRepository : BaseRepository
         if (propertyItemProvider is null)
             throw new ArgumentNullException(nameof(propertyItemProvider));
 
-        var reportInfo = ReportRegistry.GetReport(request.ReportKey);
+        var reportInfo = ReportRegistry.GetReport(request.ReportKey, validatePermission: true);
         if (reportInfo == null)
             throw new ArgumentOutOfRangeException(nameof(request.ReportKey));
-
-        if (reportInfo.Permission != null)
-            Permissions.ValidatePermission(reportInfo.Permission, Localizer);
 
         var response = new ReportRetrieveResult
         {

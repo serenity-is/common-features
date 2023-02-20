@@ -24,33 +24,33 @@ public class HtmlReportPdfRenderer : IHtmlReportPdfRenderer
         this.wkHtmlToPdfConverter = wkHtmlToPdfConverter;
     }
 
-    protected virtual void ForwardCookies(IReport report, string reportKey, IHtmlToPdfOptions options,
-        HtmlReportRenderUrl renderUrl)
+    protected virtual void ForwardCookies(IReport report, ReportRenderOptions renderOptions,
+        IHtmlToPdfOptions converterOptions, HtmlReportRenderUrl renderUrl)
     {
         foreach (var cookie in renderUrl.CookiesToForward)
-            options.Cookies[cookie.Name] = cookie.Value;
+            converterOptions.Cookies[cookie.Name] = cookie.Value;
     }
 
-    protected virtual IHtmlToPdfOptions GetConverterOptions(IReport report,
-        string reportKey, string reportParams, out HtmlReportRenderUrl renderUrl)
+    protected virtual IHtmlToPdfOptions GetConverterOptions(IReport report, ReportRenderOptions renderOptions,
+        out HtmlReportRenderUrl renderUrl)
     {
-        renderUrl = renderUrlBuilder.GetRenderUrl(report, reportKey, reportParams);
+        renderUrl = renderUrlBuilder.GetRenderUrl(report, renderOptions);
         try
         {
-            var options = new HtmlToPdfOptions
+            var converterOptions = new HtmlToPdfOptions
             {
                 Url = renderUrl.Url,
                 DisableLocalFileAccess = true
             };
 
-            options.AllowedLocalPaths.AddRange(renderUrl.GetTemporaryFolders());
+            converterOptions.AllowedLocalPaths.AddRange(renderUrl.GetTemporaryFolders());
 
-            ForwardCookies(report, reportKey, options, renderUrl);
+            ForwardCookies(report, renderOptions, converterOptions, renderUrl);
 
             if (report is ICustomizeHtmlToPdf icustomize)
-                icustomize.Customize(options);
+                icustomize.Customize(converterOptions);
 
-            return options;
+            return converterOptions;
         }
         catch
         {
@@ -59,7 +59,7 @@ public class HtmlReportPdfRenderer : IHtmlReportPdfRenderer
         }
     }
 
-    protected virtual IHtmlToPdfConverter GetConverterFor(IReport report, string reportKey, string reportParams)
+    protected virtual IHtmlToPdfConverter GetConverterFor(IReport report, ReportRenderOptions renderOptions)
     {
         return wkHtmlToPdfConverter != null &&
             report?.GetType().GetCustomAttribute<UseWKHtmlToPdfAttribute>()?.Value == true ?
@@ -67,13 +67,13 @@ public class HtmlReportPdfRenderer : IHtmlReportPdfRenderer
     }
 
     /// <inheritdoc/>
-    public virtual byte[] Render(IReport report, string reportKey, string reportParams)
+    public virtual byte[] Render(IReport report, ReportRenderOptions renderOptions)
     {
-        var options = GetConverterOptions(report, reportKey, reportParams, out var renderUrl);
+        var converterOptions = GetConverterOptions(report, renderOptions, out var renderUrl);
         try
         {
-            var converter = GetConverterFor(report, reportKey, reportParams);
-            return converter.Convert(options);
+            var converter = GetConverterFor(report, renderOptions);
+            return converter.Convert(converterOptions);
         }
         finally
         {

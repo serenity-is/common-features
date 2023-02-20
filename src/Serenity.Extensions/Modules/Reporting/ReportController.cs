@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using Serenity.PropertyGrid;
@@ -11,18 +10,12 @@ namespace Serenity.Extensions.Pages;
 public class ReportController : Controller
 {
     protected readonly IReportFactory reportFactory;
-    protected readonly IRequestContext requestContext;
     private readonly IReportRenderer reportRenderer;
-    protected readonly IDataReportExcelRenderer excelRenderer;
-    protected readonly IHtmlReportPdfRenderer htmlReportPdfRenderer;
-    protected readonly IWebHostEnvironment hostEnvironment;
 
     public ReportController(IReportFactory reportFactory,
-        IRequestContext requestContext,
         IReportRenderer reportRenderer)
     {
         this.reportFactory = reportFactory ?? throw new ArgumentNullException(nameof(reportFactory));
-        this.requestContext = requestContext ?? throw new ArgumentNullException(nameof(requestContext));
         this.reportRenderer = reportRenderer ?? throw new ArgumentNullException(nameof(reportRenderer));
     }
 
@@ -86,6 +79,7 @@ public class ReportController : Controller
     [HttpPost, JsonRequest]
     public ActionResult Retrieve(ReportRetrieveRequest request,
         [FromServices] IReportRegistry reportRegistry,
+        [FromServices] IRequestContext requestContext,
         [FromServices] IPropertyItemProvider propertyItemProvider)
     {
         if (reportRegistry is null)

@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Serenity.Extensions.Repositories;
 using Serenity.Reporting;
 
 namespace Serenity.Demo.Northwind;
@@ -20,9 +19,9 @@ public class ReportsController : Controller
     }
 
     [Route("Northwind/Reports")]
-    public ActionResult Index()
+    public ActionResult Index([FromServices] IReportTreeFactory reportTreeFactory)
     {
-        return View(Extensions.MVC.Views.Reporting.ReportPage, 
-            new ReportRepository(Context, ReportRegistry).GetReportTree("Northwind"));
+        return View(Extensions.MVC.Views.Reporting.ReportPage,
+            reportTreeFactory.BuildReportTree("Northwind"));
     }
 }

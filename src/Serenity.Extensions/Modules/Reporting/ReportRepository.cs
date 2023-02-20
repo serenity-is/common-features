@@ -4,24 +4,24 @@ using Serenity.Reporting;
 
 namespace Serenity.Extensions.Repositories;
 
+[Obsolete("Inject and use IReportTreeFactory or IReportRetrieveHandler")]
 public class ReportRepository : BaseRepository
 {
-    public IReportRegistry ReportRegistry { get; }
+    private readonly IReportRegistry reportRegistry;
 
     public ReportRepository(IRequestContext context, IReportRegistry reportRegistry)
          : base(context)
     {
-        ReportRegistry = reportRegistry ?? 
-            throw new ArgumentNullException(nameof(reportRegistry));
+        this.reportRegistry = reportRegistry ?? throw new ArgumentNullException(nameof(reportRegistry));
     }
 
     public ReportTree GetReportTree(string category)
     {
-        var reports = ReportRegistry.GetAvailableReportsInCategory(category);
+        var reports = reportRegistry.GetAvailableReportsInCategory(category);
         return ReportTree.FromList(reports, Localizer, category);
     }
 
-    public ReportRetrieveResult Retrieve(ReportRetrieveRequest request,
+    public ReportRetrieveResponse Retrieve(ReportRetrieveRequest request,
         IServiceProvider serviceProvider, IPropertyItemProvider propertyItemProvider)
     {
         if (request is null)
@@ -29,11 +29,11 @@ public class ReportRepository : BaseRepository
 
         if (request.ReportKey.IsEmptyOrNull())
             throw new ArgumentNullException(nameof(request.ReportKey));
-
+        
         if (propertyItemProvider is null)
             throw new ArgumentNullException(nameof(propertyItemProvider));
 
-        var reportInfo = ReportRegistry.GetReport(request.ReportKey, validatePermission: true);
+        var reportInfo = reportRegistry.GetReport(request.ReportKey, validatePermission: true);
         if (reportInfo == null)
             throw new ArgumentOutOfRangeException(nameof(request.ReportKey));
 

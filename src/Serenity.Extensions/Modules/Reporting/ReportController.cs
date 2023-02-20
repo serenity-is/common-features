@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
-using Serenity.PropertyGrid;
 using Serenity.Reporting;
 using System.Net;
 
@@ -78,17 +77,8 @@ public class ReportController : Controller
 
     [HttpPost, JsonRequest]
     public ActionResult Retrieve(ReportRetrieveRequest request,
-        [FromServices] IReportRegistry reportRegistry,
-        [FromServices] IRequestContext requestContext,
-        [FromServices] IPropertyItemProvider propertyItemProvider)
+        [FromServices] IReportRetrieveHandler handler)
     {
-        if (reportRegistry is null)
-            throw new ArgumentNullException(nameof(reportRegistry));
-
-        if (propertyItemProvider is null)
-            throw new ArgumentNullException(nameof(propertyItemProvider));
-
-        return this.ExecuteMethod(() => new Repositories.ReportRepository(requestContext, 
-            reportRegistry).Retrieve(request, HttpContext.RequestServices, propertyItemProvider));
+        return this.ExecuteMethod(() => handler.Retrieve(request));
     }
 }

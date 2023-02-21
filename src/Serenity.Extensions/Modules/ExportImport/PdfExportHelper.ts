@@ -51,9 +51,11 @@ export namespace PdfExportHelper {
         return entities.map(item => {
             let dst = [];
             for (let cell = 0; cell < srcColumns.length; cell++) {
-                var format = slickGrid.getFormatter(row, srcColumns[cell]);
+                var col = srcColumns[cell];
+                var format = slickGrid.getFormatter(row, col);
                 var ctx = slickGrid.getFormatterContext(row, cell);
                 ctx.item = item;
+                ctx.value = item[col.field];
                 let html: string = format ? format(ctx) : '';
                 if (!html || (html.indexOf('<') < 0 && html.indexOf('&') < 0))
                     dst.push(html);

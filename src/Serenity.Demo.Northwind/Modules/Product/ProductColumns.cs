@@ -1,4 +1,4 @@
-﻿namespace Serenity.Demo.Northwind.Columns;
+namespace Serenity.Demo.Northwind.Columns;
 
 [ColumnsScript("Northwind.Product")]
 [BasedOnRow(typeof(ProductRow), CheckNames = true)]

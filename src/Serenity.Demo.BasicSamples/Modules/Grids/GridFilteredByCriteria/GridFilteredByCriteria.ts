@@ -26,9 +26,9 @@ export class GridFilteredByCriteria extends EntityGrid<ProductRow, any> {
         // an edit filter dialog if any.
 
         request.Criteria = Criteria.and(request.Criteria,
-            [['UnitsInStock'], '>', 10],
-            [['CategoryName'], '!=', 'Condiments'],
-            [['Discontinued'], '=', 0]);
+            Criteria('UnitsInStock').gt(10),
+            Criteria('CategoryName').ne('Condiments'),
+            Criteria('Discontinued').eq(0));
 
         // TypeScript doesn't support operator overloading
         // so we had to use array syntax above to build criteria.

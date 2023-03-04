@@ -25,18 +25,11 @@ export class GridFilteredByCriteria extends EntityGrid<ProductRow, any> {
         // otherwise we might clear filter set by 
         // an edit filter dialog if any.
 
+        const fld = ProductRow.Fields;
         request.Criteria = Criteria.and(request.Criteria,
-            Criteria('UnitsInStock').gt(10),
-            Criteria('CategoryName').ne('Condiments'),
-            Criteria('Discontinued').eq(0));
-
-        // TypeScript doesn't support operator overloading
-        // so we had to use array syntax above to build criteria.
-
-        // Make sure you write
-        // [['Field'], '>', 10] (which means field A is greater than 10)
-        // not 
-        // ['A', '>', 10] (which means string 'A' is greater than 10
+            Criteria(fld.UnitsInStock).gt(10),
+            Criteria(fld.CategoryName).ne('Condiments'),
+            Criteria(fld.Discontinued).eq(0));
 
         return true;
     }

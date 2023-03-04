@@ -33,9 +33,7 @@ export class LookupFilterByMultipleGrid extends EntityGrid<ProductRow, any> {
         // only products from these categories in grid too
         let request = this.view.params as ListRequest;
         request.Criteria = Criteria.and(request.Criteria,
-            Criteria('CategoryName').in(['Produce', 'Seafood']));
-
-        // brackets used are important above, NOT ['CategoryName', 'in', ['Produce', 'Seafood']]
+            Criteria(ProductRow.Fields.CategoryName).in(['Produce', 'Seafood']));
 
         return true;
     }

@@ -1,5 +1,5 @@
-﻿<Project>
-  <Import Project="$(MSBuildThisFileDirectory)Directory.Build.Shared.targets" />
+<Project>
+  <Import Project="$(MSBuildThisFileDirectory)..\build\Feature.Build.targets" />
   <Target Name="TransformMvc" BeforeTargets="BeforeBuild"
           Condition="'$(SergenTransform)' == 'mvc'">
     <Exec Command="$(DotNetSergen) mvc" ContinueOnError="true" />

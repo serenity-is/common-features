@@ -1,6 +1,6 @@
 <Project>
   <Import Project="$(MSBuildThisFileDirectory)..\build\Package.Build.props" Condition="Exists('$(MSBuildThisFileDirectory)\..\build\Package.Build.props')" />
-  <Import Project="$(MSBuildThisFileDirectory)Directory.Build.Shared.props" />
+  <Import Project="$(MSBuildThisFileDirectory)..\build\Feature.Build.props" />
   <PropertyGroup>
     <SerenityVersion Condition="'$(SerenityVersion)' == ''">6.5.4</SerenityVersion>
     <TargetFramework>net6.0</TargetFramework>

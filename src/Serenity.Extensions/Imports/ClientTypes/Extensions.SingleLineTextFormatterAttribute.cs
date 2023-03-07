@@ -5,15 +5,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Serenity.Extensions
-{
-    public partial class SingleLineTextFormatterAttribute : CustomFormatterAttribute
-    {
-        public const string Key = "Serenity.Extensions.SingleLineTextFormatter";
+namespace Serenity.Extensions;
 
-        public SingleLineTextFormatterAttribute()
-            : base(Key)
-        {
-        }
+public partial class SingleLineTextFormatterAttribute : CustomFormatterAttribute
+{
+    public const string Key = "Serenity.Extensions.SingleLineTextFormatter";
+
+    public SingleLineTextFormatterAttribute()
+        : base(Key)
+    {
     }
 }

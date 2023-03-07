@@ -5,15 +5,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Serenity.Demo.Northwind
-{
-    public partial class CustomerEditorAttribute : LookupEditorBaseAttribute
-    {
-        public const string Key = "Serenity.Demo.Northwind.CustomerEditor";
+namespace Serenity.Demo.Northwind;
 
-        public CustomerEditorAttribute()
-            : base(Key)
-        {
-        }
+public partial class CustomerEditorAttribute : LookupEditorBaseAttribute
+{
+    public const string Key = "Serenity.Demo.Northwind.CustomerEditor";
+
+    public CustomerEditorAttribute()
+        : base(Key)
+    {
     }
 }

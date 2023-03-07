@@ -1,6 +1,3 @@
 {
-  "EndOfLine": "LF",
-  "Restore": {
-    "Exclude": [ "/wwwroot/" ]
-  }
+  "Extends": "../.config/sergen.base.json"
 }

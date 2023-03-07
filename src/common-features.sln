@@ -11,7 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{D85F847E
 	ProjectSection(SolutionItems) = preProject
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
+		..\build\Feature.Build.props = ..\build\Feature.Build.props
+		..\build\Feature.Build.targets = ..\build\Feature.Build.targets
 		..\build\Package.Build.props = ..\build\Package.Build.props
+		.config\sergen.base.json = .config\sergen.base.json
+		.config\tsconfig.base.json = .config\tsconfig.base.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serenity.Demo.BasicSamples", "Serenity.Demo.BasicSamples\Serenity.Demo.BasicSamples.csproj", "{A648D7BD-7D8E-48DA-B0C6-F14A6EA01224}"

@@ -5,8 +5,8 @@
   <Import Project="$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.targets" />
   <Import Project="$(SerenitySrc)RestoreNpmPackages.targets" />
   <Target Name="TransformInitTools" BeforeTargets="BeforeBuild" Condition="!Exists('$(DotnetToolManifestFile)')">
-    <Exec Command="dotnet new tool-manifest" ContinueOnError="true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
-    <Exec Command="dotnet tool install sergen" ContinueOnError="true" WorkingDirectory="$(MSBuildThisFileDirectory)" />
+    <Exec Command="dotnet new tool-manifest" ContinueOnError="true" WorkingDirectory="$(MSBuildProjectDirectory)\..\" />
+    <Exec Command="dotnet tool install sergen" ContinueOnError="true" WorkingDirectory="$(MSBuildProjectDirectory)\..\" />
   </Target>
   <Target Name="TransformToolRestore" AfterTargets="BeforeBuild" Inputs="$(DotnetToolManifestFile)" Outputs="$(DotnetToolRestoreStamp)"
           Condition="'$(DotNetSergen)' == 'dotnet sergen' And ('$(SergenTransform)' != '' OR Exists('tsconfig.json'))">

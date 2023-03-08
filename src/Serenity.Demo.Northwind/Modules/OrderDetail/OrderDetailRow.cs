@@ -1,4 +1,4 @@
-﻿namespace Serenity.Demo.Northwind;
+namespace Serenity.Demo.Northwind;
 
 [ConnectionKey("Northwind"), Module("Northwind"), TableName("[Order Details]")]
 [DisplayName("Order Details"), InstanceName("Order Detail")]
@@ -22,7 +22,7 @@ public sealed class OrderDetailRow : Row<OrderDetailRow.RowFields>, IIdRow
     }
 
     [DisplayName("Product"), PrimaryKey, NotNull, ForeignKey(typeof(ProductRow)), LeftJoin("p")]
-    [LookupEditor(typeof(ProductRow))]
+    [LookupEditor(typeof(ProductRow), Async = true)]
     public int? ProductID
     {
         get => fields.ProductID[this];
@@ -140,14 +140,6 @@ public sealed class OrderDetailRow : Row<OrderDetailRow.RowFields>, IIdRow
     {
         get => fields.ProductUnitPrice[this];
         set => fields.ProductUnitPrice[this] = value;
-    }
-    public OrderDetailRow()
-    {
-    }
-
-    public OrderDetailRow(RowFields fields)
-        : base(fields)
-    {
     }
 
     public class RowFields : RowFieldsBase

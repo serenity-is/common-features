@@ -6,6 +6,10 @@ public class EnvironmentSettings
 {
     public const string SectionKey = "EnvironmentSettings";
 
+    /// <summary>
+    /// This was a flag used by Serenity Demo, but as it is using C# preprocessor
+    /// directives now, this flag is obsolete
+    /// </summary>
     public bool IsPublicDemo { get; set; }
 
     /// <summary>

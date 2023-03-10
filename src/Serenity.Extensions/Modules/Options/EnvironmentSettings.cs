@@ -1,6 +1,7 @@
 
 namespace Serenity.Extensions;
 
+[DefaultSectionKey(SectionKey)]
 public class EnvironmentSettings
 {
     public const string SectionKey = "EnvironmentSettings";

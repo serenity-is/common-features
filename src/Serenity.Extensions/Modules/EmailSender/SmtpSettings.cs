@@ -1,7 +1,8 @@
-﻿using MailKit.Security;
+using MailKit.Security;
 
 namespace Serenity.Extensions;
 
+[DefaultSectionKey(SectionKey)]
 public class SmtpSettings
 {
     public const string SectionKey = "SmtpSettings";

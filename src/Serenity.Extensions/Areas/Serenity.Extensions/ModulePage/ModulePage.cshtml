@@ -1,0 +1,21 @@
+@model ModulePageModel
+@inject ITextLocalizer Localizer
+@{
+    if (Model.PageTitle != null)
+        ViewData["Title"] = Model.PageTitle.ToString(Localizer);
+}
+
+@Html.Raw(Model.HtmlMarkup)
+
+@if (!string.IsNullOrEmpty(Model.InitFunction))
+{
+<script type="module">
+import { @Model.InitFunction } from '@Html.ResolveWithHash(Model.Module)';
+@(Model.InitFunction)(@(Model.InitOptions == null ? "" : Html.Raw(JSON.Stringify(Model.InitOptions))))
+</script>
+}
+else
+{
+<script type="module" src="@Html.ResolveWithHash(Model.Module)">
+</script>
+}

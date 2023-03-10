@@ -42,6 +42,6 @@ public static class ModulePageExtensions
                 model.Module += ".js";
         }
 
-        return controller.View("", model);
+        return controller.View(Extensions.MVC.Views.ModulePage.ModulePage_, model);
     }
 }

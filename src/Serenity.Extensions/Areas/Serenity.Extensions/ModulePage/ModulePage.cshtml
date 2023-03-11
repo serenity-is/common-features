@@ -3,15 +3,26 @@
 @{
     if (Model.PageTitle != null)
         ViewData["Title"] = Model.PageTitle.ToString(Localizer);
+    if (Model.PageId != null)
+        ViewData["PageId"] = Model.PageId;
+    if (Model.Layout != null)
+        Layout = Model.Layout;
 }
 
 @Html.Raw(Model.HtmlMarkup)
 
-@if (!string.IsNullOrEmpty(Model.InitFunction))
+@if (!string.IsNullOrEmpty(Model.ImportName))
 {
 <script type="module">
-import { @Model.InitFunction } from '@Html.ResolveWithHash(Model.Module)';
-@(Model.InitFunction)(@(Model.InitOptions == null ? "" : Html.Raw(JSON.Stringify(Model.InitOptions))))
+import { @Model.ImportName } from '@Html.ResolveWithHash(Model.Module)';
+@(Model.ImportName)(@(Model.Options == null ? "" : Html.Raw(JSON.Stringify(Model.Options))))
+</script>
+}
+else if (Model.ImportDefault || Model.Options != null)
+{
+<script type="module">
+import initializer from '@Html.ResolveWithHash(Model.Module)';
+initializer(@(Model.Options == null ? "" : Html.Raw(JSON.Stringify(Model.Options))))
 </script>
 }
 else

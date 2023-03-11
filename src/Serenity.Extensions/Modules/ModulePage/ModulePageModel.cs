@@ -3,8 +3,11 @@ namespace Serenity.Web;
 public class ModulePageModel
 {
     public string HtmlMarkup { get; set; }
-    public string InitFunction { get; set; }
-    public object InitOptions { get; set; }
+    public bool ImportDefault { get; set; }
+    public string ImportName { get; set; }
+    public object Options { get; set; }
+    public string Layout { get; set; }
     public string Module { get; set; }
+    public string PageId { get; set; }
     public LocalText PageTitle { get; set; }
 }

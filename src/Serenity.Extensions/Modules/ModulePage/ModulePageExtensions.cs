@@ -44,4 +44,22 @@ public static class ModulePageExtensions
 
         return controller.View(Extensions.MVC.Views.ModulePage.ModulePage_, model);
     }
+
+    public static ViewResult PanelPage(this Controller controller, string module, LocalText pageTitle)
+    {
+        return PanelPage(controller, new()
+        {
+            Module = module,
+            PageTitle = pageTitle
+        });
+    }
+
+    public static ViewResult PanelPage(this Controller controller, ModulePageModel model)
+    {
+        if (model is null)
+            throw new ArgumentNullException(nameof(model));
+
+        model.HtmlMarkup ??= "<div id=\"PanelDiv\"></div>";
+        return PanelPage(controller, model);
+    }
 }

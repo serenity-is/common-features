@@ -61,12 +61,12 @@ export declare namespace UserPreferenceService {
 	};
 }
 export interface ReportRetrieveResult extends ServiceResponse {
-	IsExternalReport?: boolean;
 	ReportKey?: string;
 	Title?: string;
 	Properties?: PropertyItem[];
 	InitialSettings?: any;
 	IsDataOnlyReport?: boolean;
+	IsExternalReport?: boolean;
 }
 export declare class BasicProgressDialog extends TemplatedDialog<any> {
 	constructor();

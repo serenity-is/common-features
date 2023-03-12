@@ -1,5 +1,5 @@
-﻿import { Decorators, LookupEditorBase, LookupEditorOptions } from "@serenity-is/corelib";
-import { formatNumber } from "@serenity-is/corelib/q";
+import { Decorators, LookupEditorBase, LookupEditorOptions } from "@serenity-is/corelib";
+import { formatNumber, Lookup } from "@serenity-is/corelib/q";
 import { ProductRow } from "@serenity-is/demo.northwind";
 
 /**
@@ -16,7 +16,7 @@ export class ChangingLookupTextEditor extends LookupEditorBase<LookupEditorOptio
         return ProductRow.lookupKey;
     }
 
-    protected getItemText(item: ProductRow, lookup: Q.Lookup<ProductRow>) {
+    protected getItemText(item: ProductRow, lookup: Lookup<ProductRow>) {
         return super.getItemText(item, lookup) +
             ' (' +
             '$' + formatNumber(item.UnitPrice, '#,##0.00') +

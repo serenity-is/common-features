@@ -63,8 +63,8 @@ export declare abstract class CategoryRow {
 	static readonly localTextPrefix = "Northwind.Category";
 	static readonly lookupKey = "Northwind.Category";
 	/** @deprecated use getLookupAsync instead */
-	static getLookup(): Q.Lookup<CategoryRow>;
-	static getLookupAsync(): Promise<Q.Lookup<CategoryRow>>;
+	static getLookup(): import("@serenity-is/corelib/q").Lookup<CategoryRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<CategoryRow>>;
 	static readonly deletePermission = "Northwind:General";
 	static readonly insertPermission = "Northwind:General";
 	static readonly readPermission = "Northwind:General";
@@ -94,15 +94,6 @@ export interface CustomerCustomerDemoRow {
 	CustomerID?: string;
 	CustomerTypeID?: string;
 	CustomerCompanyName?: string;
-	CustomerContactName?: string;
-	CustomerContactTitle?: string;
-	CustomerAddress?: string;
-	CustomerCity?: string;
-	CustomerRegion?: string;
-	CustomerPostalCode?: string;
-	CustomerCountry?: string;
-	CustomerPhone?: string;
-	CustomerFax?: string;
 	CustomerTypeCustomerDesc?: string;
 }
 export declare abstract class CustomerCustomerDemoRow {
@@ -136,23 +127,7 @@ export interface CustomerDetailsRow {
 	LastContactedBy?: number;
 	Email?: string;
 	SendBulletin?: boolean;
-	LastContactedByLastName?: string;
-	LastContactedByFirstName?: string;
-	LastContactedByTitle?: string;
-	LastContactedByTitleOfCourtesy?: string;
-	LastContactedByBirthDate?: string;
-	LastContactedByHireDate?: string;
-	LastContactedByAddress?: string;
-	LastContactedByCity?: string;
-	LastContactedByRegion?: string;
-	LastContactedByPostalCode?: string;
-	LastContactedByCountry?: string;
-	LastContactedByHomePhone?: string;
-	LastContactedByExtension?: string;
-	LastContactedByPhoto?: number[];
-	LastContactedByNotes?: string;
-	LastContactedByReportsTo?: number;
-	LastContactedByPhotoPath?: string;
+	LastContactedByFullName?: string;
 }
 export declare abstract class CustomerDetailsRow {
 	static readonly idProperty = "Id";
@@ -280,8 +255,8 @@ export declare abstract class CustomerRow {
 	static readonly localTextPrefix = "Northwind.Customer";
 	static readonly lookupKey = "Northwind.Customer";
 	/** @deprecated use getLookupAsync instead */
-	static getLookup(): Q.Lookup<CustomerRow>;
-	static getLookupAsync(): Promise<Q.Lookup<CustomerRow>>;
+	static getLookup(): import("@serenity-is/corelib/q").Lookup<CustomerRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<CustomerRow>>;
 	static readonly deletePermission = "Northwind:Customer:Delete";
 	static readonly insertPermission = "Northwind:Customer:Modify";
 	static readonly readPermission = "Northwind:Customer:View";
@@ -355,8 +330,8 @@ export declare abstract class EmployeeRow {
 	static readonly localTextPrefix = "Northwind.Employee";
 	static readonly lookupKey = "Northwind.Employee";
 	/** @deprecated use getLookupAsync instead */
-	static getLookup(): Q.Lookup<EmployeeRow>;
-	static getLookupAsync(): Promise<Q.Lookup<EmployeeRow>>;
+	static getLookup(): import("@serenity-is/corelib/q").Lookup<EmployeeRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<EmployeeRow>>;
 	static readonly deletePermission = "Northwind:General";
 	static readonly insertPermission = "Northwind:General";
 	static readonly readPermission = "Northwind:General";
@@ -673,8 +648,8 @@ export declare abstract class ProductRow {
 	static readonly localTextPrefix = "Northwind.Product";
 	static readonly lookupKey = "Northwind.Product";
 	/** @deprecated use getLookupAsync instead */
-	static getLookup(): Q.Lookup<ProductRow>;
-	static getLookupAsync(): Promise<Q.Lookup<ProductRow>>;
+	static getLookup(): import("@serenity-is/corelib/q").Lookup<ProductRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<ProductRow>>;
 	static readonly deletePermission = "Northwind:General";
 	static readonly insertPermission = "Northwind:General";
 	static readonly readPermission = "Northwind:General";
@@ -718,8 +693,8 @@ export declare abstract class RegionRow {
 	static readonly localTextPrefix = "Northwind.Region";
 	static readonly lookupKey = "Northwind.Region";
 	/** @deprecated use getLookupAsync instead */
-	static getLookup(): Q.Lookup<RegionRow>;
-	static getLookupAsync(): Promise<Q.Lookup<RegionRow>>;
+	static getLookup(): import("@serenity-is/corelib/q").Lookup<RegionRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<RegionRow>>;
 	static readonly deletePermission = "Northwind:General";
 	static readonly insertPermission = "Northwind:General";
 	static readonly readPermission = "Northwind:General";
@@ -802,8 +777,8 @@ export declare abstract class ShipperRow {
 	static readonly localTextPrefix = "Northwind.Shipper";
 	static readonly lookupKey = "Northwind.Shipper";
 	/** @deprecated use getLookupAsync instead */
-	static getLookup(): Q.Lookup<ShipperRow>;
-	static getLookupAsync(): Promise<Q.Lookup<ShipperRow>>;
+	static getLookup(): import("@serenity-is/corelib/q").Lookup<ShipperRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<ShipperRow>>;
 	static readonly deletePermission = "Northwind:General";
 	static readonly insertPermission = "Northwind:General";
 	static readonly readPermission = "Northwind:General";
@@ -866,8 +841,8 @@ export declare abstract class SupplierRow {
 	static readonly localTextPrefix = "Northwind.Supplier";
 	static readonly lookupKey = "Northwind.Supplier";
 	/** @deprecated use getLookupAsync instead */
-	static getLookup(): Q.Lookup<SupplierRow>;
-	static getLookupAsync(): Promise<Q.Lookup<SupplierRow>>;
+	static getLookup(): import("@serenity-is/corelib/q").Lookup<SupplierRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<SupplierRow>>;
 	static readonly deletePermission = "Northwind:General";
 	static readonly insertPermission = "Northwind:General";
 	static readonly readPermission = "Northwind:General";
@@ -915,8 +890,8 @@ export declare abstract class TerritoryRow {
 	static readonly localTextPrefix = "Northwind.Territory";
 	static readonly lookupKey = "Northwind.Territory";
 	/** @deprecated use getLookupAsync instead */
-	static getLookup(): Q.Lookup<TerritoryRow>;
-	static getLookupAsync(): Promise<Q.Lookup<TerritoryRow>>;
+	static getLookup(): import("@serenity-is/corelib/q").Lookup<TerritoryRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<TerritoryRow>>;
 	static readonly deletePermission = "Northwind:General";
 	static readonly insertPermission = "Northwind:General";
 	static readonly readPermission = "Northwind:General";

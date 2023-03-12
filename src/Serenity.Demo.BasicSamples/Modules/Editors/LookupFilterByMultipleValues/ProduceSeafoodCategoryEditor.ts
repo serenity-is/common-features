@@ -1,4 +1,5 @@
 ﻿import { Decorators, LookupEditorBase, LookupEditorOptions } from "@serenity-is/corelib";
+import { Lookup } from "@serenity-is/corelib/q";
 import { CategoryRow } from "@serenity-is/demo.northwind";
 
 /**
@@ -33,7 +34,7 @@ export class ProduceSeafoodCategoryEditor extends
      * otherwise their value will be null in client side as they are not sent back
      * from server in lookup script.
      */
-    protected getItems(lookup: Q.Lookup<CategoryRow>) {
+    protected getItems(lookup: Lookup<CategoryRow>) {
         return super.getItems(lookup).filter(x =>
             x.CategoryName === 'Produce' || x.CategoryName === 'Seafood');
     }

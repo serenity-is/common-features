@@ -1,6 +1,10 @@
 ﻿import { Decorators } from "@serenity-is/corelib";
-import { confirmDialog } from "@serenity-is/corelib/q";
+import { confirmDialog, initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { CustomerGrid, CustomerService, OrderDialog, OrderRow } from "@serenity-is/demo.northwind";
+
+export default function () {
+    initFullHeightGridPage(new InlineActionGrid($('#GridDiv')).element);
+}
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.InlineActionGrid')
 export class InlineActionGrid extends CustomerGrid {

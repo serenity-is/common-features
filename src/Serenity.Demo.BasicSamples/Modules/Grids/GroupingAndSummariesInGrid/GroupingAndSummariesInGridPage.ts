@@ -1,15 +1,18 @@
-import { LookupFilterByMultipleDialog } from "@/Editors/LookupFilterByMultipleValues/LookupFilterByMultipleDialog";
 import { Decorators, EntityGrid } from "@serenity-is/corelib";
-import { coalesce, first, formatNumber } from "@serenity-is/corelib/q";
-import { ProductRow, ProductColumns, ProductService } from "@serenity-is/demo.northwind";
+import { coalesce, first, formatNumber, initFullHeightGridPage } from "@serenity-is/corelib/q";
+import { ProductRow, ProductColumns, ProductService, ProductDialog } from "@serenity-is/demo.northwind";
 import { Aggregators } from "@serenity-is/corelib/slick";
 import { GroupItemMetadataProvider } from "@serenity-is/sleekgrid";
+
+export default function () {
+    initFullHeightGridPage(new GroupingAndSummariesInGrid($('#GridDiv')).element);
+}
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.GroupingAndSummariesInGrid')
 export class GroupingAndSummariesInGrid extends EntityGrid<ProductRow, any> {
 
     protected getColumnsKey() { return ProductColumns.columnsKey; }
-    protected getDialogType() { return LookupFilterByMultipleDialog; }
+    protected getDialogType() { return ProductDialog; }
     protected getIdProperty() { return ProductRow.idProperty; }
     protected getLocalTextPrefix() { return ProductRow.localTextPrefix; }
     protected getService() { return ProductService.baseUrl; }

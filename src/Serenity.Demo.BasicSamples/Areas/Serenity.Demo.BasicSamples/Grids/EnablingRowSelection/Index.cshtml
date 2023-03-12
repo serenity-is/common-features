@@ -23,17 +23,11 @@
 
     <p style="text-align: right;"><b>Source Files:</b> 
         @Html.BasicSamplesSourceFile("Index.cshtml"), 
-        @Html.BasicSamplesSourceFile("RowSelectionGrid.ts"),
+        @Html.BasicSamplesSourceFile("EnablingRowSelectionPage.ts"),
         @Html.BasicSamplesSourceFile("/Serenity.Extensions/Serenity.Extensions/Widgets/SelectableEntityGrid.ts")
     </p>
 </div>
 
 <div id="GridDiv"></div>
 
-<script type="text/javascript">
-    jQuery(function () {
-        new Serenity.Demo.BasicSamples.RowSelectionGrid($('#GridDiv'), {}).init();
-
-        Q.initFullHeightGridPage($('#GridDiv'));
-    });
-</script>
+@Html.BasicSamplesInitScript("EnablingRowSelectionPage")

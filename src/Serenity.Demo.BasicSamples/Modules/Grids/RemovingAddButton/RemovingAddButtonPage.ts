@@ -1,6 +1,10 @@
 ﻿import { Decorators, ToolButton } from "@serenity-is/corelib";
-import { indexOf } from "@serenity-is/corelib/q";
+import { indexOf, initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { SupplierGrid } from "@serenity-is/demo.northwind";
+
+export default function () {
+    initFullHeightGridPage(new RemovingAddButton($('#GridDiv')).element);
+}
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.RemovingAddButton')
 export class RemovingAddButton extends SupplierGrid {

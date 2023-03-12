@@ -14,15 +14,9 @@
     performed client side. It only groups by and shows totals for rows in visible page. You have to disable paging to 
     show sums for all records.</p>
 
-    <p style="text-align: right;"><b>Source Files:</b> @Html.BasicSamplesSourceFile("Index.cshtml"), @Html.BasicSamplesSourceFile("GroupingAndSummariesInGrid.ts")</p>
+    <p style="text-align: right;"><b>Source Files:</b> @Html.BasicSamplesSourceFile("Index.cshtml"), @Html.BasicSamplesSourceFile("GroupingAndSummariesInGridPage.ts")</p>
 </div>
 
 <div id="GridDiv"></div>
 
-<script type="text/javascript">
-    jQuery(function () {
-        new Serenity.Demo.BasicSamples.GroupingAndSummariesInGrid($('#GridDiv'), {}).init();
-
-        Q.initFullHeightGridPage($('#GridDiv'));
-    });
-</script>
+@Html.BasicSamplesInitScript("GroupingAndSummariesInGridPage")

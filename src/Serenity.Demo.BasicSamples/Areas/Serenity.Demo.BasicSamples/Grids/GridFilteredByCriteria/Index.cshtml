@@ -20,18 +20,13 @@
     </p>
     <p>
         Here we show only products that match criteria "UnitsInStock > 10 and Category != Condiments and 
-        Discountinued == false". See @Html.BasicSamplesSourceFile("GridFilteredByCriteria.ts") to see how.
+        Discountinued == false". See @Html.BasicSamplesSourceFile("GridFilteredByCriteriaPage.ts") to see how.
     </p>
 
-    <p style="text-align: right;"><b>Source Files:</b> @Html.BasicSamplesSourceFile("Index.cshtml"), @Html.BasicSamplesSourceFile("GridFilteredByCriteria.ts")</p>
+    <p style="text-align: right;"><b>Source Files:</b> @Html.BasicSamplesSourceFile("Index.cshtml"), @Html.BasicSamplesSourceFile("GridFilteredByCriteriaPage.ts")</p>
 </div>
 
 <div id="GridDiv"></div>
 
-<script type="text/javascript">
-    jQuery(function () {
-        new Serenity.Demo.BasicSamples.GridFilteredByCriteria($('#GridDiv'), {}).init();
+@Html.BasicSamplesInitScript("GridFilteredByCriteriaPage")
 
-        Q.initFullHeightGridPage($('#GridDiv'));
-    });
-</script>

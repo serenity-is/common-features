@@ -1,6 +1,10 @@
 ﻿import { DateEditor, Decorators, EnumEditor, LookupEditor, QuickFilter, Widget } from "@serenity-is/corelib";
-import { first } from "@serenity-is/corelib/q";
+import { first, initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { OrderRow, OrderGrid, OrderShippingState } from "@serenity-is/demo.northwind";
+
+export default function () {
+    initFullHeightGridPage(new InitialValuesForQuickFilters($('#GridDiv')).element);
+}
 
 // get a reference to order row field names
 const fld = OrderRow.Fields;
@@ -36,7 +40,7 @@ export class InitialValuesForQuickFilters extends OrderGrid {
             // a combination of two date editors. to get reference to second one,
             // need to find its next sibling element by its class
             let endDate = w.element.nextAll(".s-DateEditor").getWidget(DateEditor);
-            endDate.valueAsDate = new Date(2020, 6, 1);
+            endDate.valueAsDate = new Date(new Date().getFullYear(), 10, 1);
         };
 
         first(filters, x => x.field == fld.ShippingState).init = w => {

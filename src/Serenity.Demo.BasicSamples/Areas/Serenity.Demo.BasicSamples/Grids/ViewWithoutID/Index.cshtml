@@ -14,15 +14,9 @@
     <p>Anyway in this sample we are using a view from Northwind (Sales By Category) that doesn't have an ID, and we are not using a composite key.</p>
     <p>See @Html.BasicSamplesSourceFile("ViewWithoutIDGrid.ts") for how to set a fake autoincrementing ID client side by intercepting OnViewProcessData method.</p>
     
-    <p style="text-align: right;"><b>Source Files:</b> @Html.BasicSamplesSourceFile("Index.cshtml"), @Html.BasicSamplesSourceFile("ViewWithoutIDGrid.ts")</p>
+    <p style="text-align: right;"><b>Source Files:</b> @Html.BasicSamplesSourceFile("Index.cshtml"), @Html.BasicSamplesSourceFile("ViewWithoutIDPage.ts")</p>
 </div>
 
 <div id="GridDiv"></div>
 
-<script type="text/javascript">
-    jQuery(function () {
-        new Serenity.Demo.BasicSamples.ViewWithoutIDGrid($('#GridDiv'), {}).init();
-
-        Q.initFullHeightGridPage($('#GridDiv'));
-    });
-</script>
+@Html.BasicSamplesInitScript("ViewWithoutIDPage");

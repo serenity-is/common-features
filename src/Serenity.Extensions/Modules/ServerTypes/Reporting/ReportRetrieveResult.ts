@@ -1,4 +1,4 @@
-﻿import { ServiceResponse, PropertyItem } from "@serenity-is/corelib";
+﻿import { ServiceResponse, PropertyItem } from "@serenity-is/corelib/q";
 
 export interface ReportRetrieveResult extends ServiceResponse {
     ReportKey?: string;

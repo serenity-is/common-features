@@ -1,7 +1,19 @@
 ﻿import { Decorators, SaveResponse } from "@serenity-is/corelib";
-import { notifySuccess, notifyInfo } from "@serenity-is/corelib/q";
-import { CategoryDialog, CategoryService } from "@serenity-is/demo.northwind";
+import { notifyInfo, notifySuccess } from "@serenity-is/corelib/q";
+import { CategoryDialog, CategoryGrid, CategoryService } from "@serenity-is/demo.northwind";
 
+/**
+ * Subclass of CategoryGrid to override dialog type to GetInsertedRecordIdDialog
+ */
+@Decorators.registerClass('Serenity.Demo.BasicSamples.GetInsertedRecordIdGrid')
+export class GetInsertedRecordIdGrid extends CategoryGrid {
+
+    protected getDialogType() { return GetInsertedRecordIdDialog; }
+
+    constructor(container: JQuery) {
+        super(container);
+    }
+}
 @Decorators.registerClass('Serenity.Demo.BasicSamples.GetInsertedRecordIdDialog')
 export class GetInsertedRecordIdDialog extends CategoryDialog {
 

@@ -1,4 +1,4 @@
-﻿@model int?
+@model int?
 
 @{
     ViewData["Title"] = "Entity Dialog as Panel";
@@ -15,31 +15,18 @@
     <ul>
         <li><a href="~/BasicSamples/EntityDialogAsPanel/">Switch to new record mode by changing URL</a></li>
         <li><a href="~/BasicSamples/EntityDialogAsPanel/11068">Load Order with ID 11068 by changing URL</a></li>
-        <li><a href="javascript:myDialogAsPanel.load({}, function() { Q.notifySuccess('Switched to new record mode'); })">Switch to new record mode with Javascript</a></li>
-        <li><a href="javascript:myDialogAsPanel.load(11048, function() { Q.notifySuccess('Loaded entity with ID 11048'); })">Load Order with ID 11048 with javascript</a></li>
+        <li><a id="SwitchToNewRecordMode" href="javascript:;">Switch to new record mode with Javascript</a></li>
+        <li><a id="LoadEntityWithId" href="javascript:;">Load Order with ID 11048 with javascript</a></li>
         <li><a href="~/BasicSamples/EntityDialogAsPanel/11077">Back to Order with ID 11077 by changing URL</a></li>
     </ul>
 
     <p style="text-align: right;">
         <b>Source Files:</b>
         @Html.BasicSamplesSourceFile("Index.cshtml"),
-        @Html.BasicSamplesSourceFile("EntityDialogAsPanel.ts")
+        @Html.BasicSamplesSourceFile("EntityDialogAsPanelPage.ts")
     </p>
 </div>
 
 <div id="DialogDiv"></div>
 
-<script type="text/javascript">
-    var myDialogAsPanel;
-    jQuery(function () {
-        // first create a new dialog
-        myDialogAsPanel = new Serenity.Demo.BasicSamples.EntityDialogAsPanel();
-        // load a new entity if url doesn't contain an ID, or load order with ID specified in page URL
-        // here we use done event in second parameter, to be sure operation succeeded before showing the panel
-        myDialogAsPanel.load(@Html.Raw(Model.ToJson()) || {}, function() {
-            // if we didn't reach here, probably there is no order with specified ID in url
-            myDialogAsPanel.element.removeClass('hidden').appendTo('#DialogDiv');
-            myDialogAsPanel.arrange();
-        });
-    });
-</script>
+@Html.BasicSamplesInitScript("EntityDialogAsPanelPage", Model)

@@ -10,7 +10,7 @@ public static class BasicSamplesHelper
     public static HtmlString BasicSamplesInitScript(this HtmlHelper helper,
         string module, object options = null)
     {
-        module = "~/Serenity.Demo.BasicSamples/esm/" + GetRelativePathFor(helper, module) + ".js";
+        module = UriHelper.Combine("~/Serenity.Demo.BasicSamples/esm/", GetRelativePathFor(helper, module)) + ".js";
 
         return new HtmlString($@"<script type=""module"">
     import initializer from '{helper.ResolveWithHash(module)}';

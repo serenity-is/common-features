@@ -1,15 +1,13 @@
 import { alertDialog, confirmDialog, informationDialog, notifySuccess, notifyInfo, notifyError, successDialog, warningDialog } from "@serenity-is/corelib/q";
 
-export namespace DialogBoxes {
-    export function initializePage() {
-        confirmDialogButtons();
-        confirmWithCustomTitle();
-        informationDialogSample();
-        successDialogSample();
-        warningDialogSample();
-        alertDialogSample();
-        alertWithHtmlContent();
-    }
+export default function () {
+    confirmDialogButtons();
+    confirmWithCustomTitle();
+    informationDialogSample();
+    successDialogSample();
+    warningDialogSample();
+    alertDialogSample();
+    alertWithHtmlContent();
 }
 
 function confirmDialogButtons() {

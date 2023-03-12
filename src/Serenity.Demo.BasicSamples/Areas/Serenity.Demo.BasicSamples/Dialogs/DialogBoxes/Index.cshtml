@@ -13,7 +13,7 @@
 
     <p style="text-align: right;"><b>Source Files:</b> 
         @Html.BasicSamplesSourceFile("Index.cshtml"), 
-        @Html.BasicSamplesSourceFile("DialogBoxes.ts")
+        @Html.BasicSamplesSourceFile("DialogBoxesPage.ts")
     </p>
 </div>
 
@@ -25,6 +25,4 @@
 <button id="Alert" class="btn btn-block btn-danger">Alert</button>
 <button id="AlertWithHtmlContent" class="btn btn-block btn-danger">Alert with HTML Content</button>
 
-<script type="text/javascript">
-    $(Serenity.Demo.BasicSamples.DialogBoxes.initializePage);
-</script>
+@Html.BasicSamplesInitScript("DialogBoxesPage")

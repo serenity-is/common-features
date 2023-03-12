@@ -1,4 +1,4 @@
-﻿import { HardcodedValuesEditor } from "@/Editors/SelectWithHardcodedValues/HardcodedValuesEditor";
+﻿import { HardcodedValuesEditor } from "@/Editors/SelectWithHardcodedValues/SelectWithHardcodedValuesPage";
 import { PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
 

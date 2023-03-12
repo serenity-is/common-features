@@ -3,9 +3,7 @@ import { initFullHeightGridPage, trimToNull } from "@serenity-is/corelib/q";
 import { CustomerDialog, CustomerGrid, CustomerService } from "@serenity-is/demo.northwind";
 
 export default function () {
-    jQuery(function () {
-        initFullHeightGridPage(new SerialAutoNumberGrid($('#GridDiv')).element);
-    });
+    initFullHeightGridPage(new SerialAutoNumberGrid($('#GridDiv')).element);
 }
 
 /**

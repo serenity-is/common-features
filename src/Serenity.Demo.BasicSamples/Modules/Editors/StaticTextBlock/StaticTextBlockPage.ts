@@ -1,6 +1,11 @@
 ﻿import { StaticTextBlockForm } from "@/ServerTypes/Demo";
 import { Decorators, PropertyDialog } from "@serenity-is/corelib";
 
+export default function () {
+    var dlg = new StaticTextBlockDialog();
+    dlg.dialogOpen();
+}
+
 @Decorators.registerClass('Serenity.Demo.BasicSamples.StaticTextBlockDialog')
 export class StaticTextBlockDialog extends PropertyDialog<any, any> {
     protected getFormKey() { return StaticTextBlockForm.formKey; }
@@ -26,6 +31,7 @@ export class StaticTextBlockDialog extends PropertyDialog<any, any> {
     protected getDialogOptions() {
         var opt = super.getDialogOptions();
         opt.width = 650;
+        opt.modal = false;
         return opt;
     }
 }

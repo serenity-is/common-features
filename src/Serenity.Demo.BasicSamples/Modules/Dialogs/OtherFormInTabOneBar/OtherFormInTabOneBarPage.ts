@@ -3,9 +3,7 @@ import { first, getForm, initFullHeightGridPage, isEmptyOrNull, reloadLookup, va
 import { OrderDialog, CustomerForm, CustomerService, CustomerRow, OrderRow, OrderGrid } from "@serenity-is/demo.northwind";
 
 export default function () {
-    jQuery(function () {
-        initFullHeightGridPage(new OtherFormInTabOneBarGrid($('#GridDiv')).element);
-    });
+    initFullHeightGridPage(new OtherFormInTabOneBarGrid($('#GridDiv')).element);
 }
 
 /**

@@ -3,11 +3,9 @@ import { initFullHeightGridPage, notifyInfo, notifySuccess } from "@serenity-is/
 import { CategoryDialog, CategoryGrid, CategoryService } from "@serenity-is/demo.northwind";
 
 export default function() {
-    jQuery(function () {
-        new GetInsertedRecordIdGrid($('#GridDiv')).init();
+    new GetInsertedRecordIdGrid($('#GridDiv')).init();
 
-        initFullHeightGridPage($('#GridDiv'));
-    });
+    initFullHeightGridPage($('#GridDiv'));
 }
 
 /**

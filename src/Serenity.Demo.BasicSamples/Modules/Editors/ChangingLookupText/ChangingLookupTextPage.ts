@@ -5,11 +5,9 @@ import { OrderDetailRow, ProductRow } from "@serenity-is/demo.northwind";
 import { GridEditorDialog } from "@serenity-is/extensions";
 
 export default function () {
-    jQuery(function () {
-        var dlg = new ChangingLookupTextDialog();
-        dlg.loadNewAndOpenDialog();
-        dlg.element.find('.field.ProductID .editor').select2('open');
-    });
+    var dlg = new ChangingLookupTextDialog();
+    dlg.loadNewAndOpenDialog();
+    dlg.element.find('.field.ProductID .editor').select2('open');
 }
 
 /**

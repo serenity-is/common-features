@@ -4,9 +4,7 @@ import { first, initFullHeightGridPage, isEmptyOrNull } from "@serenity-is/corel
 import { OrderRow, OrderService, CustomerRow, CustomerService, OrderGrid } from "@serenity-is/demo.northwind";
 
 export default function () {
-    jQuery(function () {
-        initFullHeightGridPage(new PopulateLinkedDataGrid($('#GridDiv')).element);
-    });
+    initFullHeightGridPage(new PopulateLinkedDataGrid($('#GridDiv')).element);
 }
 
 /**

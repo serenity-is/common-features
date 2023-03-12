@@ -24,18 +24,13 @@
     <p style="text-align: right;"><b>Source Files:</b> 
         @Html.BasicSamplesSourceFile("Index.cshtml"), 
         @Html.BasicSamplesSourceFile("LookupFilterByMultipleForm.cs")
-        @Html.BasicSamplesSourceFile("LookupFilterByMultipleDialog.ts")
-        @Html.BasicSamplesSourceFile("LookupFilterByMultipleGrid.ts")
-        @Html.BasicSamplesSourceFile("ProduceSeafoodCategoryEditor.ts")
+        @Html.BasicSamplesSourceFile("LookupFilterByMultiplePage.ts")
     </p>
 </div>
 
 <div id="GridDiv"></div>
 
+@Html.BasicSamplesInitScript("LookupFilterByMultipleValuesPage")
 <script type="text/javascript">
-    jQuery(function () {
-        new Serenity.Demo.BasicSamples.LookupFilterByMultipleGrid($('#GridDiv'), {}).init();
 
-        Q.initFullHeightGridPage($('#GridDiv'));
-    });
 </script>

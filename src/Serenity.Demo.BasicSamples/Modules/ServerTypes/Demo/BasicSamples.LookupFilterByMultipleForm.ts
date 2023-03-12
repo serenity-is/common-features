@@ -1,5 +1,5 @@
 ﻿import { StringEditor, ImageUploadEditor, BooleanEditor, LookupEditor, DecimalEditor, IntegerEditor, PrefixedContext } from "@serenity-is/corelib";
-import { ProduceSeafoodCategoryEditor } from "@/Editors/LookupFilterByMultipleValues/ProduceSeafoodCategoryEditor";
+import { ProduceSeafoodCategoryEditor } from "@/Editors/LookupFilterByMultipleValues/LookupFilterByMultipleValuesPage";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface LookupFilterByMultipleForm {

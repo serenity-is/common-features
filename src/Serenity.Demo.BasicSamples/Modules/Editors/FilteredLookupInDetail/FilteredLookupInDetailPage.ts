@@ -4,9 +4,7 @@ import { initFullHeightGridPage, toId } from "@serenity-is/corelib/q";
 import { OrderDetailDialog, OrderDetailForm, OrderDetailsEditor, OrderGrid, OrderRow, OrderService, ProductRow } from "@serenity-is/demo.northwind";
 
 export default function() {
-    jQuery(function () {
-        initFullHeightGridPage(new FilteredLookupInDetailGrid($('#GridDiv')).element);
-    });
+    initFullHeightGridPage(new FilteredLookupInDetailGrid($('#GridDiv')).element);
 }
 
 /**

@@ -3,9 +3,7 @@ import { formatDate, initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { OrderGrid, OrderRow, EmployeeRow, ShipperRow, OrderDialog, ProductRow } from "@serenity-is/demo.northwind";
 
 export default function () {
-    jQuery(function () {
-        initFullHeightGridPage(new DefaultValuesInNewGrid($('#GridDiv')).element);
-    });    
+    initFullHeightGridPage(new DefaultValuesInNewGrid($('#GridDiv')).element);
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.DefaultValuesInNewGrid')

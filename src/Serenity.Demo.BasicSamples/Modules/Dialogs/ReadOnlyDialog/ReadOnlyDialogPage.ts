@@ -3,9 +3,7 @@ import { indexOf, initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { SupplierDialog, SupplierGrid } from "@serenity-is/demo.northwind";
 
 export default function () {
-    jQuery(function () {
-        initFullHeightGridPage(new ReadOnlyGrid($('#GridDiv')).element);
-    });
+    initFullHeightGridPage(new ReadOnlyGrid($('#GridDiv')).element);
 }
 
 /**

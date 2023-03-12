@@ -15,14 +15,9 @@
     <p style="text-align: right;"><b>Source Files:</b> 
         @Html.BasicSamplesSourceFile("Index.cshtml"), 
         @Html.BasicSamplesSourceFile("/Serenity.Extensions/Serenity.Extensions/Widgets/StaticTextBlock.ts")
-        @Html.BasicSamplesSourceFile("StaticTextBlockDialog.ts")
         @Html.BasicSamplesSourceFile("StaticTextBlockForm.cs")
+        @Html.BasicSamplesSourceFile("StaticTextBlockPage.ts")
     </p>
 </div>
 
-<script type="text/javascript">
-    jQuery(function () {
-        var dlg = new Serenity.Demo.BasicSamples.StaticTextBlockDialog();
-        dlg.dialogOpen();
-    });
-</script>
+@Html.BasicSamplesInitScript("StaticTextBlockPage")

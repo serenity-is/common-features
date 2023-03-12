@@ -1,7 +1,12 @@
 import { Decorators, LookupEditor } from "@serenity-is/corelib";
-import { confirmDialog, count, first, format, formatDate, htmlEncode, notifyInfo, notifySuccess, toId } from "@serenity-is/corelib/q";
+import { confirmDialog, count, first, format, formatDate, htmlEncode, initFullHeightGridPage, notifyInfo, notifySuccess, toId } from "@serenity-is/corelib/q";
 import { CustomerDialog, CustomerRow, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 import { Column } from "@serenity-is/sleekgrid";
+
+export default function() {
+    new CustomLinksInGrid($('#GridDiv')).init();
+    initFullHeightGridPage($('#GridDiv'));
+}
 
 const fld = OrderRow.Fields;
 

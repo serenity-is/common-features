@@ -3,9 +3,7 @@ import { endsWith, initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind"
 
 export default function () {
-    jQuery(function () {
-        initFullHeightGridPage(new CloneableEntityGrid($('#GridDiv'), {}).element);
-    });
+    initFullHeightGridPage(new CloneableEntityGrid($('#GridDiv'), {}).element);
 }
 
 /**

@@ -60,6 +60,6 @@ public static class ModulePageExtensions
             throw new ArgumentNullException(nameof(model));
 
         model.HtmlMarkup ??= "<div id=\"PanelDiv\"></div>";
-        return PanelPage(controller, model);
+        return ModulePage(controller, model);
     }
 }

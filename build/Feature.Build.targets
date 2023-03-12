@@ -13,19 +13,18 @@
     <Exec Command="dotnet tool restore" ContinueOnError="true" />
     <Touch Files="$(DotnetToolRestoreStamp)" AlwaysCreate="true" />
   </Target>
-  <Target Name="CalculateProjectTSConfigInputs">
+  <Target Name="CalculateTSBuildInputs">
     <ItemGroup>
-      <ProjectTSConfigInputs Include="@(TypeScriptCompile)"
+      <TSBuildInputs Include="@(TypeScriptCompile)"
           Condition="'%(TypeScriptCompile.Identity)' != 'wwwroot\index.d.ts'" />
-      <ProjectTSConfigInputs Include="tsconfig.json" Condition="Exists('tsconfig.json')" />
-      <ProjectTSConfigInputs Include="..\tsconfig.base.json" Condition="Exists('..\tsconfig.base.json')" />
-      <ProjectTSConfigOutputs Include="wwwroot\index.js" />
-      <ProjectTSConfigOutputs Include="wwwroot\index.d.ts" Condition="!Exists('tsbuild.js')" />
-      <ProjectTSConfigOutputs Include="dist\index.js" Condition="Exists('tsbuild.js')" />
     </ItemGroup>
   </Target>
-  <Target Name="CompileProjectTSConfig" DependsOnTargets="NpmInstall;RestoreTypings;CalculateProjectTSConfigInputs;" AfterTargets="AfterBuild" Condition="Exists('tsconfig.json')"
-    Inputs="@(ProjectTSConfigInputs)" Outputs="@(ProjectTSConfigOutputs)">
+  <PropertyGroup>
+    <PrepareForBuildDependsOn>$(PrepareForBuildDependsOn);CompileProjectTSConfig</PrepareForBuildDependsOn>
+  </PropertyGroup>
+  <Target Name="CompileProjectTSConfig" AfterTargets="AfterBuild" DependsOnTargets="NpmInstall;RestoreTypings;CalculateTSBuildInputs;"
+          Condition="Exists('tsconfig.json') And '$(BuildingProject)' != 'false' And '$(DesignTimeBuild)' != 'true'"
+          Inputs="@(TSBuildInputs)" Outputs="@(TSBuildOutputs)">
     <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
     <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" Condition="!Exists('tsbuild.js')" ContinueOnError="true" />
     <Exec Command="pnpm tsbuild" Condition="Exists('tsbuild.js')" ContinueOnError="true" />

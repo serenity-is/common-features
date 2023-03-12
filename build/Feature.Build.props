@@ -33,6 +33,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <TSBuildInputs Include="tsconfig.json" Condition="Exists('tsconfig.json')" />
+    <TSBuildInputs Include="..\.config\tsconfig.base.json" Condition="Exists('..\.config\tsconfig.base.json')" />
+    <TSBuildOutputs Include="dist\index.js" Condition="Exists('tsbuild.js')" />
+    <TSBuildOutputs Include="wwwroot\index.js" />
+    <TSBuildOutputs Include="wwwroot\index.d.ts" Condition="!Exists('tsbuild.js')" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="$(MSBuildProjectDirectory)..\GlobalSuppressions.cs" Condition="Exists('$(MSBuildProjectDirectory)..\GlobalSuppressions.cs')">
       <Link>Properties\GlobalSuppressions.cs</Link>
     </Compile>

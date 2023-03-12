@@ -1,6 +1,14 @@
 ﻿import { Decorators, SaveResponse } from "@serenity-is/corelib";
-import { notifyInfo, notifySuccess } from "@serenity-is/corelib/q";
+import { initFullHeightGridPage, notifyInfo, notifySuccess } from "@serenity-is/corelib/q";
 import { CategoryDialog, CategoryGrid, CategoryService } from "@serenity-is/demo.northwind";
+
+export default function() {
+    jQuery(function () {
+        new GetInsertedRecordIdGrid($('#GridDiv')).init();
+
+        initFullHeightGridPage($('#GridDiv'));
+    });
+}
 
 /**
  * Subclass of CategoryGrid to override dialog type to GetInsertedRecordIdDialog
@@ -14,6 +22,7 @@ export class GetInsertedRecordIdGrid extends CategoryGrid {
         super(container);
     }
 }
+
 @Decorators.registerClass('Serenity.Demo.BasicSamples.GetInsertedRecordIdDialog')
 export class GetInsertedRecordIdDialog extends CategoryDialog {
 

@@ -1,6 +1,34 @@
 ﻿import { Decorators, EditorUtils, ToolButton } from "@serenity-is/corelib";
-import { indexOf } from "@serenity-is/corelib/q";
-import { SupplierDialog } from "@serenity-is/demo.northwind";
+import { indexOf, initFullHeightGridPage } from "@serenity-is/corelib/q";
+import { SupplierDialog, SupplierGrid } from "@serenity-is/demo.northwind";
+
+export default function () {
+    jQuery(function () {
+        initFullHeightGridPage(new ReadOnlyGrid($('#GridDiv')).element);
+    });
+}
+
+/**
+ * A readonly grid that launches ReadOnlyDialog
+ */
+@Decorators.registerClass('Serenity.Demo.BasicSamples.ReadOnlyGrid')
+export class ReadOnlyGrid extends SupplierGrid {
+
+    protected getDialogType() { return ReadOnlyDialog; }
+
+    constructor(container: JQuery) {
+        super(container);
+    }
+
+    /**
+     * Removing add button from grid using its css class
+     */
+    protected getButtons(): ToolButton[] {
+        var buttons = super.getButtons();
+        buttons.splice(indexOf(buttons, x => x.cssClass == "add-button"), 1);
+        return buttons;
+    }
+}
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.ReadOnlyDialog')
 export class ReadOnlyDialog extends SupplierDialog {

@@ -20,17 +20,10 @@
     <p style="text-align: right;">
         <b>Source Files:</b>
         @Html.BasicSamplesSourceFile("Index.cshtml"),
-        @Html.BasicSamplesSourceFile("GetInsertedRecordIdDialog.ts")
-        @Html.BasicSamplesSourceFile("GetInsertedRecordIdGrid.ts")
+        @Html.BasicSamplesSourceFile("GetInsertedRecordIdPage.ts")
     </p>
 </div>
 
 <div id="GridDiv"></div>
 
-<script type="text/javascript">
-    jQuery(function () {
-        new Serenity.Demo.BasicSamples.GetInsertedRecordIdGrid($('#GridDiv'), {}).init();
-
-        Q.initFullHeightGridPage($('#GridDiv'));
-    });
-</script>
+@Html.BasicSamplesInitScript("GetInsertedRecordIdPage")

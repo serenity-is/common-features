@@ -15,16 +15,9 @@
     
     <p style="text-align: right;"><b>Source Files:</b> 
         @Html.BasicSamplesSourceFile("Index.cshtml"), 
-        @Html.BasicSamplesSourceFile("ChangingLookupTextEditor.ts")
-        @Html.BasicSamplesSourceFile("ChangingLookupTextDialog.ts")
         @Html.BasicSamplesSourceFile("ChangingLookupTextForm.cs")
+        @Html.BasicSamplesSourceFile("ChangingLookupTextPage.ts")
     </p>
 </div>
 
-<script type="text/javascript">
-    jQuery(function () {
-        var dlg = new Serenity.Demo.BasicSamples.ChangingLookupTextDialog();
-        dlg.loadNewAndOpenDialog();
-        dlg.element.find('.field.ProductID .editor').select2('open');
-    });
-</script>
+@Html.BasicSamplesInitScript("ChangingLookupTextPage")

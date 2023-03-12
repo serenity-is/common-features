@@ -1,6 +1,25 @@
 import { Decorators, PropertyGrid, TabsExtensions, Toolbar } from "@serenity-is/corelib";
-import { first, getForm, isEmptyOrNull, notifySuccess, reloadLookup, localText, validateOptions } from "@serenity-is/corelib/q";
-import { OrderDialog, CustomerForm, CustomerRow, CustomerService, OrderRow } from "@serenity-is/demo.northwind";
+import { first, getForm, isEmptyOrNull, notifySuccess, reloadLookup, localText, validateOptions, initFullHeightGridPage } from "@serenity-is/corelib/q";
+import { OrderDialog, CustomerForm, CustomerRow, CustomerService, OrderRow, OrderGrid } from "@serenity-is/demo.northwind";
+
+export default function () {
+    $(function() {
+        initFullHeightGridPage(new OtherFormInTabGrid($('#GridDiv')).element);
+    });
+}
+
+/**
+ * Subclass of OrderGrid to override dialog type to OtherFormInTabDialog
+ */
+@Decorators.registerClass('Serenity.Demo.BasicSamples.OtherFormInTabGrid')
+export class OtherFormInTabGrid extends OrderGrid {
+
+    protected getDialogType() { return OtherFormInTabDialog; }
+
+    constructor(container: JQuery) {
+        super(container);
+    }
+}
 
 /**
  * Our custom order dialog subclass that will have a tab to display and edit selected customer details.

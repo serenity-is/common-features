@@ -1,7 +1,26 @@
 ﻿import { PopulateLinkedDataForm } from "@/ServerTypes/Demo";
 import { Decorators, EntityDialog } from "@serenity-is/corelib";
-import { first, isEmptyOrNull } from "@serenity-is/corelib/q";
-import { OrderRow, OrderService, CustomerRow, CustomerService } from "@serenity-is/demo.northwind";
+import { first, initFullHeightGridPage, isEmptyOrNull } from "@serenity-is/corelib/q";
+import { OrderRow, OrderService, CustomerRow, CustomerService, OrderGrid } from "@serenity-is/demo.northwind";
+
+export default function () {
+    jQuery(function () {
+        initFullHeightGridPage(new PopulateLinkedDataGrid($('#GridDiv')).element);
+    });
+}
+
+/**
+ * A subclass of OrderGrid that launches PopulateLinkedDataDialog
+ */
+@Decorators.registerClass('Serenity.Demo.BasicSamples.PopulateLinkedDataGrid')
+export class PopulateLinkedDataGrid extends OrderGrid {
+
+    protected getDialogType() { return PopulateLinkedDataDialog; }
+
+    constructor(container: JQuery) {
+        super(container);
+    }
+}
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.PopulateLinkedDataDialog')
 export class PopulateLinkedDataDialog extends EntityDialog<OrderRow, any> {

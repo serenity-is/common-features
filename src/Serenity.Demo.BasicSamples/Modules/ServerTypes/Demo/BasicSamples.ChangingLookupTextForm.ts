@@ -1,4 +1,4 @@
-﻿import { ChangingLookupTextEditor } from "@/Editors/ChangingLookupText/ChangingLookupTextEditor";
+﻿import { ChangingLookupTextEditor } from "@/Editors/ChangingLookupText/ChangingLookupTextPage";
 import { DecimalEditor, IntegerEditor, PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
 

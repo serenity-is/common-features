@@ -1,6 +1,25 @@
 ﻿import { Decorators } from "@serenity-is/corelib";
-import { trimToNull } from "@serenity-is/corelib/q";
-import { CustomerDialog, CustomerService } from "@serenity-is/demo.northwind";
+import { initFullHeightGridPage, trimToNull } from "@serenity-is/corelib/q";
+import { CustomerDialog, CustomerGrid, CustomerService } from "@serenity-is/demo.northwind";
+
+export default function () {
+    jQuery(function () {
+        initFullHeightGridPage(new SerialAutoNumberGrid($('#GridDiv')).element);
+    });
+}
+
+/**
+ * Subclass of CustomerGrid to override dialog type to SerialAutoNumberDialog
+ */
+@Decorators.registerClass('Serenity.Demo.BasicSamples.SerialAutoNumberGrid')
+export class SerialAutoNumberGrid extends CustomerGrid {
+
+    protected getDialogType() { return SerialAutoNumberDialog; }
+
+    constructor(container: JQuery) {
+        super(container);
+    }
+}
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.SerialAutoNumberDialog')
 export class SerialAutoNumberDialog extends CustomerDialog {

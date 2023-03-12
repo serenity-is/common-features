@@ -15,6 +15,7 @@ export default function () {
     });
 }
 
+@Decorators.registerClass('Serenity.Demo.BasicSamples.ChartInDialog')
 @Decorators.resizable()
 @Decorators.maximizable()
 export class ChartInDialog extends TemplatedDialog<any> {

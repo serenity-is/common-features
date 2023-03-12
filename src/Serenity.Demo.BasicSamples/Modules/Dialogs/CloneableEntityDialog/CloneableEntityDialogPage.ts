@@ -1,6 +1,24 @@
-import { Decorators } from "@serenity-is/corelib";
-import { endsWith } from "@serenity-is/corelib/q";
-import { ProductDialog } from "@serenity-is/demo.northwind"
+import { Decorators, EntityGrid } from "@serenity-is/corelib";
+import { endsWith, initFullHeightGridPage } from "@serenity-is/corelib/q";
+import { ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind"
+
+export default function () {
+    jQuery(function () {
+        initFullHeightGridPage(new CloneableEntityGrid($('#GridDiv'), {}).element);
+    });
+}
+
+/**
+ * Subclass of ProductGrid to override dialog type to CloneableEntityDialog
+ */
+export class CloneableEntityGrid extends EntityGrid<ProductRow, any> {
+
+    protected getColumnsKey() { return ProductColumns.columnsKey; }
+    protected getDialogType() { return CloneableEntityDialog; }
+    protected getIdProperty() { return ProductRow.idProperty; }
+    protected getLocalTextPrefix() { return ProductRow.localTextPrefix; }
+    protected getService() { return ProductService.baseUrl; }
+}
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.CloneableEntityDialog')
 @Decorators.maximizable()

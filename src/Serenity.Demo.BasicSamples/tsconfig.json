@@ -6,8 +6,5 @@
   },
   "include": [
     "Modules/"
-  ],
-  "exclude": [
-    "Modules/index.ts"
   ]
 }

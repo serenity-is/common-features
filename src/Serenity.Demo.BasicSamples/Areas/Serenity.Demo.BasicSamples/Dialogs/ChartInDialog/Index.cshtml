@@ -1,9 +1,5 @@
-﻿@{
+@{
     ViewData["Title"] = "Chart in a Dialog";
-}
-
-@section Head {
-    @Html.Script("~/lib/chartjs/chart.js")
 }
 
 @section ContentHeader {
@@ -16,13 +12,11 @@
     <p>Click button below to launch the dialog.</p>
 
     <p style="text-align: right;"><b>Source Files:</b> 
-        @Html.BasicSamplesSourceFile("Index.cshtml"), 
-        @Html.BasicSamplesSourceFile("ChartInDialog.ts")
+        @Html.BasicSamplesSourceFile("Index.cshtml"),
+        @Html.BasicSamplesSourceFile("ChartInDialogPage.ts")
     </p>
 </div>
 
 <button id="LaunchDialogButton" class="btn btn-block btn-primary">Launch Dialog</button>
 
-<script type="text/javascript">
-    Serenity.Demo.BasicSamples.ChartInDialog.initializePage();
-</script>
+@Html.BasicSamplesInitScript("ChartInDialogPage")

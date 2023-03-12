@@ -1,23 +1,23 @@
 import { BasicSamplesService } from "@/ServerTypes/Demo";
 import { Decorators, TemplatedDialog } from "@serenity-is/corelib";
+import { BarController, BarElement, CategoryScale, Chart, Legend, LinearScale } from "chart.js";
+
+Chart.register(BarController, BarElement, CategoryScale, Legend, LinearScale);
 
 const chartColors = ['#4E79A7', '#A0CBE8', '#F28E2B', '#FFBE7D', '#59A14F', '#8CD17D', '#B6992D', '#F1CE63', '#499894', '#86BCB6',
     '#E15759', '#FF9D9A', '#79706E', '#BAB0AC', '#D37295', '#FABFD2', '#B07AA1', '#D4A6C8', '#9D7660', '#D7B5A6'];
 
-@Decorators.registerClass('Serenity.Demo.BasicSamples.ChartInDialog')
+export default function () {
+    $(function () {
+        $('#LaunchDialogButton').click(function (e) {
+            (new ChartInDialog()).dialogOpen();
+        });
+    });
+}
+
 @Decorators.resizable()
 @Decorators.maximizable()
 export class ChartInDialog extends TemplatedDialog<any> {
-
-    private areaChart: any;
-
-    static initializePage() {
-        $(function () {
-            $('#LaunchDialogButton').click(function (e) {
-                (new ChartInDialog()).dialogOpen();
-            });
-        });
-    }
 
     protected onDialogOpen() {
         super.onDialogOpen();

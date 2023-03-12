@@ -13,6 +13,7 @@ node_modules/
 /src/*/wwwroot/index.js
 /src/*/wwwroot/index.min.js
 /src/*/wwwroot/index.js.map
+/src/*/wwwroot/esm/
 *.csproj.user
 .restore-stamp
 package-lock.json

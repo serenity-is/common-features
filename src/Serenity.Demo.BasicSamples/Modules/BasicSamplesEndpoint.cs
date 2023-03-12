@@ -14,8 +14,6 @@ public class BasicSamplesController : ServiceEndpoint
     {
         var fld = OrderRow.Fields;
         var year = DateTime.Today.Year;
-        var startOfMonth = new DateTime(2016, 10, 1);
-        var startingFrom = startOfMonth.AddMonths(-11);
 
         var response = new OrdersByShipperResponse();
         var shippers = connection.List<ShipperRow>(q => q.SelectTableFields().OrderBy(ShipperRow.Fields.CompanyName));
@@ -35,19 +33,17 @@ public class BasicSamplesController : ServiceEndpoint
                 .GroupBy(fld.ShipVia)
                 .Where(
                     fld.OrderDate.IsNotNull() &
-                    fld.ShipVia.IsNotNull() &
-                    fld.OrderDate < startOfMonth.AddMonths(1) &
-                    fld.OrderDate >= startingFrom))
+                    fld.ShipVia.IsNotNull()))
                 .ToDictionary(x => new Tuple<int, int>((int)x.Month, (int)x.ShipVia), x => (int)x.Count);
 
         response.Values = new List<Dictionary<string, object>>();
-        var month = startingFrom.Month;
+        var month = 0;
         for (var i = 0; i < 12; i++)
         {
             var d = new Dictionary<string, object>
             {
-                ["Month"] = new DateTime(1999, month, 1)
-                .ToString("MMM", CultureInfo.CurrentCulture)
+                ["Month"] = new DateTime(1999, (i + 1), 1)
+                    .ToString("MMM", CultureInfo.CurrentCulture)
             };
 
             foreach (var p in shippers)

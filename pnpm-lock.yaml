@@ -12,11 +12,13 @@ importers:
       '@serenity-is/extensions': workspace:*
       '@serenity-is/sleekgrid': latest
       '@serenity-is/tsbuild': latest
+      chart.js: 4.1.1
     dependencies:
       '@serenity-is/corelib': link:../../../Serenity/src/Serenity.Scripts/corelib
       '@serenity-is/demo.northwind': link:../Serenity.Demo.Northwind
       '@serenity-is/extensions': link:../Serenity.Extensions
       '@serenity-is/sleekgrid': 1.5.5
+      chart.js: 4.1.1
     devDependencies:
       '@serenity-is/tsbuild': 6.6.0
 
@@ -244,6 +246,10 @@ packages:
     dev: true
     optional: true
 
+  /@kurkle/color/0.3.2:
+    resolution: {integrity: sha512-fuscdXJ9G1qb7W8VdHi+IwRqij3lBkosAm4ydQtEmbY58OzHXqQhvlxqEkoz0yssNVn38bcpRWgA9PP+OGoisw==}
+    dev: false
+
   /@serenity-is/sleekgrid/1.5.5:
     resolution: {integrity: sha512-oYbizMlMpsZ2S0ZA78koYh34O7PWztAQLvSh0c6lSENOPeW+Jn7iu3FERS6EEwf4bcS6GPTXutPRudUmG4e0wg==}
     dev: false
@@ -264,6 +270,13 @@ packages:
     dependencies:
       balanced-match: 1.0.2
     dev: true
+
+  /chart.js/4.1.1:
+    resolution: {integrity: sha512-P0pCosNXp+LR8zO/QTkZKT6Hb7p0DPFtypEeVOf+6x06hX13NIb75R0DXUA4Ksx/+48chDQKtCCmRCviQRTqsA==}
+    engines: {pnpm: ^7.0.0}
+    dependencies:
+      '@kurkle/color': 0.3.2
+    dev: false
 
   /esbuild/0.16.14:
     resolution: {integrity: sha512-6xAn3O6ZZyoxZAEkwfI9hw4cEqSr/o1ViJtnkvImVkblmUN65Md04o0S/7H1WNu1XGf1Cjij/on7VO4psIYjkw==}

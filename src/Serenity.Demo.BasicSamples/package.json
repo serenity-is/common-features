@@ -4,7 +4,8 @@
     "@serenity-is/corelib": "../../../Serenity/src/Serenity.Scripts/corelib",
     "@serenity-is/demo.northwind": "workspace:*",
     "@serenity-is/extensions": "workspace:*",
-    "@serenity-is/sleekgrid": "latest"
+    "@serenity-is/sleekgrid": "latest",
+    "chart.js": "4.1.1"
   },
   "devDependencies": {
     "@serenity-is/tsbuild": "latest"

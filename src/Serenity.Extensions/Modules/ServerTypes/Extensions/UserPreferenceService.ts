@@ -1,6 +1,5 @@
-﻿import { UserPreferenceUpdateRequest } from "./UserPreferenceUpdateRequest";
-import { ServiceResponse } from "@serenity-is/corelib/q";
-import { ServiceOptions, serviceRequest } from "@serenity-is/corelib/q";
+import { UserPreferenceUpdateRequest } from "./UserPreferenceUpdateRequest";
+import { ServiceOptions, ServiceResponse, serviceRequest } from "@serenity-is/corelib/q";
 import { UserPreferenceRetrieveRequest } from "./UserPreferenceRetrieveRequest";
 import { UserPreferenceRetrieveResponse } from "./UserPreferenceRetrieveResponse";
 

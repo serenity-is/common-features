@@ -2,8 +2,8 @@
 /// <reference types="jquery.validation" />
 /// <reference types="jqueryui" />
 
-import { BooleanEditor, CaptureOperationType, DateEditor, DecimalEditor, DeleteRequest, DeleteResponse, EmailAddressEditor, EntityDialog, EntityGrid, EnumEditor, Formatter, IGetEditValue, ISetEditValue, ImageUploadEditor, IntegerEditor, ListRequest, ListResponse, LookupEditor, LookupEditorBase, LookupEditorOptions, PrefixedContext, PropertyItem, RetrieveRequest, RetrieveResponse, SaveRequest, SaveResponse, StringEditor, TemplatedDialog, TemplatedWidget, ToolButton } from '@serenity-is/corelib';
-import { ServiceOptions } from '@serenity-is/corelib/q';
+import { BooleanEditor, CaptureOperationType, DateEditor, DecimalEditor, DeleteRequest, DeleteResponse, EmailAddressEditor, EntityDialog, EntityGrid, EnumEditor, Formatter, IGetEditValue, ISetEditValue, ImageUploadEditor, IntegerEditor, ListRequest, ListResponse, LookupEditor, LookupEditorBase, LookupEditorOptions, PrefixedContext, RetrieveRequest, RetrieveResponse, SaveRequest, SaveResponse, StringEditor, TemplatedDialog, TemplatedWidget, ToolButton } from '@serenity-is/corelib';
+import { PropertyItem, ServiceOptions } from '@serenity-is/corelib/q';
 import { GetNextNumberRequest, GetNextNumberResponse, GridEditorBase, GridEditorDialog } from '@serenity-is/extensions';
 import { Column, FormatterContext } from '@serenity-is/sleekgrid';
 

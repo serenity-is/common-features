@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Serenity.Demo.Northwind;
 
 [PageAuthorize(typeof(RegionRow))]
-public class RegionController : Controller
+public class RegionPage : Controller
 {
     [Route("Northwind/Region")]
     public ActionResult Index()

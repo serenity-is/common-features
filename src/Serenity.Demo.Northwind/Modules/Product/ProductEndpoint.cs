@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Serenity.Reporting;
 using System.Data;
 using MyRow = Serenity.Demo.Northwind.ProductRow;
@@ -7,7 +7,7 @@ namespace Serenity.Demo.Northwind.Endpoints;
 
 [Route("Services/Serenity.Demo.Northwind/Product/[action]")]
 [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
-public class ProductController : ServiceEndpoint
+public class ProductEndpoint : ServiceEndpoint
 {
     [HttpPost, AuthorizeCreate(typeof(MyRow))]
     public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request,

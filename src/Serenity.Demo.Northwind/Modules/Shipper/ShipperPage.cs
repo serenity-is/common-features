@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-
-
+using Microsoft.AspNetCore.Mvc;
 
 namespace Serenity.Demo.Northwind;
 
 [PageAuthorize(typeof(ShipperRow))]
-public class ShipperController : Controller
+public class ShipperPage : Controller
 {
     [Route("Northwind/Shipper")]
     public ActionResult Index()

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using MyRow = Serenity.Demo.Northwind.RegionRow;
 
@@ -6,7 +6,7 @@ namespace Serenity.Demo.Northwind.Endpoints;
 
 [Route("Services/Serenity.Demo.Northwind/Region/[action]")]
 [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
-public class RegionController : ServiceEndpoint
+public class RegionEndpoint : ServiceEndpoint
 {
     [HttpPost, AuthorizeCreate(typeof(MyRow))]
     public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request,

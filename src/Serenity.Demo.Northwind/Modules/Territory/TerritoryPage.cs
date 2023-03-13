@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Serenity.Demo.Northwind;
 
 [PageAuthorize(typeof(TerritoryRow))]
-public class TerritoryController : Controller
+public class TerritoryPage : Controller
 {
     [Route("Northwind/Territory")]
     public ActionResult Index()

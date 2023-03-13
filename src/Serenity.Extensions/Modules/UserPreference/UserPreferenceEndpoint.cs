@@ -1,4 +1,4 @@
-﻿using System.Data;
+using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using MyRepository = Serenity.Extensions.Repositories.UserPreferenceRepository;
 using MyRow = Serenity.Extensions.Entities.UserPreferenceRow;
@@ -7,7 +7,7 @@ namespace Serenity.Extensions.Endpoints;
 
 [Route("Services/Extensions/UserPreference/[action]")]
 [ConnectionKey(typeof(MyRow)), ServiceAuthorize]
-public class UserPreferenceController : ServiceEndpoint
+public class UserPreferenceEndpoint : ServiceEndpoint
 {
     [HttpPost]
     public ServiceResponse Update(IUnitOfWork uow, UserPreferenceUpdateRequest request)

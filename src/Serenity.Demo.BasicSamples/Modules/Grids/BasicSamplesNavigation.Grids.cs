@@ -1,4 +1,4 @@
-﻿using Ctrl = Serenity.Demo.BasicSamples.BasicSamplesController;
+﻿using Ctrl = Serenity.Demo.BasicSamples.BasicSamplesPage;
 using Link = Serenity.Navigation.NavigationLinkAttribute;
 using Menu = Serenity.Navigation.NavigationMenuAttribute;
 

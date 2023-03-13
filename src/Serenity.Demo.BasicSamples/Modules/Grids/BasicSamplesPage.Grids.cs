@@ -3,7 +3,7 @@ using Views = Serenity.Demo.BasicSamples.MVC.Views.Grids;
 
 namespace Serenity.Demo.BasicSamples;
 
-public partial class BasicSamplesController : Controller
+public partial class BasicSamplesPage : Controller
 {
     [PageAuthorize(Northwind.PermissionKeys.General)]
     public ActionResult CustomLinksInGrid()

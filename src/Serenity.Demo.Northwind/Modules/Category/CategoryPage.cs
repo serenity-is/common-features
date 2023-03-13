@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Serenity.Demo.Northwind;
 
 [PageAuthorize(typeof(CategoryRow))]
-public class CategoryController : Controller
+public class CategoryPage : Controller
 {
     [Route("Northwind/Category")]
     public ActionResult Index()

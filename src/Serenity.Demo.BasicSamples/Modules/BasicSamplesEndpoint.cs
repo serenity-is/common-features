@@ -6,7 +6,7 @@ namespace Serenity.Demo.BasicSamples.Endpoints;
 
 [ServiceAuthorize, Route("Services/Serenity.Demo.BasicSamples/[action]")]
 [ConnectionKey(typeof(OrderRow))]
-public class BasicSamplesController : ServiceEndpoint
+public class BasicSamplesEndpoint : ServiceEndpoint
 {
 #pragma warning disable IDE0060 // Remove unused parameter
     public OrdersByShipperResponse OrdersByShipper(IDbConnection connection, OrdersByShipperRequest request)

@@ -2,7 +2,7 @@ import { Decorators, PropertyGrid, TabsExtensions, Toolbar } from "@serenity-is/
 import { first, getForm, isEmptyOrNull, notifySuccess, reloadLookup, localText, validateOptions, initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { OrderDialog, CustomerForm, CustomerRow, CustomerService, OrderRow, OrderGrid } from "@serenity-is/demo.northwind";
 
-export default function () {
+export default function pageInit() {
     initFullHeightGridPage(new OtherFormInTabGrid($('#GridDiv')).element);
 }
 

@@ -2,7 +2,7 @@
 import { confirmDialog, initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { CustomerGrid, CustomerService, OrderDialog, OrderRow } from "@serenity-is/demo.northwind";
 
-export default function () {
+export default function pageInit() {
     initFullHeightGridPage(new InlineActionGrid($('#GridDiv')).element);
 }
 

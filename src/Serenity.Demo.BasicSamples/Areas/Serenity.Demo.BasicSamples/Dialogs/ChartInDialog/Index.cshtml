@@ -19,4 +19,7 @@
 
 <button id="LaunchDialogButton" class="btn btn-block btn-primary">Launch Dialog</button>
 
-@Html.BasicSamplesInitScript("ChartInDialogPage")
+<script type="module">
+    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("ChartInDialogPage.js"))';
+    pageInit();
+</script>

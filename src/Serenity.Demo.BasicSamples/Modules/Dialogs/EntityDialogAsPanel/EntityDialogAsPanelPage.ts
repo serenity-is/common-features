@@ -2,7 +2,7 @@
 import { notifySuccess } from "@serenity-is/corelib/q";
 import { OrderDialog } from "@serenity-is/demo.northwind";
 
-export default function (model: any) {
+export default function pageInit(model: any) {
 
     // first create a new dialog, store it in globalThis, e.g. window so that sample can access it from outsite the module
     var myDialogAsPanel = new EntityDialogAsPanel();

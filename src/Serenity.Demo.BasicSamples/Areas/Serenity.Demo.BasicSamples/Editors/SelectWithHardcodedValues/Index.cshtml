@@ -27,4 +27,7 @@
     <input type="hidden" />
 </div>
 
-@Html.BasicSamplesInitScript("SelectWithHardcodedValuesPage")
+<script type="module">
+    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("SelectWithHardcodedValuesPage.js"))';
+    pageInit();
+</script>

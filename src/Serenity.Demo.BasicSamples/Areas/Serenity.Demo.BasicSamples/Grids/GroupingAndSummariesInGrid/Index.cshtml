@@ -19,4 +19,7 @@
 
 <div id="GridDiv"></div>
 
-@Html.BasicSamplesInitScript("GroupingAndSummariesInGridPage")
+<script type="module">
+    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("GroupingAndSummariesInGridPage.js"))';
+    pageInit();
+</script>

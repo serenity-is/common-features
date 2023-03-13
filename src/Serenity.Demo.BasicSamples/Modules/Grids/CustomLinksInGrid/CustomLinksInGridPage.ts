@@ -3,7 +3,7 @@ import { confirmDialog, count, first, format, formatDate, htmlEncode, initFullHe
 import { CustomerDialog, CustomerRow, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 import { Column } from "@serenity-is/sleekgrid";
 
-export default function() {
+export default function pageInit() {
     new CustomLinksInGrid($('#GridDiv')).init();
     initFullHeightGridPage($('#GridDiv'));
 }

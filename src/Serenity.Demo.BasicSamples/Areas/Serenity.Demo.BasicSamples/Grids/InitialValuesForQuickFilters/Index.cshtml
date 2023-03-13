@@ -21,4 +21,7 @@
 
 <div id="GridDiv"></div>
 
-@Html.BasicSamplesInitScript("InitialValuesForQuickFiltersPage")
+<script type="module">
+    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("InitialValuesForQuickFiltersPage.js"))';
+    pageInit();
+</script>

@@ -3,7 +3,7 @@ import { initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { SupplierRow, SupplierColumns, SupplierDialog, SupplierService } from "@serenity-is/demo.northwind";
 import { SelectableEntityGrid } from "@serenity-is/extensions";
 
-export default function () {
+export default function pageInit() {
     initFullHeightGridPage(new RowSelectionGrid($('#GridDiv')).element);
 }
 

@@ -4,7 +4,7 @@ import { formatNumber, Lookup, toId } from "@serenity-is/corelib/q";
 import { OrderDetailRow, ProductRow } from "@serenity-is/demo.northwind";
 import { GridEditorDialog } from "@serenity-is/extensions";
 
-export default function () {
+export default function pageInit() {
     var dlg = new ChangingLookupTextDialog();
     dlg.loadNewAndOpenDialog();
     dlg.element.find('.field.ProductID .editor').select2('open');

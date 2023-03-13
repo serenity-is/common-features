@@ -2,7 +2,7 @@
 import { initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { OrderGrid } from "@serenity-is/demo.northwind";
 
-export default function () {
+export default function pageInit() {
     initFullHeightGridPage(new WrappedHeadersGrid($('#GridDiv')).element);
 }
 

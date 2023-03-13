@@ -2,7 +2,7 @@
 import { initFullHeightGridPage, trimToNull } from "@serenity-is/corelib/q";
 import { CustomerDialog, CustomerGrid, CustomerService } from "@serenity-is/demo.northwind";
 
-export default function () {
+export default function pageInit() {
     initFullHeightGridPage(new SerialAutoNumberGrid($('#GridDiv')).element);
 }
 

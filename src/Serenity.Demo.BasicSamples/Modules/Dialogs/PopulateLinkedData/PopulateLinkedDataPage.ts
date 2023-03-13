@@ -3,7 +3,7 @@ import { Decorators, EntityDialog } from "@serenity-is/corelib";
 import { first, initFullHeightGridPage, isEmptyOrNull } from "@serenity-is/corelib/q";
 import { OrderRow, OrderService, CustomerRow, CustomerService, OrderGrid } from "@serenity-is/demo.northwind";
 
-export default function () {
+export default function pageInit() {
     initFullHeightGridPage(new PopulateLinkedDataGrid($('#GridDiv')).element);
 }
 

@@ -1,9 +1,9 @@
-﻿import { FilteredLookupInDetailForm } from "@/ServerTypes/Demo";
+import { FilteredLookupInDetailForm } from "@/ServerTypes/Demo";
 import { Decorators, EntityDialog, Widget } from "@serenity-is/corelib";
 import { initFullHeightGridPage, toId } from "@serenity-is/corelib/q";
 import { OrderDetailDialog, OrderDetailForm, OrderDetailsEditor, OrderGrid, OrderRow, OrderService, ProductRow } from "@serenity-is/demo.northwind";
 
-export default function() {
+export default function pageInit() {
     initFullHeightGridPage(new FilteredLookupInDetailGrid($('#GridDiv')).element);
 }
 

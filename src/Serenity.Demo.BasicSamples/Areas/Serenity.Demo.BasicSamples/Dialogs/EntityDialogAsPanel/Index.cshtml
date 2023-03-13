@@ -29,4 +29,7 @@
 
 <div id="DialogDiv"></div>
 
-@Html.BasicSamplesInitScript("EntityDialogAsPanelPage", Model)
+<script type="module">
+    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("EntityDialogAsPanelPage.js"))';
+    pageInit(@Json.Serialize(Model));
+</script>

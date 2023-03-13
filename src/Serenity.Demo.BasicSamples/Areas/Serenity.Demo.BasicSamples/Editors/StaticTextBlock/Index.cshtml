@@ -20,4 +20,7 @@
     </p>
 </div>
 
-@Html.BasicSamplesInitScript("StaticTextBlockPage")
+<script type="module">
+    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("StaticTextBlockPage.js"))';
+    pageInit();
+</script>

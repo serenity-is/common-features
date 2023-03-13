@@ -1,8 +1,8 @@
-﻿import { Decorators, SaveResponse } from "@serenity-is/corelib";
+import { Decorators, SaveResponse } from "@serenity-is/corelib";
 import { initFullHeightGridPage, notifyInfo, notifySuccess } from "@serenity-is/corelib/q";
 import { CategoryDialog, CategoryGrid, CategoryService } from "@serenity-is/demo.northwind";
 
-export default function() {
+export default function pageInit() {
     new GetInsertedRecordIdGrid($('#GridDiv')).init();
 
     initFullHeightGridPage($('#GridDiv'));

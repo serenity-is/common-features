@@ -25,4 +25,7 @@
 <button id="Alert" class="btn btn-block btn-danger">Alert</button>
 <button id="AlertWithHtmlContent" class="btn btn-block btn-danger">Alert with HTML Content</button>
 
-@Html.BasicSamplesInitScript("DialogBoxesPage")
+<script type="module">
+    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("DialogBoxesPage.js"))';
+    pageInit();
+</script>

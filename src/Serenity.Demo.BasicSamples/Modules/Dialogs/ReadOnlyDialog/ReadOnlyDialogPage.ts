@@ -2,7 +2,7 @@
 import { indexOf, initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { SupplierDialog, SupplierGrid } from "@serenity-is/demo.northwind";
 
-export default function () {
+export default function pageInit() {
     initFullHeightGridPage(new ReadOnlyGrid($('#GridDiv')).element);
 }
 

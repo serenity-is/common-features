@@ -3,7 +3,7 @@ import { initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { SalesByCategoryRow, SalesByCategoryColumns, SalesByCategoryService } from "@serenity-is/demo.northwind";
 
 
-export default function () {
+export default function pageInit() {
     initFullHeightGridPage(new ViewWithoutIDGrid($('#GridDiv')).element);
 }
 

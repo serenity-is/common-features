@@ -25,4 +25,7 @@
 
 <div id="GridDiv"></div>
 
-@Html.BasicSamplesInitScript("FilteredLookupInDetailPage")
+<script type="module">
+    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("FilteredLookupInDetailPage.js"))';
+    pageInit();
+</script>

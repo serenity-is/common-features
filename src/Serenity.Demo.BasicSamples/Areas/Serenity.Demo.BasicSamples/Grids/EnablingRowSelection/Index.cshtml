@@ -30,4 +30,7 @@
 
 <div id="GridDiv"></div>
 
-@Html.BasicSamplesInitScript("EnablingRowSelectionPage")
+<script type="module">
+    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("EnablingRowSelectionPage.js"))';
+    pageInit();
+</script>

@@ -2,7 +2,7 @@
 import { formatDate, initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { OrderGrid, OrderRow, EmployeeRow, ShipperRow, OrderDialog, ProductRow } from "@serenity-is/demo.northwind";
 
-export default function () {
+export default function pageInit() {
     initFullHeightGridPage(new DefaultValuesInNewGrid($('#GridDiv')).element);
 }
 

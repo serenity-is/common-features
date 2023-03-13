@@ -28,5 +28,7 @@
 
 <div id="GridDiv"></div>
 
-@Html.BasicSamplesInitScript("GridFilteredByCriteriaPage")
-
+<script type="module">
+    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("GridFilteredByCriteriaPage.js"))';
+    pageInit();
+</script>

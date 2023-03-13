@@ -2,7 +2,7 @@
 import { first, initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { OrderRow, OrderGrid, OrderShippingState } from "@serenity-is/demo.northwind";
 
-export default function () {
+export default function pageInit() {
     initFullHeightGridPage(new InitialValuesForQuickFilters($('#GridDiv')).element);
 }
 

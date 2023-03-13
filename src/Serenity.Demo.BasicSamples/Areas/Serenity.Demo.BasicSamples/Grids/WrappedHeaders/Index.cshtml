@@ -25,4 +25,7 @@
 
 <div id="GridDiv"></div>
 
-@Html.BasicSamplesInitScript("WrappedHeadersPage")
+<script type="module">
+    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("WrappedHeadersPage.js"))';
+    pageInit();
+</script>

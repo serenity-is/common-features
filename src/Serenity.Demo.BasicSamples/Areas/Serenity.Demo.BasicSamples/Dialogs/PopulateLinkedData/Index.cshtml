@@ -21,4 +21,7 @@
 
 <div id="GridDiv"></div>
 
-@Html.BasicSamplesInitScript("PopulateLinkedDataPage")
+<script type="module">
+    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("PopulateLinkedDataPage.js"))';
+    pageInit();
+</script>

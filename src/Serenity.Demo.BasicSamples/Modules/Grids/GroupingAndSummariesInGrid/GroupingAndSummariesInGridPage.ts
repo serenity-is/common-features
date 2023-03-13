@@ -4,7 +4,7 @@ import { ProductRow, ProductColumns, ProductService, ProductDialog } from "@sere
 import { Aggregators } from "@serenity-is/corelib/slick";
 import { GroupItemMetadataProvider } from "@serenity-is/sleekgrid";
 
-export default function () {
+export default function pageInit() {
     initFullHeightGridPage(new GroupingAndSummariesInGrid($('#GridDiv')).element);
 }
 

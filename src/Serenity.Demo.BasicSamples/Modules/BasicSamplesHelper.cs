@@ -7,15 +7,9 @@ namespace Serenity.Demo.BasicSamples;
 
 public static class BasicSamplesHelper
 {
-    public static HtmlString BasicSamplesInitScript(this HtmlHelper helper,
-        string module, object options = null)
+    public static string BasicSamplesModuleFile(this HtmlHelper helper, string module)
     {
-        module = UriHelper.Combine("~/Serenity.Demo.BasicSamples/esm/", GetRelativePathFor(helper, module)) + ".js";
-
-        return new HtmlString($@"<script type=""module"">
-    import initializer from '{helper.ResolveWithHash(module)}';
-    initializer({JSON.Stringify(options)});
-</script>");
+        return UriHelper.Combine("~/Serenity.Demo.BasicSamples/esm/", GetRelativePathFor(helper, module));
     }
 
     public static HtmlString BasicSamplesSourceFile(this HtmlHelper helper, string file)

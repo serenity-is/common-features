@@ -3,7 +3,7 @@ import { Criteria, Decorators, EntityGrid, ListRequest, LookupEditorBase, Lookup
 import { initFullHeightGridPage, Lookup } from "@serenity-is/corelib/q";
 import { CategoryRow, ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
 
-export default function () {
+export default function pageInit() {
     initFullHeightGridPage(new LookupFilterByMultipleGrid($('#GridDiv')).element);
 }
 

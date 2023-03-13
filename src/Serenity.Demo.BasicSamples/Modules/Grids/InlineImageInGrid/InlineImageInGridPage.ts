@@ -4,7 +4,7 @@ import { initFullHeightGridPage, resolveUrl } from "@serenity-is/corelib/q";
 import { ProductRow, ProductDialog, ProductService } from "@serenity-is/demo.northwind";
 import { Column, FormatterContext, GridOptions } from "@serenity-is/sleekgrid";
 
-export default function () {
+export default function pageInit() {
     initFullHeightGridPage(new InlineImageInGrid($('#GridDiv')).element);
 }
 

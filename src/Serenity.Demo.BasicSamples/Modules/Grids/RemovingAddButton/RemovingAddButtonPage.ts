@@ -2,7 +2,7 @@
 import { indexOf, initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { SupplierGrid } from "@serenity-is/demo.northwind";
 
-export default function () {
+export default function pageInit() {
     initFullHeightGridPage(new RemovingAddButton($('#GridDiv')).element);
 }
 

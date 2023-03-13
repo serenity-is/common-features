@@ -1,8 +1,8 @@
-﻿import { HardcodedValuesForm } from "@/ServerTypes/Demo";
+import { HardcodedValuesForm } from "@/ServerTypes/Demo";
 import { Decorators, PropertyDialog, Select2Editor, Widget } from "@serenity-is/corelib";
 import { notifySuccess } from "@serenity-is/corelib/q";
 
-export default function() {
+export default function pageInit() {
     var dlg = new HardcodedValuesDialog();
     dlg.dialogOpen();
     dlg.element.find('.field.SomeValue .editor').select2('open');

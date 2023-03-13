@@ -1,7 +1,7 @@
 ﻿import { StaticTextBlockForm } from "@/ServerTypes/Demo";
 import { Decorators, PropertyDialog } from "@serenity-is/corelib";
 
-export default function () {
+export default function pageInit() {
     var dlg = new StaticTextBlockDialog();
     dlg.dialogOpen();
 }

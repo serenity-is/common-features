@@ -16,6 +16,7 @@
     <DotnetToolRestoreStamp>$(MSBuildProjectDirectory)\..\.config\.restore-stamp</DotnetToolRestoreStamp>
     <SergenTransform>all</SergenTransform>
     <StaticWebAssetBasePath>/$(MSBuildProjectName)</StaticWebAssetBasePath>
+    <ESMAssetBasePath>$(StaticWebAssetBasePath)/esm</ESMAssetBasePath>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <DefaultItemExcludes>node_modules\**;$(DefaultItemExcludes);package*.json;sergen.json;tsconfig.json;libman.json;tsbuild.js;wwwroot\index.d.ts;wwwroot\**\*.less</DefaultItemExcludes>

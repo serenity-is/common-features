@@ -20,7 +20,7 @@
     </ItemGroup>
   </Target>
   <Target Name="CompileProjectTSConfig" AfterTargets="AfterBuild" DependsOnTargets="NpmInstall;RestoreTypings;CalculateTSBuildInputs;"
-          Condition="Exists('tsconfig.json') And '$(BuildingProject)' != 'false' And '$(DesignTimeBuild)' != 'true'"
+          Condition="'$(SkipNodeScripts)' != 'true' And Exists('tsconfig.json') And '$(BuildingProject)' != 'false' And '$(DesignTimeBuild)' != 'true'"
           Inputs="@(TSBuildInputs)" Outputs="@(TSBuildOutputs)">
     <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
     <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" Condition="!Exists('tsbuild.js')" ContinueOnError="true" />

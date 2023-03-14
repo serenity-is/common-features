@@ -1,5 +1,5 @@
-﻿import { Criteria, Decorators, EntityGrid } from "@serenity-is/corelib";
-import { initFullHeightGridPage, ListRequest } from "@serenity-is/corelib/q";
+﻿import { Decorators, EntityGrid } from "@serenity-is/corelib";
+import { Criteria, initFullHeightGridPage, ListRequest } from "@serenity-is/corelib/q";
 import { ProductRow, ProductColumns, ProductDialog, ProductService } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {

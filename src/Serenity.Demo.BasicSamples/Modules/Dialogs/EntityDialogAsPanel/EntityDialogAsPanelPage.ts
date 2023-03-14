@@ -1,5 +1,5 @@
-﻿import { Decorators, SaveResponse } from "@serenity-is/corelib";
-import { notifySuccess } from "@serenity-is/corelib/q";
+﻿import { Decorators } from "@serenity-is/corelib";
+import { notifySuccess, SaveResponse } from "@serenity-is/corelib/q";
 import { OrderDialog } from "@serenity-is/demo.northwind";
 
 export default function pageInit(model: any) {

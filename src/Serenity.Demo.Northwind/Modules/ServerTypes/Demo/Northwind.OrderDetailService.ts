@@ -1,6 +1,5 @@
-﻿import { RetrieveRequest, RetrieveResponse, ListRequest, ListResponse } from "@serenity-is/corelib";
+﻿import { RetrieveRequest, RetrieveResponse, ServiceOptions, ListRequest, ListResponse, serviceRequest } from "@serenity-is/corelib/q";
 import { OrderDetailRow } from "./Northwind.OrderDetailRow";
-import { ServiceOptions, serviceRequest } from "@serenity-is/corelib/q";
 
 export namespace OrderDetailService {
     export const baseUrl = 'Serenity.Demo.Northwind/OrderDetail';

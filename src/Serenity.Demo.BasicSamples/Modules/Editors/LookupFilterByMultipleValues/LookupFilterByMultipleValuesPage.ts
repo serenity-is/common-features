@@ -1,6 +1,6 @@
 ﻿import { LookupFilterByMultipleForm } from "@/ServerTypes/Demo";
-import { Criteria, Decorators, EntityGrid, ListRequest, LookupEditorBase, LookupEditorOptions } from "@serenity-is/corelib";
-import { initFullHeightGridPage, Lookup } from "@serenity-is/corelib/q";
+import { Criteria, Decorators, EntityGrid, LookupEditorBase, LookupEditorOptions } from "@serenity-is/corelib";
+import { initFullHeightGridPage, ListRequest, Lookup } from "@serenity-is/corelib/q";
 import { CategoryRow, ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {

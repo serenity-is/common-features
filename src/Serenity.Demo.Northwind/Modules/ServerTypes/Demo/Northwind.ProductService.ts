@@ -1,6 +1,5 @@
-﻿import { SaveRequest, SaveResponse, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse } from "@serenity-is/corelib";
+﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from "@serenity-is/corelib/q";
 import { ProductRow } from "./Northwind.ProductRow";
-import { ServiceOptions, serviceRequest } from "@serenity-is/corelib/q";
 
 export namespace ProductService {
     export const baseUrl = 'Serenity.Demo.Northwind/Product';

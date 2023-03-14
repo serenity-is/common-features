@@ -1,5 +1,5 @@
-import { Decorators, PropertyGrid, SaveResponse, TabsExtensions } from "@serenity-is/corelib";
-import { first, getForm, initFullHeightGridPage, isEmptyOrNull, reloadLookup, validateOptions } from "@serenity-is/corelib/q";
+import { Decorators, PropertyGrid, TabsExtensions } from "@serenity-is/corelib";
+import { first, getForm, initFullHeightGridPage, isEmptyOrNull, reloadLookup, SaveResponse, validateOptions } from "@serenity-is/corelib/q";
 import { OrderDialog, CustomerForm, CustomerService, CustomerRow, OrderRow, OrderGrid } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {

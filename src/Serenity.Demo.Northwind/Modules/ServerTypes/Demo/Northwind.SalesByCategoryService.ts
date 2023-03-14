@@ -1,6 +1,5 @@
-﻿import { ListRequest, ListResponse } from "@serenity-is/corelib";
+﻿import { ListRequest, ListResponse, ServiceOptions, serviceRequest } from "@serenity-is/corelib/q";
 import { SalesByCategoryRow } from "./Northwind.SalesByCategoryRow";
-import { ServiceOptions, serviceRequest } from "@serenity-is/corelib/q";
 
 export namespace SalesByCategoryService {
     export const baseUrl = 'Serenity.Demo.Northwind/SalesByCategory';

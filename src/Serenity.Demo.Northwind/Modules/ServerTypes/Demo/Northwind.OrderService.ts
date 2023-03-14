@@ -1,6 +1,5 @@
-﻿import { SaveRequest, SaveResponse, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListResponse } from "@serenity-is/corelib";
+﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListResponse, serviceRequest } from "@serenity-is/corelib/q";
 import { OrderRow } from "./Northwind.OrderRow";
-import { ServiceOptions, serviceRequest } from "@serenity-is/corelib/q";
 import { OrderListRequest } from "./Northwind.OrderListRequest";
 
 export namespace OrderService {

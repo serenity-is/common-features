@@ -1,5 +1,5 @@
-﻿import { Decorators, EntityGrid, ListResponse } from "@serenity-is/corelib";
-import { initFullHeightGridPage } from "@serenity-is/corelib/q";
+﻿import { Decorators, EntityGrid } from "@serenity-is/corelib";
+import { initFullHeightGridPage, ListResponse } from "@serenity-is/corelib/q";
 import { SalesByCategoryRow, SalesByCategoryColumns, SalesByCategoryService } from "@serenity-is/demo.northwind";
 
 

@@ -1,4 +1,4 @@
-﻿using Serenity.Extensions;
+using Serenity.Extensions;
 
 namespace Serenity.Demo.BasicSamples.Forms;
 
@@ -17,7 +17,7 @@ public class StaticTextBlockForm
     public String HtmlList { get; set; }
 
     [DisplayName("From a Local Text")]
-    [StaticTextBlock(Text = "Site.Dashboard.ContentDescription", IsLocalText = true, IsHtml = true)]
+    [StaticTextBlock(Text = "Site.Dialogs.PendingChangesConfirmation", IsLocalText = true, IsHtml = true)]
     public String FromLocalText { get; set; }
 
     [DisplayName("Display Field Value")]

@@ -1,4 +1,4 @@
-﻿namespace Serenity.Extensions.Entities;
+namespace Serenity.Extensions.Entities;
 
 /// <summary>
 /// This is a sample base class for rows that does insert/update date and user audit logging automatically.
@@ -14,7 +14,7 @@ public abstract class LoggingRow<TFields> : Row<TFields>, ILoggingRow
     protected LoggingRow() : base() { }
 
     [NotNull, Insertable(false), Updatable(false)]
-    public Int32? InsertUserId
+    public int? InsertUserId
     {
         get => fields.InsertUserId[this];
         set => fields.InsertUserId[this] = value;
@@ -28,7 +28,7 @@ public abstract class LoggingRow<TFields> : Row<TFields>, ILoggingRow
     }
 
     [Insertable(false), Updatable(false)]
-    public Int32? UpdateUserId
+    public int? UpdateUserId
     {
         get => fields.UpdateUserId[this];
         set => fields.UpdateUserId[this] = value;

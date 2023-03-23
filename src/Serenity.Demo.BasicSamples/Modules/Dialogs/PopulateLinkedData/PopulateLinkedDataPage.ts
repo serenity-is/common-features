@@ -24,9 +24,7 @@ export class PopulateLinkedDataGrid extends OrderGrid {
 export class PopulateLinkedDataDialog extends EntityDialog<OrderRow, any> {
 
     protected getFormKey() { return PopulateLinkedDataForm.formKey; }
-    protected getIdProperty() { return OrderRow.idProperty; }
-    protected getLocalTextPrefix() { return OrderRow.localTextPrefix; }
-    protected getNameProperty() { return OrderRow.nameProperty; }
+    protected getRowDefinition() { return OrderRow; }
     protected getService() { return OrderService.baseUrl; }
 
     protected form = new PopulateLinkedDataForm(this.idPrefix);

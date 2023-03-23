@@ -8,9 +8,7 @@ import { CustomerOrdersGrid } from "./CustomerOrdersGrid";
 @Decorators.panel()
 export class CustomerDialog extends EntityDialog<CustomerRow, any> {
     protected getFormKey() { return CustomerForm.formKey; }
-    protected getIdProperty() { return CustomerRow.idProperty; }
-    protected getLocalTextPrefix() { return CustomerRow.localTextPrefix; }
-    protected getNameProperty() { return CustomerRow.nameProperty; }
+    protected getRowDefinition() { return CustomerRow; }
     protected getService() { return CustomerService.baseUrl; }
 
     protected form = new CustomerForm(this.idPrefix);

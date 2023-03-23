@@ -6,7 +6,6 @@ import { SupplierDialog } from "./SupplierDialog";
 export class SupplierGrid extends EntityGrid<SupplierRow, any> {
     protected getColumnsKey() { return SupplierColumns.columnsKey; }
     protected getDialogType() { return <any>SupplierDialog; }
-    protected getIdProperty() { return SupplierRow.idProperty; }
-    protected getLocalTextPrefix() { return SupplierRow.localTextPrefix; }
+    protected getRowDefinition() { return SupplierRow; }
     protected getService() { return SupplierService.baseUrl; }
 }

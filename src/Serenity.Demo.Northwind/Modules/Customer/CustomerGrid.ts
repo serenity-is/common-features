@@ -7,7 +7,6 @@ import { CustomerDialog } from "./CustomerDialog";
 export class CustomerGrid extends EntityGrid<CustomerRow, any> {
     protected getColumnsKey() { return CustomerColumns.columnsKey; }
     protected getDialogType() { return <any>CustomerDialog; }
-    protected getIdProperty() { return CustomerRow.idProperty; }
-    protected getLocalTextPrefix() { return CustomerRow.localTextPrefix; }
+    protected getRowDefinition() { return CustomerRow; }
     protected getService() { return CustomerService.baseUrl; }
 }

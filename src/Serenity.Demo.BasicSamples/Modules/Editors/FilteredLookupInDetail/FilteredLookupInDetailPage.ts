@@ -92,9 +92,7 @@ export class FilteredLookupDetailEditor extends OrderDetailsEditor {
 export class FilteredLookupInDetailDialog extends EntityDialog<OrderRow, any> {
 
     protected getFormKey() { return FilteredLookupInDetailForm.formKey; }
-    protected getIdProperty() { return OrderRow.idProperty; }
-    protected getLocalTextPrefix() { return OrderRow.localTextPrefix; }
-    protected getNameProperty() { return OrderRow.nameProperty; }
+    protected getRowDefinition() { return OrderRow; }
     protected getService() { return OrderService.baseUrl; }
 
     private form: FilteredLookupInDetailForm;

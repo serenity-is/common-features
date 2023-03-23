@@ -6,7 +6,6 @@ import { TerritoryDialog } from "./TerritoryDialog";
 export class TerritoryGrid extends EntityGrid<TerritoryRow, any> {
     protected getColumnsKey() { return TerritoryColumns.columnsKey; }
     protected getDialogType() { return <any>TerritoryDialog; }
-    protected getIdProperty() { return TerritoryRow.idProperty; }
-    protected getLocalTextPrefix() { return TerritoryRow.localTextPrefix; }
+    protected getRowDefinition() { return TerritoryRow; }
     protected getService() { return TerritoryService.baseUrl; }
 }

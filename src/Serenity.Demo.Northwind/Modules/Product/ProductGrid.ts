@@ -12,8 +12,7 @@ const fld = ProductRow.Fields;
 export class ProductGrid extends EntityGrid<ProductRow, any> {
     protected getColumnsKey() { return ProductColumns.columnsKey; }
     protected getDialogType() { return <any>ProductDialog; }
-    protected getIdProperty() { return ProductRow.idProperty; }
-    protected getLocalTextPrefix() { return ProductRow.localTextPrefix; }
+    protected getRowDefinition() { return ProductRow; }
     protected getService() { return ProductService.baseUrl; }
 
     private pendingChanges: Dictionary<any> = {};

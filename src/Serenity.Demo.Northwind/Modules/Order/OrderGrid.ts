@@ -11,8 +11,7 @@ const fld = OrderRow.Fields;
 export class OrderGrid extends EntityGrid<OrderRow, any> {
     protected getColumnsKey() { return OrderColumns.columnsKey; }
     protected getDialogType() { return <any>OrderDialog; }
-    protected getIdProperty() { return OrderRow.idProperty; }
-    protected getLocalTextPrefix() { return OrderRow.localTextPrefix; }
+    protected getRowDefinition() { return OrderRow; }
     protected getService() { return OrderService.baseUrl; }
 
     protected shippingStateFilter: EnumEditor;

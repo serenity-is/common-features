@@ -6,7 +6,6 @@ import { ShipperDialog } from "./ShipperDialog";
 export class ShipperGrid extends EntityGrid<ShipperRow, any> {
     protected getColumnsKey() { return ShipperColumns.columnsKey; }
     protected getDialogType() { return <any>ShipperDialog; }
-    protected getIdProperty() { return ShipperRow.idProperty; }
-    protected getLocalTextPrefix() { return ShipperRow.localTextPrefix; }
+    protected getRowDefinition() { return ShipperRow; }
     protected getService() { return ShipperService.baseUrl; }
 }

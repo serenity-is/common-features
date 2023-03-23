@@ -15,8 +15,7 @@ export class LookupFilterByMultipleGrid extends EntityGrid<ProductRow, any> {
 
     protected getColumnsKey() { return ProductColumns.columnsKey; }
     protected getDialogType() { return LookupFilterByMultipleDialog; }
-    protected getIdProperty() { return ProductRow.idProperty; }
-    protected getLocalTextPrefix() { return ProductRow.localTextPrefix; }
+    protected getRowDefinition() { return ProductRow; }
     protected getService() { return ProductService.baseUrl; }
 
     constructor(container: JQuery) {

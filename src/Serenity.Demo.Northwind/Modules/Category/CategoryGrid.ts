@@ -6,7 +6,6 @@ import { CategoryDialog } from "./CategoryDialog";
 export class CategoryGrid extends EntityGrid<CategoryRow, any> {
     protected getColumnsKey() { return CategoryColumns.columnsKey; }
     protected getDialogType() { return <any>CategoryDialog; }
-    protected getIdProperty() { return CategoryRow.idProperty; }
-    protected getLocalTextPrefix() { return CategoryRow.localTextPrefix; }
+    protected getRowDefinition() { return CategoryRow; }
     protected getService() { return CategoryService.baseUrl; }
 }

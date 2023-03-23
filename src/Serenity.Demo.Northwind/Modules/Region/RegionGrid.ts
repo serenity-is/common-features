@@ -6,7 +6,6 @@ import { RegionDialog } from "./RegionDialog";
 export class RegionGrid extends EntityGrid<RegionRow, any> {
     protected getColumnsKey() { return RegionColumns.columnsKey; }
     protected getDialogType() { return <any>RegionDialog; }
-    protected getIdProperty() { return RegionRow.idProperty; }
-    protected getLocalTextPrefix() { return RegionRow.localTextPrefix; }
+    protected getRowDefinition() { return RegionRow; }
     protected getService() { return RegionService.baseUrl; }
 }

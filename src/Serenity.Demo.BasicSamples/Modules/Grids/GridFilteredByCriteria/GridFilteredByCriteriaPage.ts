@@ -11,8 +11,7 @@ export class GridFilteredByCriteria extends EntityGrid<ProductRow, any> {
 
     protected getColumnsKey() { return ProductColumns.columnsKey; }
     protected getDialogType() { return ProductDialog; }
-    protected getIdProperty() { return ProductRow.idProperty; }
-    protected getLocalTextPrefix() { return ProductRow.localTextPrefix; }
+    protected getRowDefinition() { return ProductRow; }
     protected getService() { return ProductService.baseUrl; }
 
     protected onViewSubmit() {

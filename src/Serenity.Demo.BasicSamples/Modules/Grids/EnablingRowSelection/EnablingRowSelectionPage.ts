@@ -11,7 +11,6 @@ export default function pageInit() {
 export class RowSelectionGrid extends SelectableEntityGrid<SupplierRow, any> {
     protected getColumnsKey() { return SupplierColumns.columnsKey; }
     protected getDialogType() { return <any>SupplierDialog; }
-    protected getIdProperty() { return SupplierRow.idProperty; }
-    protected getLocalTextPrefix() { return SupplierRow.localTextPrefix; }
+    protected getRowDefinition() { return SupplierRow; }
     protected getService() { return SupplierService.baseUrl; }
 }

@@ -915,24 +915,19 @@ export declare namespace TerritoryService {
 }
 export declare class CategoryDialog extends EntityDialog<CategoryRow, any> {
 	protected getFormKey(): string;
-	protected getIdProperty(): string;
-	protected getLocalTextPrefix(): string;
-	protected getNameProperty(): string;
+	protected getRowDefinition(): typeof CategoryRow;
 	protected getService(): string;
 	protected form: CategoryForm;
 }
 export declare class CategoryGrid extends EntityGrid<CategoryRow, any> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): any;
-	protected getIdProperty(): string;
-	protected getLocalTextPrefix(): string;
+	protected getRowDefinition(): typeof CategoryRow;
 	protected getService(): string;
 }
 export declare class CustomerDialog extends EntityDialog<CustomerRow, any> {
 	protected getFormKey(): string;
-	protected getIdProperty(): string;
-	protected getLocalTextPrefix(): string;
-	protected getNameProperty(): string;
+	protected getRowDefinition(): typeof CustomerRow;
 	protected getService(): string;
 	protected form: CustomerForm;
 	private ordersGrid;
@@ -947,15 +942,12 @@ export declare class CustomerDialog extends EntityDialog<CustomerRow, any> {
 export declare class CustomerGrid extends EntityGrid<CustomerRow, any> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): any;
-	protected getIdProperty(): string;
-	protected getLocalTextPrefix(): string;
+	protected getRowDefinition(): typeof CustomerRow;
 	protected getService(): string;
 }
 export declare class OrderDialog extends EntityDialog<OrderRow, any> {
 	protected getFormKey(): string;
-	protected getIdProperty(): string;
-	protected getLocalTextPrefix(): string;
-	protected getNameProperty(): string;
+	protected getRowDefinition(): typeof OrderRow;
 	protected getService(): string;
 	protected form: OrderForm;
 	constructor();
@@ -968,8 +960,7 @@ export declare class CustomerOrderDialog extends OrderDialog {
 export declare class OrderGrid extends EntityGrid<OrderRow, any> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): any;
-	protected getIdProperty(): string;
-	protected getLocalTextPrefix(): string;
+	protected getRowDefinition(): typeof OrderRow;
 	protected getService(): string;
 	protected shippingStateFilter: EnumEditor;
 	constructor(container: JQuery);
@@ -1018,17 +1009,14 @@ export declare class FreightFormatter implements Formatter {
 }
 export declare class ProductDialog extends EntityDialog<ProductRow, any> {
 	protected getFormKey(): string;
-	protected getIdProperty(): string;
-	protected getLocalTextPrefix(): string;
-	protected getNameProperty(): string;
+	protected getRowDefinition(): typeof ProductRow;
 	protected getService(): string;
 	protected form: ProductForm;
 }
 export declare class ProductGrid extends EntityGrid<ProductRow, any> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): any;
-	protected getIdProperty(): string;
-	protected getLocalTextPrefix(): string;
+	protected getRowDefinition(): typeof ProductRow;
 	protected getService(): string;
 	private pendingChanges;
 	constructor(container: JQuery);
@@ -1054,24 +1042,19 @@ export declare class ProductGrid extends EntityGrid<ProductRow, any> {
 }
 export declare class RegionDialog extends EntityDialog<RegionRow, any> {
 	protected getFormKey(): string;
-	protected getIdProperty(): string;
-	protected getLocalTextPrefix(): string;
-	protected getNameProperty(): string;
+	protected getRowDefinition(): typeof RegionRow;
 	protected getService(): string;
 	protected form: RegionForm;
 }
 export declare class RegionGrid extends EntityGrid<RegionRow, any> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): any;
-	protected getIdProperty(): string;
-	protected getLocalTextPrefix(): string;
+	protected getRowDefinition(): typeof RegionRow;
 	protected getService(): string;
 }
 export declare class ShipperDialog extends EntityDialog<ShipperRow, any> {
 	protected getFormKey(): string;
-	protected getIdProperty(): string;
-	protected getLocalTextPrefix(): string;
-	protected getNameProperty(): string;
+	protected getRowDefinition(): typeof ShipperRow;
 	protected getService(): string;
 	protected form: ShipperForm;
 }
@@ -1081,38 +1064,31 @@ export declare class ShipperFormatter implements Formatter {
 export declare class ShipperGrid extends EntityGrid<ShipperRow, any> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): any;
-	protected getIdProperty(): string;
-	protected getLocalTextPrefix(): string;
+	protected getRowDefinition(): typeof ShipperRow;
 	protected getService(): string;
 }
 export declare class SupplierDialog extends EntityDialog<SupplierRow, any> {
 	protected getFormKey(): string;
-	protected getIdProperty(): string;
-	protected getLocalTextPrefix(): string;
-	protected getNameProperty(): string;
+	protected getRowDefinition(): typeof SupplierRow;
 	protected getService(): string;
 	protected form: SupplierForm;
 }
 export declare class SupplierGrid extends EntityGrid<SupplierRow, any> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): any;
-	protected getIdProperty(): string;
-	protected getLocalTextPrefix(): string;
+	protected getRowDefinition(): typeof SupplierRow;
 	protected getService(): string;
 }
 export declare class TerritoryDialog extends EntityDialog<TerritoryRow, any> {
 	protected getFormKey(): string;
-	protected getIdProperty(): string;
-	protected getLocalTextPrefix(): string;
-	protected getNameProperty(): string;
+	protected getRowDefinition(): typeof TerritoryRow;
 	protected getService(): string;
 	protected form: TerritoryForm;
 }
 export declare class TerritoryGrid extends EntityGrid<TerritoryRow, any> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): any;
-	protected getIdProperty(): string;
-	protected getLocalTextPrefix(): string;
+	protected getRowDefinition(): typeof TerritoryRow;
 	protected getService(): string;
 }
 

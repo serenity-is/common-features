@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 
 namespace Serenity.Demo.Northwind;
 
@@ -55,7 +55,7 @@ public sealed class ProductRow : Row<ProductRow.RowFields>, IIdRow, INameRow
         get => fields.CategoryID[this];
         set => fields.CategoryID[this] = value;
     }
-
+    
     [DisplayName("Quantity Per Unit"), Size(20)]
     public string QuantityPerUnit
     {
@@ -187,14 +187,6 @@ public sealed class ProductRow : Row<ProductRow.RowFields>, IIdRow, INameRow
     {
         get => fields.CategoryPicture[this];
         set => fields.CategoryPicture[this] = value;
-    }
-    public ProductRow()
-    {
-    }
-
-    public ProductRow(RowFields fields)
-        : base(fields)
-    {
     }
 
     public class RowFields : RowFieldsBase

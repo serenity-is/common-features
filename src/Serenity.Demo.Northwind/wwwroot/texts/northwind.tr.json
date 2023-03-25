@@ -40,7 +40,6 @@
   "Db.Northwind.Order.CustomerID": "Müşteri",
   "Db.Northwind.Order.DetailList": "Sipariş Detayı",
   "Db.Northwind.Order.EmployeeID": "Personel",
-  "Db.Northwind.Order.EmployeeName": "Personel",
   "Db.Northwind.Order.EntityPlural": "Siparişler",
   "Db.Northwind.Order.EntitySingular": "Sipariş",
   "Db.Northwind.Order.Freight": "Ağırlık",

@@ -1,6 +1,8 @@
-﻿namespace Serenity.Demo.Northwind;
+namespace Serenity.Demo.Northwind;
 
 #pragma warning disable CA2211 // Non-constant fields should not be visible
+
+[NestedLocalTexts]
 public static partial class Texts
 {
     public static partial class Validation

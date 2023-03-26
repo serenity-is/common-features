@@ -1,0 +1,20 @@
+{
+  "__comment__": "Auto generated template, don't modify!",
+  "Db.Common.UserPreference.EntityPlural": "User Preferences",
+  "Db.Common.UserPreference.EntitySingular": "UserPreference",
+  "Db.Common.UserPreference.Name": "Name",
+  "Db.Common.UserPreference.PreferenceType": "PreferenceType",
+  "Db.Common.UserPreference.UserId": "User ID",
+  "Db.Common.UserPreference.UserPreferenceId": "ID",
+  "Db.Common.UserPreference.Value": "Value",
+  "Site.BasicProgressDialog.CancelTitle": "Operation cancelled. Waiting for in progress calls to complete...",
+  "Site.BasicProgressDialog.PleaseWait": "Please wait...",
+  "Site.BulkServiceAction.AllHadErrorsFormat": "All {0} record(s) that are processed had errors!",
+  "Site.BulkServiceAction.AllSuccessFormat": "Finished processing on {0} record(s) with success.",
+  "Site.BulkServiceAction.ConfirmationFormat": "Perform this operation on {0} selected record(s)?",
+  "Site.BulkServiceAction.ErrorCount": "{0} error(s)",
+  "Site.BulkServiceAction.NothingToProcess": "Please select some records to process!",
+  "Site.BulkServiceAction.SomeHadErrorsFormat": "Finished processing on {0} record(s) with success. {1} record(s) had errors!",
+  "Site.BulkServiceAction.SuccessCount": "{0} done",
+  "Site.Dialogs.PendingChangesConfirmation": "You have pending changes. Save them?"
+}

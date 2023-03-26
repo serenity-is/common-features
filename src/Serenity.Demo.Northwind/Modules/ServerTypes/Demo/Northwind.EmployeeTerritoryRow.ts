@@ -3,25 +3,8 @@
 export interface EmployeeTerritoryRow {
     EmployeeID?: number;
     TerritoryID?: string;
-    EmployeeLastName?: string;
-    EmployeeFirstName?: string;
-    EmployeeTitle?: string;
-    EmployeeTitleOfCourtesy?: string;
-    EmployeeBirthDate?: string;
-    EmployeeHireDate?: string;
-    EmployeeAddress?: string;
-    EmployeeCity?: string;
-    EmployeeRegion?: string;
-    EmployeePostalCode?: string;
-    EmployeeCountry?: string;
-    EmployeeHomePhone?: string;
-    EmployeeExtension?: string;
-    EmployeePhoto?: number[];
-    EmployeeNotes?: string;
-    EmployeeReportsTo?: number;
-    EmployeePhotoPath?: string;
-    TerritoryTerritoryDescription?: string;
-    TerritoryRegionID?: number;
+    EmployeeFullName?: string;
+    TerritoryDescription?: string;
 }
 
 export abstract class EmployeeTerritoryRow {

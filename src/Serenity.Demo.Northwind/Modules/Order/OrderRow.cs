@@ -50,13 +50,6 @@ public sealed class OrderRow : Row<OrderRow.RowFields>, IIdRow, INameRow
         set => fields.EmployeeGender[this] = (int?)value;
     }
 
-    [Origin("e")]
-    public string EmployeeReportsToFullName
-    {
-        get => fields.EmployeeReportsToFullName[this];
-        set => fields.EmployeeReportsToFullName[this] = value;
-    }
-
     [DisplayName("Order Date"), NotNull]
     public DateTime? OrderDate
     {
@@ -191,33 +184,18 @@ public sealed class OrderRow : Row<OrderRow.RowFields>, IIdRow, INameRow
         set => fields.CustomerFax[this] = value;
     }
 
-    [Origin("via"), DisplayName("Ship Via")]
+    [Origin("via", nameof(ShipperRow.CompanyName)), DisplayName("Ship Via")]
     public string ShipViaCompanyName
     {
         get => fields.ShipViaCompanyName[this];
         set => fields.ShipViaCompanyName[this] = value;
     }
 
-    [Origin("via")]
-    public string ShipViaPhone
-    {
-        get => fields.ShipViaPhone[this];
-        set => fields.ShipViaPhone[this] = value;
-    }
-    
     [DisplayName("Details"), MasterDetailRelation(foreignKey: "OrderID"), NotMapped]
     public List<OrderDetailRow> DetailList
     {
         get => fields.DetailList[this];
         set => fields.DetailList[this] = value;
-    }
-    public OrderRow()
-    {
-    }
-
-    public OrderRow(RowFields fields)
-        : base(fields)
-    {
     }
 
     public class RowFields : RowFieldsBase
@@ -248,10 +226,8 @@ public sealed class OrderRow : Row<OrderRow.RowFields>, IIdRow, INameRow
 
         public StringField EmployeeFullName;
         public Int32Field EmployeeGender;
-        public StringField EmployeeReportsToFullName;
 
         public StringField ShipViaCompanyName;
-        public StringField ShipViaPhone;
 
         public Int32Field ShippingState;
         public RowListField<OrderDetailRow> DetailList;

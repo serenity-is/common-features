@@ -1,4 +1,4 @@
-﻿namespace Serenity.Demo.Northwind;
+namespace Serenity.Demo.Northwind;
 
 [ConnectionKey("Northwind"), Module("Northwind"), TableName("Suppliers")]
 [DisplayName("Suppliers"), InstanceName("Supplier")]
@@ -90,15 +90,6 @@ public sealed class SupplierRow : Row<SupplierRow.RowFields>, IIdRow, INameRow
         get => fields.HomePage[this];
         set => fields.HomePage[this] = value;
     }
-    public SupplierRow()
-    {
-    }
-
-    public SupplierRow(RowFields fields)
-        : base(fields)
-    {
-    }
-
     public class RowFields : RowFieldsBase
     {
         public Int32Field SupplierID;

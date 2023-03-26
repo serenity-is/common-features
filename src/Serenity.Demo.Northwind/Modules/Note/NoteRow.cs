@@ -1,4 +1,4 @@
-﻿namespace Serenity.Demo.Northwind;
+namespace Serenity.Demo.Northwind;
 
 [ConnectionKey("Northwind"), Module("Northwind"), TableName("Notes")]
 [DisplayName("Notes"), InstanceName("Note")]
@@ -68,15 +68,6 @@ public sealed class NoteRow : Row<NoteRow.RowFields>, IIdRow, INameRow, IInsertL
         {
             return Fields.InsertDate;
         }
-    }
-
-    public NoteRow()
-    {
-    }
-
-    public NoteRow(RowFields fields)
-        : base(fields)
-    {
     }
 
     public class RowFields : RowFieldsBase

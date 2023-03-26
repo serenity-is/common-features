@@ -5,7 +5,6 @@ export interface CustomerCustomerDemoRow {
     CustomerID?: string;
     CustomerTypeID?: string;
     CustomerCompanyName?: string;
-    CustomerTypeCustomerDesc?: string;
 }
 
 export abstract class CustomerCustomerDemoRow {

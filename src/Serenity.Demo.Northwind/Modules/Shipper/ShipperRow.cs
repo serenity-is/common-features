@@ -1,4 +1,4 @@
-﻿namespace Serenity.Demo.Northwind;
+namespace Serenity.Demo.Northwind;
 
 [ConnectionKey("Northwind"), Module("Northwind"), TableName("Shippers")]
 [DisplayName("Shippers"), InstanceName("Shipper")]
@@ -27,15 +27,6 @@ public sealed class ShipperRow : Row<ShipperRow.RowFields>, IIdRow, INameRow
         get => fields.Phone[this];
         set => fields.Phone[this] = value;
     }
-    public ShipperRow()
-    {
-    }
-
-    public ShipperRow(RowFields fields)
-        : base(fields)
-    {
-    }
-
     public class RowFields : RowFieldsBase
     {
         public Int32Field ShipperID;

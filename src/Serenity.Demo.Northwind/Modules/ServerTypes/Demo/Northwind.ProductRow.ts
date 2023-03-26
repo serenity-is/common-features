@@ -13,19 +13,8 @@ export interface ProductRow {
     UnitsOnOrder?: number;
     ReorderLevel?: number;
     SupplierCompanyName?: string;
-    SupplierContactName?: string;
-    SupplierContactTitle?: string;
-    SupplierAddress?: string;
-    SupplierCity?: string;
-    SupplierRegion?: string;
-    SupplierPostalCode?: string;
     SupplierCountry?: string;
-    SupplierPhone?: string;
-    SupplierFax?: string;
-    SupplierHomePage?: string;
     CategoryName?: string;
-    CategoryDescription?: string;
-    CategoryPicture?: number[];
 }
 
 export abstract class ProductRow {

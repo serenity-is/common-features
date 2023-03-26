@@ -1,5 +1,3 @@
-using System.IO;
-
 namespace Serenity.Demo.Northwind;
 
 [ConnectionKey("Northwind"), Module("Northwind"), TableName("Products")]
@@ -99,73 +97,10 @@ public sealed class ProductRow : Row<ProductRow.RowFields>, IIdRow, INameRow
     }
 
     [Origin("sup")]
-    public string SupplierContactName
-    {
-        get => fields.SupplierContactName[this];
-        set => fields.SupplierContactName[this] = value;
-    }
-
-    [Origin("sup")]
-    public string SupplierContactTitle
-    {
-        get => fields.SupplierContactTitle[this];
-        set => fields.SupplierContactTitle[this] = value;
-    }
-
-    [Origin("sup")]
-    public string SupplierAddress
-    {
-        get => fields.SupplierAddress[this];
-        set => fields.SupplierAddress[this] = value;
-    }
-
-    [Origin("sup")]
-    public string SupplierCity
-    {
-        get => fields.SupplierCity[this];
-        set => fields.SupplierCity[this] = value;
-    }
-
-    [Origin("sup")]
-    public string SupplierRegion
-    {
-        get => fields.SupplierRegion[this];
-        set => fields.SupplierRegion[this] = value;
-    }
-
-    [Origin("sup")]
-    public string SupplierPostalCode
-    {
-        get => fields.SupplierPostalCode[this];
-        set => fields.SupplierPostalCode[this] = value;
-    }
-
-    [Origin("sup")]
     public string SupplierCountry
     {
         get => fields.SupplierCountry[this];
         set => fields.SupplierCountry[this] = value;
-    }
-
-    [Origin("sup")]
-    public string SupplierPhone
-    {
-        get => fields.SupplierPhone[this];
-        set => fields.SupplierPhone[this] = value;
-    }
-
-    [Origin("sup")]
-    public string SupplierFax
-    {
-        get => fields.SupplierFax[this];
-        set => fields.SupplierFax[this] = value;
-    }
-
-    [Origin("sup")]
-    public string SupplierHomePage
-    {
-        get => fields.SupplierHomePage[this];
-        set => fields.SupplierHomePage[this] = value;
     }
 
     [Origin("cat"), DisplayName("Category")]
@@ -173,20 +108,6 @@ public sealed class ProductRow : Row<ProductRow.RowFields>, IIdRow, INameRow
     {
         get => fields.CategoryName[this];
         set => fields.CategoryName[this] = value;
-    }
-
-    [Origin("cat")]
-    public string CategoryDescription
-    {
-        get => fields.CategoryDescription[this];
-        set => fields.CategoryDescription[this] = value;
-    }
-
-    [Origin("cat")]
-    public Stream CategoryPicture
-    {
-        get => fields.CategoryPicture[this];
-        set => fields.CategoryPicture[this] = value;
     }
 
     public class RowFields : RowFieldsBase
@@ -204,19 +125,8 @@ public sealed class ProductRow : Row<ProductRow.RowFields>, IIdRow, INameRow
         public Int16Field ReorderLevel;
 
         public StringField SupplierCompanyName;
-        public StringField SupplierContactName;
-        public StringField SupplierContactTitle;
-        public StringField SupplierAddress;
-        public StringField SupplierCity;
-        public StringField SupplierRegion;
-        public StringField SupplierPostalCode;
         public StringField SupplierCountry;
-        public StringField SupplierPhone;
-        public StringField SupplierFax;
-        public StringField SupplierHomePage;
 
         public StringField CategoryName;
-        public StringField CategoryDescription;
-        public StreamField CategoryPicture;
     }
 }

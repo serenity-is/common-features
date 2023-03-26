@@ -10,15 +10,7 @@ export interface OrderDetailRow {
     OrderCustomerID?: string;
     OrderEmployeeID?: number;
     OrderDate?: string;
-    OrderShippedDate?: string;
-    OrderShipVia?: number;
-    OrderShipCity?: string;
-    OrderShipCountry?: string;
     ProductName?: string;
-    ProductDiscontinued?: boolean;
-    ProductSupplierID?: number;
-    ProductQuantityPerUnit?: string;
-    ProductUnitPrice?: number;
     LineTotal?: number;
 }
 

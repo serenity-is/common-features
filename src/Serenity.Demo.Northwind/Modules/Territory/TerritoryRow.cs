@@ -1,4 +1,4 @@
-﻿namespace Serenity.Demo.Northwind;
+namespace Serenity.Demo.Northwind;
 
 [ConnectionKey("Northwind"), Module("Northwind"), TableName("Territories")]
 [DisplayName("Territories"), InstanceName("Territory")]
@@ -41,15 +41,6 @@ public sealed class TerritoryRow : Row<TerritoryRow.RowFields>, IIdRow, INameRow
         get => fields.RegionDescription[this];
         set => fields.RegionDescription[this] = value;
     }
-    public TerritoryRow()
-    {
-    }
-
-    public TerritoryRow(RowFields fields)
-        : base(fields)
-    {
-    }
-
     public class RowFields : RowFieldsBase
     {
         public Int32Field ID;

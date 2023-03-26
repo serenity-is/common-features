@@ -37,19 +37,11 @@ public sealed class CustomerCustomerDemoRow : Row<CustomerCustomerDemoRow.RowFie
         set => fields.CustomerCompanyName[this] = value;
     }
 
-    [DisplayName("Customer Type Desc"), Origin(jCustomerType, nameof(CustomerDemographicRow.CustomerDesc))]
-    public string CustomerTypeCustomerDesc
-    {
-        get => fields.CustomerTypeCustomerDesc[this];
-        set => fields.CustomerTypeCustomerDesc[this] = value;
-    }
-
     public class RowFields : RowFieldsBase
     {
         public Int32Field ID;
         public StringField CustomerID;
         public StringField CustomerTypeID;
         public StringField CustomerCompanyName;
-        public StringField CustomerTypeCustomerDesc;
     }
 }

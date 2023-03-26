@@ -20,15 +20,6 @@ public sealed class RegionRow : Row<RegionRow.RowFields>, IIdRow, INameRow
         get => fields.RegionDescription[this];
         set => fields.RegionDescription[this] = value;
     }
-    public RegionRow()
-    {
-    }
-
-    public RegionRow(RowFields fields)
-        : base(fields)
-    {
-    }
-
     public class RowFields : RowFieldsBase
     {
         public Int32Field RegionID;

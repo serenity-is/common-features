@@ -28,9 +28,7 @@ export interface OrderRow {
     CustomerFax?: string;
     EmployeeFullName?: string;
     EmployeeGender?: Gender;
-    EmployeeReportsToFullName?: string;
     ShipViaCompanyName?: string;
-    ShipViaPhone?: string;
     ShippingState?: OrderShippingState;
     DetailList?: OrderDetailRow[];
 }

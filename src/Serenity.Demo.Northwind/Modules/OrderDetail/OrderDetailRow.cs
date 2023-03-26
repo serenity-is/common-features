@@ -79,67 +79,11 @@ public sealed class OrderDetailRow : Row<OrderDetailRow.RowFields>, IIdRow
         set => fields.OrderDate[this] = value;
     }
 
-    [Origin("o")]
-    public DateTime? OrderShippedDate
-    {
-        get => fields.OrderShippedDate[this];
-        set => fields.OrderShippedDate[this] = value;
-    }
-
-    [Origin("o")]
-    public int? OrderShipVia
-    {
-        get => fields.OrderShipVia[this];
-        set => fields.OrderShipVia[this] = value;
-    }
-
-    [Origin("o")]
-    public string OrderShipCity
-    {
-        get => fields.OrderShipCity[this];
-        set => fields.OrderShipCity[this] = value;
-    }
-
-    [Origin("o")]
-    public string OrderShipCountry
-    {
-        get => fields.OrderShipCountry[this];
-        set => fields.OrderShipCountry[this] = value;
-    }
-
     [Origin("p"), MinSelectLevel(SelectLevel.List)]
     public string ProductName
     {
         get => fields.ProductName[this];
         set => fields.ProductName[this] = value;
-    }
-
-    [Origin("p")]
-    public bool? ProductDiscontinued
-    {
-        get => fields.ProductDiscontinued[this];
-        set => fields.ProductDiscontinued[this] = value;
-    }
-
-    [Origin("p")]
-    public int? ProductSupplierID
-    {
-        get => fields.ProductSupplierID[this];
-        set => fields.ProductSupplierID[this] = value;
-    }
-
-    [Origin("p")]
-    public string ProductQuantityPerUnit
-    {
-        get => fields.ProductQuantityPerUnit[this];
-        set => fields.ProductQuantityPerUnit[this] = value;
-    }
-
-    [Origin("p")]
-    public decimal? ProductUnitPrice
-    {
-        get => fields.ProductUnitPrice[this];
-        set => fields.ProductUnitPrice[this] = value;
     }
 
     public class RowFields : RowFieldsBase
@@ -155,16 +99,8 @@ public sealed class OrderDetailRow : Row<OrderDetailRow.RowFields>, IIdRow
 
         public Int32Field OrderEmployeeID;
         public DateTimeField OrderDate;
-        public DateTimeField OrderShippedDate;
-        public Int32Field OrderShipVia;
-        public StringField OrderShipCity;
-        public StringField OrderShipCountry;
 
         public StringField ProductName;
-        public BooleanField ProductDiscontinued;
-        public Int32Field ProductSupplierID;
-        public StringField ProductQuantityPerUnit;
-        public DecimalField ProductUnitPrice;
 
         public DecimalField LineTotal;
     }

@@ -1,4 +1,4 @@
-﻿namespace Serenity.Demo.Northwind;
+namespace Serenity.Demo.Northwind;
 
 [ConnectionKey("Northwind"), Module("Northwind"), TableName("[Sales by Category]")]
 [DisplayName("Sales by Category"), InstanceName("Sales by Category")]
@@ -32,15 +32,6 @@ public sealed class SalesByCategoryRow : Row<SalesByCategoryRow.RowFields>, INam
     {
         get => fields.ProductSales[this];
         set => fields.ProductSales[this] = value;
-    }
-
-    public SalesByCategoryRow()
-    {
-    }
-
-    public SalesByCategoryRow(RowFields fields)
-        : base(fields)
-    {
     }
 
     public class RowFields : RowFieldsBase

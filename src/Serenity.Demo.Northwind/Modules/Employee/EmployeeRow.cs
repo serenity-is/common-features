@@ -151,7 +151,7 @@ public sealed class EmployeeRow : Row<EmployeeRow.RowFields>, IIdRow, INameRow
         set => fields.PhotoPath[this] = value;
     }
 
-    [Concat($"jReportsTo.{nameof(FirstName)}", "' '", $"jReportsTo.{nameof(LastName)}")]
+    [Origin("jReportsTo", nameof(FullName))]
     public string ReportsToFullName
     {
         get => fields.ReportsToFullName[this];

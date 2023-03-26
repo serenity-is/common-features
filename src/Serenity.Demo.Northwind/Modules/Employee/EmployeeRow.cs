@@ -150,140 +150,11 @@ public sealed class EmployeeRow : Row<EmployeeRow.RowFields>, IIdRow, INameRow
         get => fields.PhotoPath[this];
         set => fields.PhotoPath[this] = value;
     }
-
-    [Origin("jReportsTo")]
-    public string ReportsToLastName
-    {
-        get => fields.ReportsToLastName[this];
-        set => fields.ReportsToLastName[this] = value;
-    }
-
-    [Origin("jReportsTo")]
-    public string ReportsToFirstName
-    {
-        get => fields.ReportsToFirstName[this];
-        set => fields.ReportsToFirstName[this] = value;
-    }
-
     [Origin("jReportsTo")]
     public string ReportsToFullName
     {
         get => fields.ReportsToFullName[this];
         set => fields.ReportsToFullName[this] = value;
-    }
-
-    [Origin("jReportsTo")]
-    public string ReportsToTitle
-    {
-        get => fields.ReportsToTitle[this];
-        set => fields.ReportsToTitle[this] = value;
-    }
-
-    [Origin("jReportsTo")]
-    public string ReportsToTitleOfCourtesy
-    {
-        get => fields.ReportsToTitleOfCourtesy[this];
-        set => fields.ReportsToTitleOfCourtesy[this] = value;
-    }
-
-    [Origin("jReportsTo")]
-    public DateTime? ReportsToBirthDate
-    {
-        get => fields.ReportsToBirthDate[this];
-        set => fields.ReportsToBirthDate[this] = value;
-    }
-
-    [Origin("jReportsTo")]
-    public DateTime? ReportsToHireDate
-    {
-        get => fields.ReportsToHireDate[this];
-        set => fields.ReportsToHireDate[this] = value;
-    }
-
-    [Origin("jReportsTo")]
-    public string ReportsToAddress
-    {
-        get => fields.ReportsToAddress[this];
-        set => fields.ReportsToAddress[this] = value;
-    }
-
-    [Origin("jReportsTo")]
-    public string ReportsToCity
-    {
-        get => fields.ReportsToCity[this];
-        set => fields.ReportsToCity[this] = value;
-    }
-
-    [Origin("jReportsTo")]
-    public string ReportsToRegion
-    {
-        get => fields.ReportsToRegion[this];
-        set => fields.ReportsToRegion[this] = value;
-    }
-
-    [Origin("jReportsTo")]
-    public string ReportsToPostalCode
-    {
-        get => fields.ReportsToPostalCode[this];
-        set => fields.ReportsToPostalCode[this] = value;
-    }
-
-    [Origin("jReportsTo")]
-    public string ReportsToCountry
-    {
-        get => fields.ReportsToCountry[this];
-        set => fields.ReportsToCountry[this] = value;
-    }
-
-    [Origin("jReportsTo")]
-    public string ReportsToHomePhone
-    {
-        get => fields.ReportsToHomePhone[this];
-        set => fields.ReportsToHomePhone[this] = value;
-    }
-
-    [Origin("jReportsTo")]
-    public string ReportsToExtension
-    {
-        get => fields.ReportsToExtension[this];
-        set => fields.ReportsToExtension[this] = value;
-    }
-
-    [Origin("jReportsTo")]
-    public Stream ReportsToPhoto
-    {
-        get => fields.ReportsToPhoto[this];
-        set => fields.ReportsToPhoto[this] = value;
-    }
-
-    [Origin("jReportsTo")]
-    public string ReportsToNotes
-    {
-        get => fields.ReportsToNotes[this];
-        set => fields.ReportsToNotes[this] = value;
-    }
-
-    [Origin("jReportsTo")]
-    public int? ReportsToReportsTo
-    {
-        get => fields.ReportsToReportsTo[this];
-        set => fields.ReportsToReportsTo[this] = value;
-    }
-
-    [Origin("jReportsTo")]
-    public string ReportsToPhotoPath
-    {
-        get => fields.ReportsToPhotoPath[this];
-        set => fields.ReportsToPhotoPath[this] = value;
-    }
-
-    public EmployeeRow()
-    {
-    }
-
-    public EmployeeRow(RowFields fields)
-        : base(fields)
-    {
     }
 
     public class RowFields : RowFieldsBase
@@ -309,23 +180,6 @@ public sealed class EmployeeRow : Row<EmployeeRow.RowFields>, IIdRow, INameRow
         public StringField PhotoPath;
 
         public StringField ReportsToFullName;
-        public StringField ReportsToLastName;
-        public StringField ReportsToFirstName;
-        public StringField ReportsToTitle;
-        public StringField ReportsToTitleOfCourtesy;
-        public DateTimeField ReportsToBirthDate;
-        public DateTimeField ReportsToHireDate;
-        public StringField ReportsToAddress;
-        public StringField ReportsToCity;
-        public StringField ReportsToRegion;
-        public StringField ReportsToPostalCode;
-        public StringField ReportsToCountry;
-        public StringField ReportsToHomePhone;
-        public StringField ReportsToExtension;
-        public StreamField ReportsToPhoto;
-        public StringField ReportsToNotes;
-        public Int32Field ReportsToReportsTo;
-        public StringField ReportsToPhotoPath;
 
         public Int32Field Gender;
     }

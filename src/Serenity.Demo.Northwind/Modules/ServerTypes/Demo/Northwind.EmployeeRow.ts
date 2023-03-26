@@ -22,23 +22,6 @@ export interface EmployeeRow {
     ReportsTo?: number;
     PhotoPath?: string;
     ReportsToFullName?: string;
-    ReportsToLastName?: string;
-    ReportsToFirstName?: string;
-    ReportsToTitle?: string;
-    ReportsToTitleOfCourtesy?: string;
-    ReportsToBirthDate?: string;
-    ReportsToHireDate?: string;
-    ReportsToAddress?: string;
-    ReportsToCity?: string;
-    ReportsToRegion?: string;
-    ReportsToPostalCode?: string;
-    ReportsToCountry?: string;
-    ReportsToHomePhone?: string;
-    ReportsToExtension?: string;
-    ReportsToPhoto?: number[];
-    ReportsToNotes?: string;
-    ReportsToReportsTo?: number;
-    ReportsToPhotoPath?: string;
     Gender?: Gender;
 }
 

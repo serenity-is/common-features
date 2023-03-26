@@ -26,5 +26,20 @@ public static class ExtensionsTexts
         {
             public static readonly LocalText PendingChangesConfirmation = "You have pending changes. Save them?";
         }
+
+        public static class Translation
+        {
+            public static readonly LocalText EntityPlural = "Translations";
+            public static readonly LocalText Key = "Local Text Key";
+            public static readonly LocalText SourceLanguage = "Source Language";
+            public static readonly LocalText SourceText = "Effective Translation in Source Language";
+            public static readonly LocalText TargetLanguage = "Target Language";
+            public static readonly LocalText TargetText = "Effective Translation in Target Language";
+            public static readonly LocalText CustomText = "User Translation in Target Language";
+            public static readonly LocalText OverrideConfirmation = "Overwrite user translation with clicked text?";
+            public static readonly LocalText SaveChangesButton = "Save Changes";
+            public static readonly LocalText UserTranslated = "User Translated";
+            public static readonly LocalText HasTranslation = "Has Translation";
+        }
     }
 }

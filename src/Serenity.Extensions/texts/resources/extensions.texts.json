@@ -16,5 +16,16 @@
   "Site.BulkServiceAction.NothingToProcess": "Please select some records to process!",
   "Site.BulkServiceAction.SomeHadErrorsFormat": "Finished processing on {0} record(s) with success. {1} record(s) had errors!",
   "Site.BulkServiceAction.SuccessCount": "{0} done",
-  "Site.Dialogs.PendingChangesConfirmation": "You have pending changes. Save them?"
+  "Site.Dialogs.PendingChangesConfirmation": "You have pending changes. Save them?",
+  "Site.Translation.CustomText": "User Translation in Target Language",
+  "Site.Translation.EntityPlural": "Translations",
+  "Site.Translation.HasTranslation": "Has Translation",
+  "Site.Translation.Key": "Local Text Key",
+  "Site.Translation.OverrideConfirmation": "Overwrite user translation with clicked text?",
+  "Site.Translation.SaveChangesButton": "Save Changes",
+  "Site.Translation.SourceLanguage": "Source Language",
+  "Site.Translation.SourceText": "Effective Translation in Source Language",
+  "Site.Translation.TargetLanguage": "Target Language",
+  "Site.Translation.TargetText": "Effective Translation in Target Language",
+  "Site.Translation.UserTranslated": "User Translated"
 }

@@ -49,8 +49,6 @@
     <Content Include="$(MSBuildProjectDirectory)\*.json;$(MSBuildProjectDirectory)\tsbuild*.js" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" Pack="false" />
     <None Include="$(MSBuildProjectDirectory)\dist\**" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" Pack="true" PackagePath="dist\" />
     <TypingsToPackage Include="wwwroot\index.d.ts" PackagePath="typings\$(ProjectName.ToLowerInvariant())\index.d.ts" Condition="Exists('wwwroot\index.d.ts') OR Exists('tsconfig.json')" />
-    <Content Remove="texts\**\*.json" />
-    <EmbeddedResource Include="texts\**\*.json" WithCulture="false" Culture="" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Microsoft.Extensions.Options" />

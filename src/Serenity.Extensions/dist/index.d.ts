@@ -22,6 +22,32 @@ export interface GetNextNumberResponse extends ServiceResponse {
 	Number?: number;
 	Serial?: string;
 }
+export interface TranslationItem {
+	Key?: string;
+	SourceText?: string;
+	TargetText?: string;
+	CustomText?: string;
+	HasTranslation?: boolean;
+	UserTranslated?: boolean;
+}
+export interface TranslationListRequest extends ListRequest {
+	SourceLanguageID?: string;
+	TargetLanguageID?: string;
+}
+export interface TranslationListResponse extends ListResponse<TranslationItem> {
+	KeysByAssembly?: {
+		[key: string]: string[];
+	};
+}
+export interface TranslationUpdateRequest extends ServiceRequest {
+	TargetLanguageID?: string;
+	Translations?: {
+		[key: string]: string;
+	};
+}
+export interface TranslationUpdateResponse extends ServiceResponse {
+	SavedPath?: string;
+}
 export interface UserPreferenceRetrieveRequest extends ServiceRequest {
 	PreferenceType?: string;
 	Name?: string;

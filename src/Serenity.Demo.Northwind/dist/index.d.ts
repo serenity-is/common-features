@@ -94,7 +94,6 @@ export interface CustomerCustomerDemoRow {
 	CustomerID?: string;
 	CustomerTypeID?: string;
 	CustomerCompanyName?: string;
-	CustomerTypeCustomerDesc?: string;
 }
 export declare abstract class CustomerCustomerDemoRow {
 	static readonly idProperty = "ID";
@@ -305,23 +304,6 @@ export interface EmployeeRow {
 	ReportsTo?: number;
 	PhotoPath?: string;
 	ReportsToFullName?: string;
-	ReportsToLastName?: string;
-	ReportsToFirstName?: string;
-	ReportsToTitle?: string;
-	ReportsToTitleOfCourtesy?: string;
-	ReportsToBirthDate?: string;
-	ReportsToHireDate?: string;
-	ReportsToAddress?: string;
-	ReportsToCity?: string;
-	ReportsToRegion?: string;
-	ReportsToPostalCode?: string;
-	ReportsToCountry?: string;
-	ReportsToHomePhone?: string;
-	ReportsToExtension?: string;
-	ReportsToPhoto?: number[];
-	ReportsToNotes?: string;
-	ReportsToReportsTo?: number;
-	ReportsToPhotoPath?: string;
 	Gender?: Gender;
 }
 export declare abstract class EmployeeRow {
@@ -341,25 +323,8 @@ export declare abstract class EmployeeRow {
 export interface EmployeeTerritoryRow {
 	EmployeeID?: number;
 	TerritoryID?: string;
-	EmployeeLastName?: string;
-	EmployeeFirstName?: string;
-	EmployeeTitle?: string;
-	EmployeeTitleOfCourtesy?: string;
-	EmployeeBirthDate?: string;
-	EmployeeHireDate?: string;
-	EmployeeAddress?: string;
-	EmployeeCity?: string;
-	EmployeeRegion?: string;
-	EmployeePostalCode?: string;
-	EmployeeCountry?: string;
-	EmployeeHomePhone?: string;
-	EmployeeExtension?: string;
-	EmployeePhoto?: number[];
-	EmployeeNotes?: string;
-	EmployeeReportsTo?: number;
-	EmployeePhotoPath?: string;
-	TerritoryTerritoryDescription?: string;
-	TerritoryRegionID?: number;
+	EmployeeFullName?: string;
+	TerritoryDescription?: string;
 }
 export declare abstract class EmployeeTerritoryRow {
 	static readonly idProperty = "EmployeeID";
@@ -398,15 +363,7 @@ export interface OrderDetailRow {
 	OrderCustomerID?: string;
 	OrderEmployeeID?: number;
 	OrderDate?: string;
-	OrderShippedDate?: string;
-	OrderShipVia?: number;
-	OrderShipCity?: string;
-	OrderShipCountry?: string;
 	ProductName?: string;
-	ProductDiscontinued?: boolean;
-	ProductSupplierID?: number;
-	ProductQuantityPerUnit?: string;
-	ProductUnitPrice?: number;
 	LineTotal?: number;
 }
 export declare abstract class OrderDetailRow {
@@ -498,9 +455,7 @@ export interface OrderRow {
 	CustomerFax?: string;
 	EmployeeFullName?: string;
 	EmployeeGender?: Gender;
-	EmployeeReportsToFullName?: string;
 	ShipViaCompanyName?: string;
-	ShipViaPhone?: string;
 	ShippingState?: OrderShippingState;
 	DetailList?: OrderDetailRow[];
 }
@@ -628,19 +583,8 @@ export interface ProductRow {
 	UnitsOnOrder?: number;
 	ReorderLevel?: number;
 	SupplierCompanyName?: string;
-	SupplierContactName?: string;
-	SupplierContactTitle?: string;
-	SupplierAddress?: string;
-	SupplierCity?: string;
-	SupplierRegion?: string;
-	SupplierPostalCode?: string;
 	SupplierCountry?: string;
-	SupplierPhone?: string;
-	SupplierFax?: string;
-	SupplierHomePage?: string;
 	CategoryName?: string;
-	CategoryDescription?: string;
-	CategoryPicture?: number[];
 }
 export declare abstract class ProductRow {
 	static readonly idProperty = "ProductID";

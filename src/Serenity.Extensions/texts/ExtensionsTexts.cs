@@ -30,6 +30,10 @@ public static class ExtensionsTexts
         public static class Translation
         {
             public static readonly LocalText Assembly = "Assembly";
+            public static readonly LocalText CopySuccessMessage = "Copied texts to clipboard in JSON format.";
+            public static readonly LocalText CopyFailMessage = "Failed to Copy to clipboard! It might be due to not having HTTPS or necessary permissions.";
+            public static readonly LocalText CopySourceTranslations = "Copy source texts to clipboard in JSON format";
+            public static readonly LocalText CopyTargetTranslations = "Copy target texts to clipboard in JSON format";
             public static readonly LocalText CustomText = "User Translation in Target Language";
             public static readonly LocalText EntityPlural = "Translations";
             public static readonly LocalText HasTranslation = "Has Translation";

@@ -13,7 +13,7 @@
   "Site.BulkServiceAction.ConfirmationFormat": "Voer deze bewerking uit op {0} geselecteerde record (s)?",
   "Site.BulkServiceAction.ErrorCount": "Fout {0}",
   "Site.BulkServiceAction.NothingToProcess": "Selecteer ",
-  "Site.BulkServiceAction.SomeHadErrorsFormat": "Verwerking is met succes voltooid op {0} record (records",
+  "Site.BulkServiceAction.SomeHadErrorsFormat": null,
   "Site.BulkServiceAction.SuccessCount": "{0} gedaan",
   "Site.Dialogs.PendingChangesConfirmation": "U heeft openstaande wijziginge",
   "Site.Translation.Assembly": "Montage",

@@ -13,7 +13,7 @@
   "Site.BulkServiceAction.ConfirmationFormat": "Lakukan operasi ini pada {0} catatan (catatan) yang dipilih?",
   "Site.BulkServiceAction.ErrorCount": "Kesalahan {0}",
   "Site.BulkServiceAction.NothingToProcess": "Silakan pilih beberapa catatan untuk diproses!",
-  "Site.BulkServiceAction.SomeHadErrorsFormat": "Pemrosesan berhasil pada {0} catatan (catatan",
+  "Site.BulkServiceAction.SomeHadErrorsFormat": null,
   "Site.BulkServiceAction.SuccessCount": "{0} selesai",
   "Site.Dialogs.PendingChangesConfirmation": "Anda memiliki perubahan tertund",
   "Site.Translation.Assembly": "Assembling",

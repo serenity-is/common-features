@@ -13,7 +13,7 @@
   "Site.BulkServiceAction.ConfirmationFormat": "Realizar esta operação em {0} registro (s) selecionado (s)?",
   "Site.BulkServiceAction.ErrorCount": "Erro {0}",
   "Site.BulkServiceAction.NothingToProcess": "Por favor, selecione alguns registros para processar!",
-  "Site.BulkServiceAction.SomeHadErrorsFormat": "Processamento concluído com sucesso em {0} registro (registros",
+  "Site.BulkServiceAction.SomeHadErrorsFormat": null,
   "Site.BulkServiceAction.SuccessCount": "{0} feito",
   "Site.Dialogs.PendingChangesConfirmation": "Você tem alterações pendente",
   "Site.Translation.Assembly": "Montagem",

@@ -13,7 +13,7 @@
   "Site.BulkServiceAction.ConfirmationFormat": "Thực hiện thao tác này trên {0} bản ghi (bản ghi) đã chọn?",
   "Site.BulkServiceAction.ErrorCount": "Lỗi {0}",
   "Site.BulkServiceAction.NothingToProcess": "Vui lòng chọn một số bản ghi để xử lý!",
-  "Site.BulkServiceAction.SomeHadErrorsFormat": "Xử lý đã hoàn thành thành công trên {0} bản ghi (bản ghi",
+  "Site.BulkServiceAction.SomeHadErrorsFormat": null,
   "Site.BulkServiceAction.SuccessCount": "{0} hoàn thành",
   "Site.Dialogs.PendingChangesConfirmation": "Bạn có thay đổi đang ch",
   "Site.Translation.Assembly": "Lắp ráp",

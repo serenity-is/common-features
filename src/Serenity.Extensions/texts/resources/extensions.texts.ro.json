@@ -13,7 +13,7 @@
   "Site.BulkServiceAction.ConfirmationFormat": "Efectuați această operațiune pe {0} înregistrare (înregistrări) selectată (selectate)?",
   "Site.BulkServiceAction.ErrorCount": "Eroare {0}",
   "Site.BulkServiceAction.NothingToProcess": "Vă rugăm să selectați câteva înregistrări pentru a le procesa!",
-  "Site.BulkServiceAction.SomeHadErrorsFormat": "Procesarea a fost finalizată cu succes pe {0} înregistrare (înregistrări",
+  "Site.BulkServiceAction.SomeHadErrorsFormat": null,
   "Site.BulkServiceAction.SuccessCount": "{0} făcut",
   "Site.Dialogs.PendingChangesConfirmation": "Aveți modificări în așteptar",
   "Site.Translation.Assembly": "Asamblare",

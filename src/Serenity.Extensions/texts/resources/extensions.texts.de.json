@@ -13,7 +13,7 @@
   "Site.BulkServiceAction.ConfirmationFormat": "Diesen Vorgang auf {0} ausgewählten Datensatz (Datensätze) durchführen?",
   "Site.BulkServiceAction.ErrorCount": "Fehler {0}",
   "Site.BulkServiceAction.NothingToProcess": "Bitte wählen Sie einige Datensätze zur Verarbeitung aus!",
-  "Site.BulkServiceAction.SomeHadErrorsFormat": "Die Bearbeitung wurde erfolgreich auf {0} Datensatz (Datensätzen) abgeschlosse",
+  "Site.BulkServiceAction.SomeHadErrorsFormat": null,
   "Site.BulkServiceAction.SuccessCount": "{0} erledigt",
   "Site.Dialogs.PendingChangesConfirmation": "Sie haben ausstehende Änderunge",
   "Site.Translation.Assembly": "Montage",

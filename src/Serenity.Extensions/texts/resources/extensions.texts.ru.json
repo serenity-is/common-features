@@ -13,7 +13,7 @@
   "Site.BulkServiceAction.ConfirmationFormat": "Выполнить эту операцию на {0} выбранной записи (записях)?",
   "Site.BulkServiceAction.ErrorCount": "Ошибка {0}",
   "Site.BulkServiceAction.NothingToProcess": "Пожалуйста, выберите некоторые записи для обработки!",
-  "Site.BulkServiceAction.SomeHadErrorsFormat": "Обработка была успешно завершена на {0} записи (записях",
+  "Site.BulkServiceAction.SomeHadErrorsFormat": null,
   "Site.BulkServiceAction.SuccessCount": "{0} выполнено",
   "Site.Dialogs.PendingChangesConfirmation": "У вас есть отложенные изменени",
   "Site.Translation.Assembly": "Сборка",

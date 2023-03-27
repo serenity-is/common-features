@@ -13,7 +13,7 @@
   "Site.BulkServiceAction.ConfirmationFormat": "این عمل را بر روی {0} رکورد انتخاب شده انجام دهید؟",
   "Site.BulkServiceAction.ErrorCount": "خطا {0}",
   "Site.BulkServiceAction.NothingToProcess": "لطفا برخی از رکوردها را برای پردازش انتخاب کنید!",
-  "Site.BulkServiceAction.SomeHadErrorsFormat": "با موفقیت روی {0} رکورد (رکوردها) پردازش انجام ش",
+  "Site.BulkServiceAction.SomeHadErrorsFormat": null,
   "Site.BulkServiceAction.SuccessCount": "{0} انجام شد",
   "Site.Dialogs.PendingChangesConfirmation": "شما تغییرات در حال انتظار داری",
   "Site.Translation.Assembly": "تجمیع",

@@ -26,7 +26,8 @@ export class OrderGrid extends EntityGrid<OrderRow, any> {
         filters.push({
             type: LookupEditor,
             options: {
-                lookupKey: ProductRow.lookupKey
+                lookupKey: ProductRow.lookupKey,
+                async: true
             },
             field: 'ProductID',
             title: 'Contains Product in Details',

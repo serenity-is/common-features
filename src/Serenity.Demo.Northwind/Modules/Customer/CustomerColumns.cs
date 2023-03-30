@@ -1,4 +1,4 @@
-﻿using Serenity.Reporting;
+using Serenity.Reporting;
 
 namespace Serenity.Demo.Northwind.Columns;
 
@@ -18,9 +18,9 @@ public class CustomerColumns
     public string Region { get; set; }
     [Width(100)]
     public string PostalCode { get; set; }
-    [Width(130), LookupEditor(typeof(Lookups.CustomerCountryLookup)), QuickFilter(CssClass = "hidden-xs")]
+    [Width(130), AsyncLookupEditor(typeof(Lookups.CustomerCountryLookup)), QuickFilter(CssClass = "hidden-xs")]
     public string Country { get; set; }
-    [Width(120), LookupEditor(typeof(Lookups.CustomerCityLookup))]
+    [Width(120), AsyncLookupEditor(typeof(Lookups.CustomerCityLookup))]
     [QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("cascadeFrom", "Country")]
     public string City { get; set; }
     [Width(120)]

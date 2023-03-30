@@ -1,4 +1,4 @@
-﻿namespace Serenity.Demo.Northwind.Forms;
+namespace Serenity.Demo.Northwind.Forms;
 
 [ColumnsScript("Northwind.Supplier")]
 [BasedOnRow(typeof(SupplierRow), CheckNames = true)]
@@ -17,7 +17,7 @@ public class SupplierColumns
     [Width(80)]
     public string Region { get; set; }
     [Width(130)]
-    [LookupEditor(typeof(Lookups.SupplierCountryLookup)), QuickFilter]
+    [AsyncLookupEditor(typeof(Lookups.SupplierCountryLookup)), QuickFilter]
     public string Country { get; set; }
     [Width(130)]
     public string City { get; set; }

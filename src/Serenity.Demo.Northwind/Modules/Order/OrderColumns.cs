@@ -1,4 +1,4 @@
-﻿namespace Serenity.Demo.Northwind.Columns;
+namespace Serenity.Demo.Northwind.Columns;
 
 [ColumnsScript("Northwind.Order")]
 [BasedOnRow(typeof(OrderRow), CheckNames = true)]
@@ -26,10 +26,10 @@ public class OrderColumns
     [Width(140), ShipperFormatter, QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("multiple", true)]
     public string ShipViaCompanyName { get; set; }
 
-    [Width(100), QuickFilter(CssClass = "hidden-xs"), LookupEditor(typeof(Lookups.OrderShipCountryLookup))]
+    [Width(100), QuickFilter(CssClass = "hidden-xs"), AsyncLookupEditor(typeof(Lookups.OrderShipCountryLookup))]
     public string ShipCountry { get; set; }
 
-    [Width(100), LookupEditor(typeof(Lookups.OrderShipCityLookup))]
+    [Width(100), AsyncLookupEditor(typeof(Lookups.OrderShipCityLookup))]
     [QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("CascadeFrom", "ShipCountry")]
     public string ShipCity { get; set; }
 

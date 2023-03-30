@@ -1,4 +1,4 @@
-﻿namespace Serenity.Demo.Northwind;
+namespace Serenity.Demo.Northwind;
 
 [ConnectionKey("Northwind"), Module("Northwind"), TableName("Customers")]
 [DisplayName("Customers"), InstanceName("Customer")]
@@ -52,7 +52,7 @@ public sealed class CustomerRow : Row<CustomerRow.RowFields>, IIdRow, INameRow
         set => fields.Address[this] = value;
     }
 
-    [DisplayName("City"), Size(15), LookupEditor(typeof(Lookups.CustomerCityLookup), CascadeFrom = "Country", AutoComplete = true)]
+    [DisplayName("City"), Size(15), AsyncLookupEditor(typeof(Lookups.CustomerCityLookup), CascadeFrom = "Country", AutoComplete = true)]
     public string City
     {
         get => fields.City[this];
@@ -73,7 +73,7 @@ public sealed class CustomerRow : Row<CustomerRow.RowFields>, IIdRow, INameRow
         set => fields.PostalCode[this] = value;
     }
 
-    [DisplayName("Country"), Size(15), LookupEditor(typeof(Lookups.CustomerCountryLookup), AutoComplete = true)]
+    [DisplayName("Country"), Size(15), AsyncLookupEditor(typeof(Lookups.CustomerCountryLookup), AutoComplete = true)]
     public string Country
     {
         get => fields.Country[this];
@@ -101,7 +101,7 @@ public sealed class CustomerRow : Row<CustomerRow.RowFields>, IIdRow, INameRow
         set => fields.LastContactDate[this] = value;
     }
 
-    [Origin("cd"), LookupEditor(typeof(EmployeeRow))]
+    [Origin("cd"), AsyncLookupEditor(typeof(EmployeeRow))]
     public int? LastContactedBy
     {
         get => fields.LastContactedBy[this];
@@ -129,21 +129,13 @@ public sealed class CustomerRow : Row<CustomerRow.RowFields>, IIdRow, INameRow
         set => fields.NoteList[this] = value;
     }
     
-    [DisplayName("Representatives"), LookupEditor(typeof(EmployeeRow), Multiple = true), NotMapped]
+    [DisplayName("Representatives"), AsyncLookupEditor(typeof(EmployeeRow), Multiple = true), NotMapped]
     [LinkingSetRelation(typeof(CustomerRepresentativesRow), "CustomerId", "EmployeeId")]
     [MinSelectLevel(SelectLevel.Details), QuickFilter(CssClass = "hidden-xs")]
     public List<int> Representatives
     {
         get => fields.Representatives[this];
         set => fields.Representatives[this] = value;
-    }
-    public CustomerRow()
-    {
-    }
-
-    public CustomerRow(RowFields fields)
-        : base(fields)
-    {
     }
 
     public class RowFields : RowFieldsBase

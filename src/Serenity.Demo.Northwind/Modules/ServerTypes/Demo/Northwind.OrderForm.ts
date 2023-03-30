@@ -1,5 +1,5 @@
 ﻿import { CustomerEditor } from "@/Customer/CustomerEditor";
-import { DateEditor, LookupEditor, DecimalEditor, StringEditor, PrefixedContext } from "@serenity-is/corelib";
+import { DateEditor, AsyncLookupEditor, DecimalEditor, StringEditor, PrefixedContext } from "@serenity-is/corelib";
 import { OrderDetailsEditor } from "@/OrderDetail/OrderDetailsEditor";
 import { initFormType } from "@serenity-is/corelib/q";
 
@@ -7,10 +7,10 @@ export interface OrderForm {
     CustomerID: CustomerEditor;
     OrderDate: DateEditor;
     RequiredDate: DateEditor;
-    EmployeeID: LookupEditor;
+    EmployeeID: AsyncLookupEditor;
     DetailList: OrderDetailsEditor;
     ShippedDate: DateEditor;
-    ShipVia: LookupEditor;
+    ShipVia: AsyncLookupEditor;
     Freight: DecimalEditor;
     ShipName: StringEditor;
     ShipAddress: StringEditor;
@@ -32,7 +32,7 @@ export class OrderForm extends PrefixedContext {
 
             var w0 = CustomerEditor;
             var w1 = DateEditor;
-            var w2 = LookupEditor;
+            var w2 = AsyncLookupEditor;
             var w3 = OrderDetailsEditor;
             var w4 = DecimalEditor;
             var w5 = StringEditor;

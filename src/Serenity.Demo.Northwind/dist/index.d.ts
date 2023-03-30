@@ -2,7 +2,7 @@
 /// <reference types="jquery.validation" />
 /// <reference types="jqueryui" />
 
-import { BooleanEditor, CaptureOperationType, DateEditor, DecimalEditor, EmailAddressEditor, EntityDialog, EntityGrid, EnumEditor, Formatter, IGetEditValue, ISetEditValue, ImageUploadEditor, IntegerEditor, LookupEditor, LookupEditorBase, LookupEditorOptions, PrefixedContext, StringEditor, TemplatedDialog, TemplatedWidget, ToolButton } from '@serenity-is/corelib';
+import { AsyncLookupEditor, BooleanEditor, CaptureOperationType, DateEditor, DecimalEditor, EmailAddressEditor, EntityDialog, EntityGrid, EnumEditor, Formatter, IGetEditValue, ISetEditValue, ImageUploadEditor, IntegerEditor, LookupEditor, LookupEditorBase, LookupEditorOptions, PrefixedContext, StringEditor, TemplatedDialog, TemplatedWidget, ToolButton } from '@serenity-is/corelib';
 import { DeleteRequest, DeleteResponse, ListRequest, ListResponse, PropertyItem, RetrieveRequest, RetrieveResponse, SaveRequest, SaveResponse, ServiceOptions } from '@serenity-is/corelib/q';
 import { GetNextNumberRequest, GetNextNumberResponse, GridEditorBase, GridEditorDialog } from '@serenity-is/extensions';
 import { Column, FormatterContext } from '@serenity-is/sleekgrid';
@@ -160,17 +160,17 @@ export interface CustomerForm {
 	CompanyName: StringEditor;
 	ContactName: StringEditor;
 	ContactTitle: StringEditor;
-	Representatives: LookupEditor;
+	Representatives: AsyncLookupEditor;
 	Address: StringEditor;
-	Country: LookupEditor;
-	City: LookupEditor;
+	Country: AsyncLookupEditor;
+	City: AsyncLookupEditor;
 	Region: StringEditor;
 	PostalCode: StringEditor;
 	Phone: StringEditor;
 	Fax: StringEditor;
 	NoteList: NotesEditor;
 	LastContactDate: DateEditor;
-	LastContactedBy: LookupEditor;
+	LastContactedBy: AsyncLookupEditor;
 	Email: EmailAddressEditor;
 	SendBulletin: BooleanEditor;
 }
@@ -343,7 +343,7 @@ export declare class OrderDetailColumns {
 	static columnsKey: string;
 }
 export interface OrderDetailForm {
-	ProductID: LookupEditor;
+	ProductID: AsyncLookupEditor;
 	UnitPrice: DecimalEditor;
 	Quantity: IntegerEditor;
 	Discount: DecimalEditor;
@@ -406,10 +406,10 @@ export interface OrderForm {
 	CustomerID: CustomerEditor;
 	OrderDate: DateEditor;
 	RequiredDate: DateEditor;
-	EmployeeID: LookupEditor;
+	EmployeeID: AsyncLookupEditor;
 	DetailList: OrderDetailsEditor;
 	ShippedDate: DateEditor;
-	ShipVia: LookupEditor;
+	ShipVia: AsyncLookupEditor;
 	Freight: DecimalEditor;
 	ShipName: StringEditor;
 	ShipAddress: StringEditor;

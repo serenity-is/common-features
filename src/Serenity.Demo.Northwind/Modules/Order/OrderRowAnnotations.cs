@@ -1,4 +1,4 @@
-﻿namespace Serenity.Demo.Northwind.Annotations;
+namespace Serenity.Demo.Northwind.Annotations;
 
 /// <summary>
 /// This is annotation sample for OrderRow. Annotation types 
@@ -14,9 +14,9 @@ public sealed class OrderRowAnnotations
     [CustomerEditor]
     public string CustomerID { get; set; }
 
-    [LookupEditor(typeof(EmployeeRow))]
+    [AsyncLookupEditor(typeof(EmployeeRow))]
     public int? EmployeeID { get; set; }
 
-    [LookupEditor(typeof(ShipperRow))]
+    [AsyncLookupEditor(typeof(ShipperRow))]
     public int? ShipVia { get; set; }
 }

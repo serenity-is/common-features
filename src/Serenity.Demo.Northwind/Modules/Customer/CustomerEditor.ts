@@ -5,7 +5,7 @@ import { CustomerRow } from "../ServerTypes/Demo";
 export class CustomerEditor extends LookupEditorBase<LookupEditorOptions, CustomerRow> {
 
     constructor(hidden: JQuery, options: LookupEditorOptions) {
-        super(hidden, options);
+        super(hidden, { async: true, ...options });
     }
 
     protected getLookupKey() {

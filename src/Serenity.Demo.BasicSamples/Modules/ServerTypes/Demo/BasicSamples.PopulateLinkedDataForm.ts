@@ -1,5 +1,5 @@
 ﻿import { CustomerEditor, OrderDetailsEditor } from "@serenity-is/demo.northwind";
-import { StringEditor, DateEditor, LookupEditor, PrefixedContext } from "@serenity-is/corelib";
+import { StringEditor, DateEditor, AsyncLookupEditor, PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface PopulateLinkedDataForm {
@@ -13,7 +13,7 @@ export interface PopulateLinkedDataForm {
     CustomerFax: StringEditor;
     OrderDate: DateEditor;
     RequiredDate: DateEditor;
-    EmployeeID: LookupEditor;
+    EmployeeID: AsyncLookupEditor;
     DetailList: OrderDetailsEditor;
 }
 
@@ -30,7 +30,7 @@ export class PopulateLinkedDataForm extends PrefixedContext {
             var w0 = CustomerEditor;
             var w1 = StringEditor;
             var w2 = DateEditor;
-            var w3 = LookupEditor;
+            var w3 = AsyncLookupEditor;
             var w4 = OrderDetailsEditor;
 
             initFormType(PopulateLinkedDataForm, [

@@ -22,7 +22,7 @@ public sealed class OrderDetailRow : Row<OrderDetailRow.RowFields>, IIdRow
     }
 
     [DisplayName("Product"), PrimaryKey, NotNull, ForeignKey(typeof(ProductRow)), LeftJoin("p")]
-    [LookupEditor(typeof(ProductRow), Async = true)]
+    [AsyncLookupEditor(typeof(ProductRow))]
     public int? ProductID
     {
         get => fields.ProductID[this];

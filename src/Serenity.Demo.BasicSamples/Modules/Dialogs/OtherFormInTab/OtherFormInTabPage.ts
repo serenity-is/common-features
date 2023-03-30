@@ -53,8 +53,8 @@ export class OtherFormInTabDialog extends OrderDialog {
             buttons: [{
                 cssClass: "apply-changes-button",
                 title: localText("Controls.EntityDialog.SaveButton"),
-                onClick: () => {
-                    var id = this.getCustomerID();
+                onClick: async () => {
+                    var id = await this.getCustomerID();
                     if (!id)
                         return;
 
@@ -95,27 +95,29 @@ export class OtherFormInTabDialog extends OrderDialog {
             if (selfChange)
                 return;
 
-            var customerID = this.getCustomerID();
+            (async () => {
+                var customerID = await this.getCustomerID();
 
-            TabsExtensions.setDisabled(this.tabs, 'Customer', !customerID);
+                TabsExtensions.setDisabled(this.tabs, 'Customer', !customerID);
 
-            if (!customerID) {
-                // no customer is selected, just load an empty entity
-                this.customerPropertyGrid.load({});
-                return;
-            }
+                if (!customerID) {
+                    // no customer is selected, just load an empty entity
+                    this.customerPropertyGrid.load({});
+                    return;
+                }
 
-            // load selected customer into customer form by calling CustomerService
-            CustomerService.Retrieve({
-                EntityId: customerID
-            }, response => {
-                this.customerPropertyGrid.load(response.Entity);
-            });
+                // load selected customer into customer form by calling CustomerService
+                CustomerService.Retrieve({
+                    EntityId: customerID
+                }, response => {
+                    this.customerPropertyGrid.load(response.Entity);
+                });
+            })();
 
         });
     }
 
-    getCustomerID() {
+    async getCustomerID() {
         var customerID = this.form.CustomerID.value;
 
         if (isEmptyOrNull(customerID))
@@ -125,15 +127,17 @@ export class OtherFormInTabDialog extends OrderDialog {
         // the ID (auto increment ID) are different, so we need to 
         // find numeric ID from customer lookups. 
         // you'll probably won't need this step.
-        return first(CustomerRow.getLookup().items,
+        return first((await CustomerRow.getLookupAsync()).items,
             x => x.CustomerID == customerID).ID;
     }
 
     loadEntity(entity: OrderRow) {
         super.loadEntity(entity);
 
-        TabsExtensions.setDisabled(this.tabs, 'Customer',
-            !this.getCustomerID());
+        (async () => {
+            TabsExtensions.setDisabled(this.tabs, 'Customer',
+                !(await this.getCustomerID()));
+        })();
     }
 
     getTemplate() {

@@ -18,13 +18,13 @@ export class DefaultValuesInNewGrid extends OrderGrid {
      * By default, it calls EditItem with an empty entity.
      * This is a good place to fill in default values for New Item button.
      */
-    protected addButtonClick() {
+    protected async addButtonClick() {
         this.editItem(<OrderRow>{
             CustomerID: 'ANTON',
             RequiredDate: formatDate(new Date(), 'yyyy-MM-dd'),
-            EmployeeID: EmployeeRow.getLookup().items
+            EmployeeID: (await EmployeeRow.getLookupAsync()).items
                 .filter(x => x.FullName === 'Robert King')[0].EmployeeID,
-            ShipVia: ShipperRow.getLookup().items
+            ShipVia: (await ShipperRow.getLookupAsync()).items
                 .filter(x => x.CompanyName === 'Speedy Express')[0].ShipperID
         });
     }
@@ -36,14 +36,14 @@ export class DefaultValuesInNewGrid extends OrderGrid {
         buttons.push({
             title: 'Add Order from the Queen',
             cssClass: 'add-button',
-            onClick: () => {
+            onClick: async () => {
                 // using EditItem method as a shortcut to create a new Order dialog,
                 // bind to its events, load our order row, and open dialog
                 this.editItem(<OrderRow>{
                     CustomerID: 'QUEEN',
-                    EmployeeID: EmployeeRow.getLookup().items
+                    EmployeeID: (await EmployeeRow.getLookupAsync()).items
                         .filter(x => x.FullName === 'Nancy Davolio')[0].EmployeeID,
-                    ShipVia: ShipperRow.getLookup().items
+                    ShipVia: (await ShipperRow.getLookupAsync()).items
                         .filter(x => x.CompanyName === 'United Package')[0].ShipperID
                 });
             }
@@ -51,7 +51,7 @@ export class DefaultValuesInNewGrid extends OrderGrid {
 
         buttons.push({
             title: 'Add Order with 5 Chai by Laura', cssClass: 'add-note-button',
-            onClick: () => {
+            onClick: async () => {
                 // we could use EditItem here too, but for demonstration
                 // purposes we are manually creating dialog this time
                 var dlg = new OrderDialog();
@@ -61,12 +61,12 @@ export class DefaultValuesInNewGrid extends OrderGrid {
                 this.initDialog(dlg);
 
                 // get a reference to product Chai
-                var chai = ProductRow.getLookup().items
+                var chai = (await ProductRow.getLookupAsync()).items
                     .filter(x => x.ProductName === 'Chai')[0];
 
                 // LoadEntityAndOpenDialog, loads an OrderRow 
                 // to dialog and opens it
-                var lauraCallahanID = EmployeeRow.getLookup().items
+                var lauraCallahanID = (await EmployeeRow.getLookupAsync()).items
                     .filter(x => x.FullName === 'Laura Callahan')[0].EmployeeID;
 
                 dlg.loadEntityAndOpenDialog(<OrderRow>{

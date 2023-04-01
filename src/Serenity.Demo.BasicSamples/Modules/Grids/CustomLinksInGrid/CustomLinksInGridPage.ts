@@ -65,10 +65,10 @@ export class CustomLinksInGrid extends OrderGrid {
                 "<p>If you click No, i'll open Order dialog.</p>",
                 htmlEncode(item.CustomerCompanyName));
 
-            confirmDialog(message, () => {
+            confirmDialog(message, async () => {
                 // CustomerDialog doesn't use CustomerID but ID (identity)
                 // so need to find customer to get its actual ID
-                var customer = first(CustomerRow.getLookup().items,
+                var customer = first((await CustomerRow.getLookupAsync()).items,
                     x => x.CustomerID == item.CustomerID);
 
                 new CustomerDialog().loadByIdAndOpenDialog(customer.ID);

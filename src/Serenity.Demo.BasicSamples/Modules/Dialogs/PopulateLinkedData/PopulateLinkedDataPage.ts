@@ -36,7 +36,7 @@ export class PopulateLinkedDataDialog extends EntityDialog<OrderRow, any> {
         // but "change" is fired when dialog sets customer on load too
         // so we prefer "changeSelect2", as initial customer details 
         // will get populated by initial load, we don't want extra call
-        this.form.CustomerID.changeSelect2(e => {
+        this.form.CustomerID.changeSelect2(async e => {
             var customerID = this.form.CustomerID.value;
             if (isEmptyOrNull(customerID)) {
                 this.setCustomerDetails({});
@@ -47,8 +47,8 @@ export class PopulateLinkedDataDialog extends EntityDialog<OrderRow, any> {
             // while its actual integer ID value is 1.
             // so we need to convert customer ID to ID.
             // you won't have to do this conversion with your tables
-            var id = first(CustomerRow.getLookup().items, x => x.CustomerID == customerID).ID;
-
+            var id = first((await CustomerRow.getLookupAsync()).items, x => x.CustomerID == customerID).ID;
+            
             CustomerService.Retrieve({
                 EntityId: id
             }, response => {

@@ -23,7 +23,16 @@ export class OrderDetailsEditor extends GridEditorBase<OrderDetailRow> {
             return false;
         }
 
-        row.ProductName = ProductRow.getLookup().itemById[row.ProductID].ProductName;
+        id ??= row[this.getIdProperty()];
+        
+        ProductRow.getLookupAsync().then(lookup => {
+            var item = this.view?.getItemById?.(id);
+            if (item) {
+                item.ProductName = lookup.itemById[row.ProductID].ProductName;
+                this.view.updateItem(id, item);
+            }
+        });
+
         row.LineTotal = (row.Quantity || 0) * (row.UnitPrice || 0) - (row.Discount || 0);
         return true;
     }

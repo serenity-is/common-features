@@ -15,10 +15,10 @@ export class OrderDetailDialog extends GridEditorDialog<OrderDetailRow> {
 
         this.form = new OrderDetailForm(this.idPrefix);
 
-        this.form.ProductID.changeSelect2(e => {
+        this.form.ProductID.changeSelect2(async e => {
             var productID = toId(this.form.ProductID.value);
             if (productID != null) {
-                this.form.UnitPrice.value = ProductRow.getLookup().itemById[productID].UnitPrice;
+                this.form.UnitPrice.value = (await ProductRow.getLookupAsync()).itemById[productID].UnitPrice;
             }
         });
 

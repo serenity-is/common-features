@@ -1,4 +1,4 @@
-﻿import { StringEditor, AsyncLookupEditor, DateEditor, EmailAddressEditor, BooleanEditor, PrefixedContext } from "@serenity-is/corelib";
+﻿import { StringEditor, LookupEditor, DateEditor, EmailAddressEditor, BooleanEditor, PrefixedContext } from "@serenity-is/corelib";
 import { NotesEditor } from "@/Note/NotesEditor";
 import { initFormType } from "@serenity-is/corelib/q";
 
@@ -7,17 +7,17 @@ export interface CustomerForm {
     CompanyName: StringEditor;
     ContactName: StringEditor;
     ContactTitle: StringEditor;
-    Representatives: AsyncLookupEditor;
+    Representatives: LookupEditor;
     Address: StringEditor;
-    Country: AsyncLookupEditor;
-    City: AsyncLookupEditor;
+    Country: LookupEditor;
+    City: LookupEditor;
     Region: StringEditor;
     PostalCode: StringEditor;
     Phone: StringEditor;
     Fax: StringEditor;
     NoteList: NotesEditor;
     LastContactDate: DateEditor;
-    LastContactedBy: AsyncLookupEditor;
+    LastContactedBy: LookupEditor;
     Email: EmailAddressEditor;
     SendBulletin: BooleanEditor;
 }
@@ -33,7 +33,7 @@ export class CustomerForm extends PrefixedContext {
             CustomerForm.init = true;
 
             var w0 = StringEditor;
-            var w1 = AsyncLookupEditor;
+            var w1 = LookupEditor;
             var w2 = NotesEditor;
             var w3 = DateEditor;
             var w4 = EmailAddressEditor;

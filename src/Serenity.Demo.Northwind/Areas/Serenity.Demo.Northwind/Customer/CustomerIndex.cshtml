@@ -4,11 +4,6 @@
     ViewData["Title"] = Localizer.Get("Db.Northwind.Customer.EntityPlural");
 }
 
-@section Head {
-<script>var CKEDITOR_BASEPATH = '@ContentHashCache.ResolvePath(Context.Request.PathBase, "~/Serenity.Assets/Scripts/ckeditor/")';</script>
-@Html.ScriptBundle("CKEditor")
-}
-
 <div id="GridDiv"></div>
 
 <script type="text/javascript">

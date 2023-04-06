@@ -47,39 +47,24 @@ public class ClamAVUploadScanner : IUploadAVScanner
     /// <param name="filename">The filename of the uploaded file (original name)</param>
     public void Scan(Stream stream, string filename)
     {
-        string tempFile = null;
         try
         {
+            var settings = options.CurrentValue;
+            if (!settings.Enabled)
+                return;
+
             // please install ClamAV on your server, otherwise all uploads will fail
             // it is assumed to be running at localhost:3310 by default
-            // to disable AV scan, set the ClamAV:Port in appsettings.json to -1
+            // to disable AV scan, set ClamAV:Enabled to false in appsettings.json
 
-            var host = options.CurrentValue.Host;
+            var host = settings.Host;
             if (string.IsNullOrEmpty(host))
                 host = "localhost";
-            var settings = options.CurrentValue;
             var port = settings.Port;
 
-            var tempName = Path.ChangeExtension(Guid.NewGuid().ToString("n"),
-                Path.GetExtension(filename));
-
-            var tempFolder = settings.TemporaryFolder;
-            if (string.IsNullOrEmpty(tempFolder))
-                tempFolder = Path.Combine(Path.GetTempPath(), "ClamAV");
-
-            if (!Directory.Exists(tempFolder))
-                Directory.CreateDirectory(tempFolder);
-
-            tempFile = Path.Combine(tempFolder, tempName);
-
-            using (var tempStream = File.Create(tempFile))
-                stream.CopyTo(tempStream);
-
             var clam = new ClamClient(host, port);
-            var serverFile = string.IsNullOrEmpty(settings.ServerFolder) ?
-                tempFile : Path.Combine(settings.ServerFolder, Path.GetFileName(filename));
 
-            var scanResult = Task.Run(() => clam.ScanFileOnServerAsync(serverFile)).Result;
+            var scanResult = Task.Run(() => clam.SendAndScanFileAsync(stream)).Result;
 
             switch (scanResult.Result)
             {
@@ -116,18 +101,6 @@ public class ClamAVUploadScanner : IUploadAVScanner
 
             throw new ValidationError("FailedScan",
                 UploadTexts.Controls.ImageUpload.FailedScan.ToString(localizer));
-        }
-        finally
-        {
-            if (tempFile != null)
-                try
-                {
-                    if (File.Exists(tempFile))
-                        File.Delete(tempFile);
-                }
-                catch
-                {
-                }
         }
     }
 }

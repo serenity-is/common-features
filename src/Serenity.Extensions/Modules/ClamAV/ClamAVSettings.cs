@@ -25,23 +25,4 @@ public class ClamAVSettings
     /// Port to connect to, default is 3310
     /// </summary>
     public int Port { get; set; } = 3310;
-
-    /// <summary>
-    /// The temporary folder to use for uploading samples.
-    /// %TEMP%\ClamAV will be used if this is not specified.
-    /// If the server is remote, this must be a network
-    /// share that can be accessed from both the local
-    /// server and the ClamAV server. If the location
-    /// that should be passed to the ClamAV server is different, 
-    /// specify it in the ServerFolder setting.
-    /// </summary>
-    public string TemporaryFolder { get; set; }
-
-    /// <summary>
-    /// The path to the folder the ClamAV server can access the
-    /// temporary file to scan. This is assumed to be
-    /// same with the <see cref="TemporaryFolder"/> by default.
-    /// </summary>
-    public string ServerFolder { get; set; }
-
 }

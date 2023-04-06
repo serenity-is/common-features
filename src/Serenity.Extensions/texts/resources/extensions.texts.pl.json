@@ -13,7 +13,7 @@
   "Site.BulkServiceAction.ConfirmationFormat": "Wykonaj tę operację na {0} wybranym rekordzie (rekordach)?",
   "Site.BulkServiceAction.ErrorCount": "Błąd {0}",
   "Site.BulkServiceAction.NothingToProcess": "Proszę wybrać niektóre rekordy do przetworzenia!",
-  "Site.BulkServiceAction.SomeHadErrorsFormat": null,
+  "Site.BulkServiceAction.SomeHadErrorsFormat": "Ukończono przetwarzanie {0} rekordów z sukcesem. {1} rekord(y) zawierały błędy!",
   "Site.BulkServiceAction.SuccessCount": "{0} wykonano",
   "Site.Dialogs.PendingChangesConfirmation": "Masz niezapisane zmian",
   "Site.Translation.Assembly": "Montaż",

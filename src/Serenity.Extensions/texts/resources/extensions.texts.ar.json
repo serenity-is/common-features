@@ -13,7 +13,7 @@
   "Site.BulkServiceAction.ConfirmationFormat": "أداء هذا العمل على {0} سجل (السجلات) المحددة؟",
   "Site.BulkServiceAction.ErrorCount": "خطأ {0}",
   "Site.BulkServiceAction.NothingToProcess": "الرجاء تحديد بعض السجلات للمعالجة!",
-  "Site.BulkServiceAction.SomeHadErrorsFormat": null,
+  "Site.BulkServiceAction.SomeHadErrorsFormat": "تمت معالجة {0} سجلًا بنجاح. وحدثت أخطاء في {1} سجلًا!",
   "Site.BulkServiceAction.SuccessCount": "{0} تم",
   "Site.Dialogs.PendingChangesConfirmation": "لديك تغييرات معلق",
   "Site.Translation.Assembly": "تجميع",

@@ -13,7 +13,7 @@
   "Site.BulkServiceAction.ConfirmationFormat": "Effectuer cette opération sur {0} enregistrement (s) sélectionné (s) ?",
   "Site.BulkServiceAction.ErrorCount": "Erreur {0}",
   "Site.BulkServiceAction.NothingToProcess": "Veuillez sélectionner des enregistrements à traiter !",
-  "Site.BulkServiceAction.SomeHadErrorsFormat": null,
+  "Site.BulkServiceAction.SomeHadErrorsFormat": "Traitement terminé sur {0} enregistrement(s) avec succès. {1} enregistrement(s) ont rencontré des erreurs!",
   "Site.BulkServiceAction.SuccessCount": "{0} fait",
   "Site.Dialogs.PendingChangesConfirmation": "Vous avez des modifications en attent",
   "Site.Translation.Assembly": "Montage",

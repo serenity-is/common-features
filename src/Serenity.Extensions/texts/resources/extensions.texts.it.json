@@ -13,7 +13,7 @@
   "Site.BulkServiceAction.ConfirmationFormat": "Eseguire questa operazione su {0} record (s) selezionato (i)?",
   "Site.BulkServiceAction.ErrorCount": "Errore {0}",
   "Site.BulkServiceAction.NothingToProcess": "Si prega di selezionare alcuni record da elaborare!",
-  "Site.BulkServiceAction.SomeHadErrorsFormat": null,
+  "Site.BulkServiceAction.SomeHadErrorsFormat": "Elaborazione completata su {0} record con successo. {1} record hanno avuto degli errori!",
   "Site.BulkServiceAction.SuccessCount": "{0} fatto",
   "Site.Dialogs.PendingChangesConfirmation": "Hai delle modifiche in sospes",
   "Site.Translation.Assembly": "Montaggio",

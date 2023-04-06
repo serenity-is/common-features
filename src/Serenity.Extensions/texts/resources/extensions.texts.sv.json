@@ -13,7 +13,7 @@
   "Site.BulkServiceAction.ConfirmationFormat": "Utför denna åtgärd på {0} markerade post (er)?",
   "Site.BulkServiceAction.ErrorCount": "Fel {0}",
   "Site.BulkServiceAction.NothingToProcess": "Vänligen välj några poster att bearbeta!",
-  "Site.BulkServiceAction.SomeHadErrorsFormat": null,
+  "Site.BulkServiceAction.SomeHadErrorsFormat": "Färdig med bearbetning av {0} post(er) med framgång. {1} post(er) hade fel!",
   "Site.BulkServiceAction.SuccessCount": "{0} gjort",
   "Site.Dialogs.PendingChangesConfirmation": "Du har väntande ändringa",
   "Site.Translation.Assembly": "Montering",

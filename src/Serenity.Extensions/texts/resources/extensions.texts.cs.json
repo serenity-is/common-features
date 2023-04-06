@@ -13,7 +13,7 @@
   "Site.BulkServiceAction.ConfirmationFormat": "Provést tuto operaci na {0} vybraném záznamu (záznamech)?",
   "Site.BulkServiceAction.ErrorCount": "Chyba {0}",
   "Site.BulkServiceAction.NothingToProcess": "Prosím, vyberte některé záznamy k zpracování!",
-  "Site.BulkServiceAction.SomeHadErrorsFormat": null,
+  "Site.BulkServiceAction.SomeHadErrorsFormat": "Zpracování {0} záznamů dokončeno s úspěchem. {1} záznamů obsahuje chyby!",
   "Site.BulkServiceAction.SuccessCount": "{0} hotovo",
   "Site.Dialogs.PendingChangesConfirmation": "Máte neuložené změn",
   "Site.Translation.Assembly": "Sestavení",

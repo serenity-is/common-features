@@ -2,6 +2,7 @@ import { Decorators, IGetEditValue, ISetEditValue, TemplatedWidget, Toolbar } fr
 import { Authorization, coalesce, confirmDialog, formatDate, formatISODateTimeUTC, insert, PropertyItem, trimToNull } from "@serenity-is/corelib/q";
 import { NoteRow } from "../ServerTypes/Demo";
 import { NoteDialog } from "./NoteDialog";
+import * as DOMPurify from 'dompurify';
 
 @Decorators.registerEditor('Serenity.Demo.Northwind.NotesEditor', [IGetEditValue, ISetEditValue])
 @Decorators.element("<div/>")
@@ -38,7 +39,7 @@ export class NotesEditor extends TemplatedWidget<any>
             for (var t1 = 0; t1 < this.items.length; t1++) {
                 var item = this.items[t1];
                 var li = $('<li/>');
-                $('<div/>').addClass('note-text').html(coalesce(item.Text, '')).appendTo(li);
+                $('<div/>').addClass('note-text').html(DOMPurify.sanitize(coalesce(item.Text, ''))).appendTo(li);
 
                 $('<a/>').attr('href', '#').addClass('note-date')
                     .text(item.InsertUserDisplayName + ' - ' +

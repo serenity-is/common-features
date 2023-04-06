@@ -3,7 +3,9 @@
   "dependencies": {
     "@serenity-is/corelib": "../../../Serenity/src/Serenity.Scripts/corelib",
     "@serenity-is/extensions": "workspace:*",
-    "@serenity-is/sleekgrid": "latest"
+    "@serenity-is/sleekgrid": "latest",
+    "@types/dompurify": "2.4.0",
+    "dompurify": "3.0.1"
   },
   "devDependencies": {
     "@serenity-is/tsbuild": "latest"

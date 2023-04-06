@@ -28,10 +28,14 @@ importers:
       '@serenity-is/extensions': workspace:*
       '@serenity-is/sleekgrid': latest
       '@serenity-is/tsbuild': latest
+      '@types/dompurify': 2.4.0
+      dompurify: 3.0.1
     dependencies:
       '@serenity-is/corelib': link:../../../Serenity/src/Serenity.Scripts/corelib
       '@serenity-is/extensions': link:../Serenity.Extensions
       '@serenity-is/sleekgrid': 1.5.5
+      '@types/dompurify': 2.4.0
+      dompurify: 3.0.1
     devDependencies:
       '@serenity-is/tsbuild': 6.6.0
 
@@ -261,6 +265,16 @@ packages:
       glob: 9.2.1
     dev: true
 
+  /@types/dompurify/2.4.0:
+    resolution: {integrity: sha512-IDBwO5IZhrKvHFUl+clZxgf3hn2b/lU6H1KaBShPkQyGJUQ0xwebezIPSuiyGwfz1UzJWQl4M7BDxtHtCCPlTg==}
+    dependencies:
+      '@types/trusted-types': 2.0.3
+    dev: false
+
+  /@types/trusted-types/2.0.3:
+    resolution: {integrity: sha512-NfQ4gyz38SL8sDNrSixxU2Os1a5xcdFxipAFxYEuLUlvU2uDwS4NUpsImcf1//SlWItCVMMLiylsxbmNMToV/g==}
+    dev: false
+
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
@@ -276,6 +290,10 @@ packages:
     engines: {pnpm: ^7.0.0}
     dependencies:
       '@kurkle/color': 0.3.2
+    dev: false
+
+  /dompurify/3.0.1:
+    resolution: {integrity: sha512-60tsgvPKwItxZZdfLmamp0MTcecCta3avOhsLgPZ0qcWt96OasFfhkeIRbJ6br5i0fQawT1/RBGB5L58/Jpwuw==}
     dev: false
 
   /esbuild/0.16.14:

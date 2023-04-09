@@ -24,8 +24,7 @@ public class ClamAVUploadScanner : IUploadAVScanner
     /// </summary>
     /// <param name="options">Options</param>
     /// <param name="localizer">Text localizer</param>
-    /// <param name="logger">Log</param>
-    /// <param name="exceptionLog">Exception log</param>
+    /// <param name="logger">Logger</param>
     /// <exception cref="ArgumentNullException">One of arguments is null</exception>
     public ClamAVUploadScanner(IOptionsMonitor<ClamAVSettings> options,
         ITextLocalizer localizer = null,

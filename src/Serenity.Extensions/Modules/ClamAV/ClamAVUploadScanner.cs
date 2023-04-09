@@ -18,7 +18,6 @@ public class ClamAVUploadScanner : IUploadAVScanner
     private readonly IOptionsMonitor<ClamAVSettings> options;
     private readonly ITextLocalizer localizer;
     private readonly ILogger<ClamAVUploadScanner> logger;
-    private readonly IExceptionLogger exceptionLog;
 
     /// <summary>
     /// Creates a new instance of the class.
@@ -30,13 +29,11 @@ public class ClamAVUploadScanner : IUploadAVScanner
     /// <exception cref="ArgumentNullException">One of arguments is null</exception>
     public ClamAVUploadScanner(IOptionsMonitor<ClamAVSettings> options,
         ITextLocalizer localizer = null,
-        ILogger<ClamAVUploadScanner> logger = null,
-        IExceptionLogger exceptionLog = null)
+        ILogger<ClamAVUploadScanner> logger = null)
     {
         this.options = options ?? throw new ArgumentNullException(nameof(options));
         this.localizer = localizer;
         this.logger = logger;
-        this.exceptionLog = exceptionLog;
     }
 
     /// <summary>
@@ -69,12 +66,10 @@ public class ClamAVUploadScanner : IUploadAVScanner
             switch (scanResult.Result)
             {
                 case ClamScanResults.VirusDetected:
-                    logger?.LogError("Virus {virus} found in file getting uploaded: {filename}",
+                    logger?.LogError(InformationalException.EventId,
+                        "Virus {virus} found in file getting uploaded: {filename}",
                         scanResult.InfectedFiles.First().VirusName,
                         filename);
-
-                    exceptionLog?.Log(new ValidationError($"Virus {scanResult.InfectedFiles.First().VirusName} " +
-                        $"found in file getting uploaded: {filename}"), "VirusScan");
 
                     throw new ValidationError("InfectedFile",
                         UploadTexts.Controls.ImageUpload.InfectedFile.ToString(localizer));
@@ -83,11 +78,9 @@ public class ClamAVUploadScanner : IUploadAVScanner
                 case ClamScanResults.Error:
                     // reaching here does not mean the uploaded file is virus free
                     // another antivirus might have deleted the temporary file before scan
-                    logger?.LogError("Error occured during AV scan: {error}",
+                    logger?.LogError(InformationalException.EventId,
+                        "Error occured during AV scan: {error}",
                         scanResult.RawResult);
-
-                    exceptionLog?.Log(new ValidationError("Error occured during AV scan: " +
-                        scanResult.RawResult), "VirusScan");
 
                     throw new ValidationError("InfectedFileOrError",
                         UploadTexts.Controls.ImageUpload.InfectedFileOrError.ToString(localizer));
@@ -95,9 +88,7 @@ public class ClamAVUploadScanner : IUploadAVScanner
         }
         catch (Exception ex) when (ex is not ValidationError)
         {
-            logger?.LogError("Exception occured during AV scan (is ClamAV installed?)");
-            exceptionLog?.Log(new ValidationError("Error occured during AV scan (is ClamAV installed?)"), "VirusScan");
-            ex.Log(exceptionLog);
+            logger?.LogError(ex, "Error occured during AV scan (is ClamAV installed?)");
 
             throw new ValidationError("FailedScan",
                 UploadTexts.Controls.ImageUpload.FailedScan.ToString(localizer));

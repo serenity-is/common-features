@@ -2,11 +2,7 @@
   "extends": "../.config/tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "./obj/tscout",
-    "jsx": "react-jsx",
-    "jsxImportSource": "jsx-dom/min",
-    "jsxFactory": "",
-    "jsxFragmentFactory": ""
+    "outDir": "./obj/tscout"
   },
   "include": [
     "Modules/"

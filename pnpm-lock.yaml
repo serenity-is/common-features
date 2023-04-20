@@ -21,10 +21,13 @@ importers:
       chart.js:
         specifier: 4.1.1
         version: 4.1.1
+      jsx-dom:
+        specifier: 8.0.5
+        version: 8.0.5
     devDependencies:
       '@serenity-is/tsbuild':
         specifier: latest
-        version: 6.6.0
+        version: 6.7.1
 
   src/Serenity.Demo.Northwind:
     dependencies:
@@ -46,7 +49,7 @@ importers:
     devDependencies:
       '@serenity-is/tsbuild':
         specifier: latest
-        version: 6.6.0
+        version: 6.7.1
 
   src/Serenity.Extensions:
     dependencies:
@@ -59,7 +62,7 @@ importers:
     devDependencies:
       '@serenity-is/tsbuild':
         specifier: latest
-        version: 6.6.0
+        version: 6.7.1
 
 packages:
 
@@ -269,8 +272,8 @@ packages:
     resolution: {integrity: sha512-oYbizMlMpsZ2S0ZA78koYh34O7PWztAQLvSh0c6lSENOPeW+Jn7iu3FERS6EEwf4bcS6GPTXutPRudUmG4e0wg==}
     dev: false
 
-  /@serenity-is/tsbuild@6.6.0:
-    resolution: {integrity: sha512-6CTER96DaAObr7PumUPMrBjip0PPUWIFA8NIhhIlck7wjmJkpRrpzAiJBRodpHpTbsvUPjiF20py+Mveb+x1UQ==}
+  /@serenity-is/tsbuild@6.7.1:
+    resolution: {integrity: sha512-rWZqJ2KPrT/ht1pBHVRrZrimzrAQT9GXXYvgLhRGMz0Lf0IggNzeN4JuAhbDUee0X+V2/mK4BLrr/5Hw9EDysQ==}
     dependencies:
       esbuild: 0.16.14
       glob: 9.2.1
@@ -301,6 +304,10 @@ packages:
     engines: {pnpm: ^7.0.0}
     dependencies:
       '@kurkle/color': 0.3.2
+    dev: false
+
+  /csstype@3.1.2:
+    resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
     dev: false
 
   /dompurify@3.0.1:
@@ -350,6 +357,12 @@ packages:
       minipass: 4.2.5
       path-scurry: 1.6.1
     dev: true
+
+  /jsx-dom@8.0.5:
+    resolution: {integrity: sha512-Dt4PLuFFm16Qj1TH0GSx6LdrfnrPSh5lEHG87Hd4lv9nDWGD3ZtUdp5RXH7GyEWI0E+19eoUDFcyO5dnJQ/4IQ==}
+    dependencies:
+      csstype: 3.1.2
+    dev: false
 
   /lru-cache@7.18.3:
     resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}

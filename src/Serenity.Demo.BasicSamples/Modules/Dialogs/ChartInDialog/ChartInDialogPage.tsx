@@ -18,19 +18,18 @@ export default function pageInit() {
 @Decorators.maximizable()
 export class ChartInDialog extends TemplatedDialog<any> {
 
+    private canvasElement: HTMLCanvasElement;
+
     protected onDialogOpen() {
         super.onDialogOpen();
 
         BasicSamplesService.OrdersByShipper({}, response => {
-            //@ts-ignore
-            this.areaChart = new Chart(document.getElementById(
-                this.idPrefix + 'Chart') as HTMLCanvasElement, {
+            new Chart(this.canvasElement, {
                 type: "bar",
                 data: {
                     labels: response.Values.map(x => x.Month),
                     datasets: response.ShipperKeys.map((shipperKey, shipperIdx) => ({
                         label: response.ShipperLabels[shipperIdx],
-                        fill: true,
                         backgroundColor: chartColors[shipperIdx % chartColors.length],
                         data: response.Values.map((x, ix) => response.Values[ix][shipperKey])
                     }))
@@ -39,8 +38,8 @@ export class ChartInDialog extends TemplatedDialog<any> {
         });
     }
 
-    protected getTemplate() {
-        return "<canvas id='~_Chart'></div>";
+    protected renderContents() {
+        this.element.append(<canvas id={`${this.idPrefix}Chart`} ref={(el: HTMLCanvasElement) => this.canvasElement = el}></canvas>);
     }
 
     protected getDialogOptions() {

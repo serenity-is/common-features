@@ -12,6 +12,8 @@
     "inlineSources": true,
     "isolatedModules": true,
     "jsx": "react",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
     "module": "ESNext",
     "moduleResolution": "Node",
     "noEmit": false,

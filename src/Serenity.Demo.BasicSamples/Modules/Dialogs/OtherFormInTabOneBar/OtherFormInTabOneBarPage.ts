@@ -154,7 +154,7 @@ export class OtherFormOneBarDialog extends OrderDialog {
 
     protected saveAll(callback: (response: SaveResponse) => void) {
         this.saveCustomer(callback,
-            // If customer successa, save Order entity
+            // If customer success, save Order entity
             resp => this.saveOrder(callback)
         );
     }

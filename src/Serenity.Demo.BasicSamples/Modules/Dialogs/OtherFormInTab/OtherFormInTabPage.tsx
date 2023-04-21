@@ -138,7 +138,7 @@ export class OtherFormInTabDialog extends OrderDialog {
                             }]
                         });
                     }}></div>
-                    <form action="" class="s-Form" ref={el => this.customerValidator = $(el).validate(validateOptions()) }>
+                    <form action="" class="s-Form" ref={el => this.customerValidator = $(el).validate(validateOptions())}>
                         <div ref={el => {
                             // entity dialogs by default creates a property grid on element with ID "PropertyGrid".
                             // here we explicitly create another, the customer property grid (vertical form) on this div element

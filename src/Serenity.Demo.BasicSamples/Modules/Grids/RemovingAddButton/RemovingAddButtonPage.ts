@@ -39,7 +39,7 @@ export class RemovingAddButton extends SupplierGrid {
         // METHOD 3 - recommended
         // remove by splicing, but this time find button index
         // by its css class. it is the best and safer method
-        buttons.splice(indexOf(buttons, x => x.cssClass == "add-button"), 1);
+        buttons.splice(indexOf(buttons, x => x.action == "add"), 1);
 
         return buttons;
     }

@@ -23,7 +23,7 @@ export class ReadOnlyGrid extends SupplierGrid {
      */
     protected getButtons(): ToolButton[] {
         var buttons = super.getButtons();
-        buttons.splice(indexOf(buttons, x => x.cssClass == "add-button"), 1);
+        buttons.splice(indexOf(buttons, x => x.action == "add"), 1);
         return buttons;
     }
 }
@@ -41,12 +41,12 @@ export class ReadOnlyDialog extends SupplierDialog {
     protected getToolbarButtons(): ToolButton[] {
         let buttons = super.getToolbarButtons();
 
-        buttons.splice(indexOf(buttons, x => x.cssClass == "save-and-close-button"), 1);
-        buttons.splice(indexOf(buttons, x => x.cssClass == "apply-changes-button"), 1);
+        buttons.splice(indexOf(buttons, x => x.action == "save-and-close"), 1);
+        buttons.splice(indexOf(buttons, x => x.action == "apply-changes"), 1);
 
         // We could also remove delete button here, but for demonstration 
         // purposes we'll hide it in another method (updateInterface)
-        // buttons.splice(Q.indexOf(buttons, x => x.cssClass == "delete-button"), 1);
+        // buttons.splice(Q.indexOf(buttons, x => x.action == "delete"), 1);
 
         return buttons;
     }

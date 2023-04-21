@@ -25,23 +25,12 @@ export class OtherFormInTabGrid extends OrderGrid {
 @Decorators.registerClass('Serenity.Demo.BasicSamples.OtherFormInTabDialog')
 export class OtherFormInTabDialog extends OrderDialog {
 
-    private customerFormEl: JQuery;
     private customerValidator: JQueryValidation.Validator;
     private customerPropertyGrid: PropertyGrid;
     private selfChange: number = 0;
 
     constructor() {
         super();
-
-        // entity dialogs by default creates a property grid on element with ID "PropertyGrid".
-        // here we explicitly create another, the customer property grid (vertical form) on this div element
-        this.customerPropertyGrid = new PropertyGrid(this.customerFormEl.children(), {
-            idPrefix: `${this.idPrefix}Customer_`,
-            items: getForm(CustomerForm.formKey).filter(x => x.name != CustomerRow.Fields.CustomerID),
-            useCategories: true
-        });
-
-        this.customerValidator = this.customerFormEl.validate(validateOptions({}));
 
         this.form.CustomerID.change(e => {
             if (this.selfChange)
@@ -134,9 +123,8 @@ export class OtherFormInTabDialog extends OrderDialog {
     }
 
     renderContents() {
-        this.element.html('');
         const _ = this.idPrefix;
-        this.element.append(
+        this.element.empty().append(
             <div id={`${_}Tabs`} class="s-DialogContent">
                 <ul>
                     <li><a href={`#${_}TabOrder`}><span>Order</span></a></li>
@@ -144,19 +132,23 @@ export class OtherFormInTabDialog extends OrderDialog {
                 </ul>
                 <div id={`${_}TabOrder`} class="tab-pane">
                     <div id={`${_}Toolbar`} class="s-DialogToolbar"></div>
-                    <div class="s-Form">
-                        <form id={`${_}Form`} action="">
-                            <div id={`${_}PropertyGrid`}></div>
-                        </form>
-                    </div>
+                    <form id={`${_}Form`} action="" class="s-Form">
+                        <div id={`${_}PropertyGrid`}></div>
+                    </form>
                 </div>
                 <div id={`${_}TabCustomer`} class="tab-pane">
-                    <div class="s-DialogToolbar" ref={(el: HTMLDivElement) => this.createCustomerToolbar($(el))}></div>
-                    <div class="s-Form">
-                        <form action="" ref={(el: HTMLFormElement) => this.customerFormEl = $(el)}>
-                            <div></div>
-                        </form>
-                    </div>
+                    <div class="s-DialogToolbar" ref={el => this.createCustomerToolbar($(el))}></div>
+                    <form action="" class="s-Form" ref={el => this.customerValidator = $(el).validate(validateOptions()) }>
+                        <div ref={el => {
+                            // entity dialogs by default creates a property grid on element with ID "PropertyGrid".
+                            // here we explicitly create another, the customer property grid (vertical form) on this div element
+                            this.customerPropertyGrid = new PropertyGrid($(el), {
+                                idPrefix: `${_}Customer_`,
+                                items: getForm(CustomerForm.formKey).filter(x => x.name != CustomerRow.Fields.CustomerID),
+                                useCategories: true
+                            });
+                        }}></div>
+                    </form>
                 </div>
             </div>
         );

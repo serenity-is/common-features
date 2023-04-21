@@ -73,7 +73,7 @@ export abstract class GridEditorBase<TEntity, TOptions = any> extends EntityGrid
 
     protected getButtons(): ToolButton[] {
         var buttons = super.getButtons();
-        var addButton = tryFirst(buttons, x => x.cssClass == 'add-button');
+        var addButton = tryFirst(buttons, x => x.action === 'add');
         if (addButton != null) {
             addButton.onClick = () => {
                 this.createEntityDialog(this.getItemType(), dlg => {
@@ -85,7 +85,7 @@ export abstract class GridEditorBase<TEntity, TOptions = any> extends EntityGrid
             }
         }
 
-        return buttons.filter(x => x.cssClass != "refresh-button");
+        return buttons.filter(x => x.action !== "refresh");
     }
 
     protected editItem(entityOrId: any): void {

@@ -79,46 +79,38 @@ export class OtherFormInTabDialog extends OrderDialog {
         })();
     }
 
-    private async createCustomerToolbar(el: JQuery) {
-        new Toolbar(el, {
-            buttons: [{
-                cssClass: "apply-changes-button",
-                title: localText("Controls.EntityDialog.SaveButton"),
-                onClick: async () => {
-                    var id = await this.getCustomerID();
-                    if (!id)
-                        return;
+    private async customerSaveClick() {
+        var id = await this.getCustomerID();
+        if (!id)
+            return;
 
-                    if (!this.customerValidator.form())
-                        return;
+        if (!this.customerValidator.form())
+            return;
 
-                    // prepare an empty entity to serialize customer details into
-                    var c: CustomerRow = {};
-                    this.customerPropertyGrid.save(c);
+        // prepare an empty entity to serialize customer details into
+        var c: CustomerRow = {};
+        this.customerPropertyGrid.save(c);
 
-                    CustomerService.Update({
-                        EntityId: id,
-                        Entity: c
-                    }, () => {
-                        // reload customer list just in case
-                        reloadLookup(CustomerRow.lookupKey);
+        CustomerService.Update({
+            EntityId: id,
+            Entity: c
+        }, () => {
+            // reload customer list just in case
+            reloadLookup(CustomerRow.lookupKey);
 
-                        // set flag that we are triggering customer select change event
-                        // otherwise active tab will change to first one
-                        this.selfChange++;
-                        try {
-                            // trigger change so that customer select updates its text
-                            // in case if Company Name is changed
-                            this.form.CustomerID.element.change();
-                        }
-                        finally {
-                            this.selfChange--;
-                        }
+            // set flag that we are triggering customer select change event
+            // otherwise active tab will change to first one
+            this.selfChange++;
+            try {
+                // trigger change so that customer select updates its text
+                // in case if Company Name is changed
+                this.form.CustomerID.element.change();
+            }
+            finally {
+                this.selfChange--;
+            }
 
-                        notifySuccess("Saved customer details");
-                    });
-                }
-            }]
+            notifySuccess("Saved customer details");
         });
     }
 
@@ -137,7 +129,15 @@ export class OtherFormInTabDialog extends OrderDialog {
                     </form>
                 </div>
                 <div id={`${_}TabCustomer`} class="tab-pane">
-                    <div class="s-DialogToolbar" ref={el => this.createCustomerToolbar($(el))}></div>
+                    <div class="s-DialogToolbar" ref={el => {
+                        new Toolbar($(el), {
+                            buttons: [{
+                                cssClass: "apply-changes-button",
+                                title: localText("Controls.EntityDialog.SaveButton"),
+                                onClick: () => this.customerSaveClick()
+                            }]
+                        });
+                    }}></div>
                     <form action="" class="s-Form" ref={el => this.customerValidator = $(el).validate(validateOptions()) }>
                         <div ref={el => {
                             // entity dialogs by default creates a property grid on element with ID "PropertyGrid".

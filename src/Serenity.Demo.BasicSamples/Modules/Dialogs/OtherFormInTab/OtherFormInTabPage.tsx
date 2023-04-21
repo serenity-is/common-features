@@ -115,20 +115,20 @@ export class OtherFormInTabDialog extends OrderDialog {
     }
 
     renderContents() {
-        const _ = this.idPrefix;
+        const id = this.useIdPrefix();
         this.element.empty().append(
-            <div id={`${_}Tabs`} class="s-DialogContent">
+            <div id={id.Tabs} class="s-DialogContent">
                 <ul>
-                    <li><a href={`#${_}TabOrder`}><span>Order</span></a></li>
-                    <li><a href={`#${_}TabCustomer`}><span>Customer</span></a></li>
+                    <li><a href={id['#TabOrder']}><span>Order</span></a></li>
+                    <li><a href={id['#TabCustomer']}><span>Customer</span></a></li>
                 </ul>
-                <div id={`${_}TabOrder`} class="tab-pane">
-                    <div id={`${_}Toolbar`} class="s-DialogToolbar"></div>
-                    <form id={`${_}Form`} action="" class="s-Form">
-                        <div id={`${_}PropertyGrid`}></div>
+                <div id={id.TabOrder} class="tab-pane">
+                    <div id={id.Toolbar} class="s-DialogToolbar"></div>
+                    <form id={id.Form} action="" class="s-Form">
+                        <div id={id.PropertyGrid}></div>
                     </form>
                 </div>
-                <div id={`${_}TabCustomer`} class="tab-pane">
+                <div id={id.TabCustomer} class="tab-pane">
                     <div class="s-DialogToolbar" ref={el => {
                         new Toolbar($(el), {
                             buttons: [{
@@ -143,7 +143,7 @@ export class OtherFormInTabDialog extends OrderDialog {
                             // entity dialogs by default creates a property grid on element with ID "PropertyGrid".
                             // here we explicitly create another, the customer property grid (vertical form) on this div element
                             this.customerPropertyGrid = new PropertyGrid($(el), {
-                                idPrefix: `${_}Customer_`,
+                                idPrefix: id.Customer_,
                                 items: getForm(CustomerForm.formKey).filter(x => x.name != CustomerRow.Fields.CustomerID),
                                 useCategories: true
                             });

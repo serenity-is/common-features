@@ -1,7 +1,7 @@
 {
   "name": "@serenity-is/extensions",
   "dependencies": {
-    "@serenity-is/corelib": "../../../Serenity/src/Serenity.Scripts/corelib",
+    "@serenity-is/corelib": "../../../Serenity/packages/corelib",
     "@serenity-is/sleekgrid": "latest"
   },
   "devDependencies": {

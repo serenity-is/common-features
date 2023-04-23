@@ -1,7 +1,7 @@
 {
   "name": "@serenity-is/demo.northwind",
   "dependencies": {
-    "@serenity-is/corelib": "../../../Serenity/src/Serenity.Scripts/corelib",
+    "@serenity-is/corelib": "../../../Serenity/packages/corelib",
     "@serenity-is/extensions": "workspace:*",
     "@serenity-is/sleekgrid": "latest",
     "@types/dompurify": "2.4.0",

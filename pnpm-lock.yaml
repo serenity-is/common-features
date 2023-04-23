@@ -7,8 +7,8 @@ importers:
   src/Serenity.Demo.BasicSamples:
     dependencies:
       '@serenity-is/corelib':
-        specifier: ../../../Serenity/src/Serenity.Scripts/corelib
-        version: link:../../../Serenity/src/Serenity.Scripts/corelib
+        specifier: ../../../Serenity/packages/corelib
+        version: link:../../../Serenity/packages/corelib
       '@serenity-is/demo.northwind':
         specifier: workspace:*
         version: link:../Serenity.Demo.Northwind
@@ -32,8 +32,8 @@ importers:
   src/Serenity.Demo.Northwind:
     dependencies:
       '@serenity-is/corelib':
-        specifier: ../../../Serenity/src/Serenity.Scripts/corelib
-        version: link:../../../Serenity/src/Serenity.Scripts/corelib
+        specifier: ../../../Serenity/packages/corelib
+        version: link:../../../Serenity/packages/corelib
       '@serenity-is/extensions':
         specifier: workspace:*
         version: link:../Serenity.Extensions
@@ -54,8 +54,8 @@ importers:
   src/Serenity.Extensions:
     dependencies:
       '@serenity-is/corelib':
-        specifier: ../../../Serenity/src/Serenity.Scripts/corelib
-        version: link:../../../Serenity/src/Serenity.Scripts/corelib
+        specifier: ../../../Serenity/packages/corelib
+        version: link:../../../Serenity/packages/corelib
       '@serenity-is/sleekgrid':
         specifier: latest
         version: 1.5.5

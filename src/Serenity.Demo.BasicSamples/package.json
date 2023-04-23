@@ -1,7 +1,7 @@
 {
   "name": "@serenity-is/demo.basicsamples",
   "dependencies": {
-    "@serenity-is/corelib": "../../../Serenity/src/Serenity.Scripts/corelib",
+    "@serenity-is/corelib": "../../../Serenity/packages/corelib",
     "@serenity-is/demo.northwind": "workspace:*",
     "@serenity-is/extensions": "workspace:*",
     "@serenity-is/sleekgrid": "latest",

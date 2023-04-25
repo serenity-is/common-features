@@ -109,7 +109,7 @@ export declare class BasicProgressDialog extends TemplatedDialog<any> {
 		class: string;
 		click: () => void;
 	}[];
-	getDialogOptions(): JQueryUI.DialogOptions;
+	getDialogOptions(): any;
 	initDialog(): void;
 	getTemplate(): string;
 }

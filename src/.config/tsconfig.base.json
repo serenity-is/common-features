@@ -15,6 +15,7 @@
     "jsxImportSource": "jsx-dom/min",
     "module": "ESNext",
     "moduleResolution": "Node",
+    "newLine": "lf",
     "noEmit": false,
     "noEmitHelpers": true,
     "noEmitOnError": false,

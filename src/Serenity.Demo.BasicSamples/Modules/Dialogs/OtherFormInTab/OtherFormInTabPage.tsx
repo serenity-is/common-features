@@ -119,8 +119,8 @@ export class OtherFormInTabDialog extends OrderDialog {
         this.element.empty().append(
             <div id={id.Tabs} class="s-DialogContent">
                 <ul>
-                    <li><a href={id['#TabOrder']}><span>Order</span></a></li>
-                    <li><a href={id['#TabCustomer']}><span>Customer</span></a></li>
+                    <li><a href={'#' + id.TabOrder}><span>Order</span></a></li>
+                    <li><a href={'#' + id.TabCustomer}><span>Customer</span></a></li>
                 </ul>
                 <div id={id.TabOrder} class="tab-pane">
                     <div id={id.Toolbar} class="s-DialogToolbar"></div>

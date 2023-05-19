@@ -98,53 +98,52 @@ export class OtherFormOneBarDialog extends OrderDialog {
     }
 
     // Save the customer and the order 
-    protected saveCustomer(callback: (response: SaveResponse) => void, onSuccess?: (response: SaveResponse) => void): boolean {
-        var id = this.getCustomerID();
-        if (!id) {
-            // If id of Customer isn't present, we save only Order entity
-            onSuccess(null);
-        }
-        else {
-            // Get current tab
-            var currTab = TabsExtensions.activeTabKey(this.tabs);
-
-            // Select the correct tab and validate to see the error message in tab
-            TabsExtensions.selectTab(this.tabs, "Customer")
-            if (!this.customerValidator.form()) {
-                return false;
+    protected async saveCustomer(callback: (response: SaveResponse) => void, onSuccess?: (response: SaveResponse) => void) {
+        this.getCustomerID().then(id => {
+            if (!id) {
+                // If id of Customer isn't present, we save only Order entity
+                onSuccess(null);
             }
+            else {
+                // Get current tab
+                var currTab = TabsExtensions.activeTabKey(this.tabs);
 
-            // Re-select initial tab
-            TabsExtensions.selectTab(this.tabs, currTab)
-
-            // prepare an empty entity to serialize customer details into
-            var c = <CustomerRow>{};
-            this.customerPropertyGrid.save(c);
-
-            CustomerService.Update({
-                EntityId: id,
-                Entity: c
-            }, response => {
-                // reload customer list just in case
-                reloadLookup(CustomerRow.lookupKey);
-
-                // set flag that we are triggering customer select change event
-                // otherwise active tab will change to first one
-                this.selfChange++;
-                try {
-                    // trigger change so that customer select updates its text
-                    // in case if Company Name is changed
-                    this.form.CustomerID.element.change();
-                }
-                finally {
-                    this.selfChange--;
+                // Select the correct tab and validate to see the error message in tab
+                TabsExtensions.selectTab(this.tabs, "Customer")
+                if (!this.customerValidator.form()) {
+                    return;
                 }
 
-                onSuccess(response);
-            });
-        }
+                // Re-select initial tab
+                TabsExtensions.selectTab(this.tabs, currTab)
 
-        return true;
+                // prepare an empty entity to serialize customer details into
+                var c = <CustomerRow>{};
+                this.customerPropertyGrid.save(c);
+
+                CustomerService.Update({
+                    EntityId: id,
+                    Entity: c
+                }, response => {
+                    // reload customer list just in case
+                    reloadLookup(CustomerRow.lookupKey);
+
+                    // set flag that we are triggering customer select change event
+                    // otherwise active tab will change to first one
+                    this.selfChange++;
+                    try {
+                        // trigger change so that customer select updates its text
+                        // in case if Company Name is changed
+                        this.form.CustomerID.element.change();
+                    }
+                    finally {
+                        this.selfChange--;
+                    }
+
+                    onSuccess(response);
+                });
+            }
+        });
     }
 
     // Call super.save to save Order entity

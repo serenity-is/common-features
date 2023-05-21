@@ -1,3 +1,4 @@
+/** jsxImportSource jsx-dom */
 import { BasicSamplesService } from "@/ServerTypes/Demo";
 import { Decorators, TemplatedDialog } from "@serenity-is/corelib";
 import { BarController, BarElement, CategoryScale, Chart, Legend, LinearScale } from "chart.js";

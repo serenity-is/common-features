@@ -1,4 +1,4 @@
-/** jsxImportSource jsx-dom */
+/** @jsxImportSource jsx-dom */
 import { Decorators, PropertyGrid, TabsExtensions, Toolbar } from "@serenity-is/corelib";
 import { first, getForm, isEmptyOrNull, notifySuccess, reloadLookup, localText, validateOptions, initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { OrderDialog, CustomerForm, CustomerRow, CustomerService, OrderRow, OrderGrid } from "@serenity-is/demo.northwind";

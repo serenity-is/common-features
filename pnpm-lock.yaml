@@ -22,8 +22,8 @@ importers:
         specifier: 4.1.1
         version: 4.1.1
       jsx-dom:
-        specifier: 8.0.5
-        version: 8.0.5
+        specifier: 8.0.6
+        version: 8.0.6
     devDependencies:
       '@serenity-is/tsbuild':
         specifier: latest
@@ -358,8 +358,8 @@ packages:
       path-scurry: 1.6.1
     dev: true
 
-  /jsx-dom@8.0.5:
-    resolution: {integrity: sha512-Dt4PLuFFm16Qj1TH0GSx6LdrfnrPSh5lEHG87Hd4lv9nDWGD3ZtUdp5RXH7GyEWI0E+19eoUDFcyO5dnJQ/4IQ==}
+  /jsx-dom@8.0.6:
+    resolution: {integrity: sha512-e8+YkFB0U0+mxyFHc0YW3z8iz2tJ9f50v65b5I9ATSVz8KvHaNKeeSiVkeRY0tphGMEwjkyfZBNAw1dgF6AN7Q==}
     dependencies:
       csstype: 3.1.2
     dev: false

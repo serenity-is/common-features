@@ -51,7 +51,7 @@ export class BasicProgressDialog extends TemplatedDialog<any> {
                     .attr('disabled', 'disabled')
                     .css('opacity', '0.5');
 
-                this.element.dialog('option', 'title', trimToNull(this.cancelTitle) ||
+                (this.element as any).dialog('option', 'title', trimToNull(this.cancelTitle) ||
                     localText('Site.BasicProgressDialog.CancelTitle'));
             }
         }];

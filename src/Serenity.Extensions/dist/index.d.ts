@@ -1,6 +1,5 @@
 /// <reference types="jquery" />
 /// <reference types="jquery.validation" />
-/// <reference types="jqueryui" />
 
 import { DataGrid, EntityDialog, EntityGrid, Formatter, IGetEditValue, ISetEditValue, PropertyDialog, Select2AjaxEditor, SettingStorage, TemplatedDialog, ToolButton, Widget } from '@serenity-is/corelib';
 import { DeleteResponse, Dictionary, ListRequest, ListResponse, PropertyItem, RetrieveResponse, SaveResponse, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse } from '@serenity-is/corelib/q';

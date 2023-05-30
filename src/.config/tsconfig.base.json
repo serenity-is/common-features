@@ -13,13 +13,13 @@
     "jsxImportSource": "preact",
     "module": "ESNext",
     "moduleResolution": "Node",
-    "preserveSymlinks": true,
     "newLine": "lf",
     "noEmitHelpers": true,
     "paths": {
       "@/*": [ "Modules/*" ]
     },
     "preserveConstEnums": true,
+    "preserveSymlinks": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "target": "ES6",

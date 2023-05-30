@@ -14,7 +14,7 @@ export namespace DialogUtils {
                 {
                     onNo: function () {
                         if (element.hasClass('ui-dialog-content'))
-                            element.dialog('close');
+                            (element as any).dialog('close');
                         else if (element.hasClass('s-Panel'))
                             TemplatedDialog.closePanel(element);
                     }

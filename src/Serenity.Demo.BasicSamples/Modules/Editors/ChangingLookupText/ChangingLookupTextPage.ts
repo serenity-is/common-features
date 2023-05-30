@@ -64,7 +64,7 @@ export class ChangingLookupTextDialog extends GridEditorDialog<OrderDetailRow> {
         });
     }
 
-    protected getDialogOptions(): JQueryUI.DialogOptions {
+    protected getDialogOptions() {
         var opt = super.getDialogOptions();
         opt.modal = false;
         return opt;

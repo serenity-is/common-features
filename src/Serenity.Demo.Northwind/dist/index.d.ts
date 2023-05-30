@@ -1,6 +1,5 @@
 /// <reference types="jquery" />
 /// <reference types="jquery.validation" />
-/// <reference types="jqueryui" />
 
 import { BooleanEditor, CaptureOperationType, DateEditor, DecimalEditor, EmailAddressEditor, EntityDialog, EntityGrid, EnumEditor, Formatter, IGetEditValue, ISetEditValue, ImageUploadEditor, IntegerEditor, LookupEditor, LookupEditorBase, LookupEditorOptions, PrefixedContext, StringEditor, TemplatedDialog, TemplatedWidget, ToolButton } from '@serenity-is/corelib';
 import { DeleteRequest, DeleteResponse, ListRequest, ListResponse, PropertyItem, RetrieveRequest, RetrieveResponse, SaveRequest, SaveResponse, ServiceOptions } from '@serenity-is/corelib/q';

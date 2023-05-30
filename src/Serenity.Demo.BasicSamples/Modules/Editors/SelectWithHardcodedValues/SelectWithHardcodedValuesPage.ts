@@ -68,7 +68,7 @@ export class HardcodedValuesDialog extends PropertyDialog<any, any> {
         });
     }
 
-    protected getDialogOptions(): JQueryUI.DialogOptions {
+    protected getDialogOptions() {
         var opt = super.getDialogOptions();
         opt.modal = false;
         return;

@@ -13,6 +13,7 @@
     "jsxImportSource": "preact",
     "module": "ESNext",
     "moduleResolution": "Node",
+    "preserveSymlinks": true,
     "newLine": "lf",
     "noEmitHelpers": true,
     "paths": {

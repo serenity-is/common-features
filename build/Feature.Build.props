@@ -41,9 +41,6 @@
     <TSBuildOutputs Include="wwwroot\index.d.ts" Condition="!Exists('tsbuild.js')" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildProjectDirectory)..\GlobalSuppressions.cs" Condition="Exists('$(MSBuildProjectDirectory)..\GlobalSuppressions.cs')">
-      <Link>Properties\GlobalSuppressions.cs</Link>
-    </Compile>
     <NpmPackageFile Include="$(MSBuildProjectDirectory)\package.json" Condition="Exists('$(MSBuildProjectDirectory)\package.json')" />
     <None Remove="$(MSBuildProjectDirectory)\*.json;$(MSBuildProjectDirectory)\tsbuild*.js" />
     <Content Include="$(MSBuildProjectDirectory)\*.json;$(MSBuildProjectDirectory)\tsbuild*.js" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" Pack="false" />

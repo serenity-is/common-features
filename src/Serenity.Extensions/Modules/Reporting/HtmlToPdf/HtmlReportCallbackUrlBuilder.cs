@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
-using Serenity.Extensions;
 using System.Net;
 
 namespace Serenity.Reporting;
@@ -92,8 +91,10 @@ public class HtmlReportCallbackUrlBuilder : IHtmlReportCallbackUrlBuilder
         response.Url = UriHelper.Combine(response.Url, GetRenderAction(report) +
             "?key=" + Uri.EscapeDataString(reportKey));
 
-        if (!string.IsNullOrEmpty(options?.ReportParams))
-            response.Url += "&opt=" + Uri.EscapeDataString(options.ReportParams);
+        var reportParams = options?.ReportParams ?? JSON.Stringify(report);
+
+        if (!string.IsNullOrEmpty(reportParams))
+            response.Url += "&opt=" + Uri.EscapeDataString(reportParams);
 
         response.Url += "&print=1";
 

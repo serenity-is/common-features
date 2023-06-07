@@ -60,7 +60,7 @@ public class ReportController : Controller
             KnownMimeTypes.Get("_" + result.FileExtension));
     }
 
-    protected string GetDownloadNameFor(IReport report, string extension)
+    public static string GetDownloadNameFor(IReport report, string extension)
     {
         if (report is ICustomFileName customFileName)
             return customFileName.GetFileName() + extension;

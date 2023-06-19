@@ -6,7 +6,7 @@
     <h1>@ViewData["Title"]<small></small></h1>
 }
 
-<div class="alert alert-info alert-dismissable alert-dismissible fade show">
+<div class="alert alert-info alert-dismissable alert-dismissible s-sample-info">
     <button type="button" class="close btn-close" data-dismiss="alert" data-bs-dismiss="alert" aria-hidden="true">&times;</button>
     <p>Here is a demo on grouping and summaries in SlickGrid.</p>
     <p>It starts with no grouping and only grand totals are shown. Click buttons to change grouping options.</p>
@@ -14,7 +14,7 @@
     performed client side. It only groups by and shows totals for rows in visible page. You have to disable paging to 
     show sums for all records.</p>
 
-    <p style="text-align: right;"><b>Source Files:</b> @Html.BasicSamplesSourceFile("Index.cshtml"), @Html.BasicSamplesSourceFile("GroupingAndSummariesInGridPage.ts")</p>
+    <p class="s-sample-sources"><b>Source Files:</b> @Html.BasicSamplesSourceFile("Index.cshtml"), @Html.BasicSamplesSourceFile("GroupingAndSummariesInGridPage.ts")</p>
 </div>
 
 <div id="GridDiv"></div>

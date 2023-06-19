@@ -6,7 +6,7 @@
     <h1>@ViewData["Title"]<small></small></h1>
 }
 
-<div class="alert alert-info alert-dismissable alert-dismissible fade show">
+<div class="alert alert-info alert-dismissable alert-dismissible s-sample-info">
     <button type="button" class="close btn-close" data-dismiss="alert" data-bs-dismiss="alert" aria-hidden="true">&times;</button>
     <p>One of the frequently asked questions about Serenity is how to work views, and especially with ones without an ID column.</p>
     <p>Actually this is a requirement of SlickGrid, as it needs a unique ID for items.</p>
@@ -14,7 +14,7 @@
     <p>Anyway in this sample we are using a view from Northwind (Sales By Category) that doesn't have an ID, and we are not using a composite key.</p>
     <p>See @Html.BasicSamplesSourceFile("ViewWithoutIDGrid.ts") for how to set a fake autoincrementing ID client side by intercepting OnViewProcessData method.</p>
     
-    <p style="text-align: right;"><b>Source Files:</b> @Html.BasicSamplesSourceFile("Index.cshtml"), @Html.BasicSamplesSourceFile("ViewWithoutIDPage.ts")</p>
+    <p class="s-sample-sources"><b>Source Files:</b> @Html.BasicSamplesSourceFile("Index.cshtml"), @Html.BasicSamplesSourceFile("ViewWithoutIDPage.ts")</p>
 </div>
 
 <div id="GridDiv"></div>

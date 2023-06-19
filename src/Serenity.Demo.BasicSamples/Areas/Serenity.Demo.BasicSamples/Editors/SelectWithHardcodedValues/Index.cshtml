@@ -6,13 +6,13 @@
     <h1>@ViewData["Title"]<small></small></h1>
 }
 
-<div class="alert alert-info alert-dismissable alert-dismissible fade show">
+<div class="alert alert-info alert-dismissable alert-dismissible s-sample-info">
     <button type="button" class="close btn-close" data-dismiss="alert" data-bs-dismiss="alert" aria-hidden="true">&times;</button>
     <p>Sometimes you might want to use a select editor with hardcoded values, e.g. one that doesn't exist in database.</p>
     <p>This sample demonstrates how to do it with a custom editor defined in script code.</p>
     <p>Two inputs below also show how to use an editor without a dialog / form.</p>
     
-    <p style="text-align: right;"><b>Source Files:</b> 
+    <p class="s-sample-sources"><b>Source Files:</b> 
         @Html.BasicSamplesSourceFile("Index.cshtml"), 
         @Html.BasicSamplesSourceFile("SelectWithHardcodedValuesPage.ts")
     </p>

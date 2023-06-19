@@ -1,27 +1,21 @@
 import { SettingStorage } from "@serenity-is/corelib";
 import { UserPreferenceService } from "../ServerTypes/Extensions/UserPreferenceService";
+import { UserPreferenceRetrieveResponse } from "@/ServerTypes/Extensions";
 
 export class UserPreferenceStorage implements SettingStorage {
-    getItem(key: string): string {
-        let value: string;
-
-        UserPreferenceService.Retrieve({
+    async getItem(key: string): Promise<string> {
+        const response = await Promise.resolve(UserPreferenceService.Retrieve({
             PreferenceType: "UserPreferenceStorage",
             Name: key
-        },
-        response => value = response.Value,
-        {
-            async: false
-        });
-
-        return value;
+        }) as PromiseLike<UserPreferenceRetrieveResponse>);
+        return response.Value;
     }
 
-    setItem(key: string, data: string): void {
-        UserPreferenceService.Update({
+    async setItem(key: string, data: string): Promise<void> {
+        return Promise.resolve(UserPreferenceService.Update({
             PreferenceType: "UserPreferenceStorage",
             Name: key,
             Value: data
-        });
+        }));
     }
 }

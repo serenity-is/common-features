@@ -39,7 +39,7 @@ public sealed class ProductRow : Row<ProductRow.RowFields>, IIdRow, INameRow
     }
 
     [DisplayName("Supplier"), ForeignKey(typeof(SupplierRow)), LeftJoin("sup")]
-    [LookupEditor(typeof(SupplierRow), InplaceAdd = true, DialogType = "Demo.Northwind.SupplierDialog")]
+    [LookupEditor(typeof(SupplierRow), InplaceAdd = true, DialogType = "Demo.Northwind.SupplierDialog", Async = true)]
     public int? SupplierID
     {
         get => fields.SupplierID[this];
@@ -47,7 +47,7 @@ public sealed class ProductRow : Row<ProductRow.RowFields>, IIdRow, INameRow
     }
 
     [DisplayName("Category"), ForeignKey(typeof(CategoryRow)), LeftJoin("cat"), LookupInclude]
-    [LookupEditor(typeof(CategoryRow), InplaceAdd = true, DialogType = "Demo.Northwind.CategoryDialog")]
+    [LookupEditor(typeof(CategoryRow), InplaceAdd = true, DialogType = "Demo.Northwind.CategoryDialog", Async = true)]
     public int? CategoryID
     {
         get => fields.CategoryID[this];

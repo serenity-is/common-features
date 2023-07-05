@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -21,7 +21,7 @@ importers:
         version: link:../Serenity.Extensions
       '@serenity-is/sleekgrid':
         specifier: latest
-        version: 1.6.0
+        version: 1.6.1
       chart.js:
         specifier: 4.1.1
         version: 4.1.1
@@ -43,7 +43,7 @@ importers:
         version: link:../Serenity.Extensions
       '@serenity-is/sleekgrid':
         specifier: latest
-        version: 1.6.0
+        version: 1.6.1
       '@types/dompurify':
         specifier: 2.4.0
         version: 2.4.0
@@ -62,7 +62,7 @@ importers:
         version: link:../../../Serenity/packages/corelib
       '@serenity-is/sleekgrid':
         specifier: latest
-        version: 1.6.0
+        version: 1.6.1
     devDependencies:
       '@serenity-is/tsbuild':
         specifier: latest
@@ -272,8 +272,8 @@ packages:
     resolution: {integrity: sha512-fuscdXJ9G1qb7W8VdHi+IwRqij3lBkosAm4ydQtEmbY58OzHXqQhvlxqEkoz0yssNVn38bcpRWgA9PP+OGoisw==}
     dev: false
 
-  /@serenity-is/sleekgrid@1.6.0:
-    resolution: {integrity: sha512-PMSgZ7fgS63J2z6sKGDtScbCNan7ADIlLwEKleSM9ho+IPE1eebyxO6SKl4UFaAI0ojNR4bILT1eB4Vd++GUeQ==}
+  /@serenity-is/sleekgrid@1.6.1:
+    resolution: {integrity: sha512-WKySjC5WIw9gt2/0qhK1gdzUP6Qg7N3zbtvZO4xT3hcdqfW5wH6NJv//PrxsTmmZOc6JP5vsKlJALzGepv4HKw==}
     dev: false
 
   /@serenity-is/tsbuild@6.7.1:

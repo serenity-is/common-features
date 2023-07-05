@@ -49,12 +49,9 @@ public class ReportController : Controller
             return View(viewName: result.ViewName, model: result.Model);
         }
 
-        if (download)
-        {
-            var downloadName = GetDownloadNameFor(report, result.FileExtension);
-            Response.Headers[HeaderNames.ContentDisposition] = "inline;filename=" +
-                WebUtility.UrlEncode(downloadName);
-        }
+        var downloadName = GetDownloadNameFor(report, result.FileExtension);
+        Response.Headers[HeaderNames.ContentDisposition] = $"{(download ? "attachment" : "inline")};filename=" +
+            WebUtility.UrlEncode(downloadName);
 
         return File(result.ContentBytes, result.MimeType ??
             KnownMimeTypes.Get("_" + result.FileExtension));

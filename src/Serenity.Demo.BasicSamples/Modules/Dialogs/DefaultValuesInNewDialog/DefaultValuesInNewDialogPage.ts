@@ -1,4 +1,4 @@
-﻿import { Decorators } from "@serenity-is/corelib";
+import { Decorators } from "@serenity-is/corelib";
 import { formatDate, initFullHeightGridPage } from "@serenity-is/corelib/q";
 import { OrderGrid, OrderRow, EmployeeRow, ShipperRow, OrderDialog, ProductRow } from "@serenity-is/demo.northwind";
 
@@ -35,6 +35,7 @@ export class DefaultValuesInNewGrid extends OrderGrid {
 
         buttons.push({
             title: 'Add Order from the Queen',
+            separator: true,
             cssClass: 'add-button',
             onClick: async () => {
                 // using EditItem method as a shortcut to create a new Order dialog,
@@ -51,6 +52,7 @@ export class DefaultValuesInNewGrid extends OrderGrid {
 
         buttons.push({
             title: 'Add Order with 5 Chai by Laura', cssClass: 'add-note-button',
+            separator: true,
             onClick: async () => {
                 // we could use EditItem here too, but for demonstration
                 // purposes we are manually creating dialog this time

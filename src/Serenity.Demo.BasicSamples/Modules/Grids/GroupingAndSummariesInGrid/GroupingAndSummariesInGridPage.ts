@@ -65,6 +65,7 @@ export class GroupingAndSummariesInGrid extends EntityGrid<ProductRow, any> {
     protected getButtons() {
         return [{
             title: 'Group By Category',
+            separator: true,
             cssClass: 'expand-all-button',
             onClick: () => this.view.setGrouping(
                 [{
@@ -73,6 +74,7 @@ export class GroupingAndSummariesInGrid extends EntityGrid<ProductRow, any> {
         },
         {
             title: 'Group By Category and Supplier',
+            separator: true,
             cssClass: 'expand-all-button',
             onClick: () => this.view.setGrouping(
                 [{
@@ -84,6 +86,7 @@ export class GroupingAndSummariesInGrid extends EntityGrid<ProductRow, any> {
                 }])
         }, {
             title: 'No Grouping',
+            separator: true,
             cssClass: 'collapse-all-button',
             onClick: () => this.view.setGrouping([])
         }];

@@ -47,10 +47,13 @@ export class ResetPasswordPanel extends PropertyPanel<ResetPasswordRequest, Rese
         serviceCall({
             url: resolveUrl('~/Account/ResetPassword'),
             request: request,
-            onSuccess: () => {
-                informationDialog(myTexts.Success, () => {
-                    window.location.href = resolveUrl('~/Account/Login');
-                });
+            onSuccess: (response: ResetPasswordResponse) => {
+                if (response.RedirectHome)
+                    window.location.href = resolveUrl('~/')
+                else
+                    informationDialog(myTexts.Success, () => {
+                        window.location.href = resolveUrl('~/Account/Login');
+                    });
             }
         });
     }

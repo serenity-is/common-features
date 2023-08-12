@@ -255,7 +255,7 @@ public abstract class PasswordActionsPageBase<TUserRow> : MembershipPageBase<TUs
     }
 
     [HttpPost, JsonRequest]
-    public virtual Result<ServiceResponse> ResetPassword(ResetPasswordRequest request,
+    public virtual Result<ResetPasswordResponse> ResetPassword(ResetPasswordRequest request,
         [FromServices] ITwoLevelCache cache,
         [FromServices] ISqlConnections sqlConnections,
         [FromServices] ITextLocalizer localizer,
@@ -314,7 +314,10 @@ public abstract class PasswordActionsPageBase<TUserRow> : MembershipPageBase<TUs
 
             cache.InvalidateOnCommit(uow, row.Fields);
 
-            return new ServiceResponse();
+            return new ResetPasswordResponse
+            {
+                RedirectHome = User.IsLoggedIn()
+            };
         });
     }
 }

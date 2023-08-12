@@ -2,7 +2,8 @@
   "name": "@serenity-is/extensions",
   "dependencies": {
     "@serenity-is/corelib": "../../../Serenity/packages/corelib",
-    "@serenity-is/sleekgrid": "latest"
+    "@serenity-is/sleekgrid": "latest",
+    "jsx-dom": "8.0.6"
   },
   "devDependencies": {
     "@serenity-is/tsbuild": "latest"

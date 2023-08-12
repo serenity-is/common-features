@@ -63,6 +63,9 @@ importers:
       '@serenity-is/sleekgrid':
         specifier: latest
         version: 1.6.1
+      jsx-dom:
+        specifier: 8.0.6
+        version: 8.0.6
     devDependencies:
       '@serenity-is/tsbuild':
         specifier: latest

@@ -1,3 +1,6 @@
 {
-  "Extends": "../.config/sergen.base.json"
+  "Extends": "../.config/sergen.base.json",
+  "ServerTypings": {
+    "LocalTexts": true
+  }
 }

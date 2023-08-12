@@ -3,6 +3,39 @@ namespace Serenity.Extensions;
 [NestedLocalTexts]
 public static class ExtensionsTexts
 {
+    public static class Forms
+    {
+        public static class Membership
+        {
+            public static class ChangePassword
+            {
+                public static readonly LocalText FormTitle = "Change Password";
+                public static readonly LocalText SubmitButton = "Change Password";
+                public static readonly LocalText Success = "Your password is changed.";
+                public static readonly LocalText PasswordNotSet = "Looks like you don't have a password set";
+                public static readonly LocalText SetPassword = "Set Password";
+                public static readonly LocalText SetPasswordInfo = "Looks like you don't have a password set in your account. Click button to get an email for setting your password.";
+                public static readonly LocalText SetPasswordSuccess = "We have sent you an e-mail with password reset instructions.";
+            }
+
+            public static class ForgotPassword
+            {
+                public static readonly LocalText FormInfo = "Please enter the e-mail you used to signup.";
+                public static readonly LocalText FormTitle = "Forgot My Password";
+                public static readonly LocalText SubmitButton = "Reset My Password";
+                public static readonly LocalText SuccessMessage = "If this user exists, we have sent you an e-mail with password reset instructions.";
+            }
+
+            public static class ResetPassword
+            {
+                public static readonly LocalText EmailSubject = "Reset Your Password";
+                public static readonly LocalText FormTitle = "Reset Password";
+                public static readonly LocalText SubmitButton = "Reset Password";
+                public static readonly LocalText Success = "Your password is changed. Please login with your new password.";
+            }
+        }
+    }
+
     public static class Site
     {
         public static class BasicProgressDialog
@@ -47,5 +80,12 @@ public static class ExtensionsTexts
             public static readonly LocalText TargetText = "Effective Translation in Target Language";
             public static readonly LocalText UserTranslated = "User Translated";
         }
+    }
+
+    public static class Validation
+    {
+        public static readonly LocalText InvalidResetToken = "Your token to reset your password is invalid or has expired!";
+        public static readonly LocalText MinRequiredPasswordLength = "Entered password doesn't have enough characters (min {0})!";
+        public static readonly LocalText PasswordConfirmMismatch = "The passwords entered doesn't match!";
     }
 }

@@ -23,3 +23,6 @@ await build(Object.assign({}, buildOpt, {
     globalName: 'Serenity._',
     outdir: 'wwwroot/'
 }));
+
+await build({
+});

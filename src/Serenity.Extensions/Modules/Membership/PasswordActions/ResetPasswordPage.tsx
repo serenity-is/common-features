@@ -7,10 +7,8 @@ import { format, informationDialog, resolveUrl, serviceCall } from "@serenity-is
 import { AccountPanelTitle } from "../AccountPanelTitle";
 
 export default function pageInit(opt: ResetPasswordOptions) {
-    $(function () {
-        new ResetPasswordPanel($('#PanelDiv')
-            .addClass('s-full-page justify-content-center'), opt);
-    });
+    new ResetPasswordPanel($('#PanelDiv')
+        .addClass('s-full-page justify-content-center'), opt);
 }
 
 interface ResetPasswordOptions {

@@ -16,6 +16,8 @@ public static class ExtensionsTexts
                 public static readonly LocalText SetPassword = "Set Password";
                 public static readonly LocalText SetPasswordInfo = "Looks like you don't have a password set in your account. Click button to get an email for setting your password.";
                 public static readonly LocalText SetPasswordSuccess = "We have sent you an e-mail with password reset instructions.";
+                public static readonly LocalText SetPasswordButton = "Send e-mail to reset password";
+                public static readonly LocalText ElevatedActions = "You need to set a password for your account to make elevated actions.";
             }
 
             public static class ForgotPassword

@@ -42,10 +42,25 @@ public abstract class PasswordActionsPageBase<TUserRow> : MembershipPageBase<TUs
         var userDefinition = User.GetUserDefinition<IUserDefinition>(userRetrieveService) ?? 
             throw new ValidationError("Couldn't find user definition.");
 
+#if (IsPublicDemo)
+        return this.UseConnection(GetConnectionKey(), connection =>
+        {
+            var user = connection.TryFirst<UserRow>(UserRow.Fields.UserId == userDefinition.UserId);
+            if (user is null)
+                throw new ValidationError("Couldn't find user.");
+
+            return new SendResetPasswordResponse()
+            {
+                DemoLink = "/Account/ResetPassword?t=" + Uri.EscapeDataString(GenerateResetPasswordToken(user))
+            };
+        });
+#else
+
         return ForgotPassword(new()
         {
             Email = userDefinition.Email
         }, emailSender, siteAbsoluteUrl, localizer);
+#endif
     }
 
     [HttpPost, JsonRequest, ServiceAuthorize]
@@ -128,7 +143,7 @@ public abstract class PasswordActionsPageBase<TUserRow> : MembershipPageBase<TUs
         [FromServices] ISiteAbsoluteUrl siteAbsoluteUrl,
         [FromServices] ITextLocalizer localizer)
     {
-        return this.UseConnection(typeof(TUserRow).GetAttribute<ConnectionKeyAttribute>()?.Value ?? "Default", connection =>
+        return this.UseConnection(GetConnectionKey(), connection =>
         {
             if (request is null)
                 throw new ArgumentNullException(nameof(request));
@@ -142,20 +157,7 @@ public abstract class PasswordActionsPageBase<TUserRow> : MembershipPageBase<TUs
             if (user == null)
                 return new ServiceResponse();
 
-            byte[] bytes;
-            using (var ms = new MemoryStream())
-            using (var bw = new BinaryWriter(ms))
-            {
-                bw.Write(DateTime.UtcNow.AddHours(3).ToBinary());
-                bw.Write(Convert.ToString(fieldsRow.IdField.AsObject(user), CultureInfo.InvariantCulture));
-                bw.Write(GetNonceFor(user));
-                bw.Flush();
-                bytes = ms.ToArray();
-            }
-
-            var token = Convert.ToBase64String(HttpContext.RequestServices
-                .GetDataProtector("ResetPassword").Protect(bytes));
-
+            var token = GenerateResetPasswordToken(user);
             var externalUrl = siteAbsoluteUrl.GetExternalUrl();
             var resetLink = UriHelper.Combine(externalUrl, "Account/ResetPassword?t=");
             resetLink += Uri.EscapeDataString(token);
@@ -181,6 +183,23 @@ public abstract class PasswordActionsPageBase<TUserRow> : MembershipPageBase<TUs
 
             return new ServiceResponse();
         });
+    }
+
+    protected virtual string GenerateResetPasswordToken(TUserRow user)
+    {
+        byte[] bytes;
+        using (var ms = new MemoryStream())
+        using (var bw = new BinaryWriter(ms))
+        {
+            bw.Write(DateTime.UtcNow.AddHours(3).ToBinary());
+            bw.Write(Convert.ToString(user.IdField.AsObject(user), CultureInfo.InvariantCulture));
+            bw.Write(GetNonceFor(user));
+            bw.Flush();
+            bytes = ms.ToArray();
+        }
+
+        return Convert.ToBase64String(HttpContext.RequestServices
+            .GetDataProtector("ResetPassword").Protect(bytes));
     }
 
     [HttpGet]
@@ -243,7 +262,7 @@ public abstract class PasswordActionsPageBase<TUserRow> : MembershipPageBase<TUs
         [FromServices] IOptions<EnvironmentSettings> environmentOptions,
         [FromServices] IOptions<MembershipSettings> membershipOptions)
     {
-        return this.InTransaction(typeof(TUserRow).GetAttribute<ConnectionKeyAttribute>()?.Value ?? "Default", uow =>
+        return this.InTransaction(GetConnectionKey(), uow =>
         {
             if (request is null)
                 throw new ArgumentNullException(nameof(request));

@@ -8,10 +8,8 @@ import { AccountPanelTitle } from "../AccountPanelTitle";
 
 
 export default function pageInit() {
-    $(function () {
-        new ForgotPasswordPanel($('#PanelDiv')
-            .addClass('s-full-page justify-content-center'));
-    });
+    new ForgotPasswordPanel($('#PanelDiv')
+        .addClass('s-full-page justify-content-center'));
 }
 
 const myTexts = Texts.Forms.Membership.ForgotPassword;

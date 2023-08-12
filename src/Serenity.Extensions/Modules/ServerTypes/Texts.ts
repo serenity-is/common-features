@@ -21,9 +21,11 @@ namespace Serenity.Extensions.Texts {
         namespace Membership {
 
             namespace ChangePassword {
+                export const ElevatedActions: string;
                 export const FormTitle: string;
                 export const PasswordNotSet: string;
                 export const SetPassword: string;
+                export const SetPasswordButton: string;
                 export const SetPasswordInfo: string;
                 export const SetPasswordSuccess: string;
                 export const SubmitButton: string;

@@ -65,4 +65,6 @@ public abstract class MembershipPageBase<TUserRow> : Controller
              (user as IPasswordRow)?.PasswordHashField[user] +
              (user as IPasswordRow)?.PasswordSaltField[user]);
     }
+
+    protected virtual string GetConnectionKey() => typeof(TUserRow).GetAttribute<ConnectionKeyAttribute>()?.Value ?? "Default";
 }

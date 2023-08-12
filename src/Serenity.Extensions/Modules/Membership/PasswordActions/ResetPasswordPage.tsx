@@ -4,6 +4,7 @@ import { ResetPasswordRequest } from "@/ServerTypes/Extensions/ResetPasswordRequ
 import { Texts } from "@/ServerTypes/Texts";
 import { PropertyPanel } from "@serenity-is/corelib";
 import { format, informationDialog, resolveUrl, serviceCall } from "@serenity-is/corelib/q";
+import { ResetPasswordResponse } from "../../ServerTypes/Extensions/ResetPasswordResponse";
 import { AccountPanelTitle } from "../AccountPanelTitle";
 
 export default function pageInit(opt: ResetPasswordOptions) {

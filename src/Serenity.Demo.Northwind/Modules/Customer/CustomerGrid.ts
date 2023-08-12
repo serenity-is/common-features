@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid } from "@serenity-is/corelib";
-import { CustomerColumns, CustomerRow, CustomerService } from "../ServerTypes/Demo";
+import { CustomerColumns, CustomerRow, CustomerService } from "@/ServerTypes/Demo";
 import { CustomerDialog } from "./CustomerDialog";
 
 @Decorators.registerClass('Serenity.Demo.Norhtwind.CustomerGrid')

@@ -1,7 +1,7 @@
 import { Decorators } from "@serenity-is/corelib";
 import { alertDialog, toId, tryFirst } from "@serenity-is/corelib/q";
 import { GridEditorBase } from "@serenity-is/extensions";
-import { OrderDetailColumns, OrderDetailRow, ProductRow } from "../ServerTypes/Demo";
+import { OrderDetailColumns, OrderDetailRow, ProductRow } from "@/ServerTypes/Demo";
 import { OrderDetailDialog } from "./OrderDetailDialog";
 
 @Decorators.registerEditor('Serenity.Demo.Northwind.OrderDetailsEditor')

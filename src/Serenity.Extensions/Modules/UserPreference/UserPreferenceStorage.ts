@@ -1,5 +1,5 @@
 import { SettingStorage } from "@serenity-is/corelib";
-import { UserPreferenceService } from "../ServerTypes/Extensions/UserPreferenceService";
+import { UserPreferenceService } from "@/ServerTypes/Extensions/UserPreferenceService";
 import { UserPreferenceRetrieveResponse } from "@/ServerTypes/Extensions";
 
 export class UserPreferenceStorage implements SettingStorage {

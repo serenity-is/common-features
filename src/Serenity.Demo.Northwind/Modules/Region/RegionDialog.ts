@@ -1,5 +1,5 @@
 import { Decorators, EntityDialog } from "@serenity-is/corelib";
-import { RegionForm, RegionRow, RegionService } from "../ServerTypes/Demo";
+import { RegionForm, RegionRow, RegionService } from "@/ServerTypes/Demo";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.RegionDialog')
 export class RegionDialog extends EntityDialog<RegionRow, any> {

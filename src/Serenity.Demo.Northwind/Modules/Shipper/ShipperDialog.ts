@@ -1,5 +1,5 @@
 import { Decorators, EntityDialog } from "@serenity-is/corelib";
-import { ShipperForm, ShipperRow, ShipperService } from "../ServerTypes/Demo";
+import { ShipperForm, ShipperRow, ShipperService } from "@/ServerTypes/Demo";
 
 @Decorators.registerClass()
 export class ShipperDialog extends EntityDialog<ShipperRow, any> {

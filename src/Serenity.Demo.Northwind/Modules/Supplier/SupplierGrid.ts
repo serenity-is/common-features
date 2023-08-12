@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid } from "@serenity-is/corelib";
-import { SupplierColumns, SupplierRow, SupplierService } from "../ServerTypes/Demo";
+import { SupplierColumns, SupplierRow, SupplierService } from "@/ServerTypes/Demo";
 import { SupplierDialog } from "./SupplierDialog";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.SupplierGrid')

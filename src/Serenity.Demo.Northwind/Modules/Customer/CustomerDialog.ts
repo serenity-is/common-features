@@ -1,7 +1,7 @@
 import { Decorators, EntityDialog, TabsExtensions } from "@serenity-is/corelib";
 import { htmlEncode, reloadLookup, localText } from "@serenity-is/corelib/q";
 import { DialogUtils } from "@serenity-is/extensions";
-import { CustomerForm, CustomerRow, CustomerService } from "../ServerTypes/Demo";
+import { CustomerForm, CustomerRow, CustomerService } from "@/ServerTypes/Demo";
 import { CustomerOrdersGrid } from "./CustomerOrdersGrid";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.CustomerDialog')

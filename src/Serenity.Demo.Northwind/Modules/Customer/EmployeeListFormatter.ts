@@ -1,7 +1,7 @@
 import { Decorators, Formatter } from "@serenity-is/corelib";
 import { Lookup } from "@serenity-is/corelib/q";
 import { FormatterContext } from "@serenity-is/sleekgrid";
-import { EmployeeRow } from "../ServerTypes/Demo";
+import { EmployeeRow } from "@/ServerTypes/Demo";
 
 var employeeLookup: Lookup<EmployeeRow>;
 var employeePromise: Promise<any>;

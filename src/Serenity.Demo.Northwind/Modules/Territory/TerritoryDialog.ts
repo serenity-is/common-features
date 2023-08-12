@@ -1,5 +1,5 @@
 import { Decorators, EntityDialog } from "@serenity-is/corelib";
-import { TerritoryForm, TerritoryRow, TerritoryService } from "../ServerTypes/Demo";
+import { TerritoryForm, TerritoryRow, TerritoryService } from "@/ServerTypes/Demo";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.TerritoryDialog')
 export class TerritoryDialog extends EntityDialog<TerritoryRow, any> {

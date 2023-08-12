@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Serenity.Extensions;
 
-public abstract class PasswordActionsPageBase<TUserRow> : MembershipPageBase<TUserRow>
+public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageBase<TUserRow>
     where TUserRow : class, IRow, IIdRow, IEmailRow, IPasswordRow, new()
 {
     protected string ModuleFolder => "~/Serenity.Extensions/esm/Modules/Membership/PasswordActions/";

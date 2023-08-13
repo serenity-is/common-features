@@ -1,4 +1,4 @@
-﻿#if IsFeatureBuild
+#if IsFeatureBuild
 using System;
 using System.IO;
 using System.Linq;
@@ -126,6 +126,21 @@ public static partial class Shared
                     xeCFPackageVersion.Value != cfPackageVersion)
                 {
                     xeCFPackageVersion.SetValue(cfPackageVersion);
+                    changed = true;
+                }
+            }
+
+            var xeProPackageVersion = xe.Descendants("ProPackageVersion").FirstOrDefault();
+            if (xeProPackageVersion?.Value != null)
+            {
+                var proPackageBuildProps = Path.Combine(Root, "..", "pro-features", "build", "Package.Build.props");
+                var xePro = XElement.Parse(File.ReadAllText(proPackageBuildProps));
+                var proPackageVersion = xePro.Descendants("Version").FirstOrDefault()?.Value;
+                if (proPackageVersion != null &&
+                    xeProPackageVersion != null &&
+                    xeProPackageVersion.Value != proPackageVersion)
+                {
+                    xeProPackageVersion.SetValue(proPackageVersion);
                     changed = true;
                 }
             }

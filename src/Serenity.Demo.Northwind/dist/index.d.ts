@@ -920,6 +920,7 @@ export declare class CustomerOrdersGrid extends OrderGrid {
 	constructor(container: JQuery);
 	protected getColumns(): Column[];
 	protected initEntityDialog(itemType: any, dialog: any): void;
+	protected getButtons(): import("@serenity-is/corelib").ToolButton[];
 	protected addButtonClick(): void;
 	protected getInitialTitle(): any;
 	protected getGridCanLoad(): boolean;

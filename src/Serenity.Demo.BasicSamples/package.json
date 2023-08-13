@@ -6,7 +6,7 @@
     "@serenity-is/extensions": "workspace:*",
     "@serenity-is/sleekgrid": "latest",
     "chart.js": "4.1.1",
-    "jsx-dom": "8.0.6"
+    "jsx-dom": "8.0.7"
   },
   "devDependencies": {
     "@serenity-is/tsbuild": "latest"

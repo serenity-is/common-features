@@ -1,10 +1,25 @@
 /// <reference types="jquery" />
 /// <reference types="jquery.validation" />
 
-import { DataGrid, EntityDialog, EntityGrid, Formatter, IGetEditValue, ISetEditValue, PropertyDialog, Select2AjaxEditor, SettingStorage, TemplatedDialog, ToolButton, Widget } from '@serenity-is/corelib';
+import { DataGrid, EmailAddressEditor, EntityDialog, EntityGrid, Formatter, IGetEditValue, ISetEditValue, PasswordEditor, PrefixedContext, PropertyDialog, Select2AjaxEditor, SettingStorage, TemplatedDialog, ToolButton, Widget } from '@serenity-is/corelib';
 import { DeleteResponse, Dictionary, ListRequest, ListResponse, PropertyItem, RetrieveResponse, SaveResponse, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse } from '@serenity-is/corelib/q';
 import { FormatterContext, Grid, GridOptions } from '@serenity-is/sleekgrid';
 
+export interface ChangePasswordForm {
+	OldPassword: PasswordEditor;
+	NewPassword: PasswordEditor;
+	ConfirmPassword: PasswordEditor;
+}
+export declare class ChangePasswordForm extends PrefixedContext {
+	static formKey: string;
+	private static init;
+	constructor(prefix: string);
+}
+export interface ChangePasswordRequest extends ServiceRequest {
+	OldPassword?: string;
+	NewPassword?: string;
+	ConfirmPassword?: string;
+}
 export interface ExcelImportRequest extends ServiceRequest {
 	FileName?: string;
 }
@@ -13,6 +28,17 @@ export interface ExcelImportResponse extends ServiceResponse {
 	Updated?: number;
 	ErrorList?: string[];
 }
+export interface ForgotPasswordForm {
+	Email: EmailAddressEditor;
+}
+export declare class ForgotPasswordForm extends PrefixedContext {
+	static formKey: string;
+	private static init;
+	constructor(prefix: string);
+}
+export interface ForgotPasswordRequest extends ServiceRequest {
+	Email?: string;
+}
 export interface GetNextNumberRequest extends ServiceRequest {
 	Prefix?: string;
 	Length?: number;
@@ -20,6 +46,26 @@ export interface GetNextNumberRequest extends ServiceRequest {
 export interface GetNextNumberResponse extends ServiceResponse {
 	Number?: number;
 	Serial?: string;
+}
+export interface ResetPasswordForm {
+	NewPassword: PasswordEditor;
+	ConfirmPassword: PasswordEditor;
+}
+export declare class ResetPasswordForm extends PrefixedContext {
+	static formKey: string;
+	private static init;
+	constructor(prefix: string);
+}
+export interface ResetPasswordRequest extends ServiceRequest {
+	Token?: string;
+	NewPassword?: string;
+	ConfirmPassword?: string;
+}
+export interface ResetPasswordResponse extends ServiceResponse {
+	RedirectHome?: boolean;
+}
+export interface SendResetPasswordResponse extends ServiceResponse {
+	DemoLink?: string;
 }
 export interface TranslationItem {
 	Key?: string;
@@ -355,8 +401,8 @@ export declare class ReportPage extends Widget<any> {
 	protected reportLinkClick(e: any): void;
 }
 export declare class UserPreferenceStorage implements SettingStorage {
-	getItem(key: string): string;
-	setItem(key: string, data: string): void;
+	getItem(key: string): Promise<string>;
+	setItem(key: string, data: string): Promise<void>;
 }
 export declare namespace DialogUtils {
 	function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;

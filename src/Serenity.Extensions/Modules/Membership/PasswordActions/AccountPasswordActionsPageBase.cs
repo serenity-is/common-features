@@ -18,11 +18,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
         if (userDefinition is IHasPassword hasPassword &&
             !hasPassword.HasPassword)
         {
-            return this.PanelPage(new()
-            {
-                Module = ModulePath("SetPassword"),
-                PageTitle = ExtensionsTexts.Forms.Membership.ChangePassword.SetPassword
-            });
+            return SetPassword();
         }
 
         return this.PanelPage(new()
@@ -31,6 +27,16 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
             PageTitle = ExtensionsTexts.Forms.Membership.ChangePassword.FormTitle
         });
     }
+
+    [HttpGet, PageAuthorize]
+    public ActionResult SetPassword()
+    {
+        return this.PanelPage(new()
+        {
+            Module = ModulePath("SetPassword"),
+            PageTitle = ExtensionsTexts.Forms.Membership.ChangePassword.SetPassword
+        });
+    }    
 
     [HttpPost, ServiceAuthorize]
     public virtual ActionResult SendResetPassword(

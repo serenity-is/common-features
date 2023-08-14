@@ -1,4 +1,4 @@
-﻿#if IsFeatureBuild || IsTemplateBuild
+#if IsFeatureBuild || IsTemplateBuild
 using NuGet.Common;
 using NuGet.Configuration;
 using NuGet.Protocol;
@@ -145,7 +145,8 @@ public static partial class Shared
     {
         ILogger logger = NullLogger.Instance;
         CancellationToken cancellationToken = CancellationToken.None;
-        sourceCacheContext ??= new SourceCacheContext();
+        if (sourceCacheContext is null)
+            sourceCacheContext = new SourceCacheContext().WithRefreshCacheTrue();
 
         var sourceCacheKey = packageSource?.Source ?? sourceKey;
         if (!findPackageByIdSource.TryGetValue(sourceCacheKey,

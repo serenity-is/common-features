@@ -1,10 +1,10 @@
-﻿using FluentMigrator;
+using FluentMigrator;
 using FluentMigrator.Builders.Create.Table;
 using Serenity.Extensions;
 
 namespace Serenity.Demo.Northwind.Migrations;
 
-[Migration(20151226_1845)]
+[NorthwindDB, Migration(20151226_1845)]
 public class NorthwindDB_20151226_1845_Notes : AutoReversingMigration
 {
     public override void Up()

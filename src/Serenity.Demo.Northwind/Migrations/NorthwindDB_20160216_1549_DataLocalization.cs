@@ -1,9 +1,9 @@
-﻿using FluentMigrator;
+using FluentMigrator;
 using Serenity.Extensions;
 
 namespace Serenity.Demo.Northwind.Migrations;
 
-[Migration(20160216_1549)]
+[NorthwindDB, Migration(20160216_1549)]
 public class NorthwindDB_20160216_1549_DataLocalization : AutoReversingMigration
 {
     public override void Up()

@@ -1,4 +1,4 @@
-﻿namespace Serenity.Demo.Northwind;
+namespace Serenity.Demo.Northwind;
 
 [ConnectionKey("Northwind"), Module("Northwind"), TableName("ProductLog")]
 public sealed class ProductLogRow : Row<ProductLogRow.RowFields>, ICaptureLogRow
@@ -6,7 +6,7 @@ public sealed class ProductLogRow : Row<ProductLogRow.RowFields>, ICaptureLogRow
     [Identity, IdProperty]
     public long? ProductLogID { get => fields.ProductLogID[this]; set => fields.ProductLogID[this] = value; }
 
-    public CaptureOperationType? OperationType { get => return Fields.OperationType[this]; set => fields.OperationType[this] = value; }
+    public CaptureOperationType? OperationType { get => fields.OperationType[this]; set => fields.OperationType[this] = value; }
 
     public int? ChangingUserId { get => fields.ChangingUserId[this]; set => fields.ChangingUserId[this] = value; }
 

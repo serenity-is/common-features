@@ -12,55 +12,22 @@ public sealed class CustomerDetailsRow : Row<CustomerDetailsRow.RowFields>, IIdR
     const string jLastContactedBy = nameof(jLastContactedBy);
 
     [DisplayName("Id"), Column("ID"), PrimaryKey, IdProperty]
-    public int? Id
-    {
-        get => fields.Id[this];
-        set => fields.Id[this] = value;
-    }
+    public int? Id { get => fields.Id[this]; set => fields.Id[this] = value; }
 
     [DisplayName("Last Contact Date")]
-    public DateTime? LastContactDate
-    {
-        get => fields.LastContactDate[this];
-        set => fields.LastContactDate[this] = value;
-    }
+    public DateTime? LastContactDate { get => fields.LastContactDate[this]; set => fields.LastContactDate[this] = value; }
 
     [DisplayName("Last Contacted By"), ForeignKey(typeof(EmployeeRow)), LeftJoin(jLastContactedBy), TextualField(nameof(LastContactedByFullName))]
-    public int? LastContactedBy
-    {
-        get => fields.LastContactedBy[this];
-        set => fields.LastContactedBy[this] = value;
-    }
+    public int? LastContactedBy { get => fields.LastContactedBy[this]; set => fields.LastContactedBy[this] = value; }
 
     [DisplayName("Last Contacted By"), Origin(jLastContactedBy, nameof(EmployeeRow.FullName))]
-    public string LastContactedByFullName
-    {
-        get => fields.LastContactedByFullName[this];
-        set => fields.LastContactedByFullName[this] = value;
-    }
+    public string LastContactedByFullName { get => fields.LastContactedByFullName[this]; set => fields.LastContactedByFullName[this] = value; }
 
     [DisplayName("Email"), Size(100), QuickSearch, NameProperty]
-    public string Email
-    {
-        get => fields.Email[this];
-        set => fields.Email[this] = value;
-    }
+    public string Email { get => fields.Email[this]; set => fields.Email[this] = value; }
 
     [DisplayName("Send Bulletin"), NotNull]
-    public bool? SendBulletin
-    {
-        get => fields.SendBulletin[this];
-        set => fields.SendBulletin[this] = value;
-    }
-
-    public CustomerDetailsRow()
-    {
-    }
-
-    public CustomerDetailsRow(RowFields fields)
-        : base(fields)
-    {
-    }
+    public bool? SendBulletin { get => fields.SendBulletin[this]; set => fields.SendBulletin[this] = value; }
 
     public class RowFields : RowFieldsBase
     {

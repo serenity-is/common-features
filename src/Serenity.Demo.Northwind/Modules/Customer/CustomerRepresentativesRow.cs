@@ -7,26 +7,15 @@
 public sealed class CustomerRepresentativesRow : Row<CustomerRepresentativesRow.RowFields>, IIdRow
 {
     [DisplayName("Representative Id"), Column("RepresentativeID"), Identity, IdProperty]
-    public int? RepresentativeId
-    {
-        get => fields.RepresentativeId[this];
-        set => fields.RepresentativeId[this] = value;
-    }
+    public int? RepresentativeId { get => fields.RepresentativeId[this]; set => fields.RepresentativeId[this] = value; }
 
     [DisplayName("Customer Id"), Column("CustomerID"), NotNull]
-    public int? CustomerId
-    {
-        get => fields.CustomerId[this];
-        set => fields.CustomerId[this] = value;
-    }
+    public int? CustomerId { get => fields.CustomerId[this]; set => fields.CustomerId[this] = value; }
 
     [DisplayName("Employee Id"), Column("EmployeeID"), NotNull]
-    public int? EmployeeId
-    {
-        get => fields.EmployeeId[this];
-        set => fields.EmployeeId[this] = value;
-    }
-    public CustomerRepresentativesRow()
+    public int? EmployeeId { get => fields.EmployeeId[this]; set => fields.EmployeeId[this] = value; }
+
+    public CustomerRepresentativesRow()
     {
     }
 

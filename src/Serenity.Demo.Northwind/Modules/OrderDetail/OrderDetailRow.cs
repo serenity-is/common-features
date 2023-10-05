@@ -8,83 +8,39 @@ namespace Serenity.Demo.Northwind;
 public sealed class OrderDetailRow : Row<OrderDetailRow.RowFields>, IIdRow
 {
     [DisplayName("ID"), Identity, IdProperty]
-    public int? DetailID
-    {
-        get => fields.DetailID[this];
-        set => fields.DetailID[this] = value;
-    }
+    public int? DetailID { get => fields.DetailID[this]; set => fields.DetailID[this] = value; }
 
     [DisplayName("Order Id"), PrimaryKey, ForeignKey(typeof(OrderRow)), LeftJoin("o"), Updatable(false)]
-    public int? OrderID
-    {
-        get => fields.OrderID[this];
-        set => fields.OrderID[this] = value;
-    }
+    public int? OrderID { get => fields.OrderID[this]; set => fields.OrderID[this] = value; }
 
     [DisplayName("Product"), PrimaryKey, NotNull, ForeignKey(typeof(ProductRow)), LeftJoin("p")]
     [AsyncLookupEditor(typeof(ProductRow))]
-    public int? ProductID
-    {
-        get => fields.ProductID[this];
-        set => fields.ProductID[this] = value;
-    }
+    public int? ProductID { get => fields.ProductID[this]; set => fields.ProductID[this] = value; }
 
     [DisplayName("Unit Price"), Scale(4), NotNull, AlignRight, DisplayFormat("#,##0.00")]
-    public decimal? UnitPrice
-    {
-        get => fields.UnitPrice[this];
-        set => fields.UnitPrice[this] = value;
-    }
+    public decimal? UnitPrice { get => fields.UnitPrice[this]; set => fields.UnitPrice[this] = value; }
 
     [DisplayName("Quantity"), NotNull, DefaultValue(1), AlignRight]
-    public short? Quantity
-    {
-        get => fields.Quantity[this];
-        set => fields.Quantity[this] = value;
-    }
+    public short? Quantity { get => fields.Quantity[this]; set => fields.Quantity[this] = value; }
 
     [DisplayName("Discount"), NotNull, DefaultValue(0), AlignRight, DisplayFormat("#,##0.00")]
-    public float? Discount
-    {
-        get => fields.Discount[this];
-        set => fields.Discount[this] = value;
-    }
+    public float? Discount { get => fields.Discount[this]; set => fields.Discount[this] = value; }
 
     [DisplayName("Line Total"), Expression("(T0.[UnitPrice] * T0.[Quantity] - T0.[Discount])")]
     [AlignRight, DisplayFormat("#,##0.00"), MinSelectLevel(SelectLevel.List)]
-    public decimal? LineTotal
-    {
-        get => fields.LineTotal[this];
-        set => fields.LineTotal[this] = value;
-    }
+    public decimal? LineTotal { get => fields.LineTotal[this]; set => fields.LineTotal[this] = value; }
 
     [Origin("o")]
-    public string OrderCustomerID
-    {
-        get => fields.OrderCustomerID[this];
-        set => fields.OrderCustomerID[this] = value;
-    }
+    public string OrderCustomerID { get => fields.OrderCustomerID[this]; set => fields.OrderCustomerID[this] = value; }
 
     [Origin("o")]
-    public int? OrderEmployeeID
-    {
-        get => fields.OrderEmployeeID[this];
-        set => fields.OrderEmployeeID[this] = value;
-    }
+    public int? OrderEmployeeID { get => fields.OrderEmployeeID[this]; set => fields.OrderEmployeeID[this] = value; }
 
     [Origin("o")]
-    public DateTime? OrderDate
-    {
-        get => fields.OrderDate[this];
-        set => fields.OrderDate[this] = value;
-    }
+    public DateTime? OrderDate { get => fields.OrderDate[this]; set => fields.OrderDate[this] = value; }
 
     [Origin("p"), MinSelectLevel(SelectLevel.List)]
-    public string ProductName
-    {
-        get => fields.ProductName[this];
-        set => fields.ProductName[this] = value;
-    }
+    public string ProductName { get => fields.ProductName[this]; set => fields.ProductName[this] = value; }
 
     public class RowFields : RowFieldsBase
     {

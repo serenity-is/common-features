@@ -21,7 +21,7 @@ importers:
         version: link:../Serenity.Extensions
       '@serenity-is/sleekgrid':
         specifier: latest
-        version: 1.6.1
+        version: 1.6.2
       chart.js:
         specifier: 4.1.1
         version: 4.1.1
@@ -31,7 +31,7 @@ importers:
     devDependencies:
       '@serenity-is/tsbuild':
         specifier: latest
-        version: 6.7.1
+        version: 6.7.2
 
   src/Serenity.Demo.Northwind:
     dependencies:
@@ -43,7 +43,7 @@ importers:
         version: link:../Serenity.Extensions
       '@serenity-is/sleekgrid':
         specifier: latest
-        version: 1.6.1
+        version: 1.6.2
       '@types/dompurify':
         specifier: 2.4.0
         version: 2.4.0
@@ -53,7 +53,7 @@ importers:
     devDependencies:
       '@serenity-is/tsbuild':
         specifier: latest
-        version: 6.7.1
+        version: 6.7.2
 
   src/Serenity.Extensions:
     dependencies:
@@ -62,14 +62,14 @@ importers:
         version: link:../../../Serenity/packages/corelib
       '@serenity-is/sleekgrid':
         specifier: latest
-        version: 1.6.1
+        version: 1.6.2
       jsx-dom:
         specifier: 8.0.7
         version: 8.0.7
     devDependencies:
       '@serenity-is/tsbuild':
         specifier: latest
-        version: 6.7.1
+        version: 6.7.2
 
 packages:
 
@@ -275,12 +275,12 @@ packages:
     resolution: {integrity: sha512-fuscdXJ9G1qb7W8VdHi+IwRqij3lBkosAm4ydQtEmbY58OzHXqQhvlxqEkoz0yssNVn38bcpRWgA9PP+OGoisw==}
     dev: false
 
-  /@serenity-is/sleekgrid@1.6.1:
-    resolution: {integrity: sha512-WKySjC5WIw9gt2/0qhK1gdzUP6Qg7N3zbtvZO4xT3hcdqfW5wH6NJv//PrxsTmmZOc6JP5vsKlJALzGepv4HKw==}
+  /@serenity-is/sleekgrid@1.6.2:
+    resolution: {integrity: sha512-HunyimIIsfLlKJGnoKFEUkZumellr3SW9Tk3gCflHdQbvrYnqXD+FZMUc9vTxKmVI5xFbYMcYXXAH/+DlD+b/g==}
     dev: false
 
-  /@serenity-is/tsbuild@6.7.1:
-    resolution: {integrity: sha512-rWZqJ2KPrT/ht1pBHVRrZrimzrAQT9GXXYvgLhRGMz0Lf0IggNzeN4JuAhbDUee0X+V2/mK4BLrr/5Hw9EDysQ==}
+  /@serenity-is/tsbuild@6.7.2:
+    resolution: {integrity: sha512-dccFzBd5Kc0d6TDLPni2lpBx/xS/s3pYkN9e4caMnXgLkKc8M4fYBImgXrzbUKyn5T+WjxHfgc74LbTr4Jw3nA==}
     dependencies:
       esbuild: 0.16.14
       glob: 9.2.1

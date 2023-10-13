@@ -7,7 +7,7 @@ import { EmployeeRow } from "@/ServerTypes/Demo";
 export class EmployeeListFormatter implements Formatter {
 
     private static lookup: Lookup<EmployeeRow>;
-    private static promise: Promise<any>;
+    private static promise: Promise<Lookup<EmployeeRow>>;
 
     format(ctx: FormatterContext) {
 

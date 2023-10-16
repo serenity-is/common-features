@@ -63,10 +63,10 @@
                         {
                             <tr>
                                 <td>@d.ProductName</td>
-                                <td>@(d.UnitPrice.ToStringDefault("#,##0.00"))</td>
-                                <td>@(d.Quantity.ToStringDefault())</td>
-                                <td>@(d.Discount.ToStringDefault("#,##0.00"))</td>
-                                <td>@(d.LineTotal.ToStringDefault("#,##0.00"))</td>
+                                <td>@(d.UnitPrice?.ToString("#,##0.00") ?? "")</td>
+                                <td>@(d.Quantity?.ToString() ?? "")</td>
+                                <td>@(d.Discount?.ToString("#,##0.00") ?? "")</td>
+                                <td>@(d.LineTotal?.ToString("#,##0.00") ?? "")</td>
                             </tr>
                         }
                     </tbody>

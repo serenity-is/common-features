@@ -27,7 +27,7 @@ public class ReportRepository : BaseRepository
         if (request is null)
             throw new ArgumentNullException(nameof(request));
 
-        if (request.ReportKey.IsEmptyOrNull())
+        if (string.IsNullOrEmpty(request.ReportKey))
             throw new ArgumentNullException(nameof(request.ReportKey));
         
         if (propertyItemProvider is null)

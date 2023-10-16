@@ -165,7 +165,7 @@ public static class ExcelReportGenerator
         for (var i = startCol; i <= endCol; i++)
         {
             var column = columns[i - startCol];
-            if (!column.Format.IsEmptyOrNull())
+            if (!string.IsNullOrEmpty(column.Format))
                 worksheet.Column(i).Style.Numberformat.Format = FixFormatSpecifier(column.Format, column.DataType);
         }
 

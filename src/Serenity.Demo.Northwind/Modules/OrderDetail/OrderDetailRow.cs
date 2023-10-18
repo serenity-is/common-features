@@ -7,13 +7,16 @@ namespace Serenity.Demo.Northwind;
 [DataAuditLog]
 public sealed class OrderDetailRow : Row<OrderDetailRow.RowFields>, IIdRow
 {
+    const string jOrder = nameof(jOrder);
+    const string jProduct = nameof(jProduct);
+
     [DisplayName("ID"), Identity, IdProperty]
     public int? DetailID { get => fields.DetailID[this]; set => fields.DetailID[this] = value; }
 
-    [DisplayName("Order Id"), PrimaryKey, ForeignKey(typeof(OrderRow)), LeftJoin("o"), Updatable(false)]
+    [DisplayName("Order Id"), PrimaryKey, ForeignKey(typeof(OrderRow)), LeftJoin(jOrder), Updatable(false)]
     public int? OrderID { get => fields.OrderID[this]; set => fields.OrderID[this] = value; }
 
-    [DisplayName("Product"), PrimaryKey, NotNull, ForeignKey(typeof(ProductRow)), LeftJoin("p")]
+    [DisplayName("Product"), PrimaryKey, NotNull, ForeignKey(typeof(ProductRow)), LeftJoin(jProduct)]
     [AsyncLookupEditor(typeof(ProductRow))]
     public int? ProductID { get => fields.ProductID[this]; set => fields.ProductID[this] = value; }
 
@@ -30,16 +33,16 @@ public sealed class OrderDetailRow : Row<OrderDetailRow.RowFields>, IIdRow
     [AlignRight, DisplayFormat("#,##0.00"), MinSelectLevel(SelectLevel.List)]
     public decimal? LineTotal { get => fields.LineTotal[this]; set => fields.LineTotal[this] = value; }
 
-    [Origin("o")]
+    [Origin(jOrder, nameof(OrderRow.CustomerID))]
     public string OrderCustomerID { get => fields.OrderCustomerID[this]; set => fields.OrderCustomerID[this] = value; }
 
-    [Origin("o")]
+    [Origin(jOrder, nameof(OrderRow.EmployeeID))]
     public int? OrderEmployeeID { get => fields.OrderEmployeeID[this]; set => fields.OrderEmployeeID[this] = value; }
 
-    [Origin("o")]
+    [Origin(jOrder, nameof(OrderRow.OrderDate))]
     public DateTime? OrderDate { get => fields.OrderDate[this]; set => fields.OrderDate[this] = value; }
 
-    [Origin("p"), MinSelectLevel(SelectLevel.List)]
+    [Origin(jProduct, nameof(ProductRow.ProductName)), MinSelectLevel(SelectLevel.List)]
     public string ProductName { get => fields.ProductName[this]; set => fields.ProductName[this] = value; }
 
     public class RowFields : RowFieldsBase

@@ -3,34 +3,37 @@ import { Lookup } from "@serenity-is/corelib/q";
 import { FormatterContext } from "@serenity-is/sleekgrid";
 import { EmployeeRow } from "@/ServerTypes/Demo";
 
+let lookup: Lookup<EmployeeRow>;
+let promise: Promise<Lookup<EmployeeRow>>;
+
 @Decorators.registerFormatter('Serenity.Demo.Northwind.EmployeeListFormatter')
 export class EmployeeListFormatter implements Formatter {
 
-    private static lookup: Lookup<EmployeeRow>;
-    private static promise: Promise<Lookup<EmployeeRow>>;
-
     format(ctx: FormatterContext) {
 
-        var idList = ctx.value as string[];
+        let idList = ctx.value as string[];
         if (!idList || !idList.length)
             return "";
 
-        if (!EmployeeListFormatter.lookup) {
-
-            if (!EmployeeListFormatter.promise) {
-                EmployeeListFormatter.promise = EmployeeRow.getLookupAsync().then(lookup => {
-                    EmployeeListFormatter.lookup = lookup;
-                    ctx.grid?.invalidate();
-                }).catch(() => EmployeeListFormatter.lookup = null);
-            }
-
-            return `<i class="fa fa-spinner"></i>`;
+        let byId = lookup?.itemById;
+        if (byId) {
+            return idList.map(x => {
+                var z = byId[x];
+                return ctx.escape(z == null ? x : z.FullName);
+            }).join(", ");
         }
 
-        var byId = EmployeeListFormatter.lookup.itemById;
-        return idList.map(x => {
-            var z = byId[x];
-            return ctx.escape(z == null ? x : z.FullName);
-        }).join(", ");
+        promise ??= EmployeeRow.getLookupAsync().then(l => {
+            lookup = l;
+            try {
+                ctx.grid?.invalidate();
+            }
+            finally {
+                lookup = null;
+                promise = null;
+            }
+        }).catch(() => promise = null);
+
+        return `<i class="fa fa-spinner"></i>`;
     }
 }

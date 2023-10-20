@@ -1,7 +1,5 @@
-import { Decorators, EntityGrid } from "@serenity-is/corelib";
-import { coalesce, first, formatNumber, initFullHeightGridPage } from "@serenity-is/corelib/q";
-import { ProductRow, ProductColumns, ProductService, ProductDialog } from "@serenity-is/demo.northwind";
-import { Aggregators } from "@serenity-is/corelib/slick";
+import { Aggregators, Decorators, EntityGrid, coalesce, formatNumber, initFullHeightGridPage } from "@serenity-is/corelib";
+import { ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
 import { GroupItemMetadataProvider } from "@serenity-is/sleekgrid";
 
 export default function pageInit() {

@@ -1,6 +1,5 @@
 import { FilteredLookupInDetailForm } from "@/ServerTypes/Demo";
-import { Decorators, EntityDialog, Widget } from "@serenity-is/corelib";
-import { initFullHeightGridPage, toId } from "@serenity-is/corelib/q";
+import { Decorators, EntityDialog, Widget, initFullHeightGridPage, toId } from "@serenity-is/corelib";
 import { OrderDetailDialog, OrderDetailForm, OrderDetailsEditor, OrderGrid, OrderRow, OrderService, ProductRow } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {

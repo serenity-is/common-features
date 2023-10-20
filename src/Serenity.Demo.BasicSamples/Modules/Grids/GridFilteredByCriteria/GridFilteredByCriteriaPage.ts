@@ -1,6 +1,5 @@
-﻿import { Decorators, EntityGrid } from "@serenity-is/corelib";
-import { Criteria, initFullHeightGridPage, ListRequest } from "@serenity-is/corelib/q";
-import { ProductRow, ProductColumns, ProductDialog, ProductService } from "@serenity-is/demo.northwind";
+﻿import { Criteria, Decorators, EntityGrid, ListRequest, initFullHeightGridPage } from "@serenity-is/corelib";
+import { ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
     initFullHeightGridPage(new GridFilteredByCriteria($('#GridDiv'), {}).element);

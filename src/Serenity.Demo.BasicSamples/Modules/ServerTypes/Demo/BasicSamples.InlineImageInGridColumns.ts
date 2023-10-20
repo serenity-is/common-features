@@ -1,6 +1,5 @@
 ﻿import { InlineImageFormatter } from "@/Grids/InlineImageInGrid/InlineImageInGridPage";
-import { ColumnsBase } from "@serenity-is/corelib";
-import { fieldsProxy } from "@serenity-is/corelib/q";
+import { ColumnsBase, fieldsProxy } from "@serenity-is/corelib";
 import { ProductRow } from "@serenity-is/demo.northwind";
 import { Column } from "@serenity-is/sleekgrid";
 

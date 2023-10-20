@@ -1,6 +1,5 @@
 ﻿import { FilteredLookupDetailEditor } from "@/Editors/FilteredLookupInDetail/FilteredLookupInDetailPage";
-import { DateEditor, LookupEditor, PrefixedContext } from "@serenity-is/corelib";
-import { initFormType } from "@serenity-is/corelib/q";
+import { DateEditor, LookupEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 import { CustomerEditor } from "@serenity-is/demo.northwind";
 
 export interface FilteredLookupInDetailForm {

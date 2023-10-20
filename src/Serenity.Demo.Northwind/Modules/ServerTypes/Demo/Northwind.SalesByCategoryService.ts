@@ -1,4 +1,4 @@
-﻿import { ListRequest, ListResponse, ServiceOptions, serviceRequest } from "@serenity-is/corelib/q";
+﻿import { ListRequest, ListResponse, ServiceOptions, serviceRequest } from "@serenity-is/corelib";
 import { SalesByCategoryRow } from "./Northwind.SalesByCategoryRow";
 
 export namespace SalesByCategoryService {

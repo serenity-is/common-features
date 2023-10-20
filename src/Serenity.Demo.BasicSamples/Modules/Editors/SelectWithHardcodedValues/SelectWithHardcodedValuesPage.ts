@@ -1,6 +1,5 @@
 import { HardcodedValuesForm } from "@/ServerTypes/Demo";
-import { Decorators, PropertyDialog, Select2Editor, Widget } from "@serenity-is/corelib";
-import { notifySuccess } from "@serenity-is/corelib/q";
+import { Decorators, PropertyDialog, Select2Editor, Widget, notifySuccess } from "@serenity-is/corelib";
 
 export default function pageInit() {
     var dlg = new HardcodedValuesDialog();

@@ -1,7 +1,7 @@
 /** @jsxImportSource jsx-dom */
 import { Texts } from "@/ServerTypes/Texts";
 import { PropertyPanel } from "@serenity-is/corelib";
-import { format, informationDialog, localText, resolveUrl, serviceCall } from "@serenity-is/corelib/q";
+import { format, informationDialog, localText, resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { ChangePasswordForm } from "../../ServerTypes/Extensions/ChangePasswordForm";
 import { ChangePasswordRequest } from "../../ServerTypes/Extensions/ChangePasswordRequest";
 

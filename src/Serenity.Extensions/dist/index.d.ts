@@ -1,8 +1,7 @@
 /// <reference types="jquery" />
 /// <reference types="jquery.validation" />
 
-import { DataGrid, EmailAddressEditor, EntityDialog, EntityGrid, Formatter, IGetEditValue, ISetEditValue, PasswordEditor, PrefixedContext, PropertyDialog, Select2AjaxEditor, SettingStorage, TemplatedDialog, ToolButton, Widget } from '@serenity-is/corelib';
-import { DeleteResponse, Dictionary, ListRequest, ListResponse, PropertyItem, RetrieveResponse, SaveResponse, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse } from '@serenity-is/corelib/q';
+import { DataGrid, DeleteResponse, Dictionary, EmailAddressEditor, EntityDialog, EntityGrid, Formatter, IGetEditValue, ISetEditValue, ListRequest, ListResponse, PasswordEditor, PrefixedContext, PropertyDialog, PropertyItem, RetrieveResponse, SaveResponse, Select2AjaxEditor, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse, SettingStorage, TemplatedDialog, ToolButton, Widget } from '@serenity-is/corelib';
 import { FormatterContext, Grid, GridOptions } from '@serenity-is/sleekgrid';
 
 export interface ChangePasswordForm {

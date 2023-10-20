@@ -1,5 +1,4 @@
-﻿import { Decorators, EditorUtils, ToolButton } from "@serenity-is/corelib";
-import { indexOf, initFullHeightGridPage } from "@serenity-is/corelib/q";
+﻿import { Decorators, EditorUtils, ToolButton, indexOf, initFullHeightGridPage } from "@serenity-is/corelib";
 import { SupplierDialog, SupplierGrid } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {

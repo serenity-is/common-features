@@ -1,5 +1,4 @@
-﻿import { ColumnsBase } from "@serenity-is/corelib";
-import { fieldsProxy } from "@serenity-is/corelib/q";
+﻿import { ColumnsBase, fieldsProxy } from "@serenity-is/corelib";
 import { Column } from "@serenity-is/sleekgrid";
 import { SalesByCategoryRow } from "./Northwind.SalesByCategoryRow";
 

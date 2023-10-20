@@ -1,5 +1,5 @@
 import { DataGrid, ToolButton } from "@serenity-is/corelib";
-import { coalesce, deepClone, ListRequest, postToService } from "@serenity-is/corelib/q";
+import { coalesce, deepClone, ListRequest, postToService } from "@serenity-is/corelib";
 
 export interface ExcelExportOptions {
     grid: DataGrid<any, any>;

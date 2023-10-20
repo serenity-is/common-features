@@ -1,5 +1,4 @@
-﻿import { EmailAddressEditor, PrefixedContext } from "@serenity-is/corelib";
-import { initFormType } from "@serenity-is/corelib/q";
+﻿import { EmailAddressEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 
 export interface ForgotPasswordForm {
     Email: EmailAddressEditor;

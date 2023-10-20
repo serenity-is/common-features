@@ -4,7 +4,7 @@ import { Column } from "@serenity-is/sleekgrid";
 import { OrderGrid } from "../Order/OrderGrid";
 import { OrderRow } from "@/ServerTypes/Demo";
 import { CustomerOrderDialog } from "./CustomerOrderDialog";
-import { tryFirst } from "@serenity-is/corelib/q";
+import { tryFirst } from "@serenity-is/corelib";
 
 const fld = OrderRow.Fields;
 

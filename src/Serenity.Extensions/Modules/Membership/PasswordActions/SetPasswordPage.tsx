@@ -1,7 +1,7 @@
 /** @jsxImportSource jsx-dom */
 import { Texts } from "@/ServerTypes/Texts";
 import { TemplatedPanel } from "@serenity-is/corelib";
-import { informationDialog, parseQueryString, resolveUrl, serviceCall } from "@serenity-is/corelib/q";
+import { informationDialog, parseQueryString, resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { SendResetPasswordResponse } from "../../ServerTypes/Extensions/SendResetPasswordResponse";
 
 export default function pageInit() {

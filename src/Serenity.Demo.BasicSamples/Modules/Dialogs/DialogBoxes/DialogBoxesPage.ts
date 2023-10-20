@@ -1,4 +1,4 @@
-import { alertDialog, confirmDialog, informationDialog, notifySuccess, notifyInfo, notifyError, successDialog, warningDialog } from "@serenity-is/corelib/q";
+import { alertDialog, confirmDialog, informationDialog, notifyError, notifyInfo, notifySuccess, successDialog, warningDialog } from "@serenity-is/corelib";
 
 export default function pageInit() {
     confirmDialogButtons();

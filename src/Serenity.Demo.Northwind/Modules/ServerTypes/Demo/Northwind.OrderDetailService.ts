@@ -1,4 +1,4 @@
-﻿import { RetrieveRequest, RetrieveResponse, ServiceOptions, ListRequest, ListResponse, serviceRequest } from "@serenity-is/corelib/q";
+﻿import { RetrieveRequest, RetrieveResponse, ServiceOptions, ListRequest, ListResponse, serviceRequest } from "@serenity-is/corelib";
 import { OrderDetailRow } from "./Northwind.OrderDetailRow";
 
 export namespace OrderDetailService {

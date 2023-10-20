@@ -1,6 +1,5 @@
-import { Decorators, PropertyGrid, TabsExtensions } from "@serenity-is/corelib";
-import { first, getForm, initFullHeightGridPage, isEmptyOrNull, reloadLookup, SaveResponse, validateOptions } from "@serenity-is/corelib/q";
-import { OrderDialog, CustomerForm, CustomerService, CustomerRow, OrderRow, OrderGrid } from "@serenity-is/demo.northwind";
+import { Decorators, PropertyGrid, SaveResponse, TabsExtensions, first, getForm, initFullHeightGridPage, isEmptyOrNull, reloadLookup, validateOptions } from "@serenity-is/corelib";
+import { CustomerForm, CustomerRow, CustomerService, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
     initFullHeightGridPage(new OtherFormInTabOneBarGrid($('#GridDiv')).element);

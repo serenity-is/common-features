@@ -1,5 +1,5 @@
 import { DataGrid, ToolButton } from "@serenity-is/corelib";
-import { deepClone, format, formatDate, ListRequest, ListResponse, resolveUrl, serviceCall } from "@serenity-is/corelib/q";
+import { deepClone, format, formatDate, ListRequest, ListResponse, resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { Column, Grid } from "@serenity-is/sleekgrid";
 
 export interface PdfExportOptions {

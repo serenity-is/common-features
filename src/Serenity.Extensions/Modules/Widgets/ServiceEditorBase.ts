@@ -1,5 +1,5 @@
 import { CascadedWidgetLink, Decorators, EditorUtils, Select2AjaxEditor, Widget } from "@serenity-is/corelib";
-import { ColumnSelection, isEmptyOrNull, ListRequest, ListResponse, RetrieveColumnSelection, RetrieveRequest, RetrieveResponse, serviceCall, ServiceOptions } from "@serenity-is/corelib/q";
+import { ColumnSelection, isEmptyOrNull, ListRequest, ListResponse, RetrieveColumnSelection, RetrieveRequest, RetrieveResponse, serviceCall, ServiceOptions } from "@serenity-is/corelib";
 
 export interface ServiceEditorOptions {
     cascadeFrom?: string;

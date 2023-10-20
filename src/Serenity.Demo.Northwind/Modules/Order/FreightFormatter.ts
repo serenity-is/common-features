@@ -1,5 +1,5 @@
 import { Decorators, Formatter } from "@serenity-is/corelib";
-import { htmlEncode } from "@serenity-is/corelib/q";
+import { htmlEncode } from "@serenity-is/corelib";
 import { FormatterContext } from "@serenity-is/sleekgrid";
 
 @Decorators.registerFormatter('Serenity.Demo.Northwind.FreightFormatter')

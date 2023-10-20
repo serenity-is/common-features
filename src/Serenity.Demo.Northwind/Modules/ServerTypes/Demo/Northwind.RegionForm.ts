@@ -1,5 +1,4 @@
-﻿import { IntegerEditor, StringEditor, PrefixedContext } from "@serenity-is/corelib";
-import { initFormType } from "@serenity-is/corelib/q";
+﻿import { IntegerEditor, StringEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 
 export interface RegionForm {
     RegionID: IntegerEditor;

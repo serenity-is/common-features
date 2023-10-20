@@ -1,6 +1,5 @@
-﻿import { Decorators } from "@serenity-is/corelib";
-import { initFullHeightGridPage } from "@serenity-is/corelib/q";
-import { SupplierRow, SupplierColumns, SupplierDialog, SupplierService } from "@serenity-is/demo.northwind";
+﻿import { Decorators, initFullHeightGridPage } from "@serenity-is/corelib";
+import { SupplierColumns, SupplierDialog, SupplierRow, SupplierService } from "@serenity-is/demo.northwind";
 import { SelectableEntityGrid } from "@serenity-is/extensions";
 
 export default function pageInit() {

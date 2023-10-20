@@ -1,6 +1,6 @@
 import { InlineImageInGridColumns } from "@/ServerTypes/Demo";
 import { Decorators, EntityGrid, Formatter, IInitializeColumn } from "@serenity-is/corelib";
-import { initFullHeightGridPage, resolveUrl } from "@serenity-is/corelib/q";
+import { initFullHeightGridPage, resolveUrl } from "@serenity-is/corelib";
 import { ProductRow, ProductDialog, ProductService } from "@serenity-is/demo.northwind";
 import { Column, FormatterContext, GridOptions } from "@serenity-is/sleekgrid";
 

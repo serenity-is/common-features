@@ -1,8 +1,7 @@
 /// <reference types="jquery" />
 /// <reference types="jquery.validation" />
 
-import { BooleanEditor, CaptureOperationType, ColumnsBase, DateEditor, DecimalEditor, EmailAddressEditor, EntityDialog, EntityGrid, EnumEditor, Formatter, IGetEditValue, ISetEditValue, ImageUploadEditor, IntegerEditor, LookupEditor, LookupEditorBase, LookupEditorOptions, PrefixedContext, StringEditor, TemplatedDialog, TemplatedWidget, ToolButton } from '@serenity-is/corelib';
-import { DeleteRequest, DeleteResponse, ListRequest, ListResponse, PropertyItem, RetrieveRequest, RetrieveResponse, SaveRequest, SaveResponse, ServiceOptions } from '@serenity-is/corelib/q';
+import { BooleanEditor, CaptureOperationType, ColumnsBase, DateEditor, DecimalEditor, DeleteRequest, DeleteResponse, EmailAddressEditor, EntityDialog, EntityGrid, EnumEditor, Formatter, IGetEditValue, ISetEditValue, ImageUploadEditor, IntegerEditor, ListRequest, ListResponse, LookupEditor, LookupEditorBase, LookupEditorOptions, PrefixedContext, PropertyItem, RetrieveRequest, RetrieveResponse, SaveRequest, SaveResponse, ServiceOptions, StringEditor, TemplatedDialog, TemplatedWidget, ToolButton } from '@serenity-is/corelib';
 import { GetNextNumberRequest, GetNextNumberResponse, GridEditorBase, GridEditorDialog } from '@serenity-is/extensions';
 import { Column, FormatterContext } from '@serenity-is/sleekgrid';
 
@@ -18,8 +17,8 @@ export declare abstract class CategoryRow {
 	static readonly localTextPrefix = "Northwind.Category";
 	static readonly lookupKey = "Northwind.Category";
 	/** @deprecated use getLookupAsync instead */
-	static getLookup(): import("@serenity-is/corelib/q").Lookup<CategoryRow>;
-	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<CategoryRow>>;
+	static getLookup(): import("@serenity-is/corelib").Lookup<CategoryRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib").Lookup<CategoryRow>>;
 	static readonly deletePermission = "Northwind:General";
 	static readonly insertPermission = "Northwind:General";
 	static readonly readPermission = "Northwind:General";
@@ -136,8 +135,8 @@ export declare abstract class CustomerRow {
 	static readonly localTextPrefix = "Northwind.Customer";
 	static readonly lookupKey = "Northwind.Customer";
 	/** @deprecated use getLookupAsync instead */
-	static getLookup(): import("@serenity-is/corelib/q").Lookup<CustomerRow>;
-	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<CustomerRow>>;
+	static getLookup(): import("@serenity-is/corelib").Lookup<CustomerRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib").Lookup<CustomerRow>>;
 	static readonly deletePermission = "Northwind:Customer:Delete";
 	static readonly insertPermission = "Northwind:Customer:Modify";
 	static readonly readPermission = "Northwind:Customer:View";
@@ -331,8 +330,8 @@ export declare abstract class EmployeeRow {
 	static readonly localTextPrefix = "Northwind.Employee";
 	static readonly lookupKey = "Northwind.Employee";
 	/** @deprecated use getLookupAsync instead */
-	static getLookup(): import("@serenity-is/corelib/q").Lookup<EmployeeRow>;
-	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<EmployeeRow>>;
+	static getLookup(): import("@serenity-is/corelib").Lookup<EmployeeRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib").Lookup<EmployeeRow>>;
 	static readonly deletePermission = "Northwind:General";
 	static readonly insertPermission = "Northwind:General";
 	static readonly readPermission = "Northwind:General";
@@ -555,8 +554,8 @@ export declare abstract class ProductRow {
 	static readonly localTextPrefix = "Northwind.Product";
 	static readonly lookupKey = "Northwind.Product";
 	/** @deprecated use getLookupAsync instead */
-	static getLookup(): import("@serenity-is/corelib/q").Lookup<ProductRow>;
-	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<ProductRow>>;
+	static getLookup(): import("@serenity-is/corelib").Lookup<ProductRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib").Lookup<ProductRow>>;
 	static readonly deletePermission = "Northwind:General";
 	static readonly insertPermission = "Northwind:General";
 	static readonly readPermission = "Northwind:General";
@@ -679,8 +678,8 @@ export declare abstract class RegionRow {
 	static readonly localTextPrefix = "Northwind.Region";
 	static readonly lookupKey = "Northwind.Region";
 	/** @deprecated use getLookupAsync instead */
-	static getLookup(): import("@serenity-is/corelib/q").Lookup<RegionRow>;
-	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<RegionRow>>;
+	static getLookup(): import("@serenity-is/corelib").Lookup<RegionRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib").Lookup<RegionRow>>;
 	static readonly deletePermission = "Northwind:General";
 	static readonly insertPermission = "Northwind:General";
 	static readonly readPermission = "Northwind:General";
@@ -761,8 +760,8 @@ export declare abstract class ShipperRow {
 	static readonly localTextPrefix = "Northwind.Shipper";
 	static readonly lookupKey = "Northwind.Shipper";
 	/** @deprecated use getLookupAsync instead */
-	static getLookup(): import("@serenity-is/corelib/q").Lookup<ShipperRow>;
-	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<ShipperRow>>;
+	static getLookup(): import("@serenity-is/corelib").Lookup<ShipperRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib").Lookup<ShipperRow>>;
 	static readonly deletePermission = "Northwind:General";
 	static readonly insertPermission = "Northwind:General";
 	static readonly readPermission = "Northwind:General";
@@ -835,8 +834,8 @@ export declare abstract class SupplierRow {
 	static readonly localTextPrefix = "Northwind.Supplier";
 	static readonly lookupKey = "Northwind.Supplier";
 	/** @deprecated use getLookupAsync instead */
-	static getLookup(): import("@serenity-is/corelib/q").Lookup<SupplierRow>;
-	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<SupplierRow>>;
+	static getLookup(): import("@serenity-is/corelib").Lookup<SupplierRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib").Lookup<SupplierRow>>;
 	static readonly deletePermission = "Northwind:General";
 	static readonly insertPermission = "Northwind:General";
 	static readonly readPermission = "Northwind:General";
@@ -903,8 +902,8 @@ export declare abstract class TerritoryRow {
 	static readonly localTextPrefix = "Northwind.Territory";
 	static readonly lookupKey = "Northwind.Territory";
 	/** @deprecated use getLookupAsync instead */
-	static getLookup(): import("@serenity-is/corelib/q").Lookup<TerritoryRow>;
-	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<TerritoryRow>>;
+	static getLookup(): import("@serenity-is/corelib").Lookup<TerritoryRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib").Lookup<TerritoryRow>>;
 	static readonly deletePermission = "Northwind:General";
 	static readonly insertPermission = "Northwind:General";
 	static readonly readPermission = "Northwind:General";
@@ -1054,7 +1053,7 @@ export declare class ProductGrid extends EntityGrid<ProductRow, any> {
 	private pendingChanges;
 	constructor(container: JQuery);
 	protected getButtons(): import("@serenity-is/corelib").ToolButton[];
-	protected onViewProcessData(response: any): import("@serenity-is/corelib/q").ListResponse<ProductRow>;
+	protected onViewProcessData(response: any): import("@serenity-is/corelib").ListResponse<ProductRow>;
 	/**
 	 * It would be nice if we could use autonumeric, Serenity editors etc. here, to control input validation,
 	 * but it's not supported by SlickGrid as we are only allowed to return a string, and should attach

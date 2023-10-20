@@ -1,5 +1,4 @@
-﻿import { StringEditor, LookupEditor, PrefixedContext } from "@serenity-is/corelib";
-import { initFormType } from "@serenity-is/corelib/q";
+﻿import { StringEditor, LookupEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 
 export interface TerritoryForm {
     TerritoryID: StringEditor;

@@ -1,4 +1,4 @@
-﻿import { ServiceResponse } from "@serenity-is/corelib/q";
+﻿import { ServiceResponse } from "@serenity-is/corelib";
 
 export interface TranslationUpdateResponse extends ServiceResponse {
     SavedPath?: string;

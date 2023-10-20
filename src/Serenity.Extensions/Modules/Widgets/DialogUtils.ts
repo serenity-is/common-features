@@ -1,5 +1,5 @@
 import { TemplatedDialog, WX } from "@serenity-is/corelib";
-import { confirmDialog, localText } from "@serenity-is/corelib/q";
+import { confirmDialog, localText } from "@serenity-is/corelib";
 
 export namespace DialogUtils {
     export function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean) {

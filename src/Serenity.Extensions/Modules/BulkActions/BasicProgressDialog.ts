@@ -1,5 +1,5 @@
 import { Decorators, TemplatedDialog } from "@serenity-is/corelib";
-import { localText, trimToNull } from "@serenity-is/corelib/q";
+import { localText, trimToNull } from "@serenity-is/corelib";
 
 @Decorators.registerClass("Serenity.Extensions.BasicProgressDialog")
 export class BasicProgressDialog extends TemplatedDialog<any> {

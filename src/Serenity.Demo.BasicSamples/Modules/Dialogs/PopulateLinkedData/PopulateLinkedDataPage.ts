@@ -1,7 +1,6 @@
 ﻿import { PopulateLinkedDataForm } from "@/ServerTypes/Demo";
-import { Decorators, EntityDialog } from "@serenity-is/corelib";
-import { first, initFullHeightGridPage, isEmptyOrNull } from "@serenity-is/corelib/q";
-import { OrderRow, OrderService, CustomerRow, CustomerService, OrderGrid } from "@serenity-is/demo.northwind";
+import { Decorators, EntityDialog, first, initFullHeightGridPage, isEmptyOrNull } from "@serenity-is/corelib";
+import { CustomerRow, CustomerService, OrderGrid, OrderRow, OrderService } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
     initFullHeightGridPage(new PopulateLinkedDataGrid($('#GridDiv')).element);

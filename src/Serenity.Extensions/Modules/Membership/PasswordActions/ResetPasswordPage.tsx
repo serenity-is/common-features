@@ -3,7 +3,7 @@ import { ResetPasswordForm } from "@/ServerTypes/Extensions/ResetPasswordForm";
 import { ResetPasswordRequest } from "@/ServerTypes/Extensions/ResetPasswordRequest";
 import { Texts } from "@/ServerTypes/Texts";
 import { PropertyPanel } from "@serenity-is/corelib";
-import { format, informationDialog, resolveUrl, serviceCall } from "@serenity-is/corelib/q";
+import { format, informationDialog, resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { ResetPasswordResponse } from "../../ServerTypes/Extensions/ResetPasswordResponse";
 import { AccountPanelTitle } from "../AccountPanelTitle";
 

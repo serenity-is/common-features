@@ -1,5 +1,4 @@
-import { Decorators, LookupEditor } from "@serenity-is/corelib";
-import { confirmDialog, count, first, format, formatDate, htmlEncode, initFullHeightGridPage, notifyInfo, notifySuccess, toId } from "@serenity-is/corelib/q";
+import { Decorators, LookupEditor, confirmDialog, count, first, format, formatDate, htmlEncode, initFullHeightGridPage, notifyInfo, notifySuccess, toId } from "@serenity-is/corelib";
 import { CustomerDialog, CustomerRow, OrderColumns, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 import { Column } from "@serenity-is/sleekgrid";
 

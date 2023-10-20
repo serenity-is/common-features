@@ -1,4 +1,4 @@
-﻿import { ListResponse } from "@serenity-is/corelib/q";
+﻿import { ListResponse } from "@serenity-is/corelib";
 import { TranslationItem } from "./TranslationItem";
 
 export interface TranslationListResponse extends ListResponse<TranslationItem> {

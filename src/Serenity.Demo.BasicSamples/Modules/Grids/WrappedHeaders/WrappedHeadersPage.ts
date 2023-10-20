@@ -1,5 +1,5 @@
 ﻿import { Decorators } from "@serenity-is/corelib";
-import { initFullHeightGridPage } from "@serenity-is/corelib/q";
+import { initFullHeightGridPage } from "@serenity-is/corelib";
 import { OrderGrid } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {

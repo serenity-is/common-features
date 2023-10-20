@@ -1,7 +1,6 @@
 ﻿import { CustomerEditor } from "@/Customer/CustomerEditor";
 import { OrderDetailsEditor } from "@/OrderDetail/OrderDetailsEditor";
-import { DateEditor, LookupEditor, DecimalEditor, StringEditor, PrefixedContext } from "@serenity-is/corelib";
-import { initFormType } from "@serenity-is/corelib/q";
+import { DateEditor, LookupEditor, DecimalEditor, StringEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 
 export interface OrderForm {
     CustomerID: CustomerEditor;

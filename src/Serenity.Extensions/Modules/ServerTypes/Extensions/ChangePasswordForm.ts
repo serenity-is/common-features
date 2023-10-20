@@ -1,5 +1,4 @@
-﻿import { PasswordEditor, PrefixedContext } from "@serenity-is/corelib";
-import { initFormType } from "@serenity-is/corelib/q";
+﻿import { PasswordEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 
 export interface ChangePasswordForm {
     OldPassword: PasswordEditor;

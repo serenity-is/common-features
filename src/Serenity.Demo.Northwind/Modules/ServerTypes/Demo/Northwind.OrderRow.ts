@@ -1,4 +1,4 @@
-﻿import { fieldsProxy } from "@serenity-is/corelib/q";
+﻿import { fieldsProxy } from "@serenity-is/corelib";
 import { Gender } from "./Northwind.Gender";
 import { OrderDetailRow } from "./Northwind.OrderDetailRow";
 import { OrderShippingState } from "./Northwind.OrderShippingState";

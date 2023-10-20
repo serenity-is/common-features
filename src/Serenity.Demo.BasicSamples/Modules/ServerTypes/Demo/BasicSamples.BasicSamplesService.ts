@@ -1,4 +1,4 @@
-﻿import { ServiceOptions, serviceRequest } from "@serenity-is/corelib/q";
+﻿import { ServiceOptions, serviceRequest } from "@serenity-is/corelib";
 import { OrdersByShipperRequest } from "./BasicSamples.OrdersByShipperRequest";
 import { OrdersByShipperResponse } from "./BasicSamples.OrdersByShipperResponse";
 

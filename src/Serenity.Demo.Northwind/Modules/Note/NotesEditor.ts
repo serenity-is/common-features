@@ -1,5 +1,5 @@
 import { Decorators, IGetEditValue, ISetEditValue, TemplatedWidget, Toolbar } from "@serenity-is/corelib";
-import { Authorization, coalesce, confirmDialog, formatDate, formatISODateTimeUTC, insert, PropertyItem, trimToNull } from "@serenity-is/corelib/q";
+import { Authorization, coalesce, confirmDialog, formatDate, formatISODateTimeUTC, insert, PropertyItem, trimToNull } from "@serenity-is/corelib";
 import { NoteRow } from "@/ServerTypes/Demo";
 import { NoteDialog } from "./NoteDialog";
 import * as DOMPurify from 'dompurify';

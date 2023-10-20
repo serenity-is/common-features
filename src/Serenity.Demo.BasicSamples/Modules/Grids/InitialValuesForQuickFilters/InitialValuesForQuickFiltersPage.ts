@@ -1,6 +1,5 @@
-﻿import { DateEditor, Decorators, EnumEditor, LookupEditor, QuickFilter, Widget } from "@serenity-is/corelib";
-import { first, initFullHeightGridPage } from "@serenity-is/corelib/q";
-import { OrderRow, OrderGrid, OrderShippingState } from "@serenity-is/demo.northwind";
+﻿import { DateEditor, Decorators, EnumEditor, LookupEditor, QuickFilter, Widget, first, initFullHeightGridPage } from "@serenity-is/corelib";
+import { OrderGrid, OrderRow, OrderShippingState } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
     initFullHeightGridPage(new InitialValuesForQuickFilters($('#GridDiv')).element);

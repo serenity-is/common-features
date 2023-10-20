@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid, LookupEditor } from "@serenity-is/corelib";
-import { deepClone, Dictionary, first, formatNumber, htmlEncode, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, localText, toId, trimToNull, tryFirst, Lookup } from "@serenity-is/corelib/q";
+import { deepClone, Dictionary, first, formatNumber, htmlEncode, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, localText, toId, trimToNull, tryFirst, Lookup } from "@serenity-is/corelib";
 import { ExcelExportHelper, PdfExportHelper } from "@serenity-is/extensions";
 import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
 import { CategoryRow, ProductColumns, ProductRow, ProductService, SupplierRow } from "@/ServerTypes/Demo";

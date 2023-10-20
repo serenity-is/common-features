@@ -1,5 +1,4 @@
-import { Decorators } from "@serenity-is/corelib";
-import { initFullHeightGridPage, notifyInfo, notifySuccess, SaveResponse } from "@serenity-is/corelib/q";
+import { Decorators, initFullHeightGridPage, notifyInfo, notifySuccess, SaveResponse } from "@serenity-is/corelib";
 import { CategoryDialog, CategoryGrid, CategoryService } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {

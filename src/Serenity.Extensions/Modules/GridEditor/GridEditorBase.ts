@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid, IGetEditValue, ISetEditValue, ToolButton } from "@serenity-is/corelib";
-import { deepClone, indexOf, SaveRequest, ServiceOptions, ServiceResponse, tryFirst } from "@serenity-is/corelib/q";
+import { deepClone, indexOf, SaveRequest, ServiceOptions, ServiceResponse, tryFirst } from "@serenity-is/corelib";
 import { GridEditorDialog } from "./GridEditorDialog";
 
 @Decorators.registerClass("Serenity.Extensions.GridEditorBase", [IGetEditValue, ISetEditValue])

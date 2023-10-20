@@ -1,5 +1,5 @@
 import { Decorators, HtmlContentEditor, HtmlNoteContentEditor, TemplatedDialog } from "@serenity-is/corelib";
-import { localText } from "@serenity-is/corelib/q";
+import { localText } from "@serenity-is/corelib";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.NoteDialog')
 export class NoteDialog extends TemplatedDialog<any> {

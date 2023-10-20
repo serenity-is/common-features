@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid, EnumEditor, LookupEditor, ToolButton } from "@serenity-is/corelib";
-import { toId } from "@serenity-is/corelib/q";
+import { toId } from "@serenity-is/corelib";
 import { ExcelExportHelper, PdfExportHelper, ReportHelper } from "@serenity-is/extensions";
 import { OrderColumns, OrderListRequest, OrderRow, OrderService, ProductRow } from "@/ServerTypes/Demo";
 import { OrderDialog } from "./OrderDialog";

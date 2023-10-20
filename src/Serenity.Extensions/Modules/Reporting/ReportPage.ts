@@ -1,5 +1,5 @@
 import { Decorators, QuickSearchInput, Widget } from "@serenity-is/corelib";
-import { coalesce, trimToNull } from "@serenity-is/corelib/q";
+import { coalesce, trimToNull } from "@serenity-is/corelib";
 import { ReportDialog } from "./ReportDialog";
 
 @Decorators.registerClass("Serenity.Extensions.ReportPage")

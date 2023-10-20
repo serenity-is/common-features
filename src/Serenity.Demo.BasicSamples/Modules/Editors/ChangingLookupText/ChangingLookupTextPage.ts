@@ -1,6 +1,5 @@
 import { ChangingLookupTextForm } from "@/ServerTypes/Demo";
-import { Decorators, LookupEditorBase, LookupEditorOptions } from "@serenity-is/corelib";
-import { formatNumber, Lookup, toId } from "@serenity-is/corelib/q";
+import { Decorators, Lookup, LookupEditorBase, LookupEditorOptions, formatNumber, toId } from "@serenity-is/corelib";
 import { OrderDetailRow, ProductRow } from "@serenity-is/demo.northwind";
 import { GridEditorDialog } from "@serenity-is/extensions";
 

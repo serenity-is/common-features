@@ -1,6 +1,5 @@
-import { Decorators, EntityGrid } from "@serenity-is/corelib";
-import { endsWith, initFullHeightGridPage } from "@serenity-is/corelib/q";
-import { ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind"
+import { Decorators, EntityGrid, endsWith, initFullHeightGridPage } from "@serenity-is/corelib";
+import { ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
     initFullHeightGridPage(new CloneableEntityGrid($('#GridDiv'), {}).element);

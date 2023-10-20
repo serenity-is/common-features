@@ -1,5 +1,5 @@
 import { Decorators, PropertyDialog } from "@serenity-is/corelib";
-import { coalesce, isEmptyOrNull, localText } from "@serenity-is/corelib/q";
+import { coalesce, isEmptyOrNull, localText } from "@serenity-is/corelib";
 
 export interface PromptDialogOptions {
     cssClass?: string;

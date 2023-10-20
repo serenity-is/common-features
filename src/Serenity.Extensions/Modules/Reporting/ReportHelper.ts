@@ -1,5 +1,5 @@
 import { ToolButton } from "@serenity-is/corelib";
-import { coalesce, postToUrl } from "@serenity-is/corelib/q";
+import { coalesce, postToUrl } from "@serenity-is/corelib";
 
 export interface ReportExecuteOptions {
     reportKey: string;

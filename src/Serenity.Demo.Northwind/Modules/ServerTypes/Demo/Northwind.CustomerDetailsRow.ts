@@ -1,4 +1,4 @@
-﻿import { fieldsProxy } from "@serenity-is/corelib/q";
+﻿import { fieldsProxy } from "@serenity-is/corelib";
 
 export interface CustomerDetailsRow {
     Id?: number;

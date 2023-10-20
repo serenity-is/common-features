@@ -1,6 +1,6 @@
 /** @jsxImportSource jsx-dom */
 
-import { localText } from "@serenity-is/corelib/q";
+import { localText } from "@serenity-is/corelib";
 
 export const AccountPanelTitle = () =>
     <h2 class="text-center p-4">

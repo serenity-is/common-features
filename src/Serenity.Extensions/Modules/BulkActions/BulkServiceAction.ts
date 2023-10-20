@@ -1,4 +1,4 @@
-﻿import { confirmDialog, Dictionary, format, notifyError, notifySuccess, notifyWarning, ServiceError, localText } from "@serenity-is/corelib/q";
+﻿import { confirmDialog, Dictionary, format, notifyError, notifySuccess, notifyWarning, ServiceError, localText } from "@serenity-is/corelib";
 import { BasicProgressDialog } from "./BasicProgressDialog";
 
 export class BulkServiceAction {

@@ -1,5 +1,5 @@
 ﻿import { Decorators } from "@serenity-is/corelib";
-import { confirmDialog, initFullHeightGridPage } from "@serenity-is/corelib/q";
+import { confirmDialog, initFullHeightGridPage } from "@serenity-is/corelib";
 import { CustomerGrid, CustomerService, OrderDialog, OrderRow } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {

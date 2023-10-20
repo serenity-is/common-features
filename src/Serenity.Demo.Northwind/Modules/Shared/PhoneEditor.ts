@@ -1,5 +1,5 @@
 import { Decorators, StringEditor, WX } from "@serenity-is/corelib";
-import { isEmptyOrNull, replaceAll, startsWith, localText, trimToNull } from "@serenity-is/corelib/q";
+import { isEmptyOrNull, replaceAll, startsWith, localText, trimToNull } from "@serenity-is/corelib";
 
 @Decorators.registerEditor('Serenity.Demo.Northwind.PhoneEditor')
 export class PhoneEditor extends StringEditor {

@@ -1,5 +1,4 @@
-﻿import { StringEditor, PrefixedContext } from "@serenity-is/corelib";
-import { initFormType } from "@serenity-is/corelib/q";
+﻿import { StringEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 
 export interface SupplierForm {
     CompanyName: StringEditor;

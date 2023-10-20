@@ -1,5 +1,5 @@
 import { Decorators, Formatter } from "@serenity-is/corelib";
-import { Lookup } from "@serenity-is/corelib/q";
+import { Lookup } from "@serenity-is/corelib";
 import { FormatterContext } from "@serenity-is/sleekgrid";
 import { EmployeeRow } from "@/ServerTypes/Demo";
 

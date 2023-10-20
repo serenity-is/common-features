@@ -1,6 +1,5 @@
-import { Decorators } from "@serenity-is/corelib";
-import { formatDate, initFullHeightGridPage } from "@serenity-is/corelib/q";
-import { OrderGrid, OrderRow, EmployeeRow, ShipperRow, OrderDialog, ProductRow } from "@serenity-is/demo.northwind";
+import { Decorators, formatDate, initFullHeightGridPage } from "@serenity-is/corelib";
+import { EmployeeRow, OrderDialog, OrderGrid, OrderRow, ProductRow, ShipperRow } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
     initFullHeightGridPage(new DefaultValuesInNewGrid($('#GridDiv')).element);

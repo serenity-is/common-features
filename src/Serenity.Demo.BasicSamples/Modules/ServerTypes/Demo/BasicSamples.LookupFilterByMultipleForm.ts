@@ -1,5 +1,5 @@
-﻿import { StringEditor, ImageUploadEditor, BooleanEditor, LookupEditor, DecimalEditor, IntegerEditor, PrefixedContext } from "@serenity-is/corelib";
-import { ProduceSeafoodCategoryEditor } from "@/Editors/LookupFilterByMultipleValues/LookupFilterByMultipleValuesPage";
+﻿import { ProduceSeafoodCategoryEditor } from "@/Editors/LookupFilterByMultipleValues/LookupFilterByMultipleValuesPage";
+import { StringEditor, ImageUploadEditor, BooleanEditor, LookupEditor, DecimalEditor, IntegerEditor, PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface LookupFilterByMultipleForm {
@@ -16,7 +16,7 @@ export interface LookupFilterByMultipleForm {
 }
 
 export class LookupFilterByMultipleForm extends PrefixedContext {
-    static formKey = 'BasicSamples.LookupFilterByMultiple';
+    static readonly formKey = 'BasicSamples.LookupFilterByMultiple';
     private static init: boolean;
 
     constructor(prefix: string) {

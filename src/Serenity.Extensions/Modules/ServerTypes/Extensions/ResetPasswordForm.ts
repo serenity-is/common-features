@@ -7,7 +7,7 @@ export interface ResetPasswordForm {
 }
 
 export class ResetPasswordForm extends PrefixedContext {
-    static formKey = 'Serenity.Extensions.ResetPasswordRequest';
+    static readonly formKey = 'Serenity.Extensions.ResetPasswordRequest';
     private static init: boolean;
 
     constructor(prefix: string) {

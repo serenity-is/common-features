@@ -1,7 +1,7 @@
-﻿import { CustomerEditor } from "@serenity-is/demo.northwind";
+﻿import { FilteredLookupDetailEditor } from "@/Editors/FilteredLookupInDetail/FilteredLookupInDetailPage";
 import { DateEditor, LookupEditor, PrefixedContext } from "@serenity-is/corelib";
-import { FilteredLookupDetailEditor } from "@/Editors/FilteredLookupInDetail/FilteredLookupInDetailPage";
 import { initFormType } from "@serenity-is/corelib/q";
+import { CustomerEditor } from "@serenity-is/demo.northwind";
 
 export interface FilteredLookupInDetailForm {
     CustomerID: CustomerEditor;
@@ -11,7 +11,7 @@ export interface FilteredLookupInDetailForm {
 }
 
 export class FilteredLookupInDetailForm extends PrefixedContext {
-    static formKey = 'BasicSamples.FilteredLookupInDetail';
+    static readonly formKey = 'BasicSamples.FilteredLookupInDetail';
     private static init: boolean;
 
     constructor(prefix: string) {

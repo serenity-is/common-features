@@ -9,7 +9,7 @@ export interface OrderDetailForm {
 }
 
 export class OrderDetailForm extends PrefixedContext {
-    static formKey = 'Northwind.OrderDetail';
+    static readonly formKey = 'Northwind.OrderDetail';
     private static init: boolean;
 
     constructor(prefix: string) {

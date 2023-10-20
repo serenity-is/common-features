@@ -1,6 +1,6 @@
 ﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from "@serenity-is/corelib/q";
-import { CustomerRow } from "./Northwind.CustomerRow";
 import { GetNextNumberRequest, GetNextNumberResponse } from "@serenity-is/extensions";
+import { CustomerRow } from "./Northwind.CustomerRow";
 
 export namespace CustomerService {
     export const baseUrl = 'Serenity.Demo.Northwind/Customer';

@@ -1,6 +1,6 @@
 ﻿import { CustomerEditor } from "@/Customer/CustomerEditor";
-import { DateEditor, LookupEditor, DecimalEditor, StringEditor, PrefixedContext } from "@serenity-is/corelib";
 import { OrderDetailsEditor } from "@/OrderDetail/OrderDetailsEditor";
+import { DateEditor, LookupEditor, DecimalEditor, StringEditor, PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface OrderForm {
@@ -21,7 +21,7 @@ export interface OrderForm {
 }
 
 export class OrderForm extends PrefixedContext {
-    static formKey = 'Northwind.Order';
+    static readonly formKey = 'Northwind.Order';
     private static init: boolean;
 
     constructor(prefix: string) {

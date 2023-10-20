@@ -1,6 +1,6 @@
-﻿import { StringEditor, ImageUploadEditor, BooleanEditor, LookupEditor, DecimalEditor, IntegerEditor, PrefixedContext } from "@serenity-is/corelib";
+﻿import { CategoryDialog } from "@/Category/CategoryDialog";
 import { SupplierDialog } from "@/Supplier/SupplierDialog";
-import { CategoryDialog } from "@/Category/CategoryDialog";
+import { StringEditor, ImageUploadEditor, BooleanEditor, LookupEditor, DecimalEditor, IntegerEditor, PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface ProductForm {
@@ -17,7 +17,7 @@ export interface ProductForm {
 }
 
 export class ProductForm extends PrefixedContext {
-    static formKey = 'Northwind.Product';
+    static readonly formKey = 'Northwind.Product';
     private static init: boolean;
 
     constructor(prefix: string) {

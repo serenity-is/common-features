@@ -10,7 +10,7 @@ export interface ChangingLookupTextForm {
 }
 
 export class ChangingLookupTextForm extends PrefixedContext {
-    static formKey = 'BasicSamples.ChangingLookupText';
+    static readonly formKey = 'BasicSamples.ChangingLookupText';
     private static init: boolean;
 
     constructor(prefix: string) {

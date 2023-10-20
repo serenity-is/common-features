@@ -1,7 +1,7 @@
-﻿import { UserPreferenceUpdateRequest } from "./UserPreferenceUpdateRequest";
-import { ServiceResponse, ServiceOptions, serviceRequest } from "@serenity-is/corelib/q";
+﻿import { ServiceResponse, ServiceOptions, serviceRequest } from "@serenity-is/corelib/q";
 import { UserPreferenceRetrieveRequest } from "./UserPreferenceRetrieveRequest";
 import { UserPreferenceRetrieveResponse } from "./UserPreferenceRetrieveResponse";
+import { UserPreferenceUpdateRequest } from "./UserPreferenceUpdateRequest";
 
 export namespace UserPreferenceService {
     export const baseUrl = 'Extensions/UserPreference';

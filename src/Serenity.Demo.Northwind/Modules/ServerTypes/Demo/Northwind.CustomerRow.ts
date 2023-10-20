@@ -1,5 +1,5 @@
-﻿import { NoteRow } from "./Northwind.NoteRow";
-import { getLookup, getLookupAsync, fieldsProxy } from "@serenity-is/corelib/q";
+﻿import { getLookup, getLookupAsync, fieldsProxy } from "@serenity-is/corelib/q";
+import { NoteRow } from "./Northwind.NoteRow";
 
 export interface CustomerRow {
     ID?: number;

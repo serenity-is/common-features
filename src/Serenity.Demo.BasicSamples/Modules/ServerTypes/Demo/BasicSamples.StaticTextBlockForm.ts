@@ -1,6 +1,6 @@
-﻿import { StaticTextBlock } from "@serenity-is/extensions";
-import { StringEditor, PrefixedContext } from "@serenity-is/corelib";
+﻿import { StringEditor, PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
+import { StaticTextBlock } from "@serenity-is/extensions";
 
 export interface StaticTextBlockForm {
     StaticText: StaticTextBlock;
@@ -11,7 +11,7 @@ export interface StaticTextBlockForm {
 }
 
 export class StaticTextBlockForm extends PrefixedContext {
-    static formKey = 'BasicSamples.StaticTextBlock';
+    static readonly formKey = 'BasicSamples.StaticTextBlock';
     private static init: boolean;
 
     constructor(prefix: string) {

@@ -8,7 +8,7 @@ export interface TerritoryForm {
 }
 
 export class TerritoryForm extends PrefixedContext {
-    static formKey = 'Northwind.Territory';
+    static readonly formKey = 'Northwind.Territory';
     private static init: boolean;
 
     constructor(prefix: string) {

@@ -1,6 +1,6 @@
-﻿import { OrdersByShipperRequest } from "./BasicSamples.OrdersByShipperRequest";
+﻿import { ServiceOptions, serviceRequest } from "@serenity-is/corelib/q";
+import { OrdersByShipperRequest } from "./BasicSamples.OrdersByShipperRequest";
 import { OrdersByShipperResponse } from "./BasicSamples.OrdersByShipperResponse";
-import { ServiceOptions, serviceRequest } from "@serenity-is/corelib/q";
 
 export namespace BasicSamplesService {
     export const baseUrl = 'Serenity.Demo.BasicSamples';

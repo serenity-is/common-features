@@ -7,7 +7,7 @@ export interface CategoryForm {
 }
 
 export class CategoryForm extends PrefixedContext {
-    static formKey = 'Northwind.Category';
+    static readonly formKey = 'Northwind.Category';
     private static init: boolean;
 
     constructor(prefix: string) {

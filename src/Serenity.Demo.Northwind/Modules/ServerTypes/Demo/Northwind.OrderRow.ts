@@ -1,7 +1,7 @@
-﻿import { Gender } from "./Northwind.Gender";
-import { OrderShippingState } from "./Northwind.OrderShippingState";
+﻿import { fieldsProxy } from "@serenity-is/corelib/q";
+import { Gender } from "./Northwind.Gender";
 import { OrderDetailRow } from "./Northwind.OrderDetailRow";
-import { fieldsProxy } from "@serenity-is/corelib/q";
+import { OrderShippingState } from "./Northwind.OrderShippingState";
 
 export interface OrderRow {
     OrderID?: number;

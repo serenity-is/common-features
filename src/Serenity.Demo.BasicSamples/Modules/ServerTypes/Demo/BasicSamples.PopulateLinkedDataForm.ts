@@ -1,6 +1,6 @@
-﻿import { CustomerEditor, OrderDetailsEditor } from "@serenity-is/demo.northwind";
-import { StringEditor, DateEditor, LookupEditor, PrefixedContext } from "@serenity-is/corelib";
+﻿import { StringEditor, DateEditor, LookupEditor, PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
+import { CustomerEditor, OrderDetailsEditor } from "@serenity-is/demo.northwind";
 
 export interface PopulateLinkedDataForm {
     CustomerID: CustomerEditor;
@@ -18,7 +18,7 @@ export interface PopulateLinkedDataForm {
 }
 
 export class PopulateLinkedDataForm extends PrefixedContext {
-    static formKey = 'BasicSamples.PopulateLinkedData';
+    static readonly formKey = 'BasicSamples.PopulateLinkedData';
     private static init: boolean;
 
     constructor(prefix: string) {

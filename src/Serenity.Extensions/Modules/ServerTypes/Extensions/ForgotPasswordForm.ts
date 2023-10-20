@@ -6,7 +6,7 @@ export interface ForgotPasswordForm {
 }
 
 export class ForgotPasswordForm extends PrefixedContext {
-    static formKey = 'Serenity.Extensions.ForgotPasswordRequest';
+    static readonly formKey = 'Serenity.Extensions.ForgotPasswordRequest';
     private static init: boolean;
 
     constructor(prefix: string) {

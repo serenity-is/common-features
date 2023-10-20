@@ -1,5 +1,5 @@
-﻿import { StringEditor, PrefixedContext } from "@serenity-is/corelib";
-import { PhoneEditor } from "@/Shared/PhoneEditor";
+﻿import { PhoneEditor } from "@/Shared/PhoneEditor";
+import { StringEditor, PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface ShipperForm {
@@ -8,7 +8,7 @@ export interface ShipperForm {
 }
 
 export class ShipperForm extends PrefixedContext {
-    static formKey = 'Northwind.Shipper';
+    static readonly formKey = 'Northwind.Shipper';
     private static init: boolean;
 
     constructor(prefix: string) {

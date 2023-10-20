@@ -7,7 +7,7 @@ export interface RegionForm {
 }
 
 export class RegionForm extends PrefixedContext {
-    static formKey = 'Northwind.Region';
+    static readonly formKey = 'Northwind.Region';
     private static init: boolean;
 
     constructor(prefix: string) {

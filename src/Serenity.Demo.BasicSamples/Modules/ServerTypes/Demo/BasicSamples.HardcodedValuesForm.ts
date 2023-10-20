@@ -7,7 +7,7 @@ export interface HardcodedValuesForm {
 }
 
 export class HardcodedValuesForm extends PrefixedContext {
-    static formKey = 'BasicSamples.HarcodedValues';
+    static readonly formKey = 'BasicSamples.HarcodedValues';
     private static init: boolean;
 
     constructor(prefix: string) {

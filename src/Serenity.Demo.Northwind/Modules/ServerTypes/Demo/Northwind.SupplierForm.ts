@@ -16,7 +16,7 @@ export interface SupplierForm {
 }
 
 export class SupplierForm extends PrefixedContext {
-    static formKey = 'Northwind.Supplier';
+    static readonly formKey = 'Northwind.Supplier';
     private static init: boolean;
 
     constructor(prefix: string) {

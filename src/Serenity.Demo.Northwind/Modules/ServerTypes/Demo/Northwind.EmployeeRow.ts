@@ -1,5 +1,5 @@
-﻿import { Gender } from "./Northwind.Gender";
-import { getLookup, getLookupAsync, fieldsProxy } from "@serenity-is/corelib/q";
+﻿import { getLookup, getLookupAsync, fieldsProxy } from "@serenity-is/corelib/q";
+import { Gender } from "./Northwind.Gender";
 
 export interface EmployeeRow {
     EmployeeID?: number;

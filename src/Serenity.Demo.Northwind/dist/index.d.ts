@@ -910,7 +910,7 @@ export declare class OrderGrid extends EntityGrid<OrderRow, any> {
 	protected getQuickFilters(): import("@serenity-is/corelib").QuickFilter<import("@serenity-is/corelib").Widget<any>, any>[];
 	protected createQuickFilters(): void;
 	protected getButtons(): ToolButton[];
-	protected getColumns(): import("@serenity-is/sleekgrid").Column<any>[];
+	protected getColumns(): import("@serenity-is/sleekgrid").Column<OrderRow>[];
 	protected onClick(e: JQueryEventObject, row: number, cell: number): void;
 	set_shippingState(value: number): void;
 	protected addButtonClick(): void;
@@ -978,7 +978,7 @@ export declare class ProductGrid extends EntityGrid<ProductRow, any> {
 	 */
 	private selectFormatter;
 	private getEffectiveValue;
-	protected getColumns(): Column<any>[];
+	protected getColumns(): Column<ProductRow>[];
 	private inputsChange;
 	private setSaveButtonState;
 	private saveClick;

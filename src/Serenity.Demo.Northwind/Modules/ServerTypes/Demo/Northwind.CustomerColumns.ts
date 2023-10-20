@@ -1,7 +1,26 @@
 ﻿import { EmployeeListFormatter } from "@/Customer/EmployeeListFormatter";
+import { ColumnsBase } from "@serenity-is/corelib";
+import { fieldsProxy } from "@serenity-is/corelib/q";
+import { Column } from "@serenity-is/sleekgrid";
+import { CustomerRow } from "./Northwind.CustomerRow";
 
-export class CustomerColumns {
-    static columnsKey = 'Northwind.Customer';
+export interface CustomerColumns {
+    CustomerID: Column<CustomerRow>;
+    CompanyName: Column<CustomerRow>;
+    ContactName: Column<CustomerRow>;
+    ContactTitle: Column<CustomerRow>;
+    Region: Column<CustomerRow>;
+    PostalCode: Column<CustomerRow>;
+    Country: Column<CustomerRow>;
+    City: Column<CustomerRow>;
+    Phone: Column<CustomerRow>;
+    Fax: Column<CustomerRow>;
+    Representatives: Column<CustomerRow>;
+}
+
+export class CustomerColumns extends ColumnsBase<CustomerRow> {
+    static readonly columnsKey = 'Northwind.Customer';
+    static readonly Fields = fieldsProxy<CustomerColumns>();
 }
 
 [EmployeeListFormatter]; // referenced types

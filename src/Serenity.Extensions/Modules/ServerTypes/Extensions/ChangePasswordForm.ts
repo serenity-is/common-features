@@ -8,7 +8,7 @@ export interface ChangePasswordForm {
 }
 
 export class ChangePasswordForm extends PrefixedContext {
-    static formKey = 'Serenity.Extensions.ChangePasswordRequest';
+    static readonly formKey = 'Serenity.Extensions.ChangePasswordRequest';
     private static init: boolean;
 
     constructor(prefix: string) {

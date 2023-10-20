@@ -1,5 +1,5 @@
-﻿import { StringEditor, LookupEditor, DateEditor, EmailAddressEditor, BooleanEditor, PrefixedContext } from "@serenity-is/corelib";
-import { NotesEditor } from "@/Note/NotesEditor";
+﻿import { NotesEditor } from "@/Note/NotesEditor";
+import { StringEditor, LookupEditor, DateEditor, EmailAddressEditor, BooleanEditor, PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface CustomerForm {
@@ -23,7 +23,7 @@ export interface CustomerForm {
 }
 
 export class CustomerForm extends PrefixedContext {
-    static formKey = 'Northwind.Customer';
+    static readonly formKey = 'Northwind.Customer';
     private static init: boolean;
 
     constructor(prefix: string) {

@@ -39,17 +39,15 @@ export class GroupingAndSummariesInGrid extends EntityGrid<ProductRow, any> {
     }
 
     protected getColumns() {
-        var columns = super.getColumns();
+        var columns = new ProductColumns(super.getColumns());
 
-        first(columns, x => x.field === 'UnitsOnOrder')
-            .groupTotalsFormatter = (totals, col) =>
-                (totals.max ? ('max: ' + coalesce(totals.max[col.field], '')) : '');
+        columns.UnitsOnOrder && (columns.UnitsOnOrder.groupTotalsFormatter = (totals, col) =>
+            (totals.max ? ('max: ' + coalesce(totals.max[col.field], '')) : ''));
 
-        first(columns, x => x.field === 'ReorderLevel')
-            .groupTotalsFormatter = (totals, col) =>
-                (totals.avg ? ('avg: ' + coalesce(formatNumber(totals.avg[col.field], '0.'), '')) : '');
+        columns.ReorderLevel && (columns.ReorderLevel.groupTotalsFormatter = (totals, col) =>
+            (totals.avg ? ('avg: ' + coalesce(formatNumber(totals.avg[col.field], '0.'), '')) : ''));
 
-        return columns;
+        return columns.valueOf();
     }
 
     protected getSlickOptions() {

@@ -163,26 +163,23 @@ export class ProductGrid extends EntityGrid<ProductRow, any> {
     }
 
     protected getColumns() {
-        var columns = super.getColumns();
-        var num = ctx => this.numericInputFormatter(ctx);
-        var str = ctx => this.stringInputFormatter(ctx);
+        var columns = new ProductColumns(super.getColumns());
+        var num = (ctx: FormatterContext<ProductRow>) => this.numericInputFormatter(ctx);
+        var str = (ctx: FormatterContext<ProductRow>) => this.stringInputFormatter(ctx);
 
-        first(columns, x => x.field === 'QuantityPerUnit').format = str;
+        columns.QuantityPerUnit && (columns.QuantityPerUnit.format = str);
+        columns.CategoryName && (columns.CategoryName.referencedFields = [fld.CategoryID]) &&
+            (columns.CategoryName.format = ctx => this.selectFormatter(ctx, fld.CategoryID, CategoryRow.getLookup()));
 
-        var category = first(columns, x => x.field === fld.CategoryName);
-        category.referencedFields = [fld.CategoryID];
-        category.format = ctx => this.selectFormatter(ctx, fld.CategoryID, CategoryRow.getLookup());
+        columns.SupplierCompanyName && (columns.SupplierCompanyName.referencedFields = [fld.SupplierID]) &&
+            (columns.SupplierCompanyName.format = ctx => this.selectFormatter(ctx, fld.SupplierID, SupplierRow.getLookup()));
 
-        var supplier = first(columns, x => x.field === fld.SupplierCompanyName);
-        supplier.referencedFields = [fld.SupplierID];
-        supplier.format = ctx => this.selectFormatter(ctx, fld.SupplierID, SupplierRow.getLookup());
+        columns.UnitPrice && (columns.UnitPrice.format = num);
+        columns.UnitsInStock && (columns.UnitsInStock.format = num);
+        columns.UnitsOnOrder && (columns.UnitsOnOrder.format = num);
+        columns.ReorderLevel && (columns.ReorderLevel.format = num);
 
-        first(columns, x => x.field === fld.UnitPrice).format = num;
-        first(columns, x => x.field === fld.UnitsInStock).format = num;
-        first(columns, x => x.field === fld.UnitsOnOrder).format = num;
-        first(columns, x => x.field === fld.ReorderLevel).format = num;
-
-        return columns;
+        return columns.valueOf();
     }
 
     private inputsChange(e: JQueryEventObject) {
@@ -281,7 +278,7 @@ export class ProductGrid extends EntityGrid<ProductRow, any> {
 
         var q = parseQueryString();
         if (q["cat"]) {
-            var category = tryFirst(flt, x => x.field == "CategoryID");
+            var category = tryFirst(flt, x => x.field == ProductRow.Fields.CategoryID);
             category.init = e => {
                 e.element.getWidget(LookupEditor).value = q["cat"];
             };

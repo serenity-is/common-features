@@ -1,14 +1,12 @@
 import { Decorators, LookupEditor } from "@serenity-is/corelib";
 import { confirmDialog, count, first, format, formatDate, htmlEncode, initFullHeightGridPage, notifyInfo, notifySuccess, toId } from "@serenity-is/corelib/q";
-import { CustomerDialog, CustomerRow, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
+import { CustomerDialog, CustomerRow, OrderColumns, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 import { Column } from "@serenity-is/sleekgrid";
 
 export default function pageInit() {
     new CustomLinksInGrid($('#GridDiv')).init();
     initFullHeightGridPage($('#GridDiv'));
 }
-
-const fld = OrderRow.Fields;
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.CustomLinksInGrid')
 export class CustomLinksInGrid extends OrderGrid {
@@ -22,22 +20,21 @@ export class CustomLinksInGrid extends OrderGrid {
      * You could also write them as formatter classes, and use them at server side
      */
     protected getColumns(): Column[] {
-        var columns = super.getColumns();
+        var columns = new OrderColumns(super.getColumns());
 
+        columns.CustomerCompanyName && (columns.CustomerCompanyName.format =
+            ctx => `<a href="javascript:;" class="customer-link">${ctx.escape()}</a>`);
 
-        first(columns, x => x.field == fld.CustomerCompanyName).format =
-            ctx => `<a href="javascript:;" class="customer-link">${ctx.escape()}</a>`;
+        columns.OrderDate && (columns.OrderDate.format =
+            ctx => `<a href="javascript:;" class="date-link">${ctx.escape(formatDate(ctx.value))}</a>`);
 
-        first(columns, x => x.field == fld.OrderDate).format =
-            ctx => `<a href="javascript:;" class="date-link">${ctx.escape(formatDate(ctx.value))}</a>`;
+        columns.EmployeeFullName && (columns.EmployeeFullName.format =
+            ctx => `<a href="javascript:;" class="employee-link">${ctx.escape()}</a>`);
 
-        first(columns, x => x.field == fld.EmployeeFullName).format =
-            ctx => `<a href="javascript:;" class="employee-link">${ctx.escape()}</a>`;
+        columns.ShipCountry && (columns.ShipCountry.format =
+            ctx => `<a href="javascript:;" class="ship-country-link">${ctx.escape()}</a>`);
 
-        first(columns, x => x.field == fld.ShipCountry).format =
-            ctx => `<a href="javascript:;" class="ship-country-link">${ctx.escape()}</a>`;
-
-        return columns;
+        return columns.valueOf();
     }
 
     protected onClick(e: JQueryEventObject, row: number, cell: number): void {

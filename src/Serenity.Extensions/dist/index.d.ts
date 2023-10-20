@@ -11,7 +11,7 @@ export interface ChangePasswordForm {
 	ConfirmPassword: PasswordEditor;
 }
 export declare class ChangePasswordForm extends PrefixedContext {
-	static formKey: string;
+	static readonly formKey = "Serenity.Extensions.ChangePasswordRequest";
 	private static init;
 	constructor(prefix: string);
 }
@@ -32,7 +32,7 @@ export interface ForgotPasswordForm {
 	Email: EmailAddressEditor;
 }
 export declare class ForgotPasswordForm extends PrefixedContext {
-	static formKey: string;
+	static readonly formKey = "Serenity.Extensions.ForgotPasswordRequest";
 	private static init;
 	constructor(prefix: string);
 }
@@ -52,7 +52,7 @@ export interface ResetPasswordForm {
 	ConfirmPassword: PasswordEditor;
 }
 export declare class ResetPasswordForm extends PrefixedContext {
-	static formKey: string;
+	static readonly formKey = "Serenity.Extensions.ResetPasswordRequest";
 	private static init;
 	constructor(prefix: string);
 }

@@ -1,20 +1,46 @@
 /// <reference types="jquery" />
 /// <reference types="jquery.validation" />
 
-import { BooleanEditor, CaptureOperationType, DateEditor, DecimalEditor, EmailAddressEditor, EntityDialog, EntityGrid, EnumEditor, Formatter, IGetEditValue, ISetEditValue, ImageUploadEditor, IntegerEditor, LookupEditor, LookupEditorBase, LookupEditorOptions, PrefixedContext, StringEditor, TemplatedDialog, TemplatedWidget, ToolButton } from '@serenity-is/corelib';
+import { BooleanEditor, CaptureOperationType, ColumnsBase, DateEditor, DecimalEditor, EmailAddressEditor, EntityDialog, EntityGrid, EnumEditor, Formatter, IGetEditValue, ISetEditValue, ImageUploadEditor, IntegerEditor, LookupEditor, LookupEditorBase, LookupEditorOptions, PrefixedContext, StringEditor, TemplatedDialog, TemplatedWidget, ToolButton } from '@serenity-is/corelib';
 import { DeleteRequest, DeleteResponse, ListRequest, ListResponse, PropertyItem, RetrieveRequest, RetrieveResponse, SaveRequest, SaveResponse, ServiceOptions } from '@serenity-is/corelib/q';
 import { GetNextNumberRequest, GetNextNumberResponse, GridEditorBase, GridEditorDialog } from '@serenity-is/extensions';
 import { Column, FormatterContext } from '@serenity-is/sleekgrid';
 
-export declare class CategoryColumns {
-	static columnsKey: string;
+export interface CategoryRow {
+	CategoryID?: number;
+	CategoryName?: string;
+	Description?: string;
+	Picture?: number[];
+}
+export declare abstract class CategoryRow {
+	static readonly idProperty = "CategoryID";
+	static readonly nameProperty = "CategoryName";
+	static readonly localTextPrefix = "Northwind.Category";
+	static readonly lookupKey = "Northwind.Category";
+	/** @deprecated use getLookupAsync instead */
+	static getLookup(): import("@serenity-is/corelib/q").Lookup<CategoryRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<CategoryRow>>;
+	static readonly deletePermission = "Northwind:General";
+	static readonly insertPermission = "Northwind:General";
+	static readonly readPermission = "Northwind:General";
+	static readonly updatePermission = "Northwind:General";
+	static readonly Fields: Readonly<Record<keyof CategoryRow, string>>;
+}
+export interface CategoryColumns {
+	CategoryID: Column<CategoryRow>;
+	CategoryName: Column<CategoryRow>;
+	Description: Column<CategoryRow>;
+}
+export declare class CategoryColumns extends ColumnsBase<CategoryRow> {
+	static readonly columnsKey = "Northwind.Category";
+	static readonly Fields: Readonly<Record<keyof CategoryColumns, string>>;
 }
 export interface CategoryForm {
 	CategoryName: StringEditor;
 	Description: StringEditor;
 }
 export declare class CategoryForm extends PrefixedContext {
-	static formKey: string;
+	static readonly formKey = "Northwind.Category";
 	private static init;
 	constructor(prefix: string);
 }
@@ -50,26 +76,6 @@ export declare namespace CategoryLangService {
 		readonly List: "Serenity.Demo.Northwind/CategoryLang/List";
 	};
 }
-export interface CategoryRow {
-	CategoryID?: number;
-	CategoryName?: string;
-	Description?: string;
-	Picture?: number[];
-}
-export declare abstract class CategoryRow {
-	static readonly idProperty = "CategoryID";
-	static readonly nameProperty = "CategoryName";
-	static readonly localTextPrefix = "Northwind.Category";
-	static readonly lookupKey = "Northwind.Category";
-	/** @deprecated use getLookupAsync instead */
-	static getLookup(): import("@serenity-is/corelib/q").Lookup<CategoryRow>;
-	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<CategoryRow>>;
-	static readonly deletePermission = "Northwind:General";
-	static readonly insertPermission = "Northwind:General";
-	static readonly readPermission = "Northwind:General";
-	static readonly updatePermission = "Northwind:General";
-	static readonly Fields: Readonly<Record<keyof CategoryRow, string>>;
-}
 export declare namespace CategoryService {
 	const baseUrl = "Serenity.Demo.Northwind/Category";
 	function Create(request: SaveRequest<CategoryRow>, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
@@ -85,8 +91,75 @@ export declare namespace CategoryService {
 		readonly List: "Serenity.Demo.Northwind/Category/List";
 	};
 }
-export declare class CustomerColumns {
-	static columnsKey: string;
+export interface NoteRow {
+	NoteId?: number;
+	EntityType?: string;
+	EntityId?: number;
+	Text?: string;
+	InsertUserId?: number;
+	InsertDate?: string;
+	InsertUserDisplayName?: string;
+}
+export declare abstract class NoteRow {
+	static readonly idProperty = "NoteId";
+	static readonly nameProperty = "EntityType";
+	static readonly localTextPrefix = "Northwind.Note";
+	static readonly deletePermission = "Northwind:General";
+	static readonly insertPermission = "Northwind:General";
+	static readonly readPermission = "Northwind:General";
+	static readonly updatePermission = "Northwind:General";
+	static readonly Fields: Readonly<Record<keyof NoteRow, string>>;
+}
+export interface CustomerRow {
+	ID?: number;
+	CustomerID?: string;
+	CompanyName?: string;
+	ContactName?: string;
+	ContactTitle?: string;
+	Address?: string;
+	City?: string;
+	Region?: string;
+	PostalCode?: string;
+	Country?: string;
+	Phone?: string;
+	Fax?: string;
+	NoteList?: NoteRow[];
+	Representatives?: number[];
+	LastContactDate?: string;
+	LastContactedBy?: number;
+	Email?: string;
+	SendBulletin?: boolean;
+}
+export declare abstract class CustomerRow {
+	static readonly idProperty = "ID";
+	static readonly nameProperty = "CompanyName";
+	static readonly localTextPrefix = "Northwind.Customer";
+	static readonly lookupKey = "Northwind.Customer";
+	/** @deprecated use getLookupAsync instead */
+	static getLookup(): import("@serenity-is/corelib/q").Lookup<CustomerRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<CustomerRow>>;
+	static readonly deletePermission = "Northwind:Customer:Delete";
+	static readonly insertPermission = "Northwind:Customer:Modify";
+	static readonly readPermission = "Northwind:Customer:View";
+	static readonly updatePermission = "Northwind:Customer:Modify";
+	static readonly Fields: Readonly<Record<keyof CustomerRow, string>>;
+}
+export interface CustomerColumns {
+	CustomerID: Column<CustomerRow>;
+	CompanyName: Column<CustomerRow>;
+	ContactName: Column<CustomerRow>;
+	ContactTitle: Column<CustomerRow>;
+	Region: Column<CustomerRow>;
+	PostalCode: Column<CustomerRow>;
+	Country: Column<CustomerRow>;
+	City: Column<CustomerRow>;
+	Phone: Column<CustomerRow>;
+	Fax: Column<CustomerRow>;
+	Representatives: Column<CustomerRow>;
+}
+export declare class CustomerColumns extends ColumnsBase<CustomerRow> {
+	static readonly columnsKey = "Northwind.Customer";
+	static readonly Fields: Readonly<Record<keyof CustomerColumns, string>>;
 }
 export interface CustomerCustomerDemoRow {
 	ID?: number;
@@ -174,7 +247,7 @@ export interface CustomerForm {
 	SendBulletin: BooleanEditor;
 }
 export declare class CustomerForm extends PrefixedContext {
-	static formKey: string;
+	static readonly formKey = "Northwind.Customer";
 	private static init;
 	constructor(prefix: string);
 }
@@ -207,59 +280,6 @@ export declare abstract class CustomerRepresentativesRow {
 	static readonly readPermission = "Northwind:Customer:View";
 	static readonly updatePermission = "Northwind:Customer:View";
 	static readonly Fields: Readonly<Record<keyof CustomerRepresentativesRow, string>>;
-}
-export interface NoteRow {
-	NoteId?: number;
-	EntityType?: string;
-	EntityId?: number;
-	Text?: string;
-	InsertUserId?: number;
-	InsertDate?: string;
-	InsertUserDisplayName?: string;
-}
-export declare abstract class NoteRow {
-	static readonly idProperty = "NoteId";
-	static readonly nameProperty = "EntityType";
-	static readonly localTextPrefix = "Northwind.Note";
-	static readonly deletePermission = "Northwind:General";
-	static readonly insertPermission = "Northwind:General";
-	static readonly readPermission = "Northwind:General";
-	static readonly updatePermission = "Northwind:General";
-	static readonly Fields: Readonly<Record<keyof NoteRow, string>>;
-}
-export interface CustomerRow {
-	ID?: number;
-	CustomerID?: string;
-	CompanyName?: string;
-	ContactName?: string;
-	ContactTitle?: string;
-	Address?: string;
-	City?: string;
-	Region?: string;
-	PostalCode?: string;
-	Country?: string;
-	Phone?: string;
-	Fax?: string;
-	NoteList?: NoteRow[];
-	Representatives?: number[];
-	LastContactDate?: string;
-	LastContactedBy?: number;
-	Email?: string;
-	SendBulletin?: boolean;
-}
-export declare abstract class CustomerRow {
-	static readonly idProperty = "ID";
-	static readonly nameProperty = "CompanyName";
-	static readonly localTextPrefix = "Northwind.Customer";
-	static readonly lookupKey = "Northwind.Customer";
-	/** @deprecated use getLookupAsync instead */
-	static getLookup(): import("@serenity-is/corelib/q").Lookup<CustomerRow>;
-	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<CustomerRow>>;
-	static readonly deletePermission = "Northwind:Customer:Delete";
-	static readonly insertPermission = "Northwind:Customer:Modify";
-	static readonly readPermission = "Northwind:Customer:View";
-	static readonly updatePermission = "Northwind:Customer:Modify";
-	static readonly Fields: Readonly<Record<keyof CustomerRow, string>>;
 }
 export declare namespace CustomerService {
 	const baseUrl = "Serenity.Demo.Northwind/Customer";
@@ -335,23 +355,6 @@ export declare abstract class EmployeeTerritoryRow {
 	static readonly updatePermission = "Northwind:General";
 	static readonly Fields: Readonly<Record<keyof EmployeeTerritoryRow, string>>;
 }
-export declare class OrderColumns {
-	static columnsKey: string;
-}
-export declare class OrderDetailColumns {
-	static columnsKey: string;
-}
-export interface OrderDetailForm {
-	ProductID: LookupEditor;
-	UnitPrice: DecimalEditor;
-	Quantity: IntegerEditor;
-	Discount: DecimalEditor;
-}
-export declare class OrderDetailForm extends PrefixedContext {
-	static formKey: string;
-	private static init;
-	constructor(prefix: string);
-}
 export interface OrderDetailRow {
 	DetailID?: number;
 	OrderID?: number;
@@ -373,6 +376,88 @@ export declare abstract class OrderDetailRow {
 	static readonly readPermission = "Northwind:General";
 	static readonly updatePermission = "Northwind:General";
 	static readonly Fields: Readonly<Record<keyof OrderDetailRow, string>>;
+}
+export declare enum OrderShippingState {
+	NotShipped = 0,
+	Shipped = 1
+}
+export interface OrderRow {
+	OrderID?: number;
+	CustomerID?: string;
+	EmployeeID?: number;
+	OrderDate?: string;
+	RequiredDate?: string;
+	ShippedDate?: string;
+	ShipVia?: number;
+	Freight?: number;
+	ShipName?: string;
+	ShipAddress?: string;
+	ShipCity?: string;
+	ShipRegion?: string;
+	ShipPostalCode?: string;
+	ShipCountry?: string;
+	CustomerCompanyName?: string;
+	CustomerContactName?: string;
+	CustomerContactTitle?: string;
+	CustomerCity?: string;
+	CustomerRegion?: string;
+	CustomerCountry?: string;
+	CustomerPhone?: string;
+	CustomerFax?: string;
+	EmployeeFullName?: string;
+	EmployeeGender?: Gender;
+	ShipViaCompanyName?: string;
+	ShippingState?: OrderShippingState;
+	DetailList?: OrderDetailRow[];
+}
+export declare abstract class OrderRow {
+	static readonly idProperty = "OrderID";
+	static readonly nameProperty = "CustomerID";
+	static readonly localTextPrefix = "Northwind.Order";
+	static readonly deletePermission = "Northwind:General";
+	static readonly insertPermission = "Northwind:General";
+	static readonly readPermission = "Northwind:General";
+	static readonly updatePermission = "Northwind:General";
+	static readonly Fields: Readonly<Record<keyof OrderRow, string>>;
+}
+export interface OrderColumns {
+	OrderID: Column<OrderRow>;
+	CustomerCompanyName: Column<OrderRow>;
+	OrderDate: Column<OrderRow>;
+	EmployeeFullName: Column<OrderRow>;
+	RequiredDate: Column<OrderRow>;
+	ShippingState: Column<OrderRow>;
+	ShippedDate: Column<OrderRow>;
+	ShipViaCompanyName: Column<OrderRow>;
+	ShipCountry: Column<OrderRow>;
+	ShipCity: Column<OrderRow>;
+	Freight: Column<OrderRow>;
+}
+export declare class OrderColumns extends ColumnsBase<OrderRow> {
+	static readonly columnsKey = "Northwind.Order";
+	static readonly Fields: Readonly<Record<keyof OrderColumns, string>>;
+}
+export interface OrderDetailColumns {
+	ProductName: Column<OrderDetailRow>;
+	UnitPrice: Column<OrderDetailRow>;
+	Quantity: Column<OrderDetailRow>;
+	Discount: Column<OrderDetailRow>;
+	LineTotal: Column<OrderDetailRow>;
+}
+export declare class OrderDetailColumns extends ColumnsBase<OrderDetailRow> {
+	static readonly columnsKey = "Northwind.OrderDetail";
+	static readonly Fields: Readonly<Record<keyof OrderDetailColumns, string>>;
+}
+export interface OrderDetailForm {
+	ProductID: LookupEditor;
+	UnitPrice: DecimalEditor;
+	Quantity: IntegerEditor;
+	Discount: DecimalEditor;
+}
+export declare class OrderDetailForm extends PrefixedContext {
+	static readonly formKey = "Northwind.OrderDetail";
+	private static init;
+	constructor(prefix: string);
 }
 export declare namespace OrderDetailService {
 	const baseUrl = "Serenity.Demo.Northwind/OrderDetail";
@@ -418,55 +503,12 @@ export interface OrderForm {
 	ShipCountry: StringEditor;
 }
 export declare class OrderForm extends PrefixedContext {
-	static formKey: string;
+	static readonly formKey = "Northwind.Order";
 	private static init;
 	constructor(prefix: string);
 }
 export interface OrderListRequest extends ListRequest {
 	ProductID?: number;
-}
-export declare enum OrderShippingState {
-	NotShipped = 0,
-	Shipped = 1
-}
-export interface OrderRow {
-	OrderID?: number;
-	CustomerID?: string;
-	EmployeeID?: number;
-	OrderDate?: string;
-	RequiredDate?: string;
-	ShippedDate?: string;
-	ShipVia?: number;
-	Freight?: number;
-	ShipName?: string;
-	ShipAddress?: string;
-	ShipCity?: string;
-	ShipRegion?: string;
-	ShipPostalCode?: string;
-	ShipCountry?: string;
-	CustomerCompanyName?: string;
-	CustomerContactName?: string;
-	CustomerContactTitle?: string;
-	CustomerCity?: string;
-	CustomerRegion?: string;
-	CustomerCountry?: string;
-	CustomerPhone?: string;
-	CustomerFax?: string;
-	EmployeeFullName?: string;
-	EmployeeGender?: Gender;
-	ShipViaCompanyName?: string;
-	ShippingState?: OrderShippingState;
-	DetailList?: OrderDetailRow[];
-}
-export declare abstract class OrderRow {
-	static readonly idProperty = "OrderID";
-	static readonly nameProperty = "CustomerID";
-	static readonly localTextPrefix = "Northwind.Order";
-	static readonly deletePermission = "Northwind:General";
-	static readonly insertPermission = "Northwind:General";
-	static readonly readPermission = "Northwind:General";
-	static readonly updatePermission = "Northwind:General";
-	static readonly Fields: Readonly<Record<keyof OrderRow, string>>;
 }
 export declare namespace OrderService {
 	const baseUrl = "Serenity.Demo.Northwind/Order";
@@ -491,8 +533,51 @@ export declare namespace PermissionKeys {
 		const View = "Northwind:Customer:View";
 	}
 }
-export declare class ProductColumns {
-	static columnsKey: string;
+export interface ProductRow {
+	ProductID?: number;
+	ProductName?: string;
+	ProductImage?: string;
+	Discontinued?: boolean;
+	SupplierID?: number;
+	CategoryID?: number;
+	QuantityPerUnit?: string;
+	UnitPrice?: number;
+	UnitsInStock?: number;
+	UnitsOnOrder?: number;
+	ReorderLevel?: number;
+	SupplierCompanyName?: string;
+	SupplierCountry?: string;
+	CategoryName?: string;
+}
+export declare abstract class ProductRow {
+	static readonly idProperty = "ProductID";
+	static readonly nameProperty = "ProductName";
+	static readonly localTextPrefix = "Northwind.Product";
+	static readonly lookupKey = "Northwind.Product";
+	/** @deprecated use getLookupAsync instead */
+	static getLookup(): import("@serenity-is/corelib/q").Lookup<ProductRow>;
+	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<ProductRow>>;
+	static readonly deletePermission = "Northwind:General";
+	static readonly insertPermission = "Northwind:General";
+	static readonly readPermission = "Northwind:General";
+	static readonly updatePermission = "Northwind:General";
+	static readonly Fields: Readonly<Record<keyof ProductRow, string>>;
+}
+export interface ProductColumns {
+	ProductID: Column<ProductRow>;
+	ProductName: Column<ProductRow>;
+	Discontinued: Column<ProductRow>;
+	SupplierCompanyName: Column<ProductRow>;
+	CategoryName: Column<ProductRow>;
+	QuantityPerUnit: Column<ProductRow>;
+	UnitPrice: Column<ProductRow>;
+	UnitsInStock: Column<ProductRow>;
+	UnitsOnOrder: Column<ProductRow>;
+	ReorderLevel: Column<ProductRow>;
+}
+export declare class ProductColumns extends ColumnsBase<ProductRow> {
+	static readonly columnsKey = "Northwind.Product";
+	static readonly Fields: Readonly<Record<keyof ProductColumns, string>>;
 }
 export interface ProductForm {
 	ProductName: StringEditor;
@@ -507,7 +592,7 @@ export interface ProductForm {
 	ReorderLevel: IntegerEditor;
 }
 export declare class ProductForm extends PrefixedContext {
-	static formKey: string;
+	static readonly formKey = "Northwind.Product";
 	private static init;
 	constructor(prefix: string);
 }
@@ -569,36 +654,6 @@ export declare abstract class ProductLogRow {
 	static readonly updatePermission: any;
 	static readonly Fields: Readonly<Record<keyof ProductLogRow, string>>;
 }
-export interface ProductRow {
-	ProductID?: number;
-	ProductName?: string;
-	ProductImage?: string;
-	Discontinued?: boolean;
-	SupplierID?: number;
-	CategoryID?: number;
-	QuantityPerUnit?: string;
-	UnitPrice?: number;
-	UnitsInStock?: number;
-	UnitsOnOrder?: number;
-	ReorderLevel?: number;
-	SupplierCompanyName?: string;
-	SupplierCountry?: string;
-	CategoryName?: string;
-}
-export declare abstract class ProductRow {
-	static readonly idProperty = "ProductID";
-	static readonly nameProperty = "ProductName";
-	static readonly localTextPrefix = "Northwind.Product";
-	static readonly lookupKey = "Northwind.Product";
-	/** @deprecated use getLookupAsync instead */
-	static getLookup(): import("@serenity-is/corelib/q").Lookup<ProductRow>;
-	static getLookupAsync(): Promise<import("@serenity-is/corelib/q").Lookup<ProductRow>>;
-	static readonly deletePermission = "Northwind:General";
-	static readonly insertPermission = "Northwind:General";
-	static readonly readPermission = "Northwind:General";
-	static readonly updatePermission = "Northwind:General";
-	static readonly Fields: Readonly<Record<keyof ProductRow, string>>;
-}
 export declare namespace ProductService {
 	const baseUrl = "Serenity.Demo.Northwind/Product";
 	function Create(request: SaveRequest<ProductRow>, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
@@ -613,18 +668,6 @@ export declare namespace ProductService {
 		readonly Retrieve: "Serenity.Demo.Northwind/Product/Retrieve";
 		readonly List: "Serenity.Demo.Northwind/Product/List";
 	};
-}
-export declare class RegionColumns {
-	static columnsKey: string;
-}
-export interface RegionForm {
-	RegionID: IntegerEditor;
-	RegionDescription: StringEditor;
-}
-export declare class RegionForm extends PrefixedContext {
-	static formKey: string;
-	private static init;
-	constructor(prefix: string);
 }
 export interface RegionRow {
 	RegionID?: number;
@@ -644,6 +687,23 @@ export declare abstract class RegionRow {
 	static readonly updatePermission = "Northwind:General";
 	static readonly Fields: Readonly<Record<keyof RegionRow, string>>;
 }
+export interface RegionColumns {
+	RegionID: Column<RegionRow>;
+	RegionDescription: Column<RegionRow>;
+}
+export declare class RegionColumns extends ColumnsBase<RegionRow> {
+	static readonly columnsKey = "Northwind.Region";
+	static readonly Fields: Readonly<Record<keyof RegionColumns, string>>;
+}
+export interface RegionForm {
+	RegionID: IntegerEditor;
+	RegionDescription: StringEditor;
+}
+export declare class RegionForm extends PrefixedContext {
+	static readonly formKey = "Northwind.Region";
+	private static init;
+	constructor(prefix: string);
+}
 export declare namespace RegionService {
 	const baseUrl = "Serenity.Demo.Northwind/Region";
 	function Create(request: SaveRequest<RegionRow>, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
@@ -658,9 +718,6 @@ export declare namespace RegionService {
 		readonly Retrieve: "Serenity.Demo.Northwind/Region/Retrieve";
 		readonly List: "Serenity.Demo.Northwind/Region/List";
 	};
-}
-export declare class SalesByCategoryColumns {
-	static columnsKey: string;
 }
 export interface SalesByCategoryRow {
 	CategoryId?: number;
@@ -677,37 +734,21 @@ export declare abstract class SalesByCategoryRow {
 	static readonly updatePermission = "Northwind:General";
 	static readonly Fields: Readonly<Record<keyof SalesByCategoryRow, string>>;
 }
+export interface SalesByCategoryColumns {
+	CategoryName: Column<SalesByCategoryRow>;
+	ProductName: Column<SalesByCategoryRow>;
+	ProductSales: Column<SalesByCategoryRow>;
+}
+export declare class SalesByCategoryColumns extends ColumnsBase<SalesByCategoryRow> {
+	static readonly columnsKey = "Northwind.SalesByCategory";
+	static readonly Fields: Readonly<Record<keyof SalesByCategoryColumns, string>>;
+}
 export declare namespace SalesByCategoryService {
 	const baseUrl = "Serenity.Demo.Northwind/SalesByCategory";
 	function List(request: ListRequest, onSuccess?: (response: ListResponse<SalesByCategoryRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
 	const Methods: {
 		readonly List: "Serenity.Demo.Northwind/SalesByCategory/List";
 	};
-}
-export declare class ShipperColumns {
-	static columnsKey: string;
-}
-export declare class PhoneEditor extends StringEditor {
-	constructor(input: JQuery);
-	protected formatValue(): void;
-	protected getFormattedValue(): string;
-	multiple: boolean;
-	get_value(): string;
-	set_value(value: string): void;
-	static validate(phone: string, isMultiple: boolean): string;
-	static isValidPhone(phone: string): boolean;
-	static formatPhone(phone: any): any;
-	static formatMulti(phone: string, format: (s: string) => string): string;
-	static isValidMulti(phone: string, check: (s: string) => boolean): boolean;
-}
-export interface ShipperForm {
-	CompanyName: StringEditor;
-	Phone: PhoneEditor;
-}
-export declare class ShipperForm extends PrefixedContext {
-	static formKey: string;
-	private static init;
-	constructor(prefix: string);
 }
 export interface ShipperRow {
 	ShipperID?: number;
@@ -728,6 +769,37 @@ export declare abstract class ShipperRow {
 	static readonly updatePermission = "Northwind:General";
 	static readonly Fields: Readonly<Record<keyof ShipperRow, string>>;
 }
+export interface ShipperColumns {
+	ShipperID: Column<ShipperRow>;
+	CompanyName: Column<ShipperRow>;
+	Phone: Column<ShipperRow>;
+}
+export declare class ShipperColumns extends ColumnsBase<ShipperRow> {
+	static readonly columnsKey = "Northwind.Shipper";
+	static readonly Fields: Readonly<Record<keyof ShipperColumns, string>>;
+}
+export declare class PhoneEditor extends StringEditor {
+	constructor(input: JQuery);
+	protected formatValue(): void;
+	protected getFormattedValue(): string;
+	multiple: boolean;
+	get_value(): string;
+	set_value(value: string): void;
+	static validate(phone: string, isMultiple: boolean): string;
+	static isValidPhone(phone: string): boolean;
+	static formatPhone(phone: any): any;
+	static formatMulti(phone: string, format: (s: string) => string): string;
+	static isValidMulti(phone: string, check: (s: string) => boolean): boolean;
+}
+export interface ShipperForm {
+	CompanyName: StringEditor;
+	Phone: PhoneEditor;
+}
+export declare class ShipperForm extends PrefixedContext {
+	static readonly formKey = "Northwind.Shipper";
+	private static init;
+	constructor(prefix: string);
+}
 export declare namespace ShipperService {
 	const baseUrl = "Serenity.Demo.Northwind/Shipper";
 	function Create(request: SaveRequest<ShipperRow>, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
@@ -742,27 +814,6 @@ export declare namespace ShipperService {
 		readonly Retrieve: "Serenity.Demo.Northwind/Shipper/Retrieve";
 		readonly List: "Serenity.Demo.Northwind/Shipper/List";
 	};
-}
-export declare class SupplierColumns {
-	static columnsKey: string;
-}
-export interface SupplierForm {
-	CompanyName: StringEditor;
-	ContactName: StringEditor;
-	ContactTitle: StringEditor;
-	Address: StringEditor;
-	Region: StringEditor;
-	PostalCode: StringEditor;
-	Country: StringEditor;
-	City: StringEditor;
-	Phone: StringEditor;
-	Fax: StringEditor;
-	HomePage: StringEditor;
-}
-export declare class SupplierForm extends PrefixedContext {
-	static formKey: string;
-	private static init;
-	constructor(prefix: string);
 }
 export interface SupplierRow {
 	SupplierID?: number;
@@ -792,6 +843,38 @@ export declare abstract class SupplierRow {
 	static readonly updatePermission = "Northwind:General";
 	static readonly Fields: Readonly<Record<keyof SupplierRow, string>>;
 }
+export interface SupplierColumns {
+	SupplierID: Column<SupplierRow>;
+	CompanyName: Column<SupplierRow>;
+	ContactName: Column<SupplierRow>;
+	ContactTitle: Column<SupplierRow>;
+	Phone: Column<SupplierRow>;
+	Region: Column<SupplierRow>;
+	Country: Column<SupplierRow>;
+	City: Column<SupplierRow>;
+}
+export declare class SupplierColumns extends ColumnsBase<SupplierRow> {
+	static readonly columnsKey = "Northwind.Supplier";
+	static readonly Fields: Readonly<Record<keyof SupplierColumns, string>>;
+}
+export interface SupplierForm {
+	CompanyName: StringEditor;
+	ContactName: StringEditor;
+	ContactTitle: StringEditor;
+	Address: StringEditor;
+	Region: StringEditor;
+	PostalCode: StringEditor;
+	Country: StringEditor;
+	City: StringEditor;
+	Phone: StringEditor;
+	Fax: StringEditor;
+	HomePage: StringEditor;
+}
+export declare class SupplierForm extends PrefixedContext {
+	static readonly formKey = "Northwind.Supplier";
+	private static init;
+	constructor(prefix: string);
+}
 export declare namespace SupplierService {
 	const baseUrl = "Serenity.Demo.Northwind/Supplier";
 	function Create(request: SaveRequest<SupplierRow>, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
@@ -806,19 +889,6 @@ export declare namespace SupplierService {
 		readonly Retrieve: "Serenity.Demo.Northwind/Supplier/Retrieve";
 		readonly List: "Serenity.Demo.Northwind/Supplier/List";
 	};
-}
-export declare class TerritoryColumns {
-	static columnsKey: string;
-}
-export interface TerritoryForm {
-	TerritoryID: StringEditor;
-	TerritoryDescription: StringEditor;
-	RegionID: LookupEditor;
-}
-export declare class TerritoryForm extends PrefixedContext {
-	static formKey: string;
-	private static init;
-	constructor(prefix: string);
 }
 export interface TerritoryRow {
 	ID?: number;
@@ -840,6 +910,25 @@ export declare abstract class TerritoryRow {
 	static readonly readPermission = "Northwind:General";
 	static readonly updatePermission = "Northwind:General";
 	static readonly Fields: Readonly<Record<keyof TerritoryRow, string>>;
+}
+export interface TerritoryColumns {
+	TerritoryID: Column<TerritoryRow>;
+	TerritoryDescription: Column<TerritoryRow>;
+	RegionDescription: Column<TerritoryRow>;
+}
+export declare class TerritoryColumns extends ColumnsBase<TerritoryRow> {
+	static readonly columnsKey = "Northwind.Territory";
+	static readonly Fields: Readonly<Record<keyof TerritoryColumns, string>>;
+}
+export interface TerritoryForm {
+	TerritoryID: StringEditor;
+	TerritoryDescription: StringEditor;
+	RegionID: LookupEditor;
+}
+export declare class TerritoryForm extends PrefixedContext {
+	static readonly formKey = "Northwind.Territory";
+	private static init;
+	constructor(prefix: string);
 }
 export declare namespace TerritoryService {
 	const baseUrl = "Serenity.Demo.Northwind/Territory";

@@ -1,8 +1,9 @@
 using FluentMigrator;
+using Serenity.Extensions;
 
 namespace Serenity.Demo.Northwind.Migrations;
 
-[NorthwindDB, Migration(20160908_1801)]
+[NorthwindDB, MigrationKey(20160908_1801)]
 public class NorthwindDB_20160908_1801_CustomerGrossSales : AutoReversingMigration
 {
     public override void Up()

@@ -1,8 +1,9 @@
 using FluentMigrator;
+using Serenity.Extensions;
 
 namespace Serenity.Demo.Northwind.Migrations;
 
-[NorthwindDB, Migration(20161126_1417)]
+[NorthwindDB, MigrationKey(20161126_1417)]
 public class NorthwindDB_20161126_1417_ForwardDates : Migration
 {
     public override void Up()

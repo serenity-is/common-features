@@ -4,7 +4,7 @@ using Serenity.Extensions;
 
 namespace Serenity.Demo.Northwind.Migrations;
 
-[NorthwindDB, Migration(20151226_1845)]
+[NorthwindDB, MigrationKey(20151226_1845)]
 public class NorthwindDB_20151226_1845_Notes : AutoReversingMigration
 {
     public override void Up()

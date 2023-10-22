@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Serenity.Demo.Northwind.Migrations;
 
-[NorthwindDB, Migration(20141123_1551)]
+[NorthwindDB, MigrationKey(20141123_1551)]
 public class NorthwindDB_20141123_1551_Initial : Migration
 {
     private string GetScript(string name)

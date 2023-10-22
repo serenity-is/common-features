@@ -1,5 +1,3 @@
-using Serenity.Extensions;
-
 namespace Serenity.Demo.Northwind.Migrations;
 
 public class NorthwindDBAttribute : TargetDBAttribute

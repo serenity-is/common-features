@@ -1,5 +1,4 @@
 using FluentMigrator;
-using Serenity.Extensions;
 
 namespace Serenity.Demo.Northwind.Migrations;
 

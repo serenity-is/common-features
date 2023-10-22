@@ -1,7 +1,4 @@
-﻿using System.IO;
-
-
-namespace Serenity.Demo.Northwind;
+﻿namespace Serenity.Demo.Northwind;
 
 [ConnectionKey("Northwind"), Module("Northwind"), TableName("CustomerDetails")]
 [DisplayName("CustomerDetails"), InstanceName("CustomerDetails")]

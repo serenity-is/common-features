@@ -1,6 +1,5 @@
 using FluentMigrator;
 using FluentMigrator.Builders.Create.Table;
-using Serenity.Extensions;
 
 namespace Serenity.Demo.Northwind.Migrations;
 

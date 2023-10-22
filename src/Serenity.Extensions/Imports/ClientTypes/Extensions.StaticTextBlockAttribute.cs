@@ -1,11 +1,4 @@
-﻿using Serenity;
-using Serenity.ComponentModel;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-
-namespace Serenity.Extensions;
+﻿namespace Serenity.Extensions;
 
 public partial class StaticTextBlockAttribute : CustomEditorAttribute
 {

@@ -1,9 +1,11 @@
+using Serenity.Extensions;
+
 namespace Serenity.Demo.Northwind.Migrations;
 
-public class NorthwindDBAttribute : FluentMigrator.TagsAttribute
+public class NorthwindDBAttribute : TargetDBAttribute
 {
     public NorthwindDBAttribute()
-        : base("NorthwindDB")
+        : base("Northwind")
     {
     }
 }

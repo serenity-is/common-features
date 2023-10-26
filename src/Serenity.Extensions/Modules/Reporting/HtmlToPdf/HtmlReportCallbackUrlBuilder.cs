@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.Http;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 using System.Net;
 
 namespace Serenity.Reporting;
@@ -55,7 +57,20 @@ public class HtmlReportCallbackUrlBuilder : IHtmlReportCallbackUrlBuilder
         return "LanguagePreference";
     }
 
-    public IEnumerable<Cookie> GetCookiesToForward()
+    private const string ChunkKeySuffix = "C";
+    private const string ChunkCountPrefix = "chunks-";
+
+    private static int ParseChunksCount(string value)
+    {
+        if (value != null && 
+            value.StartsWith(ChunkCountPrefix, StringComparison.Ordinal) &&
+            int.TryParse(value.AsSpan(ChunkCountPrefix.Length), NumberStyles.None, CultureInfo.InvariantCulture, out var chunksCount))
+            return chunksCount;
+
+        return 0;
+    }
+
+    protected virtual IEnumerable<Cookie> GetCookiesToForward()
     {
         var request = httpContextAccessor?.HttpContext?.Request;
         if (request is null)
@@ -67,7 +82,21 @@ public class HtmlReportCallbackUrlBuilder : IHtmlReportCallbackUrlBuilder
         {
             var authCookie = request?.Cookies[authCookieName];
             if (authCookie != null)
+            {
                 yield return new Cookie(authCookieName, authCookie);
+
+                var chunksCount = ParseChunksCount(authCookie);
+                if (chunksCount > 0)
+                {
+                    for (var chunkId = 1; chunkId <= chunksCount; chunkId++)
+                    {
+                        var chunkCookieName = authCookieName + ChunkKeySuffix + chunkId.ToString(CultureInfo.InvariantCulture);
+                        var chunkCookie = request.Cookies[chunkCookieName];
+                        if (string.IsNullOrEmpty(chunkCookie))
+                            yield return new Cookie(chunkCookieName, chunkCookie);
+                    }
+                }
+            }
         }
 
         var languageCookieName = GetLanguageCookieName();

@@ -92,7 +92,7 @@ public class HtmlReportCallbackUrlBuilder : IHtmlReportCallbackUrlBuilder
                     {
                         var chunkCookieName = authCookieName + ChunkKeySuffix + chunkId.ToString(CultureInfo.InvariantCulture);
                         var chunkCookie = request.Cookies[chunkCookieName];
-                        if (string.IsNullOrEmpty(chunkCookie))
+                        if (!string.IsNullOrEmpty(chunkCookie))
                             yield return new Cookie(chunkCookieName, chunkCookie);
                     }
                 }

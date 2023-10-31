@@ -6,7 +6,7 @@ import { SendResetPasswordResponse } from "../../ServerTypes/Extensions/SendRese
 
 export default function pageInit() {
     new SetPasswordPage($('#PanelDiv')
-        .addClass('s-container-tight mt-5'));
+        .addClass('s-container-tight mt-5 s-Form'));
 }
 
 const myTexts = Texts.Forms.Membership.ChangePassword;

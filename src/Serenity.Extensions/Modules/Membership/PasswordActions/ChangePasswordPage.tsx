@@ -7,7 +7,7 @@ import { ChangePasswordRequest } from "../../ServerTypes/Extensions/ChangePasswo
 
 export default function pageInit() {
     new ChangePasswordPanel($('#PanelDiv')
-        .addClass('s-container-tight mt-5'));
+        .addClass('s-container-tight mt-5 s-Form'));
 }
 
 const myTexts = Texts.Forms.Membership.ChangePassword;

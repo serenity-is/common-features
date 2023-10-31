@@ -9,7 +9,7 @@ import { AccountPanelTitle } from "../AccountPanelTitle";
 
 export default function pageInit(opt: ResetPasswordOptions) {
     new ResetPasswordPanel($('#PanelDiv')
-        .addClass('s-full-page justify-content-center'), opt);
+        .addClass('s-full-page justify-content-center s-Form'), opt);
 }
 
 interface ResetPasswordOptions {

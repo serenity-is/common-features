@@ -9,30 +9,35 @@ public static class MigrationUtils
 {
     public static void CreateTableWithId32(
         this MigrationBase migration, string table, string idField,
-        Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema = null, bool checkExists = false)
+        Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema = null, bool checkExists = false, bool primaryKey = true)
     {
-        CreateTableWithId(migration, table, idField, addColumns, schema, 32, checkExists);
+        CreateTableWithId(migration, table, idField, addColumns, schema, 32, checkExists, primaryKey);
     }
 
     public static void CreateTableWithId64(
         this MigrationBase migration, string table, string idField,
-        Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema = null, bool checkExists = false)
+        Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema = null, bool checkExists = false, bool primaryKey = true)
     {
-        CreateTableWithId(migration, table, idField, addColumns, schema, 64, checkExists);
+        CreateTableWithId(migration, table, idField, addColumns, schema, 64, checkExists, primaryKey);
     }
 
     private static void CreateTableWithId(
         MigrationBase migration, string table, string idField,
-        Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema, int size, bool checkExists = false)
+        Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema, int size, bool checkExists = false, bool primaryKey = true)
     {
         ICreateTableColumnOptionOrWithColumnSyntax addAsType(ICreateTableColumnAsTypeSyntax col)
         {
-            if (size == 64)
-                return col.AsInt64();
-            else if (size == 16)
-                return col.AsInt16();
-            else
-                return col.AsInt32();
+            var result = size switch
+            {
+                64 => col.AsInt64(),
+                16 => col.AsInt16(),
+                _ => col.AsInt32()
+            };
+
+            if (primaryKey)
+                return result.PrimaryKey();
+
+            return result;
         }
 
         ICreateTableWithColumnSyntax addSchema(ICreateTableWithColumnOrSchemaOrDescriptionSyntax syntax)
@@ -57,14 +62,14 @@ public static class MigrationUtils
                 addSchema(migration.IfDatabase(MigrationUtils.AllExceptOracle)
                     .Create.Table(table))
                         .WithColumn(idField))
-                        .Identity().PrimaryKey().NotNullable());
+                        .Identity().NotNullable());
 
         addColumns(
             addAsType(
                 addSchema(migration.IfDatabase("Oracle")
                     .Create.Table(table))
                         .WithColumn(idField))
-                        .PrimaryKey().NotNullable());
+                        .NotNullable());
 
         AddOracleIdentity(migration, table, idField);
     }

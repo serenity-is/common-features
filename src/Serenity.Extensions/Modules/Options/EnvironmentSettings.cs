@@ -27,4 +27,9 @@ public class EnvironmentSettings
     /// and external URL setting.
     /// </summary>
     public string SiteInternalUrl { get; set; }
+
+    /// <summary>
+    /// Optional markup to inject into head, can be used for analytics tags etc.
+    /// </summary>
+    public string InjectMarkupToHead { get; set; }
 }

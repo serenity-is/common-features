@@ -29,8 +29,7 @@ public class DynamicNavigationSample : INavigationItemSource
                     path: "Basic Samples/Dynamic Navigation/" + 
                         category.CategoryName.Replace("/", "//", StringComparison.Ordinal),
                     url: "~/Northwind/Product?cat=" + category.CategoryID,
-                    permission: PermissionKeys.General,
-                    icon: "icon-folder-alt"));
+                    permission: PermissionKeys.General));
         }
 
         return items;

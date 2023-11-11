@@ -34,7 +34,7 @@
 }
 
 .s-NotesEditor {
-  border: 1px solid var(--s-input-border, #ccc);
+  border: 1px solid var(--bs-border-color, #ccc);
   border-radius: 4px;
   padding: 10px;
 }

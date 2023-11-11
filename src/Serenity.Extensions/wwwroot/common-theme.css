@@ -330,7 +330,7 @@ body.disable-css-transitions *:before {
 .card {
   background-color: #fff;
   border: 1px solid #e8e9ea;
-  border-radius: 4px;
+  border-radius: var(--bs-border-radius);
   box-shadow: 0 2px 4px 0 rgba(53, 65, 76, 0.03);
 }
 
@@ -339,7 +339,7 @@ body.disable-css-transitions *:before {
 }
 
 .card-header:first-child {
-  border-radius: 4px 4px 0 0;
+  border-radius: var(--bs-border-radius) var(--bs-border-radius) 0 0;
 }
 
 body {

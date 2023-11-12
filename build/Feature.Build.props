@@ -28,7 +28,7 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" Condition="'$(UsingMicrosoftNETSdkWeb)' != 'true' and '$(AddAutoRefs)' == 'true'" />
     <PackageReference Include="Serenity.Net.Web" Version="$(SerenityVersion)" Condition="!Exists('$(SerenityWebProj)') and '$(AddAutoRefs)' == 'true'" />
     <ProjectReference Include="$(SerenityWebProj)" Condition="Exists('$(SerenityWebProj)') and '$(AddAutoRefs)' == 'true'" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.9.5" Condition="Exists('$(MSBuildProjectDirectory)\tsconfig.json')">
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.2.2" Condition="Exists('$(MSBuildProjectDirectory)\tsconfig.json')">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

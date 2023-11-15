@@ -14,12 +14,12 @@ public class DefaultElevationHandler : BaseRequestHandler, IElevationHandler
     
     private readonly IHttpContextAccessor httpContextAccessor;
     private readonly IDataProtectionProvider dataProtectionProvider;
-    private readonly ISystemClock systemClock;
+    private readonly TimeProvider systemClock;
 
-    private DateTimeOffset UtcNow => systemClock?.UtcNow ?? DateTime.UtcNow;
+    private DateTimeOffset UtcNow => systemClock?.GetUtcNow() ?? DateTime.UtcNow;
 
     public DefaultElevationHandler(IRequestContext context, IHttpContextAccessor httpContextAccessor,
-        IDataProtectionProvider dataProtectionProvider, ISystemClock systemClock = null)
+        IDataProtectionProvider dataProtectionProvider, TimeProvider systemClock = null)
         : base(context)
     {
         this.httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
@@ -63,12 +63,10 @@ public class DefaultElevationHandler : BaseRequestHandler, IElevationHandler
         if (httpContextAccessor.HttpContext is null)
             throw new ArgumentNullException(nameof(httpContextAccessor.HttpContext));
         
-        var token = httpContextAccessor.HttpContext?.Request.Cookies["ElevationToken"];
-
-        if (token is null)
+        var token = (httpContextAccessor.HttpContext?.Request.Cookies["ElevationToken"]) ?? 
             throw new ValidationError("RequiresElevation", "Token not found");
-        
-        var currentUserId = Convert.ToInt32(httpContextAccessor.HttpContext.User.GetIdentifier() ?? throw new ArgumentNullException(nameof(User)));
+        var currentUserId = Convert.ToInt32(httpContextAccessor.HttpContext.User.GetIdentifier() ?? 
+            throw new ArgumentNullException(nameof(User)));
         
         int userId;
         try

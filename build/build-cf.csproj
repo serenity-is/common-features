@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <OutputPath>bin</OutputPath>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>Build</RootNamespace>
     <DefineConstants>$(DefineConstants);IsFeatureBuild</DefineConstants>
   </PropertyGroup>

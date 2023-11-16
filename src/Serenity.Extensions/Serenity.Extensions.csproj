@@ -3,7 +3,7 @@
     <PackageReference Include="EPPlus" Version="4.5.3.3" />
     <PackageReference Include="FastMember" Version="1.5.0" />
     <PackageReference Include="FluentMigrator" Version="3.3.2" />
-    <PackageReference Include="MailKit" Version="3.4.3" />
+    <PackageReference Include="MailKit" Version="4.3.0" />
     <PackageReference Include="nClam" Version="7.0.0" />
   </ItemGroup>
 </Project>

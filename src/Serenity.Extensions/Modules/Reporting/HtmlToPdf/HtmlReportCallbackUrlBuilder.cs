@@ -119,7 +119,7 @@ public class HtmlReportCallbackUrlBuilder : IHtmlReportCallbackUrlBuilder
         response.Url = UriHelper.Combine(response.Url, GetRenderAction(report) +
             "?key=" + Uri.EscapeDataString(reportKey));
 
-        var reportParams = options?.ReportParams ?? JSON.Serialize(report);
+        var reportParams = options?.ReportParams ?? JSON.Stringify(report);
 
         if (!string.IsNullOrEmpty(reportParams))
             response.Url += "&opt=" + Uri.EscapeDataString(reportParams);

@@ -5,23 +5,16 @@ namespace Serenity.Reporting;
 /// <summary>
 /// Default implementation for <see cref="IHtmlReportPdfRenderer"/>
 /// </summary>
-public class HtmlReportPdfRenderer : IHtmlReportPdfRenderer
+public class HtmlReportPdfRenderer(
+    IHtmlToPdfConverter htmlToPdfConverter,
+    IHtmlReportRenderUrlBuilder renderUrlBuilder,
+    IWKHtmlToPdfConverter wkHtmlToPdfConverter = null) : IHtmlReportPdfRenderer
 {
     protected readonly EnvironmentSettings environmentSettings;
     protected readonly IHttpContextAccessor httpContextAccessor;
-    protected readonly IHtmlToPdfConverter htmlToPdfConverter;
-    protected readonly IHtmlReportRenderUrlBuilder renderUrlBuilder;
-    protected readonly IWKHtmlToPdfConverter wkHtmlToPdfConverter;
-
-    public HtmlReportPdfRenderer(
-        IHtmlToPdfConverter htmlToPdfConverter,
-        IHtmlReportRenderUrlBuilder renderUrlBuilder,
-        IWKHtmlToPdfConverter wkHtmlToPdfConverter = null)
-    {
-        this.htmlToPdfConverter = htmlToPdfConverter ?? throw new ArgumentNullException(nameof(htmlToPdfConverter));
-        this.renderUrlBuilder = renderUrlBuilder ?? throw new ArgumentNullException(nameof(renderUrlBuilder));
-        this.wkHtmlToPdfConverter = wkHtmlToPdfConverter;
-    }
+    protected readonly IHtmlToPdfConverter htmlToPdfConverter = htmlToPdfConverter ?? throw new ArgumentNullException(nameof(htmlToPdfConverter));
+    protected readonly IHtmlReportRenderUrlBuilder renderUrlBuilder = renderUrlBuilder ?? throw new ArgumentNullException(nameof(renderUrlBuilder));
+    protected readonly IWKHtmlToPdfConverter wkHtmlToPdfConverter = wkHtmlToPdfConverter;
 
     protected virtual void ForwardCookies(IReport report, ReportRenderOptions renderOptions,
         IHtmlToPdfOptions converterOptions, HtmlReportRenderUrl renderUrl)

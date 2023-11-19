@@ -1,23 +1,15 @@
-﻿using System.Data;
+using System.Data;
 using MyRow = Serenity.Extensions.Entities.UserPreferenceRow;
 
 namespace Serenity.Extensions.Repositories;
 
-public class UserPreferenceRepository : BaseRepository
+public class UserPreferenceRepository(IRequestContext context) : BaseRepository(context)
 {
-    public UserPreferenceRepository(IRequestContext context)
-         : base(context)
-    {
-    }
-
     public SaveResponse Update(IUnitOfWork uow, UserPreferenceUpdateRequest request)
     {
-        if (request is null)
-            throw new ArgumentNullException(nameof(request));
-        if (request.Name is null)
-            throw new ArgumentNullException(nameof(request.Name));
-        if (request.PreferenceType is null)
-            throw new ArgumentNullException(nameof(request.PreferenceType));
+        ArgumentNullException.ThrowIfNull(request);
+        ArgumentNullException.ThrowIfNull(request.Name);
+        ArgumentNullException.ThrowIfNull(request.PreferenceType);
 
         var userId = Convert.ToInt32(Context.User.GetIdentifier(), CultureInfo.InvariantCulture);
         var fld = MyRow.Fields;
@@ -69,12 +61,9 @@ public class UserPreferenceRepository : BaseRepository
 
     public UserPreferenceRetrieveResponse Retrieve(IDbConnection connection, UserPreferenceRetrieveRequest request)
     {
-        if (request is null)
-            throw new ArgumentNullException(nameof(request));
-        if (request.Name is null)
-            throw new ArgumentNullException("name");
-        if (request.PreferenceType is null)
-            throw new ArgumentNullException("preferenceType");
+        ArgumentNullException.ThrowIfNull(request);
+        ArgumentNullException.ThrowIfNull(request.Name);
+        ArgumentNullException.ThrowIfNull(request.PreferenceType);
 
         var fld = MyRow.Fields;
         var userId = Convert.ToInt32(Context.User.GetIdentifier(), CultureInfo.InvariantCulture);

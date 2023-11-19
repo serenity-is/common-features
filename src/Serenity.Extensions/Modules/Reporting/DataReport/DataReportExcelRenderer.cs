@@ -6,8 +6,7 @@ public class DataReportExcelRenderer : IDataReportExcelRenderer
 {
     public byte[] Render(IDataOnlyReport report)
     {
-        if (report is null)
-            throw new ArgumentNullException(nameof(report));
+        ArgumentNullException.ThrowIfNull(report);
 
         var columns = report.GetColumnList();
 

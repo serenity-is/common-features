@@ -8,9 +8,7 @@ namespace Serenity.Demo.BasicSamples.Endpoints;
 [ConnectionKey(typeof(OrderRow))]
 public class BasicSamplesEndpoint : ServiceEndpoint
 {
-#pragma warning disable IDE0060 // Remove unused parameter
     public OrdersByShipperResponse OrdersByShipper(IDbConnection connection, OrdersByShipperRequest request)
-#pragma warning restore IDE0060 // Remove unused parameter
     {
         var fld = OrderRow.Fields;
         var year = DateTime.Today.Year;
@@ -36,7 +34,7 @@ public class BasicSamplesEndpoint : ServiceEndpoint
                     fld.ShipVia.IsNotNull()))
                 .ToDictionary(x => new Tuple<int, int>((int)x.Month, (int)x.ShipVia), x => (int)x.Count);
 
-        response.Values = new List<Dictionary<string, object>>();
+        response.Values = [];
         var month = 0;
         for (var i = 0; i < 12; i++)
         {

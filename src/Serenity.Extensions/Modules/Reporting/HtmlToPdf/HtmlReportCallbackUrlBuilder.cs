@@ -9,21 +9,14 @@ namespace Serenity.Reporting;
 /// <summary>
 /// Default implementation for <see cref="IHtmlReportRenderUrlBuilder"/>
 /// </summary>
-public class HtmlReportCallbackUrlBuilder : IHtmlReportCallbackUrlBuilder
+public class HtmlReportCallbackUrlBuilder(
+    ISiteAbsoluteUrl siteAbsoluteUrl,
+    IOptionsMonitor<CookieAuthenticationOptions> cookieOptions = null,
+    IHttpContextAccessor httpContextAccessor = null) : IHtmlReportCallbackUrlBuilder
 {
-    protected readonly IOptionsMonitor<CookieAuthenticationOptions> cookieOptions;
-    protected readonly IHttpContextAccessor httpContextAccessor;
-    protected readonly ISiteAbsoluteUrl siteAbsoluteUrl;
-
-    public HtmlReportCallbackUrlBuilder(
-        ISiteAbsoluteUrl siteAbsoluteUrl,
-        IOptionsMonitor<CookieAuthenticationOptions> cookieOptions = null,
-        IHttpContextAccessor httpContextAccessor = null)
-    {
-        this.siteAbsoluteUrl = siteAbsoluteUrl ?? throw new ArgumentNullException(nameof(siteAbsoluteUrl));
-        this.cookieOptions = cookieOptions;
-        this.httpContextAccessor = httpContextAccessor;
-    }
+    protected readonly IOptionsMonitor<CookieAuthenticationOptions> cookieOptions = cookieOptions;
+    protected readonly IHttpContextAccessor httpContextAccessor = httpContextAccessor;
+    protected readonly ISiteAbsoluteUrl siteAbsoluteUrl = siteAbsoluteUrl ?? throw new ArgumentNullException(nameof(siteAbsoluteUrl));
 
     protected virtual string GetRenderAction(IReport report)
     {

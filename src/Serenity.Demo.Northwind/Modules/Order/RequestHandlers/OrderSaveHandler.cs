@@ -6,10 +6,6 @@ namespace Serenity.Demo.Northwind;
 
 public interface IOrderSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
 
-public class OrderSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>, IOrderSaveHandler
+public class OrderSaveHandler(IRequestContext context) : SaveRequestHandler<MyRow, MyRequest, MyResponse>(context), IOrderSaveHandler
 {
-    public OrderSaveHandler(IRequestContext context)
-         : base(context)
-    {
-    }
 }

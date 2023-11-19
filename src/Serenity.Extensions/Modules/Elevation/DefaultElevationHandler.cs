@@ -8,24 +8,15 @@ namespace Serenity.Extensions;
 /// <summary>
 /// Default implementation of <see cref="IElevationHandler"/>
 /// </summary>
-public class DefaultElevationHandler : BaseRequestHandler, IElevationHandler
+public class DefaultElevationHandler(IRequestContext context, IHttpContextAccessor httpContextAccessor,
+    IDataProtectionProvider dataProtectionProvider, TimeProvider systemClock = null) : BaseRequestHandler(context), IElevationHandler
 {
     public const int ElevationTokenDuration = 15;
     
-    private readonly IHttpContextAccessor httpContextAccessor;
-    private readonly IDataProtectionProvider dataProtectionProvider;
-    private readonly TimeProvider systemClock;
+    private readonly IHttpContextAccessor httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
+    private readonly IDataProtectionProvider dataProtectionProvider = dataProtectionProvider ?? throw new ArgumentNullException(nameof(dataProtectionProvider));
 
     private DateTimeOffset UtcNow => systemClock?.GetUtcNow() ?? DateTime.UtcNow;
-
-    public DefaultElevationHandler(IRequestContext context, IHttpContextAccessor httpContextAccessor,
-        IDataProtectionProvider dataProtectionProvider, TimeProvider systemClock = null)
-        : base(context)
-    {
-        this.httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
-        this.dataProtectionProvider = dataProtectionProvider ?? throw new ArgumentNullException(nameof(dataProtectionProvider));
-        this.systemClock = systemClock;
-    }
 
     /// <inheritdoc />
     public void AppendElevationTokenToCookies()

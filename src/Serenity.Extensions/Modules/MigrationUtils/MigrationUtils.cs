@@ -75,7 +75,7 @@ public static class MigrationUtils
     }
 
     public static readonly string[] AllExceptOracle =
-    {
+    [
         "SqlServer",
         "SqlServer2000",
         "SqlServerCe",
@@ -85,20 +85,18 @@ public static class MigrationUtils
         "Jet",
         "Sqlite",
         "SAP HANA"
-    };
+    ];
 
     public static void AddOracleIdentity(MigrationBase migration,
         string table, string id)
     {
-        if (table == null)
-            throw new ArgumentNullException(nameof(table));
+        ArgumentNullException.ThrowIfNull(table);
 
-        if (migration == null)
-            throw new ArgumentNullException(nameof(migration));
+        ArgumentNullException.ThrowIfNull(migration);
 
         var seq = table.Replace(" ", "_", StringComparison.Ordinal)
             .Replace("\"", "", StringComparison.Ordinal);
-        seq = seq.Substring(0, Math.Min(20, seq.Length));
+        seq = seq[..Math.Min(20, seq.Length)];
         seq += "_SEQ";
 
         migration.IfDatabase("Oracle")

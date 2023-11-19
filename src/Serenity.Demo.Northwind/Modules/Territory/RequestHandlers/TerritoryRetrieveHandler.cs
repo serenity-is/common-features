@@ -6,10 +6,6 @@ namespace Serenity.Demo.Northwind;
 
 public interface ITerritoryRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse> {}
 
-public class TerritoryRetrieveHandler : RetrieveRequestHandler<MyRow, MyRequest, MyResponse>, ITerritoryRetrieveHandler
+public class TerritoryRetrieveHandler(IRequestContext context) : RetrieveRequestHandler<MyRow, MyRequest, MyResponse>(context), ITerritoryRetrieveHandler
 {
-    public TerritoryRetrieveHandler(IRequestContext context)
-         : base(context)
-    {
-    }
 }

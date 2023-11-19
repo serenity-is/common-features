@@ -6,10 +6,6 @@ namespace Serenity.Demo.Northwind;
 
 public interface IShipperRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse> {}
 
-public class ShipperRetrieveHandler : RetrieveRequestHandler<MyRow, MyRequest, MyResponse>, IShipperRetrieveHandler
+public class ShipperRetrieveHandler(IRequestContext context) : RetrieveRequestHandler<MyRow, MyRequest, MyResponse>(context), IShipperRetrieveHandler
 {
-    public ShipperRetrieveHandler(IRequestContext context)
-         : base(context)
-    {
-    }
 }

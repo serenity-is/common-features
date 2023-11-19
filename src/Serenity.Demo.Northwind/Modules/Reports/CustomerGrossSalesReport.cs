@@ -4,24 +4,17 @@ namespace Serenity.Demo.Northwind;
 
 [Report, RequiredPermission(PermissionKeys.General)]
 [Category("Northwind/Orders"), DisplayName("Customer Gross Sales")]
-public class CustomerGrossSalesReport : IReport, IDataOnlyReport
+public class CustomerGrossSalesReport(ISqlConnections sqlConnections, ITextLocalizer localizer, IServiceProvider serviceProvider) : IReport, IDataOnlyReport
 {
     [DisplayName("Start Date")]
     public DateTime? StartDate { get; set; }
 
     [DisplayName("End Date")]
     public DateTime? EndDate { get; set; }
-    
-    protected ISqlConnections SqlConnections { get; }
-    protected ITextLocalizer Localizer { get; }
-    protected IServiceProvider ServiceProvider { get; }
 
-    public CustomerGrossSalesReport(ISqlConnections sqlConnections, ITextLocalizer localizer, IServiceProvider serviceProvider)
-    {
-        SqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
-        Localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
-        ServiceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
-    }
+    protected ISqlConnections SqlConnections { get; } = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
+    protected ITextLocalizer Localizer { get; } = localizer ?? throw new ArgumentNullException(nameof(localizer));
+    protected IServiceProvider ServiceProvider { get; } = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
 
     public object GetData()
     {

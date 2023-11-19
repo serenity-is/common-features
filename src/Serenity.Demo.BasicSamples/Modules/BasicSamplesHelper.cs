@@ -17,7 +17,7 @@ public static class BasicSamplesHelper
         if (file == null || file.Length == 0)
             return null;
 
-        string path = file.StartsWith("/") ?
+        string path = file.StartsWith('/') ?
             file[1..] :
             "Serenity.Demo.BasicSamples" + GetRelativePathFor(helper, file);
 

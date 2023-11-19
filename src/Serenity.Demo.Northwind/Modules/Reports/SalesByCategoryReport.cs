@@ -4,18 +4,11 @@ namespace Serenity.Demo.Northwind;
 
 [Report, RequiredPermission(PermissionKeys.General)]
 [Category("Northwind/Orders"), DisplayName("Sales By Category")]
-public class SalesByDetailReport : IReport, IDataOnlyReport
+public class SalesByDetailReport(ISqlConnections sqlConnections, ITextLocalizer localizer, IServiceProvider serviceProvider) : IReport, IDataOnlyReport
 {
-    protected ISqlConnections SqlConnections { get; }
-    protected ITextLocalizer Localizer { get; }
-    protected IServiceProvider ServiceProvider { get; }
-
-    public SalesByDetailReport(ISqlConnections sqlConnections, ITextLocalizer localizer, IServiceProvider serviceProvider)
-    {
-        SqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
-        Localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
-        ServiceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
-    }
+    protected ISqlConnections SqlConnections { get; } = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
+    protected ITextLocalizer Localizer { get; } = localizer ?? throw new ArgumentNullException(nameof(localizer));
+    protected IServiceProvider ServiceProvider { get; } = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
 
     public object GetData()
     {

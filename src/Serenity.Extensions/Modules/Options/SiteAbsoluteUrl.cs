@@ -6,19 +6,13 @@ namespace Serenity.Extensions;
 /// <summary>
 /// Default implementation for <see cref="ISiteAbsoluteUrl"/>
 /// </summary>
-public class SiteAbsoluteUrl : ISiteAbsoluteUrl
+public class SiteAbsoluteUrl(
+    IOptionsMonitor<EnvironmentSettings> environmentSettings,
+    IHttpContextAccessor httpContextAccessor = null) : ISiteAbsoluteUrl
 {
-    protected readonly IHttpContextAccessor httpContextAccessor;
-    protected readonly IOptionsMonitor<EnvironmentSettings> environmentSettings;
-
-    public SiteAbsoluteUrl(
-        IOptionsMonitor<EnvironmentSettings> environmentSettings,
-        IHttpContextAccessor httpContextAccessor = null)
-    {
-        this.httpContextAccessor = httpContextAccessor;
-        this.environmentSettings = environmentSettings ??
+    protected readonly IHttpContextAccessor httpContextAccessor = httpContextAccessor;
+    protected readonly IOptionsMonitor<EnvironmentSettings> environmentSettings = environmentSettings ??
             throw new ArgumentNullException(nameof(environmentSettings));
-    }
 
     protected virtual string TryGetInternalUrl()
     {

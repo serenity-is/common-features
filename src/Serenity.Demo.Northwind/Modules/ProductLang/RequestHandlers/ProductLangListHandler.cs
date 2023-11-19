@@ -6,10 +6,6 @@ namespace Serenity.Demo.Northwind;
 
 public interface IProductLangListHandler : IListHandler<MyRow, MyRequest, MyResponse> {}
 
-public class ProductLangListHandler : ListRequestHandler<MyRow, MyRequest, MyResponse>, IProductLangListHandler
+public class ProductLangListHandler(IRequestContext context) : ListRequestHandler<MyRow, MyRequest, MyResponse>(context), IProductLangListHandler
 {
-    public ProductLangListHandler(IRequestContext context)
-         : base(context)
-    {
-    }
 }

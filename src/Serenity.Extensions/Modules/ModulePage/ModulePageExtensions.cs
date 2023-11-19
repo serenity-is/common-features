@@ -20,8 +20,7 @@ public static class ModulePageExtensions
 
     public static ViewResult GridPage(this Controller controller, ModulePageModel model)
     {
-        if (model is null)
-            throw new ArgumentNullException(nameof(model));
+        ArgumentNullException.ThrowIfNull(model);
 
         model.HtmlMarkup ??= "<div id=\"GridDiv\"></div>";
         return ModulePage(controller, model);
@@ -29,8 +28,7 @@ public static class ModulePageExtensions
 
     public static ViewResult ModulePage(this Controller controller, ModulePageModel model)
     {
-        if (model is null)
-            throw new ArgumentNullException(nameof(model));
+        ArgumentNullException.ThrowIfNull(model);
 
         if (string.IsNullOrEmpty(model.Module))
             throw new ArgumentNullException(nameof(model), $"{nameof(model.Module)} cannot be null or empty!");
@@ -56,8 +54,7 @@ public static class ModulePageExtensions
 
     public static ViewResult PanelPage(this Controller controller, ModulePageModel model)
     {
-        if (model is null)
-            throw new ArgumentNullException(nameof(model));
+        ArgumentNullException.ThrowIfNull(model);
 
         model.HtmlMarkup ??= "<div id=\"PanelDiv\"></div>";
         return ModulePage(controller, model);

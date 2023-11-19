@@ -2,16 +2,10 @@ using System.Collections;
 
 namespace Serenity.Reporting;
 
-public class ExcelExporter : IExcelExporter
+public class ExcelExporter(IDataReportExcelRenderer renderer, IServiceProvider serviceProvider) : IExcelExporter
 {
-    private readonly IDataReportExcelRenderer renderer;
-    private readonly IServiceProvider serviceProvider;
-
-    public ExcelExporter(IDataReportExcelRenderer renderer, IServiceProvider serviceProvider)
-    {
-        this.renderer = renderer ?? throw new ArgumentNullException(nameof(renderer));
-        this.serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
-    }
+    private readonly IDataReportExcelRenderer renderer = renderer ?? throw new ArgumentNullException(nameof(renderer));
+    private readonly IServiceProvider serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
 
     public byte[] Export(IEnumerable data, IEnumerable<ReportColumn> columns)
     {

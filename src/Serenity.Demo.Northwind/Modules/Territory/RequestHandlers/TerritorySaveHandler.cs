@@ -6,10 +6,6 @@ namespace Serenity.Demo.Northwind;
 
 public interface ITerritorySaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
 
-public class TerritorySaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>, ITerritorySaveHandler
+public class TerritorySaveHandler(IRequestContext context) : SaveRequestHandler<MyRow, MyRequest, MyResponse>(context), ITerritorySaveHandler
 {
-    public TerritorySaveHandler(IRequestContext context)
-         : base(context)
-    {
-    }
 }

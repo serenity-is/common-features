@@ -3,15 +3,10 @@ using Serenity.Navigation;
 
 namespace Serenity.Demo.BasicSamples;
 
-public class DynamicNavigationSample : INavigationItemSource
+public class DynamicNavigationSample(ISqlConnections sqlConnections) : INavigationItemSource
 {
-    public DynamicNavigationSample(ISqlConnections sqlConnections)
-    {
-        SqlConnections = sqlConnections ?? 
+    public ISqlConnections SqlConnections { get; } = sqlConnections ??
             throw new ArgumentNullException(nameof(sqlConnections));
-    }
-
-    public ISqlConnections SqlConnections { get; }
 
     public List<NavigationItemAttribute> GetItems()
     {

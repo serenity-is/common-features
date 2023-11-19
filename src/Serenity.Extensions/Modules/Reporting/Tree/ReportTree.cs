@@ -1,10 +1,12 @@
-﻿using Serenity.Reporting;
+using Serenity.Reporting;
 
 namespace Serenity.Extensions;
 
 public class ReportTree
 {
     public Category Root { get; set; }
+
+    private static readonly char[] slashSeparator = ['/'];
 
     public ReportTree()
     {
@@ -20,16 +22,15 @@ public class ReportTree
 
         public Category()
         {
-            SubCategories = new List<Category>();
-            Reports = new List<ReportRegistry.Report>();
+            SubCategories = [];
+            Reports = [];
         }
     }
 
     public static ReportTree FromList(IEnumerable<ReportRegistry.Report> reports, ITextLocalizer localizer,
         string rootPath = null, string categoryOrder = null)
     {
-        if (reports == null)
-            throw new ArgumentNullException(nameof(reports));
+        ArgumentNullException.ThrowIfNull(reports);
 
         rootPath ??= "";
         categoryOrder ??= "";
@@ -47,7 +48,7 @@ public class ReportTree
             }
 
             var parts = (report.Category.Key ?? "Other")
-                .Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+                .Split(slashSeparator, StringSplitOptions.RemoveEmptyEntries);
 
             string current = "";
             category = null;
@@ -72,11 +73,11 @@ public class ReportTree
                     };
                     categoryByKey[current] = category;
 
-                    if (!categoryByKey.ContainsKey(prior))
+                    if (!categoryByKey.TryGetValue(prior, out Category value))
                         tree.Root.SubCategories.Add(category);
                     else
                     {
-                        var x = categoryByKey[prior];
+                        var x = value;
                         x.SubCategories.Add(category);
                     }
                 }
@@ -90,7 +91,7 @@ public class ReportTree
 
         var order = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
         var i = 0;
-        foreach (var x in categoryOrder.Split(new char[] { ';' }))
+        foreach (var x in categoryOrder.Split([';']))
         {
             var xt = x.TrimToNull();
             if (xt != null)
@@ -103,8 +104,8 @@ public class ReportTree
 
             if (x.Key != y.Key)
             {
-                var c1 = order.ContainsKey(x.Key) ? (int?)order[x.Key] : null;
-                var c2 = order.ContainsKey(y.Key) ? (int?)order[y.Key] : null;
+                var c1 = order.TryGetValue(x.Key, out int v1) ? (int?)v1 : null;
+                var c2 = order.TryGetValue(y.Key, out int v2) ? (int?)v2 : null;
                 if (c1 != null && c2 != null)
                     c = c1.Value - c2.Value;
                 else if (c1 != null)
@@ -120,8 +121,7 @@ public class ReportTree
         }
 
         foreach (var category in categoryByKey.Values)
-            if (category.SubCategories != null)
-                category.SubCategories.Sort(sort);
+            category.SubCategories?.Sort(sort);
 
         tree.Root.SubCategories.Sort(sort);
 

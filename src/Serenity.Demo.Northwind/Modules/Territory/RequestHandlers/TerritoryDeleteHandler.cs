@@ -6,10 +6,6 @@ namespace Serenity.Demo.Northwind;
 
 public interface ITerritoryDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> {}
 
-public class TerritoryDeleteHandler : DeleteRequestHandler<MyRow, MyRequest, MyResponse>, ITerritoryDeleteHandler
+public class TerritoryDeleteHandler(IRequestContext context) : DeleteRequestHandler<MyRow, MyRequest, MyResponse>(context), ITerritoryDeleteHandler
 {
-    public TerritoryDeleteHandler(IRequestContext context)
-         : base(context)
-    {
-    }
 }

@@ -6,10 +6,6 @@ namespace Serenity.Demo.Northwind;
 
 public interface IRegionListHandler : IListHandler<MyRow, MyRequest, MyResponse> {}
 
-public class RegionListHandler : ListRequestHandler<MyRow, MyRequest, MyResponse>, IRegionListHandler
+public class RegionListHandler(IRequestContext context) : ListRequestHandler<MyRow, MyRequest, MyResponse>(context), IRegionListHandler
 {
-    public RegionListHandler(IRequestContext context)
-         : base(context)
-    {
-    }
 }

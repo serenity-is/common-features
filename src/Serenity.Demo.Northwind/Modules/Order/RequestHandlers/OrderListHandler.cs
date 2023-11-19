@@ -6,13 +6,8 @@ namespace Serenity.Demo.Northwind;
 
 public interface IOrderListHandler : IListHandler<MyRow, MyRequest, MyResponse> {}
 
-public class OrderListHandler : ListRequestHandler<MyRow, MyRequest, MyResponse>, IOrderListHandler
+public class OrderListHandler(IRequestContext context) : ListRequestHandler<MyRow, MyRequest, MyResponse>(context), IOrderListHandler
 {
-    public OrderListHandler(IRequestContext context)
-         : base(context)
-    {
-    }
-
     protected override void ApplyFilters(SqlQuery query)
     {
         base.ApplyFilters(query);

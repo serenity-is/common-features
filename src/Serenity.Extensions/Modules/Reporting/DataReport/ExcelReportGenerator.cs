@@ -32,13 +32,13 @@ public static class ExcelReportGenerator
         return package;
     }
 
-    private static readonly Type[] DateTimeTypes = new[]
-    {
+    private static readonly Type[] DateTimeTypes =
+    [
         typeof(DateTime),
         typeof(DateTime?),
         typeof(TimeSpan),
         typeof(TimeSpan?)
-    };
+    ];
 
     private static string FixFormatSpecifier(string format, Type dataType)
     {
@@ -56,11 +56,9 @@ public static class ExcelReportGenerator
         string tableName = "Table1", TableStyles tableStyle = TableStyles.Medium2,
         int startRow = 1, int startCol = 1, int autoFitRows = 250)
     {
-        if (columns == null)
-            throw new ArgumentNullException(nameof(columns));
+        ArgumentNullException.ThrowIfNull(columns);
 
-        if (rows == null)
-            throw new ArgumentNullException(nameof(rows));
+        ArgumentNullException.ThrowIfNull(rows);
 
         Field[] fields = null;
         TypeAccessor accessor = null;

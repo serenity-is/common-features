@@ -6,10 +6,6 @@ namespace Serenity.Demo.Northwind;
 
 public interface INoteSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
 
-public class NoteSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>, INoteSaveHandler
+public class NoteSaveHandler(IRequestContext context) : SaveRequestHandler<MyRow, MyRequest, MyResponse>(context), INoteSaveHandler
 {
-    public NoteSaveHandler(IRequestContext context)
-         : base(context)
-    {
-    }
 }

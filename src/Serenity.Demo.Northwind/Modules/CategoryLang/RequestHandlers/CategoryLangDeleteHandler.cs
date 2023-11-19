@@ -6,10 +6,6 @@ namespace Serenity.Demo.Northwind;
 
 public interface ICategoryLangDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> {}
 
-public class CategoryLangDeleteHandler : DeleteRequestHandler<MyRow, MyRequest, MyResponse>, ICategoryLangDeleteHandler
+public class CategoryLangDeleteHandler(IRequestContext context) : DeleteRequestHandler<MyRow, MyRequest, MyResponse>(context), ICategoryLangDeleteHandler
 {
-    public CategoryLangDeleteHandler(IRequestContext context)
-         : base(context)
-    {
-    }
 }

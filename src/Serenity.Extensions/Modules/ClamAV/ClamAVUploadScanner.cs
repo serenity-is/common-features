@@ -13,27 +13,18 @@ namespace Serenity.Extensions;
 /// <summary>
 /// Implementation of <see cref="IUploadAVScanner"/> which connects to ClamAV service
 /// </summary>
-public class ClamAVUploadScanner : IUploadAVScanner
+/// <remarks>
+/// Creates a new instance of the class.
+/// </remarks>
+/// <param name="options">Options</param>
+/// <param name="localizer">Text localizer</param>
+/// <param name="logger">Logger</param>
+/// <exception cref="ArgumentNullException">One of arguments is null</exception>
+public class ClamAVUploadScanner(IOptionsMonitor<ClamAVSettings> options,
+    ITextLocalizer localizer = null,
+    ILogger<ClamAVUploadScanner> logger = null) : IUploadAVScanner
 {
-    private readonly IOptionsMonitor<ClamAVSettings> options;
-    private readonly ITextLocalizer localizer;
-    private readonly ILogger<ClamAVUploadScanner> logger;
-
-    /// <summary>
-    /// Creates a new instance of the class.
-    /// </summary>
-    /// <param name="options">Options</param>
-    /// <param name="localizer">Text localizer</param>
-    /// <param name="logger">Logger</param>
-    /// <exception cref="ArgumentNullException">One of arguments is null</exception>
-    public ClamAVUploadScanner(IOptionsMonitor<ClamAVSettings> options,
-        ITextLocalizer localizer = null,
-        ILogger<ClamAVUploadScanner> logger = null)
-    {
-        this.options = options ?? throw new ArgumentNullException(nameof(options));
-        this.localizer = localizer;
-        this.logger = logger;
-    }
+    private readonly IOptionsMonitor<ClamAVSettings> options = options ?? throw new ArgumentNullException(nameof(options));
 
     /// <summary>
     /// Processes a temporary upload stream, usually from the HTTP request files and

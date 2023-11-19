@@ -6,10 +6,6 @@ namespace Serenity.Demo.Northwind;
 
 public interface ISupplierDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> {}
 
-public class SupplierDeleteHandler : DeleteRequestHandler<MyRow, MyRequest, MyResponse>, ISupplierDeleteHandler
+public class SupplierDeleteHandler(IRequestContext context) : DeleteRequestHandler<MyRow, MyRequest, MyResponse>(context), ISupplierDeleteHandler
 {
-    public SupplierDeleteHandler(IRequestContext context)
-         : base(context)
-    {
-    }
 }

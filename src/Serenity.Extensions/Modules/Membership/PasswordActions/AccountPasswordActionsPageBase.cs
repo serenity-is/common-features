@@ -80,14 +80,9 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
     {
         return this.InTransaction("Default", uow =>
         {
-            if (request is null)
-                throw new ArgumentNullException(nameof(request));
-
-            if (string.IsNullOrEmpty(request.OldPassword))
-                throw new ArgumentNullException(nameof(request.OldPassword));
-
-            if (passwordValidator is null)
-                throw new ArgumentNullException(nameof(passwordValidator));
+            ArgumentNullException.ThrowIfNull(request);
+            ArgumentException.ThrowIfNullOrEmpty(request.OldPassword);
+            ArgumentNullException.ThrowIfNull(passwordValidator);
 
             var username = User.Identity?.Name;
 
@@ -151,11 +146,8 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
     {
         return this.UseConnection(GetConnectionKey(), connection =>
         {
-            if (request is null)
-                throw new ArgumentNullException(nameof(request));
-
-            if (string.IsNullOrEmpty(request.Email))
-                throw new ArgumentNullException(nameof(request.Email));
+            ArgumentNullException.ThrowIfNull(request);
+            ArgumentException.ThrowIfNullOrEmpty(request.Email);
 
             var fieldsRow = new TUserRow();
 
@@ -182,8 +174,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
             var emailBody = TemplateHelper.RenderViewToString(HttpContext.RequestServices,
                 MVC.Views.Membership.PasswordActions.ResetPasswordEmail, emailModel);
 
-            if (emailSender is null)
-                throw new ArgumentNullException(nameof(emailSender));
+            ArgumentNullException.ThrowIfNull(emailSender);
 
             emailSender.Send(subject: emailSubject, body: emailBody, mailTo: user.EmailField[user]);
 
@@ -270,11 +261,8 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
     {
         return this.InTransaction(GetConnectionKey(), uow =>
         {
-            if (request is null)
-                throw new ArgumentNullException(nameof(request));
-
-            if (string.IsNullOrEmpty(request.Token))
-                throw new ArgumentNullException(nameof(request.Token));
+            ArgumentNullException.ThrowIfNull(request);
+            ArgumentException.ThrowIfNullOrEmpty(request.Token);
 
             var bytes = HttpContext.RequestServices
                 .GetDataProtector("ResetPassword").Unprotect(Convert.FromBase64String(request.Token));
@@ -292,8 +280,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
                 nonce = br.ReadInt32();
             }
 
-            if (sqlConnections is null)
-                throw new ArgumentNullException(nameof(sqlConnections));
+            ArgumentNullException.ThrowIfNull(sqlConnections);
 
             TUserRow user = uow.Connection.TryById<TUserRow>(userId);
             if (user == null || nonce != GetNonceFor(user))

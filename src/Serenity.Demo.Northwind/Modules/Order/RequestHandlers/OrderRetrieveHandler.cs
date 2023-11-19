@@ -6,10 +6,6 @@ namespace Serenity.Demo.Northwind;
 
 public interface IOrderRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse> {}
 
-public class OrderRetrieveHandler : RetrieveRequestHandler<MyRow, MyRequest, MyResponse>, IOrderRetrieveHandler
+public class OrderRetrieveHandler(IRequestContext context) : RetrieveRequestHandler<MyRow, MyRequest, MyResponse>(context), IOrderRetrieveHandler
 {
-    public OrderRetrieveHandler(IRequestContext context)
-         : base(context)
-    {
-    }
 }

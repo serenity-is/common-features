@@ -4,19 +4,12 @@ using Serenity.Reporting;
 namespace Serenity.Demo.Northwind;
 
 [PageAuthorize(PermissionKeys.General)]
-public class ReportsPage : Controller
+public class ReportsPage(IReportRegistry reportRegistry, IRequestContext context) : Controller
 {
-    protected IReportRegistry ReportRegistry { get; }
-    protected IRequestContext Context { get; }
-
-    public ReportsPage(IReportRegistry reportRegistry, IRequestContext context)
-    {
-        ReportRegistry = reportRegistry ??
+    protected IReportRegistry ReportRegistry { get; } = reportRegistry ??
             throw new ArgumentNullException(nameof(reportRegistry));
-
-        Context = context ??
+    protected IRequestContext Context { get; } = context ??
             throw new ArgumentNullException(nameof(context));
-    }
 
     [Route("Northwind/Reports")]
     public ActionResult Index([FromServices] IReportTreeFactory reportTreeFactory)

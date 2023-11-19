@@ -6,10 +6,6 @@ namespace Serenity.Demo.Northwind;
 
 public interface IProductListHandler : IListHandler<MyRow, MyRequest, MyResponse> {}
 
-public class ProductListHandler : ListRequestHandler<MyRow, MyRequest, MyResponse>, IProductListHandler
+public class ProductListHandler(IRequestContext context) : ListRequestHandler<MyRow, MyRequest, MyResponse>(context), IProductListHandler
 {
-    public ProductListHandler(IRequestContext context)
-         : base(context)
-    {
-    }
 }

@@ -1,15 +1,9 @@
 namespace Serenity.Reporting;
 
-public class DefaultReportTreeFactory : IReportTreeFactory
+public class DefaultReportTreeFactory(IReportRegistry reportRegistry, ITextLocalizer localizer) : IReportTreeFactory
 {
-    private readonly IReportRegistry reportRegistry;
-    private readonly ITextLocalizer localizer;
-
-    public DefaultReportTreeFactory(IReportRegistry reportRegistry, ITextLocalizer localizer)
-    {
-        this.reportRegistry = reportRegistry ?? throw new ArgumentNullException(nameof(reportRegistry));
-        this.localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
-    }
+    private readonly IReportRegistry reportRegistry = reportRegistry ?? throw new ArgumentNullException(nameof(reportRegistry));
+    private readonly ITextLocalizer localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
 
     public ReportTree BuildReportTree(string category)
     {

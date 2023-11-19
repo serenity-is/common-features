@@ -6,17 +6,11 @@ using System.Net;
 namespace Serenity.Extensions.Pages;
 
 [Route("Serenity.Extensions/Report/[action]")]
-public class ReportController : Controller
+public class ReportController(IReportFactory reportFactory,
+    IReportRenderer reportRenderer) : Controller
 {
-    protected readonly IReportFactory reportFactory;
-    private readonly IReportRenderer reportRenderer;
-
-    public ReportController(IReportFactory reportFactory,
-        IReportRenderer reportRenderer)
-    {
-        this.reportFactory = reportFactory ?? throw new ArgumentNullException(nameof(reportFactory));
-        this.reportRenderer = reportRenderer ?? throw new ArgumentNullException(nameof(reportRenderer));
-    }
+    protected readonly IReportFactory reportFactory = reportFactory ?? throw new ArgumentNullException(nameof(reportFactory));
+    private readonly IReportRenderer reportRenderer = reportRenderer ?? throw new ArgumentNullException(nameof(reportRenderer));
 
     public ActionResult Render(string key, string opt, string ext, int? print = 0)
     {

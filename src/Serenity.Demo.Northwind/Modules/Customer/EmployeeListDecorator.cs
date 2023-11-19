@@ -2,16 +2,10 @@
 
 namespace Serenity.Demo.Northwind;
 
-public class EmployeeListDecorator : BaseCellDecorator
+public class EmployeeListDecorator(ITwoLevelCache cache, ISqlConnections sqlConnections) : BaseCellDecorator
 {
-    public EmployeeListDecorator(ITwoLevelCache cache, ISqlConnections sqlConnections)
-    {
-        Cache = cache ?? throw new ArgumentNullException(nameof(cache));
-        SqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
-    }
-
-    public ITwoLevelCache Cache { get; }
-    public ISqlConnections SqlConnections { get; }
+    public ITwoLevelCache Cache { get; } = cache ?? throw new ArgumentNullException(nameof(cache));
+    public ISqlConnections SqlConnections { get; } = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
 
     public override void Decorate()
     {

@@ -6,10 +6,6 @@ namespace Serenity.Demo.Northwind;
 
 public interface INoteListHandler : IListHandler<MyRow, MyRequest, MyResponse> {}
 
-public class NoteListHandler : ListRequestHandler<MyRow, MyRequest, MyResponse>, INoteListHandler
+public class NoteListHandler(IRequestContext context) : ListRequestHandler<MyRow, MyRequest, MyResponse>(context), INoteListHandler
 {
-    public NoteListHandler(IRequestContext context)
-         : base(context)
-    {
-    }
 }

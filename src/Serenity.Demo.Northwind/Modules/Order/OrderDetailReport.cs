@@ -5,16 +5,11 @@ namespace Serenity.Demo.Northwind;
 [Report("Northwind.OrderDetail")]
 [ReportDesign(MVC.Views.Order.OrderDetailReport)]
 [RequiredPermission(PermissionKeys.General)]
-public class OrderDetailReport : IReport, ICustomizeHtmlToPdf
+public class OrderDetailReport(ISqlConnections sqlConnections) : IReport, ICustomizeHtmlToPdf
 {
-    public OrderDetailReport(ISqlConnections sqlConnections)
-    {
-        SqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
-    }
-
     public int OrderID { get; set; }
 
-    protected ISqlConnections SqlConnections { get; }
+    protected ISqlConnections SqlConnections { get; } = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
 
     public object GetData()
     {

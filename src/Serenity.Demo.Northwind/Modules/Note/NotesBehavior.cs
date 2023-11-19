@@ -1,24 +1,16 @@
 ﻿namespace Serenity.Demo.Northwind;
 
-public class NotesBehavior : BaseSaveDeleteBehavior, IImplicitBehavior, IRetrieveBehavior, IFieldBehavior
+public class NotesBehavior(IUserRetrieveService userRetriever,
+    IServiceResolver<INoteListHandler> listHandlerResolver,
+    IServiceResolver<INoteSaveHandler> saveHandlerResolver,
+    IServiceResolver<INoteDeleteHandler> deleteHandlerResolver) : BaseSaveDeleteBehavior, IImplicitBehavior, IRetrieveBehavior, IFieldBehavior
 {
     public Field Target { get; set; }
 
-    private readonly IUserRetrieveService userRetriever;
-    private readonly IServiceResolver<INoteListHandler> listHandlerResolver;
-    private readonly IServiceResolver<INoteSaveHandler> saveHandlerResolver;
-    private readonly IServiceResolver<INoteDeleteHandler> deleteHandlerResolver;
-
-    public NotesBehavior(IUserRetrieveService userRetriever,
-        IServiceResolver<INoteListHandler> listHandlerResolver, 
-        IServiceResolver<INoteSaveHandler> saveHandlerResolver, 
-        IServiceResolver<INoteDeleteHandler> deleteHandlerResolver)
-    {
-        this.userRetriever = userRetriever ?? throw new ArgumentNullException(nameof(userRetriever));
-        this.listHandlerResolver = listHandlerResolver ?? throw new ArgumentNullException(nameof(listHandlerResolver));
-        this.saveHandlerResolver = saveHandlerResolver ?? throw new ArgumentNullException(nameof(saveHandlerResolver));
-        this.deleteHandlerResolver = deleteHandlerResolver ?? throw new ArgumentNullException(nameof(deleteHandlerResolver));
-    }
+    private readonly IUserRetrieveService userRetriever = userRetriever ?? throw new ArgumentNullException(nameof(userRetriever));
+    private readonly IServiceResolver<INoteListHandler> listHandlerResolver = listHandlerResolver ?? throw new ArgumentNullException(nameof(listHandlerResolver));
+    private readonly IServiceResolver<INoteSaveHandler> saveHandlerResolver = saveHandlerResolver ?? throw new ArgumentNullException(nameof(saveHandlerResolver));
+    private readonly IServiceResolver<INoteDeleteHandler> deleteHandlerResolver = deleteHandlerResolver ?? throw new ArgumentNullException(nameof(deleteHandlerResolver));
 
     public bool ActivateFor(IRow row)
     {

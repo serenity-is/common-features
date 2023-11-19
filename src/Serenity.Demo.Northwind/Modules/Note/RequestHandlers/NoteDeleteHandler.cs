@@ -6,10 +6,6 @@ namespace Serenity.Demo.Northwind;
 
 public interface INoteDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> {}
 
-public class NoteDeleteHandler : DeleteRequestHandler<MyRow, MyRequest, MyResponse>, INoteDeleteHandler
+public class NoteDeleteHandler(IRequestContext context) : DeleteRequestHandler<MyRow, MyRequest, MyResponse>(context), INoteDeleteHandler
 {
-    public NoteDeleteHandler(IRequestContext context)
-         : base(context)
-    {
-    }
 }

@@ -6,10 +6,6 @@ namespace Serenity.Demo.Northwind;
 
 public interface IRegionSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
 
-public class RegionSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>, IRegionSaveHandler
+public class RegionSaveHandler(IRequestContext context) : SaveRequestHandler<MyRow, MyRequest, MyResponse>(context), IRegionSaveHandler
 {
-    public RegionSaveHandler(IRequestContext context)
-         : base(context)
-    {
-    }
 }

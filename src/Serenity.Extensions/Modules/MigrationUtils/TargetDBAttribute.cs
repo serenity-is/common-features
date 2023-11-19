@@ -2,10 +2,6 @@ using FluentMigrator;
 
 namespace Serenity.Extensions;
 
-public class TargetDBAttribute : TagsAttribute
+public class TargetDBAttribute(string db) : TagsAttribute(db + "DB")
 {
-    public TargetDBAttribute(string db)
-        : base(db + "DB")
-    {
-    }
 }

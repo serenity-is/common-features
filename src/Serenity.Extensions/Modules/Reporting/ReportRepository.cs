@@ -5,15 +5,9 @@ using Serenity.Reporting;
 namespace Serenity.Extensions.Repositories;
 
 [Obsolete("Inject and use IReportTreeFactory or IReportRetrieveHandler")]
-public class ReportRepository : BaseRepository
+public class ReportRepository(IRequestContext context, IReportRegistry reportRegistry) : BaseRepository(context)
 {
-    private readonly IReportRegistry reportRegistry;
-
-    public ReportRepository(IRequestContext context, IReportRegistry reportRegistry)
-         : base(context)
-    {
-        this.reportRegistry = reportRegistry ?? throw new ArgumentNullException(nameof(reportRegistry));
-    }
+    private readonly IReportRegistry reportRegistry = reportRegistry ?? throw new ArgumentNullException(nameof(reportRegistry));
 
     public ReportTree GetReportTree(string category)
     {
@@ -24,18 +18,12 @@ public class ReportRepository : BaseRepository
     public ReportRetrieveResponse Retrieve(ReportRetrieveRequest request,
         IServiceProvider serviceProvider, IPropertyItemProvider propertyItemProvider)
     {
-        if (request is null)
-            throw new ArgumentNullException(nameof(request));
+        ArgumentNullException.ThrowIfNull(request);
+        ArgumentNullException.ThrowIfNull(request.ReportKey);
+        ArgumentNullException.ThrowIfNull(propertyItemProvider);
 
-        if (string.IsNullOrEmpty(request.ReportKey))
-            throw new ArgumentNullException(nameof(request.ReportKey));
-        
-        if (propertyItemProvider is null)
-            throw new ArgumentNullException(nameof(propertyItemProvider));
-
-        var reportInfo = reportRegistry.GetReport(request.ReportKey, validatePermission: true);
-        if (reportInfo == null)
-            throw new ArgumentOutOfRangeException(nameof(request.ReportKey));
+        var reportInfo = reportRegistry.GetReport(request.ReportKey, validatePermission: true) ?? 
+            throw ArgumentExceptions.OutOfRange(request.ReportKey);
 
         var response = new ReportRetrieveResult
         {

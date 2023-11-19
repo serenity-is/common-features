@@ -15,8 +15,7 @@ public static class ReportingServiceCollectionExtensions
     /// <param name="services">The service collection.</param>
     public static void AddExcelExporter(this IServiceCollection services)
     {
-        if (services == null)
-            throw new ArgumentNullException(nameof(services));
+        ArgumentNullException.ThrowIfNull(services);
 
         services.TryAddSingleton<IDataReportExcelRenderer, DataReportExcelRenderer>();
         services.TryAddSingleton<IExcelExporter, ExcelExporter>();
@@ -24,8 +23,7 @@ public static class ReportingServiceCollectionExtensions
 
     public static void AddHtmlToPdf(this IServiceCollection services)
     {
-        if (services == null)
-            throw new ArgumentNullException(nameof(services));
+        ArgumentNullException.ThrowIfNull(services);
 
         services.TryAddSingleton<ISiteAbsoluteUrl, SiteAbsoluteUrl>();
         services.TryAddSingleton<IHtmlReportCallbackUrlBuilder, HtmlReportCallbackUrlBuilder>();

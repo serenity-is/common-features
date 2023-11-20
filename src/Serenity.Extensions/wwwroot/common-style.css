@@ -658,16 +658,15 @@ button.ui-button::-moz-focus-inner {
 .ui-dialog .ui-tabs .ui-tabs-nav {
   margin-top: 6px;
 }
-.ui-tabs .ui-tabs-panel {
+.ui-tabs-panel {
   border-width: 0 1px 1px 1px;
   padding: 1em 1.4em;
   background: none;
   background: #FFF;
   border-radius: 0;
-}
-
-.ui-tabs-panel {
-    display: block;
+  display: block;
+  padding: 6px 0;
+  border: none;
 }
 
 .ui-tabs-panel:not(.ui-tabs-panel-active):not([aria-hidden=false]) {
@@ -1016,14 +1015,8 @@ input.ui-button::-moz-focus-inner {
 .ui-dialog .ui-dialog-titlebar-buttonpane > a:focus {
   padding: 0;
 }
-.ui-tabs .tab-pane {
-  padding: 6px 0;
-}
 .ui-tabs-nav {
   margin-top: 6px;
-}
-.ui-tabs-panel {
-  border: none;
 }
 .ui-tabs .ui-tabs-nav {
   padding-left: 8px;
@@ -3040,7 +3033,6 @@ img.ui-datepicker-trigger {
   top: 2px;
 }
 .inplace-button {
-  display: inline-block;
   height: 26px;
   width: 24px;
   float: left;
@@ -3291,7 +3283,6 @@ a.s-LinkDropDown input {
   background-clip: padding-box;
 }
 .s-QuickSearchBar .quick-search-icon {
-  display: inline-block;
   float: left;
   padding: 0 0 0 8px;
   border-radius: 5px 0 0 5px;

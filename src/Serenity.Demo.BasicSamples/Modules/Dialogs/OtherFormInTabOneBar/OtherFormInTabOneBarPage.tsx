@@ -1,3 +1,4 @@
+/** @jsxImportSource jsx-dom/min */
 import { Decorators, PropertyGrid, SaveResponse, TabsExtensions, first, getForm, initFullHeightGridPage, isEmptyOrNull, reloadLookup, validateOptions } from "@serenity-is/corelib";
 import { CustomerForm, CustomerRow, CustomerService, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 
@@ -10,12 +11,7 @@ export default function pageInit() {
  */
 @Decorators.registerClass('Serenity.Demo.BasicSamples.OtherFormInTabOneBarGrid')
 export class OtherFormInTabOneBarGrid extends OrderGrid {
-
-    protected getDialogType() { return OtherFormOneBarDialog; }
-
-    constructor(container: JQuery) {
-        super(container);
-    }
+    protected override getDialogType() { return OtherFormOneBarDialog; }
 }
 
 /**
@@ -26,26 +22,11 @@ export class OtherFormInTabOneBarGrid extends OrderGrid {
 export class OtherFormOneBarDialog extends OrderDialog {
 
     private customerPropertyGrid: PropertyGrid;
-    private customerForm: CustomerForm;
     private customerValidator: JQueryValidation.Validator;
     private selfChange = 0;
 
     constructor() {
         super();
-
-        // entity dialogs by default creates a property grid on element with ID "PropertyGrid".
-        // here we explicitly create another, the customer property grid (vertical form) on element with ID "CustomerPropertyGrid".
-        this.customerPropertyGrid = new PropertyGrid(this.byId("CustomerPropertyGrid"), {
-            items: getForm(CustomerForm.formKey).filter(x => x.name != 'CustomerID' && x.name != "NoteList"),
-            idPrefix: this.idPrefix + "_Customer_",
-            useCategories: true
-        });
-
-        // this is just a helper to access editors if needed
-        this.customerForm = new CustomerForm(this.customerPropertyGrid.idPrefix);
-
-        // initialize validator for customer form
-        this.customerValidator = this.byId("CustomerForm").validate(validateOptions({}));
 
         this.form.CustomerID.change(e => {
             if (this.selfChange)
@@ -117,7 +98,7 @@ export class OtherFormOneBarDialog extends OrderDialog {
                 TabsExtensions.selectTab(this.tabs, currTab)
 
                 // prepare an empty entity to serialize customer details into
-                var c = <CustomerRow>{};
+                var c: CustomerRow = {};
                 this.customerPropertyGrid.save(c);
 
                 CustomerService.Update({
@@ -153,7 +134,7 @@ export class OtherFormOneBarDialog extends OrderDialog {
     protected saveAll(callback: (response: SaveResponse) => void) {
         this.saveCustomer(callback,
             // If customer success, save Order entity
-            resp => this.saveOrder(callback)
+            () => this.saveOrder(callback)
         );
     }
 
@@ -162,35 +143,42 @@ export class OtherFormOneBarDialog extends OrderDialog {
         this.saveAll(callback);
     }
 
-    protected getTemplate() {
-        return `<div id="~_Toolbar" class="s-DialogToolbar">
-</div>
-<div id="~_Tabs" class="s-DialogContent">
-    <ul>
-        <li><a href="#~_TabOrder"><span>Order</span></a></li>
-        <li><a href="#~_TabCustomer"><span>Customer</span></a></li>
-    </ul>
-    <div id="~_TabOrder" class="tab-pane s-TabOrder">
-        <div class="s-Form">
-            <form id="~_Form" action="">
-                <div class="fieldset">
-                    <div id="~_PropertyGrid"></div>
-                    <div class="clear"></div>
+    renderContents() {
+        const id = this.useIdPrefix();
+        this.element.empty().append(<>
+            <div id={id.Toolbar} class="s-DialogToolbar">
+            </div>
+            <div id={id.Tabs} class="s-DialogContent">
+                <ul>
+                    <li><a href={'#' + id.TabOrder}><span>Order</span></a></li>
+                    <li><a href={'#' + id.TabCustomer}><span>Customer</span></a></li>
+                </ul>
+                <div id={id.TabOrder} class="tab-pane s-TabOrder">
+                    <form id={id.Form} action="" class="s-Form">
+                        <div class="fieldset">
+                            <div id={id.PropertyGrid}></div>
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </div>
-    </div>
-    <div id="~_TabCustomer" class="tab-pane s-TabCustomer">
-        <div class="s-Form">
-            <form id="~_CustomerForm" action="">
-                <div class="fieldset">
-                    <div id="~_CustomerPropertyGrid"></div>
-                    <div class="clear"></div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>`;
-    }
+                <div id={id.TabCustomer} class="tab-pane s-TabCustomer">
+                    <form id={id.CustomerForm} action="" class="s-Form">
+                        <div class="fieldset">
+                            <div id={id.CustomerPropertyGrid} ref={el => {
+                                // entity dialogs by default creates a property grid on element with ID "PropertyGrid".
+                                // here we explicitly create another, the customer property grid (vertical form) on element with ID "CustomerPropertyGrid".
+                                this.customerPropertyGrid = new PropertyGrid($(el), {
+                                    items: getForm(CustomerForm.formKey).filter(x => x.name != 'CustomerID' && x.name != "NoteList"),
+                                    idPrefix: this.idPrefix + "_Customer_",
+                                    useCategories: true
+                                });
 
+                                // initialize validator for customer form
+                                this.customerValidator = this.byId("CustomerForm").validate(validateOptions({}));
+                            }}></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </>)
+    }
 }

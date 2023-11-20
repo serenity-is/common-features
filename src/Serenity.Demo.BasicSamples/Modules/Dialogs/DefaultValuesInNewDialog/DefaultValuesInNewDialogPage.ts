@@ -1,4 +1,4 @@
-import { formatDate, initFullHeightGridPage } from "@serenity-is/corelib";
+import { Decorators, formatDate, initFullHeightGridPage } from "@serenity-is/corelib";
 import { EmployeeRow, OrderDialog, OrderGrid, OrderRow, ProductRow, ShipperRow } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {

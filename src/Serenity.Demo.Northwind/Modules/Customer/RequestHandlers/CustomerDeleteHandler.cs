@@ -4,8 +4,9 @@ using MyRow = Serenity.Demo.Northwind.CustomerRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface ICustomerDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> {}
+public interface ICustomerDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> { }
 
-public class CustomerDeleteHandler(IRequestContext context) : DeleteRequestHandler<MyRow, MyRequest, MyResponse>(context), ICustomerDeleteHandler
+public class CustomerDeleteHandler(IRequestContext context) :
+    DeleteRequestHandler<MyRow, MyRequest, MyResponse>(context), ICustomerDeleteHandler
 {
 }

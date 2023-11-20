@@ -4,8 +4,9 @@ using MyRow = Serenity.Demo.Northwind.SupplierRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface ISupplierDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> {}
+public interface ISupplierDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> { }
 
-public class SupplierDeleteHandler(IRequestContext context) : DeleteRequestHandler<MyRow, MyRequest, MyResponse>(context), ISupplierDeleteHandler
+public class SupplierDeleteHandler(IRequestContext context) :
+    DeleteRequestHandler<MyRow, MyRequest, MyResponse>(context), ISupplierDeleteHandler
 {
 }

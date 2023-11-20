@@ -4,8 +4,9 @@ using MyRow = Serenity.Demo.Northwind.SalesByCategoryRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface ISalesByCategoryListHandler : IListHandler<MyRow, MyRequest, MyResponse> {}
+public interface ISalesByCategoryListHandler : IListHandler<MyRow, MyRequest, MyResponse> { }
 
-public class SalesByCategoryListHandler(IRequestContext context) : ListRequestHandler<MyRow, MyRequest, MyResponse>(context), ISalesByCategoryListHandler
+public class SalesByCategoryListHandler(IRequestContext context) :
+    ListRequestHandler<MyRow, MyRequest, MyResponse>(context), ISalesByCategoryListHandler
 {
 }

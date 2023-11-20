@@ -4,8 +4,9 @@ using MyRow = Serenity.Demo.Northwind.CategoryLangRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface ICategoryLangListHandler : IListHandler<MyRow, MyRequest, MyResponse> {}
+public interface ICategoryLangListHandler : IListHandler<MyRow, MyRequest, MyResponse> { }
 
-public class CategoryLangListHandler(IRequestContext context) : ListRequestHandler<MyRow, MyRequest, MyResponse>(context), ICategoryLangListHandler
+public class CategoryLangListHandler(IRequestContext context) :
+    ListRequestHandler<MyRow, MyRequest, MyResponse>(context), ICategoryLangListHandler
 {
 }

@@ -4,9 +4,10 @@ using MyRow = Serenity.Demo.Northwind.OrderRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface IOrderListHandler : IListHandler<MyRow, MyRequest, MyResponse> {}
+public interface IOrderListHandler : IListHandler<MyRow, MyRequest, MyResponse> { }
 
-public class OrderListHandler(IRequestContext context) : ListRequestHandler<MyRow, MyRequest, MyResponse>(context), IOrderListHandler
+public class OrderListHandler(IRequestContext context) :
+    ListRequestHandler<MyRow, MyRequest, MyResponse>(context), IOrderListHandler
 {
     protected override void ApplyFilters(SqlQuery query)
     {

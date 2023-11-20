@@ -4,9 +4,9 @@ using MyRow = Serenity.Demo.Northwind.SupplierRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface ISupplierListHandler : IListHandler<MyRow, MyRequest, MyResponse> {}
+public interface ISupplierListHandler : IListHandler<MyRow, MyRequest, MyResponse> { }
 
-public class SupplierListHandler(IRequestContext context)
-    : ListRequestHandler<MyRow, MyRequest, MyResponse>(context), ISupplierListHandler
+public class SupplierListHandler(IRequestContext context) :
+    ListRequestHandler<MyRow, MyRequest, MyResponse>(context), ISupplierListHandler
 {
 }

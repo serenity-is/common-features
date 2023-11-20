@@ -4,8 +4,9 @@ using MyRow = Serenity.Demo.Northwind.CategoryLangRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface ICategoryLangSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
+public interface ICategoryLangSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> { }
 
-public class CategoryLangSaveHandler(IRequestContext context) : SaveRequestHandler<MyRow, MyRequest, MyResponse>(context), ICategoryLangSaveHandler
+public class CategoryLangSaveHandler(IRequestContext context) :
+    SaveRequestHandler<MyRow, MyRequest, MyResponse>(context), ICategoryLangSaveHandler
 {
 }

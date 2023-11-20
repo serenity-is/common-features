@@ -4,8 +4,9 @@ using MyRow = Serenity.Demo.Northwind.ProductLangRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface IProductLangSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
+public interface IProductLangSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> { }
 
-public class ProductLangSaveHandler(IRequestContext context) : SaveRequestHandler<MyRow, MyRequest, MyResponse>(context), IProductLangSaveHandler
+public class ProductLangSaveHandler(IRequestContext context) :
+    SaveRequestHandler<MyRow, MyRequest, MyResponse>(context), IProductLangSaveHandler
 {
 }

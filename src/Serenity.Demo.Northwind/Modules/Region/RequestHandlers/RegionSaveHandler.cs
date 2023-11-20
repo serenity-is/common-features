@@ -4,8 +4,9 @@ using MyRow = Serenity.Demo.Northwind.RegionRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface IRegionSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
+public interface IRegionSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> { }
 
-public class RegionSaveHandler(IRequestContext context) : SaveRequestHandler<MyRow, MyRequest, MyResponse>(context), IRegionSaveHandler
+public class RegionSaveHandler(IRequestContext context) :
+    SaveRequestHandler<MyRow, MyRequest, MyResponse>(context), IRegionSaveHandler
 {
 }

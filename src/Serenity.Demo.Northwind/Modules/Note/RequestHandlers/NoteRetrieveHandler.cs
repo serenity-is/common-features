@@ -4,8 +4,9 @@ using MyRow = Serenity.Demo.Northwind.NoteRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface INoteRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse> {}
+public interface INoteRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse> { }
 
-public class NoteRetrieveHandler(IRequestContext context) : RetrieveRequestHandler<MyRow, MyRequest, MyResponse>(context), INoteRetrieveHandler
+public class NoteRetrieveHandler(IRequestContext context) :
+    RetrieveRequestHandler<MyRow, MyRequest, MyResponse>(context), INoteRetrieveHandler
 {
 }

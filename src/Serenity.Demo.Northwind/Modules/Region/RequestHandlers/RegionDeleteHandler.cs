@@ -4,8 +4,9 @@ using MyRow = Serenity.Demo.Northwind.RegionRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface IRegionDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> {}
+public interface IRegionDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> { }
 
-public class RegionDeleteHandler(IRequestContext context) : DeleteRequestHandler<MyRow, MyRequest, MyResponse>(context), IRegionDeleteHandler
+public class RegionDeleteHandler(IRequestContext context) :
+    DeleteRequestHandler<MyRow, MyRequest, MyResponse>(context), IRegionDeleteHandler
 {
 }

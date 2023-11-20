@@ -4,8 +4,9 @@ using MyRow = Serenity.Demo.Northwind.SupplierRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface ISupplierSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
+public interface ISupplierSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> { }
 
-public class SupplierSaveHandler(IRequestContext context) : SaveRequestHandler<MyRow, MyRequest, MyResponse>(context), ISupplierSaveHandler
+public class SupplierSaveHandler(IRequestContext context) :
+    SaveRequestHandler<MyRow, MyRequest, MyResponse>(context), ISupplierSaveHandler
 {
 }

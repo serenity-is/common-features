@@ -4,8 +4,9 @@ using MyRow = Serenity.Demo.Northwind.RegionRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface IRegionRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse> {}
+public interface IRegionRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse> { }
 
-public class RegionRetrieveHandler(IRequestContext context) : RetrieveRequestHandler<MyRow, MyRequest, MyResponse>(context), IRegionRetrieveHandler
+public class RegionRetrieveHandler(IRequestContext context) :
+    RetrieveRequestHandler<MyRow, MyRequest, MyResponse>(context), IRegionRetrieveHandler
 {
 }

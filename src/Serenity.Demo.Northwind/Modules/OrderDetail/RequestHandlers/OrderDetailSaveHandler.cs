@@ -4,8 +4,9 @@ using MyRow = Serenity.Demo.Northwind.OrderDetailRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface IOrderDetailSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> {}
+public interface IOrderDetailSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> { }
 
-public class OrderDetailSaveHandler(IRequestContext context) : SaveRequestHandler<MyRow, MyRequest, MyResponse>(context), IOrderDetailSaveHandler
+public class OrderDetailSaveHandler(IRequestContext context) :
+    SaveRequestHandler<MyRow, MyRequest, MyResponse>(context), IOrderDetailSaveHandler
 {
 }

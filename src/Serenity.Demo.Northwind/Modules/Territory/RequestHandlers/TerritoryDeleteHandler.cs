@@ -4,8 +4,9 @@ using MyRow = Serenity.Demo.Northwind.TerritoryRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface ITerritoryDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> {}
+public interface ITerritoryDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> { }
 
-public class TerritoryDeleteHandler(IRequestContext context) : DeleteRequestHandler<MyRow, MyRequest, MyResponse>(context), ITerritoryDeleteHandler
+public class TerritoryDeleteHandler(IRequestContext context) :
+    DeleteRequestHandler<MyRow, MyRequest, MyResponse>(context), ITerritoryDeleteHandler
 {
 }

@@ -4,8 +4,9 @@ using MyRow = Serenity.Demo.Northwind.TerritoryRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface ITerritoryListHandler : IListHandler<MyRow, MyRequest, MyResponse> {}
+public interface ITerritoryListHandler : IListHandler<MyRow, MyRequest, MyResponse> { }
 
-public class TerritoryListHandler(IRequestContext context) : ListRequestHandler<MyRow, MyRequest, MyResponse>(context), ITerritoryListHandler
+public class TerritoryListHandler(IRequestContext context) :
+    ListRequestHandler<MyRow, MyRequest, MyResponse>(context), ITerritoryListHandler
 {
 }

@@ -4,8 +4,9 @@ using MyRow = Serenity.Demo.Northwind.ProductRow;
 
 namespace Serenity.Demo.Northwind;
 
-public interface IProductRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse> {}
+public interface IProductRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse> { }
 
-public class ProductRetrieveHandler(IRequestContext context) : RetrieveRequestHandler<MyRow, MyRequest, MyResponse>(context), IProductRetrieveHandler
+public class ProductRetrieveHandler(IRequestContext context) :
+    RetrieveRequestHandler<MyRow, MyRequest, MyResponse>(context), IProductRetrieveHandler
 {
 }

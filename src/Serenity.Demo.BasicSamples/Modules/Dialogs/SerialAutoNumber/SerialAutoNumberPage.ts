@@ -10,12 +10,7 @@ export default function pageInit() {
  */
 @Decorators.registerClass('Serenity.Demo.BasicSamples.SerialAutoNumberGrid')
 export class SerialAutoNumberGrid extends CustomerGrid {
-
     protected getDialogType() { return SerialAutoNumberDialog; }
-
-    constructor(container: JQuery) {
-        super(container);
-    }
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.SerialAutoNumberDialog')

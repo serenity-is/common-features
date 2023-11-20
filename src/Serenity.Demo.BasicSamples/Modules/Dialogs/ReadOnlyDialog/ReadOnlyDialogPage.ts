@@ -13,10 +13,6 @@ export class ReadOnlyGrid extends SupplierGrid {
 
     protected getDialogType() { return ReadOnlyDialog; }
 
-    constructor(container: JQuery) {
-        super(container);
-    }
-
     /**
      * Removing add button from grid using its css class
      */

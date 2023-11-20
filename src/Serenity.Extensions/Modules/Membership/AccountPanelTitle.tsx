@@ -1,4 +1,4 @@
-/** @jsxImportSource jsx-dom */
+/** @jsxImportSource jsx-dom/min */
 
 import { localText } from "@serenity-is/corelib";
 

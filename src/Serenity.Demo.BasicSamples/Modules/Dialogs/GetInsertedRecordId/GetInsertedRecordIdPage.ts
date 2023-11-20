@@ -3,7 +3,6 @@ import { CategoryDialog, CategoryGrid, CategoryService } from "@serenity-is/demo
 
 export default function pageInit() {
     new GetInsertedRecordIdGrid($('#GridDiv')).init();
-
     initFullHeightGridPage($('#GridDiv'));
 }
 
@@ -12,12 +11,7 @@ export default function pageInit() {
  */
 @Decorators.registerClass('Serenity.Demo.BasicSamples.GetInsertedRecordIdGrid')
 export class GetInsertedRecordIdGrid extends CategoryGrid {
-
-    protected getDialogType() { return GetInsertedRecordIdDialog; }
-
-    constructor(container: JQuery) {
-        super(container);
-    }
+    protected override getDialogType() { return GetInsertedRecordIdDialog; }
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.GetInsertedRecordIdDialog')
@@ -29,7 +23,7 @@ export class GetInsertedRecordIdDialog extends CategoryDialog {
      *
      * @param response Response that is returned from server
      */
-    protected onSaveSuccess(response: SaveResponse): void {
+    protected override onSaveSuccess(response: SaveResponse): void {
 
         // check that this is an insert
         if (this.isNew()) {
@@ -39,11 +33,9 @@ export class GetInsertedRecordIdDialog extends CategoryDialog {
             // new CategoryDialog().loadByIdAndOpenDialog(response.EntityId);
 
             // but let's better load inserted record using Retrieve service
-            CategoryService.Retrieve(<any>{
+            CategoryService.Retrieve({
                 EntityId: response.EntityId
-            }, resp => {
-                notifyInfo("Looks like the category you added has name: " + resp.Entity.CategoryName);
-            });
+            }, resp => notifyInfo("Looks like the category you added has name: " + resp.Entity.CategoryName));
         }
     }
 }

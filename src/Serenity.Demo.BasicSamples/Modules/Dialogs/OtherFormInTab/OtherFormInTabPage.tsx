@@ -11,12 +11,7 @@ export default function pageInit() {
  */
 @Decorators.registerClass('Serenity.Demo.BasicSamples.OtherFormInTabGrid')
 export class OtherFormInTabGrid extends OrderGrid {
-
-    protected getDialogType() { return OtherFormInTabDialog; }
-
-    constructor(container: JQuery) {
-        super(container);
-    }
+    protected override getDialogType() { return OtherFormInTabDialog; }
 }
 
 /**

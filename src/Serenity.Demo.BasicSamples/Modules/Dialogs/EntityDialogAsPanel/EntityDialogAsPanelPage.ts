@@ -30,10 +30,6 @@ export default function pageInit(model: any) {
 @Decorators.panel()
 export class EntityDialogAsPanel extends OrderDialog {
 
-    constructor() {
-        super();
-    }
-
     protected updateInterface() {
         super.updateInterface();
 

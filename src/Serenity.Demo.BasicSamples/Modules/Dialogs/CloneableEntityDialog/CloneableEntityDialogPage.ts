@@ -1,13 +1,11 @@
-import { Decorators, EntityGrid, endsWith, initFullHeightGridPage } from "@serenity-is/corelib";
+import { EntityGrid, endsWith, initFullHeightGridPage } from "@serenity-is/corelib";
 import { ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
     initFullHeightGridPage(new CloneableEntityGrid($('#GridDiv'), {}).element);
 }
 
-/**
- * Subclass of ProductGrid to override dialog type to CloneableEntityDialog
- */
+/** Subclass of ProductGrid to override dialog type to CloneableEntityDialog */
 export class CloneableEntityGrid extends EntityGrid<ProductRow, any> {
 
     protected getColumnsKey() { return ProductColumns.columnsKey; }
@@ -17,7 +15,6 @@ export class CloneableEntityGrid extends EntityGrid<ProductRow, any> {
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.CloneableEntityDialog')
-@Decorators.maximizable()
 export class CloneableEntityDialog extends ProductDialog {
     protected updateInterface() {
 

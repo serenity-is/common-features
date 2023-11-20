@@ -13,21 +13,19 @@ export default function pageInit() {
 
     document.getElementById("SampleRoot").append(
         <button class="btn btn-block btn-primary" onClick={buttonClick}>Launch Dialog</button>);
-
-    buttonClick();
 }
 
 @Decorators.resizable()
 @Decorators.maximizable()
 export class ChartInDialog extends TemplatedDialog<any> {
 
-    private canvasElement: HTMLCanvasElement;
+    private canvas: HTMLCanvasElement;
 
     protected onDialogOpen() {
         super.onDialogOpen();
 
         BasicSamplesService.OrdersByShipper({}, response => {
-            new Chart(this.canvasElement, {
+            new Chart(this.canvas, {
                 type: "bar",
                 data: {
                     labels: response.Values.map(x => x.Month),
@@ -42,7 +40,7 @@ export class ChartInDialog extends TemplatedDialog<any> {
     }
 
     protected renderContents() {
-        this.element.append(<canvas id={`${this.idPrefix}Chart`} ref={(el: HTMLCanvasElement) => this.canvasElement = el}></canvas>);
+        this.element.append(<canvas id={`${this.idPrefix}Chart`} ref={el => this.canvas = el}></canvas>);
     }
 
     protected getDialogOptions() {

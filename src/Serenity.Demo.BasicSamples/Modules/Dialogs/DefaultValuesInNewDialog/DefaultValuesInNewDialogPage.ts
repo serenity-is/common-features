@@ -1,4 +1,4 @@
-import { Decorators, formatDate, initFullHeightGridPage } from "@serenity-is/corelib";
+import { formatDate, initFullHeightGridPage } from "@serenity-is/corelib";
 import { EmployeeRow, OrderDialog, OrderGrid, OrderRow, ProductRow, ShipperRow } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
@@ -7,10 +7,6 @@ export default function pageInit() {
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.DefaultValuesInNewGrid')
 export class DefaultValuesInNewGrid extends OrderGrid {
-
-    constructor(container: JQuery) {
-        super(container);
-    }
 
     /**
      * This method is called when New Item button is clicked.

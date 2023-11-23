@@ -23,6 +23,7 @@
     <AddAutoRefs>true</AddAutoRefs>
     <RestoreNodeTypes>false</RestoreNodeTypes>
     <DefineConstants Condition="'$(IsPublicDemo)'=='true'">$(DefineConstants);IsPublicDemo</DefineConstants>
+    <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
     <UseArtifactsOutput>true</UseArtifactsOutput>
     <ArtifactsPath Condition="Exists('$(MSBuildThisFileDirectory)..\..\build')">$(MSBuildThisFileDirectory)..\build\artifacts</ArtifactsPath>
     <ArtifactsPath Condition="Exists('$(MSBuildThisFileDirectory)..\..\build')">$(MSBuildThisFileDirectory)..\..\build\artifacts</ArtifactsPath>

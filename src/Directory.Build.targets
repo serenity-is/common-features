@@ -2,14 +2,14 @@
   <Import Project="$(MSBuildThisFileDirectory)..\build\Feature.Build.targets" />
   <Target Name="TransformMvc" BeforeTargets="BeforeBuild" DependsOnTargets="TransformToolRestore"
           Condition="'$(SergenTransform)' == 'mvc'">
-    <Exec Command="$(DotNetSergen) mvc" ContinueOnError="true" />
+    <Exec Command="$(DotNetSergen) mvc -p &quot;$(ProjectFileName)&quot; -prop:&quot;Configuration=$(Configuration);AssemblyName=$(AssemblyName);OutDir=$(OutDir);RootNamespace=$(RootNamespace);TargetFramework=$(TargetFramework)&quot;" ContinueOnError="true" />
   </Target>
   <Target Name="TransformMvct" BeforeTargets="BeforeBuild" DependsOnTargets="TransformToolRestore"
           Condition="'$(SergenTransform)' == 'mvct' OR '$(SergenTransform)' == 'all'">
-    <Exec Command="$(DotNetSergen) mvct" ContinueOnError="true" />
+    <Exec Command="$(DotNetSergen) mvct -p &quot;$(ProjectFileName)&quot; -prop:&quot;Configuration=$(Configuration);AssemblyName=$(AssemblyName);OutDir=$(OutDir);RootNamespace=$(RootNamespace);TargetFramework=$(TargetFramework)&quot;" ContinueOnError="true" />
   </Target>
   <Target Name="TransformServerTypings" AfterTargets="AfterBuild" DependsOnTargets="TransformToolRestore"
           Condition="'$(SergenTransform)' == 'servertypings' OR '$(SergenTransform)' == 'all'">
-    <Exec Command="$(DotNetSergen) servertypings" ContinueOnError="true" />
+    <Exec Command="$(DotNetSergen) servertypings -p &quot;$(ProjectFileName)&quot; -prop:&quot;Configuration=$(Configuration);AssemblyName=$(AssemblyName);OutDir=$(OutDir);RootNamespace=$(RootNamespace);TargetFramework=$(TargetFramework)&quot;" ContinueOnError="true" />
   </Target>
 </Project>

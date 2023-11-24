@@ -88,10 +88,4 @@ public static partial class Shared
         var exitCode = process.ExitCode;
         return exitCode;
     }
-
-    public static void ExitWithError(string error, int errorCode = 1)
-    {
-        Console.WriteLine(error);
-        Environment.Exit(errorCode);
-    }
 }

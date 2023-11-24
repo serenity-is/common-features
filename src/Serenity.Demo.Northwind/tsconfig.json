@@ -2,7 +2,7 @@
   "extends": "@serenity-is/extensions/tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": "./",
-    "outDir": "./obj/tscout"
+    "outDir": "./node_modules/tscout"
   },
   "include": [
     "Modules/"

@@ -1,5 +1,4 @@
 /// <reference types="jquery" />
-/// <reference types="jquery.validation" />
 
 import { DataGrid, DeleteResponse, Dictionary, EmailAddressEditor, EntityDialog, EntityGrid, Formatter, IGetEditValue, ISetEditValue, ListRequest, ListResponse, PasswordEditor, PrefixedContext, PropertyDialog, PropertyItem, RetrieveResponse, SaveResponse, Select2AjaxEditor, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse, SettingStorage, TemplatedDialog, ToolButton, Widget } from '@serenity-is/corelib';
 import { FormatterContext, Grid, GridOptions } from '@serenity-is/sleekgrid';

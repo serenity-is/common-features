@@ -23,8 +23,11 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "target": "ES6",
+    "types": [
+      "jquery"
+    ],
     "typeRoots": [
-      "../../../Serenity/src/Serenity.Scripts/types"
+      "./node_modules/@serenity-is/corelib/node_modules/@types"
     ]
   }
 }

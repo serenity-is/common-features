@@ -39,7 +39,8 @@
   </ItemGroup>
   <ItemGroup>
     <TSBuildInputs Include="tsconfig.json" Condition="Exists('tsconfig.json')" />
-    <TSBuildInputs Include="..\.config\tsconfig.base.json" Condition="Exists('..\.config\tsconfig.base.json')" />
+    <TSBuildInputs Include="..\Serenity.Extensions\tsconfig.base.json" Condition="Exists('..\Serenity.Extensions\tsconfig.base.json')" />
+    <TSBuildInputs Include="..\..\common-features\src\Serenity.Extensions\tsconfig.base.json" Condition="!Exists('..\Serenity.Extensions\tsconfig.base.json') and Exists('..\..\common-features\src\Serenity.Extensions\tsconfig.base.json')" />
     <TSBuildOutputs Include="dist\index.js" Condition="Exists('tsbuild.js')" />
     <TSBuildOutputs Include="wwwroot\index.js" />
     <TSBuildOutputs Include="wwwroot\index.d.ts" Condition="!Exists('tsbuild.js')" />

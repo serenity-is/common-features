@@ -1,5 +1,5 @@
 {
-  "extends": "../.config/tsconfig.base.json",
+  "extends": "@serenity-is/extensions/tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./obj/tscout"

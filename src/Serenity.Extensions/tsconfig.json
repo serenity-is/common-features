@@ -1,7 +1,9 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "./",
+    "paths": {
+      "@/*": [ "./Modules/*" ]
+    },
     "outDir": "./node_modules/tscout"
   },
   "include": [

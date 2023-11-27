@@ -10,7 +10,7 @@
   },
   "scripts": {
     "build": "pnpm tsbuild",
-    "dts": "pnpm --silent dlx dts-bundle-generator Modules/index.ts -o dist/index.d.ts --no-banner --disable-symlinks-following --inline-declare-global --external-types jquery",
+    "dts": "pnpm dts-bundle-generator Modules/index.ts -o dist/index.d.ts --no-banner --disable-symlinks-following --inline-declare-global --external-types jquery",
     "tsbuild": "node ./tsbuild.js",
     "tsbuild:watch": "node ./tsbuild.js --watch"
   },

@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "declaration": true,
     "emitDeclarationOnly": true,
     "esModuleInterop": true,
@@ -10,24 +9,26 @@
     "inlineSources": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "preact",
+    "jsxImportSource": "jsx-dom/min",
+    "lib": [
+      "ES2017",
+      "DOM"
+    ],
     "module": "ESNext",
     "moduleResolution": "Node",
     "newLine": "lf",
     "noEmitHelpers": true,
-    "paths": {
-      "@/*": [ "Modules/*" ]
-    },
     "preserveConstEnums": true,
     "preserveSymlinks": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "target": "ES6",
+    "typeRoots": [
+      "./node_modules/@serenity-is/corelib/node_modules/@types"
+    ],
     "types": [
       "jquery"
     ],
-    "typeRoots": [
-      "./node_modules/@serenity-is/corelib/node_modules/@types"
-    ]
+    "useDefineForClassFields": false
   }
 }

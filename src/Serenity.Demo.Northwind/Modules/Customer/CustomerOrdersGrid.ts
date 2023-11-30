@@ -4,7 +4,6 @@ import { Column } from "@serenity-is/sleekgrid";
 import { OrderGrid } from "../Order/OrderGrid";
 import { OrderRow } from "@/ServerTypes/Demo";
 import { CustomerOrderDialog } from "./CustomerOrderDialog";
-import { tryFirst } from "@serenity-is/corelib";
 
 const fld = OrderRow.Fields;
 
@@ -27,7 +26,7 @@ export class CustomerOrdersGrid extends OrderGrid {
 
     protected override getButtons() {
         var buttons = super.getButtons();
-        var addButton = tryFirst(buttons, x => x.action === 'add');
+        var addButton = buttons.find(x => x.action === 'add');
         if (addButton)
             addButton.disabled = () => !this.customerID;
         return buttons;

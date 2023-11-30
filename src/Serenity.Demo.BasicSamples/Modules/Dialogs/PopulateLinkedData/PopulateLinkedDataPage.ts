@@ -1,5 +1,5 @@
 ﻿import { PopulateLinkedDataForm } from "@/ServerTypes/Demo";
-import { Decorators, EntityDialog, first, initFullHeightGridPage, isEmptyOrNull } from "@serenity-is/corelib";
+import { Decorators, EntityDialog, first, initFullHeightGridPage } from "@serenity-is/corelib";
 import { CustomerRow, CustomerService, OrderGrid, OrderRow, OrderService } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
@@ -37,7 +37,7 @@ export class PopulateLinkedDataDialog extends EntityDialog<OrderRow, any> {
         // will get populated by initial load, we don't want extra call
         this.form.CustomerID.changeSelect2(async e => {
             var customerID = this.form.CustomerID.value;
-            if (isEmptyOrNull(customerID)) {
+            if (!customerID) {
                 this.setCustomerDetails({});
                 return;
             }

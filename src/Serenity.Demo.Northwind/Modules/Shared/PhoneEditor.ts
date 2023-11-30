@@ -1,5 +1,5 @@
 import { Decorators, StringEditor, WX } from "@serenity-is/corelib";
-import { isEmptyOrNull, replaceAll, startsWith, localText, trimToNull } from "@serenity-is/corelib";
+import { replaceAll, startsWith, localText, trimToNull } from "@serenity-is/corelib";
 
 @Decorators.registerEditor('Serenity.Demo.Northwind.PhoneEditor')
 export class PhoneEditor extends StringEditor {
@@ -61,7 +61,7 @@ export class PhoneEditor extends StringEditor {
     }
 
     static isValidPhone(phone: string) {
-        if (isEmptyOrNull(phone)) {
+        if (!phone) {
             return false;
         }
         phone = replaceAll(replaceAll(phone, ' ', ''), '-', '');
@@ -124,7 +124,7 @@ export class PhoneEditor extends StringEditor {
     }
 
     static isValidMulti(phone: string, check: (s: string) => boolean) {
-        if (isEmptyOrNull(phone)) {
+        if (!phone) {
             return false;
         }
         var phones = replaceAll(phone, String.fromCharCode(59), String.fromCharCode(44)).split(String.fromCharCode(44));

@@ -1,7 +1,6 @@
-import { Decorators } from "@serenity-is/corelib";
-import { alertDialog, toId, tryFirst } from "@serenity-is/corelib";
-import { GridEditorBase } from "@serenity-is/extensions";
 import { OrderDetailColumns, OrderDetailRow, ProductRow } from "@/ServerTypes/Demo";
+import { Decorators, alertDialog, toId } from "@serenity-is/corelib";
+import { GridEditorBase } from "@serenity-is/extensions";
 import { OrderDetailDialog } from "./OrderDetailDialog";
 
 @Decorators.registerEditor('Serenity.Demo.Northwind.OrderDetailsEditor')
@@ -17,7 +16,7 @@ export class OrderDetailsEditor extends GridEditorBase<OrderDetailRow> {
     validateEntity(row, id) {
         row.ProductID = toId(row.ProductID);
 
-        var sameProduct = tryFirst(this.view.getItems(), x => x.ProductID === row.ProductID);
+        var sameProduct = this.view.getItems().find(x => x.ProductID === row.ProductID);
         if (sameProduct && this.id(sameProduct) !== id) {
             alertDialog('This product is already in order details!');
             return false;

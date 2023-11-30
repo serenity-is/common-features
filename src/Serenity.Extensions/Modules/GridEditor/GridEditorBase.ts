@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid, IGetEditValue, ISetEditValue, ToolButton } from "@serenity-is/corelib";
-import { deepClone, indexOf, SaveRequest, ServiceOptions, ServiceResponse, tryFirst } from "@serenity-is/corelib";
+import { deepClone, indexOf, SaveRequest, ServiceOptions, ServiceResponse } from "@serenity-is/corelib";
 import { GridEditorDialog } from "./GridEditorDialog";
 
 @Decorators.registerClass("Serenity.Extensions.GridEditorBase", [IGetEditValue, ISetEditValue])
@@ -73,8 +73,8 @@ export abstract class GridEditorBase<TEntity, TOptions = any> extends EntityGrid
 
     protected getButtons(): ToolButton[] {
         var buttons = super.getButtons();
-        var addButton = tryFirst(buttons, x => x.action === 'add');
-        if (addButton != null) {
+        var addButton = buttons.find(x => x.action === 'add');
+        if (addButton) {
             addButton.onClick = () => {
                 this.createEntityDialog(this.getItemType(), dlg => {
                     var dialog = dlg as GridEditorDialog<TEntity>;

@@ -1,5 +1,5 @@
 import { Decorators, PropertyDialog } from "@serenity-is/corelib";
-import { coalesce, isEmptyOrNull, localText } from "@serenity-is/corelib";
+import { coalesce, localText } from "@serenity-is/corelib";
 
 export interface PromptDialogOptions {
     cssClass?: string;
@@ -19,10 +19,10 @@ export class PromptDialog extends PropertyDialog<any, PromptDialogOptions> {
     constructor(opt: PromptDialogOptions) {
         super(opt);
 
-        if (!isEmptyOrNull(this.options.cssClass))
+        if (this.options.cssClass)
             this.element.addClass(this.options.cssClass);
 
-        if (!isEmptyOrNull(this.options.message)) {
+        if (this.options.message) {
             var msg = $("<div/>").addClass("message")
                 .insertBefore(this.byId("PropertyGrid"));
             this.options.isHtml ? msg.html(this.options.message) : msg.text(this.options.message);

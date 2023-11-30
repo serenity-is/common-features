@@ -1,5 +1,5 @@
 import { CascadedWidgetLink, Decorators, EditorUtils, Select2AjaxEditor, Widget } from "@serenity-is/corelib";
-import { ColumnSelection, isEmptyOrNull, ListRequest, ListResponse, RetrieveColumnSelection, RetrieveRequest, RetrieveResponse, serviceCall, ServiceOptions } from "@serenity-is/corelib";
+import { ColumnSelection, ListRequest, ListResponse, RetrieveColumnSelection, RetrieveRequest, RetrieveResponse, serviceCall, ServiceOptions } from "@serenity-is/corelib";
 
 export interface ServiceEditorOptions {
     cascadeFrom?: string;
@@ -19,7 +19,7 @@ export abstract class ServiceEditorBase<TOptions extends ServiceEditorOptions, T
     }
 
     private setCascadeFrom(value: string): void {
-        if (isEmptyOrNull(value)) {
+        if (!value) {
             if (this.cascadeLink) {
                 this.cascadeLink.set_parentID(null);
                 this.cascadeLink = null;

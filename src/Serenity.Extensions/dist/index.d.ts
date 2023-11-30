@@ -122,8 +122,8 @@ export interface UserPreferenceUpdateRequest extends ServiceRequest {
 }
 export declare namespace UserPreferenceService {
 	const baseUrl = "Extensions/UserPreference";
-	function Update(request: UserPreferenceUpdateRequest, onSuccess?: (response: ServiceResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
-	function Retrieve(request: UserPreferenceRetrieveRequest, onSuccess?: (response: UserPreferenceRetrieveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
+	function Update(request: UserPreferenceUpdateRequest, onSuccess?: (response: ServiceResponse) => void, opt?: ServiceOptions<any>): PromiseLike<ServiceResponse>;
+	function Retrieve(request: UserPreferenceRetrieveRequest, onSuccess?: (response: UserPreferenceRetrieveResponse) => void, opt?: ServiceOptions<any>): PromiseLike<UserPreferenceRetrieveResponse>;
 	const Methods: {
 		readonly Update: "Extensions/UserPreference/Update";
 		readonly Retrieve: "Extensions/UserPreference/Retrieve";

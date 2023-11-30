@@ -4,8 +4,8 @@ import { OrderDetailRow } from "./Northwind.OrderDetailRow";
 export namespace OrderDetailService {
     export const baseUrl = 'Serenity.Demo.Northwind/OrderDetail';
 
-    export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<OrderDetailRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
-    export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<OrderDetailRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
+    export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<OrderDetailRow>) => void, opt?: ServiceOptions<any>): PromiseLike<RetrieveResponse<OrderDetailRow>>;
+    export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<OrderDetailRow>) => void, opt?: ServiceOptions<any>): PromiseLike<ListResponse<OrderDetailRow>>;
 
     export const Methods = {
         Retrieve: "Serenity.Demo.Northwind/OrderDetail/Retrieve",

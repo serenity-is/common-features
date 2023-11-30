@@ -6,8 +6,8 @@ import { UserPreferenceUpdateRequest } from "./UserPreferenceUpdateRequest";
 export namespace UserPreferenceService {
     export const baseUrl = 'Extensions/UserPreference';
 
-    export declare function Update(request: UserPreferenceUpdateRequest, onSuccess?: (response: ServiceResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
-    export declare function Retrieve(request: UserPreferenceRetrieveRequest, onSuccess?: (response: UserPreferenceRetrieveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
+    export declare function Update(request: UserPreferenceUpdateRequest, onSuccess?: (response: ServiceResponse) => void, opt?: ServiceOptions<any>): PromiseLike<ServiceResponse>;
+    export declare function Retrieve(request: UserPreferenceRetrieveRequest, onSuccess?: (response: UserPreferenceRetrieveResponse) => void, opt?: ServiceOptions<any>): PromiseLike<UserPreferenceRetrieveResponse>;
 
     export const Methods = {
         Update: "Extensions/UserPreference/Update",

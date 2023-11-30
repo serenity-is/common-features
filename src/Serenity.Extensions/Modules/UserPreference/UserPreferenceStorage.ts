@@ -16,6 +16,6 @@ export class UserPreferenceStorage implements SettingStorage {
             PreferenceType: "UserPreferenceStorage",
             Name: key,
             Value: data
-        }));
+        }) as any);
     }
 }

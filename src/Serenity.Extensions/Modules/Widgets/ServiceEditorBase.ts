@@ -81,7 +81,7 @@ export abstract class ServiceEditorBase<TOptions extends ServiceEditorOptions, T
         return 200;
     }
 
-    private lastRequest: JQueryXHR;
+    private lastRequest: PromiseLike<ListResponse<TRow>>;
 
     public executeQueryByKey(options: ServiceOptions<RetrieveResponse<TRow>>): void {
         var request = <RetrieveRequest>options.request;
@@ -107,8 +107,8 @@ export abstract class ServiceEditorBase<TOptions extends ServiceEditorOptions, T
         options.blockUI = false;
         options.error = () => { };
 
-        if (this.lastRequest != null && this.lastRequest.readyState != XMLHttpRequest.DONE)
-            this.lastRequest.abort();
+        if (this.lastRequest != null && (this.lastRequest as JQueryXHR).readyState != XMLHttpRequest.DONE)
+            (this.lastRequest as JQueryXHR)?.abort?.();
 
         this.lastRequest = serviceCall(options);
         this.lastRequest.then(() => this.lastRequest = null, () => this.lastRequest = null);

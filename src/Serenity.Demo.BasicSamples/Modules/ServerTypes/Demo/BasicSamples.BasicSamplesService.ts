@@ -5,7 +5,7 @@ import { OrdersByShipperResponse } from "./BasicSamples.OrdersByShipperResponse"
 export namespace BasicSamplesService {
     export const baseUrl = 'Serenity.Demo.BasicSamples';
 
-    export declare function OrdersByShipper(request: OrdersByShipperRequest, onSuccess?: (response: OrdersByShipperResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
+    export declare function OrdersByShipper(request: OrdersByShipperRequest, onSuccess?: (response: OrdersByShipperResponse) => void, opt?: ServiceOptions<any>): PromiseLike<OrdersByShipperResponse>;
 
     export const Methods = {
         OrdersByShipper: "Serenity.Demo.BasicSamples/OrdersByShipper"

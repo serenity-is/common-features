@@ -22,7 +22,7 @@
     "preserveSymlinks": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "target": "ES6",
+    "target": "ES2017",
     "typeRoots": [
       "./node_modules/@serenity-is/corelib/node_modules/@types"
     ],

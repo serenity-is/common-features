@@ -1,4 +1,4 @@
-import { Decorators, EntityGrid, endsWith, initFullHeightGridPage } from "@serenity-is/corelib";
+import { Decorators, EntityGrid, initFullHeightGridPage } from "@serenity-is/corelib";
 import { ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
@@ -33,7 +33,7 @@ export class CloneableEntityDialog extends ProductDialog {
 
         // add (Clone) suffix if it's not already added
         var suffix = ' (Clone)';
-        if (!endsWith(clone.ProductName || '', suffix)) {
+        if (!(clone.ProductName || '').endsWith(suffix)) {
             clone.ProductName = (clone.ProductName || '') + suffix;
         }
 

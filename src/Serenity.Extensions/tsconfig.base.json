@@ -17,7 +17,6 @@
     "moduleResolution": "Node",
     "newLine": "lf",
     "noEmit": true,
-    "noEmitHelpers": true,
     "preserveConstEnums": true,
     "preserveSymlinks": true,
     "skipLibCheck": true,

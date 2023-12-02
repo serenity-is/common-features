@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid, LookupEditor } from "@serenity-is/corelib";
-import { deepClone, Dictionary, first, formatNumber, htmlEncode, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, localText, toId, trimToNull, Lookup } from "@serenity-is/corelib";
+import { deepClone, Dictionary, first, formatNumber, htmlEncode, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, localText, toId, Lookup } from "@serenity-is/corelib";
 import { ExcelExportHelper, PdfExportHelper } from "@serenity-is/extensions";
 import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
 import { CategoryRow, ProductColumns, ProductRow, ProductService, SupplierRow } from "@/ServerTypes/Demo";
@@ -187,7 +187,7 @@ export class ProductGrid extends EntityGrid<ProductRow, any> {
         var item = this.itemAt(cell.row);
         var input = $(e.target);
         var field = input.data('field');
-        var txt = trimToNull(input.val());
+        var txt = input.val()?.trim() || null;
         var pending = this.pendingChanges[item.ProductID];
 
         var effective = this.getEffectiveValue(item, field);
@@ -197,7 +197,7 @@ export class ProductGrid extends EntityGrid<ProductRow, any> {
         else
             oldText = effective as string;
 
-        var value;
+        var value: any;
         if (field === 'UnitPrice') {
             value = parseDecimal(txt ?? '');
             if (value == null || isNaN(value)) {

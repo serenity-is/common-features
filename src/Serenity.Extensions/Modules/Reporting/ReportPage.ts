@@ -1,5 +1,4 @@
 import { Decorators, QuickSearchInput, Widget } from "@serenity-is/corelib";
-import { coalesce, trimToNull } from "@serenity-is/corelib";
 import { ReportDialog } from "./ReportDialog";
 
 @Decorators.registerClass("Serenity.Extensions.ReportPage")
@@ -20,8 +19,7 @@ export class ReportPage extends Widget<any> {
 
     protected updateMatchFlags(text: string) {
         var liList = $('.report-list', this.element).find('li').removeClass('non-match');
-        text = trimToNull(text);
-
+        text = text?.trim();
         if (!text)
             return;
 
@@ -30,7 +28,7 @@ export class ReportPage extends Widget<any> {
         var reportItems = liList.filter('.report-item');
         reportItems.each(function (ix, e) {
             var x = $(e);
-            var title = Select2.util.stripDiacritics(coalesce(x.text(), '').toUpperCase());
+            var title = Select2.util.stripDiacritics((x.text() ?? '').toUpperCase());
             if (title.indexOf(text) < 0) {
                 x.addClass('non-match');
             }

@@ -1,5 +1,4 @@
-import { Decorators, StringEditor, WX } from "@serenity-is/corelib";
-import { replaceAll, startsWith, localText, trimToNull } from "@serenity-is/corelib";
+import { Decorators, StringEditor, WX, localText, replaceAll, startsWith } from "@serenity-is/corelib";
 
 @Decorators.registerEditor('Serenity.Demo.Northwind.PhoneEditor')
 export class PhoneEditor extends StringEditor {
@@ -8,10 +7,9 @@ export class PhoneEditor extends StringEditor {
         super(input);
 
         this.addValidationRule(this.uniqueName, e => {
-            var value = trimToNull(this.get_value());
-            if (value == null) {
+            var value = this.get_value()?.trim();
+            if (!value)
                 return null;
-            }
             return PhoneEditor.validate(value, this.multiple);
         });
 
@@ -111,38 +109,32 @@ export class PhoneEditor extends StringEditor {
         var phones = replaceAll(phone, String.fromCharCode(59), String.fromCharCode(44)).split(String.fromCharCode(44));
         var result = '';
         for (var x of phones) {
-            var s = trimToNull(x);
-            if (s == null) {
+            var s = x?.trim();
+            if (!s)
                 continue;
-            }
-            if (result.length > 0) {
+            if (result.length > 0)
                 result += ', ';
-            }
             result += format(s);
         }
         return result;
     }
 
     static isValidMulti(phone: string, check: (s: string) => boolean) {
-        if (!phone) {
+        if (!phone)
             return false;
-        }
         var phones = replaceAll(phone, String.fromCharCode(59), String.fromCharCode(44)).split(String.fromCharCode(44));
         var anyValid = false;
         for (var $t1 = 0; $t1 < phones.length; $t1++) {
             var x = phones[$t1];
-            var s = trimToNull(x);
-            if (s == null) {
+            var s = x?.trim();
+            if (!s)
                 continue;
-            }
-            if (!check(s)) {
+            if (!check(s))
                 return false;
-            }
             anyValid = true;
         }
-        if (!anyValid) {
+        if (!anyValid)
             return false;
-        }
         return true;
     }
 }

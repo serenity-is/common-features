@@ -1,4 +1,4 @@
-import { Aggregators, Decorators, EntityGrid, coalesce, formatNumber, initFullHeightGridPage } from "@serenity-is/corelib";
+import { Aggregators, Decorators, EntityGrid, formatNumber, initFullHeightGridPage } from "@serenity-is/corelib";
 import { ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
 import { GroupItemMetadataProvider } from "@serenity-is/sleekgrid";
 
@@ -40,10 +40,10 @@ export class GroupingAndSummariesInGrid extends EntityGrid<ProductRow, any> {
         var columns = new ProductColumns(super.getColumns());
 
         columns.UnitsOnOrder && (columns.UnitsOnOrder.groupTotalsFormatter = (totals, col) =>
-            (totals.max ? ('max: ' + coalesce(totals.max[col.field], '')) : ''));
+            (totals.max ? ('max: ' + (totals.max[col.field] ?? '')) : ''));
 
         columns.ReorderLevel && (columns.ReorderLevel.groupTotalsFormatter = (totals, col) =>
-            (totals.avg ? ('avg: ' + coalesce(formatNumber(totals.avg[col.field], '0.'), '')) : ''));
+            (totals.avg ? ('avg: ' + (formatNumber(totals.avg[col.field], '0.') ?? '')) : ''));
 
         return columns.valueOf();
     }

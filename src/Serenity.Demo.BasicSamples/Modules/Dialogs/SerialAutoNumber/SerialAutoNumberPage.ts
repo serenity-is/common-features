@@ -1,4 +1,4 @@
-﻿import { Decorators, initFullHeightGridPage, trimToNull } from "@serenity-is/corelib";
+﻿import { Decorators, initFullHeightGridPage } from "@serenity-is/corelib";
 import { CustomerDialog, CustomerGrid, CustomerService } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
@@ -36,7 +36,7 @@ export class SerialAutoNumberDialog extends CustomerDialog {
 
     private getNextNumber() {
 
-        var val = trimToNull(this.form.CustomerID.value);
+        var val =this.form.CustomerID.value?.trim();
 
         // we will only get next number when customer ID is empty or 1 character in length
         if (!val || val.length <= 1) {

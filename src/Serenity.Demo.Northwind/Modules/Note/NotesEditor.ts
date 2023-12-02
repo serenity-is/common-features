@@ -1,8 +1,7 @@
-import { Decorators, IGetEditValue, ISetEditValue, TemplatedWidget, Toolbar } from "@serenity-is/corelib";
-import { Authorization, coalesce, confirmDialog, formatDate, formatISODateTimeUTC, insert, PropertyItem, trimToNull } from "@serenity-is/corelib";
 import { NoteRow } from "@/ServerTypes/Demo";
-import { NoteDialog } from "./NoteDialog";
+import { Authorization, Decorators, IGetEditValue, ISetEditValue, PropertyItem, TemplatedWidget, Toolbar, confirmDialog, formatDate, formatISODateTimeUTC, insert } from "@serenity-is/corelib";
 import * as DOMPurify from 'dompurify';
+import { NoteDialog } from "./NoteDialog";
 
 @Decorators.registerEditor('Serenity.Demo.Northwind.NotesEditor', [IGetEditValue, ISetEditValue])
 @Decorators.element("<div/>")
@@ -39,7 +38,7 @@ export class NotesEditor extends TemplatedWidget<any>
             for (var t1 = 0; t1 < this.items.length; t1++) {
                 var item = this.items[t1];
                 var li = $('<li/>');
-                $('<div/>').addClass('note-text').html(DOMPurify.sanitize(coalesce(item.Text, ''))).appendTo(li);
+                $('<div/>').addClass('note-text').html(DOMPurify.sanitize(item.Text ?? '')).appendTo(li);
 
                 $('<a/>').attr('href', '#').addClass('note-date')
                     .text(item.InsertUserDisplayName + ' - ' +
@@ -60,10 +59,9 @@ export class NotesEditor extends TemplatedWidget<any>
         var dlg = new NoteDialog();
         dlg.dialogTitle = 'Add Note';
         dlg.okClick = () => {
-            var text = trimToNull(dlg.text);
-            if (text == null) {
+            var text = dlg.text?.trim();
+            if (!text) 
                 return;
-            }
 
             this.items = this.items || [];
             insert(this.items, 0, {
@@ -88,10 +86,9 @@ export class NotesEditor extends TemplatedWidget<any>
         dlg.dialogTitle = 'Edit Note';
         dlg.text = old.Text;
         dlg.okClick = () => {
-            var text = trimToNull(dlg.text);
-            if (!text) {
+            var text = dlg.text?.trim();;
+            if (!text)
                 return;
-            }
 
             this.items[index].Text = text;
             this.updateContent();

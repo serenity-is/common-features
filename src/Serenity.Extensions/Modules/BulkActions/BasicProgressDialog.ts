@@ -1,5 +1,4 @@
-import { Decorators, TemplatedDialog } from "@serenity-is/corelib";
-import { localText, trimToNull } from "@serenity-is/corelib";
+import { Decorators, TemplatedDialog, localText } from "@serenity-is/corelib";
 
 @Decorators.registerClass("Serenity.Extensions.BasicProgressDialog")
 export class BasicProgressDialog extends TemplatedDialog<any> {
@@ -51,7 +50,7 @@ export class BasicProgressDialog extends TemplatedDialog<any> {
                     .attr('disabled', 'disabled')
                     .css('opacity', '0.5');
 
-                (this.element as any).dialog('option', 'title', trimToNull(this.cancelTitle) ||
+                (this.element as any).dialog('option', 'title', this.cancelTitle?.trim() ||
                     localText('Site.BasicProgressDialog.CancelTitle'));
             }
         }];

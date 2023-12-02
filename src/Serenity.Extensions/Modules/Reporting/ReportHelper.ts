@@ -1,5 +1,5 @@
 import { ToolButton } from "@serenity-is/corelib";
-import { coalesce, postToUrl } from "@serenity-is/corelib";
+import { postToUrl } from "@serenity-is/corelib";
 
 export interface ReportExecuteOptions {
     reportKey: string;
@@ -20,8 +20,8 @@ export namespace ReportHelper {
 
     export function createToolButton(options: ReportButtonOptions): ToolButton {
         return {
-            title: coalesce(options.title, 'Report'),
-            cssClass: coalesce(options.cssClass, 'print-button'),
+            title: options.title ?? 'Report',
+            cssClass: options.cssClass ?? 'print-button',
             icon: options.icon,
             onClick: () => {
                 ReportHelper.execute(options);
@@ -36,10 +36,10 @@ export namespace ReportHelper {
             url: '~/Serenity.Extensions/Report/' + (options.download ? 'Download' : 'Render'),
             params: {
                 key: options.reportKey,
-                ext: coalesce(options.extension, 'pdf'),
+                ext: options.extension ?? 'pdf',
                 opt: opt ? $.toJSON(opt) : ''
             },
-            target: coalesce(options.target, '_blank')
+            target: options.target ?? '_blank'
         });
     }
 }

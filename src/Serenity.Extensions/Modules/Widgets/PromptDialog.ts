@@ -1,5 +1,4 @@
-import { Decorators, PropertyDialog } from "@serenity-is/corelib";
-import { coalesce, localText } from "@serenity-is/corelib";
+import { Decorators, PropertyDialog, localText } from "@serenity-is/corelib";
 
 export interface PromptDialogOptions {
     cssClass?: string;
@@ -60,7 +59,7 @@ export class PromptDialog extends PropertyDialog<any, PromptDialogOptions> {
             {
                 name: "Value",
                 editorType: this.options.editorType || "String",
-                required: coalesce(this.options.required, true),
+                required: this.options.required ?? true,
                 editorParams: this.options.editorOptions
             }
         ]

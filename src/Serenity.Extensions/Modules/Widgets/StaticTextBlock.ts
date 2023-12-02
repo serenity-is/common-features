@@ -1,5 +1,4 @@
-import { Decorators, ISetEditValue, Widget } from "@serenity-is/corelib";
-import { coalesce, localText, PropertyItem } from "@serenity-is/corelib";
+import { Decorators, ISetEditValue, PropertyItem, Widget, localText } from "@serenity-is/corelib";
 
 /**
     * This is an editor widget but it only displays a text, not edits it.
@@ -23,7 +22,7 @@ export class StaticTextBlock extends Widget<StaticTextBlockOptions>
     }
 
     private updateElementContent() {
-        var txt = coalesce(this.options.text, this.value);
+        var txt = this.options.text ?? this.value;
 
         // if isLocalText is set, text is actually a local text key
         if (this.options.isLocalText)
@@ -42,7 +41,7 @@ export class StaticTextBlock extends Widget<StaticTextBlockOptions>
         */
     public setEditValue(source: any, property: PropertyItem) {
         if (this.options.text == null) {
-            this.value = coalesce(this.options.text, source[property.name]);
+            this.value = this.options.text ?? source[property.name];
             this.updateElementContent();
         }
     }

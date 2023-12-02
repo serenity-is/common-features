@@ -426,7 +426,7 @@ export declare class PromptDialog extends PropertyDialog<any, PromptDialogOption
 	protected getPropertyItems(): {
 		name: string;
 		editorType: string;
-		required: any;
+		required: boolean;
 		editorParams: any;
 	}[];
 	get value(): any;

@@ -12,10 +12,16 @@ public static partial class Shared
     {
         public static void Pack()
         {
-            if (StartProcess("dotnet", "tool update sergen", Src) != 0)
-                ExitWithError("Error while updating sergen " + SolutionFile);
-
             PatchPackageBuildProps();
+
+            if (StartProcess("dotnet", "tool update sergen --version " + SerenityVersion, Src) != 0)
+            {
+                if (StartProcess("dotnet", "tool uninstall sergen", Src) != 0)
+                    ExitWithError("Error while uninstalling sergen " + SolutionFile);
+                if (StartProcess("dotnet", "tool install sergen --version " + SerenityVersion, Src) != 0)
+                    ExitWithError("Error while updating sergen " + SolutionFile);
+            }
+
             PatchDirectoryBuildProps();
 
             CleanDirectory(PackageOutDir, true);
@@ -27,6 +33,7 @@ public static partial class Shared
                 $"-c Release -p:ContinuousIntegrationBuild=true -o \"{PackageOutDir}\"", Src) != 0)
                 ExitWithError("Error while building solution!");
 
+            if (LocalPush)
             try
             {
                 var localFeed = GetLocalNugetFeed(create: true);
@@ -44,11 +51,36 @@ public static partial class Shared
 
         static void PatchPackageBuildProps()
         {
-            var serVersion = GetLatestVersionOf(SerenityNetWebPackage);
+            if (SerenityVersion == "ws" ||
+                SerenityVersion == "workspace")
+            {
+                var xes = XElement.Parse(File.ReadAllText(PackageBuildProps));
+                SerenityVersion = xes.Descendants("Version").FirstOrDefault()?.Value?.ToString();
+            }
+            else if (string.IsNullOrEmpty(SerenityVersion) ||
+                SerenityVersion == "latest")
+            {
+                SerenityVersion = GetLatestVersionOf(SerenityNetWebPackage)?.ToString();
+            }
 
-            SerenityVersion = serVersion?.ToString();
-            if (SerenityVersion == null)
+            if (string.IsNullOrEmpty(SerenityVersion))
+            {
+                ExitWithError("Can't determine Serenity version to use!");
                 return;
+            }
+
+            if (!NuGet.Versioning.NuGetVersion.TryParse(SerenityVersion, out var serVersion))
+            {
+                ExitWithError("Can't parse Serenity version: " + SerenityVersion);
+                return;
+            }
+
+            if (PackageVersion != null &&
+                !NuGet.Versioning.NuGetVersion.TryParse(PackageVersion, out _))
+            {
+                ExitWithError("Can't parse Package version: " + PackageVersion);
+                return;
+            }
 
             if (StartProcess("git", "restore " + PackageBuildProps, Root) != 0)
                 ExitWithError("Error while restoring " + PackageBuildProps);
@@ -57,9 +89,9 @@ public static partial class Shared
 
             var xeSerenityVer = xe.Descendants("SerenityVersion").FirstOrDefault();
             var changed = false;
-            if (xeSerenityVer != null && xeSerenityVer.Value != SerenityVersion.ToString())
+            if (xeSerenityVer != null && xeSerenityVer.Value != SerenityVersion)
             {
-                xeSerenityVer.SetValue(SerenityVersion.ToString());
+                xeSerenityVer.SetValue(SerenityVersion);
                 changed = true;
             }
 
@@ -67,10 +99,12 @@ public static partial class Shared
             if (xeVersion != null)
             {
                 var value = (xeVersion.Value ?? "").Trim();
-                if (value != SerenityVersion)
+                if (value != (PackageVersion ?? SerenityVersion))
                 {
                     changed = true;
-                    if (value.Length > 0)
+                    if (PackageVersion != null)
+                        xeVersion.Value = PackageVersion;
+                    else if (value.Length > 0)
                     {
                         var projVersion = NuGet.Versioning.NuGetVersion.Parse(value);
                         if (projVersion < serVersion)
@@ -88,7 +122,7 @@ public static partial class Shared
                     else
                         xeVersion.Value = serVersion.ToString();
                 }
-                else
+                else if (PackageVersion is null)
                 {
                     xeVersion.Value = new NuGet.Versioning.NuGetVersion(serVersion.Major,
                         serVersion.Minor, serVersion.Patch, 1).ToString();

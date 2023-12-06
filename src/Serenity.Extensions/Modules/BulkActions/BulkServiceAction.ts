@@ -1,4 +1,4 @@
-﻿import { confirmDialog, Dictionary, format, notifyError, notifySuccess, notifyWarning, ServiceError, localText } from "@serenity-is/corelib";
+﻿import { Dictionary, ServiceError, confirmDialog, localText, notifyError, notifySuccess, notifyWarning, stringFormat } from "@serenity-is/corelib";
 import { BasicProgressDialog } from "./BasicProgressDialog";
 
 export class BulkServiceAction {
@@ -26,7 +26,7 @@ export class BulkServiceAction {
     }
 
     protected getConfirmationMessage(targetCount) {
-        return format(this.getConfirmationFormat(), targetCount);
+        return stringFormat(this.getConfirmationFormat(), targetCount);
     }
 
     protected confirm(targetCount, action) {
@@ -74,7 +74,7 @@ export class BulkServiceAction {
 
         title += ' (';
         if (this.successCount > 0) {
-            title += format(localText('Site.BulkServiceAction.SuccessCount'), this.successCount);
+            title += stringFormat(localText('Site.BulkServiceAction.SuccessCount'), this.successCount);
         }
 
         if (this.errorCount > 0) {
@@ -82,7 +82,7 @@ export class BulkServiceAction {
                 title += ', ';
             }
 
-            title += format(localText('Site.BulkServiceAction.ErrorCount'), this.errorCount);
+            title += stringFormat(localText('Site.BulkServiceAction.ErrorCount'), this.errorCount);
         }
 
         this.progressDialog.title = title + ')';
@@ -130,7 +130,7 @@ export class BulkServiceAction {
     }
 
     protected showAllHadErrors() {
-        notifyError(format(this.getAllHadErrorsFormat(), this.errorCount));
+        notifyError(stringFormat(this.getAllHadErrorsFormat(), this.errorCount));
     }
 
     protected getSomeHadErrorsFormat() {
@@ -138,7 +138,7 @@ export class BulkServiceAction {
     }
 
     protected showSomeHadErrors() {
-        notifyWarning(format(this.getSomeHadErrorsFormat(), this.successCount, this.errorCount));
+        notifyWarning(stringFormat(this.getSomeHadErrorsFormat(), this.successCount, this.errorCount));
     }
 
     protected getAllSuccessFormat() {
@@ -146,7 +146,7 @@ export class BulkServiceAction {
     }
 
     protected showAllSuccess() {
-        notifySuccess(format(this.getAllSuccessFormat(), this.successCount));
+        notifySuccess(stringFormat(this.getAllSuccessFormat(), this.successCount));
     }
 
     protected showResults() {

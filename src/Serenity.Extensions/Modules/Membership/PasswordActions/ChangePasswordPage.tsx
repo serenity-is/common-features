@@ -1,7 +1,6 @@
 /** @jsxImportSource jsx-dom/min */
 import { Texts } from "@/ServerTypes/Texts";
-import { PropertyPanel } from "@serenity-is/corelib";
-import { format, informationDialog, localText, resolveUrl, serviceCall } from "@serenity-is/corelib";
+import { PropertyPanel, informationDialog, localText, resolveUrl, serviceCall, stringFormat } from "@serenity-is/corelib";
 import { ChangePasswordForm } from "../../ServerTypes/Extensions/ChangePasswordForm";
 import { ChangePasswordRequest } from "../../ServerTypes/Extensions/ChangePasswordRequest";
 
@@ -23,7 +22,7 @@ class ChangePasswordPanel extends PropertyPanel<ChangePasswordRequest, any> {
 
         this.form.NewPassword.addValidationRule(this.uniqueName, () => {
             if (this.form.NewPassword.value.length < 7) {
-                return format(localText("Validation.MinRequiredPasswordLength"), 7);
+                return stringFormat(localText("Validation.MinRequiredPasswordLength"), 7);
             }
         });
 

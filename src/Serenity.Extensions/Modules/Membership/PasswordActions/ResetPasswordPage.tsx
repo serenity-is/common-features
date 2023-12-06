@@ -2,8 +2,7 @@
 import { ResetPasswordForm } from "@/ServerTypes/Extensions/ResetPasswordForm";
 import { ResetPasswordRequest } from "@/ServerTypes/Extensions/ResetPasswordRequest";
 import { Texts } from "@/ServerTypes/Texts";
-import { PropertyPanel } from "@serenity-is/corelib";
-import { format, informationDialog, resolveUrl, serviceCall } from "@serenity-is/corelib";
+import { PropertyPanel, informationDialog, resolveUrl, serviceCall, stringFormat } from "@serenity-is/corelib";
 import { ResetPasswordResponse } from "../../ServerTypes/Extensions/ResetPasswordResponse";
 import { AccountPanelTitle } from "../AccountPanelTitle";
 
@@ -30,7 +29,7 @@ export class ResetPasswordPanel extends PropertyPanel<ResetPasswordRequest, Rese
 
         this.form.NewPassword.addValidationRule(this.uniqueName, e => {
             if (this.form.NewPassword.value.length < this.options.minPasswordLength)
-                return format(Texts.Validation.MinRequiredPasswordLength, this.options.minPasswordLength);
+                return stringFormat(Texts.Validation.MinRequiredPasswordLength, this.options.minPasswordLength);
         });
 
         this.form.ConfirmPassword.addValidationRule(this.uniqueName, e => {

@@ -1,5 +1,4 @@
-import { DataGrid, ToolButton } from "@serenity-is/corelib";
-import { deepClone, format, formatDate, ListRequest, ListResponse, resolveUrl, serviceCall } from "@serenity-is/corelib";
+import { DataGrid, ListRequest, ListResponse, ToolButton, deepClone, formatDate, resolveUrl, serviceCall, stringFormat } from "@serenity-is/corelib";
 import { Column, Grid } from "@serenity-is/sleekgrid";
 
 export interface PdfExportOptions {
@@ -189,7 +188,7 @@ export namespace PdfExportHelper {
 
                 if (!options.output || options.output == "file") {
                     var fileName = options.fileName || options.reportTitle || "{0}_{1}.pdf";
-                    fileName = format(fileName, g.getTitle() || "report",
+                    fileName = stringFormat(fileName, g.getTitle() || "report",
                         formatDate(new Date(), "yyyyMMdd_HHmm"));
                     doc.save(fileName);
                     return;

@@ -1,4 +1,4 @@
-import { Decorators, LookupEditor, confirmDialog, count, first, format, formatDate, htmlEncode, initFullHeightGridPage, notifyInfo, notifySuccess, toId } from "@serenity-is/corelib";
+import { Decorators, LookupEditor, confirmDialog, count, first, formatDate, htmlEncode, initFullHeightGridPage, notifyInfo, notifySuccess, stringFormat, toId } from "@serenity-is/corelib";
 import { CustomerDialog, CustomerRow, OrderColumns, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 import { Column } from "@serenity-is/sleekgrid";
 
@@ -55,7 +55,7 @@ export class CustomLinksInGrid extends OrderGrid {
         if (target.hasClass("customer-link")) {
             e.preventDefault();
 
-            let message = format(
+            let message = stringFormat(
                 "<p>You have clicked an order from customer: {0}.</p>" +
                 "<p>If you click Yes, i'll open Customer dialog.</p>" +
                 "<p>If you click No, i'll open Order dialog.</p>",
@@ -127,7 +127,7 @@ export class CustomLinksInGrid extends OrderGrid {
             var date = formatDate(item.OrderDate);
 
             // ask for confirmation
-            confirmDialog(format("You clicked edit link for order with ID: {0} and Date: {1}. Should i open that order?",
+            confirmDialog(stringFormat("You clicked edit link for order with ID: {0} and Date: {1}. Should i open that order?",
                 item.OrderID, date), () => {
                     new OrderDialog().loadByIdAndOpenDialog(item.OrderID);
                 });

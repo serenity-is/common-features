@@ -51,16 +51,17 @@ public static partial class Shared
 
         static void PatchPackageBuildProps()
         {
-            if (SerenityVersion == "ws" ||
-                SerenityVersion == "workspace")
-            {
-                var xes = XElement.Parse(File.ReadAllText(PackageBuildProps));
-                SerenityVersion = xes.Descendants("Version").FirstOrDefault()?.Value?.ToString();
-            }
-            else if (string.IsNullOrEmpty(SerenityVersion) ||
-                SerenityVersion == "latest")
+            if (string.Equals(SerenityVersion, "latest", StringComparison.OrdinalIgnoreCase) ||
+                (string.IsNullOrEmpty(SerenityVersion) && !IsPatch))
             {
                 SerenityVersion = GetLatestVersionOf(SerenityNetWebPackage)?.ToString();
+            }
+            else if ((IsPatch && string.IsNullOrEmpty(SerenityVersion)) ||
+                string.Equals(SerenityVersion, "ws", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(SerenityVersion, "workspace", StringComparison.OrdinalIgnoreCase))
+            {
+                var xes = XElement.Parse(File.ReadAllText(SerenityPackageBuildProps));
+                SerenityVersion = xes.Descendants("Version").FirstOrDefault()?.Value?.ToString();
             }
 
             if (string.IsNullOrEmpty(SerenityVersion))
@@ -143,9 +144,9 @@ public static partial class Shared
 
             var xeSerenityVer = xe.Descendants("SerenityVersion").FirstOrDefault();
             var changed = false;
-            if (xeSerenityVer != null && xeSerenityVer.Value != SerenityVersion.ToString())
+            if (xeSerenityVer != null && xeSerenityVer.Value != SerenityVersion)
             {
-                xeSerenityVer.SetValue(SerenityVersion.ToString());
+                xeSerenityVer.SetValue(SerenityVersion);
                 changed = true;
             }
 

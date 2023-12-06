@@ -12,6 +12,7 @@ public static partial class Shared
     public static string PackageBuildProps => Path.Combine(Root, "build", "Package.Build.props");
     public static string SerenityPackageBuildProps => Path.Combine(Root, "..", "Serenity", "build", "Package.Build.props");
     public static string DirectoryBuildProps => Path.Combine(Src, "Directory.Build.props");
+    public static bool IsPatch { get; set; } = false;
     public static string SerenityVersion { get; set; }
     public static string PackageVersion { get; set; }
     public static bool LocalPush { get; set; } = true;
@@ -21,7 +22,8 @@ public static partial class Shared
     {
         Shared.SerenityVersion = arguments.GetString(["serenity-version", "sv"]);
         Shared.PackageVersion = arguments.GetString(["version", "v"]);
-        Shared.LocalPush = arguments.GetString(["local-push", "localpush", "lp"]) != "false";
+        Shared.LocalPush = arguments.GetBoolean(["local-push", "localpush", "lp"]) ?? true;
+        Shared.IsPatch = arguments.GetBoolean(["patch"]) ?? false;
         return arguments.GetCommand() ?? "pack";
     }
 }

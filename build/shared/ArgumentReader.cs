@@ -43,11 +43,15 @@ public partial class ArgumentReader(IEnumerable<string> arguments)
     }
 
     private IEnumerable<(string name, string value)> EnumerateValueArguments(
-        string[] names, bool required)
+        string[] names, bool? required)
     {
         ArgumentNullException.ThrowIfNull(names);
         if (names.Length == 0)
             throw new ArgumentNullException(nameof(names));
+
+        bool isBoolean = required == null;
+        static bool isTrue(string val) => string.Equals(val, "true", StringComparison.OrdinalIgnoreCase);
+        static bool isFalse(string val) => string.Equals(val, "false", StringComparison.OrdinalIgnoreCase);
 
         int i = 0;
         while (i < arguments.Count)
@@ -62,8 +66,15 @@ public partial class ArgumentReader(IEnumerable<string> arguments)
                     if (i < arguments.Count &&
                         !IsSwitch(arguments[i]))
                     {
-                        value = arguments[i];
-                        arguments.RemoveAt(i);
+                        if (!isBoolean || isTrue(arguments[i]) || isFalse(arguments[i]))
+                        {
+                            value = arguments[i];
+                            arguments.RemoveAt(i);
+                        }
+                    }
+                    else if (isBoolean)
+                    {
+                        value = "true";
                     }
                     else
                     {
@@ -72,7 +83,16 @@ public partial class ArgumentReader(IEnumerable<string> arguments)
                     }
                 }
 
-                if (required &&
+                if (isBoolean)
+                {
+                    if (string.IsNullOrEmpty(value) ||
+                        (!isTrue(value) && !isFalse(value)))
+                        throw new ArgumentException($"Only true/false can be passed when using " +
+                            $"the switch '{name}'!", name);
+
+                    value = isTrue(value) ? "true" : "false";
+                }
+                else if (required == true &&
                     string.IsNullOrEmpty(value))
                     throw new ArgumentException($"A value is required when using " +
                         $"the switch '{name}'!", name);
@@ -109,6 +129,21 @@ public partial class ArgumentReader(IEnumerable<string> arguments)
         }
 
         return null;
+    }
+
+    public bool? GetBoolean(string[] names)
+    {
+        string result = null;
+        foreach (var (name, value) in EnumerateValueArguments(names, required: null))
+        {
+            if (result != null &&
+                value != result)
+                throw new ArgumentException($"The switch '{name}' can only be specified once!", name);
+
+            result = value;
+        }
+
+        return result == null ? null : result == "true";
     }
 
     public string GetString(string[] names, bool required = true)

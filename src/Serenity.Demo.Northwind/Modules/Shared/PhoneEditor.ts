@@ -1,4 +1,4 @@
-import { Decorators, StringEditor, WX, localText, replaceAll, startsWith } from "@serenity-is/corelib";
+import { Decorators, StringEditor, WX, localText, replaceAll } from "@serenity-is/corelib";
 
 @Decorators.registerEditor('Serenity.Demo.Northwind.PhoneEditor')
 export class PhoneEditor extends StringEditor {
@@ -67,11 +67,11 @@ export class PhoneEditor extends StringEditor {
             return false;
         }
 
-        if (startsWith(phone, '0')) {
+        if (phone.startsWith('0')) {
             phone = phone.substring(1);
         }
 
-        if (startsWith(phone, '(') && phone.charAt(4) === ')') {
+        if (phone.startsWith('(') && phone.charAt(4) === ')') {
             phone = phone.substr(1, 3) + phone.substring(5);
         }
 
@@ -79,7 +79,7 @@ export class PhoneEditor extends StringEditor {
             return false;
         }
 
-        if (startsWith(phone, '0')) {
+        if (phone.startsWith('0')) {
             return false;
         }
 
@@ -98,7 +98,7 @@ export class PhoneEditor extends StringEditor {
             return phone;
         }
         phone = replaceAll(replaceAll(replaceAll(replaceAll(phone, ' ', ''), '-', ''), '(', ''), ')', '');
-        if (startsWith(phone, '0')) {
+        if (phone.startsWith('0')) {
             phone = phone.substring(1);
         }
         phone = '(' + phone.substr(0, 3) + ') ' + phone.substr(3, 3) + '-' + phone.substr(6, 2) + phone.substr(8, 2);

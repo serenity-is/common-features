@@ -28,7 +28,8 @@ export class InitialValuesForQuickFilters extends OrderGrid {
         // quick filter init method is a good place to set initial
         // value for a quick filter editor, just after it is created
 
-        first(filters, x => x.field == fld.OrderDate).init = w => {
+        let orderDate = filters.find(x => x.field === fld.OrderDate);
+        orderDate && (orderDate.init = w => {
             // w is a reference to the editor for this quick filter widget
             // here we cast it to DateEditor, and set its value as date.
             // note that in Javascript, months are 0 based, so date below
@@ -40,12 +41,13 @@ export class InitialValuesForQuickFilters extends OrderGrid {
             // need to find its next sibling element by its class
             let endDate = w.element.nextAll(".s-DateEditor").getWidget(DateEditor);
             endDate.valueAsDate = new Date(new Date().getFullYear(), 10, 1);
-        };
+        });
 
-        first(filters, x => x.field == fld.ShippingState).init = w => {
+        let shippingState = filters.find(x => x.field === fld.ShippingState);
+        shippingState && (shippingState.init = w => {
             // enum editor has a string value, so need to call toString()
             (w as EnumEditor).value = OrderShippingState.NotShipped.toString()
-        };
+        });
 
         return filters;
     }

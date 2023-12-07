@@ -1,4 +1,4 @@
-﻿#if IsTemplateBuild
+#if IsTemplateBuild
 using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Net.Http;

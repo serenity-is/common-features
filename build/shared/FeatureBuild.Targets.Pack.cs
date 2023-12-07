@@ -14,13 +14,7 @@ public static partial class Shared
         {
             PatchPackageBuildProps();
 
-            if (StartProcess("dotnet", "tool update sergen --version " + SerenityVersion, Src) != 0)
-            {
-                if (StartProcess("dotnet", "tool uninstall sergen", Src) != 0)
-                    ExitWithError("Error while uninstalling sergen " + SolutionFile);
-                if (StartProcess("dotnet", "tool install sergen --version " + SerenityVersion, Src) != 0)
-                    ExitWithError("Error while updating sergen " + SolutionFile);
-            }
+            UpdateSergen(Src, SerenityVersion);
 
             PatchDirectoryBuildProps();
 

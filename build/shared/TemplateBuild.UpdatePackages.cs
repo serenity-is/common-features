@@ -1,7 +1,8 @@
-﻿#if IsTemplateBuild
+#if IsTemplateBuild
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
@@ -31,8 +32,9 @@ public static partial class Shared
     {
         get
         {
-            yield return "Serenity.Scripts";
             yield return "Serenity.Net.Web";
+            yield return "Serenity.Scripts";
+            yield return "Serenity.Assets";
         }
     }
 
@@ -40,24 +42,32 @@ public static partial class Shared
     {
         get
         {
-            yield return "Serenity.Assets";
+            yield break;
         }
     }
 
     static void UpdateSerenityPackages()
     {
-        var serenityWebVersion = GetLatestVersionOf("Serenity.Net.Web");
-        if (serenityWebVersion != null)
+        string serenityVersion;
+        if (IsPatch)
+        {
+            var xes = XElement.Parse(File.ReadAllText(SerenityPackageBuildProps));
+            serenityVersion = xes.Descendants("Version").FirstOrDefault()?.Value?.ToString();
+        }
+        else
+            serenityVersion = GetLatestVersionOf("Serenity.Net.Web")?.ToString();
+
+        if (!string.IsNullOrEmpty(serenityVersion))
         {
             foreach (var package in SerenityPackagesWithSameVersion)
-                PatchPackageVersion(package, serenityWebVersion.ToString());
+                PatchPackageVersion(package, serenityVersion);
         }
 
         foreach (var package in SerenityPackagesWithUniqueVersion)
         {
-            var pkgVer = GetLatestVersionOf(package);
+            var pkgVer = IsPatch ? serenityVersion : GetLatestVersionOf(package)?.ToString();
             if (pkgVer != null)
-                PatchPackageVersion(package, pkgVer.ToString());
+                PatchPackageVersion(package, pkgVer);
         }
     }
 
@@ -72,21 +82,67 @@ public static partial class Shared
 
     static void UpdateCommonAndProPackages()
     {
+        string cfPackageVersion = null;
+        string proPackageVersion = null;
+        string bizPackageVersion = null;
+        string entPackageVersion = null;
+
+        if (IsPatch)
+        {
+            var propsFile = Path.Combine(Root, "common-features", "build", "Package.Build.props");
+            var propsRoot = XElement.Parse(File.ReadAllText(propsFile));
+            cfPackageVersion = propsRoot.Descendants("Version").FirstOrDefault()?.Value;
+
+            propsFile = Path.Combine(Root, "pro-features", "build", "Package.Build.props");
+            if (File.Exists(propsFile))
+            {
+                propsRoot = XElement.Parse(File.ReadAllText(propsFile));
+                proPackageVersion = propsRoot.Descendants("Version").FirstOrDefault()?.Value;
+            }
+
+            propsFile = Path.Combine(Root, "business-features", "build", "Package.Build.props");
+            if (File.Exists(propsFile))
+            {
+                propsRoot = XElement.Parse(File.ReadAllText(propsFile));
+                bizPackageVersion = propsRoot.Descendants("Version").FirstOrDefault()?.Value;
+            }
+
+            propsFile = Path.Combine(Root, "enterprise-features", "build", "Package.Build.props");
+            if (File.Exists(propsFile))
+            {
+                propsRoot = XElement.Parse(File.ReadAllText(propsFile));
+                entPackageVersion = propsRoot.Descendants("Version").FirstOrDefault()?.Value;
+            }
+        }
+
+        string getPackageVersion(string package)
+        {
+            if (!IsPatch)
+                return GetLatestVersionOf(package)?.ToString();
+
+            if (IsCommonPackage(package))
+                return cfPackageVersion;
+
+            if (File.Exists(Path.Combine(Root, "business-features", "src", package, package + ".csproj")))
+                return bizPackageVersion;
+
+            if (File.Exists(Path.Combine(Root, "enterprise-features", "src", package, package + ".csproj")))
+                return entPackageVersion;
+
+            return proPackageVersion;
+        }
+
         var packages = ParsePackages(ProjectFile);
         foreach (var package in packages)
         {
-            if (IsCommonPackage(package.Item1))
-            {
-                var cmnVer = GetLatestVersionOf(package.Item1);
-                if (cmnVer != null)
-                    PatchPackageVersion(package.Item1, cmnVer.ToString());
-            }
-            else if (IsProPackage(package.Item1))
-            {
-                var proVer = GetLatestVersionOf(package.Item1);
-                if (proVer != null)
-                    PatchPackageVersion(package.Item1, proVer.ToString());
-            }
+            string packageId = package.Item1;
+            if (!IsCommonPackage(packageId) &&
+                !IsProPackage(packageId))
+                continue;
+
+            string version = getPackageVersion(packageId);
+            if (!string.IsNullOrEmpty(version))
+                PatchPackageVersion(packageId, version);
         }
     }
 

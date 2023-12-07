@@ -1,4 +1,4 @@
-﻿#if IsTemplateBuild
+#if IsTemplateBuild
 using System.IO;
 
 namespace Build;
@@ -24,7 +24,19 @@ public static partial class Shared
     public static string PackagePatchFolder => Path.Combine(TemporaryFilesRoot, ProjectName);
     public static string PackageJsonCopy => Path.Combine(PackagePatchFolder, "package.json");
     public static string PackageJsonCopyLock => Path.Combine(PackagePatchFolder, "package-lock.json");
+    public static string TemplateVersion { get; set; }
     public static string TemplateZipFolder => Path.Combine(TemporaryFilesRoot, ProjectId);
     public static string TemplateZipWebFolder => Path.Combine(TemporaryFilesRoot, ProjectId, ProjectName);
+    public static string SerenityPackageBuildProps => Path.Combine(Root, "Serenity", "build", "Package.Build.props");
+    public static bool IsPatch { get; set; } = false;
+    public static bool LocalPush { get; set; } = false;
+
+    public static string GetTarget(ArgumentReader arguments)
+    {
+        Shared.TemplateVersion = arguments.GetString(["version", "v"]);
+        Shared.LocalPush = arguments.GetBoolean(["local-push", "localpush", "lp"]) ?? true;
+        Shared.IsPatch = arguments.GetBoolean(["patch"]) ?? false;
+        return arguments.GetCommand() ?? "vsix";
+    }
 }
 #endif

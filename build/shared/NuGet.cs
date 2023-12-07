@@ -14,7 +14,7 @@ namespace Build;
 
 public static partial class Shared
 {
-    static readonly string[] LocalFeedNames = new string[] { "MyPackages" };
+    static readonly string[] LocalFeedNames = ["MyPackages"];
     const string NugetOrgReadSource = "https://api.nuget.org/v3/index.json";
     public const string NugetOrgPushSource = "https://www.nuget.org/api/v2/package";
 
@@ -138,15 +138,14 @@ public static partial class Shared
     }
 
     private static SourceCacheContext sourceCacheContext;
-    private static Dictionary<string, AutoCompleteResource> findPackageByIdSource = new();
+    private static readonly Dictionary<string, AutoCompleteResource> findPackageByIdSource = [];
 
     private static NuGetVersion GetLatestVersionOf(PackageSource packageSource,
         string sourceKey, string packageId)
     {
         ILogger logger = NullLogger.Instance;
         CancellationToken cancellationToken = CancellationToken.None;
-        if (sourceCacheContext is null)
-            sourceCacheContext = new SourceCacheContext().WithRefreshCacheTrue();
+        sourceCacheContext ??= new SourceCacheContext().WithRefreshCacheTrue();
 
         var sourceCacheKey = packageSource?.Source ?? sourceKey;
         if (!findPackageByIdSource.TryGetValue(sourceCacheKey,
@@ -165,6 +164,16 @@ public static partial class Shared
             cancellationToken).GetAwaiter().GetResult();
 
         return versions.Where(x => !x.IsPrerelease).Max(x => x);
+    }
+    public static void UpdateSergen(string dir, string targetVersion)
+    {
+        if (StartProcess("dotnet", "tool update sergen --version " + targetVersion, dir) != 0)
+        {
+            if (StartProcess("dotnet", "tool uninstall sergen", dir) != 0)
+                ExitWithError("Error while uninstalling sergen at " + dir);
+            if (StartProcess("dotnet", "tool install sergen --version " + targetVersion, dir) != 0)
+                ExitWithError("Error while updating sergen at " + dir);
+        }
     }
 }
 #endif

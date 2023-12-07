@@ -1,4 +1,4 @@
-﻿#if IsTemplateBuild
+#if IsTemplateBuild
 using System.IO;
 using System.IO.Compression;
 
@@ -25,15 +25,14 @@ public static partial class Shared
 
             CleanDirectory(TemporaryFilesRoot, ensure: true);
 
-            var initialVersion = PatchVSIXManifest(projectPackages);
+            var initialVersion = PatchVSIXManifest(projectPackages, out string serenityVersion);
             SetInitialVersionInSergenJson(initialVersion);
             SetTemplatesPackageVersion(initialVersion);
 
             if (StartProcess("dotnet", "restore " + Path.GetFileName(ProjectFile), ProjectFolder) != 0)
                 ExitWithError("Error while restoring " + ProjectFile);
 
-            if (StartProcess("dotnet", "tool update sergen", ProjectFolder) != 0)
-                ExitWithError("Error while sergen tool updating " + ProjectFile);
+            UpdateSergen(ProjectFolder, serenityVersion);
 
             if (!IsStartSharp)
             {

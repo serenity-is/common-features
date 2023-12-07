@@ -56,13 +56,13 @@ public static partial class Shared
                 string feature;
                 int end;
                 int eelse;
-                line = line.TrimStart().Substring(pattern.prefix.Length);
+                line = line.TrimStart()[pattern.prefix.Length..];
 
                 var endidx = line.LastIndexOf(pattern.suffix);
                 if (endidx < 0)
                     break;
 
-                feature = line.Substring(0, endidx).Trim();
+                feature = line[..endidx].Trim();
                 end = lines.FindIndex(start, x => x.Trim().StartsWith(string.Format(pattern.ending, feature)));
                 if (end < 0)
                     break;
@@ -87,22 +87,22 @@ public static partial class Shared
                 var z = end;
                 if (eelse >= 0)
                 {
-                    bool commentedElse = pattern.ending.IndexOf("{0}") >= 0;
+                    bool commentedElse = pattern.ending.Contains("{0}", StringComparison.CurrentCulture);
 
                     lines.RemoveAt(eelse);
                     z = eelse;
                     for (var l = eelse; l < end - 1; l++)
                     {
                         var e = lines[l];
-                        if (pattern.prefix.StartsWith("<"))
+                        if (pattern.prefix.StartsWith('<'))
                         {
                             var cidx = e.IndexOf("<!--");
                             if (commentedElse && cidx >= 0)
                             {
-                                e = e.Substring(0, cidx) + e.Substring(cidx + 4);
+                                e = e[..cidx] + e[(cidx + 4)..];
                                 cidx = e.LastIndexOf("-->");
                                 if (cidx >= 0)
-                                    e = e.Substring(0, cidx);
+                                    e = e[..cidx];
                                 lines[l] = e;
                             }
                         }
@@ -110,7 +110,7 @@ public static partial class Shared
                         {
                             var cidx = e.IndexOf("//");
                             if (commentedElse && cidx >= 0)
-                                lines[l] = e.Substring(0, cidx) + e.Substring(cidx + 2);
+                                lines[l] = e[..cidx] + e[(cidx + 2)..];
                         }
                     }
                 }

@@ -33,6 +33,7 @@ public static partial class Shared
                 ExitWithError("Error while restoring " + ProjectFile);
 
             UpdateSergen(ProjectFolder, serenityVersion);
+            PatchPackageJsonCopy();
 
             if (!IsStartSharp)
             {
@@ -46,7 +47,6 @@ public static partial class Shared
                 File.Copy(Path.Combine(VSIXTemplateFolder, ProjectId + ".vstemplate"),
                     Path.Combine(TemplateZipFolder, ProjectId + ".vstemplate"));
 
-                PatchPackageJsonCopy();
                 File.Copy(PackageJsonCopy, Path.Combine(TemplateZipWebFolder, Path.GetFileName(PackageJsonCopy)), overwrite: true);
                 File.Copy(PackageJsonCopyLock, Path.Combine(TemplateZipWebFolder, Path.GetFileName(PackageJsonCopyLock)), overwrite: true);
 

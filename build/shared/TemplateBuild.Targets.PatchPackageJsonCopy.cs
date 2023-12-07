@@ -41,13 +41,11 @@ public static partial class Shared
             if (File.Exists(PackageJsonCopyLock))
                 File.Delete(PackageJsonCopyLock);
 
-            if (StartProcess("cmd", "/c npm i --ignore-scripts", PackagePatchFolder) != 0)
+            if (StartProcess("cmd", "/c npm i --ignore-scripts --package-lock-only", PackagePatchFolder) != 0)
             {
                 Console.Error.WriteLine("Error while npm install at " + PackagePatchFolder);
                 Environment.Exit(1);
             }
-
-            Directory.Delete(Path.Combine(PackagePatchFolder, "node_modules"), recursive: true);
         }
     }
 }

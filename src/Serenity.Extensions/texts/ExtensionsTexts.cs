@@ -15,17 +15,17 @@ public static class ExtensionsTexts
                 public static readonly LocalText PasswordNotSet = "Looks like you don't have a password set";
                 public static readonly LocalText SetPassword = "Set Password";
                 public static readonly LocalText SetPasswordInfo = "Looks like you don't have a password set in your account. Click button to get an email for setting your password.";
-                public static readonly LocalText SetPasswordSuccess = "We have sent you an e-mail with password reset instructions.";
-                public static readonly LocalText SetPasswordButton = "Send e-mail to reset password";
+                public static readonly LocalText SetPasswordSuccess = "We have sent you an email with password reset instructions.";
+                public static readonly LocalText SetPasswordButton = "Send email to reset password";
                 public static readonly LocalText ElevatedActions = "You need to set a password for your account to make elevated actions.";
             }
 
             public static class ForgotPassword
             {
-                public static readonly LocalText FormInfo = "Please enter the e-mail you used to signup.";
+                public static readonly LocalText FormInfo = "Please enter the email you used to signup.";
                 public static readonly LocalText FormTitle = "Forgot My Password";
                 public static readonly LocalText SubmitButton = "Reset My Password";
-                public static readonly LocalText SuccessMessage = "If this user exists, we have sent you an e-mail with password reset instructions.";
+                public static readonly LocalText SuccessMessage = "If this user exists, we have sent you an email with password reset instructions.";
             }
 
             public static class ResetPassword

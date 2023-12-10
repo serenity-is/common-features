@@ -37,15 +37,6 @@ public static partial class Shared
 
             content = root.ToString().Replace("\r", "");
             File.WriteAllText(PackageJsonCopy, content);
-
-            if (File.Exists(PackageJsonCopyLock))
-                File.Delete(PackageJsonCopyLock);
-
-            if (StartProcess("cmd", "/c npm i --ignore-scripts --package-lock-only", PackagePatchFolder) != 0)
-            {
-                Console.Error.WriteLine("Error while npm install at " + PackagePatchFolder);
-                Environment.Exit(1);
-            }
         }
     }
 }

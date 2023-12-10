@@ -23,7 +23,6 @@ public static partial class Shared
     public static string TemporaryFilesRoot => Path.Combine(VSIXTemplateFolder, "obj");
     public static string PackagePatchFolder => Path.Combine(TemporaryFilesRoot, ProjectName);
     public static string PackageJsonCopy => Path.Combine(PackagePatchFolder, "package.json");
-    public static string PackageJsonCopyLock => Path.Combine(PackagePatchFolder, "package-lock.json");
     public static string TemplateVersion { get; set; }
     public static string TemplateZipFolder => Path.Combine(TemporaryFilesRoot, ProjectId);
     public static string TemplateZipWebFolder => Path.Combine(TemporaryFilesRoot, ProjectId, ProjectName);

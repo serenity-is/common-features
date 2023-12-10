@@ -1,6 +1,7 @@
 <Project>
-  <ItemGroup>
+  <ItemGroup>   
     <TypeScriptCompile Remove="node_modules\**;obj\**;out\**;dist\**"></TypeScriptCompile>
+    <ProjectCapability Include="TypeScriptNuGet" />
   </ItemGroup>
   <Import Project="$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.targets" />
   <Import Project="$(SerenitySrc)RestoreNpmPackages.targets" />

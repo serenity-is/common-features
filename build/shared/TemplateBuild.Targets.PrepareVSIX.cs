@@ -48,7 +48,6 @@ public static partial class Shared
                     Path.Combine(TemplateZipFolder, ProjectId + ".vstemplate"));
 
                 File.Copy(PackageJsonCopy, Path.Combine(TemplateZipWebFolder, Path.GetFileName(PackageJsonCopy)), overwrite: true);
-                File.Copy(PackageJsonCopyLock, Path.Combine(TemplateZipWebFolder, Path.GetFileName(PackageJsonCopyLock)), overwrite: true);
 
                 var templateZip = Path.Combine(VSIXProjectTemplates, TemplateId + ".Template.zip");
                 if (File.Exists(templateZip))

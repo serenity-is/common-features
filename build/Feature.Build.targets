@@ -21,7 +21,7 @@
           Condition="'%(TypeScriptCompile.Identity)' != 'wwwroot\index.d.ts'" />
     </ItemGroup>
   </Target>
-  <Target Name="CompileProjectTSConfig" AfterTargets="AfterBuild" DependsOnTargets="NpmInstall;RestoreTypings;CalculateTSBuildInputs;"
+  <Target Name="CompileProjectTSConfig" AfterTargets="AfterBuild" DependsOnTargets="NpmInstall;RestoreNodeTypes;CalculateTSBuildInputs;"
           Condition="Exists('tsconfig.json') And '$(BuildingProject)' != 'false' And '$(DesignTimeBuild)' != 'true'"
           Inputs="@(TSBuildInputs)" Outputs="@(TSBuildOutputs)">
     <Message Text="Executing TypeScript compiler for $(ProjectName)..." Importance="high"></Message>

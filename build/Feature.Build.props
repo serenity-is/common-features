@@ -21,8 +21,8 @@
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <DefaultItemExcludes>node_modules\**;$(DefaultItemExcludes);package*.json;sergen.json;tsconfig.json;libman.json;tsbuild.js;wwwroot\index.d.ts;wwwroot\**\*.less</DefaultItemExcludes>
     <AddAutoRefs>true</AddAutoRefs>
-    <RestoreTypings>false</RestoreTypings>
     <RestoreNodeTypes>false</RestoreNodeTypes>
+    <RestoreTypings>false</RestoreTypings>
     <DefineConstants Condition="'$(IsPublicDemo)'=='true'">$(DefineConstants);IsPublicDemo</DefineConstants>
     <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
     <UseArtifactsOutput>true</UseArtifactsOutput>

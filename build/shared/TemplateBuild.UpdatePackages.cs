@@ -33,7 +33,7 @@ public static partial class Shared
         get
         {
             yield return "Serenity.Net.Web";
-            yield return "Serenity.Scripts";
+            yield return "Serenity.Corelib";
             yield return "Serenity.Assets";
         }
     }

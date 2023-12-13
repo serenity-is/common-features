@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Build;
 
@@ -32,11 +33,60 @@ public static partial class Shared
 
             File.WriteAllText(PackageJsonFile, root.ToString().Replace("\r", ""));
 
+            foreach (var property in dependencies.Properties().ToList())
+            {
+                if (!property.Name.StartsWith("@serenity-is/") ||
+                    property.Value.Value<string>()?.StartsWith("file:") != true)
+                    continue;
+
+                dependencies[property.Name] = "file:./node_modules/.dotnet/" + GetPossibleNuGetPackageId(property.Name);
+            }
             dependencies["@serenity-is/corelib"] = IsPatch ? patchVersion("corelib") :
                 GetLatestNpmPackageVersion("@serenity-is/corelib");
 
             content = root.ToString().Replace("\r", "");
             File.WriteAllText(PackageJsonCopy, content);
+
+            if (File.Exists(PackageJsonCopyLock))
+                File.Delete(PackageJsonCopyLock);
+
+            var dotnetDir = Path.Combine(PackagePatchFolder, "node_modules", ".dotnet");
+            if (!Directory.Exists(dotnetDir))
+            {
+                if (!Directory.Exists(Path.GetDirectoryName(dotnetDir)))
+                    Directory.CreateDirectory(Path.GetDirectoryName(dotnetDir));
+                Directory.CreateSymbolicLink(dotnetDir, Path.Combine(Path.GetDirectoryName(PackageJsonFile), "node_modules", ".dotnet"));
+            }
+
+            if (StartProcess("cmd", "/c npm i --ignore-scripts --package-lock-only", PackagePatchFolder) != 0)
+            {
+                Console.Error.WriteLine("Error while npm install at " + PackagePatchFolder);
+                Environment.Exit(1);
+            }
+        }
+
+        private static readonly char[] packageIdSplitChars = ['-', '.', '/'];
+        private static string GetPossibleNuGetPackageId(string moduleName)
+        {
+            moduleName = moduleName.ToLowerInvariant();
+
+            string toNamespace(string src)
+            {
+                return string.Join(".", src.Split(packageIdSplitChars,
+                    StringSplitOptions.RemoveEmptyEntries));
+            }
+
+            var idx = moduleName.IndexOf('/');
+            if (idx < 0)
+                return toNamespace(moduleName);
+
+            var company = moduleName[1..idx];
+            if (company == "serenity-is")
+                company = "serenity";
+            else if (company.Length > 0)
+                company = toNamespace(company);
+
+            return company + "." + toNamespace(moduleName[(idx + 1)..]);
         }
     }
 }

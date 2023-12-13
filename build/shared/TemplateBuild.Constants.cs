@@ -21,8 +21,9 @@ public static partial class Shared
     public static string TemplatesPackage => IsStartSharp ? "Serenity.Pro.Templates" : "Serene.Templates";
     public static string TemplatesProject => Path.Combine(VSIXTemplateFolder, TemplatesPackage, TemplatesPackage + ".csproj");
     public static string TemporaryFilesRoot => Path.Combine(VSIXTemplateFolder, "obj");
-    public static string PackagePatchFolder => Path.Combine(TemporaryFilesRoot, ProjectName);
+    public static string PackagePatchFolder => Path.Combine(Root, ".vs", "package-json-patch");
     public static string PackageJsonCopy => Path.Combine(PackagePatchFolder, "package.json");
+    public static string PackageJsonCopyLock => Path.Combine(PackagePatchFolder, "package-lock.json");
     public static string TemplateVersion { get; set; }
     public static string TemplateZipFolder => Path.Combine(TemporaryFilesRoot, ProjectId);
     public static string TemplateZipWebFolder => Path.Combine(TemporaryFilesRoot, ProjectId, ProjectName);

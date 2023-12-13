@@ -1,4 +1,4 @@
-﻿#if IsTemplateBuild
+#if IsTemplateBuild
 namespace Build;
 
 public static partial class Shared
@@ -7,7 +7,6 @@ public static partial class Shared
     {
         public static void Clean()
         {
-            CleanDirectory(PackagePatchFolder, ensure: true);
             CleanDirectory(TemplateZipFolder, ensure: true);
             CleanDirectory(VSIXOutputFolder, ensure: true);
         }

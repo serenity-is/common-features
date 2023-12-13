@@ -58,7 +58,7 @@ public static partial class Shared
                 Directory.CreateSymbolicLink(dotnetDir, Path.Combine(Path.GetDirectoryName(PackageJsonFile), "node_modules", ".dotnet"));
             }
 
-            if (StartProcess("cmd", "/c npm i --ignore-scripts --package-lock-only", PackagePatchFolder) != 0)
+            if (StartProcess("cmd", "/c npm i --ignore-scripts", PackagePatchFolder) != 0)
             {
                 Console.Error.WriteLine("Error while npm install at " + PackagePatchFolder);
                 Environment.Exit(1);

@@ -40,7 +40,7 @@ public static partial class Shared
                      property.Value.Value<string>()?.StartsWith("../") != true))
                     continue;
 
-                dependencies[property.Name] = "file:./node_modules/.dotnet/" + GetPossibleNuGetPackageId(property.Name);
+                dependencies[property.Name] = "./node_modules/.dotnet/" + GetPossibleNuGetPackageId(property.Name);
             }
 
             content = root.ToString().Replace("\r", "");

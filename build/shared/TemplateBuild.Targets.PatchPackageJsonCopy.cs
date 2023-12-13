@@ -41,8 +41,6 @@ public static partial class Shared
 
                 dependencies[property.Name] = "file:./node_modules/.dotnet/" + GetPossibleNuGetPackageId(property.Name);
             }
-            dependencies["@serenity-is/corelib"] = IsPatch ? patchVersion("corelib") :
-                GetLatestNpmPackageVersion("@serenity-is/corelib");
 
             content = root.ToString().Replace("\r", "");
             File.WriteAllText(PackageJsonCopy, content);

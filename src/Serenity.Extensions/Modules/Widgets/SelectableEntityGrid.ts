@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid } from "@serenity-is/corelib";
-import { Grid, GridOptions } from "@serenity-is/sleekgrid";
+import { Grid, GridOptions, RowSelectionModel } from "@serenity-is/sleekgrid";
 
 @Decorators.registerClass("Serenity.Extensions.SelectableEntityGrid")
 export class SelectableEntityGrid<TItem, TOptions> extends EntityGrid<TItem, TOptions> {
@@ -14,7 +14,7 @@ export class SelectableEntityGrid<TItem, TOptions> extends EntityGrid<TItem, TOp
 
     protected createSlickGrid(): Grid {
         var grid = super.createSlickGrid();
-        grid.setSelectionModel(new Slick.RowSelectionModel());
+        grid.setSelectionModel(new RowSelectionModel());
         return grid;
     }
 }

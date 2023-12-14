@@ -21,7 +21,7 @@ importers:
         version: link:../Serenity.Extensions
       '@serenity-is/sleekgrid':
         specifier: latest
-        version: 1.6.3
+        version: 1.6.4
       chart.js:
         specifier: 4.1.1
         version: 4.1.1
@@ -43,7 +43,7 @@ importers:
         version: link:../Serenity.Extensions
       '@serenity-is/sleekgrid':
         specifier: latest
-        version: 1.6.3
+        version: 1.6.4
       '@types/dompurify':
         specifier: 2.4.0
         version: 2.4.0
@@ -62,7 +62,7 @@ importers:
         version: link:../../../Serenity/packages/corelib
       '@serenity-is/sleekgrid':
         specifier: latest
-        version: 1.6.3
+        version: 1.6.4
       jsx-dom:
         specifier: 8.0.7
         version: 8.0.7
@@ -294,8 +294,8 @@ packages:
     dev: true
     optional: true
 
-  /@serenity-is/sleekgrid@1.6.3:
-    resolution: {integrity: sha512-c23JzXsWhYQ3NpsZKnZr75EtULTgNQqHayP561lBnZ01SYY4DzMZ7z7UcYzA75iiASX6JHiAXxj8aCH7MflHKg==}
+  /@serenity-is/sleekgrid@1.6.4:
+    resolution: {integrity: sha512-c23JzXsWhYQ3NpsZKnZr75EtULTgNQqHayP561lBnZ01SYY4DzMZ7z7UcYzA75iiASX6JHiAXxj8aCH7MflHKg==, tarball: https://registry.npmjs.org/@serenity-is/sleekgrid/-/sleekgrid-1.6.4.tgz}
     dev: false
 
   /@serenity-is/tsbuild@8.0.1:

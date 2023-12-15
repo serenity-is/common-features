@@ -1,13 +1,5 @@
 {
   "name": "@serenity-is/extensions",
-  "dependencies": {
-    "@serenity-is/corelib": "../../../Serenity/packages/corelib",
-    "@serenity-is/sleekgrid": "latest",
-    "jsx-dom": "8.0.7"
-  },
-  "devDependencies": {
-    "@serenity-is/tsbuild": "latest"
-  },
   "scripts": {
     "build": "pnpm tsbuild",
     "dts": "pnpm dts-bundle-generator Modules/index.ts -o dist/index.d.ts --no-banner --disable-symlinks-following --inline-declare-global --external-types jquery",

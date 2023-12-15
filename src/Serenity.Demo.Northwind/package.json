@@ -1,14 +1,9 @@
 {
   "name": "@serenity-is/demo.northwind",
   "dependencies": {
-    "@serenity-is/corelib": "../../../Serenity/packages/corelib",
     "@serenity-is/extensions": "workspace:*",
-    "@serenity-is/sleekgrid": "latest",
     "@types/dompurify": "2.4.0",
     "dompurify": "3.0.1"
-  },
-  "devDependencies": {
-    "@serenity-is/tsbuild": "latest"
   },
   "main": "dist/index.js",
   "private": true,

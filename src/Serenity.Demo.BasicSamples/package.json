@@ -1,15 +1,9 @@
 {
   "name": "@serenity-is/demo.basicsamples",
   "dependencies": {
-    "@serenity-is/corelib": "../../../Serenity/packages/corelib",
     "@serenity-is/demo.northwind": "workspace:*",
     "@serenity-is/extensions": "workspace:*",
-    "@serenity-is/sleekgrid": "latest",
-    "chart.js": "4.1.1",
-    "jsx-dom": "8.0.7"
-  },
-  "devDependencies": {
-    "@serenity-is/tsbuild": "latest"
+    "chart.js": "4.1.1"
   },
   "main": "wwwroot/index.js",
   "private": true,

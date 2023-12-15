@@ -1,6 +1,13 @@
 {
   "name": "@serenity-is/workspace-common-features",
   "private": true,
+  "devDependencies": {
+    "@serenity-is/corelib": "../Serenity/packages/corelib",
+    "@serenity-is/sleekgrid": "1.6.4",
+    "jsx-dom": "8.0.7",
+    "@serenity-is/tsbuild": "8.0.1",
+    "@types/jquery": "2.0.48"
+  },
   "scripts": {
     "tsc": "pnpm -r --no-bail exec tsc"
   },

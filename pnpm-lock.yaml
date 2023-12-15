@@ -12,8 +12,8 @@ importers:
         specifier: ../Serenity/packages/corelib
         version: link:../Serenity/packages/corelib
       '@serenity-is/sleekgrid':
-        specifier: 1.6.4
-        version: 1.6.4
+        specifier: ../Serenity/packages/corelib/node_modules/@serenity-is/sleekgrid
+        version: link:../Serenity/packages/corelib/node_modules/@serenity-is/sleekgrid
       '@serenity-is/tsbuild':
         specifier: 8.0.1
         version: 8.0.1
@@ -272,10 +272,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@serenity-is/sleekgrid@1.6.4:
-    resolution: {integrity: sha512-1T0Bfnz0Q3cNAcpRwoIwpyMtHdzgmisUNtpKbjW4oJrWJMaPD5rBmUBmVk5VQllytae4fYRbuiWFPYI2shgz+g==}
-    dev: true
 
   /@serenity-is/tsbuild@8.0.1:
     resolution: {integrity: sha512-dAoI+wyzA2Z+M0jKyVy+WMm86vMmTMqINkZV614zwpQMM2WCmpyxO7UwfxEIchyX8MdBciJPh9WjIXwprQJbUw==}

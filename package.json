@@ -3,7 +3,7 @@
   "private": true,
   "devDependencies": {
     "@serenity-is/corelib": "../Serenity/packages/corelib",
-    "@serenity-is/sleekgrid": "1.6.4",
+    "@serenity-is/sleekgrid": "../Serenity/packages/corelib/node_modules/@serenity-is/sleekgrid",
     "@serenity-is/tsbuild": "8.0.1",
     "@types/jquery": "2.0.48",
     "jsx-dom": "8.0.7"

@@ -12,8 +12,8 @@ importers:
         specifier: ../Serenity/packages/corelib
         version: link:../Serenity/packages/corelib
       '@serenity-is/sleekgrid':
-        specifier: ../Serenity/packages/corelib/node_modules/@serenity-is/sleekgrid
-        version: link:../Serenity/packages/corelib/node_modules/@serenity-is/sleekgrid
+        specifier: ../Serenity/packages/sleekgrid
+        version: link:../Serenity/packages/sleekgrid
       '@serenity-is/tsbuild':
         specifier: 8.0.1
         version: 8.0.1

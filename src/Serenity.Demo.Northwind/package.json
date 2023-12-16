@@ -2,8 +2,8 @@
   "name": "@serenity-is/demo.northwind",
   "dependencies": {
     "@serenity-is/extensions": "workspace:*",
-    "@types/dompurify": "2.4.0",
-    "dompurify": "3.0.1"
+    "@types/dompurify": "3.0.5",
+    "dompurify": "3.0.6"
   },
   "main": "dist/index.js",
   "private": true,

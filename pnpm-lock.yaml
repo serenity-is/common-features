@@ -33,8 +33,8 @@ importers:
         specifier: workspace:*
         version: link:../Serenity.Extensions
       chart.js:
-        specifier: 4.1.1
-        version: 4.1.1
+        specifier: 4.4.1
+        version: 4.4.1
 
   src/Serenity.Demo.Northwind:
     dependencies:
@@ -42,11 +42,11 @@ importers:
         specifier: workspace:*
         version: link:../Serenity.Extensions
       '@types/dompurify':
-        specifier: 2.4.0
-        version: 2.4.0
+        specifier: 3.0.5
+        version: 3.0.5
       dompurify:
-        specifier: 3.0.1
-        version: 3.0.1
+        specifier: 3.0.6
+        version: 3.0.6
 
   src/Serenity.Extensions: {}
 
@@ -280,8 +280,8 @@ packages:
       glob: 10.3.10
     dev: true
 
-  /@types/dompurify@2.4.0:
-    resolution: {integrity: sha512-IDBwO5IZhrKvHFUl+clZxgf3hn2b/lU6H1KaBShPkQyGJUQ0xwebezIPSuiyGwfz1UzJWQl4M7BDxtHtCCPlTg==}
+  /@types/dompurify@3.0.5:
+    resolution: {integrity: sha512-1Wg0g3BtQF7sSb27fJQAKck1HECM6zV1EB66j8JH9i3LCjYabJa0FSdiSgsD5K/RbrsR0SiraKacLB+T8ZVYAg==}
     dependencies:
       '@types/trusted-types': 2.0.7
     dev: false
@@ -326,9 +326,9 @@ packages:
       balanced-match: 1.0.2
     dev: true
 
-  /chart.js@4.1.1:
-    resolution: {integrity: sha512-P0pCosNXp+LR8zO/QTkZKT6Hb7p0DPFtypEeVOf+6x06hX13NIb75R0DXUA4Ksx/+48chDQKtCCmRCviQRTqsA==}
-    engines: {pnpm: ^7.0.0}
+  /chart.js@4.4.1:
+    resolution: {integrity: sha512-C74QN1bxwV1v2PEujhmKjOZ7iUM4w6BWs23Md/6aOZZSlwMzeCIDGuZay++rBgChYru7/+QFeoQW0fQoP534Dg==}
+    engines: {pnpm: '>=7'}
     dependencies:
       '@kurkle/color': 0.3.2
     dev: false
@@ -357,8 +357,8 @@ packages:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
     dev: true
 
-  /dompurify@3.0.1:
-    resolution: {integrity: sha512-60tsgvPKwItxZZdfLmamp0MTcecCta3avOhsLgPZ0qcWt96OasFfhkeIRbJ6br5i0fQawT1/RBGB5L58/Jpwuw==}
+  /dompurify@3.0.6:
+    resolution: {integrity: sha512-ilkD8YEnnGh1zJ240uJsW7AzE+2qpbOUYjacomn3AvJ6J4JhKGSZ2nh4wUIXPZrEPppaCLx5jFe8T89Rk8tQ7w==}
     dev: false
 
   /eastasianwidth@0.2.0:

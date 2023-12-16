@@ -998,7 +998,7 @@ export declare class OrderGrid extends EntityGrid<OrderRow, any> {
 	protected createQuickFilters(): void;
 	protected getButtons(): ToolButton[];
 	protected getColumns(): import("@serenity-is/sleekgrid").Column<OrderRow>[];
-	protected onClick(e: JQueryEventObject, row: number, cell: number): void;
+	protected onClick(e: Event, row: number, cell: number): void;
 	set_shippingState(value: number): void;
 	protected addButtonClick(): void;
 }

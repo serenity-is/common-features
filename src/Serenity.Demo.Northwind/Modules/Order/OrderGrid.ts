@@ -82,10 +82,10 @@ export class OrderGrid extends EntityGrid<OrderRow, any> {
         return columns;
     }
 
-    protected onClick(e: JQueryEventObject, row: number, cell: number) {
+    protected onClick(e: Event, row: number, cell: number) {
         super.onClick(e, row, cell);
 
-        if (e.isDefaultPrevented())
+        if ((e as any).isDefaultPrevented?.() || e.defaultPrevented)
             return;
 
         var item = this.itemAt(row);

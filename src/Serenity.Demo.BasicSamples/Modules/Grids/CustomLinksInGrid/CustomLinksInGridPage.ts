@@ -36,13 +36,13 @@ export class CustomLinksInGrid extends OrderGrid {
         return columns.valueOf();
     }
 
-    protected onClick(e: JQueryEventObject, row: number, cell: number): void {
+    protected onClick(e: Event, row: number, cell: number): void {
 
         // let base grid handle clicks for its edit links
         super.onClick(e, row, cell);
 
         // if base grid already handled, we shouldn"t handle it again
-        if (e.isDefaultPrevented()) {
+        if ((e as any).isDefaultPrevented?.() || e.defaultPrevented) {
             return;
         }
 

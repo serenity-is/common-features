@@ -20,7 +20,7 @@ export class ProductGrid extends EntityGrid<ProductRow, any> {
     constructor(container: JQuery) {
         super(container);
 
-        this.slickContainer.on('change', '.edit:input', (e) => this.inputsChange(e));
+        this.slickContainer.on('change', '.edit:input', (e) => this.inputsChange(e as any));
     }
 
     protected getButtons() {
@@ -182,12 +182,12 @@ export class ProductGrid extends EntityGrid<ProductRow, any> {
         return columns.valueOf();
     }
 
-    private inputsChange(e: JQueryEventObject) {
+    private inputsChange(e: Event) {
         var cell = this.slickGrid.getCellFromEvent(e);
         var item = this.itemAt(cell.row);
         var input = $(e.target);
         var field = input.data('field');
-        var txt = input.val()?.trim() || null;
+        var txt = (input.val() as string)?.trim() || null;
         var pending = this.pendingChanges[item.ProductID];
 
         var effective = this.getEffectiveValue(item, field);

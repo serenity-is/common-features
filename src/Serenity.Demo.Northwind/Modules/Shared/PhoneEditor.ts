@@ -32,7 +32,7 @@ export class PhoneEditor extends StringEditor {
     }
 
     protected getFormattedValue(): string {
-        var value = this.element.val();
+        var value = this.element.val() as any;
         if (this.multiple) {
             return PhoneEditor.formatMulti(value, PhoneEditor.formatPhone);
         }

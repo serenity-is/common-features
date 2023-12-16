@@ -5,7 +5,8 @@
     "@serenity-is/corelib": "../Serenity/packages/corelib",
     "@serenity-is/sleekgrid": "../Serenity/packages/sleekgrid",
     "@serenity-is/tsbuild": "8.0.1",
-    "@types/jquery": "2.0.48",
+    "@types/jquery": "3.5.29",
+    "@types/sizzle": "*",
     "jsx-dom": "8.0.7"
   },
   "scripts": {

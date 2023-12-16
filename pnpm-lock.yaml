@@ -18,8 +18,11 @@ importers:
         specifier: 8.0.1
         version: 8.0.1
       '@types/jquery':
-        specifier: 2.0.48
-        version: 2.0.48
+        specifier: 3.5.29
+        version: 3.5.29
+      '@types/sizzle':
+        specifier: '*'
+        version: 2.3.8
       jsx-dom:
         specifier: 8.0.7
         version: 8.0.7
@@ -286,8 +289,14 @@ packages:
       '@types/trusted-types': 2.0.7
     dev: false
 
-  /@types/jquery@2.0.48:
-    resolution: {integrity: sha512-nNLzUrVjaRV/Ds1eHZLYTd7IZxs38cwwLSaqMJj8OTXY8xNUbxSK69bi9cMLvQ7dm/IBeQ1wHwQ0S1uYa0rd2w==}
+  /@types/jquery@3.5.29:
+    resolution: {integrity: sha512-oXQQC9X9MOPRrMhPHHOsXqeQDnWeCDT3PelUIg/Oy8FAbzSZtFHRjc7IpbfFVmpLtJ+UOoywpRsuO5Jxjybyeg==}
+    dependencies:
+      '@types/sizzle': 2.3.8
+    dev: true
+
+  /@types/sizzle@2.3.8:
+    resolution: {integrity: sha512-0vWLNK2D5MT9dg0iOo8GlKguPAU02QjmZitPEsXRuJXU/OGIOt9vT9Fc26wtYuavLxtO45v9PGleoL9Z0k1LHg==}
     dev: true
 
   /@types/trusted-types@2.0.7:

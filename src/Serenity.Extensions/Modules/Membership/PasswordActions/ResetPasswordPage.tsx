@@ -23,6 +23,7 @@ export class ResetPasswordPanel extends PropertyPanel<ResetPasswordRequest, Rese
     protected getFormKey() { return ResetPasswordForm.formKey; }
 
     private form = new ResetPasswordForm(this.idPrefix);
+    private tokenInput: HTMLInputElement;
 
     constructor(container: JQuery, opt: ResetPasswordOptions) {
         super(container, opt);
@@ -43,7 +44,7 @@ export class ResetPasswordPanel extends PropertyPanel<ResetPasswordRequest, Rese
             return;
 
         var request = this.getSaveEntity();
-        request.Token = this.byId('Token').val();
+        request.Token = this.tokenInput.value;
         serviceCall({
             url: resolveUrl('~/Account/ResetPassword'),
             request: request,
@@ -71,7 +72,7 @@ export class ResetPasswordPanel extends PropertyPanel<ResetPasswordRequest, Rese
                             onClick={e => { e.preventDefault(); this.submitClick(); }}>
                             {myTexts.SubmitButton}
                         </button>
-                        <input type="hidden" id={id.Token} value={this.options.token} />
+                        <input type="hidden" value={this.options.token} ref={el => this.tokenInput = el} />
                     </form>
                 </div>
             </div>

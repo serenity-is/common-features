@@ -44,7 +44,6 @@
     <TSBuildOutputs Include="wwwroot\index.d.ts" Condition="!Exists('tsbuild.js')" />
   </ItemGroup>
   <ItemGroup>
-    <NpmPackageFile Include="$(MSBuildProjectDirectory)\package.json" Condition="Exists('$(MSBuildProjectDirectory)\package.json')" />
     <None Remove="$(MSBuildProjectDirectory)\*.json;$(MSBuildProjectDirectory)\tsbuild*.js" />
     <Content Include="$(MSBuildProjectDirectory)\*.json;$(MSBuildProjectDirectory)\tsbuild*.js" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" Pack="false" />
     <None Include="$(MSBuildProjectDirectory)\dist\**" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" Pack="true" PackagePath="dist\" />

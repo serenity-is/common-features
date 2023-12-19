@@ -9,7 +9,7 @@ export class NoteDialog extends TemplatedDialog<any> {
     constructor() {
         super();
 
-        this.textEditor = new HtmlNoteContentEditor(this.byId('Text'));
+        this.textEditor = new HtmlNoteContentEditor({ replaceNode: this.byId('Text')[0] });
     }
 
     protected getTemplate() {

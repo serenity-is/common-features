@@ -15,10 +15,6 @@ export default function pageInit() {
 @Decorators.registerEditor('Serenity.Demo.BasicSamples.ChangingLookupTextEditor')
 export class ChangingLookupTextEditor extends LookupEditorBase<LookupEditorOptions, ProductRow> {
 
-    constructor(container: JQuery, options: LookupEditorOptions) {
-        super(container, options);
-    }
-
     protected getLookupKey() {
         return ProductRow.lookupKey;
     }

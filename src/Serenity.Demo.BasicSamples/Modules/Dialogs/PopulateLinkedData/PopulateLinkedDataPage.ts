@@ -13,10 +13,6 @@ export default function pageInit() {
 export class PopulateLinkedDataGrid extends OrderGrid {
 
     protected getDialogType() { return PopulateLinkedDataDialog; }
-
-    constructor(container: JQuery) {
-        super(container);
-    }
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.PopulateLinkedDataDialog')

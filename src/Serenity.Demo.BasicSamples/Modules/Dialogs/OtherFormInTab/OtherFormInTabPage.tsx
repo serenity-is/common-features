@@ -124,15 +124,11 @@ export class OtherFormInTabDialog extends OrderDialog {
                     </form>
                 </div>
                 <div id={id.TabCustomer} class="tab-pane">
-                    <div class="s-DialogToolbar" ref={el => {
-                        new Toolbar($(el), {
-                            buttons: [{
-                                cssClass: "apply-changes-button",
-                                title: localText("Controls.EntityDialog.SaveButton"),
-                                onClick: () => this.customerSaveClick()
-                            }]
-                        });
-                    }}></div>
+                    <Toolbar class="s-DialogToolbar" buttons={[{
+                        cssClass: "apply-changes-button",
+                        title: localText("Controls.EntityDialog.SaveButton"),
+                        onClick: () => this.customerSaveClick()
+                    }]} />
                     <form action="" class="s-Form" ref={el => this.customerValidator = $(el).validate(validateOptions())}>
                         <div ref={el => {
                             // entity dialogs by default creates a property grid on element with ID "PropertyGrid".

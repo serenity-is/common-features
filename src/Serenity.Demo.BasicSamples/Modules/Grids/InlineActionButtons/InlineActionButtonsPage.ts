@@ -9,10 +9,6 @@ export default function pageInit() {
 @Decorators.registerClass('Serenity.Demo.BasicSamples.InlineActionGrid')
 export class InlineActionGrid extends CustomerGrid {
 
-    constructor(container: JQuery) {
-        super(container);
-    }
-
     protected getColumns() {
         var columns = super.getColumns();
 

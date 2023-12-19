@@ -9,10 +9,6 @@ export default function pageInit() {
 @Decorators.registerClass('Serenity.Demo.BasicSamples.RemovingAddButton')
 export class RemovingAddButton extends SupplierGrid {
 
-    constructor(container: JQuery) {
-        super(container);
-    }
-
     /**
      * This method is called to get list of buttons to be created.
      */

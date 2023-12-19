@@ -17,10 +17,6 @@ export class LookupFilterByMultipleGrid extends EntityGrid<ProductRow, any> {
     protected getRowDefinition() { return ProductRow; }
     protected getService() { return ProductService.baseUrl; }
 
-    constructor(container: JQuery) {
-        super(container);
-    }
-
     /**
      * This method is called just before List request is sent to service.
      * You have an opportunity here to cancel request or modify it.
@@ -64,10 +60,6 @@ export class LookupFilterByMultipleDialog extends ProductDialog {
 @Decorators.registerEditor('Serenity.Demo.BasicSamples.ProduceSeafoodCategoryEditor')
 export class ProduceSeafoodCategoryEditor extends
     LookupEditorBase<LookupEditorOptions, CategoryRow> {
-
-    constructor(container: JQuery, opt: LookupEditorOptions) {
-        super(container, opt);
-    }
 
     /**
      * Normally LookupEditor requires a lookup key to determine which set of

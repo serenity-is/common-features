@@ -18,10 +18,6 @@ export class ViewWithoutIDGrid extends EntityGrid<SalesByCategoryRow, any> {
     // this is our autoincrementing counter
     private nextId = 1;
 
-    constructor(container: JQuery) {
-        super(container);
-    }
-
     /**
      * This method is called to preprocess data returned from the list service
      */

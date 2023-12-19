@@ -29,8 +29,8 @@ export default function pageInit() {
 @Decorators.registerEditor('Serenity.Demo.BasicSamples.HardcodedValuesEditor')
 export class HardcodedValuesEditor extends Select2Editor<any, any> {
 
-    constructor(container: JQuery) {
-        super(container, null);
+    constructor(container?: JQuery, opt?: any) {
+        super(container, opt);
 
         // add option accepts a key (id) value and display text value
         this.addOption("key1", "Text 1");

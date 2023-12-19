@@ -3,8 +3,8 @@ import { Decorators, StringEditor, WX, localText, replaceAll } from "@serenity-i
 @Decorators.registerEditor('Serenity.Demo.Northwind.PhoneEditor')
 export class PhoneEditor extends StringEditor {
 
-    constructor(input: JQuery) {
-        super(input);
+    constructor() {
+        super();
 
         this.addValidationRule(this.uniqueName, e => {
             var value = this.get_value()?.trim();
@@ -13,14 +13,15 @@ export class PhoneEditor extends StringEditor {
             return PhoneEditor.validate(value, this.multiple);
         });
 
-        input.bind('change', e => {
+        let input = this.element;
+        input.on('change', e => {
             if (!WX.hasOriginalEvent(e)) {
                 return;
             }
             this.formatValue();
         });
 
-        input.bind('blur', e => {
+        input.on('blur', e => {
             if (this.element.hasClass('valid')) {
                 this.formatValue();
             }

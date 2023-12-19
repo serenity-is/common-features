@@ -10,10 +10,6 @@ export default function pageInit() {
 @Decorators.registerClass('Serenity.Demo.BasicSamples.CustomLinksInGrid')
 export class CustomLinksInGrid extends OrderGrid {
 
-    constructor(container: JQuery) {
-        super(container);
-    }
-
     /**
      * We override getColumns() to change format functions for some columns.
      * You could also write them as formatter classes, and use them at server side

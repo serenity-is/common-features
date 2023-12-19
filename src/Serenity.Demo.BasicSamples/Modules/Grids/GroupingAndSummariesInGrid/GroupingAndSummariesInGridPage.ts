@@ -14,10 +14,6 @@ export class GroupingAndSummariesInGrid extends EntityGrid<ProductRow, any> {
     protected getRowDefinition() { return ProductRow; }
     protected getService() { return ProductService.baseUrl; }
 
-    constructor(container: JQuery) {
-        super(container);
-    }
-
     protected createSlickGrid() {
         var grid = super.createSlickGrid();
 

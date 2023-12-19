@@ -12,7 +12,7 @@ export abstract class GridEditorBase<TEntity, TOptions = any> extends EntityGrid
 
     protected nextId = 1;
 
-    constructor(container: JQuery, opt?: TOptions) {
+    constructor(container?: JQuery, opt?: TOptions) {
         super(container, opt);
     }
 

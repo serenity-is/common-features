@@ -11,7 +11,7 @@ export default function pageInit() {
 
 const myTexts = Texts.Forms.Membership.ChangePassword;
 
-class SetPasswordPage extends TemplatedPanel<any> {
+class SetPasswordPage extends TemplatedPanel {
 
     protected submitClick() {
         if (!this.validateForm())

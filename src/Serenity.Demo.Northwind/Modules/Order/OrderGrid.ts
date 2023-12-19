@@ -16,10 +16,6 @@ export class OrderGrid extends EntityGrid<OrderRow, any> {
 
     protected shippingStateFilter: EnumEditor;
 
-    constructor(container: JQuery) {
-        super(container);
-    }
-
     protected getQuickFilters() {
         var filters = super.getQuickFilters();
 

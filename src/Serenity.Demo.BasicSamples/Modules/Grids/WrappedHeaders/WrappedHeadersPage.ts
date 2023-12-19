@@ -8,8 +8,4 @@ export default function pageInit() {
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.WrappedHeadersGrid')
 export class WrappedHeadersGrid extends OrderGrid {
-
-    constructor(container: JQuery) {
-        super(container);
-    }
 }

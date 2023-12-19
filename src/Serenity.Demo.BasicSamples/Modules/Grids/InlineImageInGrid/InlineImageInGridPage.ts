@@ -53,10 +53,6 @@ export class InlineImageInGrid extends EntityGrid<ProductRow, any> {
     protected getRowDefinition() { return ProductRow; }
     protected getService() { return ProductService.baseUrl; }
 
-    constructor(container: JQuery) {
-        super(container);
-    }
-
     protected getSlickOptions(): GridOptions {
         let opt = super.getSlickOptions();
         opt.rowHeight = 150;

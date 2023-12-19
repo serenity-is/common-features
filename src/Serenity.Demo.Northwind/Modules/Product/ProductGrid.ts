@@ -1,15 +1,14 @@
-import { Decorators, EntityGrid, LookupEditor } from "@serenity-is/corelib";
-import { deepClone, Dictionary, first, formatNumber, htmlEncode, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, localText, toId, Lookup } from "@serenity-is/corelib";
+import { CategoryRow, ProductColumns, ProductRow, ProductService, SupplierRow } from "@/ServerTypes/Demo";
+import { Decorators, Dictionary, EntityGridComponent, Lookup, LookupEditor, deepClone, formatNumber, htmlEncode, localText, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, toId } from "@serenity-is/corelib";
 import { ExcelExportHelper, PdfExportHelper } from "@serenity-is/extensions";
 import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
-import { CategoryRow, ProductColumns, ProductRow, ProductService, SupplierRow } from "@/ServerTypes/Demo";
 import { ProductDialog } from "./ProductDialog";
 
 const fld = ProductRow.Fields;
 
 @Decorators.registerClass()
 @Decorators.filterable()
-export class ProductGrid extends EntityGrid<ProductRow, any> {
+export class ProductGrid extends EntityGridComponent<ProductRow> {
     protected getColumnsKey() { return ProductColumns.columnsKey; }
     protected getDialogType() { return <any>ProductDialog; }
     protected getRowDefinition() { return ProductRow; }
@@ -17,9 +16,8 @@ export class ProductGrid extends EntityGrid<ProductRow, any> {
 
     private pendingChanges: Dictionary<any> = {};
 
-    constructor(container: JQuery) {
-        super(container);
-
+    constructor() {
+        super();
         this.slickContainer.on('change', '.edit:input', (e) => this.inputsChange(e as any));
     }
 

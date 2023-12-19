@@ -13,10 +13,6 @@ export default function pageInit() {
 export class FilteredLookupInDetailGrid extends OrderGrid {
 
     protected getDialogType() { return FilteredLookupInDetailDialog; }
-
-    constructor(container: JQuery) {
-        super(container);
-    }
 }
 
 /**
@@ -64,10 +60,6 @@ export class FilteredLookupOrderDetailDialog extends OrderDetailDialog {
 export class FilteredLookupDetailEditor extends OrderDetailsEditor {
 
     protected getDialogType() { return FilteredLookupOrderDetailDialog; }
-
-    constructor(container: JQuery) {
-        super(container);
-    }
 
     public categoryID: number;
 

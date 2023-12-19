@@ -9,10 +9,6 @@ export class OrderDetailsEditor extends GridEditorBase<OrderDetailRow> {
     protected getDialogType() { return OrderDetailDialog; }
     protected getLocalTextPrefix() { return OrderDetailRow.localTextPrefix; }
 
-    constructor(container: JQuery) {
-        super(container);
-    }
-
     validateEntity(row, id) {
         row.ProductID = toId(row.ProductID);
 

@@ -11,10 +11,6 @@ const fld = OrderRow.Fields;
 export class CustomerOrdersGrid extends OrderGrid {
     protected getDialogType() { return CustomerOrderDialog; }
 
-    constructor(container: JQuery) {
-        super(container);
-    }
-
     protected getColumns(): Column[] {
         return super.getColumns().filter(x => x.field !== fld.CustomerCompanyName);
     }

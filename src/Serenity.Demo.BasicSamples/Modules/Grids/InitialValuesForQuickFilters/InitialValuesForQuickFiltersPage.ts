@@ -11,10 +11,6 @@ const fld = OrderRow.Fields;
 @Decorators.registerClass('Serenity.Demo.BasicSamples.InitialValuesForQuickFilters')
 export class InitialValuesForQuickFilters extends OrderGrid {
 
-    constructor(container: JQuery) {
-        super(container);
-    }
-
     /**
      * This method is called to get list of quick filters to be created for this grid.
      * By default, it returns quick filter objects corresponding to properties that

@@ -26,7 +26,7 @@ export class ReportDialog extends TemplatedDialog<ReportDialogOptions> {
             idPrefix: this.idPrefix,
             useCategories: true,
             items: this.report.Properties
-        }).init(null);
+        }).init();
     }
 
     protected loadReport(reportKey: string) {

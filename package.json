@@ -7,7 +7,7 @@
     "@serenity-is/tsbuild": "8.0.1",
     "@types/jquery": "3.5.29",
     "@types/sizzle": "*",
-    "jsx-dom": "8.0.7"
+    "jsx-dom": "8.1.2"
   },
   "scripts": {
     "tsc": "pnpm -r --no-bail exec tsc"

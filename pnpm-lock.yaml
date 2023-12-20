@@ -24,8 +24,8 @@ importers:
         specifier: '*'
         version: 2.3.8
       jsx-dom:
-        specifier: 8.0.7
-        version: 8.0.7
+        specifier: 8.1.2
+        version: 8.1.2
 
   src/Serenity.Demo.BasicSamples:
     dependencies:
@@ -450,8 +450,8 @@ packages:
       '@pkgjs/parseargs': 0.11.0
     dev: true
 
-  /jsx-dom@8.0.7:
-    resolution: {integrity: sha512-0qBdkjBq7xQpZtgNroKwvv0wUX4zItd1br6Mzay0FBfSoicmGAhavJTg+2bS0RW/CgctfnQTmFwycG5XxQ0FPw==}
+  /jsx-dom@8.1.2:
+    resolution: {integrity: sha512-0hBsob3UwWlm5wD0S7sNFxAUrWAPzrt/r/K+AGzlRaCrPNu40+px77U7kgG+NS022nWjhOso+dZhqu1XFR7eXg==}
     dependencies:
       csstype: 3.1.3
     dev: true

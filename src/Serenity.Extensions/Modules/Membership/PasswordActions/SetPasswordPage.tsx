@@ -5,8 +5,7 @@ import { informationDialog, parseQueryString, resolveUrl, serviceCall } from "@s
 import { SendResetPasswordResponse } from "../../ServerTypes/Extensions/SendResetPasswordResponse";
 
 export default function pageInit() {
-    new SetPasswordPage($('#PanelDiv')
-        .addClass('s-container-tight mt-5 s-Form'));
+    new SetPasswordPage({ element: "#PanelDiv", class: "s-container-tight mt-5 s-Form" });
 }
 
 const myTexts = Texts.Forms.Membership.ChangePassword;

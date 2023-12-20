@@ -11,8 +11,8 @@ export class StaticTextBlock extends Widget<StaticTextBlockOptions>
 
     private value: string;
 
-    constructor(container: JQuery, options: StaticTextBlockOptions) {
-        super(container, options);
+    constructor(props: StaticTextBlockOptions) {
+        super(props);
 
         // hide the caption label for this editor if in a form. ugly hack
         if (this.options.hideLabel)

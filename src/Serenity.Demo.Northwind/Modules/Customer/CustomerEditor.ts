@@ -4,8 +4,8 @@ import { CustomerRow } from "@/ServerTypes/Demo";
 @Decorators.registerEditor('Serenity.Demo.Northwind.CustomerEditor')
 export class CustomerEditor extends LookupEditorBase<LookupEditorOptions, CustomerRow> {
 
-    constructor(hidden: JQuery, options: LookupEditorOptions) {
-        super(hidden, { async: true, ...options });
+    constructor(options: LookupEditorOptions) {
+        super({ async: true, ...options });
     }
 
     protected getLookupKey() {

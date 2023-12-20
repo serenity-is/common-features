@@ -2,13 +2,12 @@
 import { ResetPasswordForm } from "@/ServerTypes/Extensions/ResetPasswordForm";
 import { ResetPasswordRequest } from "@/ServerTypes/Extensions/ResetPasswordRequest";
 import { Texts } from "@/ServerTypes/Texts";
-import { PropertyPanel, informationDialog, resolveUrl, serviceCall, stringFormat } from "@serenity-is/corelib";
+import { PropertyPanel, WidgetProps, informationDialog, resolveUrl, serviceCall, stringFormat } from "@serenity-is/corelib";
 import { ResetPasswordResponse } from "../../ServerTypes/Extensions/ResetPasswordResponse";
 import { AccountPanelTitle } from "../AccountPanelTitle";
 
 export default function pageInit(opt: ResetPasswordOptions) {
-    new ResetPasswordPanel($('#PanelDiv')
-        .addClass('s-full-page justify-content-center s-Form'), opt);
+    new ResetPasswordPanel({ element: '#PanelDiv', class: 's-full-page justify-content-center s-Form', ...opt });
 }
 
 interface ResetPasswordOptions {
@@ -25,8 +24,8 @@ export class ResetPasswordPanel extends PropertyPanel<ResetPasswordRequest, Rese
     private form = new ResetPasswordForm(this.idPrefix);
     private tokenInput: HTMLInputElement;
 
-    constructor(container: JQuery, opt: ResetPasswordOptions) {
-        super(container, opt);
+    constructor(props?: WidgetProps<ResetPasswordOptions>) {
+        super(props);
 
         this.form.NewPassword.addValidationRule(this.uniqueName, e => {
             if (this.form.NewPassword.value.length < this.options.minPasswordLength)

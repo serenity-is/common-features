@@ -160,15 +160,8 @@ export class OtherFormOneBarDialog extends OrderDialog {
                 </div>
                 <div id={id.TabCustomer} class="tab-pane s-TabCustomer">
                     <form id={id.CustomerForm} action="" class="s-Form" ref={el => this.customerValidator = $(el).validate(validateOptions({}))}>
-                        <div id={id.CustomerPropertyGrid} ref={el => {
-                            // entity dialogs by default creates a property grid on element with ID "PropertyGrid".
-                            // here we explicitly create another, the customer property grid (vertical form) on element with ID "CustomerPropertyGrid".
-                            this.customerPropertyGrid = new PropertyGrid($(el), {
-                                items: getForm(CustomerForm.formKey).filter(x => x.name != 'CustomerID' && x.name != "NoteList"),
-                                idPrefix: this.idPrefix + "_Customer_",
-                                useCategories: true
-                            });
-                        }}></div>
+                        <PropertyGrid ref={pg => this.customerPropertyGrid = pg} idPrefix={this.idPrefix + "_Customer_"} useCategories={true}
+                            items={getForm(CustomerForm.formKey).filter(x => x.name != 'CustomerID' && x.name != "NoteList")} />
                     </form>
                 </div>
             </div>

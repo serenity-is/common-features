@@ -14,7 +14,8 @@ export class NotesEditor extends TemplatedWidget<any>
     constructor(div: JQuery) {
         super(div);
 
-        new Toolbar(this.byId('Toolbar'), {
+        new Toolbar({
+            element: this.byId('Toolbar'),
             buttons: [{
                 title: 'Add Note',
                 cssClass: 'add-button',

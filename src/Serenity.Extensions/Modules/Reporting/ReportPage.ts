@@ -9,7 +9,8 @@ export class ReportPage extends Widget<any> {
 
         $('.report-link', element).click(e => this.reportLinkClick(e));
 
-        new QuickSearchInput($('.s-QuickSearchBar input', element), {
+        new QuickSearchInput({
+            element: $('.s-QuickSearchBar input', element),
             onSearch: (field, text, done) => {
                 this.updateMatchFlags(text);
                 done(true);

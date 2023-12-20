@@ -130,15 +130,8 @@ export class OtherFormInTabDialog extends OrderDialog {
                         onClick: () => this.customerSaveClick()
                     }]} />
                     <form action="" class="s-Form" ref={el => this.customerValidator = $(el).validate(validateOptions())}>
-                        <div ref={el => {
-                            // entity dialogs by default creates a property grid on element with ID "PropertyGrid".
-                            // here we explicitly create another, the customer property grid (vertical form) on this div element
-                            this.customerPropertyGrid = new PropertyGrid($(el), {
-                                idPrefix: id.Customer_,
-                                items: getForm(CustomerForm.formKey).filter(x => x.name != CustomerRow.Fields.CustomerID),
-                                useCategories: true
-                            });
-                        }}></div>
+                        <PropertyGrid ref={pg => this.customerPropertyGrid = pg} idPrefix={id.Customer_} useCategories={true}
+                            items={getForm(CustomerForm.formKey).filter(x => x.name != CustomerRow.Fields.CustomerID)} />
                     </form>
                 </div>
             </div>

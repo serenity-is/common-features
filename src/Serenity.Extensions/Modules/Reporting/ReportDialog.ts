@@ -22,7 +22,8 @@ export class ReportDialog extends TemplatedDialog<ReportDialogOptions> {
 
     protected createPropertyGrid() {
         this.propertyGrid && this.byId('PropertyGrid').html('').attr('class', '');
-        this.propertyGrid = new PropertyGrid(this.byId('PropertyGrid'), {
+        this.propertyGrid = new PropertyGrid({
+            element: this.byId('PropertyGrid'),
             idPrefix: this.idPrefix,
             useCategories: true,
             items: this.report.Properties

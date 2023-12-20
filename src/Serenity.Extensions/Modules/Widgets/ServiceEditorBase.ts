@@ -1,5 +1,4 @@
-import { CascadedWidgetLink, Decorators, EditorUtils, Select2AjaxEditor, Widget } from "@serenity-is/corelib";
-import { ColumnSelection, ListRequest, ListResponse, RetrieveColumnSelection, RetrieveRequest, RetrieveResponse, serviceCall, ServiceOptions } from "@serenity-is/corelib";
+import { CascadedWidgetLink, ColumnSelection, Decorators, EditorUtils, ListRequest, ListResponse, RetrieveColumnSelection, RetrieveRequest, RetrieveResponse, Select2AjaxEditor, ServiceOptions, Widget, WidgetProps, serviceCall } from "@serenity-is/corelib";
 
 export interface ServiceEditorOptions {
     cascadeFrom?: string;
@@ -8,12 +7,11 @@ export interface ServiceEditorOptions {
 }
 
 @Decorators.registerClass("Serenity.Extensions.ServiceEditorBase")
-export abstract class ServiceEditorBase<TOptions extends ServiceEditorOptions, TRow>
-    extends Select2AjaxEditor<TOptions, TRow> {
+export abstract class ServiceEditorBase<P extends ServiceEditorOptions, TRow> extends Select2AjaxEditor<P, TRow> {
     private cascadeLink: CascadedWidgetLink<Widget<any>>;
 
-    constructor(hidden: JQuery, options: TOptions) {
-        super(hidden, options);
+    constructor(props?: WidgetProps<P>) {
+        super(props);
 
         this.setCascadeFrom(this.options.cascadeFrom);
     }

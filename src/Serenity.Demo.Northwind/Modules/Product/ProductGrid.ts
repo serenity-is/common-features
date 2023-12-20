@@ -1,5 +1,5 @@
 import { CategoryRow, ProductColumns, ProductRow, ProductService, SupplierRow } from "@/ServerTypes/Demo";
-import { Decorators, Dictionary, EntityGridComponent, Lookup, LookupEditor, deepClone, formatNumber, htmlEncode, localText, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, toId } from "@serenity-is/corelib";
+import { Decorators, Dictionary, EntityGrid, Lookup, LookupEditor, WidgetProps, deepClone, formatNumber, htmlEncode, localText, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, toId } from "@serenity-is/corelib";
 import { ExcelExportHelper, PdfExportHelper } from "@serenity-is/extensions";
 import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
 import { ProductDialog } from "./ProductDialog";
@@ -8,7 +8,7 @@ const fld = ProductRow.Fields;
 
 @Decorators.registerClass()
 @Decorators.filterable()
-export class ProductGrid extends EntityGridComponent<ProductRow> {
+export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
     protected getColumnsKey() { return ProductColumns.columnsKey; }
     protected getDialogType() { return <any>ProductDialog; }
     protected getRowDefinition() { return ProductRow; }
@@ -16,8 +16,8 @@ export class ProductGrid extends EntityGridComponent<ProductRow> {
 
     private pendingChanges: Dictionary<any> = {};
 
-    constructor() {
-        super();
+    constructor(props?: WidgetProps<P>) {
+        super(props);
         this.slickContainer.on('change', '.edit:input', (e) => this.inputsChange(e as any));
     }
 

@@ -1,12 +1,11 @@
 /** @jsxImportSource jsx-dom/min */
 import { Texts } from "@/ServerTypes/Texts";
-import { PropertyPanel, informationDialog, localText, resolveUrl, serviceCall, stringFormat } from "@serenity-is/corelib";
+import { PropertyPanel, WidgetProps, informationDialog, localText, resolveUrl, serviceCall, stringFormat } from "@serenity-is/corelib";
 import { ChangePasswordForm } from "../../ServerTypes/Extensions/ChangePasswordForm";
 import { ChangePasswordRequest } from "../../ServerTypes/Extensions/ChangePasswordRequest";
 
 export default function pageInit() {
-    new ChangePasswordPanel($('#PanelDiv')
-        .addClass('s-container-tight mt-5 s-Form flex-grow-0'));
+    new ChangePasswordPanel({ element: "#PanelDiv", class: 's-container-tight mt-5 s-Form flex-grow-0' });
 }
 
 const myTexts = Texts.Forms.Membership.ChangePassword;
@@ -17,8 +16,8 @@ class ChangePasswordPanel extends PropertyPanel<ChangePasswordRequest, any> {
 
     private form = new ChangePasswordForm(this.idPrefix);
 
-    constructor(container: JQuery) {
-        super(container);
+    constructor(props: WidgetProps<{}>) {
+        super(props);
 
         this.form.NewPassword.addValidationRule(this.uniqueName, () => {
             if (this.form.NewPassword.value.length < 7) {

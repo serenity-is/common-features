@@ -1,6 +1,6 @@
 /// <reference types="jquery" />
 
-import { BooleanEditor, CaptureOperationType, ColumnsBase, DateEditor, DecimalEditor, DeleteRequest, DeleteResponse, EmailAddressEditor, EntityDialog, EntityGrid, EnumEditor, Formatter, IGetEditValue, ISetEditValue, ImageUploadEditor, IntegerEditor, ListRequest, ListResponse, LookupEditor, LookupEditorBase, LookupEditorOptions, PrefixedContext, PropertyItem, RetrieveRequest, RetrieveResponse, SaveRequest, SaveResponse, ServiceOptions, StringEditor, TemplatedDialog, TemplatedWidget, ToolButton } from '@serenity-is/corelib';
+import { BooleanEditor, CaptureOperationType, ColumnsBase, DateEditor, DecimalEditor, DeleteRequest, DeleteResponse, EmailAddressEditor, EntityDialog, EntityGrid, EntityGridComponent, EnumEditor, Formatter, IGetEditValue, ISetEditValue, ImageUploadEditor, IntegerEditor, ListRequest, ListResponse, LookupEditor, LookupEditorBase, LookupEditorOptions, PrefixedContext, PropertyItem, RetrieveRequest, RetrieveResponse, SaveRequest, SaveResponse, ServiceOptions, StringEditor, TemplatedDialog, TemplatedWidget, ToolButton } from '@serenity-is/corelib';
 import { GetNextNumberRequest, GetNextNumberResponse, GridEditorBase, GridEditorDialog } from '@serenity-is/extensions';
 import { Column, FormatterContext } from '@serenity-is/sleekgrid';
 
@@ -467,7 +467,7 @@ export declare namespace OrderDetailService {
 	};
 }
 export declare class CustomerEditor extends LookupEditorBase<LookupEditorOptions, CustomerRow> {
-	constructor(hidden: JQuery, options: LookupEditorOptions);
+	constructor(options: LookupEditorOptions);
 	protected getLookupKey(): string;
 	protected getItemText(item: any, lookup: any): string;
 }
@@ -481,7 +481,6 @@ export declare class OrderDetailsEditor extends GridEditorBase<OrderDetailRow> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): typeof OrderDetailDialog;
 	protected getLocalTextPrefix(): string;
-	constructor(container: JQuery);
 	validateEntity(row: any, id: any): boolean;
 }
 export interface OrderForm {
@@ -777,7 +776,7 @@ export declare class ShipperColumns extends ColumnsBase<ShipperRow> {
 	static readonly Fields: Readonly<Record<keyof ShipperColumns, string>>;
 }
 export declare class PhoneEditor extends StringEditor {
-	constructor(input: JQuery);
+	constructor();
 	protected formatValue(): void;
 	protected getFormattedValue(): string;
 	multiple: boolean;
@@ -993,7 +992,6 @@ export declare class OrderGrid extends EntityGrid<OrderRow, any> {
 	protected getRowDefinition(): typeof OrderRow;
 	protected getService(): string;
 	protected shippingStateFilter: EnumEditor;
-	constructor(container: JQuery);
 	protected getQuickFilters(): import("@serenity-is/corelib").QuickFilter<import("@serenity-is/corelib").Widget<any>, any>[];
 	protected createQuickFilters(): void;
 	protected getButtons(): ToolButton[];
@@ -1004,7 +1002,6 @@ export declare class OrderGrid extends EntityGrid<OrderRow, any> {
 }
 export declare class CustomerOrdersGrid extends OrderGrid {
 	protected getDialogType(): typeof CustomerOrderDialog;
-	constructor(container: JQuery);
 	protected getColumns(): Column[];
 	protected initEntityDialog(itemType: any, dialog: any): void;
 	protected getButtons(): import("@serenity-is/corelib").ToolButton[];
@@ -1044,13 +1041,13 @@ export declare class ProductDialog extends EntityDialog<ProductRow, any> {
 	protected getService(): string;
 	protected form: ProductForm;
 }
-export declare class ProductGrid extends EntityGrid<ProductRow, any> {
+export declare class ProductGrid extends EntityGridComponent<ProductRow> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): any;
 	protected getRowDefinition(): typeof ProductRow;
 	protected getService(): string;
 	private pendingChanges;
-	constructor(container: JQuery);
+	constructor();
 	protected getButtons(): import("@serenity-is/corelib").ToolButton[];
 	protected onViewProcessData(response: any): import("@serenity-is/corelib").ListResponse<ProductRow>;
 	/**

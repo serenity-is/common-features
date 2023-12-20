@@ -1,6 +1,6 @@
 /// <reference types="jquery" />
 
-import { DataGrid, DeleteResponse, Dictionary, EmailAddressEditor, EntityDialog, EntityGrid, Formatter, IGetEditValue, ISetEditValue, ListRequest, ListResponse, PasswordEditor, PrefixedContext, PropertyDialog, PropertyItem, RetrieveResponse, SaveResponse, Select2AjaxEditor, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse, SettingStorage, TemplatedDialog, ToolButton, Widget } from '@serenity-is/corelib';
+import { DataGrid, DeleteResponse, Dictionary, EmailAddressEditor, EntityDialog, EntityGrid, Formatter, IGetEditValue, ISetEditValue, ListRequest, ListResponse, PasswordEditor, PrefixedContext, PropertyDialog, PropertyItem, RetrieveResponse, SaveResponse, Select2AjaxEditor, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse, SettingStorage, TemplatedDialog, ToolButton, Widget, WidgetProps } from '@serenity-is/corelib';
 import { FormatterContext, Grid, GridOptions } from '@serenity-is/sleekgrid';
 
 export interface ChangePasswordForm {
@@ -317,10 +317,10 @@ export declare class SingleLineTextFormatter implements Formatter {
 	format(ctx: FormatterContext): string;
 	static formatValue(value: string): string;
 }
-export declare abstract class GridEditorBase<TEntity, TOptions = any> extends EntityGrid<TEntity, TOptions> implements IGetEditValue, ISetEditValue {
+export declare abstract class GridEditorBase<TEntity, P = {}> extends EntityGrid<TEntity, P> implements IGetEditValue, ISetEditValue {
 	protected getIdProperty(): string;
 	protected nextId: number;
-	constructor(container: JQuery, opt?: TOptions);
+	constructor(props?: WidgetProps<P>);
 	protected id(entity: TEntity): any;
 	protected getNextId(): string;
 	protected setNewId(entity: TEntity): void;
@@ -442,9 +442,9 @@ export interface ServiceEditorOptions {
 	cascadeField?: string;
 	cascadeValue?: any;
 }
-export declare abstract class ServiceEditorBase<TOptions extends ServiceEditorOptions, TRow> extends Select2AjaxEditor<TOptions, TRow> {
+export declare abstract class ServiceEditorBase<P extends ServiceEditorOptions, TRow> extends Select2AjaxEditor<P, TRow> {
 	private cascadeLink;
-	constructor(hidden: JQuery, options: TOptions);
+	constructor(props?: WidgetProps<P>);
 	private setCascadeFrom;
 	get cascadeValue(): any;
 	set cascadeValue(value: any);
@@ -466,7 +466,7 @@ export declare abstract class ServiceEditorBase<TOptions extends ServiceEditorOp
 	*/
 export declare class StaticTextBlock extends Widget<StaticTextBlockOptions> implements ISetEditValue {
 	private value;
-	constructor(container: JQuery, options: StaticTextBlockOptions);
+	constructor(props: StaticTextBlockOptions);
 	private updateElementContent;
 	/**
 		* By implementing ISetEditValue interface, we allow this editor to display its field value.

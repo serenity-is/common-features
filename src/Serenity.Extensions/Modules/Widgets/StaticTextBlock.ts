@@ -1,4 +1,4 @@
-import { Decorators, ISetEditValue, PropertyItem, Widget, localText } from "@serenity-is/corelib";
+import { Decorators, ISetEditValue, PropertyItem, Widget, WidgetProps, localText } from "@serenity-is/corelib";
 
 /**
     * This is an editor widget but it only displays a text, not edits it.
@@ -6,12 +6,12 @@ import { Decorators, ISetEditValue, PropertyItem, Widget, localText } from "@ser
     */
 @Decorators.element("<div/>")
 @Decorators.registerEditor('Serenity.Extensions.StaticTextBlock', [ISetEditValue])
-export class StaticTextBlock extends Widget<StaticTextBlockOptions>
+export class StaticTextBlock<P extends StaticTextBlockOptions = StaticTextBlockOptions> extends Widget<P>
     implements ISetEditValue {
 
     private value: string;
 
-    constructor(props: StaticTextBlockOptions) {
+    constructor(props: WidgetProps<P>) {
         super(props);
 
         // hide the caption label for this editor if in a form. ugly hack

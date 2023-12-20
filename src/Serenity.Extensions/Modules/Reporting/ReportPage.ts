@@ -2,15 +2,15 @@ import { Decorators, QuickSearchInput, Widget, WidgetProps } from "@serenity-is/
 import { ReportDialog } from "./ReportDialog";
 
 @Decorators.registerClass("Serenity.Extensions.ReportPage")
-export class ReportPage extends Widget<any> {
+export class ReportPage<P={}> extends Widget<P> {
 
-    constructor(props: WidgetProps<{}>) {
+    constructor(props?: WidgetProps<P>) {
         super(props);
 
         $('.report-link', this.element).click(e => this.reportLinkClick(e));
 
         new QuickSearchInput({
-            element: $('.s-QuickSearchBar input', element),
+            element: $('.s-QuickSearchBar input', this.element),
             onSearch: (field, text, done) => {
                 this.updateMatchFlags(text);
                 done(true);

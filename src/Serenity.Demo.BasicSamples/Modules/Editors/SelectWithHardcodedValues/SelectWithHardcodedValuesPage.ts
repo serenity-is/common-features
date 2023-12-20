@@ -1,5 +1,5 @@
 import { HardcodedValuesForm } from "@/ServerTypes/Demo";
-import { Decorators, PropertyDialog, Select2Editor, Widget, notifySuccess } from "@serenity-is/corelib";
+import { Decorators, PropertyDialog, Select2Editor, Widget, WidgetProps, notifySuccess } from "@serenity-is/corelib";
 
 export default function pageInit() {
     var dlg = new HardcodedValuesDialog();
@@ -7,16 +7,17 @@ export default function pageInit() {
     dlg.element.find('.field.SomeValue .editor').select2('open');
 
     // let's also create it in our page, for demonstration purposes
-    // this time we use Serenity.Widget.create helper
-    Widget.create({
-        type: HardcodedValuesEditor,
-        element: function (e) { e.insertAfter('#UsingWidgetCreate label') }
+    // this time we directly create
+    new HardcodedValuesEditor({
+        element: el => $(el).insertAfter('#UsingWidgetCreate label')
     });
 
     // here we directly create it on a hidden input element
     // for this to work, we should be aware of what kind of 
     // element our editor widget expects
-    new HardcodedValuesEditor($('#CreatingOnInput input'));
+    new HardcodedValuesEditor({
+        element: "#CreatingOnInput input"
+    });
 }
 
 /**
@@ -29,8 +30,8 @@ export default function pageInit() {
 @Decorators.registerEditor('Serenity.Demo.BasicSamples.HardcodedValuesEditor')
 export class HardcodedValuesEditor extends Select2Editor<any, any> {
 
-    constructor(opt?: any) {
-        super(opt);
+    constructor(props?: WidgetProps<{}>) {
+        super(props);
 
         // add option accepts a key (id) value and display text value
         this.addOption("key1", "Text 1");

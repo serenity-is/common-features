@@ -954,14 +954,14 @@ export declare class CategoryGrid extends EntityGrid<CategoryRow, any> {
 	protected getRowDefinition(): typeof CategoryRow;
 	protected getService(): string;
 }
-export declare class CustomerDialog extends EntityDialog<CustomerRow, any> {
+export declare class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P> {
 	protected getFormKey(): string;
 	protected getRowDefinition(): typeof CustomerRow;
 	protected getService(): string;
 	protected form: CustomerForm;
 	private ordersGrid;
 	private loadedState;
-	constructor();
+	constructor(props?: WidgetProps<P>);
 	getSaveState(): string;
 	loadResponse(data: any): void;
 	loadEntity(entity: CustomerRow): void;

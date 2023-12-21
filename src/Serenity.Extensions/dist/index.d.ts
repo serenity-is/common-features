@@ -152,7 +152,7 @@ export declare class BasicProgressDialog extends TemplatedDialog<any> {
 		class: string;
 		click: () => void;
 	}[];
-	getDialogOptions(): any;
+	getDialogOptions(): import("@serenity-is/corelib").DialogOptions;
 	initDialog(): void;
 	getTemplate(): string;
 }

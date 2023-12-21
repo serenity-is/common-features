@@ -1,4 +1,4 @@
-import { Decorators, TemplatedDialog, localText } from "@serenity-is/corelib";
+import { Decorators, DialogTexts, TemplatedDialog, localText } from "@serenity-is/corelib";
 
 @Decorators.registerClass("Serenity.Extensions.BasicProgressDialog")
 export class BasicProgressDialog extends TemplatedDialog<any> {
@@ -41,7 +41,7 @@ export class BasicProgressDialog extends TemplatedDialog<any> {
 
     getDialogButtons() {
         return [{
-            text: localText('Dialogs.CancelButton'),
+            text: DialogTexts.CancelButton,
             class: 'btn btn-danger',
             click: () => {
                 this.cancelled = true;

@@ -1,12 +1,11 @@
-import { Decorators, EntityDialog, TabsExtensions } from "@serenity-is/corelib";
-import { htmlEncode, reloadLookup, localText } from "@serenity-is/corelib";
-import { DialogUtils } from "@serenity-is/extensions";
 import { CustomerForm, CustomerRow, CustomerService } from "@/ServerTypes/Demo";
+import { Decorators, EntityDialog, TabsExtensions, WidgetProps, htmlEncode, localText, reloadLookup } from "@serenity-is/corelib";
+import { DialogUtils } from "@serenity-is/extensions";
 import { CustomerOrdersGrid } from "./CustomerOrdersGrid";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.CustomerDialog')
 @Decorators.panel()
-export class CustomerDialog extends EntityDialog<CustomerRow, any> {
+export class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P> {
     protected getFormKey() { return CustomerForm.formKey; }
     protected getRowDefinition() { return CustomerRow; }
     protected getService() { return CustomerService.baseUrl; }
@@ -16,8 +15,8 @@ export class CustomerDialog extends EntityDialog<CustomerRow, any> {
     private ordersGrid: CustomerOrdersGrid;
     private loadedState: string;
 
-    constructor() {
-        super();
+    constructor(props?: WidgetProps<P>) {
+        super(props);
 
         this.ordersGrid = new CustomerOrdersGrid(this.byId('OrdersGrid'));
         // force order dialog to open in Dialog mode instead of Panel mode
@@ -37,7 +36,7 @@ export class CustomerDialog extends EntityDialog<CustomerRow, any> {
         }
     }
 
-    loadResponse(data) {
+    loadResponse(data: any) {
         super.loadResponse(data);
         this.loadedState = this.getSaveState();
     }

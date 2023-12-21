@@ -1,4 +1,4 @@
-import { Decorators, PropertyDialog, localText } from "@serenity-is/corelib";
+import { Decorators, DialogTexts, PropertyDialog, localText } from "@serenity-is/corelib";
 
 export interface PromptDialogOptions {
     cssClass?: string;
@@ -34,7 +34,7 @@ export class PromptDialog extends PropertyDialog<any, PromptDialogOptions> {
     protected getDialogButtons() {
         return [
             {
-                text: localText("Dialogs.OkButton"),
+                text: DialogTexts.OkButton,
                 click: () => {
                     if (!this.validateForm())
                         return;
@@ -44,7 +44,7 @@ export class PromptDialog extends PropertyDialog<any, PromptDialogOptions> {
                 },
             },
             {
-                text: localText("Dialogs.CancelButton"),
+                text: DialogTexts.CancelButton,
                 click: () => this.dialogClose()
             }
         ];

@@ -2,7 +2,7 @@
 import { ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
-    initFullHeightGridPage(new GridFilteredByCriteria({ element: "#GridDiv" }).node);
+    initFullHeightGridPage(new GridFilteredByCriteria({ element: "#GridDiv" }));
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.GridFilteredByCriteria')

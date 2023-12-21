@@ -1,5 +1,5 @@
 /** @jsxImportSource jsx-dom/min */
-import { Decorators, PropertyGrid, SaveResponse, TabsExtensions, first, getForm, initFullHeightGridPage, isEmptyOrNull, reloadLookup, validateOptions } from "@serenity-is/corelib";
+import { Decorators, PropertyGrid, SaveResponse, TabsExtensions, WidgetProps, first, getForm, initFullHeightGridPage, isEmptyOrNull, reloadLookup, validateOptions } from "@serenity-is/corelib";
 import { CustomerForm, CustomerRow, CustomerService, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
@@ -25,8 +25,8 @@ export class OtherFormOneBarDialog extends OrderDialog {
     private customerValidator: JQueryValidation.Validator;
     private selfChange = 0;
 
-    constructor() {
-        super();
+    constructor(props?: WidgetProps<{}>) {
+        super(props);
 
         this.form.CustomerID.change(e => {
             if (this.selfChange)

@@ -1,10 +1,10 @@
-import { Decorators, StringEditor, WX, localText, replaceAll } from "@serenity-is/corelib";
+import { Decorators, StringEditor, WX, WidgetProps, localText, replaceAll } from "@serenity-is/corelib";
 
 @Decorators.registerEditor('Serenity.Demo.Northwind.PhoneEditor')
-export class PhoneEditor extends StringEditor {
+export class PhoneEditor<P = {}> extends StringEditor<P> {
 
-    constructor() {
-        super();
+    constructor(props: WidgetProps<any>) {
+        super(props);
 
         this.addValidationRule(this.uniqueName, e => {
             var value = this.get_value()?.trim();

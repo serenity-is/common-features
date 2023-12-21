@@ -1,5 +1,5 @@
 ﻿import { PopulateLinkedDataForm } from "@/ServerTypes/Demo";
-import { Decorators, EntityDialog, first, initFullHeightGridPage } from "@serenity-is/corelib";
+import { Decorators, EntityDialog, WidgetProps, first, initFullHeightGridPage } from "@serenity-is/corelib";
 import { CustomerRow, CustomerService, OrderGrid, OrderRow, OrderService } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
@@ -16,7 +16,7 @@ export class PopulateLinkedDataGrid extends OrderGrid {
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.PopulateLinkedDataDialog')
-export class PopulateLinkedDataDialog extends EntityDialog<OrderRow, any> {
+export class PopulateLinkedDataDialog<P={}> extends EntityDialog<OrderRow, P> {
 
     protected getFormKey() { return PopulateLinkedDataForm.formKey; }
     protected getRowDefinition() { return OrderRow; }
@@ -24,8 +24,8 @@ export class PopulateLinkedDataDialog extends EntityDialog<OrderRow, any> {
 
     protected form = new PopulateLinkedDataForm(this.idPrefix);
 
-    constructor() {
-        super();
+    constructor(props?: WidgetProps<P>) {
+        super(props);
 
         // "changeSelect2" is only fired when user changes the selection
         // but "change" is fired when dialog sets customer on load too

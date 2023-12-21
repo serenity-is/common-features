@@ -393,8 +393,8 @@ export declare namespace ReportHelper {
 	function createToolButton(options: ReportButtonOptions): ToolButton;
 	function execute(options: ReportExecuteOptions): void;
 }
-export declare class ReportPage extends Widget<any> {
-	constructor(element: JQuery);
+export declare class ReportPage<P = {}> extends Widget<P> {
+	constructor(props?: WidgetProps<P>);
 	protected updateMatchFlags(text: string): void;
 	protected reportLinkClick(e: any): void;
 }
@@ -464,9 +464,9 @@ export declare abstract class ServiceEditorBase<P extends ServiceEditorOptions, 
 	* This is an editor widget but it only displays a text, not edits it.
 	*
 	*/
-export declare class StaticTextBlock extends Widget<StaticTextBlockOptions> implements ISetEditValue {
+export declare class StaticTextBlock<P extends StaticTextBlockOptions = StaticTextBlockOptions> extends Widget<P> implements ISetEditValue {
 	private value;
-	constructor(props: StaticTextBlockOptions);
+	constructor(props: WidgetProps<P>);
 	private updateElementContent;
 	/**
 		* By implementing ISetEditValue interface, we allow this editor to display its field value.

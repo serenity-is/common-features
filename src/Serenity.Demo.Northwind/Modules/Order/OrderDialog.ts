@@ -1,19 +1,15 @@
-import { Decorators, EntityDialog } from "@serenity-is/corelib";
+import { Decorators, EntityDialog, WidgetProps } from "@serenity-is/corelib";
 import { ReportHelper } from "@serenity-is/extensions";
 import { OrderForm, OrderRow, OrderService } from "@/ServerTypes/Demo";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.OrderDialog')
 @Decorators.panel()
-export class OrderDialog extends EntityDialog<OrderRow, any> {
+export class OrderDialog<P = {}> extends EntityDialog<OrderRow, P> {
     protected getFormKey() { return OrderForm.formKey; }
     protected getRowDefinition() { return OrderRow; }
     protected getService() { return OrderService.baseUrl; }
 
     protected form = new OrderForm(this.idPrefix);
-
-    constructor() {
-        super();
-    }
 
     getToolbarButtons() {
         var buttons = super.getToolbarButtons();

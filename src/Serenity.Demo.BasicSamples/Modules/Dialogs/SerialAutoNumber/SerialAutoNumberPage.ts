@@ -16,8 +16,8 @@ export class SerialAutoNumberGrid extends CustomerGrid {
 @Decorators.registerClass('Serenity.Demo.BasicSamples.SerialAutoNumberDialog')
 export class SerialAutoNumberDialog extends CustomerDialog {
 
-    constructor() {
-        super();
+    constructor(props?: {}) {
+        super(props);
 
         this.form.CustomerID.element.on('keyup', (e) => {
             // only auto number when a key between 'A' and 'Z' is pressed

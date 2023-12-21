@@ -1,5 +1,5 @@
 /** @jsxImportSource jsx-dom/min */
-import { Decorators, PropertyGrid, TabsExtensions, Toolbar, first, getForm, initFullHeightGridPage, isEmptyOrNull, localText, notifySuccess, reloadLookup, validateOptions } from "@serenity-is/corelib";
+import { Decorators, PropertyGrid, TabsExtensions, Toolbar, WidgetProps, first, getForm, initFullHeightGridPage, isEmptyOrNull, localText, notifySuccess, reloadLookup, validateOptions } from "@serenity-is/corelib";
 import { CustomerForm, CustomerRow, CustomerService, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
@@ -24,8 +24,8 @@ export class OtherFormInTabDialog extends OrderDialog {
     private customerPropertyGrid: PropertyGrid;
     private selfChange: number = 0;
 
-    constructor() {
-        super();
+    constructor(props?: WidgetProps<{}>) {
+        super(props);
 
         this.form.CustomerID.change(e => {
             if (this.selfChange)

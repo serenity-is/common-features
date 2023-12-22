@@ -10,7 +10,8 @@
     "jsx-dom": "8.1.2"
   },
   "scripts": {
-    "all": "pnpm i && pnpm -r build && pnpm -r tsc"
+    "all": "pnpm i && pnpm -r build && pnpm tsc",
+    "tsc": "pnpm -r tsc"
   },
   "type": "module"
 }

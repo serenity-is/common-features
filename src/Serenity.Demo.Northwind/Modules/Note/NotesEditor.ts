@@ -1,5 +1,5 @@
 import { NoteRow } from "@/ServerTypes/Demo";
-import { Authorization, Decorators, IGetEditValue, ISetEditValue, PropertyItem, TemplatedWidget, Toolbar, WidgetProps, confirmDialog, formatDate, formatISODateTimeUTC, insert } from "@serenity-is/corelib";
+import { Authorization, Decorators, EditorProps, IGetEditValue, ISetEditValue, PropertyItem, TemplatedWidget, Toolbar, confirmDialog, formatDate, formatISODateTimeUTC, insert } from "@serenity-is/corelib";
 import * as DOMPurify from 'dompurify';
 import { NoteDialog } from "./NoteDialog";
 
@@ -11,7 +11,7 @@ export class NotesEditor<P = {}> extends TemplatedWidget<P>
     private isDirty: boolean;
     private items: NoteRow[];
 
-    constructor(props: WidgetProps<P>) {
+    constructor(props: EditorProps<P>) {
         super(props);
 
         new Toolbar({

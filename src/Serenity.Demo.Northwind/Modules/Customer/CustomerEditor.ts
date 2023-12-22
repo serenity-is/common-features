@@ -1,11 +1,11 @@
-import { Decorators, LookupEditorBase, LookupEditorOptions } from "@serenity-is/corelib";
 import { CustomerRow } from "@/ServerTypes/Demo";
+import { Decorators, EditorProps, LookupEditorBase, LookupEditorOptions } from "@serenity-is/corelib";
 
 @Decorators.registerEditor('Serenity.Demo.Northwind.CustomerEditor')
-export class CustomerEditor extends LookupEditorBase<LookupEditorOptions, CustomerRow> {
+export class CustomerEditor<P extends LookupEditorOptions = LookupEditorOptions> extends LookupEditorBase<P, CustomerRow> {
 
-    constructor(options: LookupEditorOptions) {
-        super({ async: true, ...options });
+    constructor(props: EditorProps<P>) {
+        super({ async: true, ...props });
     }
 
     protected getLookupKey() {

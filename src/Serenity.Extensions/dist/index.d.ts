@@ -1,6 +1,6 @@
 /// <reference types="jquery" />
 
-import { DataGrid, DeleteResponse, Dictionary, EmailAddressEditor, EntityDialog, EntityGrid, Formatter, IGetEditValue, ISetEditValue, IconClassName, ListRequest, ListResponse, PasswordEditor, PrefixedContext, PropertyDialog, PropertyItem, RetrieveResponse, SaveResponse, Select2AjaxEditor, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse, SettingStorage, TemplatedDialog, ToolButton, Widget, WidgetProps } from '@serenity-is/corelib';
+import { DataGrid, DeleteResponse, Dictionary, EditorProps, EmailAddressEditor, EntityDialog, EntityGrid, Formatter, IGetEditValue, ISetEditValue, IconClassName, ListRequest, ListResponse, PasswordEditor, PrefixedContext, PropertyDialog, PropertyItem, RetrieveResponse, SaveResponse, Select2AjaxEditor, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse, SettingStorage, TemplatedDialog, ToolButton, Widget, WidgetProps } from '@serenity-is/corelib';
 import { FormatterContext, Grid, GridOptions } from '@serenity-is/sleekgrid';
 
 export interface ChangePasswordForm {
@@ -320,7 +320,7 @@ export declare class SingleLineTextFormatter implements Formatter {
 export declare abstract class GridEditorBase<TEntity, P = {}> extends EntityGrid<TEntity, P> implements IGetEditValue, ISetEditValue {
 	protected getIdProperty(): string;
 	protected nextId: number;
-	constructor(props: WidgetProps<P>);
+	constructor(props: EditorProps<P>);
 	protected id(entity: TEntity): any;
 	protected getNextId(): string;
 	protected setNewId(entity: TEntity): void;
@@ -349,10 +349,10 @@ export declare abstract class GridEditorDialog<TEntity, P = {}> extends EntityDi
 	protected saveHandler(options: ServiceOptions<SaveResponse>, callback: (response: SaveResponse) => void): void;
 	protected deleteHandler(options: ServiceOptions<DeleteResponse>, callback: (response: DeleteResponse) => void): void;
 }
-export declare class ReportDialog extends TemplatedDialog<ReportDialogOptions> {
+export declare class ReportDialog<P extends ReportDialogOptions = ReportDialogOptions> extends TemplatedDialog<P> {
 	private report;
 	private propertyGrid;
-	constructor(options: ReportDialogOptions);
+	constructor(props: WidgetProps<P>);
 	protected getDialogButtons(): any;
 	protected createPropertyGrid(): void;
 	protected loadReport(reportKey: string): void;
@@ -444,7 +444,7 @@ export interface ServiceEditorOptions {
 }
 export declare abstract class ServiceEditorBase<P extends ServiceEditorOptions, TRow> extends Select2AjaxEditor<P, TRow> {
 	private cascadeLink;
-	constructor(props: WidgetProps<P>);
+	constructor(props: EditorProps<P>);
 	private setCascadeFrom;
 	get cascadeValue(): any;
 	set cascadeValue(value: any);

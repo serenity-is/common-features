@@ -1,5 +1,4 @@
-import { Decorators, EntityGrid, IGetEditValue, ISetEditValue, ToolButton, WidgetProps } from "@serenity-is/corelib";
-import { deepClone, indexOf, SaveRequest, ServiceOptions, ServiceResponse } from "@serenity-is/corelib";
+import { Decorators, EditorProps, EntityGrid, IGetEditValue, ISetEditValue, SaveRequest, ServiceOptions, ServiceResponse, ToolButton, deepClone, indexOf } from "@serenity-is/corelib";
 import { GridEditorDialog } from "./GridEditorDialog";
 
 @Decorators.registerClass("Serenity.Extensions.GridEditorBase", [IGetEditValue, ISetEditValue])
@@ -12,7 +11,7 @@ export abstract class GridEditorBase<TEntity, P = {}> extends EntityGrid<TEntity
 
     protected nextId = 1;
 
-    constructor(props: WidgetProps<P>) {
+    constructor(props: EditorProps<P>) {
         super(props);
     }
 

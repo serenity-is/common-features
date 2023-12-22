@@ -968,7 +968,7 @@ export declare class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P>
 	onSaveSuccess(response: any): void;
 	getTemplate(): string;
 }
-export declare class CustomerGrid extends EntityGrid<CustomerRow, any> {
+export declare class CustomerGrid<P = {}> extends EntityGrid<CustomerRow, P> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): any;
 	protected getRowDefinition(): typeof CustomerRow;

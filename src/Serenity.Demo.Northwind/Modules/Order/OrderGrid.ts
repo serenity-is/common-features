@@ -1,14 +1,13 @@
-import { Decorators, EntityGrid, EnumEditor, LookupEditor, ToolButton } from "@serenity-is/corelib";
-import { toId } from "@serenity-is/corelib";
-import { ExcelExportHelper, PdfExportHelper, ReportHelper } from "@serenity-is/extensions";
 import { OrderColumns, OrderListRequest, OrderRow, OrderService, ProductRow } from "@/ServerTypes/Demo";
+import { Decorators, EntityGrid, EnumEditor, LookupEditor, ToolButton, faIcon, toId } from "@serenity-is/corelib";
+import { ExcelExportHelper, PdfExportHelper, ReportHelper } from "@serenity-is/extensions";
 import { OrderDialog } from "./OrderDialog";
 
 const fld = OrderRow.Fields;
 
 @Decorators.registerClass('Serenity.Demo.Northwind.OrderGrid')
 @Decorators.filterable()
-export class OrderGrid extends EntityGrid<OrderRow, any> {
+export class OrderGrid<P={}> extends EntityGrid<OrderRow, P> {
     protected getColumnsKey() { return OrderColumns.columnsKey; }
     protected getDialogType() { return <any>OrderDialog; }
     protected getRowDefinition() { return OrderRow; }
@@ -68,8 +67,7 @@ export class OrderGrid extends EntityGrid<OrderRow, any> {
             field: null,
             name: '',
             cssClass: 'align-center',
-            format: ctx => '<a class="inline-action print-invoice" title="invoice">' +
-                '<i class="fa fa-file-pdf-o text-red"></i></a>',
+            format: _ => `<a class="inline-action" data-action="print-invoice" title="invoice"><i class="${faIcon("file-pdf", "red")}"></i></a>`,
             width: 36,
             minWidth: 36,
             maxWidth: 36
@@ -85,16 +83,10 @@ export class OrderGrid extends EntityGrid<OrderRow, any> {
             return;
 
         var item = this.itemAt(row);
-        var target = $(e.target);
-
-        // if user clicks "i" element, e.g. icon
-        if (target.parent().hasClass('inline-action'))
-            target = target.parent();
-
-        if (target.hasClass('inline-action')) {
+        let action = (e.target as HTMLElement)?.closest("inline-action")?.getAttribute("data-action");
+        if (action) {
             e.preventDefault();
-
-            if (target.hasClass('print-invoice')) {
+            if (action == "inline-action") {
                 ReportHelper.execute({
                     reportKey: 'Northwind.OrderDetail',
                     params: {

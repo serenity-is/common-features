@@ -1,4 +1,4 @@
-import { Decorators, Formatter } from "@serenity-is/corelib";
+import { Decorators, Formatter, faIcon } from "@serenity-is/corelib";
 import { Lookup } from "@serenity-is/corelib";
 import { FormatterContext } from "@serenity-is/sleekgrid";
 import { EmployeeRow } from "@/ServerTypes/Demo";
@@ -34,6 +34,6 @@ export class EmployeeListFormatter implements Formatter {
             }
         }).catch(() => promise = null);
 
-        return `<i class="fa fa-spinner"></i>`;
+        return `<i class="${faIcon("spinner")}"></i>`;
     }
 }

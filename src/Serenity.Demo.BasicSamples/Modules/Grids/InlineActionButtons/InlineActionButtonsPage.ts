@@ -1,10 +1,14 @@
-﻿import { Decorators } from "@serenity-is/corelib";
-import { confirmDialog, initFullHeightGridPage } from "@serenity-is/corelib";
+﻿import { Decorators, confirmDialog, faIcon, htmlEncode, initFullHeightGridPage } from "@serenity-is/corelib";
 import { CustomerGrid, CustomerService, OrderDialog, OrderRow } from "@serenity-is/demo.northwind";
+import { Column } from "@serenity-is/sleekgrid";
 
 export default function pageInit() {
-    initFullHeightGridPage(new InlineActionGrid($('#GridDiv')).element);
+    initFullHeightGridPage(new InlineActionGrid({ element: "#GridDiv" }));
 }
+
+const deleteRowAction = "delete-row";
+const viewDetailsAction = "view-details";
+const newOrderAction = "new-order";
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.InlineActionGrid')
 export class InlineActionGrid extends CustomerGrid {
@@ -12,35 +16,17 @@ export class InlineActionGrid extends CustomerGrid {
     protected getColumns() {
         var columns = super.getColumns();
 
-        columns.unshift({
-            field: 'Delete Row',
+        let inlineAction = (actionKey: string, hint, iconClass: string): Column => ({
             name: '',
-            format: ctx => '<a class="inline-action delete-row" title="delete">' +
-                '<i class="fa fa-trash-o text-red"></i></a>',
             width: 24,
+            format: _ => `<a class="inline-action" data-action="${actionKey}" title="${htmlEncode(hint)}"><i class="${htmlEncode(iconClass)}"></i></a>`,
             minWidth: 24,
             maxWidth: 24
-        });
+        })
 
-        columns.splice(1, 0, {
-            field: 'View Details',
-            name: '',
-            format: ctx => `<a class="inline-action view-details" title="view details">
-                    <i class="fa fa-search"></i></a>`,
-            width: 24,
-            minWidth: 24,
-            maxWidth: 24
-        });
-
-        columns.splice(2, 0, {
-            field: 'New Order',
-            name: '',
-            format: ctx => `<a class="inline-action new-order text-purple" title="new order">
-                    <i class="fa fa-cart-plus"></i></a>`,
-            width: 24,
-            minWidth: 24,
-            maxWidth: 24
-        });
+        columns.unshift(inlineAction(deleteRowAction, "Delete", faIcon("trash", "danger")));
+        columns.splice(1, 0, inlineAction(viewDetailsAction, "View Details", faIcon("search")));
+        columns.splice(2, 0, inlineAction(newOrderAction, "New Order", faIcon("cart-plus")));
 
         return columns;
     }
@@ -52,33 +38,34 @@ export class InlineActionGrid extends CustomerGrid {
             return;
 
         var item = this.itemAt(row);
-        var target = $(e.target);
-
-        // if user clicks "i" element, e.g. icon
-        if (target.parent().hasClass('inline-action'))
-            target = target.parent();
-
-        if (target.hasClass('inline-action')) {
+        var action = (e.target as HTMLElement).closest("inline-action")?.getAttribute("data-action");
+        if (action) {
             e.preventDefault();
 
-            if (target.hasClass('delete-row')) {
-                confirmDialog('Delete record?', () => {
-                    CustomerService.Delete({
-                        EntityId: item.ID,
-                    }, response => {
-                        this.refresh();
+            switch (action) {
+                case deleteRowAction: {
+                    confirmDialog('Delete record?', () => {
+                        CustomerService.Delete({
+                            EntityId: item.ID,
+                        }, _ => {
+                            this.refresh();
+                        });
                     });
-                });
-            }
-            else if (target.hasClass('view-details')) {
-                this.editItem(item.ID);
-            }
-            else if (target.hasClass('new-order')) {
-                var dlg = new OrderDialog();
-                this.initDialog(dlg);
-                dlg.loadEntityAndOpenDialog(<OrderRow>{
-                    CustomerID: item.CustomerID
-                });
+                    break;
+                }
+
+                case viewDetailsAction: {
+                    this.editItem(item.ID);
+                    break;
+                }
+
+                case newOrderAction: {
+                    var dlg = new OrderDialog();
+                    this.initDialog(dlg);
+                    dlg.loadEntityAndOpenDialog(<OrderRow>{
+                        CustomerID: item.CustomerID
+                    });
+                }
             }
         }
     }

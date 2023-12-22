@@ -1,4 +1,4 @@
-import { Decorators, PropertyGrid, TemplatedDialog } from "@serenity-is/corelib";
+import { Decorators, PropertyGrid, TemplatedDialog, faIcon } from "@serenity-is/corelib";
 import { resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { ReportRetrieveResult } from "@/ServerTypes/Reporting";
 import { ReportHelper } from "./ReportHelper";
@@ -87,7 +87,7 @@ export class ReportDialog extends TemplatedDialog<ReportDialogOptions> {
             {
                 title: 'Run',
                 cssClass: 'run-button',
-                icon: 'fa-print text-blue',
+                icon: faIcon("print", "blue"),
                 onClick: () => this.executeReport('_blank', null, false)
             },
             {

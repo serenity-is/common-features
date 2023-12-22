@@ -1,6 +1,6 @@
 /// <reference types="jquery" />
 
-import { DataGrid, DeleteResponse, Dictionary, EmailAddressEditor, EntityDialog, EntityGrid, Formatter, IGetEditValue, ISetEditValue, ListRequest, ListResponse, PasswordEditor, PrefixedContext, PropertyDialog, PropertyItem, RetrieveResponse, SaveResponse, Select2AjaxEditor, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse, SettingStorage, TemplatedDialog, ToolButton, Widget, WidgetProps } from '@serenity-is/corelib';
+import { DataGrid, DeleteResponse, Dictionary, EmailAddressEditor, EntityDialog, EntityGrid, Formatter, IGetEditValue, ISetEditValue, IconClassName, ListRequest, ListResponse, PasswordEditor, PrefixedContext, PropertyDialog, PropertyItem, RetrieveResponse, SaveResponse, Select2AjaxEditor, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse, SettingStorage, TemplatedDialog, ToolButton, Widget, WidgetProps } from '@serenity-is/corelib';
 import { FormatterContext, Grid, GridOptions } from '@serenity-is/sleekgrid';
 
 export interface ChangePasswordForm {
@@ -387,7 +387,7 @@ export interface ReportExecuteOptions {
 export interface ReportButtonOptions extends ReportExecuteOptions {
 	title?: string;
 	cssClass?: string;
-	icon?: string;
+	icon?: IconClassName;
 }
 export declare namespace ReportHelper {
 	function createToolButton(options: ReportButtonOptions): ToolButton;

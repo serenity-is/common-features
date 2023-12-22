@@ -1,4 +1,4 @@
-import { ToolButton } from "@serenity-is/corelib";
+import { IconClassName, ToolButton } from "@serenity-is/corelib";
 import { postToUrl } from "@serenity-is/corelib";
 
 export interface ReportExecuteOptions {
@@ -13,7 +13,7 @@ export interface ReportExecuteOptions {
 export interface ReportButtonOptions extends ReportExecuteOptions {
     title?: string;
     cssClass?: string;
-    icon?: string;
+    icon?: IconClassName;
 }
 
 export namespace ReportHelper {

@@ -1,4 +1,4 @@
-import { DataGrid, ToolButton } from "@serenity-is/corelib";
+import { DataGrid, ToolButton, faIcon } from "@serenity-is/corelib";
 import { deepClone, ListRequest, postToService } from "@serenity-is/corelib";
 
 export interface ExcelExportOptions {
@@ -19,7 +19,7 @@ export namespace ExcelExportHelper {
             hint: options.hint ?? 'Excel',
             title: options.title ?? '',
             cssClass: 'export-xlsx-button',
-            icon: 'fa-file-excel-o',
+            icon: faIcon("file-excel"),
             onClick: function () {
                 if (!options.onViewSubmit()) {
                     return;

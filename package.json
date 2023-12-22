@@ -10,7 +10,7 @@
     "jsx-dom": "8.1.2"
   },
   "scripts": {
-    "tsc": "pnpm -r --no-bail exec tsc"
+    "all": "pnpm i && pnpm -r build && pnpm -r tsc"
   },
   "type": "module"
 }

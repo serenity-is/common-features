@@ -8,10 +8,10 @@
   "main": "dist/index.js",
   "private": true,
   "scripts": {
-    "build": "pnpm tsbuild",
-    "dts": "pnpm dts-bundle-generator Modules/index.ts -o dist/index.d.ts --no-banner --disable-symlinks-following --inline-declare-global --external-types jquery",
-    "tsbuild": "node ./tsbuild.js",
-    "tsbuild:watch": "node ./tsbuild.js --watch"
+    "build": "node ./tsbuild.js",
+    "build:watch": "node ./tsbuild.js --watch",
+    "tsc": "tsc",
+    "dts": "pnpm dts-bundle-generator Modules/index.ts -o dist/index.d.ts --no-banner --disable-symlinks-following --inline-declare-global --external-types jquery"
   },
   "type": "module",
   "types": "dist/index.d.ts"

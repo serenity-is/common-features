@@ -8,9 +8,9 @@
   "main": "wwwroot/index.js",
   "private": true,
   "scripts": {
-    "build": "pnpm tsbuild",
-    "tsbuild": "node ./tsbuild.js",
-    "tsbuild:watch": "node ./tsbuild.js --watch"
+    "build": "node ./tsbuild.js",
+    "build:watch": "node ./tsbuild.js --watch",
+    "tsc": "tsc"
   },
   "type": "module"
 }

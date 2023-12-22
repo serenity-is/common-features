@@ -4,7 +4,7 @@ import { GridEditorBase } from "@serenity-is/extensions";
 import { OrderDetailDialog } from "./OrderDetailDialog";
 
 @Decorators.registerEditor('Serenity.Demo.Northwind.OrderDetailsEditor')
-export class OrderDetailsEditor extends GridEditorBase<OrderDetailRow> {
+export class OrderDetailsEditor<P = {}> extends GridEditorBase<OrderDetailRow, P> {
     protected getColumnsKey() { return OrderDetailColumns.columnsKey; }
     protected getDialogType() { return OrderDetailDialog; }
     protected getLocalTextPrefix() { return OrderDetailRow.localTextPrefix; }
@@ -19,7 +19,7 @@ export class OrderDetailsEditor extends GridEditorBase<OrderDetailRow> {
         }
 
         id ??= row[this.getIdProperty()];
-        
+
         ProductRow.getLookupAsync().then(lookup => {
             var item = this.view?.getItemById?.(id);
             if (item) {

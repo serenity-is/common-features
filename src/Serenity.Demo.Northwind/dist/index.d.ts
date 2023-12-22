@@ -477,7 +477,7 @@ export declare class OrderDetailDialog extends GridEditorDialog<OrderDetailRow> 
 	protected form: OrderDetailForm;
 	constructor();
 }
-export declare class OrderDetailsEditor extends GridEditorBase<OrderDetailRow> {
+export declare class OrderDetailsEditor<P = {}> extends GridEditorBase<OrderDetailRow, P> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): typeof OrderDetailDialog;
 	protected getLocalTextPrefix(): string;

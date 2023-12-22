@@ -62,7 +62,7 @@ export class CustomLinksInGrid extends OrderGrid {
                 var customer = first((await CustomerRow.getLookupAsync()).items,
                     x => x.CustomerID == item.CustomerID);
 
-                new CustomerDialog().loadByIdAndOpenDialog(customer.ID);
+                new CustomerDialog({}).loadByIdAndOpenDialog(customer.ID);
             },
                 {
                     htmlEncode: false,

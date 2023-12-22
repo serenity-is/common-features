@@ -6,7 +6,7 @@ export default function pageInit() {
 }
 
 /** Subclass of ProductGrid to override dialog type to CloneableEntityDialog */
-export class CloneableEntityGrid extends EntityGrid<ProductRow, any> {
+export class CloneableEntityGrid<P = {}> extends EntityGrid<ProductRow, P> {
 
     protected getColumnsKey() { return ProductColumns.columnsKey; }
     protected getDialogType() { return CloneableEntityDialog; }

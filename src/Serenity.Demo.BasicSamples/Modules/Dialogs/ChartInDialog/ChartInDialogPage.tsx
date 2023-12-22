@@ -18,7 +18,7 @@ export default function pageInit() {
 @Decorators.resizable()
 @Decorators.maximizable()
 @Decorators.registerClass('Serenity.Demo.BasicSamples.ChartInDialog')
-export class ChartInDialog extends TemplatedDialog<any> {
+export class ChartInDialog<P = {}> extends TemplatedDialog<P> {
 
     private canvas: HTMLCanvasElement;
 

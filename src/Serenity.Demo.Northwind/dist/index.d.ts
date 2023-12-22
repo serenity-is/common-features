@@ -208,10 +208,10 @@ export declare abstract class CustomerDetailsRow {
 	static readonly updatePermission = "Northwind:General";
 	static readonly Fields: Readonly<Record<keyof CustomerDetailsRow, string>>;
 }
-export declare class NotesEditor extends TemplatedWidget<any> implements IGetEditValue, ISetEditValue {
+export declare class NotesEditor<P = {}> extends TemplatedWidget<P> implements IGetEditValue, ISetEditValue {
 	private isDirty;
 	private items;
-	constructor(props: WidgetProps<{}>);
+	constructor(props: WidgetProps<P>);
 	protected getTemplate(): string;
 	protected updateContent(): void;
 	protected addClick(): void;
@@ -942,13 +942,13 @@ export declare namespace TerritoryService {
 		readonly List: "Serenity.Demo.Northwind/Territory/List";
 	};
 }
-export declare class CategoryDialog extends EntityDialog<CategoryRow, any> {
+export declare class CategoryDialog<P = {}> extends EntityDialog<CategoryRow, P> {
 	protected getFormKey(): string;
 	protected getRowDefinition(): typeof CategoryRow;
 	protected getService(): string;
 	protected form: CategoryForm;
 }
-export declare class CategoryGrid extends EntityGrid<CategoryRow, any> {
+export declare class CategoryGrid<P = {}> extends EntityGrid<CategoryRow, P> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): any;
 	protected getRowDefinition(): typeof CategoryRow;
@@ -961,7 +961,7 @@ export declare class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P>
 	protected form: CustomerForm;
 	private ordersGrid;
 	private loadedState;
-	constructor(props?: WidgetProps<P>);
+	constructor(props: WidgetProps<P>);
 	getSaveState(): string;
 	loadResponse(data: any): void;
 	loadEntity(entity: CustomerRow): void;
@@ -985,7 +985,7 @@ export declare class OrderDialog<P = {}> extends EntityDialog<OrderRow, P> {
 export declare class CustomerOrderDialog extends OrderDialog {
 	updateInterface(): void;
 }
-export declare class OrderGrid extends EntityGrid<OrderRow, any> {
+export declare class OrderGrid<P = {}> extends EntityGrid<OrderRow, P> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): any;
 	protected getRowDefinition(): typeof OrderRow;
@@ -999,7 +999,7 @@ export declare class OrderGrid extends EntityGrid<OrderRow, any> {
 	set_shippingState(value: number): void;
 	protected addButtonClick(): void;
 }
-export declare class CustomerOrdersGrid extends OrderGrid {
+export declare class CustomerOrdersGrid<P = {}> extends OrderGrid<P> {
 	protected getDialogType(): typeof CustomerOrderDialog;
 	protected getColumns(): Column[];
 	protected initEntityDialog(itemType: any, dialog: any): void;
@@ -1019,9 +1019,9 @@ export declare class EmployeeFormatter implements Formatter {
 	genderProperty: string;
 	initializeColumn(column: Column): void;
 }
-export declare class NoteDialog extends TemplatedDialog<any> {
+export declare class NoteDialog<P = {}> extends TemplatedDialog<P> {
 	private textEditor;
-	constructor();
+	constructor(props: WidgetProps<P>);
 	protected getTemplate(): string;
 	protected getDialogButtons(): {
 		text: string;
@@ -1034,7 +1034,7 @@ export declare class NoteDialog extends TemplatedDialog<any> {
 export declare class FreightFormatter implements Formatter {
 	format(ctx: FormatterContext): string;
 }
-export declare class ProductDialog extends EntityDialog<ProductRow, any> {
+export declare class ProductDialog<P = {}> extends EntityDialog<ProductRow, P> {
 	protected getFormKey(): string;
 	protected getRowDefinition(): typeof ProductRow;
 	protected getService(): string;
@@ -1046,7 +1046,7 @@ export declare class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
 	protected getRowDefinition(): typeof ProductRow;
 	protected getService(): string;
 	private pendingChanges;
-	constructor(props?: WidgetProps<P>);
+	constructor(props: WidgetProps<P>);
 	protected getButtons(): import("@serenity-is/corelib").ToolButton[];
 	protected onViewProcessData(response: any): import("@serenity-is/corelib").ListResponse<ProductRow>;
 	/**
@@ -1067,19 +1067,19 @@ export declare class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
 	private saveClick;
 	protected getQuickFilters(): import("@serenity-is/corelib").QuickFilter<import("@serenity-is/corelib").Widget<any>, any>[];
 }
-export declare class RegionDialog extends EntityDialog<RegionRow, any> {
+export declare class RegionDialog<P = {}> extends EntityDialog<RegionRow, P> {
 	protected getFormKey(): string;
 	protected getRowDefinition(): typeof RegionRow;
 	protected getService(): string;
 	protected form: RegionForm;
 }
-export declare class RegionGrid extends EntityGrid<RegionRow, any> {
+export declare class RegionGrid<P = {}> extends EntityGrid<RegionRow, P> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): any;
 	protected getRowDefinition(): typeof RegionRow;
 	protected getService(): string;
 }
-export declare class ShipperDialog extends EntityDialog<ShipperRow, any> {
+export declare class ShipperDialog<P = {}> extends EntityDialog<ShipperRow, P> {
 	protected getFormKey(): string;
 	protected getRowDefinition(): typeof ShipperRow;
 	protected getService(): string;
@@ -1088,31 +1088,31 @@ export declare class ShipperDialog extends EntityDialog<ShipperRow, any> {
 export declare class ShipperFormatter implements Formatter {
 	format(ctx: FormatterContext): string;
 }
-export declare class ShipperGrid extends EntityGrid<ShipperRow, any> {
+export declare class ShipperGrid<P = {}> extends EntityGrid<ShipperRow, P> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): any;
 	protected getRowDefinition(): typeof ShipperRow;
 	protected getService(): string;
 }
-export declare class SupplierDialog extends EntityDialog<SupplierRow, any> {
+export declare class SupplierDialog<P = {}> extends EntityDialog<SupplierRow, P> {
 	protected getFormKey(): string;
 	protected getRowDefinition(): typeof SupplierRow;
 	protected getService(): string;
 	protected form: SupplierForm;
 }
-export declare class SupplierGrid extends EntityGrid<SupplierRow, any> {
+export declare class SupplierGrid<P = {}> extends EntityGrid<SupplierRow, P> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): any;
 	protected getRowDefinition(): typeof SupplierRow;
 	protected getService(): string;
 }
-export declare class TerritoryDialog extends EntityDialog<TerritoryRow, any> {
+export declare class TerritoryDialog<P = {}> extends EntityDialog<TerritoryRow, P> {
 	protected getFormKey(): string;
 	protected getRowDefinition(): typeof TerritoryRow;
 	protected getService(): string;
 	protected form: TerritoryForm;
 }
-export declare class TerritoryGrid extends EntityGrid<TerritoryRow, any> {
+export declare class TerritoryGrid<P = {}> extends EntityGrid<TerritoryRow, P> {
 	protected getColumnsKey(): string;
 	protected getDialogType(): any;
 	protected getRowDefinition(): typeof TerritoryRow;

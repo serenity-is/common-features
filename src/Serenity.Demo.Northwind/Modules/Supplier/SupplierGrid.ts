@@ -3,7 +3,7 @@ import { SupplierColumns, SupplierRow, SupplierService } from "@/ServerTypes/Dem
 import { SupplierDialog } from "./SupplierDialog";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.SupplierGrid')
-export class SupplierGrid extends EntityGrid<SupplierRow, any> {
+export class SupplierGrid<P = {}> extends EntityGrid<SupplierRow, P> {
     protected getColumnsKey() { return SupplierColumns.columnsKey; }
     protected getDialogType() { return <any>SupplierDialog; }
     protected getRowDefinition() { return SupplierRow; }

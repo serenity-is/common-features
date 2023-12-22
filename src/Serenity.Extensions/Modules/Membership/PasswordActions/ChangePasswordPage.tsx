@@ -10,13 +10,13 @@ export default function pageInit() {
 
 const myTexts = Texts.Forms.Membership.ChangePassword;
 
-class ChangePasswordPanel extends PropertyPanel<ChangePasswordRequest, any> {
+class ChangePasswordPanel<P = {}> extends PropertyPanel<ChangePasswordRequest, P> {
 
     protected getFormKey() { return ChangePasswordForm.formKey; }
 
     private form = new ChangePasswordForm(this.idPrefix);
 
-    constructor(props: WidgetProps<{}>) {
+    constructor(props: WidgetProps<P>) {
         super(props);
 
         this.form.NewPassword.addValidationRule(this.uniqueName, () => {

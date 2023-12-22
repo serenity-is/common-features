@@ -12,7 +12,7 @@ export abstract class GridEditorBase<TEntity, P = {}> extends EntityGrid<TEntity
 
     protected nextId = 1;
 
-    constructor(props?: WidgetProps<P>) {
+    constructor(props: WidgetProps<P>) {
         super(props);
     }
 

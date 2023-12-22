@@ -1,4 +1,4 @@
-import { Decorators, DialogTexts, PropertyDialog, localText } from "@serenity-is/corelib";
+import { Decorators, DialogTexts, PropertyDialog, WidgetProps, localText } from "@serenity-is/corelib";
 
 export interface PromptDialogOptions {
     cssClass?: string;
@@ -13,10 +13,10 @@ export interface PromptDialogOptions {
 }
 
 @Decorators.registerClass("Serenity.Extensions.PromptDialog")
-export class PromptDialog extends PropertyDialog<any, PromptDialogOptions> {
+export class PromptDialog<P extends PromptDialogOptions = PromptDialogOptions> extends PropertyDialog<any, P> {
 
-    constructor(opt: PromptDialogOptions) {
-        super(opt);
+    constructor(props: WidgetProps<P>) {
+        super(props);
 
         if (this.options.cssClass)
             this.element.addClass(this.options.cssClass);

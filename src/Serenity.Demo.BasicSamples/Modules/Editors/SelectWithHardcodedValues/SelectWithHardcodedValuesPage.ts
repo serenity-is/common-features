@@ -2,7 +2,7 @@ import { HardcodedValuesForm } from "@/ServerTypes/Demo";
 import { Decorators, PropertyDialog, Select2Editor, WidgetProps, notifySuccess } from "@serenity-is/corelib";
 
 export default function pageInit() {
-    var dlg = new HardcodedValuesDialog();
+    var dlg = new HardcodedValuesDialog({});
     dlg.dialogOpen();
     dlg.element.find('.field.SomeValue .editor').select2('open');
 
@@ -25,7 +25,7 @@ export default function pageInit() {
 @Decorators.registerEditor('Serenity.Demo.BasicSamples.HardcodedValuesEditor')
 export class HardcodedValuesEditor<P = {}> extends Select2Editor<P, any> {
 
-    constructor(props?: WidgetProps<P>) {
+    constructor(props: WidgetProps<P>) {
         super(props);
 
         // add option accepts a key (id) value and display text value
@@ -48,12 +48,12 @@ export class HardcodedValuesEditor<P = {}> extends Select2Editor<P, any> {
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.HardcodedValuesDialog')
-export class HardcodedValuesDialog<P={}> extends PropertyDialog<any, P> {
+export class HardcodedValuesDialog<P = {}> extends PropertyDialog<any, P> {
     protected getFormKey() { return HardcodedValuesForm.formKey; }
 
     protected form = new HardcodedValuesForm(this.idPrefix);
 
-    constructor(props?: WidgetProps<P>) {
+    constructor(props: WidgetProps<P>) {
         super(props);
 
         this.dialogTitle = "Please select some value";

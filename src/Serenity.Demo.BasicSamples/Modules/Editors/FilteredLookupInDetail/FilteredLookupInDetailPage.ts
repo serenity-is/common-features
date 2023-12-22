@@ -1,9 +1,9 @@
 import { FilteredLookupInDetailForm } from "@/ServerTypes/Demo";
-import { Decorators, EntityDialog, Widget, initFullHeightGridPage, toId } from "@serenity-is/corelib";
+import { Decorators, EntityDialog, Widget, WidgetProps, initFullHeightGridPage, toId } from "@serenity-is/corelib";
 import { OrderDetailDialog, OrderDetailForm, OrderDetailsEditor, OrderGrid, OrderRow, OrderService, ProductRow } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
-    initFullHeightGridPage(new FilteredLookupInDetailGrid($('#GridDiv')).element);
+    initFullHeightGridPage(new FilteredLookupInDetailGrid({ element: "#GridDiv" }));
 }
 
 /**
@@ -57,7 +57,7 @@ export class FilteredLookupOrderDetailDialog extends OrderDetailDialog {
  * Our subclass of Order Details editor with a CategoryID property
  */
 @Decorators.registerEditor('Serenity.Demo.BasicSamples.FilteredLookupDetailEditor')
-export class FilteredLookupDetailEditor extends OrderDetailsEditor {
+export class FilteredLookupDetailEditor<P = {}> extends OrderDetailsEditor<P> {
 
     protected getDialogType() { return FilteredLookupOrderDetailDialog; }
 
@@ -80,7 +80,7 @@ export class FilteredLookupDetailEditor extends OrderDetailsEditor {
  * Basic order dialog with a category selection
  */
 @Decorators.registerClass('Serenity.Demo.BasicSamples.FilteredLookupInDetailDialog')
-export class FilteredLookupInDetailDialog extends EntityDialog<OrderRow, any> {
+export class FilteredLookupInDetailDialog<P = {}> extends EntityDialog<OrderRow, P> {
 
     protected getFormKey() { return FilteredLookupInDetailForm.formKey; }
     protected getRowDefinition() { return OrderRow; }
@@ -88,8 +88,8 @@ export class FilteredLookupInDetailDialog extends EntityDialog<OrderRow, any> {
 
     private form: FilteredLookupInDetailForm;
 
-    constructor() {
-        super();
+    constructor(props: WidgetProps<P>) {
+        super(props);
 
         this.form = new FilteredLookupInDetailForm(this.idPrefix);
         this.form.CategoryID.change(e => {

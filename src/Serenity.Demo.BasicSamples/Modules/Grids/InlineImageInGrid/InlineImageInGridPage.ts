@@ -5,7 +5,7 @@ import { ProductRow, ProductDialog, ProductService } from "@serenity-is/demo.nor
 import { Column, FormatterContext, GridOptions } from "@serenity-is/sleekgrid";
 
 export default function pageInit() {
-    initFullHeightGridPage(new InlineImageInGrid($('#GridDiv')).element);
+    initFullHeightGridPage(new InlineImageInGrid({ element: "#GridDiv" }));
 }
 
 @Decorators.registerFormatter("Serenity.Demo.BasicSamples.InlineImageFormatter")
@@ -46,7 +46,7 @@ export class InlineImageFormatter
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.InlineImageInGrid')
-export class InlineImageInGrid extends EntityGrid<ProductRow, any> {
+export class InlineImageInGrid<P = {}> extends EntityGrid<ProductRow, P> {
 
     protected getColumnsKey() { return InlineImageInGridColumns.columnsKey; }
     protected getDialogType() { return <any>ProductDialog; }

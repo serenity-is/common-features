@@ -16,7 +16,7 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
 
     private pendingChanges: Dictionary<any> = {};
 
-    constructor(props?: WidgetProps<P>) {
+    constructor(props: WidgetProps<P>) {
         super(props);
         this.slickContainer.on('change', '.edit:input', (e) => this.inputsChange(e as any));
     }

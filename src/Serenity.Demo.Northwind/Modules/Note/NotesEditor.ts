@@ -5,13 +5,13 @@ import { NoteDialog } from "./NoteDialog";
 
 @Decorators.registerEditor('Serenity.Demo.Northwind.NotesEditor', [IGetEditValue, ISetEditValue])
 @Decorators.element("<div/>")
-export class NotesEditor extends TemplatedWidget<any>
+export class NotesEditor<P = {}> extends TemplatedWidget<P>
     implements IGetEditValue, ISetEditValue {
 
     private isDirty: boolean;
     private items: NoteRow[];
 
-    constructor(props: WidgetProps<{}>) {
+    constructor(props: WidgetProps<P>) {
         super(props);
 
         new Toolbar({
@@ -57,11 +57,11 @@ export class NotesEditor extends TemplatedWidget<any>
     }
 
     protected addClick() {
-        var dlg = new NoteDialog();
+        var dlg = new NoteDialog({});
         dlg.dialogTitle = 'Add Note';
         dlg.okClick = () => {
             var text = dlg.text?.trim();
-            if (!text) 
+            if (!text)
                 return;
 
             this.items = this.items || [];
@@ -83,7 +83,7 @@ export class NotesEditor extends TemplatedWidget<any>
         e.preventDefault();
         var index = $(e.target).data('index');
         var old = this.items[index];
-        var dlg = new NoteDialog();
+        var dlg = new NoteDialog({});
         dlg.dialogTitle = 'Edit Note';
         dlg.text = old.Text;
         dlg.okClick = () => {

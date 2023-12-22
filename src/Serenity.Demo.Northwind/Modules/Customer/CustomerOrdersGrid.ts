@@ -8,7 +8,7 @@ import { CustomerOrderDialog } from "./CustomerOrderDialog";
 const fld = OrderRow.Fields;
 
 @Decorators.registerClass()
-export class CustomerOrdersGrid extends OrderGrid {
+export class CustomerOrdersGrid<P = {}> extends OrderGrid<P> {
     protected getDialogType() { return CustomerOrderDialog; }
 
     protected getColumns(): Column[] {

@@ -1,12 +1,12 @@
-import { Decorators, DialogTexts, HtmlContentEditor, HtmlNoteContentEditor, TemplatedDialog } from "@serenity-is/corelib";
+import { Decorators, DialogTexts, HtmlContentEditor, HtmlNoteContentEditor, TemplatedDialog, WidgetProps } from "@serenity-is/corelib";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.NoteDialog')
-export class NoteDialog extends TemplatedDialog<any> {
+export class NoteDialog<P = {}> extends TemplatedDialog<P> {
 
     private textEditor: HtmlContentEditor;
 
-    constructor() {
-        super();
+    constructor(props: WidgetProps<P>) {
+        super(props);
 
         this.textEditor = new HtmlNoteContentEditor({ element: this.byId('Text')[0] });
     }

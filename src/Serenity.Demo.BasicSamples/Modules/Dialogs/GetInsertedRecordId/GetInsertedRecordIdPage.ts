@@ -2,8 +2,7 @@ import { Decorators, initFullHeightGridPage, notifyInfo, notifySuccess, SaveResp
 import { CategoryDialog, CategoryGrid, CategoryService } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
-    new GetInsertedRecordIdGrid($('#GridDiv')).init();
-    initFullHeightGridPage($('#GridDiv'));
+    initFullHeightGridPage(new GetInsertedRecordIdGrid({ element: "#GridDiv" }));
 }
 
 /**

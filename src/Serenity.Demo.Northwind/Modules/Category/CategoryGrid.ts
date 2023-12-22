@@ -3,7 +3,7 @@ import { CategoryColumns, CategoryRow, CategoryService } from "@/ServerTypes/Dem
 import { CategoryDialog } from "./CategoryDialog";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.CategoryGrid')
-export class CategoryGrid extends EntityGrid<CategoryRow, any> {
+export class CategoryGrid<P = {}> extends EntityGrid<CategoryRow, P> {
     protected getColumnsKey() { return CategoryColumns.columnsKey; }
     protected getDialogType() { return <any>CategoryDialog; }
     protected getRowDefinition() { return CategoryRow; }

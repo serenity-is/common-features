@@ -3,11 +3,11 @@ import { ProductColumns, ProductDialog, ProductRow, ProductService } from "@sere
 import { GroupItemMetadataProvider } from "@serenity-is/sleekgrid";
 
 export default function pageInit() {
-    initFullHeightGridPage(new GroupingAndSummariesInGrid($('#GridDiv')).element);
+    initFullHeightGridPage(new GroupingAndSummariesInGrid({ element: "#GridDiv" }));
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.GroupingAndSummariesInGrid')
-export class GroupingAndSummariesInGrid extends EntityGrid<ProductRow, any> {
+export class GroupingAndSummariesInGrid<P = {}> extends EntityGrid<ProductRow, P> {
 
     protected getColumnsKey() { return ProductColumns.columnsKey; }
     protected getDialogType() { return ProductDialog; }

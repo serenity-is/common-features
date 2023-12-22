@@ -2,7 +2,7 @@
 import { OrderGrid, OrderRow, OrderShippingState } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
-    initFullHeightGridPage(new InitialValuesForQuickFilters($('#GridDiv')).element);
+    initFullHeightGridPage(new InitialValuesForQuickFilters({ element: "#GridDiv" }));
 }
 
 // get a reference to order row field names

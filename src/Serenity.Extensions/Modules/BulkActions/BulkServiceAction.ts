@@ -15,7 +15,7 @@ export class BulkServiceAction {
     public done: () => void;
 
     protected createProgressDialog() {
-        this.progressDialog = new BasicProgressDialog();
+        this.progressDialog = new BasicProgressDialog({});
         this.progressDialog.dialogOpen();
         this.progressDialog.max = this.keys.length;
         this.progressDialog.value = 0;

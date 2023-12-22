@@ -6,7 +6,7 @@ export default function pageInit() {
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.GridFilteredByCriteria')
-export class GridFilteredByCriteria extends EntityGrid<ProductRow, any> {
+export class GridFilteredByCriteria<P = {}> extends EntityGrid<ProductRow, P> {
 
     protected getColumnsKey() { return ProductColumns.columnsKey; }
     protected getDialogType() { return ProductDialog; }

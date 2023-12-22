@@ -15,10 +15,10 @@ export class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P> {
     private ordersGrid: CustomerOrdersGrid;
     private loadedState: string;
 
-    constructor(props?: WidgetProps<P>) {
+    constructor(props: WidgetProps<P>) {
         super(props);
 
-        this.ordersGrid = new CustomerOrdersGrid(this.byId('OrdersGrid'));
+        this.ordersGrid = new CustomerOrdersGrid({ element: this.byId('OrdersGrid') });
         // force order dialog to open in Dialog mode instead of Panel mode
         // which is set as default on OrderDialog with @panelAttribute
         this.ordersGrid.openDialogsAsPanel = false;

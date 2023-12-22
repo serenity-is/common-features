@@ -137,8 +137,8 @@ export interface ReportRetrieveResult extends ServiceResponse {
 	IsDataOnlyReport?: boolean;
 	IsExternalReport?: boolean;
 }
-export declare class BasicProgressDialog extends TemplatedDialog<any> {
-	constructor();
+export declare class BasicProgressDialog<P = {}> extends TemplatedDialog<P> {
+	constructor(props?: WidgetProps<P>);
 	cancelled: boolean;
 	get max(): number;
 	set max(value: number);
@@ -320,7 +320,7 @@ export declare class SingleLineTextFormatter implements Formatter {
 export declare abstract class GridEditorBase<TEntity, P = {}> extends EntityGrid<TEntity, P> implements IGetEditValue, ISetEditValue {
 	protected getIdProperty(): string;
 	protected nextId: number;
-	constructor(props?: WidgetProps<P>);
+	constructor(props: WidgetProps<P>);
 	protected id(entity: TEntity): any;
 	protected getNextId(): string;
 	protected setNewId(entity: TEntity): void;
@@ -340,7 +340,7 @@ export declare abstract class GridEditorBase<TEntity, P = {}> extends EntityGrid
 	protected getInitialTitle(): any;
 	protected createQuickSearchInput(): void;
 }
-export declare abstract class GridEditorDialog<TEntity> extends EntityDialog<TEntity, any> {
+export declare abstract class GridEditorDialog<TEntity, P = {}> extends EntityDialog<TEntity, P> {
 	protected getIdProperty(): string;
 	onSave: (options: ServiceOptions<SaveResponse>, callback: (response: SaveResponse) => void) => void;
 	onDelete: (options: ServiceOptions<DeleteResponse>, callback: (response: DeleteResponse) => void) => void;
@@ -394,7 +394,7 @@ export declare namespace ReportHelper {
 	function execute(options: ReportExecuteOptions): void;
 }
 export declare class ReportPage<P = {}> extends Widget<P> {
-	constructor(props?: WidgetProps<P>);
+	constructor(props: WidgetProps<P>);
 	protected updateMatchFlags(text: string): void;
 	protected reportLinkClick(e: any): void;
 }
@@ -416,8 +416,8 @@ export interface PromptDialogOptions {
 	required?: boolean;
 	validateValue: (v: any) => boolean;
 }
-export declare class PromptDialog extends PropertyDialog<any, PromptDialogOptions> {
-	constructor(opt: PromptDialogOptions);
+export declare class PromptDialog<P extends PromptDialogOptions = PromptDialogOptions> extends PropertyDialog<any, P> {
+	constructor(props: WidgetProps<P>);
 	protected getDialogButtons(): {
 		text: string;
 		click: () => void;
@@ -444,7 +444,7 @@ export interface ServiceEditorOptions {
 }
 export declare abstract class ServiceEditorBase<P extends ServiceEditorOptions, TRow> extends Select2AjaxEditor<P, TRow> {
 	private cascadeLink;
-	constructor(props?: WidgetProps<P>);
+	constructor(props: WidgetProps<P>);
 	private setCascadeFrom;
 	get cascadeValue(): any;
 	set cascadeValue(value: any);

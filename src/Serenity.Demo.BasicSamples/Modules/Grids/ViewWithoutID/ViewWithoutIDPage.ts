@@ -4,11 +4,11 @@ import { SalesByCategoryRow, SalesByCategoryColumns, SalesByCategoryService } fr
 
 
 export default function pageInit() {
-    initFullHeightGridPage(new ViewWithoutIDGrid($('#GridDiv')).element);
+    initFullHeightGridPage(new ViewWithoutIDGrid({ element: "#GridDiv" }));
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.ViewWithoutIDGrid')
-export class ViewWithoutIDGrid extends EntityGrid<SalesByCategoryRow, any> {
+export class ViewWithoutIDGrid<P = {}> extends EntityGrid<SalesByCategoryRow, P> {
     protected getColumnsKey() { return SalesByCategoryColumns.columnsKey; }
     protected getIdProperty() { return "__id"; }
     protected getNameProperty() { return SalesByCategoryRow.nameProperty; }

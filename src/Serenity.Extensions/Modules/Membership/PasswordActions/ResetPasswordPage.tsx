@@ -24,7 +24,7 @@ export class ResetPasswordPanel extends PropertyPanel<ResetPasswordRequest, Rese
     private form = new ResetPasswordForm(this.idPrefix);
     private tokenInput: HTMLInputElement;
 
-    constructor(props?: WidgetProps<ResetPasswordOptions>) {
+    constructor(props: WidgetProps<ResetPasswordOptions>) {
         super(props);
 
         this.form.NewPassword.addValidationRule(this.uniqueName, e => {

@@ -3,7 +3,7 @@ import { Decorators, EntityDialog, WidgetProps, first, initFullHeightGridPage } 
 import { CustomerRow, CustomerService, OrderGrid, OrderRow, OrderService } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
-    initFullHeightGridPage(new PopulateLinkedDataGrid($('#GridDiv')).element);
+    initFullHeightGridPage(new PopulateLinkedDataGrid({ element: "#GridDiv" }));
 }
 
 /**
@@ -16,7 +16,7 @@ export class PopulateLinkedDataGrid extends OrderGrid {
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.PopulateLinkedDataDialog')
-export class PopulateLinkedDataDialog<P={}> extends EntityDialog<OrderRow, P> {
+export class PopulateLinkedDataDialog<P = {}> extends EntityDialog<OrderRow, P> {
 
     protected getFormKey() { return PopulateLinkedDataForm.formKey; }
     protected getRowDefinition() { return OrderRow; }
@@ -24,7 +24,7 @@ export class PopulateLinkedDataDialog<P={}> extends EntityDialog<OrderRow, P> {
 
     protected form = new PopulateLinkedDataForm(this.idPrefix);
 
-    constructor(props?: WidgetProps<P>) {
+    constructor(props: WidgetProps<P>) {
         super(props);
 
         // "changeSelect2" is only fired when user changes the selection
@@ -43,7 +43,7 @@ export class PopulateLinkedDataDialog<P={}> extends EntityDialog<OrderRow, P> {
             // so we need to convert customer ID to ID.
             // you won't have to do this conversion with your tables
             var id = first((await CustomerRow.getLookupAsync()).items, x => x.CustomerID == customerID).ID;
-            
+
             CustomerService.Retrieve({
                 EntityId: id
             }, response => {

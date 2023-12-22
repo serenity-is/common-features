@@ -10,7 +10,7 @@ export interface ServiceEditorOptions {
 export abstract class ServiceEditorBase<P extends ServiceEditorOptions, TRow> extends Select2AjaxEditor<P, TRow> {
     private cascadeLink: CascadedWidgetLink<Widget<any>>;
 
-    constructor(props?: WidgetProps<P>) {
+    constructor(props: WidgetProps<P>) {
         super(props);
 
         this.setCascadeFrom(this.options.cascadeFrom);

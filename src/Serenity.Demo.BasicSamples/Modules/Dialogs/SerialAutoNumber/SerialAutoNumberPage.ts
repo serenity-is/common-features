@@ -1,8 +1,8 @@
-﻿import { Decorators, initFullHeightGridPage } from "@serenity-is/corelib";
+import { Decorators, initFullHeightGridPage } from "@serenity-is/corelib";
 import { CustomerDialog, CustomerGrid, CustomerService } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
-    initFullHeightGridPage(new SerialAutoNumberGrid($('#GridDiv')).element);
+    initFullHeightGridPage(new SerialAutoNumberGrid({ element: "#GridDiv" }));
 }
 
 /**
@@ -16,7 +16,7 @@ export class SerialAutoNumberGrid extends CustomerGrid {
 @Decorators.registerClass('Serenity.Demo.BasicSamples.SerialAutoNumberDialog')
 export class SerialAutoNumberDialog extends CustomerDialog {
 
-    constructor(props?: {}) {
+    constructor(props: {}) {
         super(props);
 
         this.form.CustomerID.element.on('keyup', (e) => {
@@ -36,7 +36,7 @@ export class SerialAutoNumberDialog extends CustomerDialog {
 
     private getNextNumber() {
 
-        var val =this.form.CustomerID.value?.trim();
+        var val = this.form.CustomerID.value?.trim();
 
         // we will only get next number when customer ID is empty or 1 character in length
         if (!val || val.length <= 1) {

@@ -36,7 +36,7 @@ export class ChangingLookupTextDialog extends GridEditorDialog<OrderDetailRow> {
 
     protected form: ChangingLookupTextForm;
 
-    constructor(props?: any) {
+    constructor(props: any) {
         super();
 
         this.form = new ChangingLookupTextForm(this.idPrefix);

@@ -1,19 +1,18 @@
 ﻿import { StaticTextBlockForm } from "@/ServerTypes/Demo";
-import { Decorators, PropertyDialog } from "@serenity-is/corelib";
+import { Decorators, PropertyDialog, WidgetProps } from "@serenity-is/corelib";
 
 export default function pageInit() {
-    var dlg = new StaticTextBlockDialog();
-    dlg.dialogOpen();
+    new StaticTextBlockDialog({}).dialogOpen();
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.StaticTextBlockDialog')
-export class StaticTextBlockDialog extends PropertyDialog<any, any> {
+export class StaticTextBlockDialog<P = {}> extends PropertyDialog<any, P> {
     protected getFormKey() { return StaticTextBlockForm.formKey; }
 
     protected form = new StaticTextBlockForm(this.idPrefix);
 
-    constructor() {
-        super();
+    constructor(props: WidgetProps<P>) {
+        super(props);
 
         this.dialogTitle = "A form with static text blocks";
     }

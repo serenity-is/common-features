@@ -3,8 +3,7 @@ import { CustomerDialog, CustomerRow, OrderColumns, OrderDialog, OrderGrid, Orde
 import { Column } from "@serenity-is/sleekgrid";
 
 export default function pageInit() {
-    new CustomLinksInGrid($('#GridDiv')).init();
-    initFullHeightGridPage($('#GridDiv'));
+    initFullHeightGridPage(new CustomLinksInGrid({ element: "#GridDiv" }));
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.CustomLinksInGrid')

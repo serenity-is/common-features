@@ -3,14 +3,14 @@ import { Decorators, PropertyGrid, TabsExtensions, Toolbar, WidgetProps, first, 
 import { CustomerForm, CustomerRow, CustomerService, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
-    initFullHeightGridPage(new OtherFormInTabGrid($('#GridDiv')).element);
+    initFullHeightGridPage(new OtherFormInTabGrid({ element: "#GridDiv" }));
 }
 
 /**
  * Subclass of OrderGrid to override dialog type to OtherFormInTabDialog
  */
 @Decorators.registerClass('Serenity.Demo.BasicSamples.OtherFormInTabGrid')
-export class OtherFormInTabGrid extends OrderGrid {
+export class OtherFormInTabGrid<P = {}> extends OrderGrid<P> {
     protected override getDialogType() { return OtherFormInTabDialog; }
 }
 
@@ -18,13 +18,13 @@ export class OtherFormInTabGrid extends OrderGrid {
  * Our custom order dialog subclass that will have a tab to display and edit selected customer details.
  */
 @Decorators.registerClass('Serenity.Demo.BasicSamples.OtherFormInTabDialog')
-export class OtherFormInTabDialog extends OrderDialog {
+export class OtherFormInTabDialog<P = {}> extends OrderDialog<P> {
 
     private customerValidator: JQueryValidation.Validator;
     private customerPropertyGrid: PropertyGrid;
     private selfChange: number = 0;
 
-    constructor(props?: WidgetProps<{}>) {
+    constructor(props: WidgetProps<P>) {
         super(props);
 
         this.form.CustomerID.change(e => {

@@ -1,10 +1,10 @@
-import { Decorators, DialogTexts, TemplatedDialog, localText } from "@serenity-is/corelib";
+import { Decorators, DialogTexts, TemplatedDialog, WidgetProps, localText } from "@serenity-is/corelib";
 
 @Decorators.registerClass("Serenity.Extensions.BasicProgressDialog")
-export class BasicProgressDialog extends TemplatedDialog<any> {
+export class BasicProgressDialog<P = {}> extends TemplatedDialog<P> {
 
-    constructor() {
-        super();
+    constructor(props?: WidgetProps<P>) {
+        super(props);
 
         this.dialogTitle = localText('Site.BasicProgressDialog.PleaseWait');
     }

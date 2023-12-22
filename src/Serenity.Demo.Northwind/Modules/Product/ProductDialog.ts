@@ -3,7 +3,7 @@ import { ProductForm, ProductRow, ProductService } from "@/ServerTypes/Demo";
 
 @Decorators.registerClass()
 @Decorators.maximizable()
-export class ProductDialog extends EntityDialog<ProductRow, any> {
+export class ProductDialog<P = {}> extends EntityDialog<ProductRow, P> {
     protected getFormKey() { return ProductForm.formKey; }
     protected getRowDefinition() { return ProductRow; }
     protected getService() { return ProductService.baseUrl; }

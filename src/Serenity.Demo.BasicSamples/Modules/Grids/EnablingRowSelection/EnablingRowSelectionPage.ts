@@ -3,11 +3,11 @@ import { SupplierColumns, SupplierDialog, SupplierRow, SupplierService } from "@
 import { SelectableEntityGrid } from "@serenity-is/extensions";
 
 export default function pageInit() {
-    initFullHeightGridPage(new RowSelectionGrid($('#GridDiv')).element);
+    initFullHeightGridPage(new RowSelectionGrid({ element: "#GridDiv" }));
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.RowSelectionGrid')
-export class RowSelectionGrid extends SelectableEntityGrid<SupplierRow, any> {
+export class RowSelectionGrid<P = {}> extends SelectableEntityGrid<SupplierRow, P> {
     protected getColumnsKey() { return SupplierColumns.columnsKey; }
     protected getDialogType() { return <any>SupplierDialog; }
     protected getRowDefinition() { return SupplierRow; }

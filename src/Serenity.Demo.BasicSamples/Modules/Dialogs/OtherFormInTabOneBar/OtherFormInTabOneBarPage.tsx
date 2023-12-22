@@ -3,7 +3,7 @@ import { Decorators, PropertyGrid, SaveResponse, TabsExtensions, WidgetProps, fi
 import { CustomerForm, CustomerRow, CustomerService, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
-    initFullHeightGridPage(new OtherFormInTabOneBarGrid($('#GridDiv')).element);
+    initFullHeightGridPage(new OtherFormInTabOneBarGrid({ element: "#GridDiv" }));
 }
 
 /**
@@ -19,13 +19,13 @@ export class OtherFormInTabOneBarGrid extends OrderGrid {
  * With single toolbar for all forms
  */
 @Decorators.registerClass('Serenity.Demo.BasicSamples.OtherFormOneBarDialog')
-export class OtherFormOneBarDialog extends OrderDialog {
+export class OtherFormOneBarDialog<P = {}> extends OrderDialog<P> {
 
     private customerPropertyGrid: PropertyGrid;
     private customerValidator: JQueryValidation.Validator;
     private selfChange = 0;
 
-    constructor(props?: WidgetProps<{}>) {
+    constructor(props: WidgetProps<P>) {
         super(props);
 
         this.form.CustomerID.change(e => {

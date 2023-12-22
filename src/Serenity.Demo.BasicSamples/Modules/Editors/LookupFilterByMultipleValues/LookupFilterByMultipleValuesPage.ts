@@ -3,14 +3,14 @@ import { Criteria, Decorators, EntityGrid, ListRequest, Lookup, LookupEditorBase
 import { CategoryRow, ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
 
 export default function pageInit() {
-    initFullHeightGridPage(new LookupFilterByMultipleGrid($('#GridDiv')).element);
+    initFullHeightGridPage(new LookupFilterByMultipleGrid({ element: "#GridDiv" }));
 }
 
 /**
  * Subclass of ProductGrid to override dialog type to CloneableEntityDialog
  */
 @Decorators.registerClass('Serenity.Demo.BasicSamples.LookupFilterByMultipleGrid')
-export class LookupFilterByMultipleGrid extends EntityGrid<ProductRow, any> {
+export class LookupFilterByMultipleGrid<P = {}> extends EntityGrid<ProductRow, P> {
 
     protected getColumnsKey() { return ProductColumns.columnsKey; }
     protected getDialogType() { return LookupFilterByMultipleDialog; }

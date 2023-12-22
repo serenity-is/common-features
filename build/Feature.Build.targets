@@ -26,7 +26,7 @@
           Inputs="@(TSBuildInputs)" Outputs="@(TSBuildOutputs)">
     <Message Text="Executing TypeScript compiler for $(ProjectName)..." Importance="high"></Message>
     <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" Condition="!Exists('tsbuild.js')" ContinueOnError="true" />
-    <Exec Command="pnpm tsbuild" Condition="Exists('tsbuild.js')" ContinueOnError="true" />
+    <Exec Command="pnpm build" Condition="Exists('tsbuild.js')" ContinueOnError="true" />
   </Target>
   <Target Name="IncludeTypingsToPackage" BeforeTargets="_GetPackageFiles">
     <ItemGroup>

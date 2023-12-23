@@ -1,10 +1,8 @@
-import { Aggregators, Decorators, EntityGrid, formatNumber, initFullHeightGridPage } from "@serenity-is/corelib";
+import { Aggregators, Decorators, EntityGrid, formatNumber, gridPageInit } from "@serenity-is/corelib";
 import { ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
 import { GroupItemMetadataProvider } from "@serenity-is/sleekgrid";
 
-export default function pageInit() {
-    initFullHeightGridPage(new GroupingAndSummariesInGrid({ element: "#GridDiv" }));
-}
+export default () => gridPageInit(GroupingAndSummariesInGrid);
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.GroupingAndSummariesInGrid')
 export class GroupingAndSummariesInGrid<P = {}> extends EntityGrid<ProductRow, P> {

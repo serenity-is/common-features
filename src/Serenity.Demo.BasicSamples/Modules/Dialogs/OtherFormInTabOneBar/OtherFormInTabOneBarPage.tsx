@@ -1,9 +1,7 @@
-import { Decorators, PropertyGrid, SaveResponse, TabsExtensions, WidgetProps, first, getForm, initFullHeightGridPage, isEmptyOrNull, reloadLookup, validateOptions } from "@serenity-is/corelib";
+import { Decorators, PropertyGrid, SaveResponse, TabsExtensions, WidgetProps, first, getForm, gridPageInit, isEmptyOrNull, reloadLookup, validateOptions } from "@serenity-is/corelib";
 import { CustomerForm, CustomerRow, CustomerService, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 
-export default function pageInit() {
-    initFullHeightGridPage(new OtherFormInTabOneBarGrid({ element: "#GridDiv" }));
-}
+export default () => gridPageInit(OtherFormInTabOneBarGrid);
 
 /**
  * Subclass of OrderGrid to override dialog type to OtherFormInTabOneBarDialog

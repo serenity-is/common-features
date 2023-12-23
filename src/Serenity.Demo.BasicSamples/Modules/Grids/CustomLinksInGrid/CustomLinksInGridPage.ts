@@ -1,10 +1,8 @@
-import { Decorators, LookupEditor, confirmDialog, count, first, formatDate, htmlEncode, initFullHeightGridPage, notifyInfo, notifySuccess, stringFormat, toId } from "@serenity-is/corelib";
+import { Decorators, LookupEditor, confirmDialog, count, first, formatDate, gridPageInit, htmlEncode, notifyInfo, notifySuccess, stringFormat, toId } from "@serenity-is/corelib";
 import { CustomerDialog, CustomerRow, OrderColumns, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 import { Column } from "@serenity-is/sleekgrid";
 
-export default function pageInit() {
-    initFullHeightGridPage(new CustomLinksInGrid({ element: "#GridDiv" }));
-}
+export default () => gridPageInit(CustomLinksInGrid);
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.CustomLinksInGrid')
 export class CustomLinksInGrid extends OrderGrid {

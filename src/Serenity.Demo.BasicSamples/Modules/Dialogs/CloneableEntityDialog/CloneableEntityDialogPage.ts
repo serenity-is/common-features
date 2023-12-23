@@ -1,9 +1,7 @@
-import { Decorators, EntityGrid, initFullHeightGridPage } from "@serenity-is/corelib";
+import { Decorators, EntityGrid, gridPageInit, } from "@serenity-is/corelib";
 import { ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
 
-export default function pageInit() {
-    initFullHeightGridPage(new CloneableEntityGrid({ element: "#GridDiv" }));
-}
+export default () => gridPageInit(CloneableEntityGrid);
 
 /** Subclass of ProductGrid to override dialog type to CloneableEntityDialog */
 export class CloneableEntityGrid<P = {}> extends EntityGrid<ProductRow, P> {

@@ -1,10 +1,8 @@
-﻿import { Decorators, confirmDialog, faIcon, htmlEncode, initFullHeightGridPage } from "@serenity-is/corelib";
+﻿import { Decorators, confirmDialog, faIcon, htmlEncode, gridPageInit } from "@serenity-is/corelib";
 import { CustomerGrid, CustomerService, OrderDialog, OrderRow } from "@serenity-is/demo.northwind";
 import { Column } from "@serenity-is/sleekgrid";
 
-export default function pageInit() {
-    initFullHeightGridPage(new InlineActionGrid({ element: "#GridDiv" }));
-}
+export default () => gridPageInit(InlineActionGrid);
 
 const deleteRowAction = "delete-row";
 const viewDetailsAction = "view-details";

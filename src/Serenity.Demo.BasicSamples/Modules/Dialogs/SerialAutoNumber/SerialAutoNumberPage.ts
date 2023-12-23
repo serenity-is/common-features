@@ -1,9 +1,7 @@
-import { Decorators, initFullHeightGridPage } from "@serenity-is/corelib";
+import { Decorators, gridPageInit } from "@serenity-is/corelib";
 import { CustomerDialog, CustomerGrid, CustomerService } from "@serenity-is/demo.northwind";
 
-export default function pageInit() {
-    initFullHeightGridPage(new SerialAutoNumberGrid({ element: "#GridDiv" }));
-}
+export default () => gridPageInit(SerialAutoNumberGrid);
 
 /**
  * Subclass of CustomerGrid to override dialog type to SerialAutoNumberDialog

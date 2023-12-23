@@ -1,11 +1,8 @@
-﻿import { Decorators, EntityGrid } from "@serenity-is/corelib";
-import { initFullHeightGridPage, ListResponse } from "@serenity-is/corelib";
-import { SalesByCategoryRow, SalesByCategoryColumns, SalesByCategoryService } from "@serenity-is/demo.northwind";
+﻿import { Decorators, EntityGrid, ListResponse, gridPageInit } from "@serenity-is/corelib";
+import { SalesByCategoryColumns, SalesByCategoryRow, SalesByCategoryService } from "@serenity-is/demo.northwind";
 
 
-export default function pageInit() {
-    initFullHeightGridPage(new ViewWithoutIDGrid({ element: "#GridDiv" }));
-}
+export default () => gridPageInit(ViewWithoutIDGrid)
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.ViewWithoutIDGrid')
 export class ViewWithoutIDGrid<P = {}> extends EntityGrid<SalesByCategoryRow, P> {

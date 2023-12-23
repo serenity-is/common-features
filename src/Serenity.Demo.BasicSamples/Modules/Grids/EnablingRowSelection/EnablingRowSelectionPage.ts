@@ -1,10 +1,8 @@
-﻿import { Decorators, initFullHeightGridPage } from "@serenity-is/corelib";
+﻿import { Decorators, gridPageInit } from "@serenity-is/corelib";
 import { SupplierColumns, SupplierDialog, SupplierRow, SupplierService } from "@serenity-is/demo.northwind";
 import { SelectableEntityGrid } from "@serenity-is/extensions";
 
-export default function pageInit() {
-    initFullHeightGridPage(new RowSelectionGrid({ element: "#GridDiv" }));
-}
+export default () => gridPageInit(RowSelectionGrid);
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.RowSelectionGrid')
 export class RowSelectionGrid<P = {}> extends SelectableEntityGrid<SupplierRow, P> {

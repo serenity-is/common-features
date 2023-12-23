@@ -1,9 +1,7 @@
-import { Decorators, initFullHeightGridPage, notifyInfo, notifySuccess, SaveResponse } from "@serenity-is/corelib";
+import { Decorators, gridPageInit, notifyInfo, notifySuccess, SaveResponse } from "@serenity-is/corelib";
 import { CategoryDialog, CategoryGrid, CategoryService } from "@serenity-is/demo.northwind";
 
-export default function pageInit() {
-    initFullHeightGridPage(new GetInsertedRecordIdGrid({ element: "#GridDiv" }));
-}
+export default () => gridPageInit(GetInsertedRecordIdGrid);
 
 /**
  * Subclass of CategoryGrid to override dialog type to GetInsertedRecordIdDialog

@@ -1,10 +1,8 @@
 import { FilteredLookupInDetailForm } from "@/ServerTypes/Demo";
-import { Decorators, EntityDialog, Widget, WidgetProps, initFullHeightGridPage, toId } from "@serenity-is/corelib";
+import { Decorators, EntityDialog, Widget, WidgetProps, gridPageInit, toId } from "@serenity-is/corelib";
 import { OrderDetailDialog, OrderDetailForm, OrderDetailsEditor, OrderGrid, OrderRow, OrderService, ProductRow } from "@serenity-is/demo.northwind";
 
-export default function pageInit() {
-    initFullHeightGridPage(new FilteredLookupInDetailGrid({ element: "#GridDiv" }));
-}
+export default () => gridPageInit(FilteredLookupInDetailGrid);
 
 /**
  * Subclass of OrderGrid to override dialog type to FilteredLookupInDetailDialog

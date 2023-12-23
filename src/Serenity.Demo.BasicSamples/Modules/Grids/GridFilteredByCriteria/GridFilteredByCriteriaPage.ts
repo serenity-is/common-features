@@ -1,9 +1,7 @@
-﻿import { Criteria, Decorators, EntityGrid, ListRequest, initFullHeightGridPage } from "@serenity-is/corelib";
+﻿import { Criteria, Decorators, EntityGrid, ListRequest, gridPageInit } from "@serenity-is/corelib";
 import { ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
 
-export default function pageInit() {
-    initFullHeightGridPage(new GridFilteredByCriteria({ element: "#GridDiv" }));
-}
+export default () => gridPageInit(GridFilteredByCriteria);
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.GridFilteredByCriteria')
 export class GridFilteredByCriteria<P = {}> extends EntityGrid<ProductRow, P> {

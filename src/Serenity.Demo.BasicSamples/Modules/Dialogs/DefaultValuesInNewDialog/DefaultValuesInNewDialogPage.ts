@@ -1,9 +1,7 @@
-import { Decorators, formatDate, initFullHeightGridPage } from "@serenity-is/corelib";
+import { Decorators, formatDate, gridPageInit } from "@serenity-is/corelib";
 import { EmployeeRow, OrderDialog, OrderGrid, OrderRow, ProductRow, ShipperRow } from "@serenity-is/demo.northwind";
 
-export default function pageInit() {
-    initFullHeightGridPage(new DefaultValuesInNewGrid({ element: "#GridDiv" }));
-}
+export default () => gridPageInit(DefaultValuesInNewGrid);
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.DefaultValuesInNewGrid')
 export class DefaultValuesInNewGrid extends OrderGrid {

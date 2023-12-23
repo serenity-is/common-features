@@ -1,9 +1,7 @@
-﻿import { Decorators, EditorUtils, ToolButton, indexOf, initFullHeightGridPage } from "@serenity-is/corelib";
+﻿import { Decorators, EditorUtils, ToolButton, gridPageInit, indexOf } from "@serenity-is/corelib";
 import { SupplierDialog, SupplierGrid } from "@serenity-is/demo.northwind";
 
-export default function pageInit() {
-    initFullHeightGridPage(new ReadOnlyGrid({ element: "#GridDiv" }));
-}
+export default () => gridPageInit(ReadOnlyGrid);
 
 /**
  * A readonly grid that launches ReadOnlyDialog

@@ -1,12 +1,9 @@
 import { InlineImageInGridColumns } from "@/ServerTypes/Demo";
-import { Decorators, EntityGrid, Formatter, IInitializeColumn } from "@serenity-is/corelib";
-import { initFullHeightGridPage, resolveUrl } from "@serenity-is/corelib";
-import { ProductRow, ProductDialog, ProductService } from "@serenity-is/demo.northwind";
+import { Decorators, EntityGrid, Formatter, IInitializeColumn, gridPageInit, resolveUrl } from "@serenity-is/corelib";
+import { ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
 import { Column, FormatterContext, GridOptions } from "@serenity-is/sleekgrid";
 
-export default function pageInit() {
-    initFullHeightGridPage(new InlineImageInGrid({ element: "#GridDiv" }));
-}
+export default () => gridPageInit(InlineImageInGrid);
 
 @Decorators.registerFormatter("Serenity.Demo.BasicSamples.InlineImageFormatter")
 export class InlineImageFormatter

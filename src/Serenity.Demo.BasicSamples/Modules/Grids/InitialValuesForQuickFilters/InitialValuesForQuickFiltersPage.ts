@@ -1,9 +1,7 @@
-﻿import { DateEditor, Decorators, EnumEditor, LookupEditor, QuickFilter, Widget, first, initFullHeightGridPage } from "@serenity-is/corelib";
+﻿import { DateEditor, Decorators, EnumEditor, LookupEditor, QuickFilter, Widget, gridPageInit } from "@serenity-is/corelib";
 import { OrderGrid, OrderRow, OrderShippingState } from "@serenity-is/demo.northwind";
 
-export default function pageInit() {
-    initFullHeightGridPage(new InitialValuesForQuickFilters({ element: "#GridDiv" }));
-}
+export default () => gridPageInit(InitialValuesForQuickFilters);
 
 // get a reference to order row field names
 const fld = OrderRow.Fields;

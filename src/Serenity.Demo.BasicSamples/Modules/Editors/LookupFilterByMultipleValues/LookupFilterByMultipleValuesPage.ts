@@ -1,10 +1,8 @@
 ﻿import { LookupFilterByMultipleForm } from "@/ServerTypes/Demo";
-import { Criteria, Decorators, EntityGrid, ListRequest, Lookup, LookupEditorBase, LookupEditorOptions, initFullHeightGridPage } from "@serenity-is/corelib";
+import { Criteria, Decorators, EntityGrid, ListRequest, Lookup, LookupEditorBase, LookupEditorOptions, gridPageInit } from "@serenity-is/corelib";
 import { CategoryRow, ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
 
-export default function pageInit() {
-    initFullHeightGridPage(new LookupFilterByMultipleGrid({ element: "#GridDiv" }));
-}
+export default () => gridPageInit(LookupFilterByMultipleGrid);
 
 /**
  * Subclass of ProductGrid to override dialog type to CloneableEntityDialog

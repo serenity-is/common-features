@@ -1,4 +1,3 @@
-/** @jsxImportSource jsx-dom/min */
 import { Texts } from "@/ServerTypes/Texts";
 import { PropertyPanel } from "@serenity-is/corelib";
 import { informationDialog, resolveUrl, serviceCall } from "@serenity-is/corelib";

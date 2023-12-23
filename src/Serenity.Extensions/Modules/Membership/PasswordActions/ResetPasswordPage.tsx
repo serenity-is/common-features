@@ -1,4 +1,3 @@
-/** @jsxImportSource jsx-dom/min */
 import { ResetPasswordForm } from "@/ServerTypes/Extensions/ResetPasswordForm";
 import { ResetPasswordRequest } from "@/ServerTypes/Extensions/ResetPasswordRequest";
 import { Texts } from "@/ServerTypes/Texts";

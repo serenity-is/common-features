@@ -1,5 +1,3 @@
-/** @jsxImportSource jsx-dom/min */
-
 import { localText } from "@serenity-is/corelib";
 
 export const AccountPanelTitle = () =>

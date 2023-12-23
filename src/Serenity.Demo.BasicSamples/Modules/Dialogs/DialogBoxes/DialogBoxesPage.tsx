@@ -1,4 +1,3 @@
-/** @jsxImportSource jsx-dom/min */
 import { alertDialog, confirmDialog, informationDialog, notifyError, notifyInfo, notifySuccess, successDialog, warningDialog } from "@serenity-is/corelib";
 
 export default function pageInit() {

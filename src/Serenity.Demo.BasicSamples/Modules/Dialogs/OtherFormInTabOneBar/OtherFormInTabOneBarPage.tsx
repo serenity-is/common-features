@@ -1,4 +1,3 @@
-/** @jsxImportSource jsx-dom/min */
 import { Decorators, PropertyGrid, SaveResponse, TabsExtensions, WidgetProps, first, getForm, initFullHeightGridPage, isEmptyOrNull, reloadLookup, validateOptions } from "@serenity-is/corelib";
 import { CustomerForm, CustomerRow, CustomerService, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 

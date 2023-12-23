@@ -1,4 +1,3 @@
-/** @jsxImportSource jsx-dom/min */
 import { Texts } from "@/ServerTypes/Texts";
 import { TemplatedPanel } from "@serenity-is/corelib";
 import { informationDialog, parseQueryString, resolveUrl, serviceCall } from "@serenity-is/corelib";

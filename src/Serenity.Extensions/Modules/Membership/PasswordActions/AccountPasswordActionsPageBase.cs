@@ -7,8 +7,8 @@ namespace Serenity.Extensions;
 public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageBase<TUserRow>
     where TUserRow : class, IRow, IIdRow, IEmailRow, IPasswordRow, new()
 {
-    protected string ModuleFolder => "~/Serenity.Extensions/esm/Modules/Membership/PasswordActions/";
-    protected string ModulePath(string key) => ModuleFolder + key +  "Page.js";
+    protected virtual string ModuleFolder => "~/Serenity.Extensions/esm/Modules/Membership/PasswordActions/";
+    protected virtual string ModulePath(string key) => ModuleFolder + key +  "Page.js";
 
     [HttpGet, PageAuthorize]
     public virtual ActionResult ChangePassword(
@@ -43,6 +43,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
         [FromServices] IUserRetrieveService userRetrieveService,
         [FromServices] IEmailSender emailSender,
         [FromServices] ISiteAbsoluteUrl siteAbsoluteUrl,
+        [FromServices] ITwoLevelCache cache,
         [FromServices] ITextLocalizer localizer)
     {
         var userDefinition = User.GetUserDefinition<IUserDefinition>(userRetrieveService) ?? 
@@ -65,7 +66,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
         return ForgotPassword(new()
         {
             Email = userDefinition.Email
-        }, emailSender, siteAbsoluteUrl, localizer);
+        }, emailSender, siteAbsoluteUrl, cache, localizer);
 #endif
     }
 
@@ -142,18 +143,30 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
     public virtual Result<ServiceResponse> ForgotPassword(ForgotPasswordRequest request,
         [FromServices] IEmailSender emailSender,
         [FromServices] ISiteAbsoluteUrl siteAbsoluteUrl,
+        [FromServices] ITwoLevelCache cache,
         [FromServices] ITextLocalizer localizer)
     {
-        return this.UseConnection(GetConnectionKey(), connection =>
+        return this.InTransaction(GetConnectionKey(), uow =>
         {
             ArgumentNullException.ThrowIfNull(request);
             ArgumentException.ThrowIfNullOrEmpty(request.Email);
 
             var fieldsRow = new TUserRow();
 
-            var user = connection.TryFirst<TUserRow>(fieldsRow.EmailField == request.Email);
+            var user = uow.Connection.TryFirst<TUserRow>(fieldsRow.EmailField == request.Email);
             if (user == null)
                 return new ServiceResponse();
+
+            var updateRow = new TUserRow();
+            if (updateRow is IUpdateLogRow updateLog && updateLog.UpdateDateField is not null)
+            {
+                // set update date to make sure only the latest reset token can be used
+                updateRow.IdField.AsObject(updateRow, user.IdField.AsObject(user));
+                updateLog.UpdateDateField[user] = DateTime.UtcNow;
+                updateLog.UpdateDateField.AsObject(updateRow, updateLog.UpdateDateField.AsObject(user));
+                uow.Connection.UpdateById(updateRow);
+                cache.InvalidateOnCommit(uow, user.Fields);
+            }
 
             var token = GenerateResetPasswordToken(user);
             var externalUrl = siteAbsoluteUrl.GetExternalUrl();

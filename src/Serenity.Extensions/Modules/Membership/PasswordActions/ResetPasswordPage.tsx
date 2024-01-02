@@ -4,7 +4,7 @@ import { Texts } from "@/ServerTypes/Texts";
 import { PropertyPanel, WidgetProps, informationDialog, resolveUrl, serviceCall, stringFormat } from "@serenity-is/corelib";
 import { ResetPasswordResponse } from "../../ServerTypes/Extensions/ResetPasswordResponse";
 import { AccountPanelTitle } from "../AccountPanelTitle";
-import { addValidationRules } from "./PasswordRuleHelper";
+import { addPasswordValidationRules } from "./PasswordRuleHelper";
 
 export default function pageInit(opt: ResetPasswordOptions) {
     new ResetPasswordPanel({ element: '#PanelDiv', class: 's-full-page justify-content-center s-Form', ...opt });
@@ -27,7 +27,7 @@ export class ResetPasswordPanel extends PropertyPanel<ResetPasswordRequest, Rese
     constructor(props: WidgetProps<ResetPasswordOptions>) {
         super(props);
 
-        addValidationRules(this.uniqueName, this.form.NewPassword);
+        addPasswordStrengthValidationRules(this.form.NewPassword, this.uniqueName);
 
         this.form.ConfirmPassword.addValidationRule(this.uniqueName, e => {
             if (this.form.ConfirmPassword.value !== this.form.NewPassword.value)

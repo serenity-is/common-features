@@ -75,7 +75,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
         [FromServices] IUserPasswordValidator passwordValidator,
         [FromServices] IPasswordRuleValidator passwordRuleValidator,
         [FromServices] IUserRetrieveService userRetrieveService,
-        [FromServices] IOptions<MembershipSettings> membershipOptions,
+        [FromServices] IOptions<PasswordStrengthRulesSettings> membershipOptions,
         [FromServices] IOptions<EnvironmentSettings> environmentOptions,
         [FromServices] ITextLocalizer localizer)
     {
@@ -204,7 +204,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
     public virtual IActionResult ResetPassword(string t,
         [FromServices] ISqlConnections sqlConnections,
         [FromServices] ITextLocalizer localizer,
-        [FromServices] IOptions<MembershipSettings> options)
+        [FromServices] IOptions<PasswordStrengthRulesSettings> options)
     {
         object userId;
         int nonce;
@@ -237,7 +237,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
         return this.PanelPage(GetResetPasswordPageModel(t, options.Value));
     }
 
-    protected virtual ModulePageModel GetResetPasswordPageModel(string token, MembershipSettings settings)
+    protected virtual ModulePageModel GetResetPasswordPageModel(string token, PasswordStrengthRulesSettings settings)
     {
         return new()
         {
@@ -247,7 +247,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
             Options = new
             {
                 token,
-                minPasswordLength = settings.MinPasswordLength
+                minPasswordLength = settings.MinLength
             }
         };
     }
@@ -259,7 +259,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
         [FromServices] ITextLocalizer localizer,
         [FromServices] IPasswordRuleValidator passwordRuleValidator,
         [FromServices] IOptions<EnvironmentSettings> environmentOptions,
-        [FromServices] IOptions<MembershipSettings> membershipOptions)
+        [FromServices] IOptions<PasswordStrengthRulesSettings> membershipOptions)
     {
         return this.InTransaction(GetConnectionKey(), uow =>
         {

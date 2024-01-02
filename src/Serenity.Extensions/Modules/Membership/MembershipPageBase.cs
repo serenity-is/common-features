@@ -13,17 +13,17 @@ public abstract class MembershipPageBase<TUserRow> : Controller
         return View("~/Views/Errors/ValidationError.cshtml", new ValidationError(message));
     }
 
-    protected virtual string ValidateNewPassword(string password, MembershipSettings settings, ITextLocalizer localizer)
+    protected virtual string ValidateNewPassword(string password, PasswordStrengthRulesSettings settings, ITextLocalizer localizer)
     {
         return ValidateNewPassword(password, HttpContext.RequestServices.GetRequiredService<IPasswordRuleValidator>());
     }
 
     protected virtual string ValidateNewPassword(string password, IPasswordRuleValidator passwordRuleValidator)
     {
-        return passwordRuleValidator.ValidatePasswordRules(password);
+        return passwordRuleValidator.ValidatePasswordStrengthRules(password);
     }
 
-    protected virtual string GenerateSalt(MembershipSettings settings)
+    protected virtual string GenerateSalt(PasswordStrengthRulesSettings settings)
     {
         return IO.TemporaryFileHelper.RandomFileCode()[..settings.SaltSize];
     }

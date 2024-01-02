@@ -2,7 +2,7 @@ import { Texts } from "@/ServerTypes/Texts";
 import { PropertyPanel, WidgetProps, informationDialog, localText, resolveUrl, serviceCall, stringFormat } from "@serenity-is/corelib";
 import { ChangePasswordForm } from "../../ServerTypes/Extensions/ChangePasswordForm";
 import { ChangePasswordRequest } from "../../ServerTypes/Extensions/ChangePasswordRequest";
-import { addValidationRules } from "./PasswordRuleHelper";
+import { addPasswordValidationRules } from "./PasswordRuleHelper";
 
 export default function pageInit() {
     new ChangePasswordPanel({ element: "#PanelDiv", class: 's-container-tight mt-5 s-Form flex-grow-0' });
@@ -19,7 +19,7 @@ class ChangePasswordPanel<P = {}> extends PropertyPanel<ChangePasswordRequest, P
     constructor(props: WidgetProps<P>) {
         super(props);
 
-        addValidationRules(this.uniqueName, this.form.NewPassword);
+        addPasswordStrengthValidationRules(this.form.NewPassword, this.uniqueName);
 
         this.form.ConfirmPassword.addValidationRule(this.uniqueName, () => {
             if (this.form.ConfirmPassword.value !== this.form.NewPassword.value) {

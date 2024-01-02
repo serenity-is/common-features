@@ -88,10 +88,10 @@ public static class ExtensionsTexts
     {
         public static readonly LocalText InvalidResetToken = "Your token to reset your password is invalid or has expired!";
         public static readonly LocalText MinRequiredPasswordLength = "Entered password doesn't have enough characters (min {0})!";
-        public static readonly LocalText MinRequiredLowerCharInPassword = "Password must contain at least {0} lower case letter.";
-        public static readonly LocalText MinRequiredUpperCharInPassword = "Password must contain at least {0} upper case letter.";
-        public static readonly LocalText MinRequiredNumericCharInPassword = "Password must contain at least {0} number.";
-        public static readonly LocalText MinRequiredSpecialCharInPassword = "Password must contain at least {0} special character.";
+        public static readonly LocalText MinRequiredLowerCharInPassword = "Password must contain at least {0} lower case letter(s).";
+        public static readonly LocalText MinRequiredUpperCharInPassword = "Password must contain at least {0} upper case letter(s).";
+        public static readonly LocalText MinRequiredNumericCharInPassword = "Password must contain at least {0} number(s).";
+        public static readonly LocalText MinRequiredSpecialCharInPassword = "Password must contain at least {0} special character(s).";
         public static readonly LocalText PasswordConfirmMismatch = "The passwords entered doesn't match!";
     }
 }

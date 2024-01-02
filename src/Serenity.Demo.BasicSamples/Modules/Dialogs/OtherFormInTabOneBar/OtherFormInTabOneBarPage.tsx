@@ -142,7 +142,7 @@ export class OtherFormOneBarDialog<P = {}> extends OrderDialog<P> {
 
     renderContents() {
         const id = this.useIdPrefix();
-        this.element.empty().append(<>
+        return (<>
             <div id={id.Toolbar} class="s-DialogToolbar">
             </div>
             <div id={id.Tabs} class="s-DialogContent">

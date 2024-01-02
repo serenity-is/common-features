@@ -108,7 +108,7 @@ export class OtherFormInTabDialog<P = {}> extends OrderDialog<P> {
 
     renderContents() {
         const id = this.useIdPrefix();
-        this.element.empty().append(
+        return (
             <div id={id.Tabs} class="s-DialogContent">
                 <ul>
                     <li><a href={'#' + id.TabOrder}><span>Order</span></a></li>

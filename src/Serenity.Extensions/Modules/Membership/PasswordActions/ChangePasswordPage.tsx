@@ -49,7 +49,7 @@ class ChangePasswordPanel<P = {}> extends PropertyPanel<ChangePasswordRequest, P
 
     renderContents() {
         const id = this.useIdPrefix();
-        this.element.empty().append(
+        return (
             <div class="s-Panel">
                 <h3 class="page-title mb-4 text-center">{myTexts.FormTitle}</h3>
                 <form id={id.Form} action="">

@@ -38,8 +38,7 @@ public class PasswordStrengthValidator(IOptions<MembershipSettings> membershipSe
             if (char.IsDigit(c)) 
                 numericCount++;
 
-            if (char.IsWhiteSpace(c) &&
-                !char.IsLetterOrDigit(c)) 
+            if (!char.IsLetterOrDigit(c)) 
                 nonAlphaCount++;
         }
 

@@ -21,7 +21,7 @@ export function addPasswordStrengthValidation(passwordEditor: PasswordEditor, un
 
         if (passwordStrengthRules.RequireLowercase) {
             passwordEditor.addValidationRule(uniqueName, () => {
-                if (!(/[a-z\p{Ll}]/.test(passwordEditor.value)))
+                if (!(/[a-z\p{Ll}]/u.test(passwordEditor.value)))
                     return localText("Validation.PasswordStrengthRequireDigit");
             });
         }

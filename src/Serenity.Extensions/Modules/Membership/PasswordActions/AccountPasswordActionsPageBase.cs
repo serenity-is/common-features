@@ -61,7 +61,6 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
             };
         });
 #else
-
         return ForgotPassword(new()
         {
             Email = userDefinition.Email
@@ -73,9 +72,9 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
     public virtual Result<ServiceResponse> ChangePassword(ChangePasswordRequest request,
         [FromServices] ITwoLevelCache cache,
         [FromServices] IUserPasswordValidator passwordValidator,
-        [FromServices] IPasswordRuleValidator passwordRuleValidator,
+        [FromServices] IPasswordStrengthValidator passwordStrengthValidator,
         [FromServices] IUserRetrieveService userRetrieveService,
-        [FromServices] IOptions<PasswordStrengthRulesSettings> membershipOptions,
+        [FromServices] IOptions<MembershipSettings> membershipOptions,
         [FromServices] IOptions<EnvironmentSettings> environmentOptions,
         [FromServices] ITextLocalizer localizer)
     {
@@ -99,7 +98,8 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
                     throw new ValidationError("PasswordConfirmMismatch", localizer.Get("Validation.PasswordConfirm"));
             }
 
-            request.NewPassword = ValidateNewPassword(request.NewPassword, passwordRuleValidator);
+            passwordStrengthValidator.Validate(request.NewPassword);
+            request.NewPassword ??= "";
 
             var salt = GenerateSalt(membershipOptions.Value);
             var hash = CalculateHash(request.NewPassword, salt);
@@ -204,7 +204,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
     public virtual IActionResult ResetPassword(string t,
         [FromServices] ISqlConnections sqlConnections,
         [FromServices] ITextLocalizer localizer,
-        [FromServices] IOptions<PasswordStrengthRulesSettings> options)
+        [FromServices] IOptions<MembershipSettings> options)
     {
         object userId;
         int nonce;
@@ -237,7 +237,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
         return this.PanelPage(GetResetPasswordPageModel(t, options.Value));
     }
 
-    protected virtual ModulePageModel GetResetPasswordPageModel(string token, PasswordStrengthRulesSettings settings)
+    protected virtual ModulePageModel GetResetPasswordPageModel(string token, MembershipSettings settings)
     {
         return new()
         {
@@ -247,7 +247,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
             Options = new
             {
                 token,
-                minPasswordLength = settings.MinLength
+                minPasswordLength = settings.MinPasswordLength
             }
         };
     }
@@ -257,9 +257,9 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
         [FromServices] ITwoLevelCache cache,
         [FromServices] ISqlConnections sqlConnections,
         [FromServices] ITextLocalizer localizer,
-        [FromServices] IPasswordRuleValidator passwordRuleValidator,
+        [FromServices] IPasswordStrengthValidator passwordStrengthValidator,
         [FromServices] IOptions<EnvironmentSettings> environmentOptions,
-        [FromServices] IOptions<PasswordStrengthRulesSettings> membershipOptions)
+        [FromServices] IOptions<MembershipSettings> membershipOptions)
     {
         return this.InTransaction(GetConnectionKey(), uow =>
         {
@@ -291,7 +291,8 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
             if (request.ConfirmPassword != request.NewPassword)
                 throw new ValidationError("PasswordConfirmMismatch", localizer.Get("Validation.PasswordConfirm"));
 
-            request.NewPassword = ValidateNewPassword(request.NewPassword, passwordRuleValidator);
+            request.NewPassword ??= "";
+            passwordStrengthValidator.Validate(request.NewPassword);
 
             var salt = GenerateSalt(membershipOptions.Value);
             var hash = CalculateHash(request.NewPassword, salt);

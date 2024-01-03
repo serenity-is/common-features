@@ -94,6 +94,10 @@ namespace Serenity.Extensions.Texts {
         export const InvalidResetToken: string;
         export const MinRequiredPasswordLength: string;
         export const PasswordConfirmMismatch: string;
+        export const PasswordStrengthRequireDigit: string;
+        export const PasswordStrengthRequireLowercase: string;
+        export const PasswordStrengthRequireNonAlphanumeric: string;
+        export const PasswordStrengthRequireUppercase: string;
     }
 
     Serenity.Extensions['Texts'] = proxyTexts(Texts, '', {

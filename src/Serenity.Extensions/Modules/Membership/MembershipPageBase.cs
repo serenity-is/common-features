@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using Serenity.Web.Providers;
 
 namespace Serenity.Extensions;
@@ -13,17 +12,7 @@ public abstract class MembershipPageBase<TUserRow> : Controller
         return View("~/Views/Errors/ValidationError.cshtml", new ValidationError(message));
     }
 
-    protected virtual string ValidateNewPassword(string password, PasswordStrengthRulesSettings settings, ITextLocalizer localizer)
-    {
-        return ValidateNewPassword(password, HttpContext.RequestServices.GetRequiredService<IPasswordRuleValidator>());
-    }
-
-    protected virtual string ValidateNewPassword(string password, IPasswordRuleValidator passwordRuleValidator)
-    {
-        return passwordRuleValidator.ValidatePasswordStrengthRules(password);
-    }
-
-    protected virtual string GenerateSalt(PasswordStrengthRulesSettings settings)
+    protected virtual string GenerateSalt(MembershipSettings settings)
     {
         return IO.TemporaryFileHelper.RandomFileCode()[..settings.SaltSize];
     }

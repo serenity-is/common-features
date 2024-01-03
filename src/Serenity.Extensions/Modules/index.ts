@@ -18,4 +18,4 @@ export * from "./Widgets/PromptDialog";
 export * from "./Widgets/SelectableEntityGrid";
 export * from "./Widgets/ServiceEditorBase";
 export * from "./Widgets/StaticTextBlock";
-export * from "./Membership/PasswordActions/PasswordRuleHelper";
+export * from "./Membership/PasswordStrength/PasswordStrengthValidation";

@@ -1,5 +1,5 @@
 import { Texts } from "@/ServerTypes/Texts";
-import { PropertyPanel } from "@serenity-is/corelib";
+import { PropertyPanel, toggleClass } from "@serenity-is/corelib";
 import { informationDialog, resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { ForgotPasswordForm } from "../../ServerTypes/Extensions/ForgotPasswordForm";
 import { ForgotPasswordRequest } from "../../ServerTypes/Extensions/ForgotPasswordRequest";
@@ -7,13 +7,13 @@ import { AccountPanelTitle } from "../AccountPanelTitle";
 
 
 export default function pageInit() {
-    new ForgotPasswordPanel($('#PanelDiv')
-        .addClass('s-full-page justify-content-center s-Form'));
+    toggleClass(new ForgotPasswordPanel({ element: "#PanelDiv" }).domNode, 
+        "s-full-page justify-content-center s-Form", true);
 }
 
 const myTexts = Texts.Forms.Membership.ForgotPassword;
 
-export class ForgotPasswordPanel extends PropertyPanel<ForgotPasswordRequest, any> {
+export class ForgotPasswordPanel<P = {}> extends PropertyPanel<ForgotPasswordRequest, P> {
 
     protected getFormKey() { return ForgotPasswordForm.formKey; }
 
@@ -35,7 +35,7 @@ export class ForgotPasswordPanel extends PropertyPanel<ForgotPasswordRequest, an
 
     renderContents() {
         const id = this.useIdPrefix();
-        this.element.empty().append(
+        return (
             <div class="s-container-tight">
                 <AccountPanelTitle />
                 <div class="s-Panel p-4">

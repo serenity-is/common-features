@@ -57,7 +57,7 @@ export class ResetPasswordPanel extends PropertyPanel<ResetPasswordRequest, Rese
 
     renderContents() {
         const id = this.useIdPrefix();
-        this.element.empty().append(
+        return (
             <div class="s-container-tight">
                 <AccountPanelTitle />
                 <div class="s-Panel p-4">

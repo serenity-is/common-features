@@ -34,7 +34,7 @@ class SetPasswordPage extends TemplatedPanel {
     }
 
     renderContents() {
-        this.element.empty().append(
+        return (
             <div class="s-Panel">
                 <h3 class="page-title mb-4 text-center">{myTexts.SetPassword}</h3>
                 {

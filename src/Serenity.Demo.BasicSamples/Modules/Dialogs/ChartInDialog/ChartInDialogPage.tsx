@@ -40,7 +40,7 @@ export class ChartInDialog<P = {}> extends TemplatedDialog<P> {
     }
 
     protected renderContents() {
-        this.element.append(<canvas id={`${this.idPrefix}Chart`} ref={el => this.canvas = el}></canvas>);
+        return (<canvas id={`${this.idPrefix}Chart`} ref={el => this.canvas = el}></canvas>);
     }
 
     protected getDialogOptions() {

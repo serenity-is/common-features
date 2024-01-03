@@ -45,6 +45,13 @@ export interface GetNextNumberResponse extends ServiceResponse {
 	Number?: number;
 	Serial?: string;
 }
+export interface PasswordStrengthRules {
+	MinPasswordLength?: number;
+	RequireDigit?: boolean;
+	RequireLowercase?: boolean;
+	RequireNonAlphanumeric?: boolean;
+	RequireUppercase?: boolean;
+}
 export interface ResetPasswordForm {
 	NewPassword: PasswordEditor;
 	ConfirmPassword: PasswordEditor;
@@ -480,5 +487,7 @@ export interface StaticTextBlockOptions {
 	isLocalText: boolean;
 	hideLabel: boolean;
 }
+export declare function getPasswordStrengthRules(): Promise<PasswordStrengthRules>;
+export declare function addPasswordStrengthValidation(passwordEditor: PasswordEditor, uniqueName: string): void;
 
 export {};

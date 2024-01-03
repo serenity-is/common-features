@@ -62,7 +62,6 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
             };
         });
 #else
-
         return ForgotPassword(new()
         {
             Email = userDefinition.Email
@@ -74,6 +73,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
     public virtual Result<ServiceResponse> ChangePassword(ChangePasswordRequest request,
         [FromServices] ITwoLevelCache cache,
         [FromServices] IUserPasswordValidator passwordValidator,
+        [FromServices] IPasswordStrengthValidator passwordStrengthValidator,
         [FromServices] IUserRetrieveService userRetrieveService,
         [FromServices] IOptions<MembershipSettings> membershipOptions,
         [FromServices] IOptions<EnvironmentSettings> environmentOptions,
@@ -99,7 +99,8 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
                     throw new ValidationError("PasswordConfirmMismatch", localizer.Get("Validation.PasswordConfirm"));
             }
 
-            request.NewPassword = ValidateNewPassword(request.NewPassword, membershipOptions.Value, localizer);
+            passwordStrengthValidator.Validate(request.NewPassword);
+            request.NewPassword ??= "";
 
             var salt = GenerateSalt(membershipOptions.Value);
             var hash = CalculateHash(request.NewPassword, salt);
@@ -269,6 +270,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
         [FromServices] ITwoLevelCache cache,
         [FromServices] ISqlConnections sqlConnections,
         [FromServices] ITextLocalizer localizer,
+        [FromServices] IPasswordStrengthValidator passwordStrengthValidator,
         [FromServices] IOptions<EnvironmentSettings> environmentOptions,
         [FromServices] IOptions<MembershipSettings> membershipOptions)
     {
@@ -302,7 +304,8 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
             if (request.ConfirmPassword != request.NewPassword)
                 throw new ValidationError("PasswordConfirmMismatch", localizer.Get("Validation.PasswordConfirm"));
 
-            request.NewPassword = ValidateNewPassword(request.NewPassword, membershipOptions.Value, localizer);
+            request.NewPassword ??= "";
+            passwordStrengthValidator.Validate(request.NewPassword);
 
             var salt = GenerateSalt(membershipOptions.Value);
             var hash = CalculateHash(request.NewPassword, salt);

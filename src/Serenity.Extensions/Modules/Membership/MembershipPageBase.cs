@@ -6,25 +6,10 @@ namespace Serenity.Extensions;
 public abstract class MembershipPageBase<TUserRow> : Controller
     where TUserRow: class, IRow, IIdRow, IEmailRow, IPasswordRow, new()
 {
-    public MembershipPageBase()
-    {
-    }
 
     protected virtual ActionResult Error(string message)
     {
         return View("~/Views/Errors/ValidationError.cshtml", new ValidationError(message));
-    }
-
-    protected virtual string ValidateNewPassword(string password, MembershipSettings settings, ITextLocalizer localizer)
-    {
-        password ??= "";
-
-        if (password.Length < settings.MinPasswordLength)
-            throw new ValidationError("PasswordLength", "Password",
-                string.Format(CultureInfo.CurrentCulture, localizer.Get("Validation.MinRequiredPasswordLength"), 
-                    settings.MinPasswordLength));
-
-        return password;
     }
 
     protected virtual string GenerateSalt(MembershipSettings settings)

@@ -19,7 +19,7 @@ export class PromptDialog<P extends PromptDialogOptions = PromptDialogOptions> e
         super(props);
 
         if (this.options.cssClass)
-            this.element.addClass(this.options.cssClass);
+            $(this.domNode).addClass(this.options.cssClass);
 
         if (this.options.message) {
             var msg = $("<div/>").addClass("message")

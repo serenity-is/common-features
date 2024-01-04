@@ -24,7 +24,7 @@ export class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P> {
         this.ordersGrid.openDialogsAsPanel = false;
 
         this.byId('NoteList').closest('.field').hide().end().appendTo(this.byId('TabNotes'));
-        DialogUtils.pendingChangesConfirmation(this.element, () => this.getSaveState() != this.loadedState);
+        DialogUtils.pendingChangesConfirmation(this.domNode, () => this.getSaveState() != this.loadedState);
     }
 
     getSaveState() {

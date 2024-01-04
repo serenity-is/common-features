@@ -410,7 +410,7 @@ export declare class UserPreferenceStorage implements SettingStorage {
 	setItem(key: string, data: string): Promise<void>;
 }
 export declare namespace DialogUtils {
-	function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
+	function pendingChangesConfirmation(element: ArrayLike<HTMLElement> | HTMLElement, hasPendingChanges: () => boolean): void;
 }
 export interface PromptDialogOptions {
 	cssClass?: string;

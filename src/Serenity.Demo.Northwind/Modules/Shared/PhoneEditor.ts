@@ -13,7 +13,7 @@ export class PhoneEditor<P = {}> extends StringEditor<P> {
             return PhoneEditor.validate(value, this.multiple);
         });
 
-        let input = this.element;
+        let input = $(this.domNode);
         input.on('change', e => {
             if (!WX.hasOriginalEvent(e)) {
                 return;
@@ -22,18 +22,18 @@ export class PhoneEditor<P = {}> extends StringEditor<P> {
         });
 
         input.on('blur', e => {
-            if (this.element.hasClass('valid')) {
+            if (this.domNode.classList.contains('valid')) {
                 this.formatValue();
             }
         });
     }
 
     protected formatValue(): void {
-        this.element.val(this.getFormattedValue());
+        $(this.domNode).val(this.getFormattedValue());
     }
 
     protected getFormattedValue(): string {
-        var value = this.element.val() as any;
+        var value = $(this.domNode).val() as any;
         if (this.multiple) {
             return PhoneEditor.formatMulti(value, PhoneEditor.formatPhone);
         }
@@ -48,7 +48,7 @@ export class PhoneEditor<P = {}> extends StringEditor<P> {
     }
 
     set_value(value: string) {
-        this.element.val(value);
+        $(this.domNode).val(value);
     }
 
     static validate(phone: string, isMultiple: boolean) {

@@ -57,10 +57,10 @@ export class ReadOnlyDialog extends SupplierDialog {
         // finding all editor elements and setting their readonly attribute
         // note that this helper method only works with basic inputs, 
         // some editors require widget based set readonly overload (setReadOnly)
-        EditorUtils.setReadonly(this.element.find('.editor'), true);
+        EditorUtils.setReadonly(this.domNode.querySelectorAll('.editor'), true);
 
         // remove required asterisk (*)
-        this.element.find('sup').hide();
+        $(this.domNode).find('sup').hide();
 
         // here is a way to locate a button by its css class
         // note that this method is not available in 

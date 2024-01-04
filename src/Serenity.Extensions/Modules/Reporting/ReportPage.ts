@@ -7,10 +7,10 @@ export class ReportPage<P = {}> extends Widget<P> {
     constructor(props: WidgetProps<P>) {
         super(props);
 
-        $('.report-link', this.element).click(e => this.reportLinkClick(e));
+        $('.report-link', this.domNode).click(e => this.reportLinkClick(e));
 
         new QuickSearchInput({
-            element: $('.s-QuickSearchBar input', this.element),
+            element: $('.s-QuickSearchBar input', this.domNode),
             onSearch: (field, text, done) => {
                 this.updateMatchFlags(text);
                 done(true);
@@ -19,7 +19,7 @@ export class ReportPage<P = {}> extends Widget<P> {
     }
 
     protected updateMatchFlags(text: string) {
-        var liList = $('.report-list', this.element).find('li').removeClass('non-match');
+        var liList = $('.report-list', this.domNode).find('li').removeClass('non-match');
         text = text?.trim();
         if (!text)
             return;

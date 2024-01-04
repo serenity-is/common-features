@@ -45,12 +45,12 @@ export class BasicProgressDialog<P = {}> extends TemplatedDialog<P> {
             class: 'btn btn-danger',
             click: () => {
                 this.cancelled = true;
-                this.element.closest('.ui-dialog')
+                $(this.domNode).closest('.ui-dialog')
                     .find('.ui-dialog-buttonpane .ui-button')
                     .attr('disabled', 'disabled')
                     .css('opacity', '0.5');
 
-                (this.element as any).dialog('option', 'title', this.cancelTitle?.trim() ||
+                ($(this.domNode) as any).dialog('option', 'title', this.cancelTitle?.trim() ||
                     localText('Site.BasicProgressDialog.CancelTitle'));
             }
         }];
@@ -64,7 +64,7 @@ export class BasicProgressDialog<P = {}> extends TemplatedDialog<P> {
 
     initDialog() {
         super.initDialog();
-        this.element.closest('.ui-dialog').find('.ui-dialog-titlebar-close').hide();
+        $(this.domNode).closest('.ui-dialog').find('.ui-dialog-titlebar-close').hide();
     }
 
     getTemplate() {

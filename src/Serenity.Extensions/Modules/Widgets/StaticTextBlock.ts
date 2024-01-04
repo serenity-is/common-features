@@ -16,7 +16,7 @@ export class StaticTextBlock<P extends StaticTextBlockOptions = StaticTextBlockO
 
         // hide the caption label for this editor if in a form. ugly hack
         if (this.options.hideLabel)
-            this.element.closest('.field').find('.caption').hide();
+            $(this.domNode).closest('.field').find('.caption').hide();
 
         this.updateElementContent();
     }
@@ -30,9 +30,9 @@ export class StaticTextBlock<P extends StaticTextBlockOptions = StaticTextBlockO
 
         // don't html encode if isHtml option is true
         if (this.options.isHtml)
-            this.element.html(txt);
+            $(this.domNode).html(txt);
         else
-            this.element.text(txt);
+            $(this.domNode).text(txt);
     }
 
     /**

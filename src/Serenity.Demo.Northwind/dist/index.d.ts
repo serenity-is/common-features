@@ -1,6 +1,6 @@
 /// <reference types="jquery" />
 
-import { BooleanEditor, CaptureOperationType, ColumnsBase, DateEditor, DecimalEditor, DeleteRequest, DeleteResponse, EditorProps, EmailAddressEditor, EntityDialog, EntityGrid, EnumEditor, Formatter, IGetEditValue, ISetEditValue, ImageUploadEditor, IntegerEditor, ListRequest, ListResponse, LookupEditor, LookupEditorBase, LookupEditorOptions, PrefixedContext, PropertyItem, RetrieveRequest, RetrieveResponse, SaveRequest, SaveResponse, ServiceOptions, StringEditor, TemplatedDialog, TemplatedWidget, ToolButton, WidgetProps } from '@serenity-is/corelib';
+import { BooleanEditor, CaptureOperationType, ColumnsBase, DateEditor, DecimalEditor, DeleteRequest, DeleteResponse, EditorProps, EditorWidget, EmailAddressEditor, EntityDialog, EntityGrid, EnumEditor, Formatter, IGetEditValue, ISetEditValue, ImageUploadEditor, IntegerEditor, ListRequest, ListResponse, LookupEditor, LookupEditorBase, LookupEditorOptions, PrefixedContext, PropertyItem, RetrieveRequest, RetrieveResponse, SaveRequest, SaveResponse, ServiceOptions, StringEditor, TemplatedDialog, ToolButton, WidgetProps } from '@serenity-is/corelib';
 import { GetNextNumberRequest, GetNextNumberResponse, GridEditorBase, GridEditorDialog } from '@serenity-is/extensions';
 import { Column, FormatterContext } from '@serenity-is/sleekgrid';
 
@@ -208,11 +208,11 @@ export declare abstract class CustomerDetailsRow {
 	static readonly updatePermission = "Northwind:General";
 	static readonly Fields: Readonly<Record<keyof CustomerDetailsRow, string>>;
 }
-export declare class NotesEditor<P = {}> extends TemplatedWidget<P> implements IGetEditValue, ISetEditValue {
+export declare class NotesEditor<P = {}> extends EditorWidget<P> implements IGetEditValue, ISetEditValue {
 	private isDirty;
 	private items;
-	constructor(props: EditorProps<P>);
-	protected getTemplate(): string;
+	private noteList;
+	protected renderContents(): any;
 	protected updateContent(): void;
 	protected addClick(): void;
 	protected editClick(e: any): void;

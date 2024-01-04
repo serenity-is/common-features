@@ -9,7 +9,8 @@ export class SingleLineTextFormatter implements Formatter {
     }
 
     public static formatValue(value: string) {
-        var text = $('<div/>').html(value || '').text();
-        return htmlEncode(toSingleLine(text));
+        var div = document.createElement("div");
+        div.innerHTML = value ?? '';
+        return htmlEncode(toSingleLine(div.textContent));
     }
 }

@@ -1,59 +1,45 @@
 import { NoteRow } from "@/ServerTypes/Demo";
-import { Authorization, Decorators, EditorProps, IGetEditValue, ISetEditValue, PropertyItem, TemplatedWidget, Toolbar, confirmDialog, formatDate, formatISODateTimeUTC, insert } from "@serenity-is/corelib";
+import { Authorization, Decorators, EditorProps, EditorWidget, IGetEditValue, ISetEditValue, PropertyItem, TemplatedWidget, Toolbar, appendChild, confirmDialog, formatDate, formatISODateTimeUTC, insert } from "@serenity-is/corelib";
 import * as DOMPurify from 'dompurify';
 import { NoteDialog } from "./NoteDialog";
 
 @Decorators.registerEditor('Serenity.Demo.Northwind.NotesEditor', [IGetEditValue, ISetEditValue])
 @Decorators.element("<div/>")
-export class NotesEditor<P = {}> extends TemplatedWidget<P>
+export class NotesEditor<P = {}> extends EditorWidget<P>
     implements IGetEditValue, ISetEditValue {
 
     private isDirty: boolean;
     private items: NoteRow[];
+    private noteList: HTMLUListElement;
 
-    constructor(props: EditorProps<P>) {
-        super(props);
-
-        new Toolbar({
-            element: this.byId('Toolbar'),
-            buttons: [{
+    protected renderContents(): any {
+        let id = this.useIdPrefix();
+        return (<div>
+            <Toolbar id={id.Toolbar} buttons={[{
                 title: 'Add Note',
                 cssClass: 'add-button',
-                onClick: e => {
+                onClick: (e: Event) => {
                     e.preventDefault();
                     this.addClick();
                 }
-            }]
-        });
-    }
-
-    protected getTemplate() {
-        return "<div><div id='~_Toolbar'></div><ul id='~_NoteList'></ul></div>";
+            }]} />
+            <ul id={id.NoteList} ref={el => this.noteList = el}></ul>
+        </div>);
     }
 
     protected updateContent() {
-        var noteList = this.byId('NoteList');
-        noteList.children().remove();
-        if (this.items) {
-            var index = 0;
-            for (var t1 = 0; t1 < this.items.length; t1++) {
-                var item = this.items[t1];
-                var li = $('<li/>');
-                $('<div/>').addClass('note-text').html(DOMPurify.sanitize(item.Text ?? '')).appendTo(li);
-
-                $('<a/>').attr('href', '#').addClass('note-date')
-                    .text(item.InsertUserDisplayName + ' - ' +
-                        formatDate(item.InsertDate, 'g'))
-                    .data('index', index).appendTo(li).click((e) => this.editClick(e));
-
-                $('<a/>').attr('href', '#').addClass('note-delete')
-                    .attr('title', 'delete note').data('index', index)
-                    .appendTo(li).click((e) => this.deleteClick(e));
-
-                li.appendTo(noteList);
-                index++;
-            }
-        }
+        this.noteList.innerHTML = '';
+        appendChild(<>{(this.items || []).map((item, index) => {
+            <li>
+                <div class="note-text" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.Text ?? '') }}></div>
+                <a href="#" class="note-date" data-index={index} onClick={this.editClick.bind(this)}>
+                    {item.InsertUserDisplayName + ' - ' + formatDate(item.InsertDate, 'g')}
+                </a>
+                <a href="#" class="note-delete" data-index={index} title="delete note" onClick={this.deleteClick.bind(this)}>
+                    {item.InsertUserDisplayName + ' - ' + formatDate(item.InsertDate, 'g')}
+                </a>
+            </li>
+        })}</>, this.noteList);
     }
 
     protected addClick() {

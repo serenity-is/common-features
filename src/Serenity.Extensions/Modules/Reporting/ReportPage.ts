@@ -7,10 +7,11 @@ export class ReportPage<P = {}> extends Widget<P> {
     constructor(props: WidgetProps<P>) {
         super(props);
 
-        $('.report-link', this.domNode).click(e => this.reportLinkClick(e));
+        this.domNode.querySelectorAll('.report-link').forEach(x => 
+            x.addEventListener("click", e => this.reportLinkClick(e)));
 
         new QuickSearchInput({
-            element: $('.s-QuickSearchBar input', this.domNode),
+            element: this.domNode.querySelector('.s-QuickSearchBar input') as HTMLElement,
             onSearch: (field, text, done) => {
                 this.updateMatchFlags(text);
                 done(true);
@@ -19,39 +20,54 @@ export class ReportPage<P = {}> extends Widget<P> {
     }
 
     protected updateMatchFlags(text: string) {
-        var liList = $('.report-list', this.domNode).find('li').removeClass('non-match');
+        var liList = this.domNode.querySelectorAll('.report-list li');
+        liList.forEach(x => x.classList.remove('non-match'));
         text = text?.trim();
         if (!text)
             return;
 
         text = Select2.util.stripDiacritics(text).toUpperCase();
 
-        var reportItems = liList.filter('.report-item');
-        reportItems.each(function (ix, e) {
-            var x = $(e);
-            var title = Select2.util.stripDiacritics((x.text() ?? '').toUpperCase());
+        var reportItems = Array.from(liList).filter(x => x.classList.contains('report-item'));
+        reportItems.forEach(function (el) {
+            var title = Select2.util.stripDiacritics((el.textContent ?? '').toUpperCase());
             if (title.indexOf(text) < 0) {
-                x.addClass('non-match');
+                el.classList.add('non-match');
             }
         });
 
-        var matchingItems = reportItems.not('.non-match');
-        var visibles = matchingItems.parents('li').add(matchingItems);
-        visibles.children('[data-bs-toggle]:not([aria-expanded=true])')
-            .attr('aria-expanded', 'true')
-            .removeClass('collapsed');
-        visibles
-            .parent('.collapse:not(.show)')
-            .addClass('show');
+        function parents(el: HTMLElement, selector: string) {
+            const parents = [];
+            while ((el = el.parentNode as HTMLElement) && (el as any) !== document) {
+                if (!selector || el.matches(selector))
+                    parents.push(el);
+            }
+            return parents;
+        }
 
-        var nonVisibles = liList.not(visibles);
-        nonVisibles.addClass('non-match');
+        var matchingItems = reportItems.filter(x => !x.classList.contains('non-match'));
+        var visibles = [...matchingItems];
+        matchingItems.forEach(x => visibles.push(...parents(x as HTMLElement, 'li')));
+        visibles = visibles.filter((x, i) => visibles.indexOf(x) === i);
+        visibles.forEach(v => {
+            v.querySelectorAll(':scope [data-bs-toggle]:not([aria-expanded=true])').forEach(c => {
+                c.setAttribute('aria-expanded', "true");
+                c.classList.remove('collapsed');
+            });
+            if (v.parentElement && v.parentElement.classList.contains("collapse") && 
+                !v.parentElement.classList.contains("show")) {
+                v.parentElement.classList.add("show");
+            }
+        });
+
+        var nonVisibles = Array.from(liList).filter(x => visibles.indexOf(x) < 0);
+        nonVisibles.forEach(x => x.classList.add('non-match'));
     }
 
-    protected reportLinkClick(e) {
+    protected reportLinkClick(e: Event) {
         e.preventDefault();
         new ReportDialog({
-            reportKey: $(e.target).data('key')
+            reportKey: (e.target as HTMLElement).getAttribute('data-key')
         }).dialogOpen();
     }
 }

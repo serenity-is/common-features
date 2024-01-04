@@ -43,9 +43,9 @@ export class CustomLinksInGrid extends OrderGrid {
         var item = this.itemAt(row);
 
         // get reference to clicked element
-        var target = $(e.target);
+        var target = e.target as HTMLElement;
 
-        if (target.hasClass("customer-link")) {
+        if (target.classList.contains("customer-link")) {
             e.preventDefault();
 
             let message = stringFormat(
@@ -69,7 +69,7 @@ export class CustomLinksInGrid extends OrderGrid {
                     }
                 });
         }
-        else if (target.hasClass("date-link")) {
+        else if (target.classList.contains("date-link")) {
             e.preventDefault();
 
             var ordersInSameDate = count(this.view.getItems(), x => x.OrderDate == item.OrderDate);
@@ -78,7 +78,7 @@ export class CustomLinksInGrid extends OrderGrid {
                 formatDate(item.OrderDate) + ". There are " +
                 ordersInSameDate + " orders from the same date that is loaded in grid at the moment");
         }
-        else if (target.hasClass("employee-link")) {
+        else if (target.classList.contains("employee-link")) {
             e.preventDefault();
 
             notifySuccess("You clicked an employee name, " +
@@ -90,7 +90,7 @@ export class CustomLinksInGrid extends OrderGrid {
                 EmployeeID: item.EmployeeID
             });
         }
-        else if (target.hasClass("ship-country-link")) {
+        else if (target.classList.contains("ship-country-link")) {
             e.preventDefault();
 
             notifySuccess("Let's filter the grid to orders from " + item.ShipCountry);

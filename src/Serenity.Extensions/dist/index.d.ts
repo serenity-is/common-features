@@ -403,7 +403,7 @@ export declare namespace ReportHelper {
 export declare class ReportPage<P = {}> extends Widget<P> {
 	constructor(props: WidgetProps<P>);
 	protected updateMatchFlags(text: string): void;
-	protected reportLinkClick(e: any): void;
+	protected reportLinkClick(e: Event): void;
 }
 export declare class UserPreferenceStorage implements SettingStorage {
 	getItem(key: string): Promise<string>;

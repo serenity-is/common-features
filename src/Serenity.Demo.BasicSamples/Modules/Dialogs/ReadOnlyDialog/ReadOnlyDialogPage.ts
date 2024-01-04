@@ -60,7 +60,7 @@ export class ReadOnlyDialog extends SupplierDialog {
         EditorUtils.setReadonly(this.domNode.querySelectorAll('.editor'), true);
 
         // remove required asterisk (*)
-        $(this.domNode).find('sup').hide();
+        this.domNode.querySelectorAll('sup').forEach(el => el.style.display = 'none');
 
         // here is a way to locate a button by its css class
         // note that this method is not available in 

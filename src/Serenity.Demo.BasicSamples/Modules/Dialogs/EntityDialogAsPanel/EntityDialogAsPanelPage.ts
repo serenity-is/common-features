@@ -6,11 +6,11 @@ export default function pageInit(model: any) {
     // first create a new dialog, store it in globalThis, e.g. window so that sample can access it from outsite the module
     var myDialogAsPanel = new EntityDialogAsPanel();
 
-    $('#SwitchToNewRecordMode').click(() => {
+    document.querySelector('#SwitchToNewRecordMode').addEventListener('click', () => {
         myDialogAsPanel.load({}, function() { notifySuccess('Switched to new record mode'); });
     });
 
-    $('#LoadEntityWithId').click(() => {
+    document.querySelector('#LoadEntityWithId').addEventListener('click', () => {
         myDialogAsPanel.load(11048, function() { notifySuccess('Loaded entity with ID 11048'); })
     });
 
@@ -18,8 +18,9 @@ export default function pageInit(model: any) {
     // here we use done event in second parameter, to be sure operation succeeded before showing the panel
     myDialogAsPanel.load(model || {}, function () {
         // if we didn't reach here, probably there is no order with specified ID in url
-        myDialogAsPanel.element.removeClass('hidden').appendTo('#DialogDiv');
-        myDialogAsPanel["arrange"]?.();
+        myDialogAsPanel.domNode.classList.remove('hidden');
+        document.querySelector('#DialogDiv').append(myDialogAsPanel.domNode);
+        myDialogAsPanel.arrange();
     });
 }
 

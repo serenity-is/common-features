@@ -61,16 +61,16 @@ export namespace PdfExportHelper {
                 else {
                     el.innerHTML = html;
                     if (el.children.length == 1 &&
-                        $(el.children[0]).is("select")) {
-                        dst.push($(el.children[0]).children("[selected]").text());
+                        el.children[0]?.nodeName === 'SELECT') {
+                        dst.push(el.children[0].querySelector("[selected]")?.textContent ?? '');
                     }
                     else if (el.children.length == 1 &&
-                        $(el.children[0]).is(":input")) {
-                        dst.push($(el.children[0]).val());
+                        /^(?:input|select|textarea|button)$/i.test(el.children[0].nodeName)) {
+                        dst.push((el.children[0] as any).value);
                     }
                     else if (el.children.length == 1 &&
-                        $(el.children).is('.check-box')) {
-                        dst.push($(el.children).hasClass("checked") ? "X" : "")
+                        el.children[0].classList.contains('.check-box')) {
+                        dst.push(el.children[0].classList.contains("checked") ? "X" : "")
                     }
                     else
                         dst.push(el.textContent || '');
@@ -224,15 +224,15 @@ export namespace PdfExportHelper {
         if (typeof jsPDF !== "undefined")
             return;
 
-        var script = $("jsPDFScript");
-        if (script.length > 0)
+        var script = document.querySelector("#jsPDFScript") as HTMLScriptElement;
+        if (script)
             return;
 
-        $("<script/>")
-            .attr("type", "text/javascript")
-            .attr("id", "jsPDFScript")
-            .attr("src", resolveUrl("~/Serenity.Assets/Scripts/jspdf.min.js"))
-            .appendTo(document.head);
+        script = document.createElement("script");
+        script.type = "text/javascript";
+        script.setAttribute("id", "jsPDFScript")
+        script.setAttribute("src", resolveUrl("~/Serenity.Assets/Scripts/jspdf.min.js"));
+        document.head.append(script);
 
         if (typeof jsPDF === "undefined" && typeof jspdf !== "undefined") {
             window.jsPDF = jspdf.jsPDF;
@@ -248,14 +248,14 @@ export namespace PdfExportHelper {
             typeof (jsPDF as any).API.autoTable !== "undefined")
             return;
 
-        var script = $("jsPDFAutoTableScript");
-        if (script.length > 0)
+        var script = document.querySelector("#jsPDFAutoTableScript") as HTMLScriptElement;
+        if (script)
             return;
 
-        $("<script/>")
-            .attr("type", "text/javascript")
-            .attr("id", "jsPDFAutoTableScript")
-            .attr("src", resolveUrl("~/Serenity.Assets/Scripts/jspdf.plugin.autotable.min.js"))
-            .appendTo(document.head);
+        script = document.createElement("script");
+        script.setAttribute("type", "text/javascript")
+        script.setAttribute("id", "jsPDFAutoTableScript")
+        script.setAttribute("src", resolveUrl("~/Serenity.Assets/Scripts/jspdf.plugin.autotable.min.js"));
+        document.head.append(script);
     }
 }

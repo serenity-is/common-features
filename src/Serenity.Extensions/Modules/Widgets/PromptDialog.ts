@@ -1,4 +1,4 @@
-import { Decorators, DialogTexts, PropertyDialog, WidgetProps, localText } from "@serenity-is/corelib";
+import { Decorators, DialogTexts, PropertyDialog, WidgetProps, localText, toggleClass } from "@serenity-is/corelib";
 
 export interface PromptDialogOptions {
     cssClass?: string;
@@ -19,12 +19,16 @@ export class PromptDialog<P extends PromptDialogOptions = PromptDialogOptions> e
         super(props);
 
         if (this.options.cssClass)
-            $(this.domNode).addClass(this.options.cssClass);
+            toggleClass(this.domNode, this.options.cssClass, true);
 
         if (this.options.message) {
-            var msg = $("<div/>").addClass("message")
-                .insertBefore(this.byId("PropertyGrid"));
-            this.options.isHtml ? msg.html(this.options.message) : msg.text(this.options.message);
+            var msg = document.createElement("div");
+            msg.classList.add("message");
+            this.byId("PropertyGrid").prepend(msg);
+            if (this.options.isHtml)
+                msg.innerHTML = this.options.message;
+            else
+                msg.textContent = this.options.message;
         }
 
         this.dialogTitle = this.options.title || "Prompt";

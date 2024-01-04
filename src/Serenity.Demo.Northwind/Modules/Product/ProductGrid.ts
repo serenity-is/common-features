@@ -183,14 +183,14 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
     private inputsChange(e: Event) {
         var cell = this.slickGrid.getCellFromEvent(e);
         var item = this.itemAt(cell.row);
-        var input = $(e.target);
-        var field = input.data('field');
-        var txt = (input.val() as string)?.trim() || null;
+        var input = e.target as (HTMLInputElement | HTMLSelectElement);
+        var field = input.getAttribute('data-field');
+        var txt = input.value?.trim() || null;
         var pending = this.pendingChanges[item.ProductID];
 
         var effective = this.getEffectiveValue(item, field);
         var oldText: string;
-        if (input.hasClass("numeric"))
+        if (input.classList.contains("numeric"))
             oldText = formatNumber(effective, '0.##');
         else
             oldText = effective as string;
@@ -200,23 +200,23 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
             value = parseDecimal(txt ?? '');
             if (value == null || isNaN(value)) {
                 notifyError(localText('Validation.Decimal'), '', null);
-                input.val(oldText);
+                input.value = oldText;
                 input.focus();
                 return;
             }
         }
-        else if (input.hasClass("numeric")) {
+        else if (input.classList.contains("numeric")) {
             var i = parseInteger(txt ?? '');
             if (isNaN(i) || i > 32767 || i < 0) {
                 notifyError(localText('Validation.Integer'), '', null);
-                input.val(oldText);
+                input.value = oldText;
                 input.focus();
                 return;
             }
             value = i;
         }
-        else if (input.is('select'))
-            value = toId(input.val());
+        else if (input.tagName === 'SELECT')
+            value = toId(input.value);
         else
             value = txt;
 
@@ -228,10 +228,11 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
         item[field] = value;
         this.view.refresh();
 
-        if (input.hasClass("numeric"))
+        if (input.classList.contains("numeric"))
             value = formatNumber(value, '0.##');
 
-        input.val(value).addClass('dirty');
+        input.value = value;
+        input.classList.add('dirty');
 
         this.setSaveButtonState();
     }

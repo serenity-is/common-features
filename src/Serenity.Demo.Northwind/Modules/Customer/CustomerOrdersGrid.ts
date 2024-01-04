@@ -17,7 +17,7 @@ export class CustomerOrdersGrid<P = {}> extends OrderGrid<P> {
 
     protected initEntityDialog(itemType, dialog) {
         super.initEntityDialog(itemType, dialog);
-        SubDialogHelper.cascade(dialog, $(this.domNode).closest('.ui-dialog'));
+        SubDialogHelper.cascade(dialog, this.domNode.closest('.ui-dialog') as HTMLElement);
     }
 
     protected override getButtons() {

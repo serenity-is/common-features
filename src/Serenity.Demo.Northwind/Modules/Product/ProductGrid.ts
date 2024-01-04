@@ -18,7 +18,7 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
 
     constructor(props: WidgetProps<P>) {
         super(props);
-        this.slickContainer.on('change', '.edit:input', (e) => this.inputsChange(e as any));
+        this.slickContainer.on('change', 'input.edit, textarea.edit, select.edit', (e) => this.inputsChange(e as any));
     }
 
     protected getButtons() {

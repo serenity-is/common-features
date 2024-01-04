@@ -1,5 +1,5 @@
 import { NoteRow } from "@/ServerTypes/Demo";
-import { Authorization, Decorators, EditorProps, EditorWidget, IGetEditValue, ISetEditValue, PropertyItem, TemplatedWidget, Toolbar, appendChild, confirmDialog, formatDate, formatISODateTimeUTC, insert } from "@serenity-is/corelib";
+import { Authorization, Decorators, EditorWidget, IGetEditValue, ISetEditValue, PropertyItem, Toolbar, confirmDialog, formatDate, formatISODateTimeUTC, insert } from "@serenity-is/corelib";
 import * as DOMPurify from 'dompurify';
 import { NoteDialog } from "./NoteDialog";
 
@@ -29,17 +29,15 @@ export class NotesEditor<P = {}> extends EditorWidget<P>
 
     protected updateContent() {
         this.noteList.innerHTML = '';
-        appendChild(<>{(this.items || []).map((item, index) => {
+        this.noteList.append(<>{(this.items || []).map((item, index) => 
             <li>
                 <div class="note-text" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.Text ?? '') }}></div>
                 <a href="#" class="note-date" data-index={index} onClick={this.editClick.bind(this)}>
                     {item.InsertUserDisplayName + ' - ' + formatDate(item.InsertDate, 'g')}
                 </a>
-                <a href="#" class="note-delete" data-index={index} title="delete note" onClick={this.deleteClick.bind(this)}>
-                    {item.InsertUserDisplayName + ' - ' + formatDate(item.InsertDate, 'g')}
-                </a>
+                <a href="#" class="note-delete" data-index={index} title="delete note" onClick={this.deleteClick.bind(this)} />
             </li>
-        })}</>, this.noteList);
+        )}</>);
     }
 
     protected addClick() {

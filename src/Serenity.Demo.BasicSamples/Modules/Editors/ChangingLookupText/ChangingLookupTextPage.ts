@@ -6,7 +6,7 @@ import { GridEditorDialog } from "@serenity-is/extensions";
 export default function pageInit() {
     var dlg = new ChangingLookupTextDialog({});
     dlg.loadNewAndOpenDialog();
-    dlg.element.find('.field.ProductID .editor').select2('open');
+    $(dlg.domNode).find('.field.ProductID .editor').select2('open');
 }
 
 /**

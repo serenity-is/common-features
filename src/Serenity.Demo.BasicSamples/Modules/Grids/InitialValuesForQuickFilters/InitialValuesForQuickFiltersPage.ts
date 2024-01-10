@@ -1,4 +1,4 @@
-﻿import { DateEditor, Decorators, EnumEditor, LookupEditor, QuickFilter, Widget, gridPageInit } from "@serenity-is/corelib";
+﻿import { DateEditor, Decorators, EnumEditor, LookupEditor, QuickFilter, Widget, getWidgetFrom, gridPageInit } from "@serenity-is/corelib";
 import { OrderGrid, OrderRow, OrderShippingState } from "@serenity-is/demo.northwind";
 
 export default () => gridPageInit(InitialValuesForQuickFilters);
@@ -23,24 +23,26 @@ export class InitialValuesForQuickFilters extends OrderGrid {
         // value for a quick filter editor, just after it is created
 
         let orderDate = filters.find(x => x.field === fld.OrderDate);
-        orderDate && (orderDate.init = w => {
+        orderDate && (orderDate.init = (w: DateEditor) => {
             // w is a reference to the editor for this quick filter widget
             // here we cast it to DateEditor, and set its value as date.
             // note that in Javascript, months are 0 based, so date below
             // is actually 2016-05-01
-            (w as DateEditor).valueAsDate = new Date(2010, 4, 1);
+            w.valueAsDate = new Date(2010, 4, 1);
 
             // setting start date was simple. but this quick filter is actually
             // a combination of two date editors. to get reference to second one,
             // need to find its next sibling element by its class
-            let endDate = w.element.nextAll(".s-DateEditor").getWidget(DateEditor);
+            let endDate: DateEditor;
+            for (var node = w.domNode.nextElementSibling; !node.classList.contains("s-DateEditor"); node = node.nextElementSibling);
+            endDate = getWidgetFrom(node, DateEditor);
             endDate.valueAsDate = new Date(new Date().getFullYear(), 10, 1);
         });
 
         let shippingState = filters.find(x => x.field === fld.ShippingState);
-        shippingState && (shippingState.init = w => {
+        shippingState && (shippingState.init = (w: EnumEditor) => {
             // enum editor has a string value, so need to call toString()
-            (w as EnumEditor).value = OrderShippingState.NotShipped.toString()
+            w.value = OrderShippingState.NotShipped.toString()
         });
 
         return filters;

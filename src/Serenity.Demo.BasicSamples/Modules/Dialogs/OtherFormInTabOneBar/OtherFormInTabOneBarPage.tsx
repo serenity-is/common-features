@@ -1,4 +1,4 @@
-import { Decorators, PropertyGrid, SaveResponse, TabsExtensions, WidgetProps, first, getForm, gridPageInit, isEmptyOrNull, reloadLookup, validateOptions } from "@serenity-is/corelib";
+import { Decorators, Fluent, PropertyGrid, SaveResponse, TabsExtensions, WidgetProps, first, getForm, gridPageInit, isEmptyOrNull, reloadLookup, validateOptions } from "@serenity-is/corelib";
 import { CustomerForm, CustomerRow, CustomerService, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 
 export default () => gridPageInit(OtherFormInTabOneBarGrid);
@@ -19,7 +19,7 @@ export class OtherFormInTabOneBarGrid extends OrderGrid {
 export class OtherFormOneBarDialog<P = {}> extends OrderDialog<P> {
 
     private customerPropertyGrid: PropertyGrid;
-    private customerValidator: JQueryValidation.Validator;
+    private customerValidator: any;
     private selfChange = 0;
 
     constructor(props: WidgetProps<P>) {
@@ -111,7 +111,7 @@ export class OtherFormOneBarDialog<P = {}> extends OrderDialog<P> {
                     try {
                         // trigger change so that customer select updates its text
                         // in case if Company Name is changed
-                        this.form.CustomerID.element.change();
+                        Fluent(this.form.CustomerID.domNode).trigger("change");
                     }
                     finally {
                         this.selfChange--;

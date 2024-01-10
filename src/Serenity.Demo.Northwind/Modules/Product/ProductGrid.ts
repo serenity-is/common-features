@@ -1,5 +1,5 @@
 import { CategoryRow, ProductColumns, ProductRow, ProductService, SupplierRow } from "@/ServerTypes/Demo";
-import { Decorators, Dictionary, EntityGrid, Lookup, LookupEditor, WidgetProps, deepClone, formatNumber, htmlEncode, localText, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, toId } from "@serenity-is/corelib";
+import { Decorators, Dictionary, EntityGrid, Lookup, LookupEditor, WidgetProps, deepClone, formatNumber, getWidgetFrom, htmlEncode, localText, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, toId } from "@serenity-is/corelib";
 import { ExcelExportHelper, PdfExportHelper } from "@serenity-is/extensions";
 import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
 import { ProductDialog } from "./ProductDialog";
@@ -279,7 +279,7 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
         if (q["cat"]) {
             var category = flt.find(x => x.field == ProductRow.Fields.CategoryID);
             category && (category.init = e => {
-                e.element.getWidget(LookupEditor).value = q["cat"];
+                getWidgetFrom(e.domNode, LookupEditor).value = q["cat"];
             });
         }
 

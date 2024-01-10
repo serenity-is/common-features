@@ -1,6 +1,4 @@
-/// <reference types="jquery" />
-
-import { DataGrid, DeleteResponse, Dictionary, EditorProps, EmailAddressEditor, EntityDialog, EntityGrid, Formatter, IGetEditValue, ISetEditValue, IconClassName, ListRequest, ListResponse, PasswordEditor, PrefixedContext, PropertyDialog, PropertyItem, RetrieveResponse, SaveResponse, Select2AjaxEditor, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse, SettingStorage, TemplatedDialog, ToolButton, Widget, WidgetProps } from '@serenity-is/corelib';
+import { DataGrid, DeleteResponse, Dictionary, EditorProps, EmailAddressEditor, EntityDialog, EntityGrid, Formatter, IGetEditValue, ISetEditValue, IconClassName, ListRequest, ListResponse, PasswordEditor, PrefixedContext, PropertyDialog, PropertyItem, SaveResponse, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse, SettingStorage, TemplatedDialog, ToolButton, Widget, WidgetProps } from '@serenity-is/corelib';
 import { FormatterContext, Grid, GridOptions } from '@serenity-is/sleekgrid';
 
 export interface ChangePasswordForm {
@@ -159,7 +157,7 @@ export declare class BasicProgressDialog<P = {}> extends TemplatedDialog<P> {
 		class: string;
 		click: () => void;
 	}[];
-	getDialogOptions(): any;
+	getDialogOptions(): import("@serenity-is/corelib").DialogOptions;
 	initDialog(): void;
 	getTemplate(): string;
 }
@@ -444,29 +442,6 @@ export declare class SelectableEntityGrid<TItem, TOptions> extends EntityGrid<TI
 	protected getSlickOptions(): GridOptions;
 	protected createSlickGrid(): Grid;
 }
-export interface ServiceEditorOptions {
-	cascadeFrom?: string;
-	cascadeField?: string;
-	cascadeValue?: any;
-}
-export declare abstract class ServiceEditorBase<P extends ServiceEditorOptions, TRow> extends Select2AjaxEditor<P, TRow> {
-	private cascadeLink;
-	constructor(props: EditorProps<P>);
-	private setCascadeFrom;
-	get cascadeValue(): any;
-	set cascadeValue(value: any);
-	get cascadeField(): any;
-	set cascadeField(value: any);
-	get cascadeFrom(): any;
-	set cascadeFrom(value: any);
-	private getCascadeFromValue;
-	protected getIncludeColumns(): string[];
-	protected getSort(): string[];
-	getTypeDelay(): number;
-	private lastRequest;
-	executeQueryByKey(options: ServiceOptions<RetrieveResponse<TRow>>): void;
-	executeQuery(options: ServiceOptions<ListResponse<TRow>>): void;
-}
 /**
 	* This is an editor widget but it only displays a text, not edits it.
 	*
@@ -488,6 +463,6 @@ export interface StaticTextBlockOptions {
 	hideLabel: boolean;
 }
 export declare function getPasswordStrengthRules(): Promise<PasswordStrengthRules>;
-export declare function addPasswordStrengthValidation(passwordEditor: PasswordEditor, uniqueName: string): void;
+export declare function addPasswordStrengthValidation(passwordEditor: PasswordEditor, uniqueName?: string): void;
 
 export {};

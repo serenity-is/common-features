@@ -23,13 +23,14 @@ export class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P> {
         // which is set as default on OrderDialog with @panelAttribute
         this.ordersGrid.openDialogsAsPanel = false;
 
-        this.byId('NoteList').closest('.field').hide().end().appendTo(this.byId('TabNotes'));
+        this.byId('NoteList').closest('.field').hide();
+        this.byId('NoteList').appendTo(this.byId('TabNotes'));
         DialogUtils.pendingChangesConfirmation(this.domNode, () => this.getSaveState() != this.loadedState);
     }
 
     getSaveState() {
         try {
-            return $.toJSON(this.getSaveEntity());
+            return JSON.stringify(this.getSaveEntity());
         }
         catch (e) {
             return null;

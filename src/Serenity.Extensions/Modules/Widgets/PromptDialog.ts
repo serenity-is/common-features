@@ -1,4 +1,4 @@
-import { Decorators, DialogTexts, PropertyDialog, WidgetProps, localText, toggleClass } from "@serenity-is/corelib";
+import { Decorators, DialogTexts, PropertyDialog, WidgetProps, toggleClass } from "@serenity-is/corelib";
 
 export interface PromptDialogOptions {
     cssClass?: string;
@@ -19,7 +19,7 @@ export class PromptDialog<P extends PromptDialogOptions = PromptDialogOptions> e
         super(props);
 
         if (this.options.cssClass)
-            toggleClass(this.domNode, this.options.cssClass, true);
+            toggleClass(this.domNode, this.options.cssClass);
 
         if (this.options.message) {
             var msg = document.createElement("div");

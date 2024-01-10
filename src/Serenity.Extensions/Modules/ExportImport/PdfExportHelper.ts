@@ -65,7 +65,7 @@ export namespace PdfExportHelper {
                         dst.push(el.children[0].querySelector("[selected]")?.textContent ?? '');
                     }
                     else if (el.children.length == 1 &&
-                        isInputLike(el.children[0]) {
+                        isInputLike(el.children[0])) {
                         dst.push((el.children[0] as any).value);
                     }
                     else if (el.children.length == 1 &&

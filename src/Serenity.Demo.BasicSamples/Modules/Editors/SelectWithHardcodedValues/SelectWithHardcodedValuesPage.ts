@@ -4,7 +4,7 @@ import { Decorators, EditorProps, PropertyDialog, Select2Editor, WidgetProps, no
 export default function pageInit() {
     var dlg = new HardcodedValuesDialog({});
     dlg.dialogOpen();
-    dlg.element.find('.field.SomeValue .editor').select2('open');
+    ($(dlg.domNode).find('.field.SomeValue .editor') as any).select2('open');
 
     // let's also create it in our page, for demonstration purposes this time we directly create
     new HardcodedValuesEditor({
@@ -66,6 +66,6 @@ export class HardcodedValuesDialog<P = {}> extends PropertyDialog<any, P> {
     protected getDialogOptions() {
         var opt = super.getDialogOptions();
         opt.modal = false;
-        return;
+        return opt;
     }
 }

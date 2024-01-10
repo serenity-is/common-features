@@ -17,9 +17,10 @@ export class SerialAutoNumberDialog extends CustomerDialog {
     constructor(props: {}) {
         super(props);
 
-        this.form.CustomerID.element.on('keyup', (e) => {
+        this.form.CustomerID.element.on('keyup', (e: KeyboardEvent) => {
             // only auto number when a key between 'A' and 'Z' is pressed
-            if (e.which >= 65 && e.which <= 90)
+            if ((e.key >= "A" && e.key <= "Z") ||
+                (e.key >= "a" && e.key <= "z"))
                 this.getNextNumber();
         });
     }

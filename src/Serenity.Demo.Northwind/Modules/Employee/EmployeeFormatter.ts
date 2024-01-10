@@ -3,7 +3,7 @@ import { htmlEncode, isTrimmedEmpty } from "@serenity-is/corelib";
 import { Column, FormatterContext } from "@serenity-is/sleekgrid";
 import { Gender } from "@/ServerTypes/Demo";
 
-@Decorators.registerFormatter('Serenity.Demo.Northwind.EmployeeFormatter', [ISlickFormatter, IInitializeColumn])
+@Decorators.registerFormatter('Serenity.Demo.Northwind.EmployeeFormatter', [IInitializeColumn])
 export class EmployeeFormatter implements Formatter {
     format(ctx: FormatterContext) {
         let text = htmlEncode(ctx.value);

@@ -37,7 +37,7 @@ export namespace ReportHelper {
             params: {
                 key: options.reportKey,
                 ext: options.extension ?? 'pdf',
-                opt: opt ? $.toJSON(opt) : ''
+                opt: opt ? JSON.stringify(opt) : ''
             },
             target: options.target ?? '_blank'
         });

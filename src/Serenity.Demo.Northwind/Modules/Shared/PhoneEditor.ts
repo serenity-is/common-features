@@ -1,4 +1,4 @@
-import { Decorators, StringEditor, WX, WidgetProps, localText, replaceAll } from "@serenity-is/corelib";
+import { Decorators, StringEditor, WidgetProps, localText, replaceAll } from "@serenity-is/corelib";
 
 @Decorators.registerEditor('Serenity.Demo.Northwind.PhoneEditor')
 export class PhoneEditor<P = {}> extends StringEditor<P> {
@@ -15,9 +15,6 @@ export class PhoneEditor<P = {}> extends StringEditor<P> {
 
         let input = this.domNode as HTMLInputElement;
         input.addEventListener('change', e => {
-            if (!WX.hasOriginalEvent(e)) {
-                return;
-            }
             this.formatValue();
         });
 

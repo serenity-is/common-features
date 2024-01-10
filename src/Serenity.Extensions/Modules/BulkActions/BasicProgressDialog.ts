@@ -25,8 +25,8 @@ export class BasicProgressDialog<P = {}> extends TemplatedDialog<P> {
 
     public set value(value: number) {
         this.byId('ProgressBar').attr('aria-valuenow', (value || 0).toString())
-            .css('width', (((value || 0) / (this.max || 100)) * 100) + '%')
-            .text(value + ' / ' + this.max);
+            .text(value + ' / ' + this.max)
+            .getNode().style.width = (((value || 0) / (this.max || 100)) * 100) + '%';
     }
 
     public get title(): string {

@@ -25,6 +25,10 @@ export class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P> {
 
         this.byId('NoteList').closest('.field').hide();
         this.byId('NoteList').appendTo(this.byId('TabNotes'));
+    }
+
+    override initDialog() {
+        super.initDialog();       
         DialogUtils.pendingChangesConfirmation(this.domNode, () => this.getSaveState() != this.loadedState);
     }
 

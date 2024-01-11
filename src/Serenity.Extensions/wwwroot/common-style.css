@@ -2196,7 +2196,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 .flex-layout.s-Panel,
 .flex-layout .ui-dialog-content,
 .flex-layout .s-DialogContent,
-.flex-layout .s-PanelBody,
+.flex-layout .panel-body,
 .flex-layout .s-Form,
 .flex-layout form,
 .flex-layout .fieldset,
@@ -2413,7 +2413,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 .ui-dialog.mobile-layout .ui-dialog-titlebar-restore {
   display: none;
 }
-.panel-hidden {
+[data-hiddenby] {
   display: none !important;
 }
 .fileinput-button input:disabled {

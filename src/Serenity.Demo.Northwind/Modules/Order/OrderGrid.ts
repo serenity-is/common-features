@@ -83,7 +83,7 @@ export class OrderGrid<P={}> extends EntityGrid<OrderRow, P> {
             return;
 
         var item = this.itemAt(row);
-        let action = (e.target as HTMLElement)?.closest("inline-action")?.getAttribute("data-action");
+        let action = (e.target as HTMLElement)?.closest(".inline-action")?.getAttribute("data-action");
         if (action) {
             e.preventDefault();
             if (action == "inline-action") {

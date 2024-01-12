@@ -128,7 +128,7 @@ export namespace PdfExportHelper {
                 var totalPagesExp = "{{T}}";
 
                 let pageNumbers = options.pageNumbers == null || options.pageNumbers;
-                var autoOptions = $.extend({
+                var autoOptions = Object.assign({
                     margin: { top: 25, left: 25, right: 25, bottom: pageNumbers ? 25 : 30 },
                     startY: 60,
                     styles: {

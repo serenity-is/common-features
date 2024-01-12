@@ -47,6 +47,7 @@ export class ChartInDialog<P = {}> extends TemplatedDialog<P> {
         var opt = super.getDialogOptions();
         opt.title = 'Orders by Shipper';
         opt.modal = false;
+        opt.backdrop = true;
         return opt;
     }
 }

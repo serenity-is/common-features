@@ -16,16 +16,10 @@
 
 <div id="GridDiv"></div>
 
-<script type="text/javascript">
-    jQuery(function () {
-        var orderGrid = new Serenity.Demo.Northwind.OrderGrid($('#GridDiv'), {
-        });
-
-        var q = Q.parseQueryString();
-        if (q.shippingState != null && q.shippingState.length) {
-            orderGrid.set_shippingState(parseInt(q.shippingState, 10));
-        }
-
-        Q.initFullHeightGridPage($('#GridDiv'));
-    });
+<script type="module">
+    var orderGrid = gridPageInit(Serenity.Demo.Northwind.OrderGrid);
+    var q = Serenity.parseQueryString();
+    if (q.shippingState != null && q.shippingState.length) {
+        orderGrid.set_shippingState(parseInt(q.shippingState, 10));
+    }
 </script>

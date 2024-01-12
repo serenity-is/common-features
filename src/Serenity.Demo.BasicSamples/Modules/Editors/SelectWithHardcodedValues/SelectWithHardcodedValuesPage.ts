@@ -1,10 +1,10 @@
 import { HardcodedValuesForm } from "@/ServerTypes/Demo";
-import { Decorators, EditorProps, PropertyDialog, Select2Editor, WidgetProps, notifySuccess } from "@serenity-is/corelib";
+import { Decorators, EditorProps, PropertyDialog, Select2Editor, WidgetProps, getjQuery, notifySuccess } from "@serenity-is/corelib";
 
 export default function pageInit() {
     var dlg = new HardcodedValuesDialog({});
     dlg.dialogOpen();
-    ($(dlg.domNode).find('.field.SomeValue .editor') as any).select2('open');
+    (getjQuery()?.(dlg.domNode)?.find('.field.SomeValue .editor') as any)?.select2?.('open');
 
     // let's also create it in our page, for demonstration purposes this time we directly create
     new HardcodedValuesEditor({

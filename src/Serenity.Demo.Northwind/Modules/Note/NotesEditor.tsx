@@ -65,7 +65,7 @@ export class NotesEditor<P = {}> extends EditorWidget<P>
 
     protected editClick(e) {
         e.preventDefault();
-        var index = $(e.target).data('index');
+        var index = e.target.dataset.index;
         var old = this.items[index];
         var dlg = new NoteDialog({});
         dlg.dialogTitle = 'Edit Note';
@@ -86,7 +86,7 @@ export class NotesEditor<P = {}> extends EditorWidget<P>
 
     public deleteClick(e) {
         e.preventDefault();
-        var index = $(e.target).data('index');
+        var index = e.target.dataset.index;
         confirmDialog('Delete this note?', () => {
             this.items.splice(index, 1);
             this.updateContent();

@@ -1,12 +1,12 @@
 import { ChangingLookupTextForm } from "@/ServerTypes/Demo";
-import { Decorators, Lookup, LookupEditorBase, LookupEditorOptions, WidgetProps, formatNumber, toId } from "@serenity-is/corelib";
+import { Decorators, Lookup, LookupEditorBase, LookupEditorOptions, WidgetProps, formatNumber, getjQuery, toId } from "@serenity-is/corelib";
 import { OrderDetailRow, ProductRow } from "@serenity-is/demo.northwind";
 import { GridEditorDialog } from "@serenity-is/extensions";
 
 export default function pageInit() {
     var dlg = new ChangingLookupTextDialog({});
     dlg.loadNewAndOpenDialog();
-    $(dlg.domNode).find('.field.ProductID .editor').select2('open');
+    getjQuery()?.(dlg.domNode)?.find('.field.ProductID .editor')?.select2?.('open');
 }
 
 /**

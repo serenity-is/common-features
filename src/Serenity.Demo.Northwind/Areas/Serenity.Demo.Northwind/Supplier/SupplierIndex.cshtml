@@ -5,10 +5,6 @@
 
 <div id="GridDiv"></div>
 
-<script type="text/javascript">
-    jQuery(function () {
-        new Serenity.Demo.Northwind.SupplierGrid($('#GridDiv'), {}).init();
-
-        Q.initFullHeightGridPage($('#GridDiv'));
-    });
+<script type="module">
+    Serenity.gridPageInit(Serenity.Demo.Northwind.SupplierGrid);
 </script>

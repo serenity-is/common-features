@@ -960,6 +960,7 @@ export declare class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P>
 	private ordersGrid;
 	private loadedState;
 	constructor(props: WidgetProps<P>);
+	initDialog(): void;
 	getSaveState(): string;
 	loadResponse(data: any): void;
 	loadEntity(entity: CustomerRow): void;

@@ -39,7 +39,7 @@ export class ReadOnlyDialog extends SupplierDialog {
 
         // We could also remove delete button here, but for demonstration 
         // purposes we'll hide it in another method (updateInterface)
-        // buttons.splice(Q.indexOf(buttons, x => x.action == "delete"), 1);
+        // buttons.splice(buttons.indexOf(x => x.action == "delete"), 1);
 
         return buttons;
     }

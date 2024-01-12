@@ -91,8 +91,6 @@ if (!category.SubCategories.IsEmptyOrNull() ||
         </ul>
     </div>
 </div>
-<script>
-$(function() {
-    new Serenity.Extensions.ReportPage($('#ReportPage'));
-});
+<script type="module">
+new Serenity.Extensions.ReportPage("#ReportPage");
 </script>

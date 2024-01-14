@@ -446,6 +446,11 @@ select {
   background-color: transparent;
 }
 
+button.ui-datepicker-trigger::before {
+  font-family: FontAwesome;
+  content: "\f133";
+}
+
 .fa-clipboard-check::before {
   content: "\f0c7";
 }

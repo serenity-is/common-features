@@ -1806,7 +1806,7 @@ button.ui-state-hover .ui-button-text {
   min-height: 50px;
   flex: 1 1 90%;
 }
-.s-ColumnPickerDialog h5 {
+.s-ColumnPickerDialog .column-list h5 {
   padding: 8px;
   margin: 0;
   background-color: rgba(0, 0, 0, 0.1);
@@ -1816,7 +1816,7 @@ button.ui-state-hover .ui-button-text {
   overflow-x: hidden;
   flex: 0 0 auto;
 }
-.s-ColumnPickerDialog h5 i {
+.s-ColumnPickerDialog .column-list h5 i {
   color: darkmagenta;
   margin-right: 2px;
   font-size: 15px;
@@ -2073,80 +2073,27 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   min-width: 0;
 }
 .flex-layout .widget-wrapper {
-  display: -moz-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
   display: flex;
 }
 .flex-layout input.editor[type=checkbox] {
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  -webkit-flex: 0 0 auto;
-  -moz-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
   flex: 0 0 auto;
-  -ms-flex-positive: 0;
-  -ms-flex-negative: 0;
-  -ms-flex-preferred-size: auto;
 }
 .flex-layout .s-DateTimeEditor.dateQ {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -webkit-flex: 1 1 50%;
-  -moz-flex: 1 1 50%;
-  -ms-flex: 1 1 50%;
   flex: 1 1 50%;
-  -ms-flex-positive: 1;
-  -ms-flex-negative: 1;
-  -ms-flex-preferred-size: 50%;
 }
 .flex-layout .s-DateTimeEditor.time {
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  -webkit-flex: 0 0 auto;
-  -moz-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
   flex: 0 0 auto;
-  -ms-flex-positive: 0;
-  -ms-flex-negative: 0;
-  -ms-flex-preferred-size: auto;
   margin-left: 4px;
 }
 .flex-layout .s-EmailEditor.emailuser {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -webkit-flex: 1 1 50%;
-  -moz-flex: 1 1 50%;
-  -ms-flex: 1 1 50%;
   flex: 1 1 50%;
-  -ms-flex-positive: 1;
-  -ms-flex-negative: 1;
-  -ms-flex-preferred-size: 50%;
 }
 .flex-layout .s-DateTimeEditor.emaildomain {
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  -webkit-flex: 0 0 auto;
-  -moz-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
   flex: 0 0 auto;
-  -ms-flex-positive: 0;
-  -ms-flex-negative: 0;
-  -ms-flex-preferred-size: auto;
   margin-left: 4px;
 }
 .flex-layout .vx {
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  -webkit-flex: 0 0 auto;
-  -moz-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
   flex: 0 0 auto;
-  -ms-flex-positive: 0;
-  -ms-flex-negative: 0;
-  -ms-flex-preferred-size: auto;
 }
 .flex-layout .category {
   display: -moz-box;
@@ -2155,20 +2102,8 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   display: -ms-flexbox;
   display: -ms-flex;
   display: flex;
-  -webkit-box-lines: multiple;
-  -moz-box-lines: mulitple;
-  -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-orient: horizontal;
-  -moz-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -moz-box-direction: normal;
   min-width: 0;
-  -webkit-flex-direction: row;
-  -moz-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
 }
 .flex-layout .category-links {

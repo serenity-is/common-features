@@ -2,6 +2,7 @@ import { Decorators, EntityDialog } from "@serenity-is/corelib";
 import { ServiceOptions, SaveResponse, DeleteResponse } from "@serenity-is/corelib";
 
 @Decorators.registerClass("Serenity.Extensions.GridEditorDialog")
+@Decorators.panel(false)
 export abstract class GridEditorDialog<TEntity, P = {}> extends EntityDialog<TEntity, P> {
     protected getIdProperty() { return "__id"; }
 

@@ -3,7 +3,6 @@ import { ReportHelper } from "@serenity-is/extensions";
 import { OrderForm, OrderRow, OrderService } from "@/ServerTypes/Demo";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.OrderDialog')
-@Decorators.panel()
 export class OrderDialog<P = {}> extends EntityDialog<OrderRow, P> {
     protected getFormKey() { return OrderForm.formKey; }
     protected getRowDefinition() { return OrderRow; }

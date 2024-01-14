@@ -4,7 +4,6 @@ import { DialogUtils } from "@serenity-is/extensions";
 import { CustomerOrdersGrid } from "./CustomerOrdersGrid";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.CustomerDialog')
-@Decorators.panel()
 export class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P> {
     protected getFormKey() { return CustomerForm.formKey; }
     protected getRowDefinition() { return CustomerRow; }

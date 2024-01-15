@@ -111,7 +111,7 @@ export class OtherFormOneBarDialog<P = {}> extends OrderDialog<P> {
                     try {
                         // trigger change so that customer select updates its text
                         // in case if Company Name is changed
-                        Fluent(this.form.CustomerID.domNode).trigger("change");
+                        Fluent.trigger(this.form.CustomerID.domNode, "change");
                     }
                     finally {
                         this.selfChange--;

@@ -1,4 +1,4 @@
-import { DataGrid, ListRequest, ListResponse, ToolButton, deepClone, formatDate, isInputLike, resolveUrl, serviceCall, stringFormat } from "@serenity-is/corelib";
+import { DataGrid, Fluent, ListRequest, ListResponse, ToolButton, deepClone, formatDate, resolveUrl, serviceCall, stringFormat } from "@serenity-is/corelib";
 import { Column, Grid } from "@serenity-is/sleekgrid";
 
 export interface PdfExportOptions {
@@ -65,7 +65,7 @@ export namespace PdfExportHelper {
                         dst.push(el.children[0].querySelector("[selected]")?.textContent ?? '');
                     }
                     else if (el.children.length == 1 &&
-                        isInputLike(el.children[0])) {
+                        Fluent.isInputLike(el.children[0])) {
                         dst.push((el.children[0] as any).value);
                     }
                     else if (el.children.length == 1 &&

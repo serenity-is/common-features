@@ -2137,86 +2137,30 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 .flex-layout .fieldset,
 .flex-layout .ui-tabs-panel,
 .flex-layout .ui-tabs-panel > .s-DataGrid,
+.flex-layout .tab-content,
 .flex-layout .property-panes,
 .flex-layout .tab-content > .tab-pane.active,
 .flex-layout .s-PropertyGrid {
-  display: -moz-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
   display: flex;
-  -webkit-box-orient: vertical;
-  -moz-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -moz-box-direction: normal;
   min-height: 0;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -webkit-flex: 1 1 auto;
-  -moz-flex: 1 1 auto;
-  -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  -ms-flex-positive: 1;
-  -ms-flex-negative: 1;
-  -ms-flex-preferred-size: auto;
 }
 .flex-layout .grid-container {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -webkit-flex: 1 1 auto;
-  -moz-flex: 1 1 auto;
-  -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  -ms-flex-positive: 1;
-  -ms-flex-negative: 1;
-  -ms-flex-preferred-size: auto;
 }
 .flex-layout .s-PropertyGrid .categories {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -webkit-flex: 1 1 auto;
-  -moz-flex: 1 1 auto;
-  -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  -ms-flex-positive: 1;
-  -ms-flex-negative: 1;
-  -ms-flex-preferred-size: auto;
 }
 @media (max-width: 760px) {
   .flex-layout .field {
-    -webkit-box-lines: multiple;
-    -moz-box-lines: mulitple;
-    -webkit-flex-wrap: wrap;
-    -moz-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
   }
   .flex-layout .select2-container {
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    -webkit-flex: 1 1 0.01%;
-    -moz-flex: 1 1 0.01%;
-    -ms-flex: 1 1 0.01%;
     flex: 1 1 0.01%;
-    -ms-flex-positive: 1;
-    -ms-flex-negative: 1;
-    -ms-flex-preferred-size: 0.01%;
   }
   .flex-layout .caption {
-    -webkit-box-flex: 0;
-    -moz-box-flex: 0;
-    -webkit-flex: 0 0 100%;
-    -moz-flex: 0 0 100%;
-    -ms-flex: 0 0 100%;
     flex: 0 0 100%;
-    -ms-flex-positive: 0;
-    -ms-flex-negative: 0;
-    -ms-flex-preferred-size: 100%;
     width: auto;
   }
   .flex-layout .s-Form .caption {
@@ -2241,15 +2185,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 .flex-layout .col-xs-10.field,
 .flex-layout .col-xs-11.field,
 .flex-layout .col-xs-12.field {
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  -webkit-flex: 0 1 auto;
-  -moz-flex: 0 1 auto;
-  -ms-flex: 0 1 auto;
   flex: 0 1 auto;
-  -ms-flex-positive: 0;
-  -ms-flex-negative: 1;
-  -ms-flex-preferred-size: auto;
 }
 @media (min-width: 768px) {
   .flex-layout .col-sm-1.field,
@@ -2264,15 +2200,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   .flex-layout .col-sm-10.field,
   .flex-layout .col-sm-11.field,
   .flex-layout .col-sm-12.field {
-    -webkit-box-flex: 0;
-    -moz-box-flex: 0;
-    -webkit-flex: 0 1 auto;
-    -moz-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
     flex: 0 1 auto;
-    -ms-flex-positive: 0;
-    -ms-flex-negative: 1;
-    -ms-flex-preferred-size: auto;
   }
 }
 @media (min-width: 992px) {
@@ -2288,15 +2216,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   .flex-layout .col-md-10.field,
   .flex-layout .col-md-11.field,
   .flex-layout .col-md-12.field {
-    -webkit-box-flex: 0;
-    -moz-box-flex: 0;
-    -webkit-flex: 0 1 auto;
-    -moz-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
     flex: 0 1 auto;
-    -ms-flex-positive: 0;
-    -ms-flex-negative: 1;
-    -ms-flex-preferred-size: auto;
   }
 }
 @media (min-width: 1200px) {
@@ -2312,15 +2232,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   .flex-layout .col-lg-10.field,
   .flex-layout .col-lg-11.field,
   .flex-layout .col-lg-12.field {
-    -webkit-box-flex: 0;
-    -moz-box-flex: 0;
-    -webkit-flex: 0 1 auto;
-    -moz-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
     flex: 0 1 auto;
-    -ms-flex-positive: 0;
-    -ms-flex-negative: 1;
-    -ms-flex-preferred-size: auto;
   }
 }
 @media (max-width: 767px) {

@@ -88,8 +88,6 @@ export namespace PdfExportHelper {
         if (!options.onViewSubmit())
             return;
 
-        includeAutoTable();
-
         var request = deepClone(g.view.params) as ListRequest;
         request.Take = 0;
         request.Skip = 0;
@@ -108,7 +106,7 @@ export namespace PdfExportHelper {
         serviceCall({
             url: g.view.url,
             request: request,
-            onSuccess: response => {
+            onSuccess: response => includeAutoTable(() => {
                 // @ts-ignore
                 let doc = new jsPDF('l', 'pt');
                 let srcColumns = gridColumns;
@@ -204,7 +202,7 @@ export namespace PdfExportHelper {
                     output = 'datauri';
 
                 doc.output(output);
-            }
+            })
         });
     }
 
@@ -219,43 +217,50 @@ export namespace PdfExportHelper {
         };
     }
 
-    function includeJsPDF() {
+    function includeJsPDF(then: () => void) {
         // @ts-ignore
         if (typeof jsPDF !== "undefined")
-            return;
+            return then();
 
-        var script = document.querySelector("#jsPDFScript") as HTMLScriptElement;
+        var script = document.getElementById("jsPDFScript") as HTMLScriptElement;
         if (script)
-            return;
+            return then();
 
         script = document.createElement("script");
         script.type = "text/javascript";
-        script.setAttribute("id", "jsPDFScript")
-        script.setAttribute("src", resolveUrl("~/Serenity.Assets/Scripts/jspdf.min.js"));
+        script.async = false;
+        script.id = "jsPDFScript";
+        script.addEventListener("load", () => {
+            if (typeof jsPDF === "undefined" && typeof jspdf !== "undefined") {
+                window.jsPDF = jspdf.jsPDF;
+            }
+            then();
+        });
+        script.src = resolveUrl("~/Serenity.Assets/Scripts/jspdf.min.js");
         document.head.append(script);
-
-        if (typeof jsPDF === "undefined" && typeof jspdf !== "undefined") {
-            window.jsPDF = jspdf.jsPDF;
-        }
     }
 
-    function includeAutoTable() {
-        includeJsPDF();
+    function includeAutoTable(then: () => void) {
+        includeJsPDF(() => {
+            // @ts-ignore
+            if (typeof jsPDF === "undefined" ||
+                typeof (jsPDF as any).API == "undefined" ||
+                typeof (jsPDF as any).API.autoTable !== "undefined")
+                return then();
 
-        // @ts-ignore
-        if (typeof jsPDF === "undefined" ||
-            typeof (jsPDF as any).API == "undefined" ||
-            typeof (jsPDF as any).API.autoTable !== "undefined")
-            return;
+            var script = document.querySelector("#jsPDFAutoTableScript") as HTMLScriptElement;
+            if (script)
+                return then();
 
-        var script = document.querySelector("#jsPDFAutoTableScript") as HTMLScriptElement;
-        if (script)
-            return;
-
-        script = document.createElement("script");
-        script.setAttribute("type", "text/javascript")
-        script.setAttribute("id", "jsPDFAutoTableScript")
-        script.setAttribute("src", resolveUrl("~/Serenity.Assets/Scripts/jspdf.plugin.autotable.min.js"));
-        document.head.append(script);
+            script = document.createElement("script");
+            script.async = false;
+            script.type = "text/javascript";
+            script.id = "jsPDFAutoTableScript";
+            script.addEventListener("load", () => {
+                then();
+            });
+            script.src = resolveUrl("~/Serenity.Assets/Scripts/jspdf.plugin.autotable.min.js");
+            document.head.append(script);
+        });
     }
 }

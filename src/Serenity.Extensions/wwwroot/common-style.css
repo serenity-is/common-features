@@ -1940,7 +1940,7 @@ div.s-Toolbar .tool-button.no-text span.button-inner {
 div.s-Toolbar .tool-button.icon-tool-button.no-text span.button-inner {
   padding: 3px 2px;
 }
-div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
+div.s-Toolbar .s-PopupToolButton > span > b {
   margin-top: 2px;
 }
 .s-Dialog .s-Form {
@@ -3199,7 +3199,7 @@ a.quick-search-field {
   border-left: 1px solid #ccc;
   margin: 2px 6px 0 3px;
 }
-.s-Toolbar .buttons-inner {
+.s-Toolbar .tool-group {
   float: left;
   padding: 2px 3px 2px 0;
 }
@@ -3236,58 +3236,22 @@ a.quick-search-field {
   border-radius: 3px;
   background: linear-gradient(#ffffff 0px, #eeeeee 100%) repeat-x #f7f7f7;
 }
-.tool-button .button-outer {
-  float: left;
-  padding: 0px 3px;
-  border-left: 1px solid #fff;
-  border-top: 1px solid #fff;
-  border-right: 1px solid #eee;
-  border-bottom: 1px solid #eee;
-  border-radius: 3px;
-}
 .tool-button:hover {
   border: 1px solid #aaa;
-}
-.tool-button:hover .button-outer {
-  background-color: #fcfcf0;
-  border-left: 1px solid #fff;
-  border-top: 1px solid #fff;
-  border-right: 1px solid #eee;
-  border-bottom: 1px solid #eee;
 }
 .tool-button:active {
   box-shadow: 0px 0px 0px #fff;
 }
-.tool-button:active .button-outer {
-  border-left: 1px solid #d7d7d7;
-  border-top: 1px solid #d7d7d7;
-  border-right: 1px solid #fff;
-  border-bottom: 1px solid #fff;
-}
 .tool-button.pressed {
   background: linear-gradient(#eeb 0px, #ffc 100%) repeat-x #eee;
-}
-.tool-button.pressed .button-outer {
-  border-left: 1px solid #d7d7d7;
-  border-top: 1px solid #d7d7d7;
-  border-right: 1px solid #fff;
-  border-bottom: 1px solid #fff;
 }
 .tool-button.disabled {
   cursor: default;
   border-color: #ccc;
   opacity: 0.3;
 }
-.tool-button.disabled .button-outer,
-.tool-button.disabled:hover,
-.tool-button.disabled:hover .button-outer {
+.tool-button.disabled:hover {
   background-color: transparent;
-}
-.tool-button.disabled .button-outer {
-  border-left: 1px solid #fff;
-  border-top: 1px solid #fff;
-  border-right: 1px solid #eee;
-  border-bottom: 1px solid #eee;
 }
 .s-Toolbar .s-ToggleButton {
   float: right;

@@ -1,4 +1,4 @@
-import { Decorators, QuickSearchInput, Widget, WidgetProps } from "@serenity-is/corelib";
+import { Decorators, Fluent, QuickSearchInput, Widget, WidgetProps } from "@serenity-is/corelib";
 import { ReportDialog } from "./ReportDialog";
 
 @Decorators.registerClass("Serenity.Extensions.ReportPage")
@@ -7,8 +7,7 @@ export class ReportPage<P = {}> extends Widget<P> {
     constructor(props: WidgetProps<P>) {
         super(props);
 
-        this.domNode.querySelectorAll('.report-link').forEach(x => 
-            x.addEventListener("click", e => this.reportLinkClick(e)));
+        Fluent.on(this.domNode, "click", ".report-link", this.reportLinkClick.bind(this));
 
         new QuickSearchInput({
             element: this.domNode.querySelector('.s-QuickSearchBar input') as HTMLElement,

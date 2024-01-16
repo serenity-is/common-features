@@ -1,4 +1,4 @@
-import { Decorators, DialogTexts, PropertyDialog, WidgetProps, toggleClass } from "@serenity-is/corelib";
+import { Decorators, DialogTexts, PropertyDialog, WidgetProps, cancelDialogButton, okDialogButton, toggleClass } from "@serenity-is/corelib";
 
 export interface PromptDialogOptions {
     cssClass?: string;
@@ -37,20 +37,19 @@ export class PromptDialog<P extends PromptDialogOptions = PromptDialogOptions> e
 
     protected getDialogButtons() {
         return [
-            {
-                text: DialogTexts.OkButton,
-                click: () => {
-                    if (!this.validateForm())
+            okDialogButton({
+                click: (e: Event) => {
+                    if (!this.validateForm()) {
+                        e.preventDefault();
                         return;
+                    }
 
-                    if (this.options.validateValue == null || this.options.validateValue(this.value))
-                        this.dialogClose();
+                    if (this.options.validateValue != null || !this.options.validateValue(this.value)) {
+                        e.preventDefault();
+                    }
                 },
-            },
-            {
-                text: DialogTexts.CancelButton,
-                click: () => this.dialogClose()
-            }
+            }),
+            cancelDialogButton()
         ];
     }
 

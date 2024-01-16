@@ -7,7 +7,10 @@ export namespace DialogUtils {
         var el = isArrayLike(element) ? element[0] : element;
         var dialog = Dialog.getInstance(element);
         dialog?.onClose((_, e: Event) => {
-            if ((el.dataset.ackuntil && new Date().getTime() < parseInt(el.dataset.ackuntil, 10)) ||
+
+            if (dialog?.result === "save-and-close" || dialog?.result === "save" || dialog?.result === "delete" || dialog?.result === "done" ||
+                (el.dataset.ackuntil && 
+                new Date().getTime() < parseInt(el.dataset.ackuntil, 10)) ||
                 !hasPendingChanges()) {
                 return;
             }
@@ -16,13 +19,13 @@ export namespace DialogUtils {
             e.stopImmediatePropagation();
             confirmDialog(localText('Site.Dialogs.PendingChangesConfirmation'),
                 () => {
-                    el.dataset.ackuntil = "" + new Date().getTime() + 10000;
+                    el.dataset.ackuntil = "" + new Date().getTime() + 1000;
                     (el.querySelector('div.save-and-close-button') as HTMLElement)?.click()
                 },
                 {
                     onNo: function () {
                         el.dataset.ackuntil = "" + new Date().getTime() + 1000;
-                        dialog?.close();
+                        dialog?.close(dialog?.result);
                     }
                 });
         }, /*before*/ true);

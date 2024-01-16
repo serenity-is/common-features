@@ -56,7 +56,7 @@ export class NotesEditor<P = {}> extends EditorWidget<P>
             });
 
             this.updateContent();
-            dlg.dialogClose();
+            dlg.dialogClose("ok");
             this.set_isDirty(true);
             this.onChange && this.onChange();
         };
@@ -77,7 +77,7 @@ export class NotesEditor<P = {}> extends EditorWidget<P>
 
             this.items[index].Text = text;
             this.updateContent();
-            dlg.dialogClose();
+            dlg.dialogClose("ok");
             this.set_isDirty(true);
             this.onChange && this.onChange();
         };

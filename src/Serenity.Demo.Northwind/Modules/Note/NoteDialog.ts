@@ -1,4 +1,4 @@
-import { Decorators, DialogTexts, HtmlContentEditor, HtmlNoteContentEditor, TemplatedDialog, WidgetProps } from "@serenity-is/corelib";
+import { Decorators, DialogButton, HtmlContentEditor, HtmlNoteContentEditor, TemplatedDialog, WidgetProps, cancelDialogButton, okDialogButton } from "@serenity-is/corelib";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.NoteDialog')
 export class NoteDialog<P = {}> extends TemplatedDialog<P> {
@@ -18,22 +18,18 @@ export class NoteDialog<P = {}> extends TemplatedDialog<P> {
             "</form>");
     }
 
-    protected getDialogButtons() {
+    protected getDialogButtons(): DialogButton[] {
         return [
-            {
-                text: DialogTexts.OkButton,
-                click: () => {
+            okDialogButton({
+                click: (e: Event) => {
                     if (!this.validateForm()) {
+                        e.preventDefault();
                         return;
                     }
-
                     this.okClick && this.okClick();
                 }
-            },
-            {
-                text: DialogTexts.CancelButton,
-                click: () => this.dialogClose()
-            }
+            }),
+            cancelDialogButton()
         ];
     }
 

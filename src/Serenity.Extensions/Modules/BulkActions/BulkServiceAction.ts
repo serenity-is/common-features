@@ -92,7 +92,7 @@ export class BulkServiceAction {
         }
 
         else if (this.pendingRequests === 0) {
-            this.progressDialog.dialogClose();
+            this.progressDialog.dialogClose("done");
             this.showResults();
             if (this.done) {
                 this.done();

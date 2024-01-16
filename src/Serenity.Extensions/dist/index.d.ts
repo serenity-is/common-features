@@ -423,10 +423,7 @@ export interface PromptDialogOptions {
 }
 export declare class PromptDialog<P extends PromptDialogOptions = PromptDialogOptions> extends PropertyDialog<any, P> {
 	constructor(props: WidgetProps<P>);
-	protected getDialogButtons(): {
-		text: string;
-		click: () => void;
-	}[];
+	protected getDialogButtons(): import("@serenity-is/corelib").DialogButton[];
 	protected loadInitialEntity(): void;
 	protected getPropertyItems(): {
 		name: string;

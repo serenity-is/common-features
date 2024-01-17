@@ -1,5 +1,5 @@
 import { DataGrid, Fluent, ListRequest, ListResponse, ToolButton, deepClone, formatDate, resolveUrl, serviceCall, stringFormat } from "@serenity-is/corelib";
-import { Column, Grid } from "@serenity-is/sleekgrid";
+import { Column, FormatterResult, Grid } from "@serenity-is/sleekgrid";
 
 export interface PdfExportOptions {
     grid: DataGrid<any, any>;
@@ -55,11 +55,16 @@ export namespace PdfExportHelper {
                 var ctx = slickGrid.getFormatterContext(row, cell);
                 ctx.item = item;
                 ctx.value = item[col.field];
-                let html: string = format ? format(ctx) : '';
-                if (!html || (html.indexOf('<') < 0 && html.indexOf('&') < 0))
+                let html: FormatterResult = format ? format(ctx) : '';
+                if (!html || (!(html instanceof Node) && html.indexOf('<') < 0 && html.indexOf('&') < 0))
                     dst.push(html);
                 else {
-                    el.innerHTML = html;
+                    Fluent.empty(el);
+                    if (html instanceof Node) {
+                        el.appendChild(html);
+                    }
+                    else
+                        el.innerHTML = html;
                     if (el.children.length == 1 &&
                         el.children[0]?.nodeName === 'SELECT') {
                         dst.push(el.children[0].querySelector("[selected]")?.textContent ?? '');

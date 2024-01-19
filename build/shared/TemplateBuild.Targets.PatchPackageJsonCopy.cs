@@ -28,9 +28,6 @@ public static partial class Shared
             devDependencies["@serenity-is/tsbuild"] = IsPatch ? patchVersion("tsbuild") : 
                 GetLatestNpmPackageVersion("@serenity-is/tsbuild");
 
-            dependencies["@serenity-is/sleekgrid"] = IsPatch ? patchVersion("corelib", "@serenity-is/sleekgrid") :
-                GetLatestNpmPackageVersion("@serenity-is/sleekgrid");
-
             File.WriteAllText(PackageJsonFile, root.ToString().Replace("\r", ""));
 
             foreach (var property in dependencies.Properties().ToList())

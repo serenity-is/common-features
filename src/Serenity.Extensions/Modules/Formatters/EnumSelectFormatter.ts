@@ -4,17 +4,18 @@ import { FormatterContext } from "@serenity-is/sleekgrid";
 
 @Decorators.registerFormatter('Serenity.Extensions.EnumSelectFormatter')
 export class EnumSelectFormatter implements Formatter {
-    constructor(public readonly props: { enumKey: string, allowClear?: boolean, emptyItemText?: string }) {
-        this.props && (this.props.allowClear ??= true);
+    constructor(public readonly props: { enumKey?: string, allowClear?: boolean, emptyItemText?: string } = {}) {
+        this.props ??= {}
+        this.props.allowClear ??= true;
     }
 
     format(ctx: FormatterContext) {
-        var enumType = EnumTypeRegistry.get(this.props?.enumKey ?? "EnumKeyOptionNotSpecified!");
+        var enumType = EnumTypeRegistry.get(this.props.enumKey ?? "EnumKeyOptionNotSpecified!");
 
         var sb = "<select>";
-        if (this.props?.allowClear) {
+        if (this.props.allowClear) {
             sb += '<option value="">';
-            sb += htmlEncode(this.props?.emptyItemText || localText("Controls.SelectEditor.EmptyItemText"));
+            sb += htmlEncode(this.props.emptyItemText || localText("Controls.SelectEditor.EmptyItemText"));
             sb += '</option>';
         }
 
@@ -24,7 +25,7 @@ export class EnumSelectFormatter implements Formatter {
                 sb += " selected";
             var name = enumType[x];
             sb += ">";
-            sb += htmlEncode(tryGetText("Enums." + this.props?.enumKey + "." + name) || name);
+            sb += htmlEncode(tryGetText("Enums." + this.props.enumKey + "." + name) || name);
             sb += "</option>";
         }
 
@@ -32,4 +33,13 @@ export class EnumSelectFormatter implements Formatter {
 
         return sb;
     }
+
+    get enumKey() { return this.props.enumKey }
+    set enumKey(value) { this.props.enumKey = value }
+
+    get allowClear() { return this.props.allowClear }
+    set allowClear(value) { this.props.allowClear = value }
+
+    get emptyItemText() { return this.props.emptyItemText }
+    set emptyItemText(value) { this.props.emptyItemText = value }
 }

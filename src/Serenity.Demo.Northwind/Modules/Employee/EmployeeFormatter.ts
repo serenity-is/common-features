@@ -6,12 +6,13 @@ import { Gender } from "@/ServerTypes/Demo";
 @Decorators.registerFormatter('Serenity.Demo.Northwind.EmployeeFormatter', [IInitializeColumn])
 export class EmployeeFormatter implements Formatter {
     constructor(public readonly props: { genderProperty?: string } = {}) {
+        this.props ??= {};
     }
 
     format(ctx: FormatterContext) {
         let text = htmlEncode(ctx.value);
 
-        if (!this.props?.genderProperty || isTrimmedEmpty(ctx.value))
+        if (!this.props.genderProperty || isTrimmedEmpty(ctx.value))
             return text;
 
         let female = ctx.item[this.props.genderProperty] === Gender.Female;
@@ -20,7 +21,7 @@ export class EmployeeFormatter implements Formatter {
 
     public initializeColumn(column: Column) {
         column.referencedFields = column.referencedFields || [];
-        if (this.props?.genderProperty)
+        if (this.props.genderProperty)
             column.referencedFields.push(this.props.genderProperty);
     }
 }

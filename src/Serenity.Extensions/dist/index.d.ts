@@ -312,11 +312,23 @@ export declare namespace PdfExportHelper {
 	function createToolButton(options: PdfExportOptions): ToolButton;
 }
 export declare class EnumSelectFormatter implements Formatter {
-	constructor();
+	readonly props: {
+		enumKey?: string;
+		allowClear?: boolean;
+		emptyItemText?: string;
+	};
+	constructor(props?: {
+		enumKey?: string;
+		allowClear?: boolean;
+		emptyItemText?: string;
+	});
 	format(ctx: FormatterContext): string;
-	enumKey: string;
-	allowClear: boolean;
-	emptyItemText: string;
+	get enumKey(): string;
+	set enumKey(value: string);
+	get allowClear(): boolean;
+	set allowClear(value: boolean);
+	get emptyItemText(): string;
+	set emptyItemText(value: string);
 }
 export declare class SingleLineTextFormatter implements Formatter {
 	format(ctx: FormatterContext): string;

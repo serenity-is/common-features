@@ -773,11 +773,13 @@ export declare class ShipperColumns extends ColumnsBase<ShipperRow> {
 	static readonly columnsKey = "Northwind.Shipper";
 	static readonly Fields: Readonly<Record<keyof ShipperColumns, string>>;
 }
-export declare class PhoneEditor<P = {}> extends StringEditor<P> {
-	constructor(props: WidgetProps<any>);
+export interface PhoneEditorOptions {
+	multiple?: boolean;
+}
+export declare class PhoneEditor<P extends PhoneEditorOptions = PhoneEditorOptions> extends StringEditor<P> {
+	constructor(props: WidgetProps<P>);
 	protected formatValue(): void;
 	protected getFormattedValue(): string;
-	multiple: boolean;
 	get_value(): string;
 	set_value(value: string): void;
 	static validate(phone: string, isMultiple: boolean): string;
@@ -1014,8 +1016,13 @@ export declare class EmployeeListFormatter implements Formatter {
 	format(ctx: FormatterContext): string;
 }
 export declare class EmployeeFormatter implements Formatter {
+	readonly props: {
+		genderProperty?: string;
+	};
+	constructor(props?: {
+		genderProperty?: string;
+	});
 	format(ctx: FormatterContext): string;
-	genderProperty: string;
 	initializeColumn(column: Column): void;
 }
 export declare class NoteDialog<P = {}> extends TemplatedDialog<P> {

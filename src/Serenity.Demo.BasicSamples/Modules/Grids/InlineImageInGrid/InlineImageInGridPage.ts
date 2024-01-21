@@ -9,15 +9,18 @@ export default () => gridPageInit(InlineImageInGrid);
 export class InlineImageFormatter
     implements Formatter, IInitializeColumn {
 
+    constructor(public readonly props: { fileProperty?: string, thumb?: boolean } = {}) {
+    }
+
     format(ctx: FormatterContext): string {
 
-        var file = (this.fileProperty ? ctx.item[this.fileProperty] : ctx.value) as string;
+        var file = (this.props?.fileProperty ? ctx.item[this.props.fileProperty] : ctx.value) as string;
         if (!file || !file.length)
             return "";
 
         let href = resolveUrl("~/upload/" + file);
 
-        if (this.thumb) {
+        if (this.props?.thumb) {
             var parts = file.split('.');
             file = parts.slice(0, parts.length - 1).join('.') + '_t.jpg';
         }
@@ -29,17 +32,11 @@ export class InlineImageFormatter
     }
 
     initializeColumn(column: Column): void {
-        if (this.fileProperty) {
+        if (this.props?.fileProperty) {
             column.referencedFields = column.referencedFields || [];
-            column.referencedFields.push(this.fileProperty);
+            column.referencedFields.push(this.props.fileProperty);
         }
     }
-
-    @Decorators.option()
-    public fileProperty: string;
-
-    @Decorators.option()
-    public thumb: boolean;
 }
 
 @Decorators.registerClass('Serenity.Demo.BasicSamples.InlineImageInGrid')

@@ -5,22 +5,22 @@ import { Gender } from "@/ServerTypes/Demo";
 
 @Decorators.registerFormatter('Serenity.Demo.Northwind.EmployeeFormatter', [IInitializeColumn])
 export class EmployeeFormatter implements Formatter {
+    constructor(public readonly props: { genderProperty?: string } = {}) {
+    }
+
     format(ctx: FormatterContext) {
         let text = htmlEncode(ctx.value);
 
-        if (!this.genderProperty || isTrimmedEmpty(ctx.value))
+        if (!this.props?.genderProperty || isTrimmedEmpty(ctx.value))
             return text;
 
-        let female = ctx.item[this.genderProperty] === Gender.Female;
+        let female = ctx.item[this.props.genderProperty] === Gender.Female;
         return `<i class="${faIcon(female ? "female" : "male", female ? "danger" : "primary")} + ' text-opacity-75"></i>` + text;
     }
 
-    @Decorators.option()
-    public genderProperty: string;
-
     public initializeColumn(column: Column) {
         column.referencedFields = column.referencedFields || [];
-        if (this.genderProperty)
-            column.referencedFields.push(this.genderProperty);
+        if (this.props?.genderProperty)
+            column.referencedFields.push(this.props.genderProperty);
     }
 }

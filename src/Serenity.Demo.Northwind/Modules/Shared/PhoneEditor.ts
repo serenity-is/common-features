@@ -1,16 +1,20 @@
 import { Decorators, StringEditor, WidgetProps, localText, replaceAll } from "@serenity-is/corelib";
 
-@Decorators.registerEditor('Serenity.Demo.Northwind.PhoneEditor')
-export class PhoneEditor<P = {}> extends StringEditor<P> {
+export interface PhoneEditorOptions {
+    multiple?: boolean;
+}
 
-    constructor(props: WidgetProps<any>) {
+@Decorators.registerEditor('Serenity.Demo.Northwind.PhoneEditor')
+export class PhoneEditor<P extends PhoneEditorOptions = PhoneEditorOptions> extends StringEditor<P> {
+
+    constructor(props: WidgetProps<P>) {
         super(props);
 
         this.addValidationRule(this.uniqueName, e => {
             var value = this.get_value()?.trim();
             if (!value)
                 return null;
-            return PhoneEditor.validate(value, this.multiple);
+            return PhoneEditor.validate(value, this.props?.multiple);
         });
 
         let input = this.domNode as HTMLInputElement;
@@ -31,14 +35,11 @@ export class PhoneEditor<P = {}> extends StringEditor<P> {
 
     protected getFormattedValue(): string {
         var value = (this.domNode as HTMLInputElement).value;
-        if (this.multiple) {
+        if (this.props?.multiple) {
             return PhoneEditor.formatMulti(value, PhoneEditor.formatPhone);
         }
         return PhoneEditor.formatPhone(value);
     }
-
-    @Decorators.option()
-    public multiple: boolean;
 
     get_value() {
         return this.getFormattedValue();

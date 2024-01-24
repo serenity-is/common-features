@@ -86,7 +86,7 @@ export class OrderGrid<P={}> extends EntityGrid<OrderRow, P> {
         let action = (e.target as HTMLElement)?.closest(".inline-action")?.getAttribute("data-action");
         if (action) {
             e.preventDefault();
-            if (action == "inline-action") {
+            if (action == "print-invoice") {
                 ReportHelper.execute({
                     reportKey: 'Northwind.OrderDetail',
                     params: {

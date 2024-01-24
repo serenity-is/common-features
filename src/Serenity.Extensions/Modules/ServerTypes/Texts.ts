@@ -67,6 +67,7 @@ namespace Serenity.Extensions.Texts {
 
         namespace Dialogs {
             export const PendingChangesConfirmation: string;
+            export const PendingChangesUnloadWarning: string;
         }
 
         namespace Translation {

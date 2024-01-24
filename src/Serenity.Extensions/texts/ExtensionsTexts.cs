@@ -60,6 +60,7 @@ public static class ExtensionsTexts
         public static class Dialogs
         {
             public static readonly LocalText PendingChangesConfirmation = "You have pending changes. Save them?";
+            public static readonly LocalText PendingChangesUnloadWarning = "Warning! You might lose your pending changes if you continue. Please save them before navigating away.";
         }
 
         public static class Translation

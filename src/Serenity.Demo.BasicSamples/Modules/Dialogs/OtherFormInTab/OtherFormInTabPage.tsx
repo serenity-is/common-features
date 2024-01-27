@@ -1,4 +1,4 @@
-import { Decorators, Fluent, PropertyGrid, TabsExtensions, Toolbar, WidgetProps, first, getForm, getjQuery, gridPageInit, isEmptyOrNull, localText, notifySuccess, reloadLookup, validateOptions } from "@serenity-is/corelib";
+import { Decorators, Fluent, PropertyGrid, TabsExtensions, Toolbar, Validator, WidgetProps, first, getForm, getjQuery, gridPageInit, isEmptyOrNull, localText, notifySuccess, reloadLookup, validateOptions } from "@serenity-is/corelib";
 import { CustomerForm, CustomerRow, CustomerService, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 
 export default () => gridPageInit(OtherFormInTabGrid);
@@ -126,7 +126,7 @@ export class OtherFormInTabDialog<P = {}> extends OrderDialog<P> {
                         title: localText("Controls.EntityDialog.SaveButton"),
                         onClick: () => this.customerSaveClick()
                     }]} />
-                    <form action="" class="s-Form" ref={el => this.customerValidator = getjQuery()?.(el).validate?.(validateOptions())}>
+                    <form action="" class="s-Form" ref={el => this.customerValidator = new Validator(el, validateOptions())}>
                         <PropertyGrid ref={pg => this.customerPropertyGrid = pg} idPrefix={id.Customer_} useCategories={true}
                             items={getForm(CustomerForm.formKey).filter(x => x.name != CustomerRow.Fields.CustomerID)} />
                     </form>

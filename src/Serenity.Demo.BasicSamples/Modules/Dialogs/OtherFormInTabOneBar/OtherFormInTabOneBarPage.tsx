@@ -1,4 +1,4 @@
-import { Decorators, Fluent, PropertyGrid, SaveResponse, TabsExtensions, WidgetProps, first, getForm, getjQuery, gridPageInit, isEmptyOrNull, reloadLookup, validateOptions } from "@serenity-is/corelib";
+import { Decorators, Fluent, PropertyGrid, SaveResponse, TabsExtensions, Validator, WidgetProps, first, getForm, getjQuery, gridPageInit, isEmptyOrNull, reloadLookup, validateOptions } from "@serenity-is/corelib";
 import { CustomerForm, CustomerRow, CustomerService, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 
 export default () => gridPageInit(OtherFormInTabOneBarGrid);
@@ -156,7 +156,7 @@ export class OtherFormOneBarDialog<P = {}> extends OrderDialog<P> {
                     </form>
                 </div>
                 <div id={id.TabCustomer} class="tab-pane s-TabCustomer">
-                    <form id={id.CustomerForm} action="" class="s-Form" ref={el => this.customerValidator = getjQuery()?.(el).validate?.(validateOptions({}))}>
+                    <form id={id.CustomerForm} action="" class="s-Form" ref={el => this.customerValidator = new Validator(el, validateOptions({}))}>
                         <PropertyGrid ref={pg => this.customerPropertyGrid = pg} idPrefix={this.idPrefix + "_Customer_"} useCategories={true}
                             items={getForm(CustomerForm.formKey).filter(x => x.name != 'CustomerID' && x.name != "NoteList")} />
                     </form>

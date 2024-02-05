@@ -1,4 +1,4 @@
-import { Decorators, Fluent, QuickSearchInput, Widget, WidgetProps } from "@serenity-is/corelib";
+import { Decorators, Fluent, QuickSearchInput, Widget, WidgetProps, stripDiacritics } from "@serenity-is/corelib";
 import { ReportDialog } from "./ReportDialog";
 
 @Decorators.registerClass("Serenity.Extensions.ReportPage")
@@ -25,11 +25,11 @@ export class ReportPage<P = {}> extends Widget<P> {
         if (!text)
             return;
 
-        text = Select2.util.stripDiacritics(text).toUpperCase();
+        text = stripDiacritics(text).toUpperCase();
 
         var reportItems = Array.from(liList).filter(x => x.classList.contains('report-item'));
         reportItems.forEach(function (el) {
-            var title = Select2.util.stripDiacritics((el.textContent ?? '').toUpperCase());
+            var title = stripDiacritics((el.textContent ?? '').toUpperCase());
             if (title.indexOf(text) < 0) {
                 el.classList.add('non-match');
             }

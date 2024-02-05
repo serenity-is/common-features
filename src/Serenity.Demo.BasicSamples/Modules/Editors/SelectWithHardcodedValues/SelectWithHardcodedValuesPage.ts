@@ -1,5 +1,5 @@
 import { HardcodedValuesForm } from "@/ServerTypes/Demo";
-import { Decorators, EditorProps, PropertyDialog, Select2Editor, WidgetProps, getjQuery, notifySuccess } from "@serenity-is/corelib";
+import { Decorators, EditorProps, PropertyDialog, ComboboxEditor, WidgetProps, getjQuery, notifySuccess } from "@serenity-is/corelib";
 
 export default function pageInit() {
     var dlg = new HardcodedValuesDialog({});
@@ -23,7 +23,7 @@ export default function pageInit() {
  * in server side forms, e.g. [HardCodedValuesEditor]
  */
 @Decorators.registerEditor('Serenity.Demo.BasicSamples.HardcodedValuesEditor')
-export class HardcodedValuesEditor<P = {}> extends Select2Editor<P, any> {
+export class HardcodedValuesEditor<P = {}> extends ComboboxEditor<P, any> {
 
     constructor(props: EditorProps<P>) {
         super(props);

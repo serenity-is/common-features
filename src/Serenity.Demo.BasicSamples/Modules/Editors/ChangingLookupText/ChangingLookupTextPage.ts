@@ -1,12 +1,12 @@
 import { ChangingLookupTextForm } from "@/ServerTypes/Demo";
-import { Decorators, Lookup, LookupEditorBase, LookupEditorOptions, WidgetProps, formatNumber, getjQuery, toId } from "@serenity-is/corelib";
+import { Combobox, ComboboxEditor, Decorators, Lookup, LookupEditorBase, LookupEditorOptions, WidgetProps, formatNumber, getjQuery, toId, tryGetWidget } from "@serenity-is/corelib";
 import { OrderDetailRow, ProductRow } from "@serenity-is/demo.northwind";
 import { GridEditorDialog } from "@serenity-is/extensions";
 
 export default function pageInit() {
     var dlg = new ChangingLookupTextDialog({});
     dlg.loadNewAndOpenDialog();
-    getjQuery()?.(dlg.domNode)?.find('.field.ProductID .editor')?.select2?.('open');
+    tryGetWidget(dlg.domNode.querySelector(".field.ProductID .editor"), ComboboxEditor)?.openDropdown();
 }
 
 /**

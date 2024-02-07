@@ -1,4 +1,4 @@
-import { Decorators, Fluent, PropertyGrid, TabsExtensions, Toolbar, Validator, WidgetProps, first, getForm, getjQuery, gridPageInit, isEmptyOrNull, localText, notifySuccess, reloadLookup, validateOptions } from "@serenity-is/corelib";
+import { Decorators, Fluent, PropertyGrid, TabsExtensions, Toolbar, Validator, WidgetProps, first, getForm, gridPageInit, isEmptyOrNull, localText, notifySuccess, reloadLookup, validateOptions } from "@serenity-is/corelib";
 import { CustomerForm, CustomerRow, CustomerService, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 
 export default () => gridPageInit(OtherFormInTabGrid);

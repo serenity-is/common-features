@@ -1,4 +1,4 @@
-﻿import { DateEditor, Decorators, EnumEditor, LookupEditor, QuickFilter, Widget, getWidgetFrom, gridPageInit } from "@serenity-is/corelib";
+﻿import { DateEditor, Decorators, EnumEditor, Fluent, LookupEditor, QuickFilter, Widget, getWidgetFrom, gridPageInit } from "@serenity-is/corelib";
 import { OrderGrid, OrderRow, OrderShippingState } from "@serenity-is/demo.northwind";
 
 export default () => gridPageInit(InitialValuesForQuickFilters);
@@ -33,9 +33,7 @@ export class InitialValuesForQuickFilters extends OrderGrid {
             // setting start date was simple. but this quick filter is actually
             // a combination of two date editors. to get reference to second one,
             // need to find its next sibling element by its class
-            let endDate: DateEditor;
-            for (var node = w.domNode.nextElementSibling; !node.classList.contains("s-DateEditor"); node = node.nextElementSibling);
-            endDate = getWidgetFrom(node, DateEditor);
+            let endDate = getWidgetFrom(Fluent(w.domNode).nextSibling(".s-DateEditor"), DateEditor);
             endDate.valueAsDate = new Date(new Date().getFullYear(), 10, 1);
         });
 

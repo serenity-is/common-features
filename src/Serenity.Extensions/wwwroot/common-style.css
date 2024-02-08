@@ -3173,7 +3173,7 @@ a.s-LinkDropDown input {
 .s-QuickSearchLoading span i {
   background: #fff url(../Content/serenity/images/quick-search-loading.gif) no-repeat center center;
 }
-a.quick-search-field {
+.quick-search-field {
   padding: 0 13px 0 3px;
   background: #fff url(../Content/serenity/images/down.gif) no-repeat right 5px;
   float: right;
@@ -3187,6 +3187,14 @@ a.quick-search-field {
   border-radius: 0 4px 4px 0;
   border-style: solid solid solid none;
 }
+
+.quick-search-field > a {
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  text-decoration: none;
+}
+
 .s-Toolbar {
   border-style: none;
   min-height: 40px;

@@ -103,11 +103,10 @@
 
             var normalize;
 
-            if (typeof Select2 !== "undefined" &&
-                Select2.util &&
-                Select2.util.stripDiacritics) {
+            if (typeof Serenity !== "undefined" &&
+                typeof Serenity.stripDiacritics === "function") {
                 normalize = function (text) {
-                    return Select2.util.stripDiacritics(text.trim()).toUpperCase();
+                    return Serenity.stripDiacritics(text.trim()).toUpperCase();
                 }
             }
             else {

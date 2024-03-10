@@ -1,5 +1,5 @@
 import { OrderColumns, OrderListRequest, OrderRow, OrderService, ProductRow } from "@/ServerTypes/Demo";
-import { Decorators, EntityGrid, EnumEditor, LookupEditor, ToolButton, faIcon, toId } from "@serenity-is/corelib";
+import { Decorators, EntityGrid, EnumEditor, Fluent, LookupEditor, ToolButton, faIcon, toId } from "@serenity-is/corelib";
 import { ExcelExportHelper, PdfExportHelper, ReportHelper } from "@serenity-is/extensions";
 import { OrderDialog } from "./OrderDialog";
 
@@ -79,7 +79,7 @@ export class OrderGrid<P={}> extends EntityGrid<OrderRow, P> {
     protected onClick(e: Event, row: number, cell: number) {
         super.onClick(e, row, cell);
 
-        if ((e as any).isDefaultPrevented?.() || e.defaultPrevented)
+        if (Fluent.isDefaultPrevented(e))
             return;
 
         var item = this.itemAt(row);

@@ -1,4 +1,4 @@
-import { Decorators, LookupEditor, confirmDialog, count, first, formatDate, gridPageInit, htmlEncode, notifyInfo, notifySuccess, stringFormat, toId } from "@serenity-is/corelib";
+import { Decorators, Fluent, LookupEditor, confirmDialog, count, first, formatDate, gridPageInit, htmlEncode, notifyInfo, notifySuccess, stringFormat, toId } from "@serenity-is/corelib";
 import { CustomerDialog, CustomerRow, OrderColumns, OrderDialog, OrderGrid, OrderRow } from "@serenity-is/demo.northwind";
 import { Column } from "@serenity-is/sleekgrid";
 
@@ -35,7 +35,7 @@ export class CustomLinksInGrid extends OrderGrid {
         super.onClick(e, row, cell);
 
         // if base grid already handled, we shouldn"t handle it again
-        if ((e as any).isDefaultPrevented?.() || e.defaultPrevented) {
+        if (Fluent.isDefaultPrevented(e)) {
             return;
         }
 

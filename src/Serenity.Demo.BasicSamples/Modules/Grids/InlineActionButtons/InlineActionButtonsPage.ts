@@ -1,4 +1,4 @@
-﻿import { Decorators, confirmDialog, faIcon, htmlEncode, gridPageInit } from "@serenity-is/corelib";
+﻿import { Decorators, confirmDialog, faIcon, htmlEncode, gridPageInit, Fluent } from "@serenity-is/corelib";
 import { CustomerGrid, CustomerService, OrderDialog, OrderRow } from "@serenity-is/demo.northwind";
 import { Column } from "@serenity-is/sleekgrid";
 
@@ -32,7 +32,7 @@ export class InlineActionGrid extends CustomerGrid {
     protected onClick(e: Event, row: number, cell: number) {
         super.onClick(e, row, cell);
 
-        if ((e as any).isDefaultPrevented?.() || e.defaultPrevented)
+        if (Fluent.isDefaultPrevented(e))
             return;
 
         var item = this.itemAt(row);

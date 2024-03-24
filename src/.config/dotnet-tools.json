@@ -3,7 +3,7 @@
   "isRoot": true,
   "tools": {
     "sergen": {
-      "version": "8.4.2",
+      "version": "8.4.3",
       "commands": [
         "sergen"
       ]

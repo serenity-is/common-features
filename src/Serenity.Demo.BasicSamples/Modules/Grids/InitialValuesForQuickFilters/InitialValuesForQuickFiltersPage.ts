@@ -33,7 +33,7 @@ export class InitialValuesForQuickFilters extends OrderGrid {
             // setting start date was simple. but this quick filter is actually
             // a combination of two date editors. to get reference to second one,
             // need to find its next sibling element by its class
-            let endDate = getWidgetFrom(Fluent(w.domNode).nextSibling(".s-DateEditor"), DateEditor);
+            let endDate = w.element.nextSibling(".s-DateEditor").getWidget(DateEditor);
             endDate.valueAsDate = new Date(new Date().getFullYear(), 10, 1);
         });
 

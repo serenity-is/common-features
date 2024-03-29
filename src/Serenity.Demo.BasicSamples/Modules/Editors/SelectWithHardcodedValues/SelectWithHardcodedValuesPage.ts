@@ -4,7 +4,7 @@ import { ComboboxEditor, Decorators, EditorProps, PropertyDialog, WidgetProps, n
 export default function pageInit() {
     var dlg = new HardcodedValuesDialog({});
     dlg.dialogOpen();
-    tryGetWidget(dlg.domNode.querySelector('.field.SomeValue .editor'), ComboboxEditor)?.openDropdown();
+    dlg.element.findFirst('.field.SomeValue .editor').tryGetWidget(ComboboxEditor)?.openDropdown();
 
     // let's also create it in our page, for demonstration purposes this time we directly create
     new HardcodedValuesEditor({

@@ -279,7 +279,7 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
         if (q["cat"]) {
             var category = flt.find(x => x.field == ProductRow.Fields.CategoryID);
             category && (category.init = e => {
-                getWidgetFrom(e.domNode, LookupEditor).value = q["cat"];
+                e.element.getWidget(LookupEditor).value = q["cat"];
             });
         }
 

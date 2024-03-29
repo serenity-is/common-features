@@ -1,5 +1,5 @@
 import { CategoryRow, ProductColumns, ProductRow, ProductService, SupplierRow } from "@/ServerTypes/Demo";
-import { Decorators, Dictionary, EntityGrid, Lookup, LookupEditor, WidgetProps, deepClone, formatNumber, getWidgetFrom, htmlEncode, localText, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, toId } from "@serenity-is/corelib";
+import { Decorators, Dictionary, EntityGrid, Lookup, LookupEditor, WidgetProps, deepClone, formatNumber, htmlEncode, localText, notifyError, parseDecimal, parseInteger, parseQueryString, serviceRequest, toId } from "@serenity-is/corelib";
 import { ExcelExportHelper, PdfExportHelper } from "@serenity-is/extensions";
 import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
 import { ProductDialog } from "./ProductDialog";

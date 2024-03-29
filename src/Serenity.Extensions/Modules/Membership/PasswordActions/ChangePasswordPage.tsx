@@ -1,5 +1,5 @@
 import { Texts } from "@/ServerTypes/Texts";
-import { PropertyPanel, WidgetProps, informationDialog, localText, resolveUrl, serviceCall, stringFormat } from "@serenity-is/corelib";
+import { PropertyPanel, WidgetProps, informationDialog, localText, resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { ChangePasswordForm } from "../../ServerTypes/Extensions/ChangePasswordForm";
 import { ChangePasswordRequest } from "../../ServerTypes/Extensions/ChangePasswordRequest";
 import { addPasswordStrengthValidation } from "../PasswordStrength/PasswordStrengthValidation";

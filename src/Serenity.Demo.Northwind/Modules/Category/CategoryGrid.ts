@@ -1,5 +1,5 @@
-import { Decorators, EntityGrid } from "@serenity-is/corelib";
 import { CategoryColumns, CategoryRow, CategoryService } from "@/ServerTypes/Demo";
+import { Decorators, EntityGrid } from "@serenity-is/corelib";
 import { CategoryDialog } from "./CategoryDialog";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.CategoryGrid')

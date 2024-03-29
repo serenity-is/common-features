@@ -1,5 +1,4 @@
-import { Decorators, EnumTypeRegistry, Formatter } from "@serenity-is/corelib";
-import { htmlEncode, localText, tryGetText } from "@serenity-is/corelib";
+import { Decorators, EnumTypeRegistry, Formatter, htmlEncode, localText, tryGetText } from "@serenity-is/corelib";
 import { FormatterContext } from "@serenity-is/sleekgrid";
 
 @Decorators.registerFormatter('Serenity.Extensions.EnumSelectFormatter')

@@ -1,6 +1,5 @@
 import { Texts } from "@/ServerTypes/Texts";
-import { PropertyPanel, toggleClass } from "@serenity-is/corelib";
-import { informationDialog, resolveUrl, serviceCall } from "@serenity-is/corelib";
+import { PropertyPanel, informationDialog, resolveUrl, serviceCall, toggleClass } from "@serenity-is/corelib";
 import { ForgotPasswordForm } from "../../ServerTypes/Extensions/ForgotPasswordForm";
 import { ForgotPasswordRequest } from "../../ServerTypes/Extensions/ForgotPasswordRequest";
 import { AccountPanelTitle } from "../AccountPanelTitle";

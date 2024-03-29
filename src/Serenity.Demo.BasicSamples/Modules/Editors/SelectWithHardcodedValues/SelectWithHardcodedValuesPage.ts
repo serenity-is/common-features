@@ -1,5 +1,5 @@
 import { HardcodedValuesForm } from "@/ServerTypes/Demo";
-import { ComboboxEditor, Decorators, EditorProps, PropertyDialog, WidgetProps, notifySuccess, tryGetWidget } from "@serenity-is/corelib";
+import { ComboboxEditor, Decorators, EditorProps, PropertyDialog, WidgetProps, notifySuccess } from "@serenity-is/corelib";
 
 export default function pageInit() {
     var dlg = new HardcodedValuesDialog({});

@@ -1,4 +1,4 @@
-﻿import { Decorators, confirmDialog, faIcon, htmlEncode, gridPageInit, Fluent } from "@serenity-is/corelib";
+﻿import { Decorators, Fluent, confirmDialog, faIcon, gridPageInit, htmlEncode } from "@serenity-is/corelib";
 import { CustomerGrid, CustomerService, OrderDialog, OrderRow } from "@serenity-is/demo.northwind";
 import { Column } from "@serenity-is/sleekgrid";
 

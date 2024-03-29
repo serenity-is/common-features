@@ -1,4 +1,4 @@
-﻿import { DateEditor, Decorators, EnumEditor, Fluent, LookupEditor, QuickFilter, Widget, getWidgetFrom, gridPageInit } from "@serenity-is/corelib";
+﻿import { DateEditor, Decorators, EnumEditor, LookupEditor, QuickFilter, Widget, gridPageInit } from "@serenity-is/corelib";
 import { OrderGrid, OrderRow, OrderShippingState } from "@serenity-is/demo.northwind";
 
 export default () => gridPageInit(InitialValuesForQuickFilters);

@@ -1,5 +1,4 @@
-import { IconClassName, ToolButton } from "@serenity-is/corelib";
-import { postToUrl } from "@serenity-is/corelib";
+import { IconClassName, ToolButton, postToUrl } from "@serenity-is/corelib";
 
 export interface ReportExecuteOptions {
     reportKey: string;

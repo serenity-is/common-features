@@ -1,5 +1,4 @@
-import { Decorators, EntityDialog } from "@serenity-is/corelib";
-import { ServiceOptions, SaveResponse, DeleteResponse } from "@serenity-is/corelib";
+import { Decorators, DeleteResponse, EntityDialog, SaveResponse, ServiceOptions } from "@serenity-is/corelib";
 
 @Decorators.registerClass("Serenity.Extensions.GridEditorDialog")
 @Decorators.panel(false)

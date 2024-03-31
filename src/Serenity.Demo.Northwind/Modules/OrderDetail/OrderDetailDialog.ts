@@ -1,4 +1,4 @@
-import { Decorators } from "@serenity-is/corelib";
+import { Decorators, WidgetProps } from "@serenity-is/corelib";
 import { toId } from "@serenity-is/corelib";
 import { GridEditorDialog } from "@serenity-is/extensions";
 import { OrderDetailForm, OrderDetailRow, ProductRow } from "@/ServerTypes/Demo";
@@ -10,8 +10,8 @@ export class OrderDetailDialog extends GridEditorDialog<OrderDetailRow> {
 
     protected form: OrderDetailForm;
 
-    constructor() {
-        super();
+    constructor(props: WidgetProps<any>) {
+        super(props);
 
         this.form = new OrderDetailForm(this.idPrefix);
 

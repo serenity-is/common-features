@@ -20,8 +20,8 @@ export class FilteredLookupInDetailGrid extends OrderGrid {
 @Decorators.registerClass('Serenity.Demo.BasicSamples.FilteredLookupOrderDetailDialog')
 export class FilteredLookupOrderDetailDialog extends OrderDetailDialog {
 
-    constructor() {
-        super();
+    constructor(props: any) {
+        super(props);
 
         this.form = new OrderDetailForm(this.idPrefix);
 

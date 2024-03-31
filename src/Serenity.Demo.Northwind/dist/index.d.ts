@@ -473,7 +473,7 @@ export declare class OrderDetailDialog extends GridEditorDialog<OrderDetailRow> 
 	protected getFormKey(): string;
 	protected getLocalTextPrefix(): string;
 	protected form: OrderDetailForm;
-	constructor();
+	constructor(props: WidgetProps<any>);
 }
 export declare class OrderDetailsEditor<P = {}> extends GridEditorBase<OrderDetailRow, P> {
 	protected getColumnsKey(): string;

@@ -22,7 +22,7 @@ export namespace DialogUtils {
             confirmDialog(localText('Site.Dialogs.PendingChangesConfirmation'),
                 () => {
                     el.dataset.ackuntil = "" + new Date().getTime() + 1000;
-                    (el.querySelector('div.save-and-close-button') as HTMLElement)?.click()
+                    el.querySelector<HTMLElement>('div.save-and-close-button')?.click()
                 },
                 {
                     onNo: function () {

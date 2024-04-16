@@ -18,7 +18,7 @@
     <ESMAssetBasePath>$(StaticWebAssetBasePath)/esm</ESMAssetBasePath>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-    <DefaultItemExcludes>node_modules\**;$(DefaultItemExcludes);package*.json;sergen.json;tsconfig.json;libman.json;tsbuild.js;wwwroot\index.d.ts;wwwroot\**\*.less</DefaultItemExcludes>
+    <DefaultItemExcludes>node_modules\**;$(DefaultItemExcludes);package*.json;sergen.json;tsconfig.json;tsconfig.base.json;libman.json;tsbuild.js;wwwroot\index.d.ts;wwwroot\**\*.less</DefaultItemExcludes>
     <AddAutoRefs>true</AddAutoRefs>
     <RestoreNodeTypes>false</RestoreNodeTypes>
     <RestoreTypings>false</RestoreTypings>

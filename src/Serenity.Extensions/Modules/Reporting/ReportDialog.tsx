@@ -102,20 +102,18 @@ export class ReportDialog<P extends ReportDialogOptions = ReportDialogOptions> e
         ];
     }
 
-    getTemplate() {
-        return `<div class="s-DialogContent">
-<div id="~_Toolbar" class="s-DialogToolbar">
-</div>
-<div class="s-Form">
-    <form id="~_Form" action="">
-        <div class="fieldset ui-widget ui-widget-content ui-corner-all">
-            <div id="~_PropertyGrid"></div>
-            <div class="clear"></div>
-        </div>
-    </form>
-</div>
-</div>`;
-
+    renderContents() {
+        const id = this.useIdPrefix();
+        return (
+            <div class="s-DialogContent">
+                <div id={id.Toolbar} class="s-DialogToolbar"></div>
+                <div class="s-Form">
+                    <form id={id.Form} action="">
+                        <div id="~_PropertyGrid"></div>
+                    </form>
+                </div>
+            </div>
+        );
     }
 }
 

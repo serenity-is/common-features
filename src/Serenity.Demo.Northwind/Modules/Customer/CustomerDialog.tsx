@@ -17,17 +17,12 @@ export class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P> {
     constructor(props: WidgetProps<P>) {
         super(props);
 
-        this.ordersGrid = new CustomerOrdersGrid({ element: this.byId('OrdersGrid') });
-        // force order dialog to open in Dialog mode instead of Panel mode
-        // which is set as default on OrderDialog with @panelAttribute
-        this.ordersGrid.openDialogsAsPanel = false;
-
         this.byId('NoteList').closest('.field').hide();
         this.byId('NoteList').appendTo(this.byId('TabNotes'));
     }
 
     override initDialog() {
-        super.initDialog();       
+        super.initDialog();
         DialogUtils.pendingChangesConfirmation(this.domNode, () => this.getSaveState() != this.loadedState);
     }
 
@@ -59,31 +54,34 @@ export class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P> {
         reloadLookup('Northwind.Customer');
     }
 
-    getTemplate() {
-        return `<div id="~_Tabs" class="s-DialogContent">
-    <ul>
-        <li><a href="#~_TabInfo"><span>${htmlEncode(localText("Db.Northwind.Customer.EntitySingular"))}</span></a></li>
-        <li><a href="#~_TabNotes"><span>${htmlEncode(localText("Db.Northwind.Note.EntityPlural"))}</span></a></li>
-        <li><a href="#~_TabOrders"><span>${htmlEncode(localText("Db.Northwind.Order.EntityPlural"))}</span></a></li>
-    </ul>
-    <div id="~_TabInfo" class="tab-pane s-TabInfo">
-        <div id="~_Toolbar" class="s-DialogToolbar">
-        </div>
-        <div class="s-Form">
-            <form id="~_Form" action="">
-                <div class="fieldset ui-widget ui-widget-content ui-corner-all">
-                    <div id="~_PropertyGrid"></div>
-                    <div class="clear"></div>
+    renderContents() {
+        const id = this.useIdPrefix();
+        return (
+            <div id={id.Tabs} class="s-DialogContent">
+                <ul>
+                    <li><a href={'#' + id.TabInfo}><span>{localText("Db.Northwind.Customer.EntitySingular")}</span></a></li>
+                    <li><a href={'#' + id.TabNotes}><span>{localText("Db.Northwind.Note.EntityPlural")}</span></a></li>
+                    <li><a href={'#' + id.TabOrders}><span>{localText("Db.Northwind.Order.EntityPlural")}</span></a></li>
+                </ul>
+                <div id={id.TabInfo} class="tab-pane s-TabInfo">
+                    <div id={id.Toolbar} class="s-DialogToolbar">
+                    </div>
+                    <form id={id.Form} action="" class="s-Form">
+                        <div id={id.PropertyGrid}></div>
+                    </form>
                 </div>
-            </form>
-        </div>
-    </div>
-    <div id="~_TabNotes" class="tab-pane s-TabNotes">
-    </div>
-    <div id="~_TabOrders" class="tab-pane s-TabOrders">
-        <div id="~_OrdersGrid">
-        </div>
-    </div>
-</div>`;
+                <div id={id.TabNotes} class="tab-pane s-TabNotes">
+                </div>
+                <div id={id.TabOrders} class="tab-pane s-TabOrders">
+                    <div id={id.OrdersGrid} ref={el => {
+                        this.ordersGrid = new CustomerOrdersGrid({ element: this.byId('OrdersGrid') });
+                        // force order dialog to open in Dialog mode instead of Panel mode
+                        // which is set as default on OrderDialog with @panelAttribute
+                        this.ordersGrid.openDialogsAsPanel = false;
+                    }}>
+                    </div>
+                </div>
+            </div>
+        )
     }
 }

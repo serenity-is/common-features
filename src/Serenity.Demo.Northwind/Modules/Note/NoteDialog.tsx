@@ -5,17 +5,14 @@ export class NoteDialog<P = {}> extends TemplatedDialog<P> {
 
     private textEditor: HtmlContentEditor;
 
-    constructor(props: WidgetProps<P>) {
-        super(props);
-
-        this.textEditor = new HtmlNoteContentEditor({ element: this.byId('Text')[0] });
-    }
-
-    protected getTemplate() {
+    protected renderContents() {
+        const id = this.useIdPrefix();
         return (
-            "<form id='~_Form' class='s-Form'>" +
-            "<textarea id='~_Text' class='required'></textarea>" +
-            "</form>");
+            <form id={id.Form} class="s-Form">
+                <textarea id={id.Text} class="required" ref={el => queueMicrotask(() =>
+                    this.textEditor = new HtmlNoteContentEditor({ element: el }))} />
+            </form>
+        );
     }
 
     protected getDialogButtons(): DialogButton[] {

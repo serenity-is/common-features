@@ -1,5 +1,5 @@
 import { BasicSamplesService } from "@/ServerTypes/Demo";
-import { Decorators, TemplatedDialog } from "@serenity-is/corelib";
+import { Decorators, BaseDialog } from "@serenity-is/corelib";
 import { BarController, BarElement, CategoryScale, Chart, Legend, LinearScale } from "chart.js";
 
 Chart.register(BarController, BarElement, CategoryScale, Legend, LinearScale);
@@ -17,7 +17,7 @@ export default function pageInit() {
 @Decorators.resizable()
 @Decorators.maximizable()
 @Decorators.registerClass('Serenity.Demo.BasicSamples.ChartInDialog')
-export class ChartInDialog<P = {}> extends TemplatedDialog<P> {
+export class ChartInDialog<P = {}> extends BaseDialog<P> {
 
     private canvas: HTMLCanvasElement;
 

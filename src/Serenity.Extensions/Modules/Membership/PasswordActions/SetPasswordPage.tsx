@@ -1,5 +1,5 @@
 import { Texts } from "@/ServerTypes/Texts";
-import { TemplatedPanel, informationDialog, parseQueryString, resolveUrl, serviceCall } from "@serenity-is/corelib";
+import { BasePanel, informationDialog, parseQueryString, resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { SendResetPasswordResponse } from "../../ServerTypes/Extensions/SendResetPasswordResponse";
 
 export default function pageInit() {
@@ -8,7 +8,7 @@ export default function pageInit() {
 
 const myTexts = Texts.Forms.Membership.ChangePassword;
 
-class SetPasswordPage extends TemplatedPanel {
+class SetPasswordPage extends BasePanel {
 
     protected submitClick() {
         if (!this.validateForm())
@@ -20,8 +20,8 @@ class SetPasswordPage extends TemplatedPanel {
                 if (response.DemoLink) {
                     informationDialog("If this wasn't a demo we would send you a reset password email. " +
                         "Since this is a demo we will just redirect you to set your password.", () => {
-                        window.location.href = resolveUrl(response.DemoLink);
-                    });
+                            window.location.href = resolveUrl(response.DemoLink);
+                        });
                 }
                 else {
                     informationDialog(myTexts.SetPasswordSuccess, () => {

@@ -1,4 +1,4 @@
-import { DataGrid, DeleteResponse, Dictionary, EditorProps, EmailAddressEditor, EntityDialog, EntityGrid, Formatter, IGetEditValue, ISetEditValue, IconClassName, ListRequest, ListResponse, PasswordEditor, PrefixedContext, PropertyDialog, PropertyItem, SaveResponse, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse, SettingStorage, TemplatedDialog, ToolButton, Widget, WidgetProps } from '@serenity-is/corelib';
+import { BaseDialog, DataGrid, DeleteResponse, Dictionary, EditorProps, EmailAddressEditor, EntityDialog, EntityGrid, Formatter, IGetEditValue, ISetEditValue, IconClassName, ListRequest, ListResponse, PasswordEditor, PrefixedContext, PropertyDialog, PropertyItem, SaveResponse, ServiceError, ServiceOptions, ServiceRequest, ServiceResponse, SettingStorage, ToolButton, Widget, WidgetProps } from '@serenity-is/corelib';
 import { FormatterContext, Grid, GridOptions } from '@serenity-is/sleekgrid';
 
 export interface ChangePasswordForm {
@@ -142,7 +142,7 @@ export interface ReportRetrieveResult extends ServiceResponse {
 	IsDataOnlyReport?: boolean;
 	IsExternalReport?: boolean;
 }
-export declare class BasicProgressDialog<P = {}> extends TemplatedDialog<P> {
+export declare class BasicProgressDialog<P = {}> extends BaseDialog<P> {
 	constructor(props?: WidgetProps<P>);
 	cancelled: boolean;
 	get max(): number;
@@ -366,7 +366,7 @@ export declare abstract class GridEditorDialog<TEntity, P = {}> extends EntityDi
 	protected saveHandler(options: ServiceOptions<SaveResponse>, callback: (response: SaveResponse) => void): void;
 	protected deleteHandler(options: ServiceOptions<DeleteResponse>, callback: (response: DeleteResponse) => void): void;
 }
-export declare class ReportDialog<P extends ReportDialogOptions = ReportDialogOptions> extends TemplatedDialog<P> {
+export declare class ReportDialog<P extends ReportDialogOptions = ReportDialogOptions> extends BaseDialog<P> {
 	private report;
 	private propertyGrid;
 	constructor(props: WidgetProps<P>);

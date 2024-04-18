@@ -1,4 +1,4 @@
-import { BooleanEditor, CaptureOperationType, ColumnsBase, DateEditor, DecimalEditor, DeleteRequest, DeleteResponse, DialogButton, EditorProps, EditorWidget, EmailAddressEditor, EntityDialog, EntityGrid, EnumEditor, Formatter, IGetEditValue, ISetEditValue, ImageUploadEditor, IntegerEditor, ListRequest, ListResponse, LookupEditor, LookupEditorBase, LookupEditorOptions, PrefixedContext, PropertyItem, RetrieveRequest, RetrieveResponse, SaveRequest, SaveResponse, ServiceOptions, StringEditor, TemplatedDialog, ToolButton, WidgetProps } from '@serenity-is/corelib';
+import { BaseDialog, BooleanEditor, CaptureOperationType, ColumnsBase, DateEditor, DecimalEditor, DeleteRequest, DeleteResponse, DialogButton, EditorProps, EditorWidget, EmailAddressEditor, EntityDialog, EntityGrid, EnumEditor, Formatter, IGetEditValue, ISetEditValue, ImageUploadEditor, IntegerEditor, ListRequest, ListResponse, LookupEditor, LookupEditorBase, LookupEditorOptions, PrefixedContext, PropertyItem, RetrieveRequest, RetrieveResponse, SaveRequest, SaveResponse, ServiceOptions, StringEditor, ToolButton, WidgetProps } from '@serenity-is/corelib';
 import { GetNextNumberRequest, GetNextNumberResponse, GridEditorBase, GridEditorDialog } from '@serenity-is/extensions';
 import { Column, FormatterContext } from '@serenity-is/sleekgrid';
 
@@ -1025,7 +1025,7 @@ export declare class EmployeeFormatter implements Formatter {
 	format(ctx: FormatterContext): string;
 	initializeColumn(column: Column): void;
 }
-export declare class NoteDialog<P = {}> extends TemplatedDialog<P> {
+export declare class NoteDialog<P = {}> extends BaseDialog<P> {
 	private textEditor;
 	protected renderContents(): any;
 	protected getDialogButtons(): DialogButton[];

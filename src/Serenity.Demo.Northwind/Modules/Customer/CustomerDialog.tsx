@@ -73,13 +73,12 @@ export class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P> {
                 <div id={id.TabNotes} class="tab-pane s-TabNotes">
                 </div>
                 <div id={id.TabOrders} class="tab-pane s-TabOrders">
-                    <div id={id.OrdersGrid} ref={el => {
-                        this.ordersGrid = new CustomerOrdersGrid({ element: this.byId('OrdersGrid') });
+                    <CustomerOrdersGrid id={id.OrdersGrid} ref={grid => {
+                        this.ordersGrid = grid;
                         // force order dialog to open in Dialog mode instead of Panel mode
                         // which is set as default on OrderDialog with @panelAttribute
                         this.ordersGrid.openDialogsAsPanel = false;
-                    }}>
-                    </div>
+                    }} />
                 </div>
             </div>
         )

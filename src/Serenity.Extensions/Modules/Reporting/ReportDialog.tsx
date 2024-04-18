@@ -1,9 +1,9 @@
 import { ReportRetrieveResult } from "@/ServerTypes/Reporting";
-import { Decorators, PropertyGrid, TemplatedDialog, WidgetProps, faIcon, resolveUrl, serviceCall } from "@serenity-is/corelib";
+import { Decorators, BaseDialog, PropertyGrid, WidgetProps, faIcon, resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { ReportHelper } from "./ReportHelper";
 
 @Decorators.registerClass("Serenity.Extensions.ReportDialog")
-export class ReportDialog<P extends ReportDialogOptions = ReportDialogOptions> extends TemplatedDialog<P> {
+export class ReportDialog<P extends ReportDialogOptions = ReportDialogOptions> extends BaseDialog<P> {
 
     private report: ReportRetrieveResult;
     private propertyGrid: PropertyGrid;

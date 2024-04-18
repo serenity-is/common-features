@@ -32,7 +32,7 @@ export class ForgotPasswordPanel<P = {}> extends PropertyPanel<ForgotPasswordReq
         });
     }
 
-    renderContents() {
+    renderContents(): any {
         const id = this.useIdPrefix();
         return (
             <div class="s-container-tight">

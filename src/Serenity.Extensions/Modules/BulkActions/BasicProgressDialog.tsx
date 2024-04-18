@@ -68,13 +68,15 @@ export class BasicProgressDialog<P = {}> extends TemplatedDialog<P> {
         close && (close.style.display = 'none');
     }
 
-    getTemplate() {
+    renderContents(): any {
+        const id = this.useIdPrefix();
         return (
-            `<div class="s-DialogContent s-BasicProgressDialogContent">
-    <div id="~_StatusText" class="status-text" ></div>
-        <div id="~_Progress" class="progress" style="height: 1.5rem">
-        <div id="~_ProgressBar" class="progress-bar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-</div>`);
+            <div class="s-DialogContent s-BasicProgressDialogContent">
+                <div id={id.StatusText} class="status-text" ></div>
+                <div id={id.Progress} class="progress" style="height: 1.5rem">
+                    <div id={id.ProgressBar} class="progress-bar" aria-valuenow={0} aria-valuemin={0} aria-valuemax={100}></div>
+                </div>
+            </div>
+        );
     }
 }

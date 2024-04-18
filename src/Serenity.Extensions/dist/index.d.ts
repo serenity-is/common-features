@@ -159,7 +159,7 @@ export declare class BasicProgressDialog<P = {}> extends TemplatedDialog<P> {
 	}[];
 	getDialogOptions(): import("@serenity-is/corelib").DialogOptions;
 	initDialog(): void;
-	getTemplate(): string;
+	renderContents(): any;
 }
 export declare class BulkServiceAction {
 	protected keys: string[];
@@ -386,7 +386,7 @@ export declare class ReportDialog<P extends ReportDialogOptions = ReportDialogOp
 		icon: string;
 		onClick: () => void;
 	})[];
-	getTemplate(): string;
+	renderContents(): any;
 }
 export interface ReportDialogOptions {
 	reportKey: string;

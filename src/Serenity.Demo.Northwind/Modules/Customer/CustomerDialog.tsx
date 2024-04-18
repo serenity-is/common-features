@@ -54,7 +54,7 @@ export class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P> {
         reloadLookup('Northwind.Customer');
     }
 
-    renderContents() {
+    renderContents(): any {
         const id = this.useIdPrefix();
         return (
             <div id={id.Tabs} class="s-DialogContent">

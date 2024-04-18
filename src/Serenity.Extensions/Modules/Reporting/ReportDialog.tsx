@@ -102,7 +102,7 @@ export class ReportDialog<P extends ReportDialogOptions = ReportDialogOptions> e
         ];
     }
 
-    renderContents() {
+    renderContents(): any {
         const id = this.useIdPrefix();
         return (
             <div class="s-DialogContent">

@@ -5,7 +5,7 @@ export class NoteDialog<P = {}> extends TemplatedDialog<P> {
 
     private textEditor: HtmlContentEditor;
 
-    protected renderContents() {
+    protected renderContents(): any {
         const id = this.useIdPrefix();
         return (
             <form id={id.Form} class="s-Form">

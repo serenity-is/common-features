@@ -44,7 +44,7 @@ class ChangePasswordPanel<P = {}> extends PropertyPanel<ChangePasswordRequest, P
         })
     }
 
-    renderContents() {
+    renderContents(): any {
         const id = this.useIdPrefix();
         return (
             <div class="s-Panel">

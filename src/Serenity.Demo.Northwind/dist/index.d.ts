@@ -967,7 +967,7 @@ export declare class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P>
 	loadResponse(data: any): void;
 	loadEntity(entity: CustomerRow): void;
 	onSaveSuccess(response: any): void;
-	getTemplate(): string;
+	renderContents(): any;
 }
 export declare class CustomerGrid<P = {}> extends EntityGrid<CustomerRow, P> {
 	protected getColumnsKey(): string;
@@ -1027,8 +1027,7 @@ export declare class EmployeeFormatter implements Formatter {
 }
 export declare class NoteDialog<P = {}> extends TemplatedDialog<P> {
 	private textEditor;
-	constructor(props: WidgetProps<P>);
-	protected getTemplate(): string;
+	protected renderContents(): any;
 	protected getDialogButtons(): DialogButton[];
 	get text(): string;
 	set text(value: string);

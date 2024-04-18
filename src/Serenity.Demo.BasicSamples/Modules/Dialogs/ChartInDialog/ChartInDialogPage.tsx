@@ -39,7 +39,7 @@ export class ChartInDialog<P = {}> extends TemplatedDialog<P> {
         });
     }
 
-    protected renderContents() {
+    protected renderContents(): any {
         return (<canvas id={`${this.idPrefix}Chart`} ref={el => this.canvas = el}></canvas>);
     }
 

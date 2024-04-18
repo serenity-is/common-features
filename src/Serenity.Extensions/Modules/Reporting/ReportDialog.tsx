@@ -109,7 +109,7 @@ export class ReportDialog<P extends ReportDialogOptions = ReportDialogOptions> e
                 <div id={id.Toolbar} class="s-DialogToolbar"></div>
                 <div class="s-Form">
                     <form id={id.Form} action="">
-                        <div id="~_PropertyGrid"></div>
+                        <div id={id.PropertyGrid}></div>
                     </form>
                 </div>
             </div>

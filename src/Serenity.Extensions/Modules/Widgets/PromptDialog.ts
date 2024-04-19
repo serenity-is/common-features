@@ -44,7 +44,7 @@ export class PromptDialog<P extends PromptDialogOptions = PromptDialogOptions> e
                         return;
                     }
 
-                    if (this.options.validateValue != null || !this.options.validateValue(this.value)) {
+                    if (this.options.validateValue != null && !this.options.validateValue(this.value)) {
                         e.preventDefault();
                     }
                 },

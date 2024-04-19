@@ -18,7 +18,7 @@ export class OrderDialog<P = {}> extends EntityDialog<OrderRow, P> {
             cssClass: 'export-pdf-button',
             reportKey: 'Northwind.OrderDetail',
             getParams: () => ({
-                OrderID: this.get_entityId()
+                OrderID: this.entityId
             })
         }));
 

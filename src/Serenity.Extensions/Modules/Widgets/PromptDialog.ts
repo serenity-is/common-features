@@ -1,8 +1,8 @@
-import { Decorators, DialogTexts, PropertyDialog, WidgetProps, cancelDialogButton, okDialogButton, toggleClass } from "@serenity-is/corelib";
+import { Decorators, PropertyDialog, Widget, WidgetProps, cancelDialogButton, getTypeFullName, okDialogButton, toggleClass } from "@serenity-is/corelib";
 
 export interface PromptDialogOptions {
     cssClass?: string;
-    editorType?: string;
+    editorType?: string | { new(props?: any): Widget };
     editorOptions?: any;
     title?: string;
     message?: string;
@@ -61,7 +61,7 @@ export class PromptDialog<P extends PromptDialogOptions = PromptDialogOptions> e
         return [
             {
                 name: "Value",
-                editorType: this.options.editorType || "String",
+                editorType: typeof this.options.editorType === "function" ? getTypeFullName(this.options.editorType) : this.options.editorType || "String",
                 required: this.options.required ?? true,
                 editorParams: this.options.editorOptions
             }

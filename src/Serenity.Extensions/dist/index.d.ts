@@ -424,7 +424,9 @@ export declare namespace DialogUtils {
 }
 export interface PromptDialogOptions {
 	cssClass?: string;
-	editorType?: string;
+	editorType?: string | {
+		new (props?: any): Widget;
+	};
 	editorOptions?: any;
 	title?: string;
 	message?: string;

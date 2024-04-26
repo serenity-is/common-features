@@ -70,10 +70,32 @@ public static class ExcelReportGenerator
         int endRow = rows.Count + startRow;
 
         var header = worksheet.Cells[startRow, startCol, startRow, endCol];
-        header.LoadFromArrays(new List<object[]>
+        var columnNames = columns.Select(x => (x.Title ?? x.Name)).ToArray();
+        if (!string.IsNullOrEmpty(tableName))
+        {
+            // ensure columns has unique names by adding spaces otherwise export fails
+            var used = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            for (var i = 0; i < columnNames.Length; i++)
             {
-            columns.Select(x => (x.Title ?? x.Name)).ToArray()
-            });
+                var x = 0;
+                var name = columnNames[i];
+                if (string.IsNullOrEmpty(name))
+                    name = " ";
+                string newName;
+                do
+                {
+                    newName = x == 0 ? name : (name + new string(' ', x));
+                    x++;
+                }
+                while (!used.Add(newName));
+                columnNames[i] = newName;
+            }
+        }
+
+        header.LoadFromArrays(
+        [
+            columnNames
+        ]);
 
         var dataList = new List<object[]>();
         foreach (var obj in rows)
@@ -153,11 +175,26 @@ public static class ExcelReportGenerator
             dataRange.LoadFromArrays(dataList);
         }
 
-        if (tableName != null)
+        if (!string.IsNullOrEmpty(tableName))
         {
             var tableRange = worksheet.Cells[startRow, startCol, endRow, endCol];
-            var table = worksheet.Tables.Add(tableRange, tableName);
-            table.TableStyle = tableStyle;
+            string newTableName;
+            int x = 0;
+            do
+            {
+                newTableName = x == 0 ? tableName : x == 1 ? (tableName + '_') : (tableName + '_' + x);
+                x++;
+            }
+            while (worksheet.Workbook.Worksheets.Any(x => x.Tables.Any(t => string.Equals(newTableName, t.Name, StringComparison.OrdinalIgnoreCase))));
+            try
+            {
+                var table = worksheet.Tables.Add(tableRange, newTableName);
+                table.TableStyle = tableStyle;
+            }
+            catch
+            {
+                // ignore table creation errors for now
+            }
         }
 
         for (var i = startCol; i <= endCol; i++)

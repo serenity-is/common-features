@@ -460,3 +460,7 @@ a.quick-search-field {
   height: 28px;
   border-color: #aaa;
 }
+
+.modal-body {
+    background: #fff;
+}

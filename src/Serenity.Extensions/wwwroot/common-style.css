@@ -1879,12 +1879,16 @@ button.ui-state-hover .ui-button-text {
 .s-Panel {
   background-color: #fff;
 }
+.panel-titlebar-text {
+    display: inline-block;
+}
 .panel-titlebar-close {
   margin-right: 5px;
   border: none;
   float: left;
   background-color: transparent;
   width: 36px;
+  height: 1.5rem;
 }
 .panel-titlebar-close,
 .ui-dialog.mobile-layout .ui-dialog-titlebar-close,
@@ -3239,6 +3243,7 @@ a.s-LinkDropDown input {
   display: block;
   cursor: pointer;
   border: 1px solid #aaa;
+  padding: 1.5px 3px;
   margin-right: 3px;
   margin-bottom: 5px;
   border-radius: 3px;
@@ -3473,4 +3478,7 @@ a.s-LinkDropDown input {
   background-image: url(../Content/serenity/images/32px.png);
   background-position: -41px -2px;
   cursor: pointer;
+}
+.fa-file-excel:before {
+  content: "\f1c3";
 }

@@ -1,4 +1,4 @@
-import { Texts } from "@/ServerTypes/Texts";
+import { Texts } from "../../ServerTypes/Texts";
 import { BasePanel, informationDialog, parseQueryString, resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { SendResetPasswordResponse } from "../../ServerTypes/Extensions/SendResetPasswordResponse";
 

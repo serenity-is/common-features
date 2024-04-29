@@ -1,4 +1,4 @@
-import { ReportRetrieveResult } from "@/ServerTypes/Reporting";
+import { ReportRetrieveResult } from "../ServerTypes/Reporting";
 import { Decorators, BaseDialog, PropertyGrid, WidgetProps, faIcon, resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { ReportHelper } from "./ReportHelper";
 

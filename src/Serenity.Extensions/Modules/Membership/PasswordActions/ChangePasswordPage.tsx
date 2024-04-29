@@ -1,4 +1,4 @@
-import { Texts } from "@/ServerTypes/Texts";
+import { Texts } from "../../ServerTypes/Texts";
 import { PropertyPanel, WidgetProps, informationDialog, localText, resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { ChangePasswordForm } from "../../ServerTypes/Extensions/ChangePasswordForm";
 import { ChangePasswordRequest } from "../../ServerTypes/Extensions/ChangePasswordRequest";

@@ -3,12 +3,7 @@
   "compilerOptions": {
     "composite": true,
     "emitDeclarationOnly": true,
-    "outDir": "./out",
-    "paths": {
-      "@/*": [
-        "./Modules/*"
-      ]
-    }
+    "outDir": "./out"
   },
   "exclude": [
     "Modules/index.ts"

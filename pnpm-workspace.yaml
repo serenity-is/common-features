@@ -1,2 +1,3 @@
 packages:
   - 'src/Serenity.*'
+  - 'tests/Serenity.*'

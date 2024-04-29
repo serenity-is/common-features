@@ -1,6 +1,7 @@
 {
   "extends": "@serenity-is/extensions/tsconfig.base.json",
   "compilerOptions": {
+    "emitDeclarationOnly": true,
     "outDir": "./out",
     "paths": {
       "@/*": [

@@ -1,4 +1,6 @@
+.swc/
 bin/
+dynamic-data/
 obj/
 out/
 *.orig

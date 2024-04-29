@@ -1,0 +1,20 @@
+{
+  "extends": "../../src/Serenity.Extensions/tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "outDir": "./out",
+    "paths": {
+      "@/*": [ "../../src/Serenity.Demo.BasicSamples/Modules/*" ],
+      "$/*": [ "./*" ],
+      "@serenity-is/*": [ "../../src/Serenity.Demo.BasicSamples/node_modules/@serenity-is/*", "../../node_modules/@serenity-is/*" ]
+    },
+    "types": [
+      "jest"
+    ]
+  },
+  "baseUrl": ".",
+  "include": [
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
+  ]
+}

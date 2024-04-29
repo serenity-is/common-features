@@ -2,7 +2,6 @@
   "compileOnSave": false,
   "compilerOptions": {
     "declaration": true,
-    "emitDeclarationOnly": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,

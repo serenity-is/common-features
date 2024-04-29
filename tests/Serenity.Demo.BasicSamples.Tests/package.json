@@ -1,0 +1,12 @@
+{
+  "name": "@serenity-is/demo.basicsamples.tests",
+  "version": "1.0.0",
+  "description": "Serenity.Demo.BasicSamples.Tests",
+  "repository": "https://github.com/serenity-is/common-features",
+  "author": "Serenity",
+  "scripts": {
+    "test": "jest",
+    "test:debug": "node --inspect-brk ../../node_modules/jest/bin/jest.js --runInBand --detectOpenHandles"
+  },
+  "type": "module"
+}

@@ -1,4 +1,4 @@
-﻿import { Decorators, Fluent, confirmDialog, faIcon, gridPageInit, htmlEncode } from "@serenity-is/corelib";
+﻿import { Decorators, Fluent, confirmDialog, faIcon, gridPageInit, htmlEncode, localText } from "@serenity-is/corelib";
 import { CustomerGrid, CustomerService, OrderDialog, OrderRow } from "@serenity-is/demo.northwind";
 import { Column } from "@serenity-is/sleekgrid";
 
@@ -42,7 +42,7 @@ export class InlineActionGrid extends CustomerGrid {
 
             switch (action) {
                 case deleteRowAction: {
-                    confirmDialog('Delete record?', () => {
+                    confirmDialog(localText("Controls.EntityDialog.DeleteConfirmation"), () => {
                         CustomerService.Delete({
                             EntityId: item.ID,
                         }, _ => {

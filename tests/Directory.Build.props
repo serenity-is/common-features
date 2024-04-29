@@ -1,3 +1,0 @@
-<Project>
-  <Import Project="$(MSBuildThisFileDirectory)..\..\Serenity\tests\Test.Build.props"/>
-</Project>

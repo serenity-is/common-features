@@ -65,8 +65,6 @@ importers:
 
   src/Serenity.Extensions: {}
 
-  tests/Serenity.Demo.BasicSamples.Tests: {}
-
 packages:
 
   '@ampproject/remapping@2.3.0':

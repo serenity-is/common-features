@@ -1,4 +1,4 @@
-import { ChangingLookupTextForm } from "@/ServerTypes/Demo";
+import { ChangingLookupTextForm } from "../../ServerTypes/Demo";
 import { ComboboxEditor, Decorators, Lookup, LookupEditorBase, LookupEditorOptions, WidgetProps, formatNumber, toId, tryGetWidget } from "@serenity-is/corelib";
 import { OrderDetailRow, ProductRow } from "@serenity-is/demo.northwind";
 import { GridEditorDialog } from "@serenity-is/extensions";

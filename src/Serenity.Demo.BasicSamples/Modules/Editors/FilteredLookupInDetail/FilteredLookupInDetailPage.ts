@@ -1,4 +1,4 @@
-import { FilteredLookupInDetailForm } from "@/ServerTypes/Demo";
+import { FilteredLookupInDetailForm } from "../../ServerTypes/Demo";
 import { Decorators, EntityDialog, Widget, WidgetProps, gridPageInit, toId } from "@serenity-is/corelib";
 import { OrderDetailDialog, OrderDetailForm, OrderDetailsEditor, OrderGrid, OrderRow, OrderService, ProductRow } from "@serenity-is/demo.northwind";
 

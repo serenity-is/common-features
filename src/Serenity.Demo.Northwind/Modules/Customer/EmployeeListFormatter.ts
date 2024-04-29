@@ -1,7 +1,7 @@
 import { Decorators, Formatter, faIcon } from "@serenity-is/corelib";
 import { Lookup } from "@serenity-is/corelib";
 import { FormatterContext } from "@serenity-is/sleekgrid";
-import { EmployeeRow } from "@/ServerTypes/Demo";
+import { EmployeeRow } from "../ServerTypes/Demo";
 
 let lookup: Lookup<EmployeeRow>;
 let promise: Promise<Lookup<EmployeeRow>>;

@@ -1,4 +1,4 @@
-import { CategoryColumns, CategoryRow, CategoryService } from "@/ServerTypes/Demo";
+import { CategoryColumns, CategoryRow, CategoryService } from "../ServerTypes/Demo";
 import { Decorators, EntityGrid } from "@serenity-is/corelib";
 import { CategoryDialog } from "./CategoryDialog";
 

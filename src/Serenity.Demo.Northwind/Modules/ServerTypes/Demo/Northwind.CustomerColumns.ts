@@ -1,6 +1,6 @@
-﻿import { EmployeeListFormatter } from "@/Customer/EmployeeListFormatter";
-import { ColumnsBase, fieldsProxy } from "@serenity-is/corelib";
+﻿import { ColumnsBase, fieldsProxy } from "@serenity-is/corelib";
 import { Column } from "@serenity-is/sleekgrid";
+import { EmployeeListFormatter } from "../../Customer/EmployeeListFormatter";
 import { CustomerRow } from "./Northwind.CustomerRow";
 
 export interface CustomerColumns {

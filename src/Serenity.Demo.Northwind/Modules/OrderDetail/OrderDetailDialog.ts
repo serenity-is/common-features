@@ -1,7 +1,7 @@
 import { Decorators, WidgetProps } from "@serenity-is/corelib";
 import { toId } from "@serenity-is/corelib";
 import { GridEditorDialog } from "@serenity-is/extensions";
-import { OrderDetailForm, OrderDetailRow, ProductRow } from "@/ServerTypes/Demo";
+import { OrderDetailForm, OrderDetailRow, ProductRow } from "../ServerTypes/Demo";
 
 @Decorators.registerClass()
 export class OrderDetailDialog extends GridEditorDialog<OrderDetailRow> {

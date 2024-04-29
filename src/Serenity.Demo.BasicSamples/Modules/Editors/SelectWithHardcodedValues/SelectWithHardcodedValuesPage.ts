@@ -1,4 +1,4 @@
-import { HardcodedValuesForm } from "@/ServerTypes/Demo";
+import { HardcodedValuesForm } from "../../ServerTypes/Demo";
 import { ComboboxEditor, Decorators, EditorProps, PropertyDialog, WidgetProps, notifySuccess } from "@serenity-is/corelib";
 
 export default function pageInit() {

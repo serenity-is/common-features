@@ -1,8 +1,8 @@
-﻿import { EmployeeFormatter } from "@/Employee/EmployeeFormatter";
-import { FreightFormatter } from "@/Order/FreightFormatter";
-import { ShipperFormatter } from "@/Shipper/ShipperFormatter";
-import { ColumnsBase, fieldsProxy } from "@serenity-is/corelib";
+﻿import { ColumnsBase, fieldsProxy } from "@serenity-is/corelib";
 import { Column } from "@serenity-is/sleekgrid";
+import { EmployeeFormatter } from "../../Employee/EmployeeFormatter";
+import { FreightFormatter } from "../../Order/FreightFormatter";
+import { ShipperFormatter } from "../../Shipper/ShipperFormatter";
 import { OrderRow } from "./Northwind.OrderRow";
 import { OrderShippingState } from "./Northwind.OrderShippingState";
 

@@ -1,4 +1,4 @@
-﻿import { StaticTextBlockForm } from "@/ServerTypes/Demo";
+﻿import { StaticTextBlockForm } from "../../ServerTypes/Demo";
 import { Decorators, PropertyDialog, WidgetProps } from "@serenity-is/corelib";
 
 export default function pageInit() {

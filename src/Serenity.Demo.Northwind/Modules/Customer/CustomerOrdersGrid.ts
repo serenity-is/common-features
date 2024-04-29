@@ -2,7 +2,7 @@
 import { Decorators, SubDialogHelper } from "@serenity-is/corelib";
 import { Column } from "@serenity-is/sleekgrid";
 import { OrderGrid } from "../Order/OrderGrid";
-import { OrderRow } from "@/ServerTypes/Demo";
+import { OrderRow } from "../ServerTypes/Demo";
 import { CustomerOrderDialog } from "./CustomerOrderDialog";
 
 const fld = OrderRow.Fields;

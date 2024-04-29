@@ -1,5 +1,5 @@
-﻿import { NotesEditor } from "@/Note/NotesEditor";
-import { StringEditor, LookupEditor, DateEditor, EmailAddressEditor, BooleanEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+﻿import { StringEditor, LookupEditor, DateEditor, EmailAddressEditor, BooleanEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+import { NotesEditor } from "../../Note/NotesEditor";
 
 export interface CustomerForm {
     CustomerID: StringEditor;

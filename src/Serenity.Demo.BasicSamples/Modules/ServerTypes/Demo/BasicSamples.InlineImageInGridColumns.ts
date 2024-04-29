@@ -1,7 +1,7 @@
-﻿import { InlineImageFormatter } from "@/Grids/InlineImageInGrid/InlineImageInGridPage";
-import { ColumnsBase, fieldsProxy } from "@serenity-is/corelib";
+﻿import { ColumnsBase, fieldsProxy } from "@serenity-is/corelib";
 import { ProductRow } from "@serenity-is/demo.northwind";
 import { Column } from "@serenity-is/sleekgrid";
+import { InlineImageFormatter } from "../../Grids/InlineImageInGrid/InlineImageInGridPage";
 
 export interface InlineImageInGridColumns {
     ProductID: Column<ProductRow>;

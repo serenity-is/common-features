@@ -1,6 +1,6 @@
-﻿import { CategoryDialog } from "@/Category/CategoryDialog";
-import { SupplierDialog } from "@/Supplier/SupplierDialog";
-import { StringEditor, ImageUploadEditor, BooleanEditor, LookupEditor, DecimalEditor, IntegerEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+﻿import { StringEditor, ImageUploadEditor, BooleanEditor, LookupEditor, DecimalEditor, IntegerEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+import { CategoryDialog } from "../../Category/CategoryDialog";
+import { SupplierDialog } from "../../Supplier/SupplierDialog";
 
 export interface ProductForm {
     ProductName: StringEditor;

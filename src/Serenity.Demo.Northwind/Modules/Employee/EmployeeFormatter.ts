@@ -1,7 +1,7 @@
 import { Decorators, Formatter, IInitializeColumn, ISlickFormatter, faIcon } from "@serenity-is/corelib";
 import { htmlEncode, isTrimmedEmpty } from "@serenity-is/corelib";
 import { Column, FormatterContext } from "@serenity-is/sleekgrid";
-import { Gender } from "@/ServerTypes/Demo";
+import { Gender } from "../ServerTypes/Demo";
 
 @Decorators.registerFormatter('Serenity.Demo.Northwind.EmployeeFormatter', [IInitializeColumn])
 export class EmployeeFormatter implements Formatter {

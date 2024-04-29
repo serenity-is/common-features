@@ -1,4 +1,4 @@
-import { CustomerForm, CustomerRow, CustomerService } from "@/ServerTypes/Demo";
+import { CustomerForm, CustomerRow, CustomerService } from "../ServerTypes/Demo";
 import { Decorators, EntityDialog, TabsExtensions, WidgetProps, htmlEncode, localText, reloadLookup } from "@serenity-is/corelib";
 import { DialogUtils } from "@serenity-is/extensions";
 import { CustomerOrdersGrid } from "./CustomerOrdersGrid";

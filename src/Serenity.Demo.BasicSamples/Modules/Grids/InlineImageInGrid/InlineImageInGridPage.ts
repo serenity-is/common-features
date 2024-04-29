@@ -1,4 +1,4 @@
-import { InlineImageInGridColumns } from "@/ServerTypes/Demo";
+import { InlineImageInGridColumns } from "../../ServerTypes/Demo";
 import { Decorators, EntityGrid, Formatter, IInitializeColumn, gridPageInit, resolveUrl } from "@serenity-is/corelib";
 import { ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
 import { Column, FormatterContext, GridOptions } from "@serenity-is/sleekgrid";

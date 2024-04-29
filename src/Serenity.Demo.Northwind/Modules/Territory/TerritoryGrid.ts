@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid } from "@serenity-is/corelib";
-import { TerritoryColumns, TerritoryRow, TerritoryService } from "@/ServerTypes/Demo";
+import { TerritoryColumns, TerritoryRow, TerritoryService } from "../ServerTypes/Demo";
 import { TerritoryDialog } from "./TerritoryDialog";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.TerritoryGrid')

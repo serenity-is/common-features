@@ -1,6 +1,6 @@
-import { Decorators, EntityDialog, WidgetProps } from "@serenity-is/corelib";
+import { OrderForm, OrderRow, OrderService } from "../ServerTypes/Demo";
+import { Decorators, EntityDialog } from "@serenity-is/corelib";
 import { ReportHelper } from "@serenity-is/extensions";
-import { OrderForm, OrderRow, OrderService } from "@/ServerTypes/Demo";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.OrderDialog')
 export class OrderDialog<P = {}> extends EntityDialog<OrderRow, P> {

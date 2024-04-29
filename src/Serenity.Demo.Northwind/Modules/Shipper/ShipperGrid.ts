@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid } from "@serenity-is/corelib";
-import { ShipperColumns, ShipperRow, ShipperService } from "@/ServerTypes/Demo";
+import { ShipperColumns, ShipperRow, ShipperService } from "../ServerTypes/Demo";
 import { ShipperDialog } from "./ShipperDialog";
 
 @Decorators.registerClass()

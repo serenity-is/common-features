@@ -1,5 +1,5 @@
-﻿import { ChangingLookupTextEditor } from "@/Editors/ChangingLookupText/ChangingLookupTextPage";
-import { DecimalEditor, IntegerEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+﻿import { DecimalEditor, IntegerEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+import { ChangingLookupTextEditor } from "../../Editors/ChangingLookupText/ChangingLookupTextPage";
 
 export interface ChangingLookupTextForm {
     ProductID: ChangingLookupTextEditor;

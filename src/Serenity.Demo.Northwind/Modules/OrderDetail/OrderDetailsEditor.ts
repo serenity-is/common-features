@@ -1,4 +1,4 @@
-import { OrderDetailColumns, OrderDetailRow, ProductRow } from "@/ServerTypes/Demo";
+import { OrderDetailColumns, OrderDetailRow, ProductRow } from "../ServerTypes/Demo";
 import { Decorators, alertDialog, toId } from "@serenity-is/corelib";
 import { GridEditorBase } from "@serenity-is/extensions";
 import { OrderDetailDialog } from "./OrderDetailDialog";

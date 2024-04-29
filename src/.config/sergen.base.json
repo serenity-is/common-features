@@ -1,7 +1,8 @@
 {
   "Extends": "defaults@6.6.0",
   "ServerTypings": {
-    "LocalTexts": false
+    "LocalTexts": false,
+    "PreferRelativePaths": true
   },
   "IncludeGlobalUsings": [
     "Serenity",

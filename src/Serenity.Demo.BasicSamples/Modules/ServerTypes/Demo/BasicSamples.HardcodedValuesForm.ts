@@ -1,5 +1,5 @@
-﻿import { HardcodedValuesEditor } from "@/Editors/SelectWithHardcodedValues/SelectWithHardcodedValuesPage";
-import { PrefixedContext, initFormType } from "@serenity-is/corelib";
+﻿import { PrefixedContext, initFormType } from "@serenity-is/corelib";
+import { HardcodedValuesEditor } from "../../Editors/SelectWithHardcodedValues/SelectWithHardcodedValuesPage";
 
 export interface HardcodedValuesForm {
     SomeValue: HardcodedValuesEditor;

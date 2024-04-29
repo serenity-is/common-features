@@ -1,4 +1,4 @@
-import { OrderColumns, OrderListRequest, OrderRow, OrderService, ProductRow } from "@/ServerTypes/Demo";
+import { OrderColumns, OrderListRequest, OrderRow, OrderService, ProductRow } from "../ServerTypes/Demo";
 import { Decorators, EntityGrid, EnumEditor, Fluent, LookupEditor, ToolButton, faIcon, toId } from "@serenity-is/corelib";
 import { ExcelExportHelper, PdfExportHelper, ReportHelper } from "@serenity-is/extensions";
 import { OrderDialog } from "./OrderDialog";

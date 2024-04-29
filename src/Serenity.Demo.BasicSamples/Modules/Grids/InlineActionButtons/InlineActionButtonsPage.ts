@@ -36,7 +36,7 @@ export class InlineActionGrid extends CustomerGrid {
             return;
 
         var item = this.itemAt(row);
-        var action = (e.target as HTMLElement).closest("inline-action")?.getAttribute("data-action");
+        var action = (e.target as HTMLElement).closest(".inline-action")?.getAttribute("data-action");
         if (action) {
             e.preventDefault();
 

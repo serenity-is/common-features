@@ -464,3 +464,7 @@ a.quick-search-field {
 .modal-body {
     background: #fff;
 }
+
+.category-links {
+  display: none;
+}

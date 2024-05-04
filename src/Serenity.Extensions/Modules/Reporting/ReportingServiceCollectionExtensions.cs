@@ -28,6 +28,7 @@ public static class ReportingServiceCollectionExtensions
         services.TryAddSingleton<ISiteAbsoluteUrl, SiteAbsoluteUrl>();
         services.TryAddSingleton<IHtmlReportCallbackUrlBuilder, HtmlReportCallbackUrlBuilder>();
         services.TryAddSingleton<IHtmlReportRenderUrlBuilder, HtmlReportCallbackUrlBuilder>();
+        services.TryAddSingleton<IReportCallbackInterceptor, HtmlReportCallbackUrlInterceptor>();
         services.TryAddSingleton<IWKHtmlToPdfConverter, WKHtmlToPdfConverter>();
         services.TryAddSingleton<IHtmlToPdfConverter, WKHtmlToPdfConverter>();
         services.TryAddSingleton<IHtmlReportPdfRenderer, HtmlReportPdfRenderer>();

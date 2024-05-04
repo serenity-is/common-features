@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.WebUtilities;
 using System.Net;
 
 namespace Serenity.Reporting;
@@ -10,11 +12,14 @@ namespace Serenity.Reporting;
 public class HtmlReportCallbackUrlBuilder(
     ISiteAbsoluteUrl siteAbsoluteUrl,
     IOptionsMonitor<CookieAuthenticationOptions> cookieOptions = null,
-    IHttpContextAccessor httpContextAccessor = null) : IHtmlReportCallbackUrlBuilder
+    IPermissionService permissionService = null,
+    IUserAccessor userAccessor = null,
+    IHttpContextAccessor httpContextAccessor = null,
+    IDataProtectionProvider dataProtectionProvider = null) : IHtmlReportCallbackUrlBuilder
 {
-    protected readonly IOptionsMonitor<CookieAuthenticationOptions> cookieOptions = cookieOptions;
-    protected readonly IHttpContextAccessor httpContextAccessor = httpContextAccessor;
     protected readonly ISiteAbsoluteUrl siteAbsoluteUrl = siteAbsoluteUrl ?? throw new ArgumentNullException(nameof(siteAbsoluteUrl));
+
+    internal const string ReportAuthCookieName = ".ReportAuth";
 
     protected virtual string GetRenderAction(IReport report)
     {
@@ -52,7 +57,7 @@ public class HtmlReportCallbackUrlBuilder(
 
     private static int ParseChunksCount(string value)
     {
-        if (value != null && 
+        if (value != null &&
             value.StartsWith(ChunkCountPrefix, StringComparison.Ordinal) &&
             int.TryParse(value.AsSpan(ChunkCountPrefix.Length), NumberStyles.None, CultureInfo.InvariantCulture, out var chunksCount))
             return chunksCount;
@@ -62,6 +67,37 @@ public class HtmlReportCallbackUrlBuilder(
 
     protected virtual IEnumerable<Cookie> GetCookiesToForward()
     {
+        if (dataProtectionProvider != null)
+        {
+            var transientGrantor = permissionService as ITransientGrantor;
+            var username = userAccessor?.User?.Identity?.Name;
+            var isAllGranted = transientGrantor?.IsAllGranted() ?? false;
+            var granted = transientGrantor?.GetGranted() ?? [];
+
+            if (!string.IsNullOrEmpty(username) ||
+                isAllGranted ||
+                granted.Any())
+            {
+                byte[] bytes;
+                using var ms = new System.IO.MemoryStream();
+                using var bw = new System.IO.BinaryWriter(ms);
+                bw.Write(DateTime.UtcNow.AddMinutes(5).ToBinary());
+                bw.Write(username ?? "");
+                bw.Write(isAllGranted ? -1 : granted.Count());
+                if (!isAllGranted)
+                {
+                    foreach (var p in granted)
+                        bw.Write(p);
+                }
+                bw.Flush();
+                bytes = ms.ToArray();
+
+                var protector = dataProtectionProvider.CreateProtector(ReportAuthCookieName);
+                var token = WebEncoders.Base64UrlEncode(protector.Protect(bytes));
+                yield return new Cookie(ReportAuthCookieName, token);
+            }
+        }
+
         var request = httpContextAccessor?.HttpContext?.Request;
         if (request is null)
             yield break;

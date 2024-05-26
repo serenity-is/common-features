@@ -185,7 +185,7 @@ END;", table, id, seq));
 
         if (isPostgres)
         {
-            databasesQuery = "select * from postgres.pg_catalog.pg_database where datname = @name";
+            databasesQuery = "select datname from postgres.pg_catalog.pg_database where datname = @name";
             createDatabaseQuery = "CREATE DATABASE \"{0}\"";
         }
         else if (isMySql)

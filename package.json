@@ -4,7 +4,7 @@
   "devDependencies": {
     "@serenity-is/corelib": "../Serenity/packages/corelib",
     "@serenity-is/sleekgrid": "../Serenity/packages/sleekgrid",
-    "@serenity-is/tsbuild": "8.0.1",
+    "@serenity-is/tsbuild": "8.5.0",
     "@swc/core": "1.4.16",
     "@swc/jest": "0.2.36",
     "@types/jest": "29.5.12",

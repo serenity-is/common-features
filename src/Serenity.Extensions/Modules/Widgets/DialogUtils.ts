@@ -30,7 +30,7 @@ export namespace DialogUtils {
                         dialog?.close(dialog?.result);
                     }
                 });
-        }, /*before*/ true);
+        }, { before: true });
 
         function beforeUnload() {
             if (!Fluent.isVisibleLike(el) || !hasPendingChanges())

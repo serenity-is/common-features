@@ -7,10 +7,9 @@ export namespace DialogUtils {
         var el = isArrayLike(element) ? element[0] : element;
         if (!el)
             return;
-        var dialog = Dialog.getInstance(el);
-        dialog?.onClose((_, e: Event) => {
+        Dialog.onClose(el, (result, e: Event) => {
 
-            if (dialog?.result === "save-and-close" || dialog?.result === "save" || dialog?.result === "delete" || dialog?.result === "done" ||
+            if (result === "save-and-close" || result === "save" || result === "delete" || result === "done" ||
                 (el.dataset.ackuntil &&
                     new Date().getTime() < parseInt(el.dataset.ackuntil, 10)) ||
                 !hasPendingChanges()) {
@@ -27,7 +26,7 @@ export namespace DialogUtils {
                 {
                     onNo: function () {
                         el.dataset.ackuntil = "" + new Date().getTime() + 1000;
-                        dialog?.close(dialog?.result);
+                        Dialog.getInstance(el)?.close(result);
                     }
                 });
         }, { before: true });
@@ -40,6 +39,6 @@ export namespace DialogUtils {
         }
 
         Fluent.on(window, "beforeunload", beforeUnload);
-        dialog?.onClose?.(() => Fluent.off(window, "beforeunload", beforeUnload));
+        Dialog.onClose(el, (() => Fluent.off(window, "beforeunload", beforeUnload)), { oneOff: true });
     }
 }

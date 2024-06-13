@@ -4,8 +4,9 @@
   "devDependencies": {
     "@serenity-is/corelib": "../Serenity/packages/corelib",
     "@serenity-is/sleekgrid": "../Serenity/packages/sleekgrid",
-    "@serenity-is/tsbuild": "8.5.6"
-  },  
+    "@serenity-is/tsbuild": "8.5.6",
+    "jsx-dom": "8.1.4"
+  },
   "scripts": {
     "all": "pnpm i && pnpm -r build && pnpm -r tsc && pnpm -r dts"
   },

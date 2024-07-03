@@ -3030,9 +3030,6 @@ a.s-LinkDropDown input {
   color: #6090c0;
   font-weight: bold;
 }
-.s-PropertyGrid .category.first-category .category-title {
-  margin-top: 0px;
-}
 .s-PropertyGrid .category-title {
   margin: 12px 10px 8px 6px;
   border-bottom: 1px solid #7380C4;

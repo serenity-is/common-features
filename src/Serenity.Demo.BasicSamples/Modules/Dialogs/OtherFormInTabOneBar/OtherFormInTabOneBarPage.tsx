@@ -157,7 +157,7 @@ export class OtherFormOneBarDialog<P = {}> extends OrderDialog<P> {
                 </div>
                 <div id={id.TabCustomer} class="tab-pane s-TabCustomer">
                     <form id={id.CustomerForm} action="" class="s-Form" ref={el => this.customerValidator = new Validator(el, validateOptions({}))}>
-                        <PropertyGrid ref={pg => this.customerPropertyGrid = pg} idPrefix={this.idPrefix + "_Customer_"} useCategories={true}
+                        <PropertyGrid ref={pg => this.customerPropertyGrid = pg} idPrefix={this.idPrefix + "_Customer_"}
                             items={getForm(CustomerForm.formKey).filter(x => x.name != 'CustomerID' && x.name != "NoteList")} />
                     </form>
                 </div>

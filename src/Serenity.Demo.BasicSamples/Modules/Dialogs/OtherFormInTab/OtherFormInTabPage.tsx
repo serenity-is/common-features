@@ -127,7 +127,7 @@ export class OtherFormInTabDialog<P = {}> extends OrderDialog<P> {
                         onClick: () => this.customerSaveClick()
                     }]} />
                     <form action="" class="s-Form" ref={el => this.customerValidator = new Validator(el, validateOptions())}>
-                        <PropertyGrid ref={pg => this.customerPropertyGrid = pg} idPrefix={id.Customer_} useCategories={true}
+                        <PropertyGrid ref={pg => this.customerPropertyGrid = pg} idPrefix={id.Customer_}
                             items={getForm(CustomerForm.formKey).filter(x => x.name != CustomerRow.Fields.CustomerID)} />
                     </form>
                 </div>

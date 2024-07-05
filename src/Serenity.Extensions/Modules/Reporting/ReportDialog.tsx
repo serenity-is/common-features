@@ -24,7 +24,6 @@ export class ReportDialog<P extends ReportDialogOptions = ReportDialogOptions> e
         this.propertyGrid = new PropertyGrid({
             element: this.byId('PropertyGrid'),
             idPrefix: this.idPrefix,
-            useCategories: true,
             items: this.report.Properties
         }).init();
     }

@@ -192,9 +192,9 @@ export declare class BulkServiceAction {
 	protected showAllSuccess(): void;
 	protected showResults(): void;
 	execute(keys: string[]): void;
-	get_successCount(): any;
+	get_successCount(): number;
 	set_successCount(value: number): void;
-	get_errorCount(): any;
+	get_errorCount(): number;
 	set_errorCount(value: number): void;
 }
 export interface ExcelExportOptions {

@@ -9,7 +9,7 @@ import { Decorators, ISetEditValue, PropertyItem, Widget, WidgetProps, localText
 export class StaticTextBlock<P extends StaticTextBlockOptions = StaticTextBlockOptions> extends Widget<P>
     implements ISetEditValue {
 
-    private value: string;
+    declare private value: string;
 
     constructor(props: WidgetProps<P>) {
         super(props);

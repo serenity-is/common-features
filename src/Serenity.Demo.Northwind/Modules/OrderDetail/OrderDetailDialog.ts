@@ -8,7 +8,7 @@ export class OrderDetailDialog extends GridEditorDialog<OrderDetailRow> {
     protected getFormKey() { return OrderDetailForm.formKey; }
     protected getLocalTextPrefix() { return OrderDetailRow.localTextPrefix; }
 
-    protected form: OrderDetailForm;
+    declare protected form: OrderDetailForm;
 
     constructor(props: WidgetProps<any>) {
         super(props);

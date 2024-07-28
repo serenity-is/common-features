@@ -5,8 +5,8 @@ import { ReportHelper } from "./ReportHelper";
 @Decorators.registerClass("Serenity.Extensions.ReportDialog")
 export class ReportDialog<P extends ReportDialogOptions = ReportDialogOptions> extends BaseDialog<P> {
 
-    private report: ReportRetrieveResult;
-    private propertyGrid: PropertyGrid;
+    declare private report: ReportRetrieveResult;
+    declare private propertyGrid: PropertyGrid;
 
     constructor(props: WidgetProps<P>) {
         super(props);

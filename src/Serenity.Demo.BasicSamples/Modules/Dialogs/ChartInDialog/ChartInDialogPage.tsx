@@ -19,7 +19,7 @@ export default function pageInit() {
 @Decorators.registerClass('Serenity.Demo.BasicSamples.ChartInDialog')
 export class ChartInDialog<P = {}> extends BaseDialog<P> {
 
-    private canvas: HTMLCanvasElement;
+    declare private canvas: HTMLCanvasElement;
 
     protected onDialogOpen() {
         super.onDialogOpen();

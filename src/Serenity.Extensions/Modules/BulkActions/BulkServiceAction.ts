@@ -3,16 +3,16 @@ import { BasicProgressDialog } from "./BasicProgressDialog";
 
 export class BulkServiceAction {
 
-    protected keys: string[];
-    protected queue: string[];
-    protected queueIndex: number;
-    protected progressDialog: BasicProgressDialog;
-    protected pendingRequests: number;
-    protected completedRequests: number;
-    protected errorByKey: Dictionary<ServiceError>;
-    private successCount;
-    private errorCount;
-    public done: () => void;
+    declare protected keys: string[];
+    declare protected queue: string[];
+    declare protected queueIndex: number;
+    declare protected progressDialog: BasicProgressDialog;
+    declare protected pendingRequests: number;
+    declare protected completedRequests: number;
+    declare protected errorByKey: Dictionary<ServiceError>;
+    declare private successCount: number;
+    declare private errorCount: number;
+    declare public done: () => void;
 
     protected createProgressDialog() {
         this.progressDialog = new BasicProgressDialog({});

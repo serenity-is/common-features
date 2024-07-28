@@ -13,7 +13,7 @@ export class OrderGrid<P={}> extends EntityGrid<OrderRow, P> {
     protected getRowDefinition() { return OrderRow; }
     protected getService() { return OrderService.baseUrl; }
 
-    protected shippingStateFilter: EnumEditor;
+    declare protected shippingStateFilter: EnumEditor;
 
     protected getQuickFilters() {
         var filters = super.getQuickFilters();

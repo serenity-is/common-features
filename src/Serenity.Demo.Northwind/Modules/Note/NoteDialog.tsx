@@ -3,7 +3,7 @@ import { Decorators, DialogButton, BaseDialog, HtmlContentEditor, HtmlNoteConten
 @Decorators.registerClass('Serenity.Demo.Northwind.NoteDialog')
 export class NoteDialog<P = {}> extends BaseDialog<P> {
 
-    private textEditor: HtmlContentEditor;
+    declare private textEditor: HtmlContentEditor;
 
     protected renderContents(): any {
         const id = this.useIdPrefix();
@@ -38,5 +38,5 @@ export class NoteDialog<P = {}> extends BaseDialog<P> {
         this.textEditor.value = value;
     }
 
-    public okClick: () => void;
+    declare public okClick: () => void;
 }

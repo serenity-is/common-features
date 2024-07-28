@@ -14,10 +14,11 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
     protected getRowDefinition() { return ProductRow; }
     protected getService() { return ProductService.baseUrl; }
 
-    private pendingChanges: Dictionary<any> = {};
+    declare private pendingChanges: Dictionary<any>;
 
     constructor(props: WidgetProps<P>) {
         super(props);
+        this.pendingChanges = {};
         this.slickContainer.on('change', 'input.edit, textarea.edit, select.edit', (e) => this.inputsChange(e as any));
     }
 

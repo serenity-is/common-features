@@ -17,13 +17,14 @@ export class OtherFormInTabGrid<P = {}> extends OrderGrid<P> {
 @Decorators.registerClass('Serenity.Demo.BasicSamples.OtherFormInTabDialog')
 export class OtherFormInTabDialog<P = {}> extends OrderDialog<P> {
 
-    private customerValidator: any;
-    private customerPropertyGrid: PropertyGrid;
-    private selfChange: number = 0;
+    declare private customerValidator: any;
+    declare private customerPropertyGrid: PropertyGrid;
+    declare private selfChange: number;
 
     constructor(props: WidgetProps<P>) {
         super(props);
 
+        this.selfChange = 0;
         this.form.CustomerID.change(e => {
             if (this.selfChange)
                 return;

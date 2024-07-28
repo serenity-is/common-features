@@ -48,7 +48,7 @@ export class FilteredLookupOrderDetailDialog extends OrderDetailDialog {
         this.form.ProductID.cascadeValue = this.categoryID;
     }
 
-    public categoryID: number;
+    declare public categoryID: number;
 }
 
 /**
@@ -59,7 +59,7 @@ export class FilteredLookupDetailEditor<P = {}> extends OrderDetailsEditor<P> {
 
     protected getDialogType() { return FilteredLookupOrderDetailDialog; }
 
-    public categoryID: number;
+    declare public categoryID: number;
 
     /**
      * This method is called to initialize an edit dialog created by
@@ -84,7 +84,7 @@ export class FilteredLookupInDetailDialog<P = {}> extends EntityDialog<OrderRow,
     protected getRowDefinition() { return OrderRow; }
     protected getService() { return OrderService.baseUrl; }
 
-    private form: FilteredLookupInDetailForm;
+    declare private form: FilteredLookupInDetailForm;
 
     constructor(props: WidgetProps<P>) {
         super(props);

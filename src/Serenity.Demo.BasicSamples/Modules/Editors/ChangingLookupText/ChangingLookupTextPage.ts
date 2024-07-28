@@ -34,7 +34,7 @@ export class ChangingLookupTextDialog<P={}> extends GridEditorDialog<OrderDetail
     protected getFormKey() { return ChangingLookupTextForm.formKey; }
     protected getLocalTextPrefix() { return OrderDetailRow.localTextPrefix; }
 
-    protected form: ChangingLookupTextForm;
+    declare protected form: ChangingLookupTextForm;
 
     constructor(props: WidgetProps<P>) {
         super(props);

@@ -8,9 +8,9 @@ import { NoteDialog } from "./NoteDialog";
 export class NotesEditor<P = {}> extends EditorWidget<P>
     implements IGetEditValue, ISetEditValue {
 
-    private isDirty: boolean;
-    private items: NoteRow[];
-    private noteList: HTMLUListElement;
+    declare private isDirty: boolean;
+    declare private items: NoteRow[];
+    declare private noteList: HTMLUListElement;
 
     protected renderContents(): any {
         let id = this.useIdPrefix();
@@ -121,5 +121,5 @@ export class NotesEditor<P = {}> extends EditorWidget<P>
         this.isDirty = value;
     }
 
-    public onChange: () => void;
+    declare public onChange: () => void;
 }

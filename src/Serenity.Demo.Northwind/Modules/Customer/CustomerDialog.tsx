@@ -11,8 +11,8 @@ export class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P> {
 
     protected form = new CustomerForm(this.idPrefix);
 
-    private ordersGrid: CustomerOrdersGrid;
-    private loadedState: string;
+    declare private ordersGrid: CustomerOrdersGrid;
+    declare private loadedState: string;
 
     constructor(props: WidgetProps<P>) {
         super(props);

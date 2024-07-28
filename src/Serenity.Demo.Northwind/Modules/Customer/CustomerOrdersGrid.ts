@@ -42,7 +42,7 @@ export class CustomerOrdersGrid<P = {}> extends OrderGrid<P> {
         return super.getGridCanLoad() && !!this.customerID;
     }
 
-    private _customerID: string;
+    declare private _customerID: string;
 
     get customerID() {
         return this._customerID;

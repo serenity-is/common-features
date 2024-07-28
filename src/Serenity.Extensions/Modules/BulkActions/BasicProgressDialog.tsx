@@ -9,7 +9,7 @@ export class BasicProgressDialog<P = {}> extends BaseDialog<P> {
         this.dialogTitle = localText('Site.BasicProgressDialog.PleaseWait');
     }
 
-    public cancelled: boolean;
+    declare public cancelled: boolean;
 
     public get max(): number {
         return parseInt(this.byId('ProgressBar').attr('aria-valuemax'), 10);
@@ -37,7 +37,7 @@ export class BasicProgressDialog<P = {}> extends BaseDialog<P> {
         this.dialogTitle = value;
     }
 
-    public cancelTitle: string;
+    declare public cancelTitle: string;
 
     getDialogButtons() {
         return [{

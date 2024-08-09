@@ -1,4 +1,4 @@
-﻿import { Decorators, Fluent, confirmDialog, faIcon, gridPageInit, htmlEncode, localText } from "@serenity-is/corelib";
+﻿import { Decorators, Fluent, confirmDialog, faIcon, gridPageInit, localText } from "@serenity-is/corelib";
 import { CustomerGrid, CustomerService, OrderDialog, OrderRow } from "@serenity-is/demo.northwind";
 import { Column } from "@serenity-is/sleekgrid";
 
@@ -17,7 +17,7 @@ export class InlineActionGrid extends CustomerGrid {
         let inlineAction = (actionKey: string, hint, iconClass: string): Column => ({
             name: '',
             width: 24,
-            format: _ => `<a class="inline-action" data-action="${actionKey}" title="${htmlEncode(hint)}"><i class="${htmlEncode(iconClass)}"></i></a>`,
+            format: ctx => ctx.asHtml(`<a class="inline-action" data-action="${actionKey}" title="${ctx.escape(hint)}"><i class="${ctx.escape(iconClass)}"></i></a>`),
             minWidth: 24,
             maxWidth: 24
         })

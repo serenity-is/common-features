@@ -56,15 +56,20 @@ export namespace PdfExportHelper {
                 ctx.item = item;
                 ctx.value = item[col.field];
                 let html: FormatterResult = format ? format(ctx) : '';
-                if (!html || (!(html instanceof Node) && html.indexOf('<') < 0 && html.indexOf('&') < 0))
+                if (!html || (!(html instanceof Node) && (!(ctx.isHtml ?? true) || (html.indexOf('<') < 0 && html.indexOf('&') < 0)))) {
                     dst.push(html);
+                }
                 else {
                     Fluent.empty(el);
                     if (html instanceof Node) {
                         el.appendChild(html);
                     }
-                    else
+                    else if (ctx.isHtml ?? true) {
                         el.innerHTML = html;
+                    }
+                    else {
+                        el.textContent = html;
+                    }
                     if (el.children.length == 1 &&
                         el.children[0]?.nodeName === 'SELECT') {
                         dst.push(el.children[0].querySelector("[selected]")?.textContent ?? '');

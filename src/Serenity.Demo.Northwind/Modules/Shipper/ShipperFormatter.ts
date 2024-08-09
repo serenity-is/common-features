@@ -8,7 +8,7 @@ export class ShipperFormatter implements Formatter {
         if (!ctx.value)
             return ctx.escape();
 
-        return `<i class="text-info ${faIcon(ctx.value == "Speedy Express" ? "plane" :
-            (ctx.value == "Federal Shipping" ? "ship" : "truck"))}  text-opacity-75"></i> ${ctx.escape()}`;
+        return ctx.asHtml(`<i class="text-info ${faIcon(ctx.value == "Speedy Express" ? "plane" :
+            (ctx.value == "Federal Shipping" ? "ship" : "truck"))}  text-opacity-75"></i> ${ctx.escape()}`);
     }
 }

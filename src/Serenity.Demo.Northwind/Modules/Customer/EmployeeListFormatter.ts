@@ -1,5 +1,4 @@
-import { Decorators, Formatter, faIcon } from "@serenity-is/corelib";
-import { Lookup } from "@serenity-is/corelib";
+import { Decorators, Formatter, Lookup, faIcon } from "@serenity-is/corelib";
 import { FormatterContext } from "@serenity-is/sleekgrid";
 import { EmployeeRow } from "../ServerTypes/Demo";
 
@@ -17,10 +16,10 @@ export class EmployeeListFormatter implements Formatter {
 
         let byId = lookup?.itemById;
         if (byId) {
-            return idList.map(x => {
+            return ctx.asHtml(idList.map(x => {
                 var z = byId[x];
                 return ctx.escape(z == null ? x : z.FullName);
-            }).join(", ");
+            }).join(", "));
         }
 
         promise ??= EmployeeRow.getLookupAsync().then(l => {
@@ -34,6 +33,6 @@ export class EmployeeListFormatter implements Formatter {
             }
         }).catch(() => promise = null);
 
-        return `<i class="${faIcon("spinner")}"></i>`;
+        return ctx.asHtml(`<i class="${faIcon("spinner")}"></i>`);
     }
 }

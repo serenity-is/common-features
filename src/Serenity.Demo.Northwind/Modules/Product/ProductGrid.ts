@@ -80,9 +80,9 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
      * but it's not supported by SlickGrid as we are only allowed to return a string, and should attach
      * no event handlers to rendered cell contents
      */
-    private numericInputFormatter(ctx) {
+    private numericInputFormatter(ctx: FormatterContext) {
         if ((ctx.item as NonDataRow).__nonDataRow)
-            return htmlEncode(formatNumber(ctx.value, '#0.##'));
+            return ctx.escape(formatNumber(ctx.value, '#0.##'));
 
         var klass = 'edit numeric';
         var item = ctx.item as ProductRow;
@@ -94,14 +94,14 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
 
         var value = this.getEffectiveValue(item, ctx.column.field) as number;
 
-        return "<input type='text' class='" + klass +
+        return ctx.asHtml("<input type='text' class='" + klass +
             "' data-field='" + ctx.column.field +
-            "' value='" + formatNumber(value, '0.##') + "'/>";
+            "' value='" + formatNumber(value, '0.##') + "'/>");
     }
 
-    private stringInputFormatter(ctx) {
+    private stringInputFormatter(ctx: FormatterContext) {
         if ((ctx.item as NonDataRow).__nonDataRow)
-            return htmlEncode(ctx.value);
+            return ctx.escape();
 
         var klass = 'edit string';
         var item = ctx.item as ProductRow;
@@ -114,10 +114,10 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
 
         var value = this.getEffectiveValue(item, column.field) as string;
 
-        return "<input type='text' class='" + klass +
+        return ctx.asHtml("<input type='text' class='" + klass +
             "' data-field='" + column.field +
             "' value='" + htmlEncode(value) +
-            "' maxlength='" + column.sourceItem.maxLength + "'/>";
+            "' maxlength='" + column.sourceItem.maxLength + "'/>");
     }
 
     /**
@@ -125,7 +125,7 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
      */
     private selectFormatter(ctx: FormatterContext, idField: string, lookup: Lookup<any>) {
         if ((ctx.item as NonDataRow).__nonDataRow)
-            return htmlEncode(ctx.value);
+            return ctx.escape();
 
         var klass = 'edit';
         var item = ctx.item as ProductRow;
@@ -149,7 +149,7 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
             }
             markup += ">" + htmlEncode(c[lookup.textField]) + "</option>";
         }
-        return markup + "</select>";
+        return ctx.asHtml(markup + "</select>");
     }
 
     private getEffectiveValue(item, field): any {
@@ -266,7 +266,7 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
             serviceRequest(ProductService.Methods.Update, {
                 EntityId: key,
                 Entity: entity
-            }, (response) => {
+            }, () => {
                 delete self.pendingChanges[key];
                 saveNext();
             });

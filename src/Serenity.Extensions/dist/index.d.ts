@@ -322,7 +322,7 @@ export declare class EnumSelectFormatter implements Formatter {
 		allowClear?: boolean;
 		emptyItemText?: string;
 	});
-	format(ctx: FormatterContext): string;
+	format(ctx: FormatterContext): HTMLElement;
 	get enumKey(): string;
 	set enumKey(value: string);
 	get allowClear(): boolean;
@@ -332,7 +332,8 @@ export declare class EnumSelectFormatter implements Formatter {
 }
 export declare class SingleLineTextFormatter implements Formatter {
 	format(ctx: FormatterContext): string;
-	static formatValue(value: string): string;
+	/** Formats html value as text, note that return value is plain text, e.g. is not html escaped */
+	static formatValue(htmlValue: string): string;
 }
 export declare abstract class GridEditorBase<TEntity, P = {}> extends EntityGrid<TEntity, P> implements IGetEditValue, ISetEditValue {
 	protected getIdProperty(): string;

@@ -322,7 +322,7 @@ export declare class EnumSelectFormatter implements Formatter {
 		allowClear?: boolean;
 		emptyItemText?: string;
 	});
-	format(ctx: FormatterContext): HTMLElement;
+	format(ctx: FormatterContext): string;
 	get enumKey(): string;
 	set enumKey(value: string);
 	get allowClear(): boolean;

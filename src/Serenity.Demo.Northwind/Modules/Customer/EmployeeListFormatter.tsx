@@ -1,6 +1,5 @@
-import { Decorators, Formatter, faIcon } from "@serenity-is/corelib";
-import { Lookup } from "@serenity-is/corelib";
-import { FormatterContext } from "@serenity-is/sleekgrid";
+import { Decorators, Formatter, Lookup, faIcon } from "@serenity-is/corelib";
+import { FormatterContext, FormatterResult } from "@serenity-is/sleekgrid";
 import { EmployeeRow } from "../ServerTypes/Demo";
 
 let lookup: Lookup<EmployeeRow>;
@@ -9,7 +8,7 @@ let promise: Promise<Lookup<EmployeeRow>>;
 @Decorators.registerFormatter('Serenity.Demo.Northwind.EmployeeListFormatter')
 export class EmployeeListFormatter implements Formatter {
 
-    format(ctx: FormatterContext) {
+    format(ctx: FormatterContext): FormatterResult {
 
         let idList = ctx.value as string[];
         if (!idList || !idList.length)
@@ -17,10 +16,10 @@ export class EmployeeListFormatter implements Formatter {
 
         let byId = lookup?.itemById;
         if (byId) {
-            return idList.map(x => {
+            return <>{idList.map(x => {
                 var z = byId[x];
-                return ctx.escape(z == null ? x : z.FullName);
-            }).join(", ");
+                return z == null ? x : z.FullName;
+            }).join(", ")}</>;
         }
 
         promise ??= EmployeeRow.getLookupAsync().then(l => {
@@ -34,6 +33,6 @@ export class EmployeeListFormatter implements Formatter {
             }
         }).catch(() => promise = null);
 
-        return `<i class="${faIcon("spinner")}"></i>`;
+        return (<i class={faIcon("spinner")}></i>);
     }
 }

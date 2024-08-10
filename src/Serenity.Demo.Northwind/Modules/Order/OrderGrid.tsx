@@ -1,15 +1,13 @@
-import { OrderColumns, OrderListRequest, OrderRow, OrderService, ProductRow } from "../ServerTypes/Demo";
 import { Decorators, EntityGrid, EnumEditor, Fluent, LookupEditor, ToolButton, faIcon, toId } from "@serenity-is/corelib";
 import { ExcelExportHelper, PdfExportHelper, ReportHelper } from "@serenity-is/extensions";
+import { OrderColumns, OrderListRequest, OrderRow, OrderService, ProductRow } from "../ServerTypes/Demo";
 import { OrderDialog } from "./OrderDialog";
-
-const fld = OrderRow.Fields;
 
 @Decorators.registerClass('Serenity.Demo.Northwind.OrderGrid')
 @Decorators.filterable()
-export class OrderGrid<P={}> extends EntityGrid<OrderRow, P> {
+export class OrderGrid<P = {}> extends EntityGrid<OrderRow, P> {
     protected getColumnsKey() { return OrderColumns.columnsKey; }
-    protected getDialogType() { return <any>OrderDialog; }
+    protected getDialogType() { return OrderDialog as any; }
     protected getRowDefinition() { return OrderRow; }
     protected getService() { return OrderService.baseUrl; }
 
@@ -38,7 +36,7 @@ export class OrderGrid<P={}> extends EntityGrid<OrderRow, P> {
     protected createQuickFilters() {
         super.createQuickFilters();
 
-        this.shippingStateFilter = this.findQuickFilter(EnumEditor, fld.ShippingState);
+        this.shippingStateFilter = this.findQuickFilter(EnumEditor, OrderRow.Fields.ShippingState);
     }
 
     protected getButtons(): ToolButton[] {
@@ -67,7 +65,7 @@ export class OrderGrid<P={}> extends EntityGrid<OrderRow, P> {
             field: null,
             name: '',
             cssClass: 'align-center',
-            format: _ => `<a class="inline-action" data-action="print-invoice" title="invoice"><i class="${faIcon("file-pdf", "red")}"></i></a>`,
+            format: () => <a class="inline-action" data-action="print-invoice" title="invoice"><i class={faIcon("file-pdf", "red")}></i></a>,
             width: 36,
             minWidth: 36,
             maxWidth: 36
@@ -103,7 +101,7 @@ export class OrderGrid<P={}> extends EntityGrid<OrderRow, P> {
 
     protected addButtonClick() {
         var eq = this.view.params.EqualityFilter;
-        this.editItem(<OrderRow>{
+        this.editItem({
             CustomerID: eq ? eq.CustomerID : null
         });
     }

@@ -1,7 +1,7 @@
-import { InlineImageInGridColumns } from "../../ServerTypes/Demo";
 import { Decorators, EntityGrid, Formatter, IInitializeColumn, gridPageInit, resolveUrl } from "@serenity-is/corelib";
 import { ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
-import { Column, FormatterContext, GridOptions } from "@serenity-is/sleekgrid";
+import { Column, FormatterContext, FormatterResult, GridOptions } from "@serenity-is/sleekgrid";
+import { InlineImageInGridColumns } from "../../ServerTypes/Demo";
 
 export default () => gridPageInit(InlineImageInGrid);
 
@@ -12,23 +12,19 @@ export class InlineImageFormatter
     constructor(public readonly props: { fileProperty?: string, thumb?: boolean } = {}) {
     }
 
-    format(ctx: FormatterContext): string {
+    format(ctx: FormatterContext): FormatterResult {
 
         var file = (this.props?.fileProperty ? ctx.item[this.props.fileProperty] : ctx.value) as string;
         if (!file || !file.length)
             return "";
-
-        let href = resolveUrl("~/upload/" + file);
 
         if (this.props?.thumb) {
             var parts = file.split('.');
             file = parts.slice(0, parts.length - 1).join('.') + '_t.jpg';
         }
 
-        let src = resolveUrl('~/upload/' + file);
-
-        return `<a class="inline-image" target='_blank' href="${href}">` +
-            `<img src="${src}" style='max-height: 145px; max-width: 100%;' /></a>`;
+        return <a class="inline-image" target="_blank" href={resolveUrl("~/upload/" + file)}>
+            <img src={resolveUrl('~/upload/' + file)} style="max-height: 145px; max-width: 100%" /></a>;
     }
 
     initializeColumn(column: Column): void {
@@ -43,7 +39,7 @@ export class InlineImageFormatter
 export class InlineImageInGrid<P = {}> extends EntityGrid<ProductRow, P> {
 
     protected getColumnsKey() { return InlineImageInGridColumns.columnsKey; }
-    protected getDialogType() { return <any>ProductDialog; }
+    protected getDialogType() { return ProductDialog; }
     protected getRowDefinition() { return ProductRow; }
     protected getService() { return ProductService.baseUrl; }
 

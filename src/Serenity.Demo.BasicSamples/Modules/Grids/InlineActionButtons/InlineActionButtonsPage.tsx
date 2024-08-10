@@ -17,7 +17,7 @@ export class InlineActionGrid extends CustomerGrid {
         let inlineAction = (actionKey: string, hint, iconClass: string): Column => ({
             name: '',
             width: 24,
-            format: _ => `<a class="inline-action" data-action="${actionKey}" title="${htmlEncode(hint)}"><i class="${htmlEncode(iconClass)}"></i></a>`,
+            format: () => <a class="inline-action" data-action={actionKey} title={hint}><i class={iconClass}></i></a>,
             minWidth: 24,
             maxWidth: 24
         })
@@ -60,7 +60,7 @@ export class InlineActionGrid extends CustomerGrid {
                 case newOrderAction: {
                     var dlg = new OrderDialog();
                     this.initDialog(dlg);
-                    dlg.loadEntityAndOpenDialog(<OrderRow>{
+                    dlg.loadEntityAndOpenDialog({
                         CustomerID: item.CustomerID
                     });
                 }

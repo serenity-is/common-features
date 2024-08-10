@@ -5,10 +5,11 @@ import { FormatterContext } from "@serenity-is/sleekgrid";
 export class ShipperFormatter implements Formatter {
     format(ctx: FormatterContext) {
 
-        if (!ctx.value)
-            return ctx.escape();
+        if (!ctx.value) {
+            return <>{ctx.value}</>;
+        }
 
-        return `<i class="text-info ${faIcon(ctx.value == "Speedy Express" ? "plane" :
-            (ctx.value == "Federal Shipping" ? "ship" : "truck"))}  text-opacity-75"></i> ${ctx.escape()}`;
+        return (<><i class={["text-info", faIcon(ctx.value == "Speedy Express" ? "plane" : 
+            (ctx.value == "Federal Shipping" ? "ship" : "truck")), "text-opacity-75"]} /> {ctx.value}</>);
     }
 }

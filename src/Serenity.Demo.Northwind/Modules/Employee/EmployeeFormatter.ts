@@ -1,4 +1,5 @@
-import { Decorators, Formatter, IInitializeColumn, faIcon, isTrimmedEmpty } from "@serenity-is/corelib";
+import { Decorators, Formatter, IInitializeColumn, ISlickFormatter, faIcon } from "@serenity-is/corelib";
+import { htmlEncode, isTrimmedEmpty } from "@serenity-is/corelib";
 import { Column, FormatterContext } from "@serenity-is/sleekgrid";
 import { Gender } from "../ServerTypes/Demo";
 
@@ -12,10 +13,10 @@ export class EmployeeFormatter implements Formatter {
         let text = ctx.escape();
 
         if (!this.props.genderProperty || isTrimmedEmpty(ctx.value))
-            return ctx.asHtml(text);
+            return text;
 
         let female = ctx.item[this.props.genderProperty] === Gender.Female;
-        return ctx.asHtml(`<i class="${faIcon(female ? "female" : "male", female ? "danger" : "primary")} + ' text-opacity-75"></i>` + text);
+        return `<i class="${faIcon(female ? "female" : "male", female ? "danger" : "primary")} + ' text-opacity-75"></i>` + text;
     }
 
     public initializeColumn(column: Column) {

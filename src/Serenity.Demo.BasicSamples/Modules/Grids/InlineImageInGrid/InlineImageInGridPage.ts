@@ -27,8 +27,8 @@ export class InlineImageFormatter
 
         let src = resolveUrl('~/upload/' + file);
 
-        return ctx.asHtml(`<a class="inline-image" target='_blank' href="${ctx.escape(href)}">` +
-            `<img src="${ctx.escape(src)}" style='max-height: 145px; max-width: 100%;' /></a>`);
+        return `<a class="inline-image" target='_blank' href="${href}">` +
+            `<img src="${src}" style='max-height: 145px; max-width: 100%;' /></a>`;
     }
 
     initializeColumn(column: Column): void {

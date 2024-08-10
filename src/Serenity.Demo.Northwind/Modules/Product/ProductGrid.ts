@@ -80,7 +80,7 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
      * but it's not supported by SlickGrid as we are only allowed to return a string, and should attach
      * no event handlers to rendered cell contents
      */
-    private numericInputFormatter(ctx: FormatterContext) {
+    private numericInputFormatter(ctx) {
         if ((ctx.item as NonDataRow).__nonDataRow)
             return ctx.escape(formatNumber(ctx.value, '#0.##'));
 
@@ -94,12 +94,12 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
 
         var value = this.getEffectiveValue(item, ctx.column.field) as number;
 
-        return ctx.asHtml("<input type='text' class='" + klass +
+        return "<input type='text' class='" + klass +
             "' data-field='" + ctx.column.field +
-            "' value='" + formatNumber(value, '0.##') + "'/>");
+            "' value='" + formatNumber(value, '0.##') + "'/>";
     }
 
-    private stringInputFormatter(ctx: FormatterContext) {
+    private stringInputFormatter(ctx) {
         if ((ctx.item as NonDataRow).__nonDataRow)
             return ctx.escape();
 
@@ -114,10 +114,10 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
 
         var value = this.getEffectiveValue(item, column.field) as string;
 
-        return ctx.asHtml("<input type='text' class='" + klass +
+        return "<input type='text' class='" + klass +
             "' data-field='" + column.field +
             "' value='" + htmlEncode(value) +
-            "' maxlength='" + column.sourceItem.maxLength + "'/>");
+            "' maxlength='" + column.sourceItem.maxLength + "'/>";
     }
 
     /**
@@ -149,7 +149,7 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
             }
             markup += ">" + htmlEncode(c[lookup.textField]) + "</option>";
         }
-        return ctx.asHtml(markup + "</select>");
+        return markup + "</select>";
     }
 
     private getEffectiveValue(item, field): any {
@@ -266,7 +266,7 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
             serviceRequest(ProductService.Methods.Update, {
                 EntityId: key,
                 Entity: entity
-            }, () => {
+            }, (response) => {
                 delete self.pendingChanges[key];
                 saveNext();
             });

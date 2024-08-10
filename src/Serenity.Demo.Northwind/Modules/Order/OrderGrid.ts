@@ -67,7 +67,7 @@ export class OrderGrid<P={}> extends EntityGrid<OrderRow, P> {
             field: null,
             name: '',
             cssClass: 'align-center',
-            format: ctx => ctx.asHtml(`<a class="inline-action" data-action="print-invoice" title="invoice"><i class="${faIcon("file-pdf", "red")}"></i></a>`),
+            format: _ => `<a class="inline-action" data-action="print-invoice" title="invoice"><i class="${faIcon("file-pdf", "red")}"></i></a>`,
             width: 36,
             minWidth: 36,
             maxWidth: 36

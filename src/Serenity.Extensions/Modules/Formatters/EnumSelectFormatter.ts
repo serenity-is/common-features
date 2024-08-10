@@ -30,7 +30,7 @@ export class EnumSelectFormatter implements Formatter {
 
         sb += "</select>";
 
-        return ctx.asHtml(sb);
+        return sb;
     }
 
     get enumKey() { return this.props.enumKey }

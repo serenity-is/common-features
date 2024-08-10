@@ -15,16 +15,16 @@ export class CustomLinksInGrid extends OrderGrid {
         var columns = new OrderColumns(super.getColumns());
 
         columns.CustomerCompanyName && (columns.CustomerCompanyName.format =
-            ctx => ctx.asHtml(`<a href="#" class="customer-link">${ctx.escape()}</a>`));
+            ctx => `<a href="#" class="customer-link">${ctx.escape()}</a>`);
 
         columns.OrderDate && (columns.OrderDate.format =
-            ctx => ctx.asHtml(`<a href="#" class="date-link">${ctx.escape(formatDate(ctx.value))}</a>`));
+            ctx => `<a href="#" class="date-link">${ctx.escape(formatDate(ctx.value))}</a>`);
 
         columns.EmployeeFullName && (columns.EmployeeFullName.format =
-            ctx => ctx.asHtml(`<a href="#" class="employee-link">${ctx.escape()}</a>`));
+            ctx => `<a href="#" class="employee-link">${ctx.escape()}</a>`);
 
         columns.ShipCountry && (columns.ShipCountry.format =
-            ctx => ctx.asHtml(`<a href="#" class="ship-country-link">${ctx.escape()}</a>`));
+            ctx => `<a href="#" class="ship-country-link">${ctx.escape()}</a>`);
 
         return columns.valueOf();
     }

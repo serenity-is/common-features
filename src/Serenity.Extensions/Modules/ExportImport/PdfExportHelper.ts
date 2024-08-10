@@ -47,6 +47,7 @@ export namespace PdfExportHelper {
     function toAutoTableData(slickGrid: Grid, entities: any[], keys: string[], srcColumns: Column[]) {
         let el = document.createElement('span');
         let row = 0;
+        const sanitizer = slickGrid?.getOptions()?.sanitizer;
         return entities.map(item => {
             let dst = [];
             for (let cell = 0; cell < srcColumns.length; cell++) {
@@ -63,8 +64,12 @@ export namespace PdfExportHelper {
                     if (html instanceof Node) {
                         el.appendChild(html);
                     }
-                    else
+                    else {
+                        if (typeof html === "string" && html.length && sanitizer) {
+                            html = sanitizer(html);
+                        }
                         el.innerHTML = html;
+                    }
                     if (el.children.length == 1 &&
                         el.children[0]?.nodeName === 'SELECT') {
                         dst.push(el.children[0].querySelector("[selected]")?.textContent ?? '');

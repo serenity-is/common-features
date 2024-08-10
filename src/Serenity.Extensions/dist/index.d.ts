@@ -332,8 +332,7 @@ export declare class EnumSelectFormatter implements Formatter {
 }
 export declare class SingleLineTextFormatter implements Formatter {
 	format(ctx: FormatterContext): string;
-	/** Formats html value as text, note that return value is plain text, e.g. is not html escaped */
-	static formatValue(htmlValue: string): string;
+	static formatValue(value: string): string;
 }
 export declare abstract class GridEditorBase<TEntity, P = {}> extends EntityGrid<TEntity, P> implements IGetEditValue, ISetEditValue {
 	protected getIdProperty(): string;

@@ -1,5 +1,3 @@
-using Serenity.Extensions;
-
 namespace Serenity.Demo.BasicSamples.Forms;
 
 [FormScript("BasicSamples.StaticTextBlock")]

@@ -85,7 +85,7 @@ export class CustomLinksInGrid extends OrderGrid {
                 "so i've opened a new Order Dialog from same customer " +
                 "with that employee prepopulated!");
 
-            new OrderDialog().loadEntityAndOpenDialog(<OrderRow>{
+            new OrderDialog().loadEntityAndOpenDialog({
                 CustomerID: item.CustomerID,
                 EmployeeID: item.EmployeeID
             });

@@ -9,12 +9,14 @@ public static class ModulePageExtensions
         return "Db." + fields.LocalTextPrefix + ".EntityPlural";
     }
 
-    public static ViewResult GridPage(this Controller controller, string module, LocalText pageTitle)
+    public static ViewResult GridPage(this Controller controller, string module, LocalText pageTitle,
+        object options = null)
     {
         return GridPage(controller, new()
         {
             Module = module,
-            PageTitle = pageTitle
+            PageTitle = pageTitle,
+            Options = options
         });
     }
 
@@ -43,12 +45,14 @@ public static class ModulePageExtensions
         return controller.View(Extensions.MVC.Views.ModulePage.ModulePage_, model);
     }
 
-    public static ViewResult PanelPage(this Controller controller, string module, LocalText pageTitle)
+    public static ViewResult PanelPage(this Controller controller, string module, LocalText pageTitle,
+        object options = null)
     {
         return PanelPage(controller, new()
         {
             Module = module,
-            PageTitle = pageTitle
+            PageTitle = pageTitle,
+            Options = options
         });
     }
 

@@ -22,7 +22,7 @@ export function addPasswordStrengthValidation(passwordEditor: PasswordEditor, un
         if (passwordStrengthRules.RequireLowercase) {
             passwordEditor.addValidationRule(() => {
                 if (!(/[a-z\p{Ll}]/u.test(passwordEditor.value)))
-                    return localText("Validation.PasswordStrengthRequireDigit");
+                    return localText("Validation.PasswordStrengthRequireLowercase");
             }, uniqueName);
         }
 
@@ -36,7 +36,7 @@ export function addPasswordStrengthValidation(passwordEditor: PasswordEditor, un
         if (passwordStrengthRules.RequireNonAlphanumeric) {
             passwordEditor.addValidationRule(() => {
                 if (!(/[^\s\p{L}]/u.test(passwordEditor.value)))
-                    return localText("Validation.PasswordStrengthRequireNonAlphanumeric");                
+                    return localText("Validation.PasswordStrengthRequireNonAlphanumeric");
             }, uniqueName);
         }
     });

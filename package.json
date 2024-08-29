@@ -5,7 +5,7 @@
     "@serenity-is/corelib": "../Serenity/packages/corelib",
     "@serenity-is/sleekgrid": "../Serenity/packages/sleekgrid",
     "@serenity-is/tsbuild": "8.6.0",
-    "jsx-dom": "8.1.4"
+    "jsx-dom": "8.1.5"
   },
   "scripts": {
     "all": "pnpm i && pnpm -r build && pnpm -r tsc && pnpm -r dts"

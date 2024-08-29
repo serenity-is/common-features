@@ -18,8 +18,8 @@ importers:
         specifier: 8.6.0
         version: 8.6.0
       jsx-dom:
-        specifier: 8.1.4
-        version: 8.1.4
+        specifier: 8.1.5
+        version: 8.1.5
 
   src/Serenity.Demo.BasicSamples:
     dependencies:
@@ -290,8 +290,8 @@ packages:
     resolution: {integrity: sha512-kWmLKn2tRtfYMF/BakihVVRzBKOxz4gJMiL2Rj91WnAB5TPZumSH99R/Yf1qE1u4uRimvCSJfm6hnxohXeEXjQ==}
     engines: {node: '>=14'}
 
-  jsx-dom@8.1.4:
-    resolution: {integrity: sha512-Wcv5iuOvB5SeF/tj3/sa+B0kqWb22WnlfPg8k64SmHOa/E+2M+cOruke+Dqr0GK2FY5xp0gEj4quWZM8quQN2w==}
+  jsx-dom@8.1.5:
+    resolution: {integrity: sha512-mu1/YDltqM1Qh9xO4bEKTMHU90v7IV0hdgq6LcK0LRsMtA8/6RcLwkvnxCNqMm9cWpH39xpgLa6NTJUdjTmJ6Q==}
 
   lru-cache@10.2.0:
     resolution: {integrity: sha512-2bIM8x+VAf6JT4bKAljS1qUWgMsqZRPGJS6FSahIMPVvctcNhyVp7AJu7quxOW9jwkryBReKZY5tY5JYv2n/7Q==}
@@ -545,7 +545,7 @@ snapshots:
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
 
-  jsx-dom@8.1.4:
+  jsx-dom@8.1.5:
     dependencies:
       csstype: 3.1.3
 

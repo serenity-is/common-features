@@ -27,6 +27,17 @@
             ";expires=" + date.toGMTString() + ";path=/";
     }
 
+    function setupDataGridDefaults() {
+        Serenity.DataGrid.defaultRowHeight = 36;
+        Serenity.DataGrid.defaultHeaderHeight = 34;
+        Serenity.DataGrid.defaultColumnWidthDelta = 10;
+        Serenity.DataGrid.defaultColumnWidthScale = 14 / 13;
+    }
+
+    if (typeof Serenity !== "undefined") {
+        setupDataGridDefaults();
+    }
+        
     document.addEventListener('DOMContentLoaded', function () {
 
         var languageMenus = document.querySelectorAll('.s-language-selection-menu')

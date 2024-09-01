@@ -1,9 +1,9 @@
 import { Decorators, Formatter, faIcon } from "@serenity-is/corelib";
-import { FormatterContext } from "@serenity-is/sleekgrid";
+import { FormatterContext, FormatterResult } from "@serenity-is/sleekgrid";
 
 @Decorators.registerFormatter('Serenity.Demo.Northwind.ShipperFormatter')
 export class ShipperFormatter implements Formatter {
-    format(ctx: FormatterContext) {
+    format(ctx: FormatterContext): FormatterResult {
 
         if (!ctx.value) {
             return <>{ctx.value}</>;

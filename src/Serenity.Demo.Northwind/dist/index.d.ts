@@ -1,6 +1,6 @@
 import { BaseDialog, BooleanEditor, CaptureOperationType, ColumnsBase, DateEditor, DecimalEditor, DeleteRequest, DeleteResponse, DialogButton, EditorProps, EditorWidget, EmailAddressEditor, EntityDialog, EntityGrid, EnumEditor, Formatter, IGetEditValue, ISetEditValue, ImageUploadEditor, IntegerEditor, ListRequest, ListResponse, LookupEditor, LookupEditorBase, LookupEditorOptions, PrefixedContext, PropertyItem, RetrieveRequest, RetrieveResponse, SaveRequest, SaveResponse, ServiceOptions, StringEditor, ToolButton, WidgetProps } from '@serenity-is/corelib';
 import { GetNextNumberRequest, GetNextNumberResponse, GridEditorBase, GridEditorDialog } from '@serenity-is/extensions';
-import { Column, FormatterContext } from '@serenity-is/sleekgrid';
+import { Column, FormatterContext, FormatterResult } from '@serenity-is/sleekgrid';
 
 export interface CategoryRow {
 	CategoryID?: number;
@@ -1013,7 +1013,7 @@ export declare class CustomerOrdersGrid<P = {}> extends OrderGrid<P> {
 	set customerID(value: string);
 }
 export declare class EmployeeListFormatter implements Formatter {
-	format(ctx: FormatterContext): string;
+	format(ctx: FormatterContext): FormatterResult;
 }
 export declare class EmployeeFormatter implements Formatter {
 	readonly props: {
@@ -1022,7 +1022,7 @@ export declare class EmployeeFormatter implements Formatter {
 	constructor(props?: {
 		genderProperty?: string;
 	});
-	format(ctx: FormatterContext): string;
+	format(ctx: FormatterContext): FormatterResult;
 	initializeColumn(column: Column): void;
 }
 export declare class NoteDialog<P = {}> extends BaseDialog<P> {
@@ -1088,7 +1088,7 @@ export declare class ShipperDialog<P = {}> extends EntityDialog<ShipperRow, P> {
 	protected form: ShipperForm;
 }
 export declare class ShipperFormatter implements Formatter {
-	format(ctx: FormatterContext): string;
+	format(ctx: FormatterContext): FormatterResult;
 }
 export declare class ShipperGrid<P = {}> extends EntityGrid<ShipperRow, P> {
 	protected getColumnsKey(): string;

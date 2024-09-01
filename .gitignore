@@ -11,7 +11,6 @@ node_modules/
 /src/*/dist/index.js
 /src/*/dist/index.min.js
 /src/*/dist/index.js.map
-/src/*/typings/*/index.d.ts
 /src/*/wwwroot/index.js
 /src/*/wwwroot/index.min.js
 /src/*/wwwroot/index.js.map

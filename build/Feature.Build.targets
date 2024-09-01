@@ -28,9 +28,4 @@
     <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" Condition="!Exists('tsbuild.js')" ContinueOnError="true" />
     <Exec Command="pnpm build" Condition="Exists('tsbuild.js')" ContinueOnError="true" />
   </Target>
-  <Target Name="IncludeTypingsToPackage" BeforeTargets="_GetPackageFiles">
-    <ItemGroup>
-      <None Include="@(TypingsToPackage)" Pack="true" PackagePath="%(TypingsToPackage.PackagePath)" />
-    </ItemGroup>
-  </Target>
 </Project>

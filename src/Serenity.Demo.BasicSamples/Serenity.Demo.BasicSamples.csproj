@@ -4,8 +4,7 @@
     <ProjectReference Include="..\Serenity.Demo.Northwind\Serenity.Demo.Northwind.csproj" Condition="Exists('..\Serenity.Demo.Northwind\Serenity.Demo.Northwind.csproj')" />
   </ItemGroup>
   <ItemGroup>
-    <TypingsToPackage Remove="wwwroot\index.d.ts" />
-    <TSBuildOutputs Remove="dist\index.js;wwwroot\index.js;wwwroot\index.d.ts" />
+    <TSBuildOutputs Remove="dist\index.js;wwwroot\index.js;" />
     <TSEntryPoints Include="Modules\**\*Page.ts" />
     <TSBuildOutputs Include="esm\%(TSEntryPoints.Directory)%(Filename).js" />
   </ItemGroup>

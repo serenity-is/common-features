@@ -41,13 +41,11 @@
     <TSBuildInputs Include="..\..\common-features\src\Serenity.Extensions\tsconfig.base.json" Condition="!Exists('..\Serenity.Extensions\tsconfig.base.json') and Exists('..\..\common-features\src\Serenity.Extensions\tsconfig.base.json')" />
     <TSBuildOutputs Include="dist\index.js" Condition="Exists('tsbuild.js')" />
     <TSBuildOutputs Include="wwwroot\index.js" />
-    <TSBuildOutputs Include="wwwroot\index.d.ts" Condition="!Exists('tsbuild.js')" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="$(MSBuildProjectDirectory)\*.json;$(MSBuildProjectDirectory)\tsbuild*.js" />
     <Content Include="$(MSBuildProjectDirectory)\*.json;$(MSBuildProjectDirectory)\tsbuild*.js" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" Pack="false" />
     <None Include="$(MSBuildProjectDirectory)\dist\**" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" Pack="true" PackagePath="dist\" />
-    <TypingsToPackage Include="wwwroot\index.d.ts" PackagePath="typings\$(ProjectName.ToLowerInvariant())\index.d.ts" Condition="Exists('wwwroot\index.d.ts') OR Exists('tsconfig.json')" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Microsoft.Extensions.Options" />

@@ -859,6 +859,10 @@ section.content-header>h1 {
   cursor: pointer;
 }
 
+.file-items {
+  list-style: none;;
+}
+
 .file-item {
   border: 1px solid var(--s-card-border);
   padding: 2px;

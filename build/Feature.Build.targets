@@ -5,11 +5,16 @@
   </ItemGroup>
   <Import Project="$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.targets" />
   <Import Project="$(SerenitySrc)RestoreNpmPackages.targets" />
+  <Target Name="TransformInitProps">
+    <PropertyGroup>
+      <SergenTransformArgs>-p &quot;$(ProjectFileName)&quot; -prop:Configuration=$(Configuration) -prop:AssemblyName=&quot;$(AssemblyName)&quot; -prop:ESMAssetBasePath=&quot;$(ESMAssetBasePath)&quot; -prop:OutDir=&quot;$(OutDir.Trim('\'))&quot; -prop:RootNamespace=$(RootNamespace) -prop:TargetFramework=$(TargetFramework)</SergenTransformArgs>
+    </PropertyGroup>
+  </Target>
   <Target Name="TransformInitTools" BeforeTargets="BeforeBuild" Condition="!Exists('$(DotnetToolManifestFile)')">
     <Exec Command="dotnet new tool-manifest" ContinueOnError="true" WorkingDirectory="$(MSBuildProjectDirectory)\..\" />
     <Exec Command="dotnet tool install sergen" ContinueOnError="true" WorkingDirectory="$(MSBuildProjectDirectory)\..\" />
   </Target>
-  <Target Name="TransformToolRestore" BeforeTargets="BeforeBuild" DependsOnTargets="TransformInitTools"
+  <Target Name="TransformToolRestore" BeforeTargets="BeforeBuild" DependsOnTargets="TransformInitProps;TransformInitTools"
           Inputs="$(DotnetToolManifestFile)" Outputs="$(DotnetToolRestoreStamp)"
           Condition="'$(DotNetSergen)' == 'dotnet sergen' And ('$(SergenTransform)' != '' OR Exists('tsconfig.json'))">
     <Exec Command="dotnet tool restore" ContinueOnError="true" />

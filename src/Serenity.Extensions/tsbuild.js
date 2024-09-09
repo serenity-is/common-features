@@ -7,6 +7,11 @@ const buildOpt = {
     clean: false
 }
 
+// wwwroot/esm/**/*.js: ESM entry points for own pages
+await build({
+});
+
+// dist/index.js: ESM bundle for NPM references
 await build(Object.assign({}, buildOpt, {
     external: [
         '@serenity-is/*'
@@ -15,6 +20,7 @@ await build(Object.assign({}, buildOpt, {
     plugins: []
 }));
 
+// wwwroot/index.js: Global script (e.g. ~/Serenity.Extensions/index.js include in appsettings.bundles.json)
 await build(Object.assign({}, buildOpt, {
     format: 'iife',
     footer: {
@@ -23,6 +29,3 @@ await build(Object.assign({}, buildOpt, {
     globalName: 'Serenity._',
     outdir: 'wwwroot/'
 }));
-
-await build({
-});

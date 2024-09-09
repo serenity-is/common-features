@@ -1,6 +1,7 @@
-﻿@inject ITextLocalizer Localizer
+@inject ITextLocalizer Localizer
 @{
-    ViewData["Title"] = Localizer.Get("Db.Northwind.Order.EntityPlural");
+
+    ViewData["Title"] = Localizer.Get(OrderRow.Fields.PageTitle());
 }
 
 @section Head {
@@ -17,9 +18,6 @@
 <div id="GridDiv"></div>
 
 <script type="module">
-    var orderGrid = Serenity.gridPageInit(Serenity.Demo.Northwind.OrderGrid);
-    var q = Serenity.parseQueryString();
-    if (q.shippingState != null && q.shippingState.length) {
-        orderGrid.set_shippingState(parseInt(q.shippingState, 10));
-    }
+    import pageInit from '@Html.ResolveWithHash(ESM.Modules.Order.OrderPage)';
+    pageInit();
 </script>

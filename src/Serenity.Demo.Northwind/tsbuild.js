@@ -1,25 +1,18 @@
-import { build, cleanPlugin } from "@serenity-is/tsbuild";
+import { build } from "@serenity-is/tsbuild";
 
-const buildOpt = {
+// wwwroot/esm/**/*.js: ESM entry points for own pages
+await build({
+});
+
+// dist/index.js: ESM bundle for NPM references
+await build({
+    clean: false,
     entryPoints: ['./Modules/index.ts'],
-    outbase: './Modules/',
-    splitting: false,
-    clean: false
-}
-
-await build(Object.assign({}, buildOpt, {
     external: [
         '@serenity-is/*'
     ],
+    outbase: './Modules/',
     outdir: 'dist/',
-    plugins: []
-}));
-
-await build(Object.assign({}, buildOpt, {
-    format: 'iife',
-    footer: {
-        js: 'Serenity.Demo = Serenity.Demo || {}; Serenity.Demo.Northwind = Serenity.Demo.Northwind || {}; Object.assign(Serenity.Demo.Northwind, Serenity._); delete Serenity._;'
-    },
-    globalName: 'Serenity._',
-    outdir: 'wwwroot/'
-}));
+    plugins: [],
+    splitting: false
+});

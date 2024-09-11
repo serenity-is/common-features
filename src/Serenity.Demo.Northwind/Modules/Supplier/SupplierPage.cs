@@ -8,7 +8,6 @@ public class SupplierPage : Controller
     [Route("Northwind/Supplier")]
     public ActionResult Index()
     {
-        return this.GridPage(ESM.Modules.Supplier.SupplierPage,
-            SupplierRow.Fields.PageTitle());
+        return this.GridPage<SupplierRow>(ESM.SupplierPage);
     }
 }

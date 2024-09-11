@@ -8,7 +8,6 @@ public class CategoryPage : Controller
     [Route("Northwind/Category")]
     public ActionResult Index()
     {
-        return this.GridPage(ESM.Modules.Category.CategoryPage,
-            CategoryRow.Fields.PageTitle());
+        return this.GridPage<CategoryRow>(ESM.CategoryPage);
     }
 }

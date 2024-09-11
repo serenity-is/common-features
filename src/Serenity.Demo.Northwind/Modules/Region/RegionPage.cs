@@ -8,7 +8,6 @@ public class RegionPage : Controller
     [Route("Northwind/Region")]
     public ActionResult Index()
     {
-        return this.GridPage(ESM.Modules.Region.RegionPage,
-            RegionRow.Fields.PageTitle());
+        return this.GridPage<RegionRow>(ESM.RegionPage);
     }
 }

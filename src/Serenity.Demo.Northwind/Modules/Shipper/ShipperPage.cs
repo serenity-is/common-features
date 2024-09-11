@@ -8,7 +8,6 @@ public class ShipperPage : Controller
     [Route("Northwind/Shipper")]
     public ActionResult Index()
     {
-        return this.GridPage(ESM.Modules.Shipper.ShipperPage,
-            ShipperRow.Fields.PageTitle());
+        return this.GridPage<ShipperRow>(ESM.ShipperPage);
     }
 }

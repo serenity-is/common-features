@@ -13,7 +13,7 @@
       "DOM"
     ],
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "newLine": "lf",
     "preserveConstEnums": true,
     "preserveSymlinks": true,

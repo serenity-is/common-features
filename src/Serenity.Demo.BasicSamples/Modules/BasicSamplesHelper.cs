@@ -29,8 +29,18 @@ public static class BasicSamplesHelper
 
     private static string GetRelativePathFor(HtmlHelper helper, string file)
     {
-        var viewLocation = ((RazorView)helper.ViewContext.View).Path;
-        var absolutePath = Path.GetDirectoryName(viewLocation).Replace('\\', '/') + '/';
+        var module = (helper.ViewData?.Model as ModulePageModel)?.Module;
+        string absolutePath;
+        if (module != null && module.Contains("/esm/", StringComparison.OrdinalIgnoreCase))
+        {
+            var idx = module.IndexOf("/esm/", StringComparison.OrdinalIgnoreCase) + 4;
+            absolutePath = Path.GetDirectoryName(module[idx..]).Replace('\\', '/') + '/';
+        }
+        else
+        {
+            var viewLocation = ((RazorView)helper.ViewContext.View).Path;
+            absolutePath = Path.GetDirectoryName(viewLocation).Replace('\\', '/') + '/';
+        }
         var relative = file.Replace('\\', '/');
         var question = relative.IndexOf('?', StringComparison.Ordinal);
         if (question >= 0)

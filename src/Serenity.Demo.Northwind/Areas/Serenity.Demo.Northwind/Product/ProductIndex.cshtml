@@ -1,6 +1,6 @@
-﻿@inject ITextLocalizer Localizer
+@inject ITextLocalizer Localizer
 @{
-    ViewData["Title"] = Localizer.Get("Db.Northwind.Product.EntityPlural");
+    ViewData["Title"] = Localizer.Get(ProductRow.Fields.PageTitle());
 }
 
 @section Head {
@@ -10,5 +10,6 @@
 <div id="GridDiv"></div>
 
 <script type="module">
-    Serenity.gridPageInit(Serenity.Demo.Northwind.ProductGrid);
+    import pageInit from '@Html.ResolveWithHash(ESM.ProductPage)';
+    pageInit();
 </script>

@@ -8,6 +8,6 @@ public class CategoryPage : Controller
     [Route("Northwind/Category")]
     public ActionResult Index()
     {
-        return View(MVC.Views.Category.CategoryIndex);
+        return this.GridPage<CategoryRow>(ESM.CategoryPage);
     }
 }

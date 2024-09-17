@@ -1,15 +1,15 @@
 <Project>
   <Import Project="$(MSBuildThisFileDirectory)..\build\Feature.Build.targets" />
-  <Target Name="TransformMvc" BeforeTargets="BeforeBuild" DependsOnTargets="TransformToolRestore"
+  <Target Name="TransformMvc" BeforeTargets="BeforeBuild" DependsOnTargets="TransformInitProps;TransformToolRestore"
           Condition="'$(SergenTransform)' == 'mvc'">
-    <Exec Command="$(DotNetSergen) mvc -p &quot;$(ProjectFileName)&quot; -prop:Configuration=$(Configuration) -prop:AssemblyName=&quot;$(AssemblyName)&quot; -prop:OutDir=&quot;$(OutDir.Trim('\'))&quot; -prop:RootNamespace=$(RootNamespace) -prop:TargetFramework=$(TargetFramework)" ContinueOnError="true" />
+    <Exec Command="$(DotNetSergen) mvc $(SergenTransformArgs)" ContinueOnError="true" />
   </Target>
-  <Target Name="TransformMvct" BeforeTargets="BeforeBuild" DependsOnTargets="TransformToolRestore"
+  <Target Name="TransformMvct" BeforeTargets="BeforeBuild" DependsOnTargets="TransformInitProps;TransformToolRestore"
           Condition="'$(SergenTransform)' == 'mvct' OR '$(SergenTransform)' == 'all'">
-    <Exec Command="$(DotNetSergen) mvct -p &quot;$(ProjectFileName)&quot; -prop:Configuration=$(Configuration) -prop:AssemblyName=&quot;$(AssemblyName)&quot; -prop:OutDir=&quot;$(OutDir.Trim('\'))&quot; -prop:RootNamespace=$(RootNamespace) -prop:TargetFramework=$(TargetFramework)" ContinueOnError="true" />
+    <Exec Command="$(DotNetSergen) mvct $(SergenTransformArgs)" ContinueOnError="true" />
   </Target>
-  <Target Name="TransformServerTypings" AfterTargets="AfterBuild" DependsOnTargets="TransformToolRestore"
+  <Target Name="TransformServerTypings" AfterTargets="AfterBuild" DependsOnTargets="TransformInitProps;TransformToolRestore"
           Condition="'$(SergenTransform)' == 'servertypings' OR '$(SergenTransform)' == 'all'">
-    <Exec Command="$(DotNetSergen) servertypings -p &quot;$(ProjectFileName)&quot; -prop:Configuration=$(Configuration) -prop:AssemblyName=&quot;$(AssemblyName)&quot; -prop:OutDir=&quot;$(OutDir.Trim('\'))&quot; -prop:RootNamespace=$(RootNamespace) -prop:TargetFramework=$(TargetFramework)" ContinueOnError="true" />
+    <Exec Command="$(DotNetSergen) servertypings $(SergenTransformArgs)" ContinueOnError="true" />
   </Target>
 </Project>

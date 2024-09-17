@@ -9,6 +9,13 @@ public static class ModulePageExtensions
         return "Db." + fields.LocalTextPrefix + ".EntityPlural";
     }
 
+    public static ViewResult GridPage<TRow>(this Controller controller, string module,
+        object options = null, LocalText pageTitle = null)
+        where TRow: IRow, new()
+    {
+        return GridPage(controller, module, pageTitle ?? new TRow().Fields.PageTitle(), options);
+    }
+
     public static ViewResult GridPage(this Controller controller, string module, LocalText pageTitle,
         object options = null)
     {

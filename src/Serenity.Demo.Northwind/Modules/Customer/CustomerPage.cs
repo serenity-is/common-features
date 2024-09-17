@@ -8,7 +8,7 @@ public class CustomerPage : Controller
     [Route("Northwind/Customer")]
     public ActionResult Index()
     {
-        return View(MVC.Views.Customer.CustomerIndex);
+        return this.GridPage<CustomerRow>(ESM.CustomerPage);
     }
 }
 

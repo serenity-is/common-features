@@ -8,6 +8,6 @@ public class TerritoryPage : Controller
     [Route("Northwind/Territory")]
     public ActionResult Index()
     {
-        return View(MVC.Views.Territory.TerritoryIndex);
+        return this.GridPage<TerritoryRow>(ESM.TerritoryPage);
     }
 }

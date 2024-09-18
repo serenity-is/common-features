@@ -70,6 +70,23 @@ export interface ResetPasswordResponse extends ServiceResponse {
 export interface SendResetPasswordResponse extends ServiceResponse {
 	DemoLink?: string;
 }
+export interface TranslateTextInput {
+	TextKey?: string;
+	TargetLanguageID?: string;
+	SourceText?: string;
+}
+export interface TranslateTextOutput {
+	TextKey?: string;
+	TargetLanguageID?: string;
+	TranslatedText?: string;
+}
+export interface TranslateTextRequest extends ServiceRequest {
+	SourceLanguageID?: string;
+	Inputs?: TranslateTextInput[];
+}
+export interface TranslateTextResponse extends ServiceResponse {
+	Translations?: TranslateTextOutput[];
+}
 export interface TranslationItem {
 	Key?: string;
 	SourceText?: string;
@@ -134,23 +151,6 @@ export declare namespace UserPreferenceService {
 		readonly Retrieve: "Extensions/UserPreference/Retrieve";
 	};
 }
-export interface TranslateTextInput {
-	TextKey?: string;
-	TargetLanguageID?: string;
-	SourceText?: string;
-}
-export interface TranslateTextRequest extends ServiceRequest {
-	SourceLanguageID?: string;
-	Inputs?: TranslateTextInput[];
-}
-export interface TranslateTextOutput {
-	TextKey?: string;
-	TargetLanguageID?: string;
-	TranslatedText?: string;
-}
-export interface TranslateTextResponse extends ServiceResponse {
-	Outputs?: TranslateTextOutput[];
-}
 export interface ReportRetrieveResult extends ServiceResponse {
 	ReportKey?: string;
 	Title?: string;
@@ -159,6 +159,98 @@ export interface ReportRetrieveResult extends ServiceResponse {
 	IsDataOnlyReport?: boolean;
 	IsExternalReport?: boolean;
 }
+declare namespace texts {
+	namespace Db {
+		namespace Common {
+			namespace UserPreference {
+				const Name: string;
+				const PreferenceType: string;
+				const UserId: string;
+				const UserPreferenceId: string;
+				const Value: string;
+			}
+		}
+	}
+	namespace Forms {
+		namespace Membership {
+			namespace ChangePassword {
+				const ElevatedActions: string;
+				const FormTitle: string;
+				const PasswordNotSet: string;
+				const SetPassword: string;
+				const SetPasswordButton: string;
+				const SetPasswordInfo: string;
+				const SetPasswordSuccess: string;
+				const SubmitButton: string;
+				const Success: string;
+			}
+			namespace ForgotPassword {
+				const FormInfo: string;
+				const FormTitle: string;
+				const SubmitButton: string;
+				const SuccessMessage: string;
+			}
+			namespace ResetPassword {
+				const EmailSubject: string;
+				const FormTitle: string;
+				const SubmitButton: string;
+				const Success: string;
+			}
+		}
+	}
+	namespace Site {
+		namespace BasicProgressDialog {
+			const CancelTitle: string;
+			const PleaseWait: string;
+		}
+		namespace BulkServiceAction {
+			const AllHadErrorsFormat: string;
+			const AllSuccessFormat: string;
+			const ConfirmationFormat: string;
+			const ErrorCount: string;
+			const NothingToProcess: string;
+			const SomeHadErrorsFormat: string;
+			const SuccessCount: string;
+		}
+		namespace Dialogs {
+			const PendingChangesConfirmation: string;
+			const PendingChangesUnloadWarning: string;
+		}
+		namespace Translation {
+			const Assembly: string;
+			const CopyFailMessage: string;
+			const CopySourceTranslations: string;
+			const CopySuccessMessage: string;
+			const CopyTargetTranslations: string;
+			const CustomText: string;
+			const EntityPlural: string;
+			const HasTranslation: string;
+			const Key: string;
+			const OverrideConfirmation: string;
+			const SaveChangesButton: string;
+			const SaveSuccessMessage: string;
+			const SourceLanguage: string;
+			const SourceTargetLanguageSame: string;
+			const SourceText: string;
+			const TargetLanguage: string;
+			const TargetLanguageRequired: string;
+			const TargetText: string;
+			const TranslateAllText: string;
+			const TranslateTextDisabled: string;
+			const UserTranslated: string;
+		}
+	}
+	namespace Validation {
+		const InvalidResetToken: string;
+		const MinRequiredPasswordLength: string;
+		const PasswordConfirmMismatch: string;
+		const PasswordStrengthRequireDigit: string;
+		const PasswordStrengthRequireLowercase: string;
+		const PasswordStrengthRequireNonAlphanumeric: string;
+		const PasswordStrengthRequireUppercase: string;
+	}
+}
+export declare const Texts: typeof texts;
 export declare class BasicProgressDialog<P = {}> extends BaseDialog<P> {
 	constructor(props?: WidgetProps<P>);
 	cancelled: boolean;

@@ -78,10 +78,15 @@ public static class ExtensionsTexts
             public static readonly LocalText SaveChangesButton = "Save Changes";
             public static readonly LocalText SaveSuccessMessage = "User translations in target language are saved to {0}";
             public static readonly LocalText SourceLanguage = "Source Language";
+            public static readonly LocalText SourceTargetLanguageSame = "Source and target languages should be different!";
             public static readonly LocalText SourceText = "Effective Translation in Source Language";
             public static readonly LocalText TargetLanguage = "Target Language";
+            public static readonly LocalText TargetLanguageRequired = "Please select target language!";
             public static readonly LocalText TargetText = "Effective Translation in Target Language";
+            public static readonly LocalText TranslateAllText = "AI Translate All";
+            public static readonly LocalText TranslateTextDisabled = "Auto translation is disabled!";
             public static readonly LocalText UserTranslated = "User Translated";
+
         }
     }
 

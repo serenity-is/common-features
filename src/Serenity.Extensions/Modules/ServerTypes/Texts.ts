@@ -1,6 +1,6 @@
 ﻿import { proxyTexts } from "@serenity-is/corelib";
 
-namespace Serenity.Extensions.Texts {
+namespace texts {
 
     export declare namespace Db {
 
@@ -84,9 +84,13 @@ namespace Serenity.Extensions.Texts {
             export const SaveChangesButton: string;
             export const SaveSuccessMessage: string;
             export const SourceLanguage: string;
+            export const SourceTargetLanguageSame: string;
             export const SourceText: string;
             export const TargetLanguage: string;
+            export const TargetLanguageRequired: string;
             export const TargetText: string;
+            export const TranslateAllText: string;
+            export const TranslateTextDisabled: string;
             export const UserTranslated: string;
         }
     }
@@ -101,7 +105,10 @@ namespace Serenity.Extensions.Texts {
         export const PasswordStrengthRequireUppercase: string;
     }
 
-    Serenity.Extensions['Texts'] = proxyTexts(Texts, '', {
+}
+
+export const Texts: typeof texts = proxyTexts({}, '', 
+{
         Db: {
             Common: {
                 UserPreference: {}
@@ -122,6 +129,3 @@ namespace Serenity.Extensions.Texts {
         },
         Validation: {}
     }) as any;
-}
-
-export const Texts = Serenity.Extensions.Texts;

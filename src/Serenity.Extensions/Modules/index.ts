@@ -1,5 +1,6 @@
 export * from "./ServerTypes/Extensions";
 export * from "./ServerTypes/Reporting";
+export * from "./ServerTypes/Texts";
 export * from "./BulkActions/BasicProgressDialog";
 export * from "./BulkActions/BulkServiceAction";
 export * from "./ExportImport/ExcelExportHelper";

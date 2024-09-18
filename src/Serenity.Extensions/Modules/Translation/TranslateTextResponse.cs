@@ -1,6 +1,6 @@
 namespace Serenity.Extensions;
 
-public class TranslateTextResponse : ServiceRequest
+public class TranslateTextResponse : ServiceResponse
 {
     public List<TranslateTextOutput> Translations { get; set; }
 }

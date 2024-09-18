@@ -1,4 +1,4 @@
-import { Decorators, DialogTexts, BaseDialog, WidgetProps, localText } from "@serenity-is/corelib";
+import { Decorators, DialogTexts, BaseDialog, WidgetProps, localText, Dialog } from "@serenity-is/corelib";
 
 @Decorators.registerClass("Serenity.Extensions.BasicProgressDialog")
 export class BasicProgressDialog<P = {}> extends BaseDialog<P> {
@@ -45,11 +45,10 @@ export class BasicProgressDialog<P = {}> extends BaseDialog<P> {
             class: 'btn btn-danger',
             click: () => {
                 this.cancelled = true;
-                this.domNode.closest('.ui-dialog')
-                    .querySelectorAll('.ui-dialog-buttonpane .ui-button')?.forEach((el: HTMLElement) => {
-                        el.setAttribute('disabled', 'disabled');
-                        el.style.opacity = '0.5';
-                    });
+                Dialog.getInstance(this.domNode)?.getFooterNode()?.querySelectorAll('button')?.forEach((el: HTMLElement) => {
+                    el.setAttribute('disabled', 'disabled');
+                    el.style.opacity = '0.5';
+                });
 
                 this.dialogTitle = this.cancelTitle?.trim() || localText('Site.BasicProgressDialog.CancelTitle');
             }

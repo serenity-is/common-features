@@ -134,6 +134,23 @@ export declare namespace UserPreferenceService {
 		readonly Retrieve: "Extensions/UserPreference/Retrieve";
 	};
 }
+export interface TranslateTextInput {
+	TextKey?: string;
+	TargetLanguageID?: string;
+	SourceText?: string;
+}
+export interface TranslateTextRequest extends ServiceRequest {
+	SourceLanguageID?: string;
+	Inputs?: TranslateTextInput[];
+}
+export interface TranslateTextOutput {
+	TextKey?: string;
+	TargetLanguageID?: string;
+	TranslatedText?: string;
+}
+export interface TranslateTextResponse extends ServiceResponse {
+	Outputs?: TranslateTextOutput[];
+}
 export interface ReportRetrieveResult extends ServiceResponse {
 	ReportKey?: string;
 	Title?: string;

@@ -91,6 +91,8 @@ namespace texts {
             export const TargetLanguageRequired: string;
             export const TargetText: string;
             export const TranslateAllText: string;
+            export const TranslateText: string;
+            export const TranslateTextConfirmation: string;
             export const TranslateTextDisabled: string;
             export const UserTranslated: string;
         }

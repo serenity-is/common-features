@@ -237,6 +237,8 @@ declare namespace texts {
 			const TargetLanguageRequired: string;
 			const TargetText: string;
 			const TranslateAllText: string;
+			const TranslateText: string;
+			const TranslateTextConfirmation: string;
 			const TranslateTextDisabled: string;
 			const UserTranslated: string;
 		}

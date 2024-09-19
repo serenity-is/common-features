@@ -80,11 +80,13 @@ public static class ExtensionsTexts
             public static readonly LocalText SaveSuccessMessage = "User translations in target language are saved to {0}";
             public static readonly LocalText SourceLanguage = "Source Language";
             public static readonly LocalText SourceTargetLanguageSame = "Source and target languages should be different!";
-            public static readonly LocalText SourceText = "Effective Translation in Source Language";
+            public static readonly LocalText SourceText = "Text in Source Language";
             public static readonly LocalText TargetLanguage = "Target Language";
             public static readonly LocalText TargetLanguageRequired = "Please select target language!";
-            public static readonly LocalText TargetText = "Effective Translation in Target Language";
-            public static readonly LocalText TranslateAllText = "AI Translate All";
+            public static readonly LocalText TargetText = "Translation in Target Language";
+            public static readonly LocalText TranslateAllText = "AI Translate";
+            public static readonly LocalText TranslateText = "AI Translate";
+            public static readonly LocalText TranslateTextConfirmation = "AI translate {0} of the texts which has no translation in the target language?";
             public static readonly LocalText TranslateTextDisabled = "Auto translation is disabled!";
             public static readonly LocalText UserTranslated = "User Translated";
 

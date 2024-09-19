@@ -65,6 +65,7 @@ public static class ExtensionsTexts
 
         public static class Translation
         {
+            public static readonly LocalText AllTextsAlreadyTranslated = "All texts in the view are already translated!";
             public static readonly LocalText Assembly = "Assembly";
             public static readonly LocalText CopySuccessMessage = "Copied texts to clipboard in JSON format.";
             public static readonly LocalText CopyFailMessage = "Failed to Copy to clipboard! It might be due to not having HTTPS or necessary permissions.";

@@ -217,6 +217,7 @@ declare namespace texts {
 			const PendingChangesUnloadWarning: string;
 		}
 		namespace Translation {
+			const AllTextsAlreadyTranslated: string;
 			const Assembly: string;
 			const CopyFailMessage: string;
 			const CopySourceTranslations: string;

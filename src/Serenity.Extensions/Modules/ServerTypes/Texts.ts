@@ -71,6 +71,7 @@ namespace texts {
         }
 
         namespace Translation {
+            export const AllTextsAlreadyTranslated: string;
             export const Assembly: string;
             export const CopyFailMessage: string;
             export const CopySourceTranslations: string;

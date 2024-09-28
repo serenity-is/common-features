@@ -4,13 +4,16 @@ import { Decorators, DialogButton, BaseDialog, HtmlContentEditor, HtmlNoteConten
 export class NoteDialog<P = {}> extends BaseDialog<P> {
 
     declare private textEditor: HtmlContentEditor;
+    declare private textValue: string;
 
     protected renderContents(): any {
         const id = this.useIdPrefix();
         return (
             <form id={id.Form} class="s-Form">
-                <textarea id={id.Text} class="required" ref={el => queueMicrotask(() =>
-                    this.textEditor = new HtmlNoteContentEditor({ element: el }))} />
+                <textarea id={id.Text} class="required" ref={el => queueMicrotask(() => {
+                    this.textEditor = new HtmlNoteContentEditor({ element: el });
+                    this.textEditor.value = this.textValue;
+                })} />
             </form>
         );
     }
@@ -35,7 +38,9 @@ export class NoteDialog<P = {}> extends BaseDialog<P> {
     }
 
     set text(value: string) {
-        this.textEditor.value = value;
+        this.textValue = value;
+        if (this.textEditor)
+            this.textEditor.value = value;
     }
 
     declare public okClick: () => void;

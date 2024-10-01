@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 
 namespace Serenity.Reporting;
@@ -33,12 +32,8 @@ public class HtmlReportCallbackUrlInterceptor(
                     HtmlReportCallbackUrlBuilder.ReportAuthCookieName, out var token) == true &&
                     !string.IsNullOrEmpty(token))
                 {
-                    var protector = dataProtectionProvider.CreateProtector(HtmlReportCallbackUrlBuilder.ReportAuthCookieName);
-                    var tokenBytes = WebEncoders.Base64UrlDecode(token);
-                    var ticket = protector.Unprotect(tokenBytes);
-
-                    using var ms = new System.IO.MemoryStream(ticket);
-                    using var br = new System.IO.BinaryReader(ms);
+                    using var br = dataProtectionProvider.CreateProtector(HtmlReportCallbackUrlBuilder.ReportAuthCookieName)
+                        .UnprotectBinary(token);
                     var dt = DateTime.FromBinary(br.ReadInt64());
                     if (dt > DateTime.UtcNow)
                     {

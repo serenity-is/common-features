@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.WebUtilities;
 using System.Net;
 
 namespace Serenity.Reporting;
@@ -78,22 +77,18 @@ public class HtmlReportCallbackUrlBuilder(
                 isAllGranted ||
                 granted.Any())
             {
-                byte[] bytes;
-                using var ms = new System.IO.MemoryStream();
-                using var bw = new System.IO.BinaryWriter(ms);
-                bw.Write(DateTime.UtcNow.AddMinutes(5).ToBinary());
-                bw.Write(username ?? "");
-                bw.Write(isAllGranted ? -1 : granted.Count());
-                if (!isAllGranted)
-                {
-                    foreach (var p in granted)
-                        bw.Write(p);
-                }
-                bw.Flush();
-                bytes = ms.ToArray();
-
-                var protector = dataProtectionProvider.CreateProtector(ReportAuthCookieName);
-                var token = WebEncoders.Base64UrlEncode(protector.Protect(bytes));
+                var token = dataProtectionProvider.CreateProtector(ReportAuthCookieName)
+                    .ProtectBinary(bw =>
+                    {
+                        bw.Write(DateTime.UtcNow.AddMinutes(5).ToBinary());
+                        bw.Write(username ?? "");
+                        bw.Write(isAllGranted ? -1 : granted.Count());
+                        if (!isAllGranted)
+                        {
+                            foreach (var p in granted)
+                                bw.Write(p);
+                        }
+                    });
                 yield return new Cookie(ReportAuthCookieName, token);
             }
         }

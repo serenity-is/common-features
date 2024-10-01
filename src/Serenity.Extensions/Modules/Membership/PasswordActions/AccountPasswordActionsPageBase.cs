@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
 
 namespace Serenity.Extensions;
 
@@ -8,7 +7,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
     where TUserRow : class, IRow, IIdRow, IEmailRow, IPasswordRow, new()
 {
     protected virtual string ModuleFolder => "~/Serenity.Extensions/esm/Modules/Membership/PasswordActions/";
-    protected virtual string ModulePath(string key) => ModuleFolder + key +  "Page.js";
+    protected virtual string ModulePath(string key) => ModuleFolder + key + "Page.js";
 
     [HttpGet, PageAuthorize]
     public virtual ActionResult ChangePassword(
@@ -36,7 +35,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
             Module = ModulePath("SetPassword"),
             PageTitle = ExtensionsTexts.Forms.Membership.ChangePassword.SetPassword
         });
-    }    
+    }
 
     [HttpPost, ServiceAuthorize]
     public virtual ActionResult SendResetPassword(
@@ -46,7 +45,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
         [FromServices] ITwoLevelCache cache,
         [FromServices] ITextLocalizer localizer)
     {
-        var userDefinition = User.GetUserDefinition<IUserDefinition>(userRetrieveService) ?? 
+        var userDefinition = User.GetUserDefinition<IUserDefinition>(userRetrieveService) ??
             throw new ValidationError("Couldn't find user definition.");
 
 #if (IsPublicDemo)
@@ -198,19 +197,12 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
 
     protected virtual string GenerateResetPasswordToken(TUserRow user)
     {
-        byte[] bytes;
-        using (var ms = new MemoryStream())
-        using (var bw = new BinaryWriter(ms))
+        return HttpContext.RequestServices.GetDataProtector("ResetPassword").ProtectBinary(bw =>
         {
             bw.Write(DateTime.UtcNow.AddHours(3).ToBinary());
             bw.Write(Convert.ToString(user.IdField.AsObject(user), CultureInfo.InvariantCulture));
             bw.Write(GetNonceFor(user));
-            bw.Flush();
-            bytes = ms.ToArray();
-        }
-
-        return Convert.ToBase64String(HttpContext.RequestServices
-            .GetDataProtector("ResetPassword").Protect(bytes));
+        });
     }
 
     [HttpGet]
@@ -223,11 +215,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
         int nonce;
         try
         {
-            var bytes = HttpContext.RequestServices
-                .GetDataProtector("ResetPassword").Unprotect(Convert.FromBase64String(t));
-
-            using var ms = new MemoryStream(bytes);
-            using var br = new BinaryReader(ms);
+            using var br = HttpContext.RequestServices.GetDataProtector("ResetPassword").UnprotectBinary(t);
             var dt = DateTime.FromBinary(br.ReadInt64());
             if (dt < DateTime.UtcNow)
                 return Error(ExtensionsTexts.Validation.InvalidResetToken.ToString(localizer));
@@ -265,6 +253,8 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
         };
     }
 
+    private const string ResetPasswordPurpose = "ResetPassword";
+
     [HttpPost, JsonRequest]
     public virtual Result<ResetPasswordResponse> ResetPassword(ResetPasswordRequest request,
         [FromServices] ITwoLevelCache cache,
@@ -279,21 +269,15 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
             ArgumentNullException.ThrowIfNull(request);
             ArgumentException.ThrowIfNullOrEmpty(request.Token);
 
-            var bytes = HttpContext.RequestServices
-                .GetDataProtector("ResetPassword").Unprotect(Convert.FromBase64String(request.Token));
+            using var br = HttpContext.RequestServices.GetDataProtector(ResetPasswordPurpose)
+                .UnprotectBinary(request.Token);
 
-            object userId;
-            int nonce;
-            using (var ms = new MemoryStream(bytes))
-            using (var br = new BinaryReader(ms))
-            {
-                var dt = DateTime.FromBinary(br.ReadInt64());
-                if (dt < DateTime.UtcNow)
-                    throw new ValidationError(ExtensionsTexts.Validation.InvalidResetToken.ToString(localizer));
+            var dt = DateTime.FromBinary(br.ReadInt64());
+            if (dt < DateTime.UtcNow)
+                throw new ValidationError(ExtensionsTexts.Validation.InvalidResetToken.ToString(localizer));
 
-                userId = new TUserRow().IdField.ConvertValue(br.ReadString(), CultureInfo.InvariantCulture);
-                nonce = br.ReadInt32();
-            }
+            var userId = new TUserRow().IdField.ConvertValue(br.ReadString(), CultureInfo.InvariantCulture);
+            var nonce = br.ReadInt32();
 
             ArgumentNullException.ThrowIfNull(sqlConnections);
 

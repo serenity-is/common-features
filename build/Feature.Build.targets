@@ -21,15 +21,8 @@
     <Exec Command="dotnet tool restore" ContinueOnError="true" />
     <Touch Files="$(DotnetToolRestoreStamp)" AlwaysCreate="true" />
   </Target>
-  <Target Name="CalculateTSBuildInputs">
-    <ItemGroup>
-      <TSBuildInputs Include="@(TypeScriptCompile)"
-          Condition="'%(TypeScriptCompile.Identity)' != 'wwwroot\index.d.ts'" />
-    </ItemGroup>
-  </Target>
-  <Target Name="CompileProjectTSConfig" AfterTargets="AfterBuild" DependsOnTargets="NpmInstall;RestoreNodeTypes;CalculateTSBuildInputs;"
-          Condition="Exists('tsconfig.json') And '$(BuildingProject)' != 'false' And '$(DesignTimeBuild)' != 'true'"
-          Inputs="@(TSBuildInputs)" Outputs="@(TSBuildOutputs)">
+  <Target Name="CompileProjectTSConfig" AfterTargets="AfterBuild" DependsOnTargets="NpmInstall;RestoreNodeTypes"
+          Condition="Exists('tsconfig.json') And '$(BuildingProject)' != 'false' And '$(DesignTimeBuild)' != 'true'">
     <Message Text="Executing TypeScript compiler for $(ProjectName)..." Importance="high"></Message>
     <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" Condition="!Exists('tsbuild.js')" ContinueOnError="true" />
     <Exec Command="pnpm build" Condition="Exists('tsbuild.js')" ContinueOnError="true" />

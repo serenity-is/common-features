@@ -174,13 +174,7 @@ declare namespace texts {
 	namespace Forms {
 		namespace Membership {
 			namespace ChangePassword {
-				const ElevatedActions: string;
 				const FormTitle: string;
-				const PasswordNotSet: string;
-				const SetPassword: string;
-				const SetPasswordButton: string;
-				const SetPasswordInfo: string;
-				const SetPasswordSuccess: string;
 				const SubmitButton: string;
 				const Success: string;
 			}
@@ -195,6 +189,13 @@ declare namespace texts {
 				const FormTitle: string;
 				const SubmitButton: string;
 				const Success: string;
+			}
+			namespace SetPassword {
+				const ElevatedActionsMessage: string;
+				const EmailSentMessage: string;
+				const EmailToSetPasswordMessage: string;
+				const PageTitle: string;
+				const SendEmailButton: string;
 			}
 		}
 	}
@@ -254,6 +255,16 @@ declare namespace texts {
 	}
 }
 export declare const Texts: typeof texts;
+export declare const BasicProgressDialogTexts: typeof texts.Site.BasicProgressDialog;
+export declare const BulkServiceActionTexts: typeof texts.Site.BulkServiceAction;
+export declare const ChangePasswordFormTexts: typeof texts.Forms.Membership.ChangePassword;
+export declare const DialogUtilsTexts: typeof texts.Site.Dialogs;
+export declare const ExtensionsTexts: typeof texts;
+export declare const ForgotPasswordFormTexts: typeof texts.Forms.Membership.ForgotPassword;
+export declare const PasswordStrengthValidationTexts: typeof texts.Validation;
+export declare const ResetPasswordFormTexts: typeof texts.Forms.Membership.ResetPassword;
+export declare const SetPasswordFormTexts: typeof texts.Forms.Membership.SetPassword;
+export declare const TranslationTexts: typeof texts.Site.Translation;
 export declare class BasicProgressDialog<P = {}> extends BaseDialog<P> {
 	constructor(props?: WidgetProps<P>);
 	cancelled: boolean;

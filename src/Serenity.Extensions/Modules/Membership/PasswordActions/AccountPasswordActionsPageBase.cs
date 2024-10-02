@@ -33,7 +33,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
         return this.PanelPage(new()
         {
             Module = ModulePath("SetPassword"),
-            PageTitle = ExtensionsTexts.Forms.Membership.ChangePassword.SetPassword
+            PageTitle = SetPasswordFormTexts.PageTitle
         });
     }
 
@@ -134,7 +134,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
         return new ModulePageModel()
         {
             Module = ModulePath(nameof(ForgotPassword)),
-            PageTitle = ExtensionsTexts.Forms.Membership.ForgotPassword.FormTitle,
+            PageTitle = ForgotPasswordFormTexts.FormTitle,
             Layout = "_LayoutNoNavigation"
         };
     }
@@ -183,7 +183,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
                 ResetLink = resetLink
             };
 
-            var emailSubject = ExtensionsTexts.Forms.Membership.ResetPassword.EmailSubject.ToString(localizer);
+            var emailSubject = ResetPasswordFormTexts.EmailSubject.ToString(localizer);
             var emailBody = TemplateHelper.RenderViewToString(HttpContext.RequestServices,
                 MVC.Views.Membership.PasswordActions.ResetPasswordEmail, emailModel);
 
@@ -243,7 +243,7 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
         return new()
         {
             Module = ModulePath(nameof(ResetPassword)),
-            PageTitle = ExtensionsTexts.Forms.Membership.ResetPassword.FormTitle,
+            PageTitle = ResetPasswordFormTexts.FormTitle,
             Layout = "_LayoutNoNavigation",
             Options = new
             {

@@ -1,6 +1,6 @@
 import { ResetPasswordForm } from "../../ServerTypes/Extensions/ResetPasswordForm";
 import { ResetPasswordRequest } from "../../ServerTypes/Extensions/ResetPasswordRequest";
-import { Texts } from "../../ServerTypes/Texts";
+import { ExtensionsTexts, ResetPasswordFormTexts } from "../../ServerTypes/Texts";
 import { PropertyPanel, WidgetProps, informationDialog, resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { ResetPasswordResponse } from "../../ServerTypes/Extensions/ResetPasswordResponse";
 import { AccountPanelTitle } from "../AccountPanelTitle";
@@ -14,8 +14,6 @@ interface ResetPasswordOptions {
     token: string;
     minPasswordLength: number;
 }
-
-const myTexts = Texts.Forms.Membership.ResetPassword;
 
 export class ResetPasswordPanel extends PropertyPanel<ResetPasswordRequest, ResetPasswordOptions> {
 
@@ -31,7 +29,7 @@ export class ResetPasswordPanel extends PropertyPanel<ResetPasswordRequest, Rese
 
         this.form.ConfirmPassword.addValidationRule(this.uniqueName, e => {
             if (this.form.ConfirmPassword.value !== this.form.NewPassword.value)
-                return Texts.Validation.PasswordConfirmMismatch;
+                return ExtensionsTexts.Validation.PasswordConfirmMismatch;
         });
     }
 
@@ -48,7 +46,7 @@ export class ResetPasswordPanel extends PropertyPanel<ResetPasswordRequest, Rese
                 if (response.RedirectHome)
                     window.location.href = resolveUrl('~/')
                 else
-                    informationDialog(myTexts.Success, () => {
+                    informationDialog(ResetPasswordFormTexts.Success, () => {
                         window.location.href = resolveUrl('~/Account/Login');
                     });
             }
@@ -61,12 +59,12 @@ export class ResetPasswordPanel extends PropertyPanel<ResetPasswordRequest, Rese
             <div class="s-container-tight">
                 <AccountPanelTitle />
                 <div class="s-Panel p-4">
-                    <h5 class="text-center mb-4">{myTexts.FormTitle}</h5>
+                    <h5 class="text-center mb-4">{ResetPasswordFormTexts.FormTitle}</h5>
                     <form id={id.Form} action="">
                         <div id={id.PropertyGrid}></div>
                         <button id={id.SubmitButton} type="submit" class="btn btn-primary mx-8 w-100"
                             onClick={e => { e.preventDefault(); this.submitClick(); }}>
-                            {myTexts.SubmitButton}
+                            {ResetPasswordFormTexts.SubmitButton}
                         </button>
                         <input type="hidden" value={this.options.token} ref={el => this.tokenInput = el} />
                     </form>

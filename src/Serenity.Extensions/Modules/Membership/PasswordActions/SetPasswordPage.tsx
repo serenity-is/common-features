@@ -1,12 +1,10 @@
-import { Texts } from "../../ServerTypes/Texts";
+import { SetPasswordFormTexts } from "../../ServerTypes/Texts";
 import { BasePanel, informationDialog, parseQueryString, resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { SendResetPasswordResponse } from "../../ServerTypes/Extensions/SendResetPasswordResponse";
 
 export default function pageInit() {
     new SetPasswordPage({ element: "#PanelDiv", class: "s-container-tight mt-5 s-Form" });
 }
-
-const myTexts = Texts.Forms.Membership.ChangePassword;
 
 class SetPasswordPage extends BasePanel {
 
@@ -24,7 +22,7 @@ class SetPasswordPage extends BasePanel {
                         });
                 }
                 else {
-                    informationDialog(myTexts.SetPasswordSuccess, () => {
+                    informationDialog(SetPasswordFormTexts.EmailSentMessage, () => {
                         window.location.href = resolveUrl('~/');
                     });
                 }
@@ -35,17 +33,17 @@ class SetPasswordPage extends BasePanel {
     renderContents(): any {
         return (
             <div class="s-Panel">
-                <h3 class="page-title mb-4 text-center">{myTexts.SetPassword}</h3>
+                <h3 class="page-title mb-4 text-center">{SetPasswordFormTexts.PageTitle}</h3>
                 {
                     parseQueryString()["reason"] == "elevate" ?
-                        <p>{myTexts.ElevatedActions}</p> :
-                        <p>{myTexts.SetPasswordInfo}</p>
+                        <p>{SetPasswordFormTexts.ElevatedActionsMessage}</p> :
+                        <p>{SetPasswordFormTexts.EmailToSetPasswordMessage}</p>
                 }
                 <form>
                     <button class="btn btn-primary w-100" onClick={e => {
                         e.preventDefault();
                         this.submitClick()
-                    }}>{myTexts.SetPasswordButton}</button>
+                    }}>{SetPasswordFormTexts.SendEmailButton}</button>
                 </form>
             </div>
         );

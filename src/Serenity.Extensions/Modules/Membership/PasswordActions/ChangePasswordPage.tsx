@@ -1,4 +1,4 @@
-import { Texts } from "../../ServerTypes/Texts";
+import { ChangePasswordFormTexts } from "../../ServerTypes/Texts";
 import { PropertyPanel, WidgetProps, informationDialog, localText, resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { ChangePasswordForm } from "../../ServerTypes/Extensions/ChangePasswordForm";
 import { ChangePasswordRequest } from "../../ServerTypes/Extensions/ChangePasswordRequest";
@@ -7,8 +7,6 @@ import { addPasswordStrengthValidation } from "../PasswordStrength/PasswordStren
 export default function pageInit() {
     new ChangePasswordPanel({ element: "#PanelDiv", class: 's-container-tight mt-5 s-Form flex-grow-0' });
 }
-
-const myTexts = Texts.Forms.Membership.ChangePassword;
 
 class ChangePasswordPanel<P = {}> extends PropertyPanel<ChangePasswordRequest, P> {
 
@@ -37,7 +35,7 @@ class ChangePasswordPanel<P = {}> extends PropertyPanel<ChangePasswordRequest, P
             url: resolveUrl('~/Account/ChangePassword'),
             request: request,
             onSuccess: () => {
-                informationDialog(myTexts.Success, () => {
+                informationDialog(ChangePasswordFormTexts.Success, () => {
                     window.location.href = resolveUrl('~/');
                 })
             }
@@ -48,13 +46,13 @@ class ChangePasswordPanel<P = {}> extends PropertyPanel<ChangePasswordRequest, P
         const id = this.useIdPrefix();
         return (
             <div class="s-Panel">
-                <h3 class="page-title mb-4 text-center">{myTexts.FormTitle}</h3>
+                <h3 class="page-title mb-4 text-center">{ChangePasswordFormTexts.FormTitle}</h3>
                 <form id={id.Form} action="">
                     <div id={id.PropertyGrid}></div>
                     <div class="px-field mt-4">
                         <button id={id.SubmitButton} type="submit" class="btn btn-primary w-100"
                             onClick={e => { e.preventDefault(); this.submitClick() }}>
-                            {myTexts.SubmitButton}
+                            {ChangePasswordFormTexts.SubmitButton}
                         </button>
                     </div>
                 </form>

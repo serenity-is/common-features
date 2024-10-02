@@ -1,5 +1,3 @@
-using Texts = Serenity.Extensions.ExtensionsTexts.Validation;
-
 namespace Serenity.Extensions;
 
 public class PasswordStrengthValidator(IOptions<MembershipSettings> membershipSettings, 
@@ -19,7 +17,7 @@ public class PasswordStrengthValidator(IOptions<MembershipSettings> membershipSe
 
         if (password.Length < (rules.MinPasswordLength))
             throw new ValidationError(nameof(MembershipSettings.MinPasswordLength), "Password",
-                string.Format(CultureInfo.CurrentCulture, Texts.MinRequiredPasswordLength.ToString(localizer), 
+                string.Format(CultureInfo.CurrentCulture, PasswordStrengthValidationTexts.MinRequiredPasswordLength.ToString(localizer), 
                 membershipSettings.Value.MinPasswordLength));
 
         var lowerCount = 0;
@@ -45,18 +43,18 @@ public class PasswordStrengthValidator(IOptions<MembershipSettings> membershipSe
 
         if (rules.RequireUppercase && upperCount == 0)
             throw new ValidationError(nameof(rules.RequireUppercase), "Password", 
-                Texts.PasswordStrengthRequireUppercase.ToString(localizer));
+                PasswordStrengthValidationTexts.PasswordStrengthRequireUppercase.ToString(localizer));
 
         if (rules.RequireLowercase && lowerCount == 0)
             throw new ValidationError(nameof(rules.RequireLowercase), "Password",
-                Texts.PasswordStrengthRequireUppercase.ToString(localizer));
+                PasswordStrengthValidationTexts.PasswordStrengthRequireUppercase.ToString(localizer));
 
         if (rules.RequireDigit && lowerCount == 0)
             throw new ValidationError(nameof(rules.RequireDigit), "Password",
-                Texts.PasswordStrengthRequireDigit.ToString(localizer));
+                PasswordStrengthValidationTexts.PasswordStrengthRequireDigit.ToString(localizer));
 
         if (rules.RequireNonAlphanumeric && nonAlphaCount == 0)
             throw new ValidationError(nameof(rules.RequireNonAlphanumeric), "Password",
-                Texts.PasswordStrengthRequireNonAlphanumeric.ToString(localizer));
+                PasswordStrengthValidationTexts.PasswordStrengthRequireNonAlphanumeric.ToString(localizer));
     }
 }

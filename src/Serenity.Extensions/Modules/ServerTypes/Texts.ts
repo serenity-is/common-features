@@ -21,13 +21,7 @@ namespace texts {
         namespace Membership {
 
             namespace ChangePassword {
-                export const ElevatedActions: string;
                 export const FormTitle: string;
-                export const PasswordNotSet: string;
-                export const SetPassword: string;
-                export const SetPasswordButton: string;
-                export const SetPasswordInfo: string;
-                export const SetPasswordSuccess: string;
                 export const SubmitButton: string;
                 export const Success: string;
             }
@@ -44,6 +38,14 @@ namespace texts {
                 export const FormTitle: string;
                 export const SubmitButton: string;
                 export const Success: string;
+            }
+
+            namespace SetPassword {
+                export const ElevatedActionsMessage: string;
+                export const EmailSentMessage: string;
+                export const EmailToSetPasswordMessage: string;
+                export const PageTitle: string;
+                export const SendEmailButton: string;
             }
         }
     }
@@ -110,25 +112,45 @@ namespace texts {
 
 }
 
-export const Texts: typeof texts = proxyTexts({}, '', 
-{
-        Db: {
-            Common: {
-                UserPreference: {}
-            }
-        },
-        Forms: {
-            Membership: {
-                ChangePassword: {},
-                ForgotPassword: {},
-                ResetPassword: {}
-            }
-        },
-        Site: {
-            BasicProgressDialog: {},
-            BulkServiceAction: {},
-            Dialogs: {},
-            Translation: {}
-        },
-        Validation: {}
-    }) as any;
+export const Texts: typeof texts = proxyTexts({}, '', {
+    Db: {
+        Common: {
+            UserPreference: {}
+        }
+    },
+    Forms: {
+        Membership: {
+            ChangePassword: {},
+            ForgotPassword: {},
+            ResetPassword: {},
+            SetPassword: {}
+        }
+    },
+    Site: {
+        BasicProgressDialog: {},
+        BulkServiceAction: {},
+        Dialogs: {},
+        Translation: {}
+    },
+    Validation: {}
+}) as any;
+
+export const BasicProgressDialogTexts = Texts.Site.BasicProgressDialog;
+
+export const BulkServiceActionTexts = Texts.Site.BulkServiceAction;
+
+export const ChangePasswordFormTexts = Texts.Forms.Membership.ChangePassword;
+
+export const DialogUtilsTexts = Texts.Site.Dialogs;
+
+export const ExtensionsTexts = Texts;
+
+export const ForgotPasswordFormTexts = Texts.Forms.Membership.ForgotPassword;
+
+export const PasswordStrengthValidationTexts = Texts.Validation;
+
+export const ResetPasswordFormTexts = Texts.Forms.Membership.ResetPassword;
+
+export const SetPasswordFormTexts = Texts.Forms.Membership.SetPassword;
+
+export const TranslationTexts = Texts.Site.Translation;

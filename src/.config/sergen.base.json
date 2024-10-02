@@ -1,9 +1,5 @@
 {
   "Extends": "defaults@6.6.0",
-  "ServerTypings": {
-    "LocalTexts": false,
-    "PreferRelativePaths": true
-  },
   "IncludeGlobalUsings": [
     "Serenity",
     "Serenity.ComponentModel",

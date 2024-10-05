@@ -20,11 +20,8 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
             return SetPassword();
         }
 
-        return this.PanelPage(new()
-        {
-            Module = ModulePath(nameof(ChangePassword)),
-            PageTitle = ExtensionsTexts.Forms.Membership.ChangePassword.FormTitle
-        });
+        return this.PanelPage(ModulePath(nameof(ChangePassword)),
+            ExtensionsTexts.Forms.Membership.ChangePassword.FormTitle);
     }
 
     [HttpGet, PageAuthorize]
@@ -245,9 +242,9 @@ public abstract class AccountPasswordActionsPageBase<TUserRow> : MembershipPageB
             Module = ModulePath(nameof(ResetPassword)),
             PageTitle = ResetPasswordFormTexts.FormTitle,
             Layout = "_LayoutNoNavigation",
-            Options = new
+            Options = new ResetPasswordOptions
             {
-                token,
+                token = token,
                 minPasswordLength = settings.MinPasswordLength
             }
         };

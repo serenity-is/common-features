@@ -1,7 +1,7 @@
 import { ResetPasswordForm } from "../../ServerTypes/Extensions/ResetPasswordForm";
 import { ResetPasswordRequest } from "../../ServerTypes/Extensions/ResetPasswordRequest";
 import { ExtensionsTexts, ResetPasswordFormTexts } from "../../ServerTypes/Texts";
-import { PropertyPanel, WidgetProps, informationDialog, resolveUrl, serviceCall } from "@serenity-is/corelib";
+import { PropertyPanel, TransformInclude, WidgetProps, informationDialog, resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { ResetPasswordResponse } from "../../ServerTypes/Extensions/ResetPasswordResponse";
 import { AccountPanelTitle } from "../AccountPanelTitle";
 import { addPasswordStrengthValidation } from "../PasswordStrength/PasswordStrengthValidation";
@@ -10,7 +10,7 @@ export default function pageInit(opt: ResetPasswordOptions) {
     new ResetPasswordPanel({ element: '#PanelDiv', class: 's-full-page justify-content-center s-Form', ...opt });
 }
 
-interface ResetPasswordOptions {
+export interface ResetPasswordOptions extends TransformInclude {
     token: string;
     minPasswordLength: number;
 }

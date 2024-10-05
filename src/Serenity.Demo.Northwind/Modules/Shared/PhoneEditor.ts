@@ -71,7 +71,7 @@ export class PhoneEditor<P extends PhoneEditorOptions = PhoneEditorOptions> exte
         }
 
         if (phone.startsWith('(') && phone.charAt(4) === ')') {
-            phone = phone.substr(1, 3) + phone.substring(5);
+            phone = phone.substring(1, 4) + phone.substring(5);
         }
 
         if (phone.length !== 10) {

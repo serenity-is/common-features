@@ -168,10 +168,10 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
 
         columns.QuantityPerUnit && (columns.QuantityPerUnit.format = str);
         columns.CategoryName && (columns.CategoryName.referencedFields = [fld.CategoryID]) &&
-            (columns.CategoryName.format = ctx => this.selectFormatter(ctx, fld.CategoryID, CategoryRow.getLookup()));
+            (columns.CategoryName.format = ctx => this.selectFormatter(ctx, fld.CategoryID, (CategoryRow as any).getLookup()));
 
         columns.SupplierCompanyName && (columns.SupplierCompanyName.referencedFields = [fld.SupplierID]) &&
-            (columns.SupplierCompanyName.format = ctx => this.selectFormatter(ctx, fld.SupplierID, SupplierRow.getLookup()));
+            (columns.SupplierCompanyName.format = ctx => this.selectFormatter(ctx, fld.SupplierID, (SupplierRow as any).getLookup()));
 
         columns.UnitPrice && (columns.UnitPrice.format = num);
         columns.UnitsInStock && (columns.UnitsInStock.format = num);

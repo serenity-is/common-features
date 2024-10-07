@@ -15,8 +15,8 @@ importers:
         specifier: ../Serenity/packages/sleekgrid
         version: link:../Serenity/packages/sleekgrid
       '@serenity-is/tsbuild':
-        specifier: 8.6.6
-        version: 8.6.6
+        specifier: 8.7.0
+        version: 8.7.0
       jsx-dom:
         specifier: 8.1.5
         version: 8.1.5
@@ -204,8 +204,8 @@ packages:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
 
-  '@serenity-is/tsbuild@8.6.6':
-    resolution: {integrity: sha512-FhwcpBceugP/jHhmKwI6oJgonBxeUq+fTGOscs/mutSyezjzBUbevmRIN2aS242fuypHNFqxEtg1qd9bKiAsrA==}
+  '@serenity-is/tsbuild@8.7.0':
+    resolution: {integrity: sha512-RdLjuSrTS/aC7cjQN/XNQd4a+/aY//oPRTozpOVqTRNTK4RLjkjVYwXEEL8t4kLxZPNnsYXrO6kbGxoQZJbTuQ==}
 
   '@types/dompurify@3.0.5':
     resolution: {integrity: sha512-1Wg0g3BtQF7sSb27fJQAKck1HECM6zV1EB66j8JH9i3LCjYabJa0FSdiSgsD5K/RbrsR0SiraKacLB+T8ZVYAg==}
@@ -445,7 +445,7 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@serenity-is/tsbuild@8.6.6':
+  '@serenity-is/tsbuild@8.7.0':
     dependencies:
       esbuild: 0.23.1
       glob: 11.0.0

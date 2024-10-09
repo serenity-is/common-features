@@ -9,8 +9,7 @@ export class NoteDialog<P = {}> extends BaseDialog<P> {
         const id = this.useIdPrefix();
         return (
             <form id={id.Form} class="s-Form">
-                <textarea id={id.Text} class="required" ref={el => queueMicrotask(() =>
-                    this.textEditor = new HtmlNoteContentEditor({ element: el }))} />
+                <textarea id={id.Text} class="required" ref={el => this.textEditor = new HtmlNoteContentEditor({ element: el })} />
             </form>
         );
     }

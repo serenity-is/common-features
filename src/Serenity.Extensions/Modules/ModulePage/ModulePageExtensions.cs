@@ -10,20 +10,21 @@ public static class ModulePageExtensions
     }
 
     public static ViewResult GridPage<TRow>(this Controller controller, string module,
-        object options = null, LocalText pageTitle = null)
+        object options = null, string layout = null, LocalText pageTitle = null)
         where TRow: IRow, new()
     {
-        return GridPage(controller, module, pageTitle ?? new TRow().Fields.PageTitle(), options);
+        return GridPage(controller, module, pageTitle ?? new TRow().Fields.PageTitle(), options, layout: layout);
     }
 
     public static ViewResult GridPage(this Controller controller, string module, LocalText pageTitle,
-        object options = null)
+        object options = null, string layout = null)
     {
         return GridPage(controller, new()
         {
             Module = module,
             PageTitle = pageTitle,
-            Options = options
+            Options = options,
+            Layout = layout
         });
     }
 
@@ -53,13 +54,14 @@ public static class ModulePageExtensions
     }
 
     public static ViewResult PanelPage(this Controller controller, string module, LocalText pageTitle,
-        object options = null)
+        object options = null, string layout = null)
     {
         return PanelPage(controller, new()
         {
             Module = module,
             PageTitle = pageTitle,
-            Options = options
+            Options = options,
+            Layout = layout
         });
     }
 

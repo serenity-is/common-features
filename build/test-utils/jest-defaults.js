@@ -7,22 +7,19 @@ const serenityNodeModules = resolve(join(configRoot, "../../../Serenity"));
 export default () => ({
     coveragePathIgnorePatterns: [
         "<rootDir>/node_modules/",
-        "<rootDir>/src/mocks/",
         "/src/Serenity.Assets/"
     ],
     extensionsToTreatAsEsm: ['.ts', '.tsx'],
     moduleNameMapper: {
-        '^@/(.*)$': '<rootDir>/Modules/$1',
         "^@serenity-is/(.*)$": ["<rootDir>/node_modules/@serenity-is/$1", "<rootDir>/../node_modules/@serenity-is/$1", "<rootDir>/../../node_modules/@serenity-is/$1"]
-
     },
     setupFiles: [
-        `${configRoot}/jest-setup.mjs`,
+        `${configRoot}/jest-setup.js`,
     ],
     setupFilesAfterEnv: [
-        `${configRoot}/jest-setup-afterenv.mjs`
+        `${configRoot}/jest-setup-afterenv.js`
     ],   
-    testEnvironment: `${configRoot}/jest-jsdom-global.mjs`,
+    testEnvironment: `${configRoot}/jsdom-global.js`,
     testMatch: [
         "<rootDir>/test/**/*.spec.ts*",
         "<rootDir>/src/**/*.spec.ts*"

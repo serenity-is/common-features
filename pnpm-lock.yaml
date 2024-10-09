@@ -20,6 +20,9 @@ importers:
       jsx-dom:
         specifier: 8.1.5
         version: 8.1.5
+      test-utils:
+        specifier: ../common-features/build/test-utils
+        version: link:build/test-utils
 
   src/Serenity.Demo.BasicSamples:
     dependencies:

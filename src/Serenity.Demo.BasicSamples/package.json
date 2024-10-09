@@ -10,6 +10,8 @@
   "scripts": {
     "build": "node ./tsbuild.js",
     "build:watch": "node ./tsbuild.js --watch",
+    "jest": "node ../../../Serenity/node_modules/jest/bin/jest.js",
+    "test": "node ./tsbuild.js && pnpm jest --coverage",
     "tsc": "tsc"
   },
   "type": "module"

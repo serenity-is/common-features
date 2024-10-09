@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "outDir": "./out",
+    "typeRoots": [
+      "../../../Serenity/node_modules/@types",
+    ],
+    "types": [
+      "jest"
+    ]
+  },
+  "include": [
+    "."
+  ]
+}

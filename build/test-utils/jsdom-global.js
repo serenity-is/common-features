@@ -1,9 +1,6 @@
-//https://github.com/simon360/jest-environment-jsdom-global
 import pkg from "../../../Serenity/node_modules/jest-environment-jsdom/build/index.js";
 
-let JSDOMEnvironment = pkg;
-if (pkg.default)
-  JSDOMEnvironment = pkg.default;
+const JSDOMEnvironment = pkg.default || pkg.JSDOMEnvironment || pkg;
 
 export default class JSDOMEnvironmentGlobal extends JSDOMEnvironment {
   async setup() {

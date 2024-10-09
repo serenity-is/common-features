@@ -3,8 +3,10 @@
   "scripts": {
     "build": "node ./tsbuild.js",
     "build:watch": "node ./tsbuild.js --watch",
-    "tsc": "tsc",
-    "dts": "pnpm dts-bundle-generator Modules/index.ts -o dist/index.d.ts --no-banner --disable-symlinks-following --inline-declare-global"
+    "dts": "pnpm dts-bundle-generator Modules/index.ts -o dist/index.d.ts --no-banner --disable-symlinks-following --inline-declare-global",
+    "jest": "node ../../../Serenity/node_modules/jest/bin/jest.js",
+    "test": "node ./tsbuild.js && pnpm jest --coverage",    
+    "tsc": "tsc"
   },
   "main": "dist/index.js",
   "private": true,

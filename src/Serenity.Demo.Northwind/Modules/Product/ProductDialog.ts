@@ -1,5 +1,6 @@
 import { Decorators, EntityDialog } from "@serenity-is/corelib";
 import { ProductForm, ProductRow, ProductService } from "../ServerTypes/Demo";
+import "./ProductDialog.css";
 
 @Decorators.registerClass()
 @Decorators.maximizable()

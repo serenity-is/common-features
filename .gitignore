@@ -8,6 +8,8 @@ out/
 .vs/
 /build/.nupkg/
 node_modules/
+/src/*/dist/index.css
+/src/*/dist/index.css.map
 /src/*/dist/index.js
 /src/*/dist/index.min.js
 /src/*/dist/index.js.map

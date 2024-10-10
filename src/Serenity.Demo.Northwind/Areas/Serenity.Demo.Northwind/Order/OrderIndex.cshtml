@@ -17,7 +17,4 @@
 
 <div id="GridDiv"></div>
 
-<script type="module">
-    import pageInit from '@Html.ResolveWithHash(ESM.OrderPage)';
-    pageInit();
-</script>
+@Html.ModulePageInit(ESM.OrderPage)

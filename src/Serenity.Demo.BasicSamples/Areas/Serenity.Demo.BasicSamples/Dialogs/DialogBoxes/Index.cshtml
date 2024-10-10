@@ -20,7 +20,4 @@
 
 <div id="SampleRoot" class="d-flex gap-1"></div>
 
-<script type="module">
-    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("DialogBoxesPage.js"))';
-    pageInit();
-</script>
+@Html.ModulePageInit(ESM.DialogBoxesPage)

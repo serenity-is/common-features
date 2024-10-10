@@ -23,7 +23,4 @@
 <div id="GridDiv"></div>
 
 
-<script type="module">
-    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("OtherFormInTabOneBarPage.js"))';
-    pageInit();
-</script>
+@Html.ModulePageInit(ESM.OtherFormInTabOneBarPage)

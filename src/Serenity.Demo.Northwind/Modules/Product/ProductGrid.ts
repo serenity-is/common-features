@@ -3,8 +3,7 @@ import { ExcelExportHelper, PdfExportHelper } from "@serenity-is/extensions";
 import { Column, FormatterContext, NonDataRow } from "@serenity-is/sleekgrid";
 import { CategoryRow, ProductColumns, ProductRow, ProductService, SupplierRow } from "../ServerTypes/Demo";
 import { ProductDialog } from "./ProductDialog";
-
-const fld = ProductRow.Fields;
+import "./ProductGrid.css";
 
 @Decorators.registerClass()
 @Decorators.filterable()
@@ -166,6 +165,7 @@ export class ProductGrid<P = {}> extends EntityGrid<ProductRow, P> {
         var num = (ctx: FormatterContext<ProductRow>) => this.numericInputFormatter(ctx);
         var str = (ctx: FormatterContext<ProductRow>) => this.stringInputFormatter(ctx);
 
+        const fld = ProductRow.Fields;
         columns.QuantityPerUnit && (columns.QuantityPerUnit.format = str);
         columns.CategoryName && (columns.CategoryName.referencedFields = [fld.CategoryID]) &&
             (columns.CategoryName.format = ctx => this.selectFormatter(ctx, fld.CategoryID, (CategoryRow as any).getLookup()));

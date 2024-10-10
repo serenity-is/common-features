@@ -20,7 +20,4 @@
     </p>
 </div>
 
-<script type="module">
-    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("StaticTextBlockPage.js"))';
-    pageInit();
-</script>
+@Html.ModulePageInit(ESM.StaticTextBlockPage)

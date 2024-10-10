@@ -2,6 +2,7 @@ import { CustomerForm, CustomerRow, CustomerService } from "../ServerTypes/Demo"
 import { Decorators, EntityDialog, TabsExtensions, WidgetProps, htmlEncode, localText, reloadLookup } from "@serenity-is/corelib";
 import { DialogUtils } from "@serenity-is/extensions";
 import { CustomerOrdersGrid } from "./CustomerOrdersGrid";
+import "./CustomerDialog.css";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.CustomerDialog')
 export class CustomerDialog<P = {}> extends EntityDialog<CustomerRow, P> {

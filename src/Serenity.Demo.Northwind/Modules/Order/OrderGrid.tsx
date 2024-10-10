@@ -2,6 +2,7 @@ import { Decorators, EntityGrid, EnumEditor, Fluent, LookupEditor, ToolButton, f
 import { ExcelExportHelper, PdfExportHelper, ReportHelper } from "@serenity-is/extensions";
 import { OrderColumns, OrderListRequest, OrderRow, OrderService, ProductRow } from "../ServerTypes/Demo";
 import { OrderDialog } from "./OrderDialog";
+import "./OrderGrid.css";
 
 @Decorators.registerClass('Serenity.Demo.Northwind.OrderGrid')
 @Decorators.filterable()

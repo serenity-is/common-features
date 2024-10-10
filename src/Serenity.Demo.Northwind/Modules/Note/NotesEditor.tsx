@@ -2,6 +2,7 @@ import { NoteRow } from "../ServerTypes/Demo";
 import { Authorization, Decorators, EditorWidget, IGetEditValue, ISetEditValue, PropertyItem, Toolbar, confirmDialog, formatDate, formatISODateTimeUTC, insert } from "@serenity-is/corelib";
 import * as DOMPurify from 'dompurify';
 import { NoteDialog } from "./NoteDialog";
+import "./NotesEditor.css";
 
 @Decorators.registerEditor('Serenity.Demo.Northwind.NotesEditor', [IGetEditValue, ISetEditValue])
 @Decorators.element("<div/>")

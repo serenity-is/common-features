@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "Serial Auto Numbering";
 }
 
@@ -28,9 +28,7 @@
     </p>
 </div>
 
+
 <div id="GridDiv"></div>
 
-<script type="module">
-    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("SerialAutoNumberPage.js"))';
-    pageInit();
-</script>
+@Html.ModulePageInit(ESM.SerialAutoNumberPage)

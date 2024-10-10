@@ -1,5 +1,6 @@
 import { Decorators, gridPageInit } from "@serenity-is/corelib";
 import { CustomerDialog, CustomerGrid, CustomerService } from "@serenity-is/demo.northwind";
+import "@serenity-is/demo.northwind/dist/index.css";
 
 export default () => gridPageInit(SerialAutoNumberGrid);
 

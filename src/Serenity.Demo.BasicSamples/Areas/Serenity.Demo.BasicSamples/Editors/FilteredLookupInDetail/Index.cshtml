@@ -25,7 +25,4 @@
 
 <div id="GridDiv"></div>
 
-<script type="module">
-    import pageInit from '@Html.ResolveWithHash(Html.BasicSamplesModuleFile("FilteredLookupInDetailPage.js"))';
-    pageInit();
-</script>
+@Html.ModulePageInit(ESM.FilteredLookupInDetailPage)

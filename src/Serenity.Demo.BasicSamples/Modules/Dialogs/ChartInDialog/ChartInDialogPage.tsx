@@ -1,6 +1,7 @@
 import { BasicSamplesService } from "../../ServerTypes/Demo";
 import { Decorators, BaseDialog } from "@serenity-is/corelib";
 import { BarController, BarElement, CategoryScale, Chart, Legend, LinearScale } from "chart.js";
+import "./ChartInDialogPage.css";
 
 Chart.register(BarController, BarElement, CategoryScale, Legend, LinearScale);
 

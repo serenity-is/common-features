@@ -1,6 +1,7 @@
-﻿import { LookupFilterByMultipleForm } from "../../ServerTypes/Demo";
+import { LookupFilterByMultipleForm } from "../../ServerTypes/Demo";
 import { Criteria, Decorators, EntityGrid, ListRequest, Lookup, LookupEditorBase, LookupEditorOptions, gridPageInit } from "@serenity-is/corelib";
 import { CategoryRow, ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
+import "./LookupFilterByMultipleValuesPage.css";
 
 export default () => gridPageInit(LookupFilterByMultipleGrid);
 

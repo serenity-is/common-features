@@ -1,5 +1,6 @@
-﻿import { Decorators, gridPageInit } from "@serenity-is/corelib";
+import { Decorators, gridPageInit } from "@serenity-is/corelib";
 import { OrderGrid } from "@serenity-is/demo.northwind";
+import "./WrappedHeadersPage.css";
 
 export default () => gridPageInit(WrappedHeadersGrid)
 

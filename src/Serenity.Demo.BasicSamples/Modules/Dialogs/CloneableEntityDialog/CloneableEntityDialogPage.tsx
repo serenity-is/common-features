@@ -1,5 +1,6 @@
 import { Decorators, EntityGrid, gridPageInit, } from "@serenity-is/corelib";
 import { ProductColumns, ProductDialog, ProductRow, ProductService } from "@serenity-is/demo.northwind";
+import "./CloneableEntityDialogPage.css";
 
 export default () => gridPageInit(CloneableEntityGrid);
 

@@ -1,5 +1,6 @@
-﻿import { Decorators, notifySuccess, SaveResponse } from "@serenity-is/corelib";
+import { Decorators, notifySuccess, SaveResponse } from "@serenity-is/corelib";
 import { OrderDialog } from "@serenity-is/demo.northwind";
+import "./EntityDialogAsPanelPage.css";
 
 export default function pageInit(model: any) {
 

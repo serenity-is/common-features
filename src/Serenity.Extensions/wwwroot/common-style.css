@@ -1409,6 +1409,10 @@ textarea.readonly {
   display: none;
 }
 
+.s-Form .s-StaticTextBlock {
+  padding-top: 4px;
+}
+
 input.error,
 select.error,
 textarea.error,

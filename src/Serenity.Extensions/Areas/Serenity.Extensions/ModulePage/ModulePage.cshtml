@@ -1,5 +1,6 @@
 @model ModulePageModel
 @inject ITextLocalizer Localizer
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment HostEnvironment 
 @{
     if (Model.PageTitle != null)
         ViewData["Title"] = Model.PageTitle.ToString(Localizer);
@@ -8,7 +9,7 @@
     if (Model.Layout != null)
         Layout = Model.Layout;
 }
-
+@Html.AutoIncludeModuleCss(Model.Module)
 @Html.Raw(Model.HtmlMarkup)
 
 <script type="module">

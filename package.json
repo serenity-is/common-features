@@ -9,7 +9,7 @@
     "test-utils": "../common-features/build/test-utils"
   },
   "scripts": {
-    "all": "pnpm i && pnpm -r build && pnpm -r tsc && pnpm -r dts"
+    "all": "pnpm i && pnpm -r build && pnpm -r tsc && pnpm -r dts && pnpm -r jest"
   },
   "type": "module"
 }

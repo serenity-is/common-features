@@ -53,8 +53,8 @@ export function mockFetch(map?: { [urlOrService: string]: ((info: MockFetchInfo)
         fetchSpy = (window as any).fetch = jest.fn(async (url: string, init: RequestInit) => {
             var callback = fetchMap[url] ?? fetchMap["*"];
             if (!callback) {
-                console.error(`Fetch is not configured on the mock fetch implementation: (${url})!`);
-                throw `Fetch is not configured on the mock fetch implementation: (${url})!`;
+                console.error(`Mock fetch is not configured for URL: (${url})!`);
+                throw `Mock fetch is not configured for URL: (${url})!`;
             }
 
             var requestData = typeof init.body == "string" ? JSON.parse(init.body) : null;

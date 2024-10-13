@@ -1,8 +1,8 @@
 import { join, resolve } from "path";
 import { fileURLToPath } from 'url';
 
-const configRoot = resolve(join(fileURLToPath(new URL('.', import.meta.url)), './'));
-const serenityNodeModules = resolve(join(configRoot, "../../../Serenity"));
+const testUtils = resolve(join(fileURLToPath(new URL('.', import.meta.url)), './'));
+const serenityNodeModules = resolve(join(testUtils, "../../../Serenity"));
 
 export default () => ({
     coveragePathIgnorePatterns: [
@@ -14,17 +14,18 @@ export default () => ({
         "^@serenity-is/(.*)$": ["<rootDir>/node_modules/@serenity-is/$1", "<rootDir>/../node_modules/@serenity-is/$1", "<rootDir>/../../node_modules/@serenity-is/$1"]
     },
     setupFiles: [
-        `${configRoot}/jest-setup.js`,
+        `${testUtils}/jest-setup.js`,
     ],
     setupFilesAfterEnv: [
-        `${configRoot}/jest-setup-afterenv.js`
+        `${testUtils}/jest-setup-afterenv.js`
     ],   
-    testEnvironment: `${configRoot}/jsdom-global.js`,
+    testEnvironment: `${testUtils}/jsdom-global.js`,
     testMatch: [
         "<rootDir>/test/**/*.spec.ts*",
         "<rootDir>/src/**/*.spec.ts*"
     ],
     transform: {
+        '\\.css$': `${testUtils}/jest-css-workaround.cjs`,
         "^.+\.(t|j)sx?$": [`${serenityNodeModules}/node_modules/@swc/jest`, {
             jsc: {
                 parser: {

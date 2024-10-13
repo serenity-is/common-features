@@ -1,7 +1,7 @@
 import { EntityDialog } from "@serenity-is/corelib";
 import { waitForAjaxRequests } from "./waitutils";
 
-export class EntityDialogTestWrapper<TDialog extends EntityDialog<any, any>> {
+export class EntityDialogWrapper<TDialog extends EntityDialog<any, any>> {
     constructor(public readonly actual: TDialog) {
     }
 

@@ -48,4 +48,4 @@ export class ProductForm extends PrefixedContext {
     }
 }
 
-[SupplierDialog, CategoryDialog]; // referenced types
+queueMicrotask(() => [SupplierDialog, CategoryDialog]); // referenced types

@@ -22,4 +22,4 @@ export class CustomerColumns extends ColumnsBase<CustomerRow> {
     static readonly Fields = fieldsProxy<CustomerColumns>();
 }
 
-[EmployeeListFormatter]; // referenced types
+queueMicrotask(() => [EmployeeListFormatter]); // referenced types

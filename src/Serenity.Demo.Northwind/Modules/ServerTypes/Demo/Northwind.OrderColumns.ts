@@ -25,4 +25,4 @@ export class OrderColumns extends ColumnsBase<OrderRow> {
     static readonly Fields = fieldsProxy<OrderColumns>();
 }
 
-[EmployeeFormatter, OrderShippingState, ShipperFormatter, FreightFormatter]; // referenced types
+queueMicrotask(() => [EmployeeFormatter, OrderShippingState, ShipperFormatter, FreightFormatter]); // referenced types

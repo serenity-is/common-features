@@ -27,11 +27,17 @@ export class EntityDialogWrapper<TDialog extends EntityDialog<any, any>> {
         return waitForAjaxRequests();
     }
 
+    getTextInput(name: string) {
+        var input = this.actual["byId"](name);
+        if (!input.length)
+            throw `getTextInput: Input with name ${name} is not found in the dialog!`;
+        return input.val();
+    }
 
     setTextInput(name: string, value: any) {
         var input = this.actual["byId"](name);
         if (!input.length)
-            throw `Input not found in the dialog: ${name}!`;
+            throw `setTextInput: Input with name ${name} is not found in the dialog!`;
         input.val(value).trigger("change");
     }
 

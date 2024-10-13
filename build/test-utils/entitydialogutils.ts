@@ -44,4 +44,8 @@ export class EntityDialogWrapper<TDialog extends EntityDialog<any, any>> {
     waitForAjaxRequests(timeout: number = 10000): Promise<void> {
         return waitForAjaxRequests(timeout);
     }
+
+    getForm<TForm>(type: { new(prefix: string): TForm }): TForm {
+        return new type(this.actual.idPrefix);
+    }
 }

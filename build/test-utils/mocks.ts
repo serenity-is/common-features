@@ -1,34 +1,28 @@
-import { ScriptData, peekScriptData, setScriptData } from "@serenity-is/corelib";
+import { ScriptData, peekScriptData, scriptDataHooks, setScriptData } from "@serenity-is/corelib";
 
-let orgEnsure: any;
+let orgFetchScriptData: any;
 
 export function mockDynamicData() {
 
-    if (orgEnsure)
+    if (orgFetchScriptData != void 0)
         return;
 
-    orgEnsure = ScriptData.ensure;        
-    ScriptData.ensure = function(name: string, dynJS?: boolean) {
-
-        if (peekScriptData(name) == null) {
-            try {
-                var data = jest.requireActual("test-utils/dynamic-data/" + name + ".json");
-                setScriptData(name, data);
-            }
-            catch(e) {
-                console.warn(e);
-            }
+    orgFetchScriptData = scriptDataHooks.fetchScriptData ?? null;
+    scriptDataHooks.fetchScriptData = <TData>(name: string) => {
+        try {
+            return jest.requireActual("test-utils/dynamic-data/" + name + ".json");
         }
-
-        return orgEnsure(name, dynJS);
+        catch (e) {
+            console.warn("Failed to load mock dynamic data for: " + name);
+        }
     }
 }
 
 export function unmockDynamicData() {
-    if (!orgEnsure)
+    if (!orgFetchScriptData)
         return;
 
-    ScriptData.ensure = orgEnsure;
+    scriptDataHooks.fetchScriptData = orgFetchScriptData == null ? void 0 : orgFetchScriptData;
 }
 
 import { resolveServiceUrl } from "@serenity-is/corelib";
@@ -147,7 +141,7 @@ class MockXHR {
     getResponseHeader(name: string): string {
         return this._info?.responseHeaders[name];
     }
-    
+
     open(_method: string, url: string, _async?: boolean): void {
         this._info ??= {} as any;
         this._info.url = url;
@@ -183,7 +177,7 @@ class MockXHR {
 
         this._responseData = callback(this._info);
     }
-    
+
     setRequestHeader(name: string, value: string): void {
     }
 }

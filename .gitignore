@@ -1,4 +1,5 @@
 .swc/
+artifacts/
 bin/
 dynamic-data/
 obj/

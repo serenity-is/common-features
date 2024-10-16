@@ -9,6 +9,7 @@ out/
 .vs/
 /build/.nupkg/
 node_modules/
+/src/*/coverage
 /src/*/dist/index.css
 /src/*/dist/index.css.map
 /src/*/dist/index.js

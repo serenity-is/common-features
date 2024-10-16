@@ -20,6 +20,9 @@ public static partial class Shared
 
             CleanDirectory(PackageOutDir, true);
 
+            if (StartProcess("pnpm", "all", Src) != 0)
+                ExitWithError("Error while pnpm all " + Src);
+
             if (StartProcess("dotnet", "restore", Src) != 0)
                 ExitWithError("Error while restoring " + SolutionFile);
 

@@ -9,14 +9,14 @@ public static class ModulePageExtensions
         return "Db." + fields.LocalTextPrefix + ".EntityPlural";
     }
 
-    public static ViewResult GridPage<TRow>(this Controller controller, string module,
+    public static ModulePageResult GridPage<TRow>(this Controller controller, string module,
         object options = null, string layout = null, LocalText pageTitle = null)
         where TRow: IRow, new()
     {
         return GridPage(controller, module, pageTitle ?? new TRow().Fields.PageTitle(), options, layout: layout);
     }
 
-    public static ViewResult GridPage(this Controller controller, string module, LocalText pageTitle,
+    public static ModulePageResult GridPage(this Controller controller, string module, LocalText pageTitle,
         object options = null, string layout = null)
     {
         return GridPage(controller, new()
@@ -28,7 +28,7 @@ public static class ModulePageExtensions
         });
     }
 
-    public static ViewResult GridPage(this Controller controller, ModulePageModel model)
+    public static ModulePageResult GridPage(this Controller controller, ModulePageModel model)
     {
         ArgumentNullException.ThrowIfNull(model);
 
@@ -36,7 +36,7 @@ public static class ModulePageExtensions
         return ModulePage(controller, model);
     }
 
-    public static ViewResult ModulePage(this Controller controller, ModulePageModel model)
+    public static ModulePageResult ModulePage(this Controller controller, ModulePageModel model)
     {
         ArgumentNullException.ThrowIfNull(model);
 
@@ -50,10 +50,17 @@ public static class ModulePageExtensions
                 model.Module += ".js";
         }
 
-        return controller.View(Extensions.MVC.Views.ModulePage.ModulePage_, model);
+        controller.ViewData.Model = model;
+
+        return new()
+        {
+            ViewName = Extensions.MVC.Views.ModulePage.ModulePage_,
+            ViewData = controller.ViewData,
+            TempData = controller.TempData,
+        };
     }
 
-    public static ViewResult PanelPage(this Controller controller, string module, LocalText pageTitle,
+    public static ModulePageResult PanelPage(this Controller controller, string module, LocalText pageTitle,
         object options = null, string layout = null)
     {
         return PanelPage(controller, new()
@@ -65,11 +72,30 @@ public static class ModulePageExtensions
         });
     }
 
-    public static ViewResult PanelPage(this Controller controller, ModulePageModel model)
+    public static ModulePageResult PanelPage(this Controller controller, ModulePageModel model)
     {
         ArgumentNullException.ThrowIfNull(model);
 
         model.HtmlMarkup ??= "<div id=\"PanelDiv\"></div>";
         return ModulePage(controller, model);
+    }
+
+    public static ModulePageResult PageTitle<TRow>(this ModulePageResult result)
+        where TRow : IRow, new()
+    {
+        result.Model.PageTitle = new TRow().Fields.PageTitle();
+        return result;
+    }
+
+    public static ModulePageResult PageTitle(this ModulePageResult result, LocalText pageTitle)
+    {
+        result.Model.PageTitle = pageTitle;
+        return result;
+    }
+
+    public static ModulePageResult Layout(this ModulePageResult result, string layout)
+    {
+        result.Model.Layout = layout;
+        return result;
     }
 }

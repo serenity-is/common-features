@@ -1,4 +1,5 @@
 using FluentMigrator;
+using FluentMigrator.Builders;
 using FluentMigrator.Builders.Create.Table;
 using System.Data.Common;
 using System.IO;
@@ -7,6 +8,9 @@ namespace Serenity.Extensions;
 
 public static class MigrationUtils
 {
+    /// <summary>
+    /// Please prefer IdentityKey(this) on the fluent column builder
+    /// </summary>
     public static void CreateTableWithId32(
         this MigrationBase migration, string table, string idField,
         Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema = null, bool checkExists = false, bool primaryKey = true)
@@ -14,6 +18,9 @@ public static class MigrationUtils
         CreateTableWithId(migration, table, idField, addColumns, schema, 32, checkExists, primaryKey);
     }
 
+    /// <summary>
+    /// Please prefer IdentityKey(this) on the fluent column builder
+    /// </summary>
     public static void CreateTableWithId64(
         this MigrationBase migration, string table, string idField,
         Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema = null, bool checkExists = false, bool primaryKey = true)
@@ -25,73 +32,111 @@ public static class MigrationUtils
         MigrationBase migration, string table, string idField,
         Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema, int size, bool checkExists = false, bool primaryKey = true)
     {
-        ICreateTableColumnOptionOrWithColumnSyntax addAsType(ICreateTableColumnAsTypeSyntax col)
+        if (checkExists && (
+            (schema != null && migration.Schema.Schema(schema).Table(table).Exists()) ||
+            (schema == null && migration.Schema.Table(table).Exists())))
+            return;
+
+        var createTable = migration.Create.Table(table);
+        var withSchema = schema != null ? createTable.InSchema(schema) : createTable;
+        var withColumn = withSchema.WithColumn(idField);
+        var withType = (size switch
         {
-            var result = size switch
-            {
-                64 => col.AsInt64(),
-                16 => col.AsInt16(),
-                _ => col.AsInt32()
-            };
-
-            if (primaryKey)
-                return result.PrimaryKey();
-
-            return result;
-        }
-
-        ICreateTableWithColumnSyntax addSchema(ICreateTableWithColumnOrSchemaOrDescriptionSyntax syntax)
-        {
-            if (schema != null)
-                return syntax.InSchema(schema);
-            else
-                return syntax;
-        }
-
-        if (checkExists)
-        {
-            if (schema != null && migration.Schema.Schema(schema).Table(table).Exists())
-                return;
-
-            if (schema == null && migration.Schema.Table(table).Exists())
-                return;
-        }
-
-        addColumns(
-            addAsType(
-                addSchema(migration.IfDatabase(MigrationUtils.AllExceptOracle)
-                    .Create.Table(table))
-                        .WithColumn(idField))
-                        .Identity().NotNullable());
-
-        addColumns(
-            addAsType(
-                addSchema(migration.IfDatabase("Oracle")
-                    .Create.Table(table))
-                        .WithColumn(idField))
-                        .NotNullable());
-
-        AddOracleIdentity(migration, table, idField);
+            64 => withColumn.AsInt64(),
+            16 => withColumn.AsInt16(),
+            _ => withColumn.AsInt32()
+        }).NotNullable();
+        withType = primaryKey ? withType.PrimaryKey() : withType;
+        var withIdentity = primaryKey ? withType.IdentityKey(migration)
+            : withType.AutoIncrement(migration);
+        addColumns(withIdentity);
     }
 
-    public static readonly string[] AllExceptOracle =
-    [
-        "SqlServer",
-        "SqlServer2000",
-        "SqlServerCe",
-        "Postgres",
-        "MySql",
-        "Firebird",
-        "Jet",
-        "Sqlite",
-        "SAP HANA"
-    ];
+    /// <summary>
+    /// Declares column as Identity() if the database is something other than Oracle,
+    /// defines an Oracle sequence otherwise. It sets the column as PrimaryKey() and
+    /// also calls NotNullable() as it is not possible for identity / sequence columns 
+    /// to be nullable. 
+    /// <param name="syntax">The WithColumn syntax builder</param>
+    /// <param name="migration">The migration reference to determine the database type</param>
+    public static ICreateTableColumnOptionOrWithColumnSyntax IdentityKey(this ICreateTableColumnOptionOrWithColumnSyntax syntax,
+        MigrationBase migration)
+    {
+        syntax = syntax.NotNullable().PrimaryKey();
 
-    public static void AddOracleIdentity(MigrationBase migration,
+        if (migration.IsOracle())
+        {
+            var builder = ((IColumnExpressionBuilder)syntax);
+            AddOracleIdentity(migration, builder.TableName, builder.Column.Name);
+            return syntax;
+        }
+
+        syntax = syntax.Identity();
+
+        return syntax;
+    }
+
+
+    /// <summary>
+    /// Declares column as auto increment (e.g. Identity()) if the database is something other than Oracle,
+    /// defines an Oracle sequence otherwise. It also calls NotNullable() as it is 
+    /// not possible for auto increment / sequence columns to be nullable. This assumes the 
+    /// column will NOT be set as PrimaryKey(), just as an auto incrementing value.
+    /// As MySql does not support AUTO_INCREMENT without primary key or an index, this
+    /// first creates the column as a regular one, then creates an index and modifies it
+    /// to be an AUTO_INCREMENT.
+    /// <param name="syntax">The WithColumn syntax builder</param>
+    /// <param name="migration">The migration reference to determine the database type</param>
+    public static ICreateTableColumnOptionOrWithColumnSyntax AutoIncrement(this ICreateTableColumnOptionOrWithColumnSyntax syntax,
+        MigrationBase migration)
+    {
+        syntax = syntax.NotNullable();
+
+        if (migration.IsOracle())
+        {
+            var builder = ((IColumnExpressionBuilder)syntax);
+            AddOracleIdentity(migration, builder.TableName, builder.Column.Name);
+            return syntax;
+        }
+
+        if (migration.IsMySql())
+        {
+            var builder = ((IColumnExpressionBuilder)syntax);
+            var createIndex = migration.Create
+                .Index($"IX_{builder.TableName}_{builder.Column.Name}")
+                .OnTable(builder.TableName);
+            if (!string.IsNullOrEmpty(builder.SchemaName))
+            {
+                createIndex.InSchema(builder.SchemaName)
+                    .OnColumn(builder.Column.Name)
+                    .Unique();
+            }
+            else
+            {
+                createIndex
+                    .OnColumn(builder.Column.Name)
+                    .Unique();
+            }
+            var type = builder.Column.Type.Value == System.Data.DbType.Int64 ||
+                builder.Column.Type.Value == System.Data.DbType.UInt64 ?
+                "BIGINT" : "INT";
+
+            migration.IfDatabase("MySql").Execute.Sql(
+                $"ALTER TABLE `{(string.IsNullOrEmpty(builder.SchemaName) ? "" :
+                (builder.SchemaName + "."))}{builder.TableName}` MODIFY COLUMN `{builder.Column.Name}` {type} NOT NULL UNIQUE AUTO_INCREMENT;");
+
+            return syntax;
+        }
+
+        syntax = syntax.Identity();
+
+        return syntax;
+    }
+
+    public static void AddOracleIdentity(this MigrationBase migration,
         string table, string id)
     {
         ArgumentNullException.ThrowIfNull(table);
-
         ArgumentNullException.ThrowIfNull(migration);
 
         var seq = table.Replace(" ", "_", StringComparison.Ordinal)
@@ -115,6 +160,62 @@ END;", table, id, seq));
 
         migration.IfDatabase("Oracle")
             .Execute.Sql(@"ALTER TRIGGER " + seq + "_TRG ENABLE");
+    }
+    
+    public static TSyntax If<TSyntax>(this TSyntax syntax, bool predicate, Func<TSyntax, TSyntax> callback)
+        where TSyntax : FluentMigrator.Infrastructure.IFluentSyntax
+    {
+        if (predicate)
+            return callback(syntax);
+
+        return syntax;
+    }
+
+    public static bool IsDatabase(this MigrationBase migration, string type)
+    {
+        return migration.IsDatabase(x => x.StartsWith(type, StringComparison.OrdinalIgnoreCase));
+    }
+
+    public static bool IsDatabase(this MigrationBase migration, Predicate<string> predicate)
+    {
+        bool isMatch = false;
+
+        bool myPredicate(string dbType)
+        {
+            return (isMatch |= predicate(dbType));
+        }
+
+        migration.IfDatabase(myPredicate);
+        return isMatch;
+    }
+
+    public static bool IsFirebird(this MigrationBase migration)
+    {
+        return IsDatabase(migration, "Firebird");
+    }
+
+    public static bool IsOracle(this MigrationBase migration)
+    {
+        return IsDatabase(migration, "Oracle");
+    }
+
+    public static bool IsMySql(this MigrationBase migration)
+    {
+        return IsDatabase(migration, "MySql");
+    }
+
+    public static bool IsPostgres(this MigrationBase migration)
+    {
+        return IsDatabase(migration, "Postgres");
+    }
+
+    public static bool IsSqlite(this MigrationBase migration)
+    {
+        return IsDatabase(migration, "Sqlite");
+    }
+    public static bool IsSqlServer(this MigrationBase migration)
+    {
+        return IsDatabase(migration, "SqlServer");
     }
 
     public static void EnsureDatabase(string databaseKey, string contentRoot, ISqlConnections sqlConnections)

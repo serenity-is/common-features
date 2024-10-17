@@ -1,5 +1,4 @@
 using FluentMigrator;
-using FluentMigrator.Builders.Create.Table;
 
 namespace Serenity.Demo.Northwind.Migrations;
 
@@ -8,7 +7,9 @@ public class NorthwindDB_20151202_1937_ProductLog : AutoReversingMigration
 {
     public override void Up()
     {
-        static void addCols(ICreateTableWithColumnSyntax expr) => expr
+
+        Create.Table("ProductLog")
+            .WithColumn("ProductLogID").AsInt64().IdentityKey(this)
             .WithColumn("OperationType").AsInt16().NotNullable()
             .WithColumn("ChangingUserId").AsInt32().Nullable()
             .WithColumn("ValidFrom").AsDateTime().NotNullable()
@@ -24,15 +25,5 @@ public class NorthwindDB_20151202_1937_ProductLog : AutoReversingMigration
             .WithColumn("UnitsInStock").AsInt16().Nullable()
             .WithColumn("UnitsOnOrder").AsInt16().Nullable()
             .WithColumn("ReorderLevel").AsInt16().Nullable();
-
-        addCols(IfDatabase(MigrationUtils.AllExceptOracle)
-            .Create.Table("ProductLog")
-            .WithColumn("ProductLogID").AsInt64().PrimaryKey().Identity().NotNullable());
-
-        addCols(IfDatabase("oracle")
-            .Create.Table("ProductLog")
-            .WithColumn("ProductLogID").AsInt64().PrimaryKey().NotNullable());
-
-        MigrationUtils.AddOracleIdentity(this, "ProductLog", "ProductLogID");
     }
 }

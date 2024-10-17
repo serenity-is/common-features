@@ -11,9 +11,8 @@ public class NorthwindDB_20151014_0307_OrderDetailID : AutoReversingMigration
             .Alter.Table("Order Details")
                 .AddColumn("DetailID").AsInt32().Identity().NotNullable();
 
-        IfDatabase("oracle")
-            .Alter.Table("\"ORDER DETAILS\"")
-                .AddColumn("DetailID").AsInt32().Nullable();
+        IfDatabase("Oracle")
+            .Execute.Sql("ALTER TABLE \"ORDER DETAILS\" ADD DetailID NUMBER(10, 0) NULL");
 
         MigrationUtils.AddOracleIdentity(this, "\"ORDER DETAILS\"", "DetailID");
 
@@ -21,7 +20,6 @@ public class NorthwindDB_20151014_0307_OrderDetailID : AutoReversingMigration
             .Execute.Sql("UPDATE \"ORDER DETAILS\" SET DetailID = Order_Details_SEQ.nextval");
 
         IfDatabase("Oracle")
-            .Alter.Column("DetailID").OnTable("\"ORDER DETAILS\"")
-                .AsInt32().NotNullable();
+            .Execute.Sql("ALTER TABLE \"ORDER DETAILS\" MODIFY DetailID NUMBER(10, 0) NOT NULL");
     }
 }

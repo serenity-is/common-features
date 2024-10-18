@@ -6,7 +6,7 @@
     "@serenity-is/sleekgrid": "../Serenity/packages/sleekgrid",
     "@serenity-is/tsbuild": "8.7.4",
     "jsx-dom": "8.1.5",
-    "test-utils": "../common-features/build/test-utils"
+    "test-utils": "../Serenity/packages/test-utils"
   },
   "scripts": {
     "all": "pnpm i && pnpm -r build && pnpm -r tsc && pnpm -r dts && pnpm -r jest"

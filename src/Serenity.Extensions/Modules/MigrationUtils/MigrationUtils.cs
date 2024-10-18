@@ -45,7 +45,7 @@ public static class MigrationUtils
             64 => withColumn.AsInt64(),
             16 => withColumn.AsInt16(),
             _ => withColumn.AsInt32()
-        }).NotNullable();
+        });
         var withIdentity = primaryKey ? withType.IdentityKey(migration)
             : withType.AutoIncrement(migration);
         addColumns(withIdentity);
